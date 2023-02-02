@@ -1,0 +1,218 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard" [style.display]="!showRecTable ? 'block' : 'none'" >
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Newgvfgfgfg</h3>
+          <p routerLink="/brand-portal/marketing/campaigns"><a>Back to Campaigns</a></p>
+          <ul class="newCampaignsStatusList">
+            <li>
+              <p>Last Edited April 12, 2022</p>
+            </li>
+            <li><a class="draft_link disabled">Draft</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="vendor_new_campaigns_body">
+        <ul class="filter_list">
+          <li><a><img src="assets/images/edit_icon2.png" alt="" /> Rename</a></li>
+          <li><a><img src="assets/images/duplicate_icon.png" alt="" /> Duplicate</a></li>
+          <li><a><img src="assets/images/preview_icon.png" alt="" /> Preview</a></li>
+          <li><a><img src="assets/images/email_icon.svg" alt="" /> Sent test</a></li>
+          <li><a><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a></li>
+        </ul>
+        <div class="rightAccount AccordionPanel new-campaign-accordion">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header"> <a class="btn" data-bs-toggle="collapse" href="#collapseOne"> Select Your Recipients </a> </div>
+              <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <label>Recipients</label>
+                  <!-- <form action="" method="get"> -->
+                    <!-- <select class="form-select SelCust" id="sel1" name="sellist1">
+                      <option>Select customers</option>
+                      <option>All Contacts (1)</option>
+                      <option>Uncontacted (1)</option>
+                      <option>Contacted</option>
+                      <option>Signed up</option>
+                      <option>Ordered</option>
+                      <option>Not on Bazar yet</option>
+                      <option>Unused Bazar Direct Credit</option>
+                      <option>Manual</option>
+                    </select> -->
+                    <div class="custome-select-dropdown" (clickOutside)="close()">
+                      <div (click)="customContactList()" class="custom-contact-link">Select a contact list</div>
+                      <ul class="custom-contact-list">
+                        <li *ngFor="let item of recipantsTypeArray; let i = index">
+                          <input type="checkbox" (change)="onSelectRecip($event)" [value]="item" [checked]="selectedRecipants?.length > 0 && selectedRecipants?.includes(item)" >
+                          <span class="label-span">{{item}}(0)</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn btn-primary uploadBtn" (click)="openCsvExport(csvContent)"><i class="fa fa-file-text" aria-hidden="true"></i> Upload CSV file</button>
+                    <!-- </form> -->
+                    <ng-container *ngIf="selectedRecipants?.length > 0" >
+                      <h4>Recipients <span class="view-link" (click)="showRecTable = true">View All</span></h4>
+                      <ul class="view-list">
+                        <li *ngFor="let item of selectedRecipants; let i = index;" ><span>{{item}} (1) <img src="assets/images/cross_icon.png" alt="" (click)="onRemoveRecip(item)" ></span></li>
+                        <!-- <li><span>upload_customers_example (1).csv (2) <img src="assets/images/cross_icon.png" alt=""></span></li>
+                        <li><span>upload_customers_example (1).csv (3) <img src="assets/images/cross_icon.png" alt=""></span></li> -->
+                      </ul>
+                    </ng-container>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"> <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">Enter a Subject Line</a> </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <form action="" method="get">
+                    <ul class="SubjectLine">
+                      <li>
+                        <label>Subject Line<span style="color: red;">*</span></label>
+                        <input type="text" placeholder="Add a subject line here" name="subject" [(ngModel)]="subject" ><br>
+                        <span *ngIf="subject_line_error" class="validate_errors" >{{subject_line_error}}</span>
+                      </li>
+                      <li>
+                        <label>Preview Text</label>
+                        <input type="text" placeholder="This snippet will appear in the inbox after the subject line (optional)" name="preview_text" [(ngModel)]="preview_text">
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"> <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">Design Your Email</a> </div>
+              <div id="collapseThree" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body email-card-body">
+                  <div class="email-template">
+                    <div id="gjs-new"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shop_collections_body">
+        <ul class="btnList">
+          <!-- <li>
+            <input type="button" name="" value="Cancel" class="btn draft_btn">
+          </li> -->
+          <li>
+            <input type="submit" name="" value="Save" class="btn publish_btn" (click)="saveCampaign()">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipients Table -->
+  <div class="middle_vendor_dasboard" *ngIf="showRecTable" >
+    <div class="middle_content">
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Newgvfgfgfg</h3>
+          <p>Duplicate recipients on this list will only receive one email</p>
+          <p (click)="showRecTable = false"><a>Back</a></p>
+        </div>
+      </div>
+      
+      <div class="whiteBox">
+        <div class="product_tab_content">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" *ngFor="let item of selectedRecipants; let i = index;" ><a class="nav-link active" data-bs-toggle="tab" href="#allProduct{{i}}" >{{item}}<span>0</span></a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="allProduct" class="container tab-pane active load-more">
+              <!-- <h3>Select products to take an action</h3> -->
+              <div class="table_sec"> 
+                <table class="table"> 
+                  <thead>
+                    <tr>
+                      <th scope="col">Contact name</th>
+                      <th scope="col">Store name</th>
+                      <th scope="col">Email address</th>
+                      <th scope="col">Source</th>
+                      <th scope="col">Date added</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Mari</td>                  
+                      <td>-</td>                  
+                      <td>mari@gmail.com</td>                  
+                      <td>Manual upload</td>                  
+                      <td>Apr 11, 2022</td>                  
+                    </tr>                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div id="publishedProduct" class="container tab-pane load-more">
+              <h3>Select products to take an action</h3>          
+              <div class="table_sec"> 
+                <table class="table"> 
+                  <thead>
+                    <tr>
+                      <th scope="col">Contact name</th>
+                      <th scope="col">Store name</th>
+                      <th scope="col">Email address</th>
+                      <th scope="col">Source</th>
+                      <th scope="col">Date added</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Jim Smith</td>                  
+                      <td>-</td>                  
+                      <td>jimsmith@example.com</td>                  
+                      <td>Manual upload</td>                  
+                      <td>Apr 12, 2022</td>                  
+                    </tr>                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #csvContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload a CSV to add customers</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+  	<div class="smllCSvDiv">
+    	<p>Your CSV should include columns for contact name, store name, and email address. Store name and contact name are used to personalize emails you send through Bazar.</p>
+    	<h4><a>Download CSV template</a></h4>
+        <img src="assets/images/download_csv_format_img.png" alt="" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="file" hidden accept=".xlsx, .xls, .csv" class="btn btn-primary add-customer-btn" (change)="onUploadContactList($event)" #csvUpload >
+    <button type="button" class="btn btn-primary add-customer-btn" (click)="csvUpload?.click()">Upload  CSV</button>
+    <!-- <button type="button" class="btn btn-primary add-customer-btn" (click)="modal.close('Save click')" (click)="successUploadCampaigns(succContent)">Upload  CSV</button> -->
+  </div>
+</ng-template>
+<ng-template #succContent let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+  	<p>Successfully added contacts to your campaign</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Done</button>
+  </div>
+</ng-template>
+<!-- Vendor add Upload CSV Customer Information Modal End --> 

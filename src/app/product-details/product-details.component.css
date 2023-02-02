@@ -1,0 +1,157 @@
+.productDetailsTop { float: left; margin: 142px 0 0 0; padding: 0; width: 100%; }
+.feedback-slides { height: 570px; float: right; margin: 0; padding: 0; width: 570px; }
+.client-feedback { height: 570px; margin: 0; padding: 0; width: 570px;  }
+.leftImgtDetails { position:  relative; }
+.leftImgtDetails .brandShopNav { }
+.leftImgtDetails .brandShopNav { float: left; list-style: none; margin: 10px 50px 10px 0; padding: 0; position: absolute; right: 0; top: 0; width: auto; z-index: 1; }
+.leftImgtDetails .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.leftImgtDetails .brandShopNav li a { cursor: pointer; display: block; }
+.img-zoom-container { align-items: center; display: flex; justify-content: center; height: 100%; position: relative; width: 100%; }
+.rightProductDetails h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 5px 0 0 0; }
+.rightProductDetails h3:hover { cursor: pointer; }
+.rightProductDetails h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 5px 0 15px 0; }
+.rightProductDetails p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 25px 0; }
+.rightProductDetails .brandLogo { float: left; margin: 0 15px 25px 0; width: auto; }
+.rightProductDetails .brandLogo img { border-radius: 100%; height: 65px; width: 65px; }
+.rightProductDetails .brandLogo img:hover { cursor: pointer; }
+.rightProductDetails .productName { color: #000; float: left; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 10px 0; max-width: 70%; width: auto; }
+.rightProductDetails .brandShopNav { float: left; list-style: none; margin: 0 0 10px 10px; padding: 0; position: relative; width: auto; z-index: 1; }
+.rightProductDetails .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.rightProductDetails .brandShopNav li a { cursor: pointer; display: block; }
+.rightProductDetails .productPrice { border-bottom: 1px solid rgba(57, 57, 57, 0.5); color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 15px 0; padding: 0 0 10px 0; width: 100%; }
+.rightProductDetails .productPrice span { color: rgba(57, 57, 57, 0.5); }
+.rightProductDetails .productDescriptionList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li { float: left; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li label { color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .grayNote { background: rgba(57, 57, 57, 0.05); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; line-height: 21px; margin: 0; padding: 15px 25px 15px 25px; width: 100%; }
+.rightProductDetails .productDescriptionList li .colorSec { color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .colorSec span { color: #000; }
+.rightProductDetails .productDescriptionList li .choseColor { float: left; list-style: none; margin: 0; padding: 0; }
+.rightProductDetails .productDescriptionList li .choseColor li { float: left; margin: 0 10px 15px 0; padding: 0; width: auto; }
+.rightProductDetails .productDescriptionList li .choseColor li .store_label { background: none; cursor: pointer; display: block; margin: 0; padding: 5px 0 0 5px; position: relative; -webkit-user-select: none; user-select: none; width: 100%; }
+.rightProductDetails .productDescriptionList li .choseColor li .store_label input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .choseColor li .colorBox { height: 40px; margin: 0; padding: 0; width: 40px; }
+.rightProductDetails .productDescriptionList li .choseColor li .colorBox span { border-radius: 100%; display: block; height: 40px; width: 40px; }
+.rightProductDetails .productDescriptionList li .choseColor li .checkmark { background: #fff; border: 1px solid rgba(238,238,238,1); border-radius: 100%; height: 50px; left: 0; position: absolute; top: 0; width: 50px; z-index: -1; }
+.rightProductDetails .productDescriptionList li .choseColor li .store_label:hover input ~ .checkmark { background-color: rgba(255,255,255,1); }
+.rightProductDetails .productDescriptionList li .choseColor li .store_label input:checked ~ .checkmark { border-color: #000; }
+.rightProductDetails .productDescriptionList li .choseDimension { float: left; list-style: none; margin: 0; padding: 0; }
+.rightProductDetails .productDescriptionList li .choseDimension li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label { background: none; cursor: pointer; display: block; margin: 0; padding: 0 15px 0 15px; position: relative; -webkit-user-select: none; user-select: none; width: 100%; }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; text-align: center; }
+.rightProductDetails .productDescriptionList li .choseDimension li .checkmark { background: #fff; border: 1px solid rgba(57,57,57,0.5); border-radius: 3px; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: -1; }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label:hover input ~ .checkmark { background-color: rgba(57,57,57,0.05); }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label input:checked ~ .checkmark { background-color: #393939; border-color: #393939; }
+.rightProductDetails .productDescriptionList li .choseDimension li .store_label input:checked ~ h4 { color: #fff; }
+.rightProductDetails .productDescriptionList li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.rightProductDetails .productDescriptionList li .bag-btn { background-color: #393939; border-color: #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; margin: 0 0 15px 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .negotiate-btn { background-color: #fff; border-color: #393939; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; margin: 0 0 15px 0; padding: 0; width: 100%; }
+.rightProductDetails .productDescriptionList li .wishlist-btn { background-color: #fff; border-color: #393939; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; padding: 0; width: 100%; }
+.brandShopBodyBottom { float: left; margin: 0 0 60px 0; padding: 0; width: 100%; }
+.brandShopBodyBottom h3 { color: #000; font-family: 'Futura' !important; font-size: 40px; font-weight: 500; margin: 0 0 50px 0; text-align: center; }
+.brandShopBodyBottom .productDeatilsTabs { border-bottom: 1px solid #c4c4c4; margin: 0 0 40px 0; padding: 0 0 40px 0; width: 100%; }
+.brandShopBodyBottom .productDeatilsTabs .nav-tabs { margin-bottom: 20px; }
+.brandShopBodyBottom .productDeatilsTabs .nav-tabs .nav-link { border: none; border-bottom: 1px solid transparent; border-radius: 0px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 50px; padding: 0 15px 0 15px; }
+.brandShopBodyBottom .productDeatilsTabs .nav-tabs .active { border-bottom: 1px solid #393939; }
+.brandShopBodyBottom .productDeatilsTabs .tab-content { margin: 0; padding: 0; width: 100%; }
+.brandShopBodyBottom .productDeatilsTabs .tab-content .tab-pane p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 20px 0; }
+.brandShopBodyBottom .productDeatilsTabs .tab-content .tab-pane .showMoreLink { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; text-decoration: underline; }
+.leftProductDetailsBottom { }
+.leftProductDetailsBottom h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 15px 0; text-align: left; }
+.leftProductDetailsBottom h3:hover { cursor: pointer; }
+.leftProductDetailsBottom .brandLogo { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.leftProductDetailsBottom .brandLogo img { border-radius: 100%; height: 102px; width: 102px; }
+.leftProductDetailsBottom .brandLogo img:hover { cursor: pointer; }
+.leftProductDetailsBottom .brandList { list-style: none; margin: 0; padding: 0; width: 100%; } 
+.leftProductDetailsBottom .brandList li { border-bottom: 1px solid #c4c4c4; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 10px 0; padding: 0 0 8px 0; width: 100%; }
+.leftProductDetailsBottom .brandList li:last-child { border-bottom: none; }
+.leftProductDetailsBottom .brandList li h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; }
+.leftProductDetailsBottom .brandList li .starSpan { color: #393939; display: inline-block; margin-right: 7px; }
+.rightBrandShopBodyBottom { }
+.rightBrandShopBodyBottom .brandShopProduct_list { list-style: none; padding: 0; }
+.rightBrandShopBodyBottom .brandShopProduct_list li { margin-bottom: 30px; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card { }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv { background-position: center; background-repeat: no-repeat; background-size: 100% auto; margin: 0; min-height: 199px; padding: 0; position: relative; width: 100%; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav { float: right; list-style: none; margin: 20px 0 0 0; padding: 0; position: relative; width: auto; z-index: 1; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li a { cursor: pointer; display: block; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .addProductBtn { align-items: center; display: flex; height: 100%; justify-content: center; left: 0; position: absolute; top: 0; width: 100%; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .addProductBtn .addButton { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; cursor: pointer; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; opacity: 0; padding: 0 40px 0 40px; transition: .5s ease-in-out; }
+.rightBrandShopBodyBottom .brandShopProduct_list li:hover .card .imgDiv .addProductBtn .addButton { opacity: 1; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .textDiv { margin: 0; padding: 15px 0 0 0; width: 100%; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .textDiv h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 15px 10px 15px; text-align: left; } 
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .textDiv .price_tag { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 15px 25px 15px; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .textDiv .price_tag span { color: rgba(57, 57, 57, 0.5); display: inline-block; margin-left: 10px; }
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .textDiv .minimumTextSpan { border-top: 1px solid #eee; color: #393939; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; padding: 15px 15px 15px 15px; }
+.productReviewsSec { border-top: 1px solid #c4c4c4; margin: 0; padding: 30px 0 0 0; width: 100%; }
+.productReviewsSec h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; text-align: left; } 
+.productReviewsSec .starSpan { color: #393939; display: inline-block; margin-right: 7px; }
+.productReviewsSec .reviewsList { list-style: none; margin: 15px 0 0 0; padding: 0; width: 100%; }
+.productReviewsSec .reviewsList li { border-bottom: 1px solid #c4c4c4; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.productReviewsSec .reviewsList li h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0 0 10px 0; }
+.productReviewsSec .reviewsList li h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.productReviewsSec .reviewsList li p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 15px 0; }
+.productReviewsSec .reviewsList li .starSpan { color: #393939; display: inline-block; font-size: 14px; line-height: 20px; margin-bottom: 10px; margin-right: 5px; }
+.productReviewsSec .reviewsList li .dateSpan { color: rgba(57, 57, 57, 0.5); display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin-bottom: 10px; }
+.withoutCarousel { margin-bottom: 30px; }
+.withoutCarousel .category_box { margin: 0; padding: 0; max-width: 309px; width: 100%; }
+.withoutCarousel .category_box .img_div { margin: 0; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.withoutCarousel .category_box .img_div img { height: auto; max-height: 241px; min-width: 100%; width: auto; }
+.withoutCarousel .category_box .img_div .brandShopNav { list-style: none; margin: 0; padding: 0; position: absolute; right: 0; top: 20px; width: auto; z-index: 1; }
+.withoutCarousel .category_box .img_div .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.withoutCarousel .category_box .img_div .brandShopNav li a { cursor: pointer; display: block; }
+.withoutCarousel .category_box .img_div .brandShopNav li img { height: auto; width: auto; }
+.withoutCarousel .category_box .text_div { border: 1px solid #eee; border-top: none; border-radius: 0 0 10px 10px; margin: 0; padding: 20px; width: 100%; }
+.withoutCarousel .category_box .text_div h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 10px 0; text-align: left; }
+.withoutCarousel .category_box .text_div h4 { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 25px 0; }
+.withoutCarousel .category_box .text_div h5 { background: rgba(57, 57, 57, 0.05); color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 10px; }
+.recentViewsCarousel { float: left; margin: 0; padding: 0; width: 100%; }
+.recentViewsCarousel .category_box { margin: 0; padding: 0; max-width: 309px; width: 100%; }
+.recentViewsCarousel .category_box .img_div { margin: 0; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.recentViewsCarousel .category_box .img_div img { height: auto; max-height: 241px; min-width: 100%; width: auto; }
+.recentViewsCarousel .category_box .img_div .brandShopNav { list-style: none; margin: 0; padding: 0; position: absolute; right: 0; top: 20px; width: auto; z-index: 1; }
+.recentViewsCarousel .category_box .img_div .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.recentViewsCarousel .category_box .img_div .brandShopNav li a { cursor: pointer; display: block; }
+.recentViewsCarousel .category_box .img_div .brandShopNav li img { height: auto; width: auto; }
+.recentViewsCarousel .category_box .text_div { border: 1px solid #eee; border-top: none; border-radius: 0 0 10px 10px; margin: 0; padding: 20px; width: 100%; }
+.recentViewsCarousel .category_box .text_div h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 10px 0; text-align: left; }
+.recentViewsCarousel .category_box .text_div h4 { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 25px 0; }
+.recentViewsCarousel .category_box .text_div h5 { background: rgba(57, 57, 57, 0.05); color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 10px; }
+
+
+
+/* Responsive Start */
+@media screen and (max-width: 1366px) { 
+.feedback-slides { height: 500px; width: 500px; }
+.client-feedback { height: 500px; width: 500px; }
+}
+@media screen and (max-width: 1025px) { 
+.feedback-slides { height: 455px; width: 455px; }
+.client-feedback { height: 455px; width: 455px; } 
+}
+@media screen and (max-width: 991px) { 
+.productDetailsTop { margin-top: 108px; }
+.leftImgtDetails { margin-bottom: 40px; }
+.feedback-slides { height: 570px; width: 570px; }
+.client-feedback { height: 570px; width: 570px; }
+}
+@media screen and (max-width:767px) { 
+.productDetailsTop { margin-top: 85px; }
+.brandShopBodyBottom h3 { font-size: 32px; margin-bottom: 30px; }
+}
+@media screen and (max-width:540px) { 
+.feedback-slides { float: none; height: 500px; margin: 0 auto; width: 100%; }
+.client-feedback { height: 500px; width: 100%; }    
+}
+@media screen and (max-width:480px) { 
+.feedback-slides { height: 450px; }
+.client-feedback { height: 450px; }  
+}
+@media screen and (max-width:414px) { 
+.feedback-slides { height: 390px; }
+.client-feedback { height: 390px; }  
+}
+@media screen and (max-width:393px) { 
+}
+/* Responsive End */

@@ -1,0 +1,226 @@
+<div class="gray_body">
+    <div class="container-fluid profileDiv boardSec">
+        <div class="row">
+            <div class="col-lg-2 col-sm-4">
+                <app-user-left-sidebar></app-user-left-sidebar>
+            </div>
+            <div class="col-lg-10 col-sm-8 right-board-content-sec">
+                <h2 class="heading">{{allDetails?.board_arr?.name}}</h2>
+                <h4>{{allDetails?.board_arr?.products_count}} saved</h4>
+                <div class="right-select-sec">
+                    <!-- <select class="form-select add_product_select" aria-label="Default select example" >
+                        <option selected hidden>Add products</option>
+                        <option value="1">Sort by products</option>
+                        <option value="2">Sort by brands</option>
+                    </select> -->
+                </div>
+                <div>
+                    <a class="edit-btn" (click)="openEditBoardModal(editBoardsContent)">Edit</a>
+                </div>
+                <div class="rightAccount">
+                    <!-- <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#home">My Boards</a>
+                        </li>
+                    </ul> --> 
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="home" class="container tab-pane active">
+                            <div class="row">
+                                <ng-container *ngIf="allDetails?.product_arr?.length > 0 ">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="wishProduct">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-sm-6" *ngFor="let item of allDetails?.product_arr">
+                                                    <div class="wisBox">
+                                                        <div class="wisBoxImg">
+                                                            <span class="love" (click)="removeWishlist(item?.id)" >
+                                                                <img src="assets/images/Vector-red.png" alt="">
+                                                            </span> 
+                                                            <img [src]="item?.product_image" alt="">
+                                                            <a class="edit-btn" (click)="wishId=item?.id; openEditBoardProductModal(editBoardsProductContent)"></a>
+                                                        </div>
+                                                        <div class="wisBoxTxt">
+                                                            <div class="wisBoxTxtTop">
+                                                                <h4>{{item?.product_name}}</h4>
+                                                                <p>${{item?.product_wholesale_price}}<span>MSRP ${{item?.product_retail_price}}</span></p>
+                                                            </div>
+                                                            <!-- <div class="wisBoxTxtBottom">
+                                                                <h4><span>by</span> Star Seller</h4>
+                                                                <p>$250 minimum</p>
+                                                                <h5>Up to 30% off + free shipping</h5>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="allDetails?.product_arr?.length <= 0 ">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="wishProduct">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-sm-6">
+                                                        <div class="wisBoxTxt">
+                                                            <h4>No Products Found.</h4>
+                                                        </div>
+                                                </div>                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------shipping address modal starts--------->
+<div class="modal boardModal" id="boardModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h3>Create new board</h3>
+                <div class="paymentDiv">
+                    <ul class="paymentForm">
+                        <li>
+                            <label>Name</label>
+                            <input type="text" value="">
+                        </li>
+                        <li>
+                            <label>Visibility</label>
+                            <div class="radioDiv">
+                                <label class="switch" for="checkbox4">
+                                    <input type="checkbox" id="checkbox4" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="submitBtn">
+                    <input type="submit" value="Save changes" class="paymentBtn">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------shipping address modal ends--------->
+
+<!------New boards modal starts--------->
+<ng-template #newBoardsContent let-modal>
+    <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"></button>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form class="ShippingForm" #addBoard="ngForm" (ngSubmit)="addBoard.form.valid && saveAddBoard(addBoard)" novalidate>
+                <a class="backPrevModal" (click)="modal.dismiss('Cross click')"></a>
+                <h3>Create new board</h3>
+                <div class="paymentDiv">
+                    <ul class="paymentForm">
+                        <li>
+                            <label>Name</label>
+                            <input type="text" value="" name="board_name" [(ngModel)]="board_name" #board_nameval='ngModel' required >
+                            <span class="validate_errors"
+                                *ngIf="(board_nameval.touched || addBoard.submitted) && board_nameval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Visibility</label>
+                            <div class="radioDiv">
+                                <label class="switch" for="checkbox5">
+                                    <input type="checkbox" id="checkbox5" name="board_visibility" [(ngModel)]="board_visibility" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="submitBtn">
+                    <input *ngIf="!newBtnDis" type="submit" value="Save changes" class="paymentBtn">
+                    <input *ngIf="newBtnDis" type="button" disabled value="Saving changes" class="paymentBtn">
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<!------New boards modal ends--------->
+
+<!------Edit boards modal starts--------->
+<ng-template #editBoardsContent let-modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"></button>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="ShippingForm" #editBoardForm="ngForm" (ngSubmit)="editBoardForm.form.valid && editBoard(editBoardForm)" novalidate>
+                    <h3>Create new board</h3>
+                    <div class="paymentDiv">
+                        <ul class="paymentForm">
+                            <li>
+                                <label>Name</label>
+                                <input type="text" value="" name="exist_board_name" [(ngModel)]="exist_board_name" #exist_board_nameval='ngModel' required>
+                                <span class="validate_errors"
+                                    *ngIf="(exist_board_nameval.touched || editBoardForm.submitted) && exist_board_nameval.errors?.['required']">
+                                    This field is required
+                                </span>
+                            </li>
+                            <li>
+                                <label>Visibility</label>
+                                <div class="radioDiv">
+                                    <label class="switch" for="checkbox6">
+                                        <input type="checkbox" id="checkbox6" [checked]="exist_board_visibility == '1'" (change)="onCheckChange($event)" />
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="submitBtn">
+                        <input *ngIf="!saveBtnDis" type="submit" value="Save changes" class="paymentBtn">
+                        <input *ngIf="saveBtnDis" type="button" disabled value="Saving changes..." class="paymentBtn">
+                    </div>
+                    <div class="deleteBtn">
+                        <input *ngIf="!deleteBtnDis" type="button" (click)="deleteBoard()" value="Delete Board" class="paymentBtn">
+                        <input *ngIf="deleteBtnDis" type="button" disabled value="Deleting Board..." class="paymentBtn">
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!------Edit boards modal ends--------->
+
+<!------Edit boards product modal starts--------->
+<ng-template #editBoardsProductContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Move to</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ul class="board-product-list">
+            <li class="create-modal-list" (click)="openNewBoardProductModal(newBoardsContent)">
+                <div class="img-sec"><img src="../../assets/images/add_plus_icon.png" alt=""></div>
+                <p>Create New Board</p>
+            </li>
+            <li *ngFor="let item of boardList">
+                <div class="img-sec"><img [src]="item?.board_image" alt=""></div>
+                <p>{{item?.board_name}}</p>
+                <input type="radio" class="form-check-input" name="moveBoard" value="{{item?.board_key}}" [checked]="item?.board_key == board_id" (change)="onMoveBoard($event)" >
+            </li>
+        </ul>
+      <!-- <p>This product will be published to your shop page after you activate your Bazar shop.</p> -->
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-primary" >Publish</button>
+      <button type="button" class="btn btn-primary" disabled>Publish</button> 
+    </div>-->
+</ng-template>
+<!------Edit boards product modal ends--------->

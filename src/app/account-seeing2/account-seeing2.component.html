@@ -1,0 +1,288 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Account Settings</h3>
+          <p>Your account information, payment details, and settings.</p>
+          <ng-container *ngIf="!resendBtsDis">
+            <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                Please verify your Email.
+                <a (click)="onResendEmailClick()">Resend email.</a>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="resendBtsDis">
+              <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                  Please verify your Email.
+                  <a >sending email.</a>
+              </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="account_setting_body2">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#home">My Account</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#menu1">Payments & Taxes</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#menu2">Notifications</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#menu3">Orders</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="home" class="container tab-pane active"><br>
+            <form #vendorAccountUpdate="ngForm" (ngSubmit)="sendAccountUpdate(vendorAccountUpdate)">
+              <div class="row">
+                <div class="col-lg-8 col-sm-6">
+                  <h3>Personal Information</h3>
+                  <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</span></p>
+                  <div class="tabFormBox">
+                    <ul class="row formDiv">
+                      <li class="col-lg-6">
+                        <label>First Name</label>
+                        <input type="hidden" name="user_id" [(ngModel)]="user_id" >
+                        <input type="text" value="Marine" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' >
+                      </li>
+                      <li class="col-lg-6">
+                        <label>Last Name</label>
+                        <input type="text" value="Mari" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel'>
+                      </li>
+                      <li class="col-lg-6">
+                        <label>Personal Email</label>
+                        <input type="email" value="ivmarine@gmal.com" name="email" [(ngModel)]="email" #emailval='ngModel' readonly>
+                      </li>
+                      <li class="col-lg-6">
+                        <label>Phone Number</label> 
+                        <select class="countryCode" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel'>
+                          <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">+{{item.phone_code}}</option>                         
+                        </select>
+                        <input type="text" placeholder="" class="countryNum" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel'>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="borderBottom"></div>
+              <div class="row">
+                <div class="col-lg-8 col-sm-6">
+                  <h3>Change Password</h3>
+                  <ul class="row formDiv">
+                    <li class="col-lg-4">
+                      <label>Old Password</label>
+                      <input type="password" value="" name="old_password" [(ngModel)]="old_password" #old_passwordval='ngModel'>
+                    </li>
+                    <li class="col-lg-4">
+                      <label>New Password</label>
+                      <input type="password" value="" name="new_password" [(ngModel)]="new_password" #new_passwordval='ngModel'>
+                    </li>
+                    <li class="col-lg-4">
+                      <label>Confirm new password</label>
+                      <input type="password" value="" name="confirm_password" [(ngModel)]="confirm_password" #confirm_passwordval='ngModel'>
+                    </li>
+                    <span class="validate_errors" *ngIf="errorMsg">{{errorMsg}}</span>
+                    <li class="col-lg-12">
+                      <input *ngIf="!btnDis" type="submit" value="Save Changes" class="accountBtn">
+                      <input *ngIf="btnDis" type="submit" value="Saving Changes" class="accountBtn" disabled>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="menu1" class="container tab-pane fade"><br>
+            <div class="row">
+              <div class="col-lg-8 col-sm-6">
+                <h3>Personal Information</h3>
+                <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</span></p>
+                <ul class="row formDiv">
+                  <li class="col-lg-6">
+                    <label>Account Holder Name</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-6">
+                    <label>Routing Number</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-6">
+                    <label>Account Number</label>
+                    <input type="email" value="">
+                  </li>
+                  <li class="col-lg-6">
+                    <label>Confirm Account Number</label>
+                    <input type="text" value="">
+                  </li>
+                </ul>
+                <p>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</p>
+              </div>
+            </div>
+            <div class="borderBottom"></div>
+            <div class="row">
+              <div class="col-lg-8 col-sm-6">
+                <h3>Tax Forms</h3>
+                <p><span>How do you want to receive tax forms?</span></p>
+                <ul class="row formDiv formDiv2">
+                  <li class="col-lg-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" checked="checked">
+                      <label class="form-check-label">Electronically – Download copies from the Faire portal (recommended)</label>
+                    </div>
+                  </li>
+                  <li class="col-lg-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input">
+                      <label class="form-check-label">Eco-friendly</label>
+                    </div>
+                  </li>
+                </ul>
+                <div class="grayBox">
+                  <h4>This will update your tax information</h4>
+                  <p>These changes will be incorporated into your current 2022 tax form. If you don't want these updates to impact your 2022 tax form, please check back in after April 15 to update your tax information for future tax forms.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-sm-6">
+                <ul class="row formDiv">
+                  <li class="col-lg-12">
+                    <label>Legal Brand Name</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Tax Identification Number</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Legal Address</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Apartment, Suite, Etc</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>City*</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>State</label>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected></option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Zip Code*</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Country*</label>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected></option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+            <p>Need to update tax information from 2019 or earlier? Contact <a>Bazar Support</a></p>
+            <div class="row">
+              <div class="col-lg-4 col-sm-6">
+                <h3>Tax Information</h3>
+                <ul class="row formDiv">
+                  <li class="col-lg-12">
+                    <label>VAT Number</label>
+                    <input type="text" value="">
+                  </li>
+                  <li class="col-lg-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" checked="checked">
+                      <label class="form-check-label">I don't have a VAT number</label>
+                    </div>
+                  </li>
+                  <li class="col-lg-12">
+                    <label>SIREN Number (France only)</label>
+                    <input type="password" value="" placeholder="******">
+                  </li>
+                  <li class="col-lg-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" checked="checked">
+                      <label class="form-check-label">I don't have a SIREN number</label>
+                    </div>
+                  </li>
+                  <li class="col-lg-12">
+                    <input type="submit" value="Save Changes" class="accountBtn">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="menu2" class="container tab-pane fade"><br>
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+                <h3>Order Reminders</h3>
+                <p><span>Choose how you'd like to get reminder emails about your open orders.</span></p>
+                <ul class="row formDiv">
+                  <li class="col-lg-12"><span class="radioLabel">Individual Reminders<br>
+                    <span class="textSpan">Get separate emails for each open order that needs to be accepted or shipped.</span>
+                    <input type="radio" checked="checked">
+                    <span class="checkmark"></span> </span> </li>
+                  <li class="col-lg-12"><span class="radioLabel">Daily Digest<br>
+                    <span class="textSpan">Get one daily email with a roundup of all open orders that need to be accepted or shipped.</span>
+                    <input type="radio">
+                    <span class="checkmark"></span> </span> <a class="seeExampleLink">See Example</a> </li>
+                  <li class="col-lg-12">
+                    <input type="submit" value="Save Changes" class="accountBtn">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="menu3" class="container tab-pane fade"><br>
+            <h3>Packing Slips and Pick Lists</h3>
+            <p><span>Tailor your packing slips and pick lists to your company needs</span></p>
+            <div class="orderBox">
+              <h3>Include product images</h3>
+              <ul class="switchList">
+                <li>
+                  <div class="radioDiv">
+                    <label class="switch" for="checkbox1">
+                    <input type="checkbox" id="checkbox1" checked="checked" />
+                    <div class="slider round"></div>
+                    </label>
+                  </div>
+                  <span class="labelSpan">Show your product image thumbnails</span> </li>
+              </ul>
+            </div>
+            <div class="orderBox">
+              <h3>Sort order</h3>
+              <p>Change the order products are listed on your packing slips and pick lists.</p>
+              <ul class="row formDiv">
+                <li class="col-lg-12"><span class="radioLabel">Alphabetically by product name
+                  <input type="radio" checked="checked">
+                  <span class="checkmark"></span> </span> </li>
+                <li class="col-lg-12"><span class="radioLabel">Alphabetically by SKU
+                  <input type="radio">
+                  <span class="checkmark"></span> </span></li>
+                <li class="col-lg-12"><span class="radioLabel">By category and then alphabetically by SKU
+                  <input type="radio">
+                  <span class="checkmark"></span> </span></li>
+                <li class="col-lg-12"><span class="radioLabel">By category and then alphabetically by product name
+                  <input type="radio">
+                  <span class="checkmark"></span> </span></li>
+                <li class="col-lg-12">
+                  <input type="submit" value="Save Changes" class="accountBtn">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

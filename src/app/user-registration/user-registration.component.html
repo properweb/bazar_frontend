@@ -1,0 +1,302 @@
+<div class="form_header"><a routerLink="/localBrands" href="#/localBrands"><img src="assets/images/logo.png" alt="logo"></a></div>
+<div class="step_top">
+    <ul id="progressbar" class="progressbar">
+        <li class="stepAll step_one active">Personal info</li>
+        <li class="stepAll step_two">Store info</li>
+        <li class="stepAll step_three">Customize</li>
+        <li class="stepAll step_four">Finish</li>
+    </ul>
+</div>
+<!-- Step One Form Section Start -->
+<div class="common_step_sec step_one_sec" *ngIf="step1">
+    <div class="form_content_box">
+        <h3>{{stepOneHeading}}</h3>
+        <p>{{stepOnePara}}</p>
+        <form #userFormStep1="ngForm" (ngSubmit)="userFormStep1.form.valid && sendUserFormStep1(userFormStep1)" novalidate>
+            <ul class="form_list">
+                <li>
+                    <label class="form-label" for="fName">First Name</label>
+                    <input id="fName" type="text" class="form-control validate" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required aria-required="true">
+                    <span class="validate_errors"
+                        *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
+                        First Name is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="lName">Last Name</label>
+                    <input id="lName" type="text" class="form-control validate " name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required aria-required="true">
+                    <span class="validate_errors"
+                        *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['required']">
+                        Last Name is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="lName">Email</label>
+                    <input id="email" type="text" class="form-control validate " name="email" [(ngModel)]="email" #emailval='ngModel' required aria-required="true">
+                    <span class="validate_errors"
+                        *ngIf="(emailval.touched || userFormStep1.submitted) && emailval.errors?.['required']">
+                        Email is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="password">Password</label>
+                    <input id="password" type="password" class="form-control validate" minlength="6" name="password" [(ngModel)]="password" #passwordval='ngModel' required aria-required="true" placeholder="Min 6 characters">
+                    <span class="validate_errors"
+                        *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['required']">
+                        Password is required
+                    </span>
+                    <span class="validate_errors"
+                        *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['minlength']">
+                        Password must have six characters.
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="country">Country</label>
+                    <select class="form-select mdb-select select validate" (change)="forPhoneCode($event)" name="country" [(ngModel)]="country" #countryval='ngModel' required aria-required="true" id="select" aria-label="select input desc">
+                        <option *ngFor="let item of countriesArray" [value]="item.id" >{{item.country_name}}</option>                       
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(countryval.touched || userFormStep1.submitted) && countryval.errors?.['required']">
+                        Country is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label">Phone Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <input type="text" class="form-control telephone-input" [value]="'+'+country_code">
+                            <select class="form-select telephone-select" aria-label="Default select example" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel' required >
+                              <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                            </select>
+                        </span>
+                        <input type="tel" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
+                        <br>
+                    </div>
+                    <span class="validate_errors"
+                        *ngIf="(phone_numberval.touched || userFormStep1.submitted) && phone_numberval.errors?.['required']">
+                        Phone Number is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="language">Language</label>
+                    <select id="language" class="form-select mdb-select validate" name="language" [(ngModel)]="language" #languageval='ngModel' required aria-required="true">
+                        <option *ngFor="let item of defaultLanguageArray" value="{{item.name}}">{{item.name}}</option>
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(languageval.touched || userFormStep1.submitted) && languageval.errors?.['required']">
+                        Language is required
+                    </span>
+                </li>
+                <li>
+                    <div class="form-check">
+                        <input class="form-check-input" name="sign_up_for_email" [(ngModel)]="sign_up_for_email" #sign_up_for_emailval='ngModel' type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">Sign up for emailing</label>
+                    </div>
+                </li>
+                <span style="margin-left: 88px;" class="validate_errors" *ngIf="errorMsg">{{errorMsg}}</span>
+                <li><button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn next1" >Next</button></li>
+                <li><button *ngIf="btnDis" disabled type="button" class="btn btn-primary common_btn next1" >Please Wait...</button></li>
+            </ul>
+        </form>
+    </div>
+</div>
+<!-- Step One Form Section end -->
+
+<!-- Step Two Form Section Start -->
+<div class="common_step_sec step_two_sec">
+    <div class="form_content_box step_two_form_box_1" *ngIf="step2">
+        <h3>{{stepTwoHeading1}}</h3>
+        <p>{{stepTwoPara1}}</p>
+        <form #userFormStep2="ngForm" (ngSubmit)="userFormStep2.form.valid && senduserFormStep2(userFormStep2)" novalidate>
+            <ul class="store_type_list">
+                <li *ngFor="let storeTypeArrays of storeTypeArray">
+                    <label class="store_label" style="background-image: url({{storeTypeArrays.imgPath}});">
+                        <h4>{{storeTypeArrays.HeadText}}</h4>
+                        <p>{{storeTypeArrays.textPath}}</p>
+                        <input [value]="storeTypeArrays.HeadText" type="radio" name="store_type" [(ngModel)]="store_type" #store_typeval='ngModel' required (change)="storeTypeCheckboxChange($event)" >
+                        <span class="checkmark"></span>
+                    </label>               
+                </li>
+                <span class="validate_errors"
+                    *ngIf="validError && chekedStoreTypeArray?.length === 0">
+                    Please select one store type
+                </span>
+                <li class="text-center">
+                    <button type="submit" (click)="validError = true;" class="btn btn-primary common_btn next2" >Next</button><br>
+                    <button type="button" class="btn btn-primary back_btn back1" (click)="backOneFunction()">Back</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- User Registration Step 1 Of Step 2 End -->
+    <div class="form_content_box step_two_form_box_2" *ngIf="step3">
+        <h3>{{stepTwoHeading2}}</h3>
+        <p>{{stepTwoPara2}}</p>
+        <ul class="store_type_list">
+            <li class="text-center">
+                <button type="button" class="btn btn-primary common_btn next3" (click)="nextThreeFunction()">Return to Bazar</button><br>
+                <button type="button" class="btn btn-primary back_btn back2" (click)="backTwoFunction()">Back</button>
+            </li>
+        </ul>
+    </div>
+    <!-- User Registration Step 2 Of Step 2 End -->
+    <div class="form_content_box step_two_form_box_3" *ngIf="step4">
+        <h3>{{stepTwoHeading3}}</h3>
+        <p>{{stepTwoPara3}}</p>
+        <form #userFormStep3="ngForm" (ngSubmit)="userFormStep3.form.valid && senduserFormStep3(userFormStep3)" novalidate>
+            <ul class="form_list">
+                <li>
+                    <label class="form-label">Store Name</label>
+                    <input type="email" class="form-control" name="store_name" [(ngModel)]="store_name" #store_nameval='ngModel' required >
+                    <span class="validate_errors"
+                        *ngIf="(store_nameval.touched || userFormStep3.submitted) && store_nameval.errors?.['required']">
+                        Store Name is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label">Website</label>
+                    <input type="email" class="form-control" name="website_url" [(ngModel)]="website_url" #website_urlval='ngModel' required >
+                    <span class="validate_errors"
+                        *ngIf="(website_urlval.touched || userFormStep3.submitted) && website_urlval.errors?.['required']">
+                        Website Url is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label">Years in Business</label>
+                    <select class="form-select" aria-label="Default select example" name="years_in_business" [(ngModel)]="years_in_business" #years_in_businessval='ngModel' required >
+                        <option *ngFor="let item of yearsInBussArray" [value]="item.value" >{{item.name}}</option>
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(years_in_businessval?.touched || userFormStep3.submitted) && years_in_businessval.errors?.['required']">
+                        Website Url is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label">Annual Sales</label>
+                    <select class="form-select" aria-label="Default select example" name="annual_sales" [(ngModel)]="annual_sales" #annual_salesval='ngModel' required >
+                        <option *ngFor="let item of annualSalesArray" [value]="item.value" >{{item.name}}</option>
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(annual_salesval?.touched || userFormStep3.submitted) && annual_salesval?.errors?.['required']">
+                        Website Url is required
+                    </span>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-primary common_btn next4" >Next</button>
+                    <button type="button" class="btn btn-primary back_btn back3" (click)="backTwoFunction()">Back</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- User Registration Step 2 Of Step 2 End -->
+</div>
+<!-- Step Two Form Section End -->
+
+<!-- Step Three Form Section Start -->
+<div class="common_step_sec step_three_sec">
+    <div class="form_content_box step_three_form_box_1" *ngIf="step5">
+        <h3>{{stepThreeHeading1}}</h3>
+        <p>{{stepThreePara1}}</p>
+        <form #userFormStep4="ngForm" (ngSubmit)="userFormStep4.form.valid && senduserFormStep4(userFormStep4)" novalidate>
+            <div class="row1">
+                <ul class="store_describe_list">
+                    <li *ngFor="let storeDescribeArrays of storeDescribeArray">
+                        <label class="store_label" style="background-image: url({{storeDescribeArrays.imgPath}});">
+                            <h4>{{storeDescribeArrays.HeadText}}</h4>
+                            <input [value]="storeDescribeArrays.HeadTextData" type="checkbox" (change)="storeCheckboxChange($event)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li><br>
+                    <li class="full_width text-center">
+                        <div>
+                            <span class="validate_errors" *ngIf="validErrorDesStore && describe_stores?.length == 0">
+                                Select atleast one option
+                            </span>
+                        </div>
+    
+                    </li>
+                    <li class="full_width text-center">
+                        <button type="submit" class="btn btn-primary common_btn next5" (click)="validErrorDesStore = true;" >Next</button><br>
+                        <button type="button" class="btn btn-primary back_btn back4" (click)="backFourFunction()">Back</button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <!-- User Registration Step 1 Of Step 3 End -->
+    <div class="form_content_box step_three_form_box_2" *ngIf="step6">
+        <form #userFormStep5="ngForm" (ngSubmit)="userFormStep5.form.valid && senduserFormStep5(userFormStep5)" novalidate>
+            <h3>{{stepThreeHeading2}}</h3>
+            <ul class="product_type_list">
+                <li *ngFor="let item of productCatArray">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" [value]="item.value" (change)="onProCatChange($event)" >
+                            {{item.name}}
+                        </label>
+                    </div>
+                </li>
+                <span class="validate_errors" *ngIf="validErrorCat && proCatArray?.length == 0">
+                    Select atleast one option
+                </span>
+                
+                <li class="full_width text-center">
+                    <button type="submit" class="btn btn-primary common_btn next6" (click)="validErrorCat = true;">Next</button><br>
+                    <button type="button" class="btn btn-primary back_btn back5" (click)="backFiveFunction()">Back</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- User Registration Step 2 Of Step 3 End -->
+    <div class="form_content_box step_three_form_box_3" *ngIf="step7">
+        <h3>{{stepThreeHeading3}}</h3>
+        <p>{{stepThreePara3}}</p>
+        <form #userFormStep6="ngForm" (ngSubmit)="userFormStep6.form.valid && senduserFormStep6(userFormStep6)" novalidate>
+            <div class="row1">
+                <ul class="customerKnownList">
+                    <li *ngFor="let item of tagsArray">
+                        <label class="store_label">
+                            <input [value]="item.value" type="checkbox" (change)="tagsCheckboxChange($event)" >
+                            <h4>{{item.name}}</h4>
+                            <span class= "checkmark"></span>
+                        </label>
+                    </li>
+                </ul>
+                <ul class="store_describe_list">
+                    <li class="full_width text-center">
+                        <label class="form-label text-center">Anything missing from the list? Share with us!</label>
+                        <textarea class="form-control textarea-control small_textarea" rows="3" placeholder="Add yours" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" #tag_shop_page_aboutval='ngModel' ></textarea>
+                    </li> 
+                    <span style="margin-left: 110px;" class="validate_errors" *ngIf="errorMsg">{{errorMsg}}</span>
+                    <li class="full_width text-center">
+                        <button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn next7" (click)="validErrorTag = true;" >Next</button><br>
+                        <button *ngIf="btnDis" type="button" class="btn btn-primary common_btn next7">Please Wait...</button><br>
+                        <button type="button" class="btn btn-primary back_btn back6" (click)="backSixFunction()">Back</button>
+                    </li>
+                </ul>
+                
+            </div>
+        </form>
+    </div>
+    <!-- User Registration Step 3 Of Step 3 End -->
+</div>
+
+<!-- Step Three Form Section End -->
+
+<!-- Step Four Form Section Start -->
+<div class="common_step_sec step_four_sec">
+    <div class="form_content_box step_four_form_box_1" *ngIf="step8">
+        <h3>{{stepfourHeading1}}</h3>
+        <p>{{stepFourPara1}}</p>
+        <div class="row1">
+            <ul class="store_describe_list">
+                <li class="full_width text-center"><img src="assets/images/e-commerce.svg" alt=""></li>
+                <li class="full_width text-center">
+                    <a type="button" class="btn btn-primary common_btn" routerLink="/localBrands" href="#/localBrands">Start Shopping</a>
+                    <p>We may contact you for additional info</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Step Four Form Section End -->

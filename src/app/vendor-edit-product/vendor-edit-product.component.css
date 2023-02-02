@@ -1,0 +1,353 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow.svg) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body { background: #fff; float: left; margin: 0 0 40px 0; padding: 30px 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList { margin-bottom: 0; list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li { margin-bottom: 25px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 5px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li label .labelSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 10px; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .countSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; text-align: right; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin-left: 10px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939;
+    height: 41px; line-height: 39px; margin-top: 10px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .searchForm { background-image: url(../../assets/images/search_icon.png); background-position: 10px 14px; background-repeat: no-repeat; padding-left: 34px; }	
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .textAreaForm { height: 113px; line-height: normal; margin-top: 0px; padding-bottom: 10px; padding-top: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-control:focus { box-shadow: none; }	
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-select { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-check .form-check-input { border: 1px solid rgba(0, 0, 0, 0.5); height: 20px; width: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .form-check .form-check-input:checked { background-color: #393939; border-color: #393939; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox { background: rgba(57, 57, 57, 0.05); margin: 0; min-height: 215px; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox h4 a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox ul { list-style: disc; margin: 0 0 20px 0; padding: 0 0 0 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox ul li { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .deleteLink { color: #000; cursor: pointer; display: inline-block; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img img { object-fit: cover; height: 100px; max-height: 100px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img .ratingSpan { color: #000; cursor: pointer; position: absolute; right: 5px; top: 5px; text-align: center; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img .ratingSpan .fa-star { font-size: 9px; margin-left: 1px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img .ratingSpan .fa-regular { margin-left: 0px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img .ratingSpan img { height: auto; max-height: none; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .upload-btn-wrapper { display: block; margin: 0; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .btn { background: rgba(57, 57, 57, 0.05); background-image: url(../../assets/images/file_upload_black_24dp_icon.svg); background-position: center 25px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; padding: 35px 0 0 0; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 100px; line-height: normal; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo { float: left; margin: 0 20px 20px 0; padding: 0; width: 170px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .upload-btn-wrapper { display: inline-block; margin: 0; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .upload-btn-wrapper .btn { background: rgba(57, 57, 57, 0.05); background-image: url(../../assets/images/file_upload_black_24dp_icon.svg); background-position: center 60px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; padding: 45px 0 0 0; font-family: 'futuramedium'; font-size: 16px; font-weight: 500; height: 170px; line-height: normal; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .show-upload-video { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .show-upload-video img { height: auto; max-height: 170px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .show-upload-video a { cursor: pointer; display: block; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .show-upload-video .blackOverlay { background: url(../../assets/images/white_play_icon.png) no-repeat center rgba(0, 0, 0, 0.56); height: 100%; left: 0px; position: absolute; top: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 { float: left; margin: 0 0 20px 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 .show-upload-video { float: left; margin: 0 20px 0; padding: 0; position: relative; width: 170px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 .show-upload-video .iframeVideo { background-color: #000; height: 170px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 .show-upload-video a { cursor: pointer; display: block; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 .show-upload-video .blackOverlay { background: url(../../assets/images/white_play_icon.png) no-repeat center rgba(0, 0, 0, 0.56); height: 100%; left: 0px; position: absolute; top: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo2 .deleteLink { color: #000; cursor: pointer; display: inline-block; margin-left: 20px; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .new_product_body .borderLine { margin: 0 -15px 0 -15px; padding: 0 0 30px 0; position: relative; }
+.middle_vendor_dasboard .middle_content .new_product_body .borderLine:after { background: rgba(0, 0, 0, 0.25); content: ""; height: 1px; left: 0; position: absolute; top: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 { background: #fff; float: left; margin: 0 0 40px 0; padding: 30px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading { margin: 0; padding: 0 15px 15px 15px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading h5 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .manageOptions { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; position: absolute; right: 15px; text-align: center; top: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .manageOptions:hover { background: #393939; border: 1px solid #393939; color: #fff; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList li { margin: 0 0 10px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 17px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList li .form-check-input { cursor: pointer; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList li .form-check-input:checked { background: #000; border-color: #000; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList li .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .labelList { list-style: none; margin: 0 0 25px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .labelList li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .labelList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .labelList li label span { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable { margin: 0; padding: 0; transition: all 0.5s linear; width: 517px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table { }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table th { background: rgba(57, 57, 57, 0.05); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 10px 15px 10px 15px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table td { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 10px 15px 10px 15px; } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table td .listSpan { border-radius: 5px; display: inline-block; height: 41px; overflow: hidden; width: 120px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table td .listSpan span { background: #fff; color: rgba(0, 0, 0, 0.5); display: inline-block; line-height: 39px; padding-left: 8px; width: 45%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table td .listSpan .form-control { background: #fff; border: none; border-radius: 0px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 39px; line-height: 39px; padding: 0; width: 55%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table td .listSpan .form-control:focus { box-shadow: none; outline: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .showPriceTable { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .showPriceTable .showPriceTableLink { background: url(../../assets/images/dropdown_black_arrow_icon.png) no-repeat right 10px; color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding-right: 25px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .showPriceTable .myClass { background-image: url(../../assets/images/dropdown_black_arrow_up_icon.png); } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .smallBox { margin: 0; padding: 0; width: 65%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li { }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li label { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .unitsSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; margin-top: -41px; margin-right: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .form-control { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .right-control { padding-right: 44px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .smallInput { border-right: none; border-radius: 3px 0 0 3px; float: left; width: 60%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .smallSelect {  border-left: none; border-radius: 0 3px 3px 0; float: left; padding-left: 0; padding-right: 5px; width: 40%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .unitsSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; margin-top: -41px; margin-right: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .rightSpan { color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; width: 70%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .inputDiv { display: inline-block; margin: 0; padding: 0 30px 0 0; width: 30%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .inputDiv .form-control { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 44px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .inputDiv .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList { float: left; list-style: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li { border-bottom: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0; padding: 15px 0 15px 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li:last-child { border-bottom: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .labelSpan { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 30px 0 0; padding: 0; width: 40%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .labelSpan .subSpan { color: rgba(0, 0, 0, 0.5); display: block; line-height: 20px; margin-top: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .labelSpan .subLink { color: #000; display: block; line-height: 20px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv { float: left; margin: 3px 0 0 0; padding: 0; position: relative; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .switch { display: inline-block; height: 15px; position: relative; width: 27px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .switch input { display: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .slider { background-color: #fff; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border: 1px solid #ccc; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .slider:before { background:#ccc; bottom: 1.5px; content: ""; height: 10px; left: 2px; position: absolute; transition: .4s; width: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .switch input:checked + .slider { background-color: #fff; border: 1px solid #000; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .switch input:checked + .slider:before { transform: translateX(11px); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .slider.round { border-radius: 34px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .slider.round:before { border-radius: 50%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .radioDiv .switch input:checked + .slider:before{ background: #000; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList { clear: both; list-style: none; margin-bottom: 15px; padding: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList li { margin: 0; padding-bottom: 0px; padding-left: calc(var(--bs-gutter-x) * .5); padding-right: calc(var(--bs-gutter-x) * .5); padding-top: 0px; width: 33.33333333%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList li .priceSpan { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 39px; margin-top: -40px; margin-left: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 25px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList { clear: both; list-style: none; margin-bottom: 15px; padding: 0; } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li { border-bottom: none; float: none; padding-bottom: 0; padding-left: calc(var(--bs-gutter-x) * .5); padding-right: calc(var(--bs-gutter-x) * .5); padding-top: 0px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList .col-lg-12 { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList .col-lg-4 { width: 33.33333333%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .countSpan { color: rgba(0, 0, 0, 0.5);display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; text-align: right; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .unitsSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; margin-top: -41px; margin-right: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .priceSpan { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 39px; margin-top: -40px; margin-left: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 10px 10px 10px 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .inputControl { padding-right: 75px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .priceControl { padding-left: 36px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .textAreaForm { height: 113px; line-height: normal; padding-bottom: 10px; padding-top: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec { margin: 15px 0 0 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li { border-bottom: none; float: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .dp-hidden { position: relative !important; width: 250px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .form-control { border-color: rgba(57, 57, 57, 0.5); border-radius: 3px 0 0 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .calnInput { background: url(../../assets/images/calender_icon.svg) no-repeat 10px 10px; padding-left: 34px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .btn { border-color: rgba(57, 57, 57, 0.5); height: 41px; line-height: 39px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group .clear-date { position: absolute; right: 11px; top: 10px; z-index: 1; cursor: pointer;}
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin-left: 10px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .form-check .form-check-input { border: 1px solid rgba(0, 0, 0, 0.5); height: 20px; margin-top: 0px; width: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .form-check .form-check-input:checked { background-color: #393939; border-color: #393939; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .borderBottom { border-top: 1px solid rgba(0, 0, 0, 0.25); margin: 0; padding: 0 0 30px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct { background: rgba(0, 0, 0, 0.05); float: left; margin: 0; padding: 15px 30px 15px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .leftAddSec { float: left; margin: 0; padding: 0; width: 5%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .leftAddSec a { cursor: pointer; display: inline-block; border: 1px dashed #000; border-radius: 100%; height: 36px; line-height: 36px; text-align: center; width: 36px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec { float: left; margin: 0; padding: 0; position: relative; width: 95%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec .headerSpan { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 4px 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec .paraSpan { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec .setSwatchLink { color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: absolute; right: 0; text-decoration: underline; top: 12px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv { overflow-x: auto; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table { border-top: none; /*width: 2000px;*/ width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; text-align: center; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th:last-child { text-align: center; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(3) { text-align: center; /*width: 150px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(4) { /*width: 150px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table .imgTd { white-space: nowrap; /*width: auto !important;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(5) { /*width: 150px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(6) { /*width: 150px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(7) { /*width: 150px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(8) { /*width: 230px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(9) { /*width: 230px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(10) { /*width: 230px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(11) { /*width: 230px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(12) { /*width: 130px;*/ }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th:last-child, .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:last-child { background: #fff; position: sticky; right: 0px; width: 200px; z-index: 2; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:last-child { text-align: center; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td a { color: #000; cursor: pointer; display: block; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td img { border-radius: 100%; /*float: left;*/ display: inline-block; height: 40px; margin-right: 10px; width: 40px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv { height: 80px; line-height: 80px; margin: 0; padding: 0; position: relative; text-align: center; width: 80px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv img { border-radius: 0px; display: inline-block; height: 80px; max-height: 80px; max-width: 80px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv .upload-btn-wrapper { display: block; height: 80px; left: 0; margin: 0; overflow: hidden; opacity: 0; padding: 0; position: absolute; top: 0; transition: all 0.5s linear; width: 80px; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv:hover .upload-btn-wrapper { opacity: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv .btn { background: url(../../assets/images/edit_icon.png) no-repeat center rgba(255, 255, 255, 0.6); border: 1px solid #000; border-radius: 0px; color: #000; padding: 0; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 80px; line-height: normal; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .imgDiv .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .upload-btn-wrapper { display: block; height: 80px; margin: 0; overflow: hidden; padding: 0; position: relative; width: 80px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .btn { background: rgba(57, 57, 57, 0.05); background-image: url(../../assets/images/file_upload_black_24dp_icon.svg); background-position: center 10px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; padding: 20px 0 0 0; font-family: 'futuramedium'; font-size: 16px; font-weight: 500; height: 80px; line-height: normal; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .chooseColorSpan { border-radius: 100%; float: left; height: 40px; margin-right: 10px; width: 40px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .editSwatchBtn { /*float: left;*/ display: inline-block; margin-left: 0; margin-top: 8px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .priceSpan { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 39px; margin-top: -40px; margin-left: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .unitsSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; margin-top: -41px; margin-right: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; min-width: 80px; padding: 0 10px 0 25px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .unitInput { padding-left: 8px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group { flex-wrap: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group .form-control { border-radius: 3px 0 0 3px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group .form-control:focus { border-right: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: 50px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group .form-select { border-left: none; border-radius: 0 3px 3px 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .iconLink { cursor: pointer; display: inline-block; margin: 0 7px 0 7px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li { border-bottom: 1px solid rgba(0, 0, 0, 0.25); margin: 0 0 25px 0; padding: 0 0 25px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin-left: 10px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li .form-check-label span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li .form-check .form-check-input { border: 1px solid rgba(0, 0, 0, 0.5); height: 20px; width: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .uniPriceList li .form-check .form-check-input:checked { background-color: #393939; border-color: #393939; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li { border-bottom: 1px solid rgba(0, 0, 0, 0.25); margin: 0 0 25px 0; padding: 0 0 15px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li:last-child { border-bottom: none; padding-bottom: 0px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin-left: 10px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check-label .red { color: #f00; font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check-label .spanText { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input { border: 1px solid rgba(0, 0, 0, 0.5); cursor: pointer; height: 20px; width: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input:checked { background-color: #393939; border-color: #393939; }
+
+
+
+
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .create-prepacks-btn { background: #393939;  border: 1px solid #393939; border-radius: 3px; color: #fff; float: right; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; margin: 0 0 0 0; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .create-prepacks-content { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content { overflow-x: auto; margin: 0; padding: 0; width: 100%; }
+
+
+
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table { border-top: none; min-width: 100%; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table th:last-child { text-align: center; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv { float: left; display: inline-block; margin: 2px 8px 0 0; padding: 0; position: relative; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch { display: inline-block; height: 15px; position: relative; width: 27px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input { display: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider { background-color: #fff; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border: 1px solid #ccc; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider:before { background:#ccc; bottom: 1.5px; content: ""; height: 10px; left: 2px; position: absolute; transition: .4s; width: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider { background-color: #fff; border: 1px solid #000; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider:before { transform: translateX(11px); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider.round { border-radius: 34px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider.round:before { border-radius: 50%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider:before{ background: #000; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-control { border: 1px solid #fff; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-control:hover { border-color: rgba(57, 57, 57, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-control:focus { border-color: rgba(57, 57, 57, 0.5); box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-select { background-image: none; background-position: right 8px top 12px; background-repeat: no-repeat; border: 1px solid #fff; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: 150px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-select:hover { background-image:  url(../../assets/images/dropdown_arrow.svg); border-color: rgba(57, 57, 57, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .form-select:focus { background-image:  url(../../assets/images/dropdown_arrow.svg); border-color: rgba(57, 57, 57, 0.5); box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList { display: inline-block; list-style: none; margin: 0; padding: 0; width: 150px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownLink { background-image: none; background-position: right 8px top 12px; background-repeat: no-repeat;  border: 1px solid #fff; border-radius: 3px; color: #393939; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownLink:hover { background-image:  url(../../assets/images/dropdown_arrow.svg); border-color: rgba(57, 57, 57, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li:focus .dropdownLink { background-image:  url(../../assets/images/dropdown_arrow.svg); border-color: rgba(57, 57, 57, 0.5); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownList { background-color: #fff; border: 1px solid rgba(57, 57, 57, 0.5); border-top: 1px solid #fff; border-radius: 3px; list-style: none; left: 0; margin: 0; overflow: hidden; padding: 0; position: absolute; top: 39px; width: 100%; z-index: 999; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownList li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownList li .plus-icon { background-color: rgba(57, 57, 57, 0.05); display: block; padding: 5px 10px; text-align: center; } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownList li .form-control { background-color: #fff; border: none; border-radius: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .ratioList li .dropdownList li .btn { border-radius: 0px; border: none; background: #393939; color: #fff; float: none; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; margin: 0; padding: 0; width: 100%; }
+
+
+
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub { margin: 20px 0 0 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList { list-style: none; padding: 0; width: 450px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li { border-bottom: none; padding-left: calc(var(--bs-gutter-x) * .5); padding-right: calc(var(--bs-gutter-x) * .5); width: 50%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 4px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li .unitsSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; margin-top: -41px; margin-right: 10px; position: relative; z-index: 1; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; height: 41px; line-height: 39px; margin-top: 0; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li .form-select { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable { margin: 0; padding: 0; transition: all 0.5s linear; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table { }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table th { background: rgba(57, 57, 57, 0.05); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 10px 15px 10px 15px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table td { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 10px 15px 10px 15px; } 
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table td .listSpan { border: 1px solid #fff; border-radius: 5px; display: inline-block; height: 41px; overflow: hidden; width: 120px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table td .listSpan span { background: #fff; color: rgba(0, 0, 0, 0.5); display: inline-block; line-height: 39px; padding-left: 8px; width: 60px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table td .listSpan .form-control { background: #fff; border: none; border-radius: 0px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 39px; line-height: 39px; padding: 0; width: 58px;}
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .pricingTable table td .listSpan .form-control:focus { box-shadow: none; outline: none; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .radioList3 { list-style: none; margin: 0; padding: 0 0 0 32px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .radioList3 li { border-bottom: none; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .radioList3 li .productOptionsSub .productOptionsSubList li { padding-right: calc(var(--bs-gutter-x) * .5); padding-left: calc(var(--bs-gutter-x) * .5); width: 50%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .setBox { border-top: 1px solid rgba(0, 0, 0, 0.25); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 20px 0 25px 0; padding: 20px 0 0 30px; width: 100%; }    
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .setBox strong { font-weight: 500; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .setBox .form-check-input { border: 1px solid #000; cursor: pointer; float: left; height: 20px; margin: 2px 0 0 -30px; width: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .setBox .form-check-input:checked { background-color: #000; border-color: #000; box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList { list-style: none; margin: 0; padding: 0 0 30px 0; text-align: right; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .publish_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .publish_btn:focus { box-shadow: none; }
+.validate_errors {color: #f00; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; } 
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .grayBox { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img img { height: 223px; max-height: 223px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .btn { background-position: center 100px; height: 223px; padding-top: 80px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .leftAddSec { width: 8%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec { padding-right: 77px; width: 92%; }
+}
+
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .upload-btn-wrapper .btn { height: 139px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo { margin-right: 5%; width: 45%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadProductVideo .show-upload-video img { max-height: 139px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img img { height: 203px; max-height: 203px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .btn { background-position: center 90px; height: 203px; padding-top: 60px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable { overflow-x: auto; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .pricingTable table { width: 517px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .manageOptions { display: inline-block; position: relative; right: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .productOptionsSub .productOptionsSubList li { padding-bottom: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .smallBox { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList { margin-bottom: 0px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .shippingList li { margin-bottom: 15px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .inputDiv { margin-bottom: 10px; padding-right: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .orderingList li .rightSpan { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .labelSpan { width: 80%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPriceSec .retailersPriceList li { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .instructionsRetailersSec .instructionsRetailersList .col-lg-4 { margin-bottom: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .switchList li .retailersPreOrderDateSec .retailersPreOrderDateList li .input-group { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th:last-child, .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:last-child { width: 120px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct { margin-top: 20px; padding: 15px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .leftAddSec { width: 19%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec { padding-right: 0; width: 81%; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .grayAddProduct .rightAddSec .setSwatchLink { position: static; }
+}
+
+@media screen and (max-width:414px) { 
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .show-upload-img img { max-height: 100px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .uploadList li .btn { background-position: center 30px; height: 100px; padding-top: 40px; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .draft_btn { padding: 0 25px 0 25px; width: auto; }
+.middle_vendor_dasboard .middle_content .new_product_body .btnList li .publish_btn { padding: 0 25px 0 25px; width: auto; }
+}
+/* Responsive End */

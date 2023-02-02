@@ -1,0 +1,62 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Bulk Upload</h3>
+          <p><a>Products</a></p>
+        </div>
+      </div>
+      <div class="bulk_prodt_body">
+        <h3>1. Download a spreadsheet</h3>
+        <ul class="row bulk_prodt_list">
+          <li class="col-lg-6">
+            <div class="whiteBox">
+                <h4>Editing existing products?</h4>
+                <span class="catText">Your existing catalog</span>
+                <a class="btn" href="{{existCatalog}}" download="yourExistingBazarCatalog.xlsx">Download</a>
+            </div>
+          </li>
+          <li class="col-lg-6">
+            <div class="whiteBox">
+                <h4>Adding new products?</h4>
+                <span class="catText">Blank template</span>
+                <a class="btn" href="https://demoupdates.com/updates/new-bazar/dev/admin/public/uploads/sample.xlsx" download="sample.xlsx">Download</a>
+            </div>
+          </li>
+        </ul>
+        <h3>2. Upload your files</h3>
+
+        <div class="upload-btn-wrapper" *ngIf="bulk_xlsx_names == undefined || bulk_xlsx_names == null"><button class="btn">Upload</button><input type="file" name="myfile" accept=".xlsx, .xls, .csv" (change)="getBulkUploadFiles($event)"></div>
+        <table class="table" *ngIf="bulk_xlsx_names != undefined || bulk_xlsx_names != null">
+          <tbody>
+            <tr>
+              <td>{{bulk_xlsx_names}}</td>
+              <td><a class="removeLink" (click)="bulkFileDelete()"><i class="fa-solid fa-trash"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="clearfix"></div>
+        <h3>3. Share product images</h3>
+        <p>Make sure your image file names match the products in your spreadsheet.</p>
+        <div class="validate_errors" *ngIf="imageError">Only images allowed!</div>
+        <div class="upload-btn-wrapper"><button class="btn">Upload</button><input type="file" name="myfile" multiple accept="image/*" (change)="getImageUploadFiles($event)"></div>
+        <div class="clearfix"></div>
+        <table class="table" *ngIf="img_names?.length > 0">
+          <tbody>
+            <tr *ngFor="let item of img_names; let i=index;">
+              <td>{{item}}</td>
+              <td><a class="removeLink" (click)="imageFileDelete(i)"><i class="fa-solid fa-trash"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="normal-btn-sec">
+          <button *ngIf="!disBtn" class="btn startUploadBtn" [disabled]="bulk_xlsx_names == undefined || bulk_xlsx_names == null" (click)="uploadBulk();" >Start upload</button>
+          <button *ngIf="disBtn" class="btn startUploadBtn" disabled >Uploading...</button>
+        </div>
+      </div>
+  </div>
+</div>

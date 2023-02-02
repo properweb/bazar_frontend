@@ -1,0 +1,33 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<lib-ng-toast></lib-ng-toast>
+
+<div class="overlay" *ngIf="showSpinner"></div>
+<mat-progress-spinner *ngIf="showSpinner" class="custom-spinner" diameter=50 [mode]="'indeterminate'"></mat-progress-spinner>
+
+  <div *ngIf="errorPopup" class="orderPopup">
+    <div class="orderInner">
+      <a (click)="errorPopup = false" class="crossBtn2"
+        ><img src="assets/images/cross_icon.png" alt=""
+      /></a>
+      <img src="assets/images/error_icon.png" alt="" />
+      <h2>{{ errorPopupContent }}</h2>
+    </div>
+  </div>
+  

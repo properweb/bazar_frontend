@@ -1,0 +1,155 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Account Settings</h3>
+          <p>Your account information, payment details, and settings.</p>
+          <ng-container *ngIf="!resendBtsDis">
+            <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                Please verify your Email.
+                <a (click)="onResendEmailClick()">Resend email.</a>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="resendBtsDis">
+              <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                  Please verify your Email.
+                  <a >sending email.</a>
+              </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="account_setting_body">
+      <form #vendorAccountUpdate="ngForm" (ngSubmit)="sendAccountUpdate(vendorAccountUpdate , profileImgVal.value)">
+        <div class="row customRow">
+        
+          <div class="col-lg-6 brandInformationleft">
+            <h4>Brand Information</h4>
+            <ul class="row brandInfoFormList">
+              <li class="col-lg-6">
+                <label>Brand Name</label>
+                <input hidden name="user_id" [(ngModel)]="user_id" id="user_id" #user_idval='ngModel' type="text" class="form-control" value="Nil Fashion">
+                <input name="brand_name" [(ngModel)]="brand_name" id="brand_name" #brand_nameval='ngModel' type="text" class="form-control" value="Nil Fashion">
+              </li>
+              <li class="col-lg-6">
+                <label>Website URL</label>
+                <input name="website_url" [(ngModel)]="website_url" id="website_url" #website_urlval='ngModel' type="text" class="form-control" value="www.mysite.com">
+              </li>
+              <li class="col-lg-6">
+                <label>Instagram Handle</label>
+                <input name="insta_handle" [(ngModel)]="insta_handle" id="insta_handle" #insta_handleval='ngModel' type="text" class="form-control" value="-">
+              </li>
+              <li class="col-lg-6">
+                <label>Year Established</label>
+                <input name="established_year" [(ngModel)]="established_year" id="established_year" #established_yearval='ngModel' type="text" class="form-control" value="2022">
+              </li>
+            </ul>
+            <h4>Brand Information</h4>
+            <ul class="row brandInfoFormList">
+              <li class="col-lg-6">
+                <label>Stores you are carried in</label>
+                <input name="stored_carried" [(ngModel)]="stored_carried" id="stored_carried" #stored_carriedval='ngModel' type="text" class="form-control" value="Less than 10">
+              </li>
+              <li class="col-lg-6">
+                <label>First Minimum Order</label>
+                <input name="first_order_min" [(ngModel)]="first_order_min" id="first_order_min" #first_order_minval='ngModel' type="text" class="form-control" value="$100.00">
+              </li>
+              <li class="col-lg-6">
+                <label>Reorder Minimum</label>
+                <input name="re_order_min" [(ngModel)]="re_order_min" id="re_order_min" #re_order_minval='ngModel' type="text" class="form-control" value="$0.00">
+              </li>
+              <li class="col-lg-6">
+                <label>Average Lead Time</label>
+                <input name="avg_lead_time" [(ngModel)]="avg_lead_time" id="avg_lead_time" #avg_lead_timeval='ngModel' type="text" class="form-control" value="10 days">
+              </li>
+            </ul>
+            <h4>Location</h4>
+            <ul class="row brandInfoFormList">
+              <li class="col-lg-6">
+                <label>Products Made In</label>
+                <select class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" id="product_made" #product_madeval='ngModel'>
+                  <option *ngFor="let item of countries" value="{{item.id}}">{{item.country_name}}</option>
+                </select>
+              </li>
+              <li class="col-lg-6">
+                <label>Headquatered In</label>
+                <select class="form-select" aria-label="Default select example" name="headquatered" [(ngModel)]="headquatered" id="headquatered" #headquateredval='ngModel'>
+                  <option *ngFor="let item of countries" value="{{item.id}}">{{item.country_name}}</option>
+                </select>
+              </li>
+            </ul>
+            <h4>Story</h4>
+            <ul class="row brandInfoFormList">
+              <li class="col-lg-6">
+                <label>Brand Story</label>
+                <textarea name="shared_brd_story" [(ngModel)]="shared_brd_story" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
+              </li>
+              <li class="col-lg-6">
+                <label>Values</label>
+                <ul class="sub_product_list">
+                  <li *ngFor="let item of tagsArray">
+                    <div class="form-check">
+                      <!-- <input [value]="item.value" checked (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" [ngModel]="tag_shop_page" #tag_shop_pageval='ngModel'> -->
+                      <input [value]="item.value" [checked]="tag_shop_page.includes(item.value) == true" (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" >
+                      <label class="form-check-label">{{item.name}}</label>
+                    </div>
+                  </li> 
+                </ul>
+              </li>
+            </ul>
+            <h4>Email Contact List</h4>
+            <ul class="uploadSheetsLists">
+              <li><span class="item_name">uploadcustomersexample.csv</span> <span class="item_delete"><a><img src="assets/images/account_settings_delete_icon.svg" alt="delete"></a></span></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 brandInformationRight">
+            <div class="brandInformation_Smalldiv">
+              <div class="show_upload_profile_img"><img src="{{profile_photo}}" alt="upload image" id="profile_img_show"> <a class="edit_upload_img" (click)="openUploadProfileModal(uploadContent2)"><img src="assets/images/account_settings_icon.svg" alt="edit icon"></a> </div>
+              <input id="profile_img" type="hidden" alt="upload image" name="featured_image_hidden" #profileImgVal>
+              <h3>Final Step! Review Your Store Information</h3>
+              <p>Please review your profile information on the left side before submitting to the Bazar team.</p>
+              <ul class="row vendorRegFormList">
+                <li class="col-lg-6">
+                  <button type="button" class="btn btn-primary back_btn back_btn27 mt-4">Back</button>
+                </li>
+                <li class="col-lg-6">
+                  <button type="submit" class="btn btn-primary common_btn next30 mt-4">Finish & Submit</button>
+                </li>
+              </ul>
+            </div>
+          </div>   
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #uploadContent2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="image-editor2">
+      <div class="inputDiv">
+        <input type="file" class="cropit-image-input" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="cropit-preview"></div>
+      <div class="rangeSliderSec">
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary back_btn back_btn11" (click)="modal.dismiss('Cross click')"
+     >Back</button>
+    <button type="button" class="btn btn-primary common_btn next14 export" 
+      (click)="modal.dismiss('Cross click')">Save &
+      Continue</button>
+  </div>
+</ng-template>

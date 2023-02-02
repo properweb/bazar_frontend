@@ -1,0 +1,141 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Campaigns</h3>
+          <p>Send one-time rich content emails to your retailers</p>
+          <a class="create_campaign_link" (click)="openCreateCampaigns(content)">Create campaign</a> </div>
+      </div>
+      <div class="vendor_campaigns_body">
+        <div class="lftDiv">
+          <h4>Use our free marketing tools to send beautiful emails to your retailers</h4>
+          <p>Personalize messages, announce new products, give free shipping and $100 credit to new accounts, and more! Build emails exactly how you want with our free email builder.</p>
+        </div>
+        <div class="rhtDiv">
+          <ul class="imgTxtItem">
+            <li>
+              <div class="boxItem forShft">
+                <h5>Your Logo</h5>
+                <div class="txtHldr">
+                  <h4>Join me on Bazar!</h4>
+                  <p>We're are ready to announce our new products with you!</p>
+                  <a href="#" class="boxBtn">Shop Now</a> </div>
+                <div class="imgHldr"><img src="assets/images/BoxImg.png" alt=""></div>
+              </div>
+            </li>
+            <li>
+              <div class="boxItem forShft">
+                <h5>Your Logo</h5>
+                <div class="imgHldr"><img src="assets/images/BoxImg.png" alt=""></div>
+                <div class="txtHldr">
+                  <h4>Join me on Bazar!</h4>
+                  <p>We're are ready to announce our new products with you!</p>
+                  <a href="#" class="boxBtn">Shop Now</a> </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="vendor_campaigns_tab_body">
+        <div class="vendor_customers_body_top">
+          <div class="tab_top">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" style="cursor: pointer;" (click)="onTabChange('all')">All ({{campaignList?.allCampaignsCount}})</a></li>
+              <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="cursor: pointer;" (click)="onTabChange('draft')">Draft ({{campaignList?.draftCampaignsCount}})</a></li>
+              <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="cursor: pointer;" (click)="onTabChange('scheduled')">Scheduled ({{campaignList?.scheduledCampaignsCount}})</a></li>
+              <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="cursor: pointer;" (click)="onTabChange('completed')">Completed ({{campaignList?.completedCampaignsCount}})</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#draftCampaignTab">Draft</a></li>
+              <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#scheduledCampaignTab">Scheduled</a></li>
+              <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#completedCampaignTab">Completed</a></li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="tab-content">
+          <div id="allCampaignTab" class="container tab-pane active">
+            <ng-container *ngIf="campaignList?.campaigns?.length > 0" >
+              <div class="white_tab_filter_sec">
+                  <div class="campaigns_found_sec" *ngFor="let item of campaignList?.campaigns">
+                    <h3>{{item?.title}}</h3>
+                      <!-- <p>World</p> -->
+                      <ul class="campaignStatusList">
+                        <li><span></span>Last edited {{item?.updated_at}}</li>
+                          <!-- <li><span>0%</span> Clicked</li>
+                          <li><span>0%</span> Revenue</li>
+                          <li><span>0%</span> Orders</li> -->
+                      </ul>
+                      <ul class="campaign_sent_item">
+                        <li><a class="sentSpan">Sent</a></li>
+                          <li><a><img src="assets/images/campaigns_copy_icon.png" alt=""></a></li>
+                          <li><a (click)="deleteCampaign(item?.campaign_key)"><img src="assets/images/campaigns_delete_icon.png" alt=""></a></li>
+                          <li><a routerLink="/brand-portal/marketing/campaigns/{{item?.campaign_key}}" ><img src="assets/images/right_arrow_icon.png" alt="" ></a></li>
+                      </ul>
+                  </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="campaignList?.campaigns?.length == 0">
+              <div class="white_tab_filter_sec">
+                <div class="no_campaigns_found_sec">
+                    <h3>No campaigns yet</h3>
+                      <p>When you create email campaigns, they'll appear here.</p>
+                  </div>
+              </div>
+            </ng-container>
+          </div>
+          <div id="draftCampaignTab" class="container tab-pane fade">
+            <div class="white_tab_filter_sec">
+            	<div class="no_campaigns_found_sec">
+                	<h3>No campaigns yet</h3>
+                    <p>When you create email campaigns, they'll appear here.</p>
+                </div>
+            </div>
+          </div>
+          <div id="scheduledCampaignTab" class="container tab-pane fade">
+            <div class="white_tab_filter_sec">
+            	<div class="no_campaigns_found_sec">
+                	<h3>No campaigns yet</h3>
+                    <p>When you create email campaigns, they'll appear here.</p>
+                </div>
+            </div>
+          </div>
+          <div id="completedCampaignTab" class="container tab-pane fade">
+            <div class="white_tab_filter_sec">
+            	<div class="no_campaigns_found_sec">
+                	<h3>No campaigns yet</h3>
+                    <p>When you create email campaigns, they'll appear here.</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create campaign</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <ul class="addCustomerContactFrom">
+    	<li>
+        	<label>Campaign name</label>
+        </li>
+        <li>
+        	<input type="text" value="" class="form-control" placeholder="e.g. new campaign" name="camp_name" [(ngModel)]="camp_name" maxlength="30" #campNameVal >
+            <span class="countSpan">{{campNameVal.value.length}}/30</span>
+            <span *ngIf="errorMsg" class="validate_errors" >{{errorMsg}}</span>
+        </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" class="btn btn-primary add-customer-btn" (click)="createCampaign()">Begin</button>
+    <button *ngIf="btnDis" disabled type="button" class="btn btn-primary add-customer-btn">Begin</button>
+    <span class="validate_errors"></span>
+    <!-- <button type="button" class="btn btn-primary add-customer-btn disabled" (click)="modal.close('Save click')">Begin</button> -->
+  </div>
+</ng-template>
+<!-- Vendor Add Customer Information Modal End --> 

@@ -1,0 +1,453 @@
+<div class="dashboard_body edit-order-dashboard_body">
+    <div class="middle_vendor_dasboard">
+      <div class="middle_content">
+        <div class="headingBox">
+          <div class="whiteHeadingBox">
+            <p><a routerLink="/orders">Back to Order</a></p>
+            <h3>Edit Order #{{cust_details?.order_number}}</h3>
+            <H4>Placed {{cust_details?.created_date}}</H4>
+          </div>
+        </div>
+        <div class="container">
+          <ul class="row edit-order-top-list" *ngIf="!editShipForm">
+            <li class="col-md-6">
+              <div class="white-small-order-box">
+                <h4>Customer Details</h4>
+                <ul class="row edit-details-list">
+                  <li class="col-md-6">
+                    <h5>Shop Info</h5>
+                    <p>
+                      {{allDetails?.brand}}<br />
+                      <!-- 25% Marketplace -->
+                    </p>
+                  </li>
+                  <li class="col-md-6">
+                    <h5>Contact Info</h5>
+                    <p>{{allDetails?.retailer_name}}<br />+{{allDetails?.retailer_phone}}</p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="col-md-6">
+              <div class="white-small-order-box">
+                <h4>Shipping Details</h4>
+                <ul class="row edit-details-list">
+                  <li class="col-md-6" (click)="editShipForm = true" style="cursor: pointer;">
+                    <h5>
+                      <a><i class="fa-solid fa-marker"></i></a> Ship To
+                    </h5>
+                    <p class="edit-para">
+                      {{cust_details?.address1}}<br />
+                      {{cust_details?.address2 ? cust_details?.address2 : ''}}<br />
+                      {{cust_details?.country}}
+                    </p>
+                  </li>
+                  <li class="col-md-6">
+                    <h5>
+                      <a><i class="fa-solid fa-marker"></i></a> Ship Date
+                    </h5>
+                    <div class="input-group">
+                      <input
+                        readonly
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dp"
+                        ngbDatepicker
+                        #d="ngbDatepicker"
+                        name="display_ship_date"
+                        [(ngModel)]="display_ship_date"
+                        #product_deadlineVal
+                        (click)="d.toggle()"
+                        (dateSelect)="onDateSelect($event)"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        (click)="d.toggle()"
+                        type="button"
+                      >
+                        <i class="fa-solid fa-calendar-days"></i>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          
+          <div class="ship-wide-white-box" *ngIf="editShipForm">
+            <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && sendcheckOutForm(checkOutForm)" novalidate>
+              <h4>Ship to</h4>
+              <ul class="row form-list">
+                  <li class="col-md-6">
+                    <label>Name</label>
+                    <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                    <input type="text" hidden class="form-control" name="ord_no" [(ngModel)]="ord_no" >
+                    <input class="form-control" name="" type="text" placeholder="" name="name" [(ngModel)]="name" #nameval='ngModel' required>
+                    <span class="validate_errors"
+                        *ngIf="(nameval.touched || checkOutForm.submitted) && nameval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6">
+                    <label>Select country</label>
+                    <select class="form-select" name="country" [(ngModel)]="country" #countryval='ngModel' required (change)="onChangeCountry($event)" >
+                        <option [ngValue]="null" hidden ></option>
+                        <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(countryval.touched || checkOutForm.submitted) && countryval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6">
+                    <label>Street and number</label>
+                    <input class="form-control" type="text" placeholder="" name="address1" [(ngModel)]="address1" #street_noval='ngModel' required>
+                    <span class="validate_errors"
+                        *ngIf="(street_noval.touched || checkOutForm.submitted) && street_noval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6">
+                    <label>Apt, Suite (Optional)</label>
+                    <input class="form-control" type="text" placeholder="" name="address2" [(ngModel)]="address2" #apartment_nameval='ngModel' >
+                </li>
+                <li class="col-md-6">
+                    <label>State/Province</label>
+                    <select class="form-select" name="state" [(ngModel)]="state" #stateval='ngModel' required (change)="onChangeState($event)" >
+                        <option [ngValue]="null" hidden ></option>
+                        <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(stateval.touched || checkOutForm.submitted) && stateval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6">
+                    <label>Town/Locality</label>
+                    <select class="form-select" name="town" [(ngModel)]="town" #townval='ngModel' required>
+                        <option [ngValue]="null" hidden ></option>
+                        <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option>
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(townval.touched || checkOutForm.submitted) && townval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6"> 
+                    <label>Zip</label>
+                    <input class="form-control"type="text" placeholder="" name="post_code" [(ngModel)]="post_code" #pincodeval='ngModel' required >
+                    <span class="validate_errors"
+                        *ngIf="(pincodeval.touched || checkOutForm.submitted) && pincodeval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li class="col-md-6">
+                    <label>Phone number</label>
+                    <input class="form-control" type="tel" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                    <span class="validate_errors"
+                        *ngIf="(phone_numberval.touched || checkOutForm.submitted) && phone_numberval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+              </ul>
+              <div class="shop_collections_body">
+                <ul class="btnList">
+                  <li>
+                    <input type="button" name="" value="Cancel" class="btn draft_btn" (click)="editShipForm = false" >
+                  </li>
+                  <li>
+                    <input *ngIf="!btnDis" type="submit" name="" value="Save" class="btn publish_btn">
+                    <input *ngIf="btnDis" type="button" name="" value="Saving" disabled class="btn publish_btn">
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </div>
+
+          <div class="edit-order-wide-white-box">
+            <h4>Item Details</h4>
+            <div class="table_sec">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Availability</th>
+                    <th scope="col">Case size</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Wholesale price</th>
+                    <th scope="col">Total</th>
+                    <th scope="col" style="text-align: center">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of ordersArray">
+                    <ng-container *ngIf="item?.deleted != true">
+                      <td>
+                        <div class="imgDiv">
+                          <img [src]="item?.product_image" alt="" />
+                        </div>
+                        <h4>{{item?.product_name}}</h4>
+                        <p *ngIf="item?.sku">SKU:AA234</p>
+                      </td>
+                      <td>In stock</td>
+                      <td>4</td>
+                      <td>
+                        <span class="quantitySpan">
+                          <input type="number" class="form-control" name="" (change)="onQtyChange(item?.order_id, $event, item?.quantity, item)" value="{{item?.quantity}}" />
+                          units</span>
+                      </td>
+                      <td>${{item?.product_price}}</td>
+                      <td>${{item?.amount}}</td>
+                      <td style="text-align: center">
+                        <a class="removeLink" (click)="onItemDelete(item)" ><i class="fa-solid fa-trash"></i></a>
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="row shopInfoList">
+              <li class="col-lg-12">
+                <input type="text" class="form-control search_form" value="" placeholder="" />
+              </li>
+              <li class="col-lg-2"></li>
+            </ul>
+            <ul class="row shopInfoList">
+              <li class="col-lg-12">
+                <!-- <ng-autocomplete [data]="proData" [searchKeyword]="proKeyword" (selected)='select1stOptionEvent($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate1" [notFoundTemplate]="notFoundTemplate1" class="common-autosearch invoice-search"></ng-autocomplete>
+                <ng-template #itemTemplate1 let-item class="ddd">
+                  <div class="searchBox">
+                    <a (click)="openInvoiceProductModal(invoiceProductContent)" *ngIf="item?.variations?.length > 0">
+                      <span class="imgBox" ><img [src]="item?.featured_image" alt="" /></span>
+                      <span class="productInfoTxt">
+                        <h4 [innerHTML]="item.name">{{item.name}}</h4>
+                        <p *ngIf="item?.sku">SKU: {{item?.sku}}</p>
+                      </span>
+                      <span class="priceTag" >${{item?.usd_wholesale_price}}</span>
+                      <span class="stockTag">In stock</span>
+                    </a>
+
+                    <a (click)="onDropProSelect()" *ngIf="item?.variations?.length <= 0">
+                      <span class="imgBox" ><img [src]="item?.featured_image" alt="" /></span>
+                      <span class="productInfoTxt">
+                        <h4 [innerHTML]="item.name">{{item.name}}</h4>
+                        <p *ngIf="item?.sku">SKU: {{item?.sku}}</p>
+                      </span>
+                      <span class="priceTag" >${{item?.usd_wholesale_price}}</span>
+                      <span class="stockTag">In stock</span>
+                    </a>
+                  </div>
+                </ng-template>
+                <ng-template #notFoundTemplate1 let-notFound >
+                    <div [innerHTML]="notFound"></div>
+                </ng-template> -->
+              </li>
+              <!-- <li class="col-lg-2">
+                <a class="add_items_link" (click)="openAddCustomitemModal(addCustomitemContent)">Add custom item</a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="edit-order-wide-white-box"> 
+            <h4>Shop Wide Promotion</h4>
+            <ul class="formDiv">
+              <li><span class="radioLabel">Custom
+                <input type="radio" (click)="is_discount = 1" [checked]="is_discount == 1">
+                <span class="checkmark" ></span> </span>
+                <ul class="sub-form-list" *ngIf="is_discount == 1">
+                  <li (click)="disc_amt_type = 'amount'"><span [ngClass]="disc_amt_type == 'amount' ? 'input-span' : 'input-span disabled'" >$</span></li>
+                  <li (click)="disc_amt_type = 'percent'"><span [ngClass]="disc_amt_type == 'percent' ? 'input-span' : 'input-span disabled'" >%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                </ul>
+                <ul class="sub-form-list" *ngIf="is_discount == 0">
+                  <li ><span class="input-span disabled">$</span></li>
+                  <li ><span class="input-span disabled">%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                </ul>
+              </li>
+              <li>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" [checked]="ship_free == 1" [disabled]="is_discount == 0" name="ship_free" [(ngModel)]="ship_free" >
+                  <label class="form-check-label">Free shipping</label>
+                </div>
+              </li>
+              <li><span class="radioLabel">No promotion
+                <input type="radio" (click)="is_discount = 0; ship_free = false; disc_amt = '' " [checked]="is_discount == 0"  >
+                <span class="checkmark" ></span> </span>
+              </li>
+            </ul>
+          </div>
+          <div class="edit-order-wide-white-box">
+            <div class="total-table-box">
+              <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                  <table class="table amountTable">
+                    <tr>
+                      <th>Subtotal</th>
+                      <td><strong>${{subTotal}}</strong></td>
+                    </tr>
+                    <tr>
+                      <th>Add Promotion</th>
+                      <td><strong>-</strong></td>
+                    </tr>
+                    <tr>
+                      <th>Shipping</th>
+                      <td><strong>TBD</strong></td>
+                    </tr>
+                    <tr>
+                      <th>Total</th>
+                      <td><strong>${{subTotal}}</strong></td>
+                    </tr>
+                    <tr>
+                      <th>Commission</th>
+                      <td><strong>-</strong></td>
+                    </tr>
+                  </table>
+                </div>          
+              </div>
+            </div>
+          </div>
+          <div class="shop_collections_body">
+            <ul class="btnList">
+              <li>
+                <input type="button" name="" value="Cancel" class="btn draft_btn" routerLink="/view-order/{{ord_no}}">
+              </li>
+              <li>
+                <input *ngIf="!btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" (click)="updateOrder()" >
+                <input *ngIf="btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" disabled>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #invoiceProductContent let-modal>
+    <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="top-main-product">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            </tr>                    
+          </tbody>
+        </table>
+      </div>
+      <input type="text" class="form-control search_form" value="" placeholder="" />
+      <div class="invoice-product-table_list">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr> 
+            <tr>
+              <td><input class="form-check-input" type="checkbox"></td>
+              <td><img src="assets/images/product-img.jpeg" alt=""></td>
+              <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+              <td>In stock</td>
+              <td>$1.00</td>
+            </tr>                    
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+      <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-add">Add Options</a>
+    </div>
+  </ng-template>

@@ -1,0 +1,129 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.gray_body { background: #e5e5e5; min-height: 100%; }
+.profileDiv { padding-left:0; } 
+
+/*----------------right section starts--------------------*/
+.rightAccount { float: left; width: 100%; }
+.heading { color: #000; font: 500 28px 'Futura' !important; margin: 50px 0 20px 0 }
+.rightAccount .nav-tabs .nav-item.show .nav-link, .rightAccount .nav-tabs .nav-link.active { background: #fff; border: none; color:#000; }
+.rightAccount .nav-tabs .nav-link{ background: #393939; border: none; border-radius: 8px 8px 0 0; color: #fff; font: 200 24px  'Futura' !important; padding: 12px 40px 12px 40px; }
+.rightAccount .tab-content { background: #fff; float: left; padding: 25px 14px 100px 14px; width:100%; }
+.rightAccount h3 { color: #000; font: 500 18px 'Futura' !important; margin: 0 0 20px 0; }
+.rightAccount ul.formDiv { list-style: none; margin: 0 25px 0 0; padding: 0; }
+.rightAccount ul.formDiv li { color: #000; float: left; font: 200 16px  'Futura' !important; margin: 0 0 20px 0; position: relative; width:100%; }
+.rightAccount ul.formDiv .formHdn { margin: 20px 0 0 0; }
+.rightAccount ul.formDiv .marginNone { margin: 0 0 5px 0; }
+.rightAccount ul.formDiv .valueMrgn { margin: 20px 0 10px 0; }
+.rightAccount ul.formDiv li label { color: #000; float: left; font: normal 16px 'Futura PT Book'; margin-bottom: 5px; width: 100%; }
+.rightAccount ul.formDiv li .form-control { border: 1px solid #000; border-radius: 0 3px 3px 0; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.rightAccount ul.formDiv li .form-control:focus { border-color: #393939; box-shadow: none; }
+.rightAccount ul.formDiv li input[type="checkbox"] { height: 18px; margin-right: 5px; position: relative; top: 4px; width: 18px;}
+.rightAccount ul.formDiv li input[type="text"] { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px  'Futura' !important;height: 41px; margin: 0; padding:0 15px 0 15px; outline: none !important; width: 100%; }
+.rightAccount ul.formDiv li input[type="password"] { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px  'Futura' !important; height: 41px; margin: 0; padding: 0 15px 0 15px; outline: none !important; width: 100%; }
+.rightAccount ul.formDiv li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.rightAccount ul.formDiv li .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.rightAccount ul.formDiv li .form-select:focus { border-color: #393939; box-shadow: none; }
+.rightAccount ul.formDiv li select { -webkit-appearance: none; appearance: none; background: url(../../assets/images/select-arrow.png) no-repeat right 15px center; font: 200 16px  'Futura' !important; border: 1px solid #000; border-radius: 3px; color: #000; float: left; height: 41px; margin: 0; outline: none !important; padding: 0 15px 0 15px; width:100%; }
+.rightAccount ul.formDiv li .countryCode { border-right: none; border-radius: 3px 0 0 3px; width: 25%; }
+.rightAccount ul.formDiv li .countryNum { border-radius: 0 3px 3px 0 !important; width: 75% !important; }
+.rightAccount ul.formDiv li .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px !important; }
+.rightAccount ul.formDiv li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.rightAccount ul.formDiv li .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.rightAccount ul.formDiv li .form-select:focus { border-color: #393939; box-shadow: none; }
+.rightAccount ul.formDiv li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.rightAccount ul.formDiv li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.rightAccount ul.formDiv li .input-group .input-group-text .form-select:input:autofill {
+  border-color: #393939;
+}
+
+
+.accountBtn { background:#393939; border: none; border-radius: 3px; color: #fff; float: left; font: 200 18px  'Futura' !important; height: 54px; margin-top: 50px; width: 230px; }
+.paymentDiv { border: 1px solid #909090; border-radius: 5px; float: left; padding: 30px; position: relative; width:100%; }
+.paymentForm { list-style: none; margin: 0; padding: 0; }
+.paymentForm li { color: #000; float: left; font: 200 16px  'Futura' !important; margin: 0 0 20px 0; width:100%; }
+.paymentForm li:nth-child(2) { float: left; margin: 0; width: 50%; }
+.paymentForm li:nth-child(3) { float: right; margin: 0; width:48%; }
+.paymentForm li label { color: #a8a8a8; float: left; font: 200 14px  'Futura' !important; margin-bottom: 5px; width: 100%; }
+.paymentForm li input[type="text"] { width:100%; height:41px; border:#000 1px solid; font: 200 14px  'Futura' !important; color:#a8a8a8; float:left; margin:0; border-radius:3px; padding:0 15px; outline:none !important }
+.paymentAdd img { margin-top: 30px; width: 100%; }
+.paymentDiv h3 { color: #000; font: 500 18px  'Futura' !important; margin: 0 0 10px 0; }
+.paymentDiv p { color: #000; font: 200 16px  'Futura' !important; margin: 0 0 5px 0; }
+.shipping-add { background-color: rgba(57, 57, 57, 0.05); border: 1px dashed rgba(0, 0, 0, 0.5); height: 208px; margin: 30px 0 0 0; padding: 0; text-align: center; width: 100%; }
+.shipping-add img { height: auto; margin-bottom: 5px; margin-top: 0; width: auto; }
+.shipping-add .buttonSpan { color: #000; display: block; font: 500 18px  'Futura' !important; }
+.shipping-edit { background: none; border: none; position: absolute; right: 8px; top: 5px; }
+.profileModal .modal-dialog { max-width: 920px; }
+.shippingForm { list-style: none; padding: 0; margin: 0; }
+.shippingForm li { color: #000; float: left; margin: 0 0 20px; font: 200 16px  'Futura' !important; width: 100%; }
+.shippingForm li label { color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; margin-bottom: 5px; width: 100%; }
+.shippingForm li input[type="text"] { border: 1px solid #39393978; color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; height: 41px; margin: 0; border-radius: 3px; padding: 0 15px; outline: none !important; width: 100%; }
+.shippingForm li select { -webkit-appearance: none; appearance: none; background: url(../../assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #39393978; border-radius: 3px; color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; height: 41px; margin: 0; outline: none !important; padding: 0 15px 0 15px; width: 100%; }
+.shippingForm li .countryCode { border-right: none; border-radius: 3px 0 0 3px; width: 15%; }
+.shippingForm li .countryNum { border-radius: 0 3px 3px 0 !important; width: 85% !important; }
+.shippingForm li:last-child { text-align: center; }
+.shippingForm li .accountBtn { display: inline-block; float: none; margin-top: 20px; }
+
+
+
+.shippingForm li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.shippingForm li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.shippingForm li .input-group .input-group-text .form-select:input:autofill {
+  border-color: #393939;
+}
+.shippingForm li .input-group .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.shippingForm li .input-group .form-select:focus { border-color: #393939; box-shadow: none; }
+.shippingForm li .input-group .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.shippingForm li .input-group .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; }
+
+
+
+
+
+
+.profileModal h3 { color: #000; font: 200 32px  'Futura' !important; margin: 50px 0 30px 0; text-align: center; }
+.profileModal .imgHolderder { margin: 0px 0 0 0; text-align: center; }
+.profileModal .modal-body { padding: 70px 120px 70px 120px; }
+.profileModal .btn-close { font-size: 12px; opacity: 1; position: absolute; right: 20px; top: 20px; z-index: 999; }
+.profileModal .btn-close:focus { box-shadow: none }
+.submitBtn { text-align: center; }
+.paymentBtn { background: #393939; border: none; border-radius: 3px; color: #fff; font: 200 18px  'Futura' !important; height: 54px; margin: auto; margin-top: 40px; width: 230px; }
+.emailHolder { border: 1px solid #909090; border-radius: 5px; float: left; position: relative; width: 100%; }
+.emailDiv h2 { color: #000; font: 400 18px  'Futura' !important; margin: -15px 0 0 0; }
+.emailDiv h3 { color: #000; float: left; font: 500 18px  'Futura' !important;  margin: 40px 0 15px 0; width: 100%; }
+.emailSec { float: left; padding: 0; margin:0; width: 100%; }
+.emailSec li { border-bottom: 1px solid #909090; float: left; list-style: none; margin: 0; padding: 25px 30px 25px 30px; position: relative; width: 100%; }
+.emailSec li:last-child { border-bottom: none; }
+.emailSec li h4 { color: #000; float: left; font: 500 16px  'Futura' !important; margin: 0 0 5px 0; padding-right: 50px; width:100%; }
+.emailSec li p{ color: #000; float: left; font: 200 16px  'Futura' !important; margin: 0; padding-right: 50px; width: 100%; }
+.radioDiv { position: absolute; right: 30px; top: 36px; }
+.radioDiv .switch { display: inline-block; height: 15px;  position: relative; width: 27px; }
+.radioDiv .switch input { display: none; }
+.radioDiv .switch .slider { background-color: #fff; border:#ccc 1px solid; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; }
+.radioDiv .switch .slider:before { background: #ccc; bottom: 1.5px; content: ""; height: 10px; left: 2px; position: absolute; transition: .4s; width: 10px; }
+.radioDiv .switch input:checked + .slider { background-color: #fff; border: 1px solid #000; }
+.radioDiv .switch input:checked + .slider:before { transform: translateX(11px); }
+.radioDiv .switch .slider.round { border-radius: 34px; }
+.radioDiv .switch .slider.round:before { border-radius: 50%; }
+.radioDiv .switch input:checked + .slider:before{ background: #000; }
+/*----------------right section ends --------------------*/
+
+
+/* Responsive Start */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+.rightAccount .nav-tabs .nav-link { font: 200 15px  'Futura' !important; padding: 12px 10px 12px 10px; }
+.rightAccount h3 { font: 500 17px  'Futura' !important; }
+}
+@media screen and (min-width: 300px) and (max-width: 767px) {
+.profileDiv{ padding-left: 12px; }	
+.rightAccount .nav-tabs li { width: 100%; }
+.rightAccount ul.formDiv { margin: 0; }
+.rightAccount .tab-content{ margin-bottom: 20px; }
+.storeInfo { margin-top: 30px; }
+.rightAccount ul.formDiv li .countryCode { width: 30%; }
+.rightAccount ul.formDiv li .countryNum { width: 70% !important; }
+.profileModal .modal-body { padding: 70px 30px 70px 30px; }
+.profileModal h3 { font: 200 25px  'Futura' !important; }
+}
+/* Responsive End */

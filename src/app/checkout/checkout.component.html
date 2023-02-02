@@ -1,0 +1,254 @@
+<div class="form_header"><a routerLink="/localBrands" href="#/localBrands"><img src="assets/images/logo.png"
+            alt="logo"></a></div>
+<div class="step_top">
+    <ul id="progressbar" class="progressbar">
+        <li class="stepAll step_one active">Shipping Details</li>
+        <li class="stepAll step_two">Payment Method</li>
+        <li class="stepAll step_three">Finish</li>
+    </ul>
+</div>
+<!-- Step One Form Section Start -->
+<div class="common_step_sec step_one_sec" *ngIf="step1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 LftPnl">
+                <h5 class="ShipAdrs">Shipping Address</h5>
+                <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && sendcheckOutForm(checkOutForm)" novalidate>
+                    <ul>
+                        <li>
+                            <label>Name</label>
+                            <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                            <input type="text" hidden class="form-control" name="brand_key" [(ngModel)]="brand_key" >
+                            <input class="InputTxt" name="" type="text" placeholder="" name="name" [(ngModel)]="name" #nameval='ngModel' required>
+                            <span class="validate_errors"
+                                *ngIf="(nameval.touched || checkOutForm.submitted) && nameval.errors?.['required']">
+                                 This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Select country</label>
+                            <select class="InputTxt" name="country" [(ngModel)]="country" #countryval='ngModel' required (change)="onChangeCountry($event)" >
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(countryval.touched || checkOutForm.submitted) && countryval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Street and number</label>
+                            <input class="InputTxt" type="text" placeholder="" name="address1" [(ngModel)]="address1" #street_noval='ngModel' required>
+                            <span class="validate_errors"
+                                *ngIf="(street_noval.touched || checkOutForm.submitted) && street_noval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Apt, Suite (Optional)</label>
+                            <input class="InputTxt" type="text" placeholder="" name="address2" [(ngModel)]="address2" #apartment_nameval='ngModel' >
+                        </li>
+                        <li>
+                            <label>State/Province</label>
+                            <select class="InputTxt" name="state" [(ngModel)]="state" #stateval='ngModel' required (change)="onChangeState($event)" >
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(stateval.touched || checkOutForm.submitted) && stateval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li class="SplitList">
+                            <label>Town/Locality</label>
+                            <select class="InputTxt" name="town" [(ngModel)]="town" #townval='ngModel' required>
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option>
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(townval.touched || checkOutForm.submitted) && townval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li class="SplitList FltRht"> 
+                            <label>Zip</label>
+                            <input class="InputTxt"type="text" placeholder="" name="post_code" [(ngModel)]="post_code" #pincodeval='ngModel' required >
+                            <span class="validate_errors"
+                                *ngIf="(pincodeval.touched || checkOutForm.submitted) && pincodeval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Phone number</label>
+                            <input class="InputTxt" type="tel" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                            <span class="validate_errors"
+                                *ngIf="(phone_numberval.touched || checkOutForm.submitted) && phone_numberval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <input *ngIf="!btnDis" name="" type="submit" value="Next" >
+                            <input *ngIf="btnDis" name="" type="submit" value="Please wait..." disabled>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="col-lg-4 RhtPnl">
+                <div class="orderTableBox">
+                    <table class="OdrSmryTbl" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <p class="title">Order summary</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{stateData?.brand_name}}</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                            <tr>
+                                <td>Item total</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td>Free</td>
+                            </tr>
+                            <tr>
+                                <td>Import duties</td>
+                                <td>Free</td>
+                            </tr>
+                            <tr>
+                                <td>Brandtotal</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Step One Form Section end -->
+
+<!-- Step Two Form Section Start -->
+<div class="common_step_sec step_two_sec" *ngIf="step2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 LftPnl">
+                <h5 class="ShipAdrs">Select Payment Method</h5>
+                <form action="" method="get" class="ShippingForm">
+                    <ul>
+                        <li>
+                            <label class="radio inline">
+                                <input checked="" name="" value="card" type="radio">
+                                <span>Pay on shipment</span> </label>
+                            <p>You'll be charged when your products are shipped</p>
+                        </li>
+                        <li>
+                            <label>Credit or debit card</label>
+                            <input class="InputTxt" name="" type="text" placeholder="Card number">
+                        </li>
+                        <li class="SplitList">
+                            <input class="InputTxt" name="" type="text" placeholder="MM/YYY">
+                        </li>
+                        <li class="SplitList FltRht">
+                            <input class="InputTxt" name="" type="text" placeholder="CVC">
+                        </li>
+                        <li>
+                            <input name="" type="submit" value="Next" (click)="nextFourFunction()">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="col-lg-4 RhtPnl">
+                <div class="orderTableBox">
+                    <table class="OdrSmryTbl" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <p class="title">Order summary</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{stateData?.brand_name}}</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                            <tr>
+                                <td>Item total</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td>Free</td>
+                            </tr>
+                            <tr>
+                                <td>Import duties</td>
+                                <td>Free</td>
+                            </tr>
+                            <tr>
+                                <td>Brandtotal</td>
+                                <td>${{stateData?.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Step Two Form Section End -->
+
+<!-- Step Three Form Section Start -->
+<div class="common_step_sec step_three_sec" *ngIf="step3">
+    <div class="container">
+        <div class="InvoiceWrapper">
+            <h5 class="InvoiceAdrs">Invoice</h5>
+            <table class="ClientTable" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p class="ClientName">{{orderDetails?.name}}</p>
+                            Date Period: {{orderDetails?.created_at}}<br>
+                            Invoice No.: {{orderDetails?.order_number}}
+                        </td>
+                        <td> {{orderDetails?.town}}<br>
+                            {{orderDetails?.country}}<br>
+                            {{orderDetails?.address1}}<br>
+                            {{orderDetails.address2 ? orderDetails.address2 : ''}}<br>
+                            {{orderDetails?.post_code}}<br>
+                            {{orderDetails?.phone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="ClientDescTable" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Item total</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartDetails.products">
+                        <td>{{item.product_name}}</td>
+                        <td>${{item.product_price * item.product_qty}}</td>
+                        <td>${{item.product_price * item.product_qty}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Additional</strong><br>Shipping</td>
+                        <td>free</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Import duties</td>
+                        <td>free</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="InvoPara"><a class="SeeInvoice" routerLink="/invoices" >See my invoices</a></p>
+        </div>
+    </div>
+</div>
+<!-- Step Three Form Section End -->

@@ -1,0 +1,32 @@
+<div class="left_vendor_dasboard">
+    <div class="left_scroll_box">
+        <button class="navbar-toggler vendor-toggler" type="button" (click)="toggleMenuShow()"><span class="navbar-toggler-icon"></span></button>
+        <h3><a routerLinkActive="active" (click)="addNewItem('/accountSeeing2')" routerLink="/accountSeeing2" href="#/accountSettings">Account settings</a></h3>
+        <h3><a routerLinkActive="active" (click)="addNewItem('/brand-portal')" routerLink="/brand-portal" href="#/vendorDashboard">Home</a></h3>
+        <h3><a routerLinkActive="active" (click)="addNewItem('/brand-orders')" routerLink="/brand-orders" >My Orders</a></h3>
+        <h3><a>Messages</a></h3>
+        <h3><a routerLinkActive="active" (click)="addNewItem('/vendorMyShop')" routerLink="/vendorMyShop" href="#/vendorMyShop">Shop Management</a></h3>
+        <ul class="left_menu_list">
+            <li><a routerLinkActive="active" (click)="addNewItem('/products')" routerLink="/products" href="#/vendorProduct">Products</a>
+                <ul class="sub_sub_dropdown_list">
+                    <li><a routerLinkActive="active" (click)="addNewItem('/inventory')" routerLink="/inventory" href="#/VendorInventory">Inventory</a></li>
+                    <li><a routerLinkActive="active" (click)="addNewItem('/bulk-products')" routerLink="/bulk-products" href="#/VendorBulkProducts">Bulk upload</a></li>
+                    <li><a routerLink="/my-shop" (click)="addNewItem('/my-shop')">My shop</a></li>
+                </ul>
+            </li>
+            <!-- <li><a>Integrations</a></li> --> 
+        </ul>
+        <h3><a>Growth &amp; Marketing</a></h3>
+        <ul class="left_menu_list">
+            <li><a routerLink="/customers" routerLinkActive="active">Customers</a></li>
+            <li><a routerLink="/brand-portal/promotions" routerLinkActive="active">Promotions</a></li>
+            <li><a routerLink="/brand-portal/marketing/campaigns" routerLinkActive="active" >Campaigns</a></li>
+            <li><a>Performance</a></li>
+        </ul>
+        <h3><a>Sales Channels</a></h3>
+        <ul class="left_menu_list">
+            <li><a>Bazar Direct</a></li>
+            <li><a routerLinkActive="active" (click)="addNewItem('/VendorEvents')" routerLink="/VendorEvents" href="#/VendorEvents">Events</a></li>
+        </ul>
+    </div>
+</div>

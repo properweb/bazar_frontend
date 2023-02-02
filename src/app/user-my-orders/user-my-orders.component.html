@@ -1,0 +1,290 @@
+<div class="gray_body">
+  <div class="container-fluid profileDiv">
+    <div class="row">
+      <div class="col-lg-2 col-sm-4">
+        <app-user-left-sidebar></app-user-left-sidebar>
+      </div>
+      <div class="col-lg-10 col-sm-8">
+        <h2 class="heading">Welcome!</h2>
+        <div infiniteScroll
+      [infiniteScrollDistance]="2" 
+      [infiniteScrollThrottle]="30"
+      (scrolled)="onScroll()">
+        <div class="rightAccount">
+          <div class="boxList">
+            <ul>
+              <li class="commonOrderTab showOpenOrdersTab"> <a (click)="onTabChange('all')">
+              <!-- <li class="commonOrderTab showOpenOrdersTab"> <a (click)="showOpenordersFunction()"> -->
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/All-Orders.png" alt=""></div>
+                  <h3>{{allDetails?.allOrdersCount}}</h3>
+                  <p>All orders</p>
+                </div>
+                </a> 
+              </li>
+              <li class="commonOrderTab showOpenOrdersTab"> <a (click)="onTabChange('new')">
+              <!-- <li class="commonOrderTab showOpenOrdersTab"> <a (click)="showOpenordersFunction()"> -->
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/Open-Orders.png" alt=""></div>
+                  <h3>{{allDetails?.newOrdersCount}}</h3>
+                  <p>Open orders</p>
+                </div>
+                </a> 
+              </li>
+              <li class="commonOrderTab showProgressOrdersTab"> <a (click)="onTabChange('unfulfilled')">
+              <!-- <li class="commonOrderTab showProgressOrdersTab"> <a (click)="showProgressFunction()"> -->
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/icon2.png" alt=""></div>
+                  <h3>{{allDetails?.unfulfilledOrdersCount}}</h3>
+                  <p>In Progress</p>
+                </div>
+                </a> 
+              </li>
+              <li class="commonOrderTab showCompletedOrdersTab"> <a (click)="onTabChange('fulfilled')">
+              <!-- <li class="commonOrderTab showCompletedOrdersTab"> <a (click)="showCompletedFunction()"> -->
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/icon3.png" alt=""></div>
+                  <h3>{{allDetails?.fulfilledOrdersCount}}</h3>
+                  <p>Completed</p>
+                </div>
+                </a> 
+              </li>
+              <li class="commonOrderTab showCancelledOrdersTab"> <a (click)="onTabChange('cancelled')">
+              <!-- <li class="commonOrderTab showCancelledOrdersTab"> <a (click)="showCancelledFunction()"> -->
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/icon4.png" alt=""></div>
+                  <h3>{{allDetails?.cancelledOrdersCount}}</h3>
+                  <p>Cancelled</p>
+                </div>
+                </a> 
+              </li>
+              <!-- <li class="commonOrderTab showBidsOrdersTab"> <a (click)="onTabChange('bids')">
+              <li class="commonOrderTab showBidsOrdersTab"> <a (click)="showBidsFunction()">
+                <div class="WBox">
+                  <div class="icon"><img src="assets/images/icon5.png" alt=""></div>
+                  <h3>2</h3>
+                  <p>Bids</p>
+                </div>
+                </a> 
+              </li> -->
+            </ul>
+          </div>
+          <div class="noOrder"> 
+            <!--<h4>No orders placed yet </h4>
+                        <a href="#" class="moreBtn">Start shopping </a>-->
+            <div class="showAllOrder" [hidden]="!showAllOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders">
+                    <td><input type="checkbox"></td>
+                    <td><img [src]="order?.product_image" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>{{order?.product_name}}</td>
+                    <td>{{order?.brand}}</td>
+                    <td>{{order?.order_date}}</td>
+                    <td>{{order?.shipping_details}}</td>
+                    <td>${{order?.total_amount}}</td>
+                    <td style="text-transform: capitalize;"><em [ngClass]="order?.order_status === 'open' ? 'openTag' : order?.order_status === 'in progress' ? 'In-progressTag' : order?.order_status === 'completed' ? 'CompletedTag' : order?.order_status === 'cancelled' ? 'CancelledTag' : order?.order_status === 'bids' ? 'BidTag' : '' ">{{order?.order_status}}</em></td>
+                    <!-- <td style="text-transform: capitalize;"><em class="openTag">{{order?.order_status}}</em></td> -->
+                  </tr>
+                  <!-- <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="In-progressTag">In progress</em></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="CompletedTag">Completed</em></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="CancelledTag">Cancelled</em></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="BidTag">Bid</em></td>
+                  </tr> -->
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+            <div class="showOpenOrder" [hidden]="!showOpenOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="openTag">Open</em></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+            <div class="showProgressOrder" [hidden]="!showProgressOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="In-progressTag">In progress</em></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+            <div class="showCompletedOrder" [hidden]="!showCompletedOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="CompletedTag">Completed</em></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+            <div class="showCancelledOrder" [hidden]="!showCancelledOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="CancelledTag">Cancelled</em></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+            <div class="showBidsOrder" [hidden]="!showBidsOrder">
+              <table id="example" class="table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Seller</th>
+                    <th>Date</th>
+                    <th>Shipment details</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                    <td>T-shirt</td>
+                    <td>Best Seller</td>
+                    <td>February 8, 2022</td>
+                    <td>Qatar, Dokha, street Bay 2</td>
+                    <td>$11.70</td>
+                    <td><em class="BidTag">Bid</em></td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

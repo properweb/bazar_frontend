@@ -1,0 +1,541 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light header">
+    <div class="header_top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=""><img src="assets/images/logo.png" alt="logo"></a>
+            <form class="me-auto top_search">
+                <input class="form-control me-2" type="search" placeholder="Search for products or brands" aria-label="Search">
+            </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <ul class="top_lang">
+                <li>
+                    <form>
+                        <select class="form-select">
+                            <option>EN</option>
+                        </select>
+                    </form>
+                </li> 
+            </ul>
+            <div class="mobile_bottom_btn_link">
+                <ul class="top_nav">
+                    <li><a class="btn btn-primary sell_on_bazar" (click)="openVendorSignUpModal(vendorsRegistration)">SELL ON BAZAR</a></li>
+                    <li><a class="btn btn-primary sign_in" (click)="openUserLogInModal(userLogInContent)">Sign IN</a></li>
+                    <li><a class="btn btn-primary sign_up" routerLink="/userRegistration">Sign UP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link">All categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Fashion</a>
+                        <div class="dropDown_menu">
+                            <div class="container-fluid">
+                                <ul class="sub_cat_list">
+                                    <li><a>All Fashion</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a>New brands</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a>New products</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a>Apparel</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a>Women</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a>Men</a>
+                                        <div class="sub_sub_cat_dropdown">
+                                            <ul class="sub_sub_cat">
+                                                <li><a>All Women's</a></li>
+                                                <li><a>Outwear</a></li>
+                                                <li><a>New Brands</a></li>
+                                                <li><a>Shorts</a></li>
+                                                <li><a>New Pruducts</a></li>
+                                                <li><a>Jumpsuits</a></li>
+                                                <li><a>Skirts</a></li>
+                                                <li><a>Swimwear</a></li>
+                                                <li><a>Blouses</a></li>
+                                                <li><a>Kimonos &amp; Kaftans</a></li>
+                                                <li><a>Dresses</a></li>
+                                                <li><a>Lingerie</a></li>
+                                                <li><a>Socks</a></li>
+                                                <li><a>Accessorise</a></li>
+                                                <li><a>Sweaters</a></li>
+                                            </ul>
+                                            <div class="cat_img_sec">
+                                                <img src="assets/images/women-img.png" alt="">
+                                                <h3>Shop All Women</h3>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Beauty &amp; Wellness</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Home &amp; Garden</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Office &amp; Stationery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Kids &amp; Baby</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Pets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Constructive &amp; Hardware</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Food &amp; Drinks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Electronics</a>
+                    </li>
+                </ul>
+                <div class="mobile_drop_down">
+                    <div class="accordion menuAccordion" id="menuAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">All categories</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header fashionMenu" id="fashionMenu"><a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fashion" aria-expanded="true" aria-controls="fashion">Fashion</a>
+                            </h2>
+                            <div id="fashion" class="accordion-collapse collapse" aria-labelledby="fashionMenu"
+                                data-bs-parent="#menuAccordion">
+                                <div class="accordion-body">
+                                    <div class="accordion fashionAccordion" id="fashionAccordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header collapsed" id="AllFashionMenu"><a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#allFashion" aria-expanded="true" aria-controls="allFashion">All Fashion</a></h2>
+                                            <div id="allFashion" class="accordion-collapse collapse" aria-labelledby="AllFashionMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos &amp; Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="newBrandsMenu"><a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newBrands" aria-expanded="false" aria-controls="newBrands">New brands</a></h2>
+                                            <div id="newBrands" class="accordion-collapse collapse" aria-labelledby="newBrandsMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos &amp; Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="newProductsMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newProducts" aria-expanded="false" aria-controls="newProducts">New products</a>
+                                            </h2>
+                                            <div id="newProducts" class="accordion-collapse collapse" aria-labelledby="newProductsMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos &amp; Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="apparelMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#apparel" aria-expanded="false" aria-controls="apparel">Apparel</a></h2>
+                                            <div id="apparel" class="accordion-collapse collapse"
+                                                aria-labelledby="apparelMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos &amp; Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="womenMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#women" aria-expanded="false" aria-controls="women">Women</a> </h2>
+                                            <div id="women" class="accordion-collapse collapse"
+                                                aria-labelledby="womenMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos &amp; Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="menMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#men" aria-expanded="false" aria-controls="men">Men</a> </h2>
+                                            <div id="men" class="accordion-collapse collapse" aria-labelledby="menMenu" data-bs-parent="#fashionAccordion">
+                                                <div class="accordion-body">
+                                                    <ul class="sub_sub_cat">
+                                                        <li><a>All Women's</a></li>
+                                                        <li><a>Outwear</a></li>
+                                                        <li><a>New Brands</a></li>
+                                                        <li><a>Shorts</a></li>
+                                                        <li><a>New Pruducts</a></li>
+                                                        <li><a>Jumpsuits</a></li>
+                                                        <li><a>Skirts</a></li>
+                                                        <li><a>Swimwear</a></li>
+                                                        <li><a>Blouses</a></li>
+                                                        <li><a>Kimonos & Kaftans</a></li>
+                                                        <li><a>Dresses</a></li>
+                                                        <li><a>Lingerie</a></li>
+                                                        <li><a>Socks</a></li>
+                                                        <li><a>Accessorise</a></li>
+                                                        <li><a>Sweaters</a></li>
+                                                    </ul>
+                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
+                                                        <h3>Shop All Women</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown">Beauty &amp; Wellness</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Home &amp; Garden</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Office &amp; Stationery</a>
+                            </h2>
+                        </div>
+                        <div class="accordion-item"> 
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Kids &amp; Baby</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Pets</a></h2> 
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Constructive &amp; Hardware</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Food &amp; Drinks</a></h2>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Electronics</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- User-Log-In-Modal -->
+<ng-template #userLogInContent let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click'); resetEmailSend = false;"></button>
+    </div>
+    <div class="modal-body" *ngIf="!resetEmailSend" >
+        <h3>Welcome back!</h3>
+        <p>Thousands of products await</p>
+            <ul class="formOne">
+            <form #emailForm="ngForm" (ngSubmit)="emailForm.form.valid && send1stSignInData()" (keydown.enter)="emailForm.form.valid && send1stSignInData()" novalidate>
+                <li *ngIf="log1">
+                    <input required email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
+                    <span class="validate_errors"
+                        *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['required']">
+                        This field is required
+                    </span>
+                    <span class="validate_errors"
+                        *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['email']">
+                        Enter an valid email
+                    </span>
+                    <button type="submit" class="btn btn-primary continue_btn fullBtn">Continue</button>
+                </li>
+            </form>
+                <form #signInFrom="ngForm" (ngSubmit)="signInFrom.form.valid && sendSignInData(signInFrom)" (keydown.enter)="signInFrom.form.valid && sendSignInData(signInFrom)" novalidate>
+                <li *ngIf="log2">
+                    <input hidden type="text" name="email_address" [(ngModel)]="email_address">
+                    <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" #passwordVal="ngModel">
+                    <span class="validate_errors">{{validateError}}</span>
+                    <button type="button" class="btn btn-primary backButton" (click)="backFirstFunction()">Back</button>
+                    <button type="submit" *ngIf="!spinnerShow" class="btn btn-primary">Continue</button>
+                    <button type="" class="btn btn-primary common_btn next2" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; right: 35px;bottom: -28px;position: absolute;"></button>
+                </li>
+            </form>
+            </ul>
+            <div class="clearfix"></div>
+        <p class="sign_in_para" *ngIf="log2" >Forgot your password? <a (click)="resetPassword()">Reset it</a></p><br>
+        <p class="sign_in_para">New to Bazar? <a (click)="modal.dismiss('Cross click')"
+                (click)="openUserSignUpModal(content)">Create an account</a></p>
+        <ul class="social_login">
+            <li><a class="social_link"><span class="social_span"><img src="assets/images/facebook_icon.png"
+                            alt="facebook login">Continue with facebook</span></a></li>
+            <li><a class="social_link"><span class="social_span"><img src="assets/images/google_icon.png"
+                            alt="facebook login">Continue with google</span></a></li>
+        </ul>
+    </div>
+    <div class="modal-body" *ngIf="resetEmailSend">
+        <h3>Check your email</h3>
+        <p class="sign_in_para" >We just sent you instructions for resetting your password. Didn't get it? <a (click)="resetPassword()">Resend it</a></p><br>
+    </div>
+</ng-template>
+
+<!-- User-Sign-Up-Modal -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title"><img src="assets/images/bazar_modal_logo.png" alt="logo"></h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Shop wholesale, online</h3>
+        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+        <form [formGroup]="userRegForm" (ngSubmit)="userRegForm.valid && submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)" >
+            <ul class="formOne">
+                <li>
+                    <input required type="email" [(ngModel)]="userEmail" formControlName="userEmail" class="form-control" placeholder="Your business e-mail">
+                </li>
+                <li>
+                    <div class="validate_errors" *ngIf="submitted && userRegForm.controls['userEmail'].invalid">
+                        <strong>Email-id Required</strong> Please enter Valid Email-id.
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get started</button>
+                </li>
+            </ul>
+        </form>
+        <p class="sign_in_para"><a (click)="modal.dismiss('Cross click')" (click)="openUserLogInModal(userLogInContent)">Sign in</a> or <a (click)="modal.dismiss('Cross click')" (click)="openVendorSignUpModal(vendorsRegistration)">Sell on Bazar</a></p>
+    </div>
+    <div class="modal-footer">
+        <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
+    </div>
+</ng-template>
+
+<!-- Vendors-Registration-Modal -->
+<ng-template #vendorsRegistration let-modal > 
+    <div class="modal-header">
+        <h4 class="modal-title"><img src="assets/images/bazar_modal_logo.png" alt="logo"></h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Shop wholesale, online</h3>
+        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+       
+        <form [formGroup]="vendorRegForm" (ngSubmit)="submitEmail(vendorRegForm)"> 
+            <ul class="formOne">
+                <li>
+                    <input required type="email" [(ngModel)]="email" formControlName="vendorEmail"  class="form-control" placeholder="Your business e-mail">
+                </li>
+                <li>
+                    <div class="validate_errors" *ngIf="submitted && vendorRegForm.controls['vendorEmail'].invalid">
+                        <strong>Email-id Required</strong> Please enter Valid Email-id.
+                    </div>
+                    <button  type="submit" class="btn btn-primary" >Get started</button>
+                </li>
+            </ul>
+        </form>
+        <p class="sign_in_para"><a (click)="modal.dismiss('Cross click')" (click)="openUserLogInModal(userLogInContent)">Sign in</a> or <a (click)="modal.dismiss('Cross click')" (click)="openUserLogInModal(userLogInContent)">Sell on Bazar</a>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
+    </div>
+</ng-template>

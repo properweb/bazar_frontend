@@ -1,0 +1,557 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">
+        Listing face masks? Follow the <a>guidelines</a>
+      </p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>New Invoice</h3>
+          <p><a routerLink="/brand-portal/invoices">Invoicing</a></p>
+        </div>
+      </div>
+      <div class="vendor_create_body">
+        <h3>Customer Details</h3>
+        <!-- <div *ngIf="custAddDivShow"> -->
+        <a (click)="openUserLogInModal(addCustomerContent)" class="lightbox-link add-customer-link">Add Customer</a>
+        <ul class="row shopInfoList">
+          <li class="col-lg-12">
+            <!-- <input type="text" class="form-control search_form" value="" placeholder=""> -->
+            <ng-autocomplete [data]="data" [searchKeyword]="keyword" placeholder="Select Option" (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" class="common-autosearch customer-autosearch"></ng-autocomplete>
+
+            <ng-template #itemTemplate let-item >
+                <a [innerHTML]="item.name">{{item.name}}</a>
+            </ng-template>
+            <ng-template #notFoundTemplate let-notFound >
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+              <input type="text" placeholder="" aria-label="Number" [formControl]="myControl" matInput [matAutocomplete]="auto" />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="search-autocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{ option }}
+                </mat-option>
+                <mat-option value="">
+                  <a (click)="openUserLogInModal(addCustomerContent)" class="lightbox-link">Add Customer</a>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field> -->
+          </li>
+        </ul>
+      </div>
+      <div class="vendor_create_body">
+        <h3>Invoice details</h3>
+        <ul class="row shopInfoList">
+          <li class="col-lg-10">
+            <ng-autocomplete [data]="proData" [searchKeyword]="proKeyword" placeholder="Select Option" (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate1" [notFoundTemplate]="notFoundTemplate1" class="common-autosearch invoice-search"></ng-autocomplete>
+            <ng-template #itemTemplate1 let-item class="ddd">
+              <div class="searchBox">
+                <a (click)="openInvoiceProductModal(invoiceProductContent)">
+                  <span class="imgBox" ><img src="assets/images/search-img.png" alt="" /></span>
+                  <span class="productInfoTxt">
+                    <h4 >{{item.name}}</h4>
+                    <p>SKU: AA234</p>
+                  </span>
+                  <span class="priceTag">$11.70</span>
+                  <span class="stockTag">In stock</span>
+                </a>
+              </div>
+                <!-- <a [innerHTML]="item.name">{{item.name}}</a> -->
+            </ng-template>
+            <ng-template #notFoundTemplate1 let-notFound >
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+            <!-- <mat-form-field class="example-full-width invoice-details-autosearch" appearance="fill">
+              <input type="text" placeholder="" aria-label="Number" matInput [matAutocomplete]="auto1" />
+              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" class="search-autocomplete2">
+                <mat-option value="">
+                  <div class="searchBox">
+                    <a (click)="openInvoiceProductModal(invoiceProductContent)">
+                      <span class="imgBox"><img src="assets/images/search-img.png" alt="" /></span>
+                      <span class="productInfoTxt">
+                        <h4>Grey plate</h4>
+                        <p>SKU: AA234</p>
+                      </span>
+                      <span class="priceTag">$11.70</span>
+                      <span class="stockTag">In stock</span>
+                    </a>
+                  </div>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field> -->
+            <!-- <input type="text" class="form-control search_form" value="" placeholder="" />
+            <div class="searchBox">
+              <a>
+                <span class="imgBox"><img src="assets/images/search-img.png" alt="" /></span>
+                <span class="productInfoTxt">
+                  <h4>Grey plate</h4>
+                  <p>SKU: AA234</p>
+                </span>
+                <span class="priceTag">$11.70</span>
+                <span class="stockTag">In stock</span>
+              </a>
+            </div> -->
+          </li>
+          <li class="col-lg-2">
+            <a class="add_items_link" (click)="openAddCustomitemModal(addCustomitemContent)">Add custom item</a>
+          </li>
+        </ul>
+      </div>
+      <div class="vendor_white_create_body">
+        <div class="table_sec">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Case size</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Wholesale price</th>
+                <th scope="col">Total</th>
+                <th scope="col" style="text-align: center">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="imgDiv">
+                    <img src="assets/images/product_thumb.png" alt="" />
+                  </div>
+                  <h4>Grey plate</h4>
+                  <p>SKU:AA234</p>
+                </td>
+                <td>In stock</td>
+                <td>4</td>
+                <td>
+                  <span class="quantitySpan">
+                    <input type="number" class="form-control" name="" value="4" />
+                    units</span>
+                </td>
+                <td>$15</td>
+                <td>$60</td>
+                <td style="text-align: center">
+                  <a class="removeLink"><i class="fa-solid fa-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="vendor_white_create_body2">
+        <div class="top_create_body">
+          <div class="row">
+            <div class="col-lg-9">
+              <div class="shipSec">
+                <h4>Ship Date</h4>
+                <ul class="formDiv">
+                  <li>
+                    <span class="radioLabel">Ship Now
+                      <input type="radio" (click)="ship_now = 1 " [checked]="ship_now == 1" />
+                      <span class="checkmark"></span>
+                    </span>
+                  </li>
+                  <!-- <li>
+                    <span class="radioLabel">Preorder
+                      <input type="radio" />
+                      <span class="checkmark"></span>
+                    </span>
+                  </li> -->
+                  <li>
+                    <span class="radioLabel">Scheduled Ship Date
+                      <input type="radio" (click)="ship_now = 0 " [checked]="ship_now == 0" />
+                      <span class="checkmark"></span>
+                    </span>
+                  </li>
+                  <li *ngIf="ship_now == 0" ><input type="form-control" name="" value="" /></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <table class="table amountTable">
+                <tr>
+                  <th>Subtotal</th>
+                  <td><strong>$0.00</strong></td>
+                </tr>
+                <tr>
+                  <th>Add Promotion</th>
+                  <td><strong>-</strong></td>
+                </tr>
+                <tr>
+                  <th>Shipping</th>
+                  <td><strong>TBD</strong></td>
+                </tr>
+                <tr>
+                  <th>Total</th>
+                  <td><strong>$0.00</strong></td>
+                </tr>
+                <tr>
+                  <th>Commission</th>
+                  <td><strong>-</strong></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="bottom_create_body">
+          <div class="row">
+            <div class="col-lg-4">
+              <ul class="formList">
+                <li>
+                  <label class="form-label">Note To Self</label>
+                  <textarea class="form-control textAreaForm" rows="3" placeholder="Note is written here" name="self_note" [(ngModel)]="self_note" ></textarea>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vendor_create_body">
+        <h3>Recommend additional products</h3>
+        <p><span>Introduce your customers to new products or recommend items that complement their order. Customers will be able to add recommended products to their order when checking out. <br /> <a>View Example</a></span>
+        </p>
+        <h3>Add products</h3>
+        <ul class="row shopInfoList">
+          <li class="col-lg-10">
+            <ng-autocomplete [data]="proData" [searchKeyword]="proKeyword" placeholder="Select Option" (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate2" [notFoundTemplate]="notFoundTemplate2" class="common-autosearch invoice-search"></ng-autocomplete>
+            <ng-template #itemTemplate2 let-item class="ddd">
+              <div class="searchBox">
+                <a (click)="openInvoiceProductModal(invoiceProductContent)">
+                  <span class="imgBox" ><img src="assets/images/search-img.png" alt="" /></span>
+                  <span class="productInfoTxt">
+                    <h4 >{{item.name}}</h4>
+                    <p>SKU: AA234</p>
+                  </span>
+                  <span class="priceTag">$11.70</span>
+                  <span class="stockTag">In stock</span>
+                </a>
+              </div>
+                <!-- <a [innerHTML]="item.name">{{item.name}}</a> -->
+            </ng-template>
+            <ng-template #notFoundTemplate2 let-notFound >
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+            <!-- <mat-form-field class="example-full-width invoice-details-autosearch" appearance="fill">
+              <input type="text" placeholder="" aria-label="Number" matInput [matAutocomplete]="auto1" />
+              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" class="search-autocomplete2">
+                <mat-option value="">
+                  <div class="searchBox">
+                    <a (click)="openInvoiceProductModal(invoiceProductContent)">
+                      <span class="imgBox"><img src="assets/images/search-img.png" alt="" /></span>
+                      <span class="productInfoTxt">
+                        <h4>Grey plate</h4>
+                        <p>SKU: AA234</p>
+                      </span>
+                      <span class="priceTag">$11.70</span>
+                      <span class="stockTag">In stock</span>
+                    </a>
+                  </div>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field> -->
+            <!-- <input type="text" class="form-control search_form" value="" placeholder="" />
+            <div class="searchBox">
+              <a>
+                <span class="imgBox"><img src="assets/images/search-img.png" alt="" /></span>
+                <span class="productInfoTxt">
+                  <h4>Grey plate</h4>
+                  <p>SKU: AA234</p>
+                </span>
+                <span class="priceTag">$11.70</span>
+                <span class="stockTag">In stock</span>
+              </a>
+            </div> -->
+          </li>
+          <li class="col-lg-2"></li>
+        </ul>
+        <ul class="row show_product_list">
+          <li class="col-lg-2">
+            <div class="border_box complete_border_box">
+              <div class="imgDiv">
+                <img src="assets/images/no-revisions-Pu0sndkokuA-unsplash-1.png" alt="" />
+                <a class="deleteIcon"><i class="fa-solid fa-trash"></i></a>
+              </div>
+              <div class="txtDiv">
+                <h4>Grey plate</h4>
+                <p>$11.70</p>
+              </div>
+            </div>
+          </li>
+          <li class="col-lg-2">
+            <div class="border_box"></div>
+          </li>
+          <li class="col-lg-2">
+            <div class="border_box"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="vendor_white_create_body2">
+        <div class="bottom_create_body">
+          <h3>Add a note</h3>
+          <p><span>Retailers are more likely to add recommendations when you write a personal message.</span></p>
+          <div class="row">
+            <div class="col-lg-6">
+              <ul class="formList">
+                <li>
+                  <textarea class="form-control textAreaForm" rows="3" placeholder="Here  is sellers note" name="retailer_note" [(ngModel)]="retailer_note" ></textarea>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add-Customer-Modal -->
+<ng-template #addCustomerContent let-modal>
+  <form #addCustomerForm="ngForm" (ngSubmit)="addCustomerForm.form.valid && sendAddCustomerForm(addCustomerForm)" novalidate>
+    <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <h4>New customer</h4>
+    </div>
+    <div class="modal-body">
+      <h3>Contact information</h3>
+      <ul class="row form-list">
+        <li class="col-md-6">
+          <label>First Name*</label>
+          <input type="text" class="form-control" placeholder="" name="first_name" [(ngModel)]="first_name" #first_nameval="ngModel" required />
+          <span class="validate_errors"
+            *ngIf="(first_nameval.touched || addCustomerForm.submitted) && first_nameval.errors?.['required']">
+            This field is required
+          </span>
+        </li>
+        <li class="col-md-6">
+          <label>Last Name*</label>
+          <input type="text" class="form-control" placeholder="" name="last_name" [(ngModel)]="last_name" #last_nameval="ngModel" required />
+          <span class="validate_errors"
+            *ngIf="(last_nameval.touched || addCustomerForm.submitted) && last_nameval.errors?.['required']">
+            This field is required
+          </span>
+        </li>
+        <li class="col-md-6">
+          <label>Store name*</label>
+          <input type="text" class="form-control" placeholder="" name="store_name" [(ngModel)]="store_name" #store_nameval="ngModel" required />
+          <span class="validate_errors"
+            *ngIf="(store_nameval.touched || addCustomerForm.submitted) && store_nameval.errors?.['required']">
+            This field is required
+          </span>
+        </li>
+        <li class="col-md-6">
+          <label>Email*</label>
+          <input type="text" class="form-control" placeholder="" name="email" [(ngModel)]="email" #emailval="ngModel" required />
+          <span class="validate_errors"
+            *ngIf="(emailval.touched || addCustomerForm.submitted) && emailval.errors?.['required']">
+            This field is required
+          </span>
+        </li>
+      </ul>
+      <h3>Shipping address</h3>
+      <ul class="row form-list">
+        <li class="col-md-6">
+          <input type="text" class="form-control" placeholder="Name" name="ship_name" [(ngModel)]="ship_name" />
+        </li>
+        <li class="col-md-6">
+          <select class="form-select" aria-label="Default select example" name="ship_country" [(ngModel)]="ship_country" (change)="onChangeCountry($event)" >
+            <option value="null" disabled selected hidden>Country</option>
+            <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option>
+          </select>
+        </li>
+        <li class="col-md-6">
+          <input type="text" class="form-control" placeholder="Street and Number" name="ship_address1" [(ngModel)]="ship_address1" />
+        </li>
+        <li class="col-md-6">
+          <input type="text" class="form-control" placeholder="Apt.Suite (optional)" name="ship_address2" [(ngModel)]="ship_address2" />
+        </li>
+        <li class="col-md-6">
+          <select class="form-select" aria-label="Default select example" name="ship_state" [(ngModel)]="ship_state" (change)="onChangeState($event)" >
+            <option value="null" disabled selected hidden>State</option>
+            <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>
+          </select>
+        </li>
+        <li class="col-md-6">
+          <select class="form-select" aria-label="Default select example" name="ship_town" [(ngModel)]="ship_town" >
+            <option value="null" disabled selected hidden>Town</option>
+            <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option>
+          </select>
+        </li>
+        <li class="col-md-6">
+          <input type="text" class="form-control" placeholder="Zip" name="ship_post_code" [(ngModel)]="ship_post_code" />
+        </li>
+        <li class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text">
+              <input type="text" class="form-control telephone-input" [value]="'+'+ship_ph_code"/>
+              <select aria-label="Default select example" name="ship_ph_code" class="form-select telephone-select" name="ship_ph_code" [(ngModel)]="ship_ph_code" >
+                <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+              </select>
+            </span>
+            <input type="number" class="form-control" name="phone_number" name="ship_phone" [(ngModel)]="ship_phone" />
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+      <button class="btn btn-primary btn-add" type="submit" >Add</button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- Add-Custom-Item-Modal -->
+<ng-template #addCustomitemContent let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4>Add Custom item</h4>
+  </div>
+  <div class="modal-body">
+    <ul class="row form-list">
+      <li class="col-md-12">
+        <label>Product / Line Item Name</label>
+        <input type="text" class="form-control" placeholder="" name="custProName" [(ngModel)]="custProName" />
+      </li>
+      <li class="col-md-4">
+        <label>Qty</label>
+        <input type="number" class="form-control" placeholder="0" name="custProQty" [(ngModel)]="custProQty" />
+      </li>
+      <li class="col-md-8">
+        <label>Wholesale price / unit</label>
+        <input type="text" class="form-control price-input" placeholder="0.00" name="custProPrice" [(ngModel)]="custProPrice" />
+        <span class="price-span">USD</span>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-add">Add line item</a>
+  </div>
+</ng-template>
+
+<!-- Invoice-Product-Modal -->
+<ng-template #invoiceProductContent let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="top-main-product">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+          </tr>                    
+        </tbody>
+      </table>
+    </div>
+    <input type="text" class="form-control search_form" value="" placeholder="" />
+    <div class="invoice-product-table_list">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr> 
+          <tr>
+            <td><input class="form-check-input" type="checkbox"></td>
+            <td><img src="assets/images/product-img.jpeg" alt=""></td>
+            <td>7Up Drink 150mL (12 Pieces) سفن آب شراب غازي ١٥٠ مل ١٢ حبة</td>
+            <td>In stock</td>
+            <td>$1.00</td>
+          </tr>                    
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+    <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-add">Add Options</a>
+  </div>
+</ng-template>

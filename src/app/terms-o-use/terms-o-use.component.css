@@ -1,0 +1,9 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.border_top { /*border-top: 1px solid #393939;*/ margin: 149px 0 0 0; padding: 0; width: 100%; }
+.containerTerms { padding-bottom: 60px; padding-top: 60px; }
+.containerTerms h2 { color: #000; font-family: 'Futura' !important; font-size: 48px; font-weight: 500; margin: 0; text-align: center; }
+.containerTerms p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.containerTerms p span { font-size: 20px; }
+.containerTerms h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 20px 0; }

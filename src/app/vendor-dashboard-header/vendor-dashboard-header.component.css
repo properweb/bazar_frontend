@@ -1,0 +1,43 @@
+.bg-light { background-color: #fff !important; margin-bottom: 0; padding-bottom: 0px; position: fixed; top: 0; width: 100%; z-index: 999; }
+.navbar-expand-lg { flex-wrap: wrap; justify-content: normal; }
+.header_top { flex-wrap: nowrap; justify-content: flex-start; margin: 20px 0 20px 0; padding: 0; width: 100%; }
+.header_top .container-fluid { display: flex; flex-wrap: inherit; align-items: center; justify-content: space-between; padding-left: 5%; padding-right: 5%; }
+.header_top .navbar-brand img { height: auto; width: 105px; }
+.header_top .top_nav { display: inline-block; list-style: none; margin: 0; padding: 0; }
+.header_top .top_nav li { float: left; margin: 0 0 0 10px; padding: 0; position: relative; }
+.header_top .top_nav li a { border-radius: 100%; display: block; height: 50px; line-height: 50px; padding: 0; text-align: center; width: 50px; }
+.header_top .top_nav li .top_alert { background: url(../../assets/images/vendor_header_bel_icon_circle.svg) no-repeat center; }
+.header_top .top_nav li .wish_icon { background: url(../../assets/images/vendor_header_first_icon_circle.svg) no-repeat center; }
+.header_top .top_nav li .sign_up { background: url(../../assets/images/vendor_header_gray_circle.svg) no-repeat center; }
+.header_top .top_nav li img { border-radius: 100%; display: inline-block; height: 36px; margin-top: -5px; width: 36px; }
+.header_top .top_nav li .dropdownBox { background: #fff; position: absolute; right: 0; top: 76px; width: 196px; }
+.header_top .top_nav li .dropdownBox .dropdownLinkList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.header_top .top_nav li .dropdownBox .dropdownLinkList li { margin: 0; padding: 0; width: 100%; }
+.header_top .top_nav li .dropdownBox .dropdownLinkList li a { cursor: pointer; border: none; border-radius: 0px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: auto; line-height: 41px; text-align: center; width: 100%; }
+.header_top .top_nav li .dropdownBox .dropdownLinkList li a:hover { background: rgba(57, 57, 57, 0.05); }
+.mask { display: none; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.bg-light { height: 50px; padding-top: 0px; }
+.header_top { margin-bottom: 0px; margin-top: 0px; }
+.header_top .navbar-toggler { background: none; border-radius: 0px; margin-top: -2px; }
+.header_top .navbar-toggler:focus { box-shadow: none; }
+.header_top .navbar-toggler .navbar-toggler-icon { background-color: #000; background-image: none; height: 4px; left: 0; position: relative; transform: rotate(0deg); transition: .4s ease-in-out; top: 0; width: 24px; }
+.header_top .navbar-toggler .navbar-toggler-icon:after { background-color: #000; content: ""; height: 4px; left: 0; position: absolute; transform: rotate(0deg); transition: .4s ease-in-out; top: -8px; width: 24px; }
+.header_top .navbar-toggler .navbar-toggler-icon:before { background-color: #000; content: ""; height: 4px; left: 0; position: absolute; transform: rotate(0deg); transition: .4s ease-in-out; top: 8px; width: 24px; }
+.header_top .menu-opened .navbar-toggler-icon { left: 0px; opacity: 1; transform: translateY(9px) rotate(-46deg); top: -12px; }
+.header_top .menu-opened .navbar-toggler-icon:after { opacity: 0; transform: translateX(-60px); }
+.header_top .menu-opened .navbar-toggler-icon:before { left: 0px; transform: translateY(-8px) rotate(-94deg); top: 8px; }
+.header_top .navbar-brand { padding-bottom: 0; padding-top: 0px; }
+.header_top .top_nav { padding-top: 5px; }
+.header_top .top_nav li a { height: 38px; line-height: 36px; width: 38px; }
+.header_top .top_nav li .top_alert { background-size: cover; }
+.header_top .top_nav li .wish_icon { background-size: cover; }
+.header_top .top_nav li .sign_up { background-size: cover; }
+.header_top .top_nav li img { height: 24px; width: 24px; }
+.header_top .top_nav li .dropdownBox { top: 44px; }
+.mask { background: #333; display: block; height: 100vh; left: 0px; opacity: 0.8; position: absolute; top: 0px; width: 100%; z-index: -100; }
+.showmask { z-index: 999; }
+}
+/* Responsive End */

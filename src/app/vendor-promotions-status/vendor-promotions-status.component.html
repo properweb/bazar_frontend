@@ -1,0 +1,50 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Promotions</h3>
+          <p>Run a promotion to attract new customers and get more reorders!</p>
+          <ul class="rightTopPromoList">
+            <li><a class="viewShopLink">View shop</a></li>
+            <li> <a class="newPromotionLink" (click)="newPromoDropdown()"><span>Create Promotion</span></a>
+              <ul class="createPromotionsList">
+                <li><a>Shop Wide</a></li>
+                <li><a>Product Specific</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="vendor_promotions_ststus_body">
+        <div class="promotions_ststus_table_sec">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col" class="text-center">Dates</th>
+                <th scope="col" class="text-center">Products incluuded</th>
+                <th scope="col" class="text-center">Users</th>
+                <th scope="col" class="text-center">Status</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Summersale</td>
+                <td class="text-center">Mar 25, 2022 - Mar 28, 2022</td>
+                <td class="text-center">All products</td>
+                <td class="text-center">0</td>
+                <td class="text-center">Deactivated</td>
+                <td class="text-center"><a>View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
