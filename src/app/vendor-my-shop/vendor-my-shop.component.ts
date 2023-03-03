@@ -14,7 +14,6 @@ declare var $: any;
 })
 export class VendorMyShopComponent implements OnInit {
   user_id!: any;
-  products!: any;
   insta_handle!: any;
   established_year!: any; 
   stored_carried!: any;
@@ -66,7 +65,6 @@ export class VendorMyShopComponent implements OnInit {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
         this.getVendorDetails(this.user_id);
-        this.getProdcuts(this.user_id); 
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -141,13 +139,6 @@ export class VendorMyShopComponent implements OnInit {
     { name: "Hand Eye Magazine", value: "hand-eye-magazine" },
     { name: "Health", value: "Health" },
   ];
-
-  getProdcuts(user_id:any) {
-    this.apiService.getProducts(user_id).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      this.products = response.data;
-    })
-  }
 
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
