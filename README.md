@@ -1,2 +1,2 @@
 # bazar_frontend
-Front end Angular codes of Bazar
+Front end Angular codes of Bazar Vendor Registration
