@@ -1,0 +1,54 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .account_setting_body { background: #fff; margin: 0 0 40px 0; padding: 30px 25px 30px 25px; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .form-control { border: 1px solid rgba(57,57,57,0.5); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; } 
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .textareaControl { height: 245px; line-height: normal; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .smallTextarea { height: 113px; padding-bottom: 10px; padding-top: 10px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list li { margin: 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-label { color: #9c9c9c; margin: 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input { cursor: pointer; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists li { border: 1px solid rgba(0,0,0,0.5); border-radius: 3px; margin: 0 0 15px 0; padding: 0 5px 0 10px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists li:after{ border-bottom: 2px solid #000; bottom: -6px; content: ""; left: 2.5px; position: absolute; width: 98%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists li .item_name { background: url(../../assets/images/docs_icon.svg) no-repeat 0 10px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 38px; padding: 0 0 0 25px; width: 95%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists li .item_delete { display: inline-block; line-height: 38px; text-align: center; width: 5%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationleft .uploadSheetsLists li .item_delete a { cursor: pointer; display: block; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .brandInformation_Smalldiv { margin: 0; max-width: 410px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight h3 { color: #000; font-family: 'Futura' !important; font-size: 40px; font-weight: 200; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight p { color: #393939; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .show_upload_profile_img { border-radius: 100%; height: 112px; margin: 25px 0 10px 0; /*overflow: hidden;*/ padding: 0; position: relative; width: 112px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .show_upload_profile_img img { border-radius: 100%; height: 112px; width: 112px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .show_upload_profile_img .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 0; top: 0; text-align: center; width: 25px; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .show_upload_profile_img .edit_upload_img img { height: auto; width: auto; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .vendorRegFormList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .vendorRegFormList li .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .vendorRegFormList li .common_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .vendorRegFormList li .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .account_setting_body .brandInformationRight .vendorRegFormList li .back_btn:focus { box-shadow: none; }
+
+.alert-warning {font-family: 'Futura' !important; font-size: 16px; font-weight: 500;}
+.alert-warning a {text-decoration: underline; cursor: pointer;}
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }	
+}
+/* Responsive End */
+
