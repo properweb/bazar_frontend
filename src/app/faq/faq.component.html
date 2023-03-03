@@ -1,0 +1,110 @@
+<app-header></app-header>
+<!-- * * * * * * * * * * * Header End * * * * * * * * * * * -->
+
+<div class="blogBanner" style="background-image: url(assets/images/faq_banner.png);">
+    <h1>F. A.Q.</h1>
+</div>
+
+<div class="faqTab">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="registration-tab" data-bs-toggle="tab"
+                    data-bs-target="#registration" type="button" role="tab" aria-controls="registration"
+                    aria-selected="true">Registration</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="shop-tab" data-bs-toggle="tab" data-bs-target="#shop" type="button"
+                    role="tab" aria-controls="shop" aria-selected="false">Shop</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="buyer-tab" data-bs-toggle="tab" data-bs-target="#buyer" type="button"
+                    role="tab" aria-controls="buyer" aria-selected="false">Buyer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="seller-tab" data-bs-toggle="tab" data-bs-target="#seller" type="button"
+                    role="tab" aria-controls="seller" aria-selected="false">Seller</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="registration" role="tabpanel" aria-labelledby="registration-tab">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="registration-1">
+                    <ngb-panel id="registration-1" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="registration-2" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="registration-3" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="shop-1">
+                    <ngb-panel id="shop-1" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="shop-2" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="shop-3" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div class="tab-pane fade" id="buyer" role="tabpanel" aria-labelledby="buyer-tab">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="buyer-1">
+                    <ngb-panel id="buyer-1" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="buyer-2" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="buyer-3" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+            <div class="tab-pane fade" id="seller" role="tabpanel" aria-labelledby="seller-tab">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="seller-1">
+                    <ngb-panel id="seller-1" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="seller-2" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="seller-3" title="Popular question 5">
+                        <ng-template ngbPanelContent>
+                            <p>Quisque rutrum. Aenean imperdi. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget.</p>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

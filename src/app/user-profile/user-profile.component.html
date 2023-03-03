@@ -1,0 +1,689 @@
+<div class="gray_body">
+    <div class="container-fluid profileDiv">
+        <div class="row">
+            <div class="col-lg-2 col-sm-4">
+                <app-user-left-sidebar></app-user-left-sidebar>
+            </div>
+            <div class="col-lg-10 col-sm-8">
+                <h2 class="heading">My Profile</h2>
+                <div class="rightAccount">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home">Edit Profile</a></li>
+                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu1">Payment Methods</a></li>
+                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu2">Address</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu3">Email Preferences</a> </li>
+                    </ul> 
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="home" class="container tab-pane active"><br>
+                            <form #userFormStep1="ngForm" (ngSubmit)="userFormStep1.form.valid && sendUserFormStep1(userFormStep1)" novalidate>
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <h3>Account Information</h3>
+                                        <ul class="formDiv">
+                                            <li>
+                                                <label>First Name</label>
+                                                <input type="hidden" name="user_id" [(ngModel)]="user_id" #user_idval='ngModel' >
+                                                <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                                <span class="validate_errors"
+                                                    *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
+                                                    First Name is required
+                                                </span>
+                                                <span class="validate_errors"
+                                                    *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['maxlength']">
+                                                    First name must be less than 255 characters.
+                                                </span>
+                                                <span class="validate_errors"
+                                                    *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['pattern']">
+                                                    First name is not valid.
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Last Name</label>
+                                                <input type="text" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                                <span class="validate_errors"
+                                                    *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['required']">
+                                                    Last Name is required
+                                                </span>
+                                                <span class="validate_errors"
+                                                    *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['maxlength']">
+                                                    Last name must be less than 255 characters.
+                                                </span>
+                                                <span class="validate_errors"
+                                                    *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['pattern']">
+                                                    Last name is not valid.
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Country</label>
+                                                <select (change)="forPhoneCode($event)" name="country" [(ngModel)]="country" #countryval='ngModel' required id="select" aria-label="select input desc">
+                                                    <option *ngFor="let item of countriesArray" [value]="item.id" >{{item.country_name}}</option>                       
+                                                </select>
+                                                <span class="validate_errors"
+                                                    *ngIf="(countryval.touched || userFormStep1.submitted) && countryval.errors?.['required']">
+                                                    Country is required
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Phone Number</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">
+                                                        <input *ngIf="country_code" type="text" class="form-control telephone-input" [value]="'+'+country_code">
+                                                        <input *ngIf="!country_code" type="text" class="form-control telephone-input" [value]="'+'">
+                                                        <select class="form-select telephone-select" aria-label="Default select example" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel' required >
+                                                          <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                                                        </select>
+                                                    </span>
+                                                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
+                                                    <br>
+                                                </div>
+                                                <span class="validate_errors"
+                                                    *ngIf="(phone_numberval.touched || userFormStep1.submitted) && phone_numberval.errors?.['required']">
+                                                    Phone Number is required
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Language</label>
+                                                <select name="language" [(ngModel)]="language" #languageval='ngModel' required >
+                                                    <option *ngFor="let item of defaultLanguageArray" value="{{item.name}}">{{item.name}}</option>
+                                                </select>
+                                                <span class="validate_errors"
+                                                    *ngIf="(languageval.touched || userFormStep1.submitted) && languageval.errors?.['required']">
+                                                    Language is required
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <input type="hidden" name="sign_up_for_email" [(ngModel)]="sign_up_for_email" />
+                                                <input type="checkbox" #sign_up_for_emailval [checked]="sign_up_for_email === '1'" (change)="onCheckBoxChanged(sign_up_for_emailval.checked);">
+                                                Sign up for emailing
+                                            </li>
+                                            <li class="formHdn">
+                                                <h3>Create New Password</h3>
+                                            </li>
+                                            <li>
+                                                <label>Old Password</label>
+                                                <input type="password" value="" name="old_password" [(ngModel)]="old_password" #old_passwordval='ngModel'>
+                                            </li>
+                                            <li>
+                                                <label>New Password</label>
+                                                <input type="password" value="" name="new_password" [(ngModel)]="new_password" #new_passwordval='ngModel'>
+                                            </li>
+                                            <li>
+                                                <label>Confirm new password</label>
+                                                <input type="password" value="" name="confirm_password" [(ngModel)]="confirm_password" #confirm_passwordval='ngModel'>
+                                                <span class="validate_errors"
+                                                    *ngIf="errorMsg">
+                                                    {{errorMsg}}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 storeInfo">
+                                        <h3>Store Information</h3>
+                                        <ul class="formDiv">
+                                            <li>
+                                                <label>Bussiness Legal Name</label>
+                                                <input type="text" name="store_name" [(ngModel)]="store_name" #store_nameval='ngModel' required >
+                                                <span class="validate_errors"
+                                                    *ngIf="(store_nameval.touched || userFormStep1.submitted) && store_nameval.errors?.['required']">
+                                                    Store Name is required
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Store Type</label>
+                                                <select name="store_type" [(ngModel)]="store_type" #store_typeval='ngModel' required >
+                                                    <option *ngFor="let item of storeTypeArray" value="{{item.HeadText}}">{{item.HeadText}}</option>
+                                                </select>
+                                                <span class="validate_errors"
+                                                    *ngIf="(store_typeval.touched || userFormStep1.submitted) && store_typeval.errors?.['required']">
+                                                    Store Name is required
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Website</label>
+                                                <input type="text" name="website_url" [(ngModel)]="website_url" #website_urlval='ngModel' required pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/.*)?$">
+                                                <span class="validate_errors"
+                                                    *ngIf="(website_urlval.touched || userFormStep1.submitted) && website_urlval.errors?.['required']">
+                                                    Website url is required.
+                                                </span>
+                                                <span class="validate_errors"
+                                                    *ngIf="(website_urlval.touched || userFormStep1.submitted) && website_urlval.errors?.['pattern']">
+                                                    Website url is not valid.
+                                                </span>
+                                            </li>
+                                            <!-- <li>
+                                                <label>Phone Number</label>
+                                                <input type="text" value="@">
+                                            </li> -->
+                                            <!-- <li class="valueMrgn">
+                                                <label>Values</label>
+                                            </li>
+                                            <li class="marginNone">
+                                                <input type="checkbox" value="">
+                                                Eco
+                                            </li>
+                                            <li class="marginNone">
+                                                <input type="checkbox" value="">
+                                                Hand-made
+                                            </li>
+                                            <li class="marginNone"> 
+                                                <input type="checkbox" value="">
+                                                Not in Amazon
+                                            </li>
+                                            <li class="marginNone">
+                                                <input type="checkbox" value="">
+                                                Locala brand
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-5 col-sm-5"> </div>
+                                    <div class="col-lg-5 col-sm-4">
+                                        <input *ngIf="!btnDis" type="submit" value="Save Changes" class="accountBtn" >
+                                        <input *ngIf="btnDis" type="submit" value="Saving Changes..." class="accountBtn" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="menu1" class="container tab-pane fade"><br>
+                            <div class="col-lg-7 col-sm-11">
+                                <div class="paymentDiv">
+                                    <ul class="paymentForm">
+                                        <li>
+                                            <label>Credit/Debit card number</label>
+                                            <input type="text" value="1234 5566 6666 7777">
+                                        </li>
+                                        <li>
+                                            <label>MM/YY</label>
+                                            <input type="text" value="1234 5566 6666 7777">
+                                        </li>
+                                        <li>
+                                            <label>CVC</label>
+                                            <input type="text" value="111">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-sm-11 paymentAdd">
+                                <button type="button" class="shipping-add" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                                	<img src="assets/images/add_box_black_24dp_1.svg" alt="">
+                                    <span class="buttonSpan">Add payment method</span>
+                                </button>
+                            </div>
+                            <input type="submit" value="Save changes" class="accountBtn">
+                        </div>
+                        <div id="menu2" class="container tab-pane fade"><br>
+                            <h3>Billing Address</h3>
+                            <div class="row">
+                                <!-- <div class="col-lg-4 col-md-6 col-sm-12 paymentAdd">
+                                    <button type="button" class="shipping-add" data-bs-toggle="modal" data-bs-target="#shippingModal">
+                                        <img src="assets/images/add_box_black_24dp_1.svg" alt="">
+                                        <span class="buttonSpan">Add Billing Address</span>
+                                    </button>
+                                </div> -->
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="paymentDiv">
+                                        <button type="button" class="shipping-edit" data-bs-toggle="modal" data-bs-target="#billingModal">
+                                            <img src="assets/images/edit_btn.svg" alt="">
+                                        </button>
+                                        <!-- <a class="delete-address"><i class="fa-solid fa-trash"></i></a> -->
+                                        <h3>{{retailerDetails?.first_name + ' ' + retailerDetails?.last_name}}</h3>
+                                        <p>{{retailerDetails?.address1}}</p>
+                                        <p>{{retailerDetails?.country_name}}</p>
+                                        <p>{{retailerDetails?.state_name}}, {{retailerDetails?.town_name}}</p>
+                                        <!-- <p>+972 222 222 22</p> -->
+                                        <p>{{retailerDetails?.phone_number}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Shipping Address</h3>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of shipAddressList">
+                                    <div class="paymentDiv">
+                                        <button type="button" class="shipping-edit" data-bs-toggle="modal" data-bs-target="#shippingEditModal" (click)="getShipDetails(item?.id)">
+                                            <img src="assets/images/edit_btn.svg" alt="">
+                                        </button>
+                                        <a class="delete-address" (click)="deleteShipAddress(item?.id)" ><i class="fa-solid fa-trash"></i></a>
+                                        <h3>{{item?.name}}</h3>
+                                        <p>{{item?.street}}</p>
+                                        <p *ngIf="item?.suite" >{{item?.suite}}</p>
+                                        <!-- <p>{{item?.street}}, AK 2222</p> -->
+                                        <p>{{item?.country}}</p>
+                                        <p>+{{item?.phoneCode}} {{item?.phone}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12 paymentAdd">
+                                    <button type="button" class="shipping-add" data-bs-toggle="modal" data-bs-target="#shippingModal">
+                                        <img src="assets/images/add_box_black_24dp_1.svg" alt="">
+                                        <span class="buttonSpan">Add Shipping Address</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu3" class="container tab-pane fade"><br>
+                            <div class="col-lg-7 col-sm-11 emailDiv">
+                                <h2>Manage your preferences for <strong>{{email}}</strong></h2>
+                                <h3>Promotions & Offers</h3>
+                                <div class="emailHolder">
+                                    <ul class="emailSec">
+                                        <li>
+                                            <h4>Flash Sales</h4>
+                                            <p>Recommended sales, up to 35% off</p>
+                                            <div class="radioDiv">
+                                                <label class="switch" for="checkbox1">
+                                                    <input type="checkbox" id="checkbox1" checked="checked" />
+                                                    <div class="slider round"></div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h4>Flash Sales</h4>
+                                            <p>Recommended sales, up to 35% off</p>
+                                            <div class="radioDiv">
+                                                <label class="switch" for="checkbox2">
+                                                    <input type="checkbox" id="checkbox2" checked="checked" />
+                                                    <div class="slider round"></div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h4>Flash Sales</h4>
+                                            <p>Recommended sales, up to 35% off</p>
+                                            <div class="radioDiv">
+                                                <label class="switch" for="checkbox3">
+                                                    <input type="checkbox" id="checkbox3" checked="checked" />
+                                                    <div class="slider round"></div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h4>Flash Sales</h4>
+                                            <p>Recommended sales, up to 35% off</p>
+                                            <div class="radioDiv">
+                                                <label class="switch" for="checkbox4">
+                                                    <input type="checkbox" id="checkbox4" />
+                                                    <div class="slider round"></div>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------shipping address modal starts--------->
+<div class="modal profileModal" id="paymentModal">
+    <div class="modal-dialog">
+    <form #paymentForm="ngForm" (ngSubmit)="paymentForm.form.valid && sendPaymentForm(paymentForm)" novalidate>
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="imgHolderder">
+              <img src="assets/images/Bazar.png" alt="">
+          </div>
+          
+          <h3>Add your payment method</h3>
+          <div class="paymentDiv">
+          <ul class="paymentForm">
+            <li>
+              <label>Credit/Debit card number</label>
+              <input type="text" name="card_number" [(ngModel)]="card_number" #card_numberval='ngModel' required>
+              <span class="validate_errors"
+                *ngIf="(card_numberval.touched || paymentForm.submitted) && card_numberval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li>
+              <label>MM/YY</label>
+              <input type="text" name="month_year" [(ngModel)]="month_year" #month_yearval='ngModel' required>
+              <span class="validate_errors"
+                *ngIf="(month_yearval.touched || paymentForm.submitted) && month_yearval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li>
+              <label>CVC</label>
+              <input type="text" value="111" name="cvc" [(ngModel)]="cvc" #cvcval='ngModel' required>
+              <span class="validate_errors"
+                *ngIf="(cvcval.touched || paymentForm.submitted) && cvcval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+           
+          </ul>
+          </div>
+          <div class="submitBtn"><input type="submit" value="Save changes" class="paymentBtn"></div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  <!------shipping address modal ends--------->
+  
+  <!------shipping address add modal starts--------->
+  <div class="modal profileModal" id="shippingModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" #shipModalCloseBtn ></button>
+        <!-- Modal body -->
+        <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && saveShipAddForm(checkOutForm)" novalidate>
+            <div class="modal-body">
+            <div class="imgHolderder">
+                <img src="assets/images/Bazar.png" alt="">
+            </div>
+            <h3>Add your shipping address</h3>
+            <ul class="shippingForm">
+                <li>
+                <label>Name</label>
+                <input type="text" value="" name="ship_name" [(ngModel)]="ship_name" #ship_nameval='ngModel' maxlength="255" required pattern="^[\sa-zA-Zء-ي]*$">
+                <span class="validate_errors"
+                    *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['required']">
+                    This field is required
+                </span>
+                <span class="validate_errors"
+                    *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['pattern']">
+                    Name is not valid.
+                </span>
+                </li>
+                <li>
+                <label>Street and number</label>
+                <input type="text" value="" name="ship_address1" [(ngModel)]="ship_address1" #ship_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                <span class="validate_errors"
+                    *ngIf="(ship_address1val.touched || checkOutForm.submitted) && ship_address1val.errors?.['required']">
+                    This field is required
+                </span>
+                <span class="validate_errors"
+                    *ngIf="(ship_address1val.touched || checkOutForm.submitted) && ship_address1val.errors?.['pattern']">
+                    This field not valid.
+                </span>
+                </li>
+                <li>
+                <label>App, Suite (Optional)</label>
+                <input type="text" value="" name="ship_address2" [(ngModel)]="ship_address2" #ship_address2val='ngModel' pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                <span class="validate_errors"
+                    *ngIf="(ship_address2val.touched || checkOutForm.submitted) && ship_address2val.errors?.['pattern']">
+                    This field not valid.
+                </span>
+                </li>
+                <li>
+                    <label>Select Country</label>
+                    <select name="ship_country" [(ngModel)]="ship_country" #ship_countryval='ngModel' required (change)="onChangeCountry($event)">
+                        <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(ship_countryval.touched || checkOutForm.submitted) && ship_countryval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li>
+                <label>State/Province</label>
+                <select name="ship_state" [(ngModel)]="ship_state" #ship_stateval='ngModel' required (change)="onChangeState($event)">
+                    <option value="null" hidden></option>
+                    <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option> 
+                </select>
+                <span class="validate_errors"
+                    *ngIf="(ship_stateval.touched || checkOutForm.submitted) && ship_stateval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                <label>Town/Locality</label>
+                <select value="" name="ship_city" [(ngModel)]="ship_city" #ship_cityval='ngModel' required >
+                    <option value="null" hidden></option>
+                    <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
+                </select>
+                <span class="validate_errors"
+                    *ngIf="(ship_cityval.touched || checkOutForm.submitted) && ship_cityval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                <label>Zip</label>
+                <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="ship_pincode" [(ngModel)]="ship_pincode" #ship_pincodeval='ngModel' required>
+                <span class="validate_errors"
+                    *ngIf="(ship_pincodeval.touched || checkOutForm.submitted) && ship_pincodeval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                    <label>Phone Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <input type="text" class="form-control telephone-input" [value]="'+'+ship_phone_code">
+                            <select class="form-select telephone-select" aria-label="Default select example" name="ship_phone_code" [(ngModel)]="ship_phone_code" #ship_phone_codeval='ngModel' required >
+                                <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                            </select>
+                        </span>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="ship_phone_number" [(ngModel)]="ship_phone_number" #ship_phone_numberval='ngModel' required aria-required="true">
+                        <br>
+                    </div>
+                    <span class="validate_errors"
+                        *ngIf="(ship_phone_numberval.touched || checkOutForm.submitted) && ship_phone_numberval.errors?.['required']">
+                        Phone Number is required
+                    </span>
+                <!-- <input type="text" value="" class="countryNum"> -->
+                </li>
+                <li>
+                    <input *ngIf="!btnDis" type="submit" value="Save changes" class="accountBtn">
+                    <input *ngIf="btnDis" type="submit" value="Saving changes..." class="accountBtn" disabled>
+                </li>
+            </ul>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!------shipping address add modal ends--------->
+  
+  <!------shipping address edit modal starts--------->
+  <div class="modal profileModal" id="shippingEditModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" #shipEditModalCloseBtn ></button>
+        <!-- Modal body -->
+        <form class="ShippingForm" #updateShipAddForm="ngForm" (ngSubmit)="updateShipAddForm.form.valid && savepdateShipAddForm(updateShipAddForm)" novalidate>
+            <div class="modal-body">
+            <div class="imgHolderder">
+                <img src="assets/images/Bazar.png" alt="">
+            </div>
+            <h3>Edit your shipping address</h3>
+            <ul class="shippingForm">
+                <li>
+                <label>Name</label>
+                <input type="text" value="" name="update_ship_name" [(ngModel)]="update_ship_name" #update_ship_nameval='ngModel' maxlength="255" required pattern="^[\sa-zA-Zء-ي]*$">
+                <span class="validate_errors"
+                    *ngIf="(update_ship_nameval.touched || updateShipAddForm.submitted) && update_ship_nameval.errors?.['required']">
+                    This field is required
+                </span>
+                <span class="validate_errors"
+                    *ngIf="(update_ship_nameval.touched || updateShipAddForm.submitted) && update_ship_nameval.errors?.['pattern']">
+                    Name is not valid.
+                </span>
+                </li>
+                <li>
+                <label>Street and number</label>
+                <input type="text" value="" name="update_ship_address1" [(ngModel)]="update_ship_address1" #update_ship_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                <span class="validate_errors"
+                    *ngIf="(update_ship_address1val.touched || updateShipAddForm.submitted) && update_ship_address1val.errors?.['required']">
+                    This field is required
+                </span>
+                <span class="validate_errors"
+                    *ngIf="(update_ship_address1val.touched || updateShipAddForm.submitted) && update_ship_address1val.errors?.['pattern']">
+                    This field not valid.
+                </span>
+                </li>
+                <li>
+                <label>App, Suite (Optional)</label>
+                <input type="text" value="" name="update_ship_address2" [(ngModel)]="update_ship_address2" #update_ship_address2val='ngModel' pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                <span class="validate_errors"
+                    *ngIf="(update_ship_address2val.touched || updateShipAddForm.submitted) && update_ship_address2val.errors?.['pattern']">
+                    This field not valid.
+                </span>
+                </li>
+                <li>
+                    <label>Select Country</label>
+                    <select name="update_ship_country" [(ngModel)]="update_ship_country" #update_ship_countryval='ngModel' required (change)="onChangeCountry($event)">
+                        <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                    </select>
+                    <span class="validate_errors"
+                        *ngIf="(update_ship_countryval.touched || updateShipAddForm.submitted) && update_ship_countryval.errors?.['required']">
+                        This field is required
+                    </span>
+                </li>
+                <li>
+                <label>State/Province</label>
+                <select name="update_ship_state" [(ngModel)]="update_ship_state" #update_ship_stateval='ngModel' required (change)="onChangeState($event)">
+                    <option value="null" hidden></option>
+                    <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option> 
+                </select>
+                <span class="validate_errors"
+                    *ngIf="(update_ship_stateval.touched || updateShipAddForm.submitted) && update_ship_stateval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                <label>Town/Locality</label>
+                <select value="" name="update_ship_city" [(ngModel)]="update_ship_city" #update_ship_cityval='ngModel' required >
+                    <option value="null" hidden></option>
+                    <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
+                </select>
+                <span class="validate_errors"
+                    *ngIf="(update_ship_cityval.touched || updateShipAddForm.submitted) && update_ship_cityval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                <label>Zip</label>
+                <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="update_ship_pincode" [(ngModel)]="update_ship_pincode" #update_ship_pincodeval='ngModel' required>
+                <span class="validate_errors"
+                    *ngIf="(update_ship_pincodeval.touched || updateShipAddForm.submitted) && update_ship_pincodeval.errors?.['required']">
+                    This field is required
+                </span>
+                </li>
+                <li>
+                    <label>Phone Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <input type="text" class="form-control telephone-input" [value]="'+'+update_ship_phone_code">
+                            <select class="form-select telephone-select" aria-label="Default select example" name="update_ship_phone_code" [(ngModel)]="update_ship_phone_code" #update_ship_phone_codeval='ngModel' required >
+                                <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                            </select>
+                        </span>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="update_ship_phone_number" [(ngModel)]="update_ship_phone_number" #update_ship_phone_numberval='ngModel' required aria-required="true">
+                        <br>
+                    </div>
+                    <span class="validate_errors"
+                        *ngIf="(update_ship_phone_numberval.touched || updateShipAddForm.submitted) && update_ship_phone_numberval.errors?.['required']">
+                        Phone Number is required
+                    </span>
+                <!-- <input type="text" value="" class="countryNum"> -->
+                </li>
+                <li>
+                    <input *ngIf="!btnDis" type="submit" value="Save changes" class="accountBtn">
+                    <input *ngIf="btnDis" type="submit" value="Saving changes..." class="accountBtn" disabled>
+                </li>
+            </ul>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!------shipping address edit modal ends--------->
+  
+  <!------Billing address edit modal starts--------->
+  <div class="modal profileModal" id="billingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" #billEditModalCloseBtn ></button>
+          <!-- Modal body -->
+          <form class="ShippingForm" #updateBillingAddForm="ngForm" (ngSubmit)="updateBillingAddForm.form.valid && savepdateBillingAddForm(updateBillingAddForm)" novalidate>
+              <div class="modal-body">
+              <div class="imgHolderder">
+                  <img src="assets/images/Bazar.png" alt="">
+              </div>
+              <h3>Edit your Billing address</h3>
+              <ul class="shippingForm">
+                  <li>
+                      <label>Select Country</label>
+                      <select name="billing_country" [(ngModel)]="billing_country" #billing_countryval='ngModel' required (change)="onBillChangeCountry($event)">
+                          <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                      </select>
+                      <span class="validate_errors"
+                          *ngIf="(billing_countryval.touched || updateBillingAddForm.submitted) && billing_countryval.errors?.['required']">
+                          This field is required
+                      </span>
+                  </li>
+                  <li>
+                      <label>State/Province</label>
+                      <select name="billing_state" [(ngModel)]="billing_state" #billing_stateval='ngModel' required (change)="onBillChangeState($event)">
+                          <option value="null" hidden></option>
+                          <option *ngFor="let item of billstateArray" value="{{item.id}}">{{item.state_name}}</option> 
+                      </select>
+                      <span class="validate_errors"
+                          *ngIf="(billing_stateval.touched || updateBillingAddForm.submitted) && billing_stateval.errors?.['required']">
+                          This field is required
+                      </span>
+                  </li>
+                  <li>
+                      <label>Town/Locality</label>
+                      <select value="" name="billing_city" [(ngModel)]="billing_city" #billing_cityval='ngModel' required >
+                          <option [value]="null" hidden></option>
+                          <option *ngFor="let item of billcityArray" value="{{item.id}}">{{item.city_name}}</option> 
+                      </select>
+                      <span class="validate_errors"
+                          *ngIf="(billing_cityval.touched || updateBillingAddForm.submitted) && billing_cityval.errors?.['required']">
+                          This field is required
+                      </span>
+                  </li>
+                  <li>
+                      <label>Address</label>
+                      <input type="text" value="" name="billing_address1" [(ngModel)]="billing_address1" #billing_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                      <span class="validate_errors"
+                          *ngIf="(billing_address1val.touched || updateBillingAddForm.submitted) && billing_address1val.errors?.['required']">
+                          This field is required
+                      </span>
+                      <span class="validate_errors"
+                          *ngIf="(billing_address1val.touched || updateBillingAddForm.submitted) && billing_address1val.errors?.['pattern']">
+                          This field not valid.
+                      </span>
+                  </li>
+                  <li>
+                      <label>Zip</label>
+                      <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="billing_pincode" [(ngModel)]="billing_pincode" #billing_pincodeval='ngModel' required>
+                      <span class="validate_errors"
+                          *ngIf="(billing_pincodeval.touched || updateBillingAddForm.submitted) && billing_pincodeval.errors?.['required']">
+                          This field is required
+                      </span>
+                  </li>
+                  <li>
+                      <label>Phone Number</label>
+                      <!-- <select class="countryCode">
+                          <option>+974</option>
+                      </select> -->
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="billing_phone_number" [(ngModel)]="billing_phone_number" #billing_phone_numberval='ngModel' required aria-required="true">
+                      <span class="validate_errors"
+                          *ngIf="(billing_phone_numberval.touched || updateBillingAddForm.submitted) && billing_phone_numberval.errors?.['required']">
+                          Phone Number is required
+                      </span>
+                  </li>
+                  <li>
+                      <input *ngIf="!btnDis" type="submit" value="Save changes" class="accountBtn">
+                      <input *ngIf="btnDis" type="submit" value="Please wait..." class="accountBtn" disabled>
+                  </li>
+              </ul>
+              </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  <!------Billing address edit modal ends--------->

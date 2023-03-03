@@ -1,0 +1,180 @@
+<div class="gray_body">
+    <div class="container-fluid profileDiv">
+        <div class="row">
+            <div class="col-lg-2 col-sm-4">
+                <app-user-left-sidebar></app-user-left-sidebar>
+            </div>
+            <div class="col-lg-10 col-sm-8">
+                <h2 class="heading">My Wishlist</h2>
+                <div class="rightAccount">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#home">My Boards</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#menu1">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#menu2">Brands</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="home" class="container tab-pane active">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="wishProduct">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-sm-6 wishList wish-add">
+                                                <button type="button" class="shipping-add" data-bs-toggle="modal"
+                                                    data-bs-target="#boardModal"><img src="assets/images/board-img.png"
+                                                        alt=""></button>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-6 wishList wish-list" *ngFor="let item of allWishDetails?.board_arr" routerLink="/boards/{{item?.board_key}}" style="cursor: pointer;" > 
+                                                <img [src]="item?.board_image" alt="">
+                                                <h3>{{item?.board_name}}</h3>
+                                                <p>{{item?.products_count}} saved</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu1" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="wishProduct">
+                                        <div class="row">
+                                            <ng-container *ngIf="allWishDetails?.product_arr?.length > 0 ">
+                                                <div class="col-lg-3 col-sm-6" *ngFor="let item of allWishDetails?.product_arr">
+                                                    <div class="wisBox">
+                                                        <div class="wisBoxImg">
+                                                            <span class="love" (click)="removeWishlist(item?.id)" style="cursor: pointer;" >
+                                                                <img src="assets/images/Vector-red.png" alt="">
+                                                            </span> 
+                                                            <img style="cursor: pointer" [src]="item?.product_image" alt="" routerLink="/product/{{item?.product_key}}">
+                                                        </div>
+                                                        <div style="cursor: pointer" class="wisBoxTxt" routerLink="/product/{{item?.product_key}}" >
+                                                            <div class="wisBoxTxtTop">
+                                                                <h4>{{item?.product_name}}</h4>
+                                                                <p>${{item?.product_wholesale_price}}<span>MSRP ${{item?.product_retail_price}}</span></p>
+                                                            </div>
+                                                            <!-- <div class="wisBoxTxtBottom">
+                                                                <h4><span>by</span> Star Seller</h4>
+                                                                <p>$250 minimum</p>
+                                                                <h5>Up to 30% off + free shipping</h5>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>     
+                                            </ng-container>                     
+                                            <ng-container *ngIf="allWishDetails?.product_arr?.length <= 0 ">
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="wisBoxTxt">
+                                                        <h4>Not added Yet.</h4>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu2" class="container tab-pane fade">
+                            <ng-container *ngIf="allWishDetails?.brand_arr?.length > 0 ">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="wishProduct">
+                                            <div class="row wishrow" *ngFor="let item of allWishDetails?.brand_arr">
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="wishBand">
+                                                        <div class="logoPart"><img [src]="item?.brand_logo" alt="">
+                                                        </div>
+                                                        <h5>{{item?.brand_name}}</h5>
+                                                        <h4><img src="assets/images/location.png" alt="">{{item?.headquatered}}</h4>
+                                                        <h6>$ {{item?.first_order_min}} Min</h6>
+                                                        <p>Fulfill orders witthin {{item?.avg_lead_time}} days</p>
+                                                        <!-- <p><img src="assets/images/star.png" alt=""></p> -->
+                                                        <a href="#" class="allBtn">Shop all products</a> <a href="#"
+                                                            class="flowBtn">Following</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6" *ngFor="let childItem of item?.products">
+                                                    <div class="wisBox">
+                                                        <div class="wisBoxImg" style="cursor: pointer;">
+                                                            <span class="love">
+                                                                <img src="assets/images/Vector-red.png" alt="">
+                                                            </span> 
+                                                            <img style="cursor: pointer" [src]="childItem?.product_image" alt="" routerLink="/product/{{childItem?.product_key}}">
+                                                        </div>
+                                                        <div style="cursor: pointer" class="wisBoxTxt" routerLink="/product/{{childItem?.product_key}}">
+                                                            <div class="wisBoxTxtTop">
+                                                                <h4>{{childItem?.product_name}}</h4>
+                                                                <p>${{childItem?.product_wholesale_price}}<span>MSRP ${{childItem?.product_retail_price}}</span></p>
+                                                            </div>
+                                                            <!-- <div class="wisBoxTxtBottom">
+                                                                <h4><span>by</span> Star Seller</h4>
+                                                                <p>$250 minimum</p>
+                                                                <h5>Up to 30% off + free shipping</h5>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="moreBtn" routerLink="/after-login-local-brands">More brands</a>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="allWishDetails?.brand_arr?.length <= 0 ">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="wisBoxTxt">
+                                        <h4>Not added Yet.</h4>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------shipping address modal starts--------->
+<div class="modal boardModal" id="boardModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button #modalCloseBtn type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <!-- Modal body -->
+                <div class="modal-body">
+                    <form class="ShippingForm" #addBoard="ngForm" (ngSubmit)="addBoard.form.valid && saveAddBoard(addBoard)" novalidate>
+                        <h3>Create new board</h3>
+                        <div class="paymentDiv">
+                            <ul class="paymentForm">
+                                <li>
+                                    <label>Name</label>
+                                    <input type="hidden" name="user_id" [(ngModel)]="user_id" >
+                                    <input type="text" value="" name="board_name" [(ngModel)]="board_name" #board_nameval='ngModel' required >
+                                    <span class="validate_errors"
+                                        *ngIf="(board_nameval.touched || addBoard.submitted) && board_nameval.errors?.['required']">
+                                        This field is required
+                                    </span>
+                                </li>
+                                <li>
+                                    <label>Visibility</label>
+                                    <div class="radioDiv">
+                                        <label class="switch" for="checkbox4">
+                                            <input type="checkbox" id="checkbox4" name="board_visibility" [(ngModel)]="board_visibility" />
+                                            <div class="slider round"></div>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="submitBtn">
+                            <input *ngIf="!btnDis" type="submit" value="Save changes" class="paymentBtn">
+                            <input *ngIf="btnDis" type="submit" value="Saving changes" disabled class="paymentBtn">
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+<!------shipping address modal ends--------->

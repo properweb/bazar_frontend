@@ -1,0 +1,216 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Customers</h3>
+          <p>Manage all of your wholesale contacts in one place.</p> 
+          <div class="add_product_top"> 
+            <a class="add_products_links" (click)="productsDropdown()">Add Customers</a>
+            <ul class="add_products_list">
+              <li><a (click)="openExport(content)">Individual add</a></li>
+              <li><a (click)="openCsvExport(csvContent)">Upload CSV</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="vendor_customers_body">
+        <div class="vendor_customers_body_top">
+          <div class="tab_top">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item" (click)="onTabChnage('all');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'all' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >All Contacts ({{customerList?.allCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('ordered');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'ordered' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Ordered ({{customerList?.orderedCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('contacted');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'contacted' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Contacted ({{customerList?.contactedCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('unused');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'unused' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Unused credit ({{customerList?.unusedCreditCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('notordered');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'notordered' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Not yet ordered ({{customerList?.notOrderedCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('uncontacted');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'uncontacted' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Uncontacted ({{customerList?.uncontactedCustomersCount}})</a></li>
+              <li class="nav-item" (click)="onTabChnage('notsigned');" style="cursor: pointer;"><a [ngClass]="[activeTab === 'notsigned' ? 'nav-link active' : 'nav-link']" data-bs-toggle="tab" >Not signed up ({{customerList?.notSignedCustomersCount}})</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-content">
+          <div id="allContactsTab" class="container tab-pane active">
+            <div class="white_tab_filter_sec">
+              <ul class="row productSearch">
+                <li class="col-md-3">
+                  <input class="form-control text_form" type="text" placeholder="Search customer" name="searchText" [(ngModel)]="searchText" (keyup.enter)="onSearchPress($event)" (keyup)="onSearchTextChange($event)" >
+                </li>
+                <li class="col-md-3">
+                  <select class="form-select" aria-label="Default select example" (change)="onSortChange($event)" >
+                    <option selected value="4">All time</option>
+                    <option value="1">Last 7 days</option>
+                    <option value="2">This month</option>
+                    <option value="3">Last month</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+            <ul class="filter_list">
+              <li><span>{{customerListArray?.length}} contacts</span> </li>
+              <li>
+                <a *ngIf="!exportBtnDis" (click)="exportCustomers()"><img src="assets/images/upload_icon.svg" alt="" /> Export</a>
+                <a *ngIf="exportBtnDis" disabled><img src="assets/images/upload_icon.svg" alt="" /> Exporting...</a>
+              </li>
+              <!-- <li><a><img src="assets/images/email_icon.svg" alt="" /> Email</a></li> -->
+              <li>
+                <a *ngIf="!btnDis" (click)="deleteCustomer()"><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a>
+                <a *ngIf="btnDis" disabled><img src="assets/images/delete_icon2.svg" alt="" /> Deleting...</a>
+              </li>
+            </ul>
+            <div class="table_sec">
+              <div class="table_sort_sec" *ngIf="customerListArray?.length > 0" (clickOutside)="onClickedOutside()" ><a class="fa_eclipc_links" (click)="showTableList()"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                <ul class="table_sort_list">
+                  <li *ngFor="let item of customerColoumList" >
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [value]="item" [checked]="selectedCustomerColoumList.includes(item)" [disabled]="item == 'store name'" (change)="onColumnChange($event)" >
+                      <label class="form-check-label">{{item}}</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div infiniteScroll
+              [infiniteScrollDistance]="2" 
+              [infiniteScrollThrottle]="30"
+              (scrolled)="onScroll()">
+              <table class="table" *ngIf="customerListArray?.length > 0">
+                <thead>
+                  <tr>
+                    <th scope="col"><input class="form-check-input" type="checkbox" (change)="checkAll($event)" [ngModel]="selectAll" [checked]="customerList?.customers?.length === checkedItems?.length && checkedItems?.length > 0 && true"></th>
+                    <th scope="col">Store Name</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('contact name')">Contact name</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('email address')">Email</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('on bazar')">On Bazar</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('relationship')">Relationship</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('source')">Source</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('amount in cart')">Amount on cart</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('order amount')">Order Amount</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('last ordered')">Last Ordered</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('last order delivered')">Last Order Delivered</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('last contacted')">Last Contacted</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('date added')">Date Added</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('bazar direct credit expiry')">Bazar Direct Credit Expiry</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('Order Minimum Type')">Order Minimum Type</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('account status')">Acount Status</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('account type')">Account Type</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('invite sent')">Invite Sent</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('preferred language')">Preferred Language</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('country')">Country</th>
+                    <th scope="col" class="text-center" *ngIf="selectedCustomerColoumList.includes('email delivery')">Email delivery</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of customerListArray">
+                    <td><input class="form-check-input" type="checkbox" [value]="item.customer_key" (change)="onChecked(item, $event)" [checked]="checkedItems.includes(item.customer_key) == true"></td>
+                    <td style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" >{{item?.store_name}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('contact name')">{{item?.name}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email address')">{{item?.email}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('on bazar')">Yes</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('relationship')">{{item?.type}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('source')">{{item?.source}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('amount in cart')">{{item?.cart_amount}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order amount')">{{item?.ordered_amount}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last ordered')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last order delivered')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last contacted')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('date added')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('bazar direct credit expiry')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order minimum type')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account status')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account type')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('invite sent')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('preferred language')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('country')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email delivery')">-</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table" *ngIf="customerListArray?.length < 1">
+                <tbody>
+                  <tr><td align="center">No records!</td></tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add customer information</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form #addContactInformation="ngForm" (ngSubmit)="addContactInformation.form.valid && sendAddContactInformation()" novalidate>
+    <div class="modal-body">
+      <div class="row addFormList"> 
+        <div class="col-lg-4">
+          <label class="form-label">Store name (Optional)</label>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label">Contact name <span style="color: red;"> *</span></label>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label">Email adress <span style="color: red;"> *</span></label>
+        </div>
+      </div>
+      <div class="row addFormList" *ngFor="let list of lists; let i = index;">
+        <div class="col-lg-4">
+          <input type="text" name="" value="" class="form-control" [name]="'list.store_name' +i" [(ngModel)]="list.store_name" >
+        </div>
+        <div class="col-lg-4">
+          <input type="text" name="" value="" class="form-control" [name]="'list.contact_name' +i" [(ngModel)]="list.contact_name" required #contact_nameVal="ngModel">
+          <div class="validate_errors" *ngIf="(contact_nameVal.touched || addContactInformation.submitted) && contact_nameVal.errors?.['required']">
+            Contact name is required. 
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <input type="email" name="" value="" class="form-control" [name]="'list.email_address' +i" [(ngModel)]="list.email_address" required email="true" #email_addressVal="ngModel">
+          <div class="validate_errors" *ngIf="(email_addressVal.touched || addContactInformation.submitted) && email_addressVal.errors?.['required']">
+            Email address is required. 
+          </div>
+          <div class="validate_errors" *ngIf="(email_addressVal.touched || addContactInformation.submitted) && email_addressVal.errors?.['email']">
+            Email address is not valid. 
+          </div>
+        </div>
+        <a class="cloneField"><img src="assets/images/delete_field_icon.png" alt="" (click)="deleteField(i)" /></a>
+      </div>
+      <div class="add_fild_sec"><a class="add_fild_icon"><img src="assets/images/add_plus_icon.png" alt="" (click)="addField()"  /></a></div>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="!btnDis" type="submit" class="btn btn-primary add-customer-btn" >Add customer</button><br>
+      <button *ngIf="btnDis" type="submit" disabled class="btn btn-primary add-customer-btn" >Addding customer</button><br>
+      <span class="validate_errors" *ngIf="errorMsg">{{errorMsg}}</span>
+    </div>
+  </form>
+</ng-template>
+<!-- Vendor Add Customer Information Modal End --> 
+
+<ng-template #csvContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload a CSV to add customers</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+  	<div class="smllCSvDiv">
+    	<p>Your CSV should include columns for contact name, store name, and email address. Store name and contact name are used to personalize emails you send through Bazar.</p>
+    	<h4><a href="https://staging.bazarcenter.ca/public/uploads/demo/demo_customers.xlsx" download="BazarCustomerCSVFormat">Download CSV template</a></h4>
+        <img src="assets/images/download_csv_format_img.png" alt="" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" class="btn btn-primary add-customer-btn" (click)="uploadCSVfile.click()">Upload  CSV</button>
+    <button *ngIf="btnDis" type="button" class="btn btn-primary add-customer-btn" disabled>Uploading...</button>
+    <!-- <button type="button" class="btn btn-primary add-customer-btn" (click)="modal.close('Save click')">Upload  CSV</button> -->
+    <input accept=".xlsx, .xls, .csv" type="file" autocomplete="off" style="display: none;" #uploadCSVfile (change)="onUploadContactList($event)" (click)="onUploadClick($event)" >
+  </div>
+</ng-template>
+<!-- Vendor add Upload CSV Customer Information Modal End --> 

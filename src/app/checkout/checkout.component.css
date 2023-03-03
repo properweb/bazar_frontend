@@ -1,0 +1,123 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.validate_errors {color: #f00; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+
+.form_header { border-bottom: 1px solid #393939; margin: 0 0 60px 0; padding: 39px 0 39px 0; text-align: center; width: 100%; }
+.form_header img { height: auto; width: 119px; }
+.step_top { margin: 0 auto; padding: 0; width: 700px; }
+.progressbar { counter-reset: step; list-style: none; margin: 0 0 40px 0; overflow: hidden; padding: 0; width: 100%; }
+.progressbar li { color: rgba(57, 57, 57, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: relative; text-align: center; width: 33.33333333333333%; }
+.progressbar .complete { color: #000; }
+.progressbar li:after { background: rgba(57, 57, 57, 0.5); content: ''; height: 2px; left: -35%; position: absolute; top: 15px; width: 70%; z-index: -1; }
+.progressbar .active:after { background-color: #000; }
+.progressbar li:first-child:after { content: none; }
+.progressbar li:before { background: #fff; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 100%; color: #000; content: counter(step); counter-increment: step; display: block; font-family: 'Futura' !important; font-size: 12px; font-weight: 500; line-height: 28px; margin: 0 auto 5px auto; text-align: center; width: 28px; }
+.progressbar .active:before { background-color: #393939; border-color: #393939; color: #fff; }
+.progressbar .complete:before { background-color: #393939; border-color: #393939; color: #fff; }
+.checkout-back-link { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0 0 0 20px; position: relative; top: -80px; }
+.common_step_sec { margin: 0; padding: 0 0 30px 0; width: 100%; }
+.LftPnl .ShipAdrs { background: rgba(57,57,57,0.05); color: #000; font: 500 16px 'Futura' !important; margin: 0 0 20px 0; padding: 12px 30px 12px 30px; }
+.LftPnl .paymentDiv { border: 1px solid #909090; border-radius: 5px; float: left; margin-bottom: 30px; padding: 30px; position: relative; width:100%; }
+.LftPnl .paymentDiv .shipping-edit { background: none; border: none; position: absolute; right: 8px; top: 5px; }
+.LftPnl .paymentDiv h3 { color: #000; font: 500 18px  'Futura' !important; margin: 0 0 10px 0; }
+.LftPnl .paymentDiv p { color: #000; font: 200 16px  'Futura' !important; margin: 0 0 5px 0; }
+.LftPnl .paymentDiv .form-check-input { cursor: pointer; left: 30px; position: absolute; top: 10px; }
+.LftPnl .paymentDiv .form-check-input:checked { background: #000; border-color: #000; }
+.LftPnl .paymentDiv .form-check-input:focus { box-shadow: none; }
+.LftPnl .checkout-list { list-style: none; margin: 0 0 20px 0; padding: 0; }
+.LftPnl .checkout-list li { }
+.LftPnl .checkout-list li .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
+.LftPnl .checkout-list li .form-check .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0 0 0 10px; }
+.LftPnl .checkout-list li .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
+.LftPnl .checkout-list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.LftPnl .checkout-list li .form-check .form-check-input:focus { box-shadow: none; }
+.LftPnl .add-shipping-address { background: #393939; border: none; border-radius: 3px; font: 200 18px 'Futura' !important; margin: 10px 0 20px 0; padding: 10px 35px 10px 35px; } 
+.LftPnl .ShippingForm { padding: 0 30px 0 30px; width: 100%; }
+.LftPnl .ShippingForm ul { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.LftPnl .ShippingForm ul li { float: left; margin:0 0 15px 0; padding: 0; width: 100%; }
+.LftPnl .ShippingForm ul .SplitList { float: left; width: 48%;}
+.LftPnl .ShippingForm ul .FltRht { float: right; }
+.LftPnl .ShippingForm ul li:last-child { text-align: center; }
+.LftPnl .ShippingForm ul li label { color: #393939; font: 200 14px 'Futura' !important; margin: 0 0 5px 0; width: 100%; }
+.LftPnl .ShippingForm ul li .InputTxt { border: 1px solid #393939; border-radius:3px; color: #393939; font: 200 14px 'Futura' !important; height: 40px; padding: 8px 12px 8px 12px; width: 100%; }
+.LftPnl .ShippingForm ul li .radio { color:#000; float: left; font-size: 15px; margin:0 0 20px 0; position: relative; width: 100%; }
+.LftPnl .ShippingForm ul li .radio span { color: #000; font: 200 16px 'Futura' !important; padding-left: 27px; position: relative; }
+.LftPnl .ShippingForm ul li .radio span:after { border: 1px solid #393939; border-radius: 100%; content: ''; height: 20px; left: 0; position: absolute; top: 0; width: 20px; }
+.LftPnl .ShippingForm ul li .radio input[type="radio"]{ cursor: pointer; filter: alpha(opacity=0); height: 100%; position: absolute; opacity: 0; width: 100%; z-index: 1; }
+.LftPnl .ShippingForm ul li .radio input[type="radio"]:checked + span {}
+.LftPnl .ShippingForm ul li .radio input[type="radio"]:checked + span:before { background: #393939; border-radius: 100%; content:''; height:14px; left: 3px; position: absolute; top: 3px; width:14px; }
+
+
+.LftPnl .ShippingForm ul li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.LftPnl .ShippingForm ul li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.LftPnl .ShippingForm ul li .input-group .input-group-text .form-select:input:autofill { border-color: #393939; }
+.LftPnl .ShippingForm ul li .input-group .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.LftPnl .ShippingForm ul li .input-group .form-select:focus { border-color: #393939; box-shadow: none; }
+.LftPnl .ShippingForm ul li .input-group .form-control { border: 1px solid #393939; color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.LftPnl .ShippingForm ul li .input-group .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; border-color: #393939; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+
+
+
+.LftPnl .ShippingForm ul li input[type="submit"] { background: #393939; border: none; border-radius: 3px; color: #fff; display: inline-block; font: 200 18px 'Futura' !important; margin: 10px 0 0 0; min-width: 350px; padding: 10px 15px 10px 15px; }
+.RhtPnl .orderTableBox { border: 1px solid #c4c4c4; border-radius: 3px;margin: 0; padding: 10px 20px; width: 100%; }
+.RhtPnl .OdrSmryTbl tr:nth-child(2) { border-bottom: 1px solid #c4c4c4; border-top: 1px solid #c4c4c4; }
+.RhtPnl .OdrSmryTbl tr:nth-child(2) td { padding: 10px 0 10px 0; }
+.RhtPnl .OdrSmryTbl tr:nth-child(3) td { color: #000; font-size: 18px; padding-top: 15px; }
+.RhtPnl .OdrSmryTbl td { padding: 5px 0 5px 0; }
+.RhtPnl .OdrSmryTbl tr:nth-child(4) td { padding-bottom: 5px; }
+.RhtPnl .OdrSmryTbl tr:nth-child(5) td { padding-bottom: 20px; }
+.RhtPnl .OdrSmryTbl td .title { margin: 10px 0 10px 0; }
+.RhtPnl .OdrSmryTbl tr:last-child td { font-size: 18px; padding-top: 15px; }
+.InvoiceWrapper { margin: 0 auto; max-width: 800px; padding: 0; width: 100%;}
+.InvoiceWrapper .InvoiceAdrs { background: rgba(57,57,57,0.05); color:#111118; font: 200 32px 'Futura' !important; margin: 0 0 35px 0; padding: 5px 50px 5px 50px; }
+.InvoiceWrapper .ClientTable { float: right; margin: 0 0 40px 0; max-width: 94%; text-align: left; width:100%;}
+.InvoiceWrapper .ClientTable td { color: #111118; font: 200 14px 'Futura' !important; vertical-align: top; }
+.InvoiceWrapper .ClientTable td:last-child { text-align:right; }
+.InvoiceWrapper .ClientTable td .ClientName { color: #111118; font: 200 18px 'Futura' !important; margin-bottom: 8px; }
+.InvoiceWrapper .ClientDescTable { float: right; margin: 0 0 40px 0; max-width: 94%; width: 100%; }
+.InvoiceWrapper .ClientDescTable thead tr { border-bottom: 1px solid #000;}
+.InvoiceWrapper .ClientDescTable th { color: #111118; font: 200 14px 'Futura' !important; padding: 4px 0 4px 0;}
+.InvoiceWrapper .ClientDescTable th:last-child { text-align: right; }
+.InvoiceWrapper .ClientDescTable td { color: #111118; font: 200 14px 'Futura' !important; padding: 25px 0 25px 0; vertical-align: top; }
+.InvoiceWrapper .ClientDescTable td:last-child { text-align: right; }
+.InvoiceWrapper .ClientDescTable tr:nth-last-child(2) td { padding: 3px 0 3px 0; vertical-align: bottom; }
+.InvoiceWrapper .ClientDescTable tr:last-child td { padding: 3px 0 3px 0; }
+.InvoiceWrapper .ClientDescTable td .ClientName { color: #111118; font: 200 18px 'Futura' !important; margin: 0 0 8px 0; }
+.InvoiceWrapper .InvoPara { float: left; margin: 30px 0 0 0; padding: 0 0 40px 0; text-align: center; width: 100%;}
+.InvoiceWrapper .SeeInvoice { background: #393939; border-radius: 3px; color: #fff; display: inline-block; font: 200 18px 'Futura' !important; padding: 12px 50px 12px 50px; text-decoration: none; }
+
+.profileModal h3 { color: #000; font: 200 32px  'Futura' !important; margin: 50px 0 30px 0; text-align: center; }
+.profileModal .imgHolderder { margin: 0px 0 0 0; text-align: center; }
+.profileModal .modal-body { padding: 70px 120px 70px 120px; }
+.profileModal .btn-close { font-size: 12px; opacity: 1; position: absolute; right: 20px; top: 20px; z-index: 999; }
+.profileModal .btn-close:focus { box-shadow: none }
+.profileModal .modal-dialog { max-width: 920px; }
+.profileModal .shippingForm { list-style: none; padding: 0; margin: 0; }
+.profileModal .shippingForm li { color: #000; float: left; margin: 0 0 20px; font: 200 16px  'Futura' !important; width: 100%; }
+.profileModal .shippingForm li:last-child { text-align: center; }
+.profileModal .shippingForm li label { color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; margin-bottom: 5px; width: 100%; }
+.profileModal .shippingForm li input[type="text"] { border: 1px solid #39393978; color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; height: 41px; margin: 0; border-radius: 3px; padding: 0 15px; outline: none !important; width: 100%; }
+.profileModal .shippingForm li select { -webkit-appearance: none; appearance: none; background: url(../../assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #39393978; border-radius: 3px; color: #a8a8a8; float: left; font: 200 16px  'Futura' !important; height: 41px; margin: 0; outline: none !important; padding: 0 15px 0 15px; width: 100%; }
+.profileModal .shippingForm li .countryCode { border-right: none; border-radius: 3px 0 0 3px; width: 15%; }
+.profileModal .shippingForm li .countryNum { border-radius: 0 3px 3px 0 !important; width: 85% !important; }
+.profileModal .shippingForm li .accountBtn { display: inline-block; float: none; margin-top: 20px; }
+.profileModal .shippingForm li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.profileModal .shippingForm li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.profileModal .shippingForm li .input-group .input-group-text .form-select:input:autofill { border-color: #393939; }
+.profileModal .shippingForm li .input-group .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.profileModal .shippingForm li .input-group .form-select:focus { border-color: #393939; box-shadow: none; }
+.profileModal .shippingForm li .input-group .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.profileModal .shippingForm li .input-group .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; }
+.profileModal .shippingForm li .accountBtn { background:#393939; border: none; border-radius: 3px; color: #fff; float: none; font: 200 18px  'Futura' !important; height: 54px; margin-top: 0; width: 230px; }
+
+
+
+
+/* Responsive Start */
+@media screen and (max-width:767px) { 
+.step_top { width: 100%; }
+.LftPnl .ShippingForm { padding: 0; }
+.LftPnl .ShippingForm ul li input[type="submit"] { min-width: 100%; }
+}
+/* Responsive End */

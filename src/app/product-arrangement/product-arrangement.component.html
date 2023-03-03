@@ -1,0 +1,95 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Arrangement</h3> 
+          <p><a routerLink="/products">Products</a></p>
+        </div>
+      </div>
+      <div class="account_arrange_body">
+        <ul class="row araangeList">
+          <li class="col-lg-6"> <span class="radioLabel">Arrange by Bazar's ranking<br>
+            <span class="textSpan">Bazar's prediiction of which products will do the best based on past performance</span>
+            <input type="radio" name="1" [checked]="arrange1" (click)="arrangeOneFunction()">
+            <span class="checkmark"></span> </span> </li>
+          <li class="col-lg-6"> <span class="radioLabel">Arranged by Vendor<br>
+            <span class="textSpan">Bazar's prediiction of which products will do the best based on past performance</span>
+            <input type="radio" name="1" [checked]="arrange2" (click)="arrangeTwoFunction()">
+            <span class="checkmark"></span> </span> </li>
+        </ul>
+        <div *ngIf="arrange1">
+          <div class="arrangeWhiteBox">
+            <div class="arrangeSearch">
+              <input class="form-control text_form" type="text" placeholder="Search products by name" [(ngModel)]="searchText" >
+            </div>
+            <h3>Page 1 of 1</h3>
+            <div class="table_sec" *ngIf="showLoader"><img src="assets/images/loading-24.gif" style="width: 80px; height: 80px; display: block; margin-left: auto; margin-right: auto;" /></div>
+            <div class="arrangeTableSec" *ngIf="!showLoader">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">WS Price</th>
+                    <th scope="col">Availability</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="example-list">
+                  <tr *ngFor="let product of products | filter:searchText">
+                      <td><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></td>
+                      <td>{{product.name}}</td>
+                      <td>{{product?.options_count}} options</td>
+                      <td>{{product?.default_currency}} {{product?.price}}</td>
+                      <td>{{product?.availability}}</td>
+                      <td>{{product.status}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="arrange2">
+          <div class="arrangeWhiteBox">
+            <h3>Page 1 of 1</h3>
+            <button class="btn top-move-btn" (click)="moveToTop()" [disabled]="checkedItems?.length == 0">Move to top</button>
+            <div class="clearfix"></div>
+            <div class="arrangeTableSec">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><input class="form-check-input" type="checkbox" value="" (change)="checkAll($event)" [ngModel]="selectAll">
+                    </th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">WS Price</th>
+                    <th scope="col">Availability</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="example-list example-list" cdkDropList  [cdkDropListData]="products" (cdkDropListDropped)="drop($event)">
+                  <tr class="example-box" *ngFor="let product of products" cdkDrag cdkDragLockAxis="y">
+                    <td class="col-xs"><input class="form-check-input" type="checkbox" [value]="product.id" (change)="onChecked(product, $event)" [checked]="checkedItems.includes(product.id) == true"></td>
+                    <td class="col-sm"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></td>
+                    <td>{{product.name}}</td>
+                    <td>{{product?.options_count}} options</td>
+                    <td>{{product?.default_currency}} {{product?.price}}</td>
+                    <td>{{product?.availability}}</td>
+                    <td>{{product.status}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <input type="button" name="" value="Move selected items to top" class="btn btn-primary move-btn" (click)="moveToTop()" [disabled]="checkedItems?.length == 0">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

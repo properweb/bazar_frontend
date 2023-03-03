@@ -1,0 +1,46 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body { float: left; margin: 0; padding: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .duplicate_campaigns { background: #fff; border-radius: 3px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; line-height: 39px; margin: 0 0 15px 0; padding: 0 25px 0 25px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .duplicate_campaigns img { display: inline-block; margin-right: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body { background: #fff; border-radius: 3px; float: left; margin: 0 0 20px 0; padding: 20px 30px 20px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body { float: left; margin: 0; padding: 0 30px 0 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body h3 { color: #000; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; line-height: 21px; margin: 0 20px 25px 0; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body .exportLink { color: #000; float: left; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; line-height: 21px; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body .exportLink img { display: inline-block; margin-right: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body .recipientsList { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_left_top_body .recipientsList li { color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 20px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_right_top_body { border-left: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0; padding: 0 0 0 30px; width: 50%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_right_top_body .recepientsList { float: left; list-style: none; margin: 15px 0 6px 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_right_top_body .recepientsList li { color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 23px; margin: 0 30px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_top_body .vendor_email_campaigns_right_top_body .recepientsList li .rateSpan { color: #000; display: block; font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body { background: #fff; border-radius: 3px; float: left; margin: 0 0 40px 0; padding: 20px 30px 20px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 50px 0; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox { margin: 0 auto; max-width: 600px; padding: 0; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox .logoImg { margin-bottom: 50px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 30px 0; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox .emailBanner { height: auto; margin-bottom: 40px; margin-top: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox .btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; margin: 30px 0 20px 0; padding: 0 30px 0 30px; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox .btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox .btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_email_campaigns_body .vendor_email_campaigns_bottom_body .emailBox  .leftPara { text-align: left; }
+
+
+
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+}
+/* Responsive End */
