@@ -1,0 +1,52 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .selectBoxNew { float: right; margin: -60px 0 0 0; padding: 0; width: 222px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .selectBoxNew .form-select { background:url(../../assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; font: 200 16px 'Futura' !important; height: 41px; margin: 0; padding: 0 15px; outline: none !important; -webkit-appearance: none; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .selectBoxNew .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .PerformPnl h5 { color: #000; font: 200 16px 'Futura' !important; margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .PerformPnl h5 a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .PerformBox { background: #fff; border-radius: 3px; float: left; margin-bottom: 20px; padding: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformPnl h4 { color: #000; font: 200 18px 'Futura' !important; margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .PerformPnl p { color: #000; font: 200 16px 'Futura' !important; margin-bottom: 30px; }
+.middle_vendor_dasboard .middle_content .rating-list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .rating-list li { float: left; margin: 0 0 10px 0; padding: 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .rating-list li label { color: #000; font: 200 16px 'Futura' !important; margin: 0 0 10px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .rating-list li span { color: #000; display: block; font: 200 18px 'Futura' !important; }
+.middle_vendor_dasboard .middle_content .perform {} 
+.middle_vendor_dasboard .middle_content .perform th { color: #000; font: 200 16px 'Futura' !important; min-width: 200px; padding: 5px 0; }
+.middle_vendor_dasboard .middle_content .perform td { color: #000; font: 200 18px 'Futura' !important; min-width: 200px; padding: 5px 0; }
+.middle_vendor_dasboard .middle_content .PerformPnl .dateField { float: right; margin:0; }
+.middle_vendor_dasboard .middle_content .GraphBox h4 { margin: 0 0 30px 0; float: left; }
+.middle_vendor_dasboard .middle_content .GraphBox img { margin-top: 25px; max-width: 100%; width: auto; height: auto; }
+.middle_vendor_dasboard .middle_content .halfBox { margin: 0 0 50px 0; width: 49.5%; }
+.middle_vendor_dasboard .middle_content .halfBox:last-child { float: right; }
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .dateField { color: rgba(0,0,0,0.5); }
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .ContentSec { display:flex; flex-flow: column; justify-content: space-between; margin: 30px 0 0 0; min-height: 230px; width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .ContentSec .Heading { color: #000; margin: 0; } 
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .ContentSec p { color: rgba(0,0,0,0.5); margin: 0; }
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .ContentSec .seeAll { color: #000; font: 200 16px 'Futura' !important; margin-bottom: 10px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .PerformBox.halfBox .ContentSec table { width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformBox .graph-box { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformBox .graph-box .graph-list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformBox .graph-box .graph-list li { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .PerformBox .graph-box .graph-list li h4 { color: #000; float: none; font-family: 'Futura' !important; font-size: 16px !important; font-weight: 200 !important; line-height: 21px !important; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .PerformBox .graph-box .graph-list li h5 { color: #000; font-family: 'Futura' !important; font-size: 18px !important; font-weight: 500 !important; line-height: 23px !important; margin: 0 0 0 0; }
+
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .selectBoxNew { margin-top: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .halfBox { margin: 0 0 30px 0; width: 100%; }
+}
+/* Responsive End */

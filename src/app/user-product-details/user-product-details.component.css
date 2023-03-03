@@ -1,0 +1,47 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.gray_body { background: #e5e5e5; min-height: 100%; }
+
+.profileDiv { padding-left:0; }
+
+/*-------------- Right-Section Starts ------------------ */
+.rightAccount { width:100%; float:left; }
+.heading { font: 500 28px 'Futura' !important; color: #000; margin: 50px 0 20px 0 }
+.rightAccount .order-top { margin-bottom: 30px; }
+.rightAccount .order-top .left-order-top h4 { font-size: 20px; font-family: 'Futura' !important; font-weight: 500; margin: 0 0 15px 0; }
+.rightAccount .order-top .left-order-top p { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; margin: 0 0 0 0; }
+.rightAccount .order-top .right-order-top .btn-primary { background: #393939; border: 1px solid #393939; border-radius: 0px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0 0 10px 0; padding: 0; position: relative; transition: all .5s ease-in-out; width: 100%; }
+.rightAccount .order-top .right-order-top .alart-text { color: #f00; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; } 
+.rightAccount .order-top .right-order-top .alart-text a { cursor: pointer; text-decoration: underline; }
+.rightAccount .order-item-list { list-style: none; padding: 0; }
+.rightAccount .order-item-list li { background-color: #fff; border: 1px solid #eee; float: left; margin-bottom: 30px; width: 100%; }
+.rightAccount .order-item-list li .order-top-details { border-bottom: 1px solid #eee; float: left; margin: 0; padding: 15px; width: 100%; }
+.rightAccount .order-item-list li .order-top-details ul { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.rightAccount .order-item-list li .order-top-details ul li { border: none; float: left; margin-right: 30px; width: auto; }
+.rightAccount .order-item-list li .order-top-details ul li label { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 5px 0; }
+.rightAccount .order-item-list li .order-top-details ul li h5 { color: #000; font-size: 16px; font-family: 'Futura' !important; font-weight: 200; margin: 0 0 0 0; }
+.rightAccount .order-item-list li .order-bottom-details .table>:not(:first-child) { border-top: 2px solid #eee; }
+.rightAccount .order-item-list li .order-bottom-details .table td { padding: 15px; }
+.rightAccount .order-item-list li .order-bottom-details .table td:nth-child(1) { width: 150px; }
+.rightAccount .order-item-list li .order-bottom-details .table td img { height: auto; max-width: 120px; width: auto; }
+.rightAccount .order-item-list li .order-bottom-details .table td h4 { color: #000; font-size: 20px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 5px 0; padding: 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td h5 { color: rgba(0,0,0,0.5); font-size: 16px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 10px 0; padding: 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td ul { border: none; box-shadow: none; list-style: none; padding: 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td ul li { border: none; margin-right: 50px; width: auto; }
+.rightAccount .order-item-list li .order-bottom-details .table td ul li label { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 17px; font-weight: 500; margin: 0 0 0 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td ul li h6 { color: #000; font-size: 16px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 10px 0; padding: 0; }
+/*-------------- Right-Section Ends ------------------ */
+
+/*-------------- Right-Section Starts ------------------ */
+
+/*-------------- Right-Section Ends ------------------ */
+
+/* Responsive Start */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+.rightAccount h3 { font: 500 17px 'Futura' !important; }
+}
+ @media screen and (min-width: 300px) and (max-width: 767px) {
+.profileDiv { padding-left: 12px; }
+}
+/* Responsive End */

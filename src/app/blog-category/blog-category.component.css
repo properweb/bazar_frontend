@@ -1,0 +1,45 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.border_top { /*border-top: 1px solid #393939;*/ margin: 149px 0 0 0; padding: 0; width: 100%; }
+.breadCrumbNav { padding-top: 60px; }
+.breadCrumbNav .breadcrumb .breadcrumb-item { color: rgba(0,0,0,0.3); font-family: 'Futura' !important; font-size: 32px; font-weight: 500; }
+.breadCrumbNav .breadcrumb .breadcrumb-item a { color: #000; }
+.left_blog_category_content { margin: 0; padding: 0; width: 100%; }
+.left_blog_category h3 { color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500;  margin: 0 0 5px 0; }
+.left_blog_category img { height: auto; margin-bottom: 20px; max-width: 100%; width: 100%; }
+.left_blog_category .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 15px; }
+.left_blog_category p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 0 0; }
+.right_blog_category { padding-left: 30px; }
+.right_blog_category .similar_cat { list-style: none; margin: 0; padding: 0; width: 100%; }
+.right_blog_category .similar_cat li { margin: 0 0 30px 0; padding: 0; width: 100%; }
+.right_blog_category .similar_cat li a { cursor: pointer; }
+.right_blog_category .similar_cat li .imgDiv img { height: auto; max-width: 100%; width: auto; }
+.right_blog_category .similar_cat li .textDiv h3 { color: #000000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.right_blog_category .similar_cat li .textDiv .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 10px; }
+.right_blog_category .similar_cat li .textDiv p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 0 0; }
+.top_tabs_cat { border-bottom: 1px solid #9C9C9C; margin: 40px 0 35px 0; padding: 0; width: 100%; }
+.top_tabs_cat .left_top_tabs_cat h3 { color: #393939; font-family: 'Futura' !important; font-size: 32px; font-weight: 500; margin: -1px 0 10px 0; }
+.top_tabs_cat .right_top_tabs_cat .nav-tabs { margin-bottom: -1px; border-bottom: none; }
+.top_tabs_cat .right_top_tabs_cat .nav-tabs .nav-item .nav-link { border: none; border-bottom: 1px solid transparent; border-radius: 0px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; padding: 0 35px 20px 35px; }
+.top_tabs_cat .right_top_tabs_cat .nav-tabs .nav-item .active { border-bottom: 1px solid #393939; }
+.top_tabs_cat .right_top_tabs_cat .nav-tabs .nav-item .nav-link:focus { outline: none; box-shadow: none; }
+.blogTabContent { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.blogTabContent .tab-pane { margin: 0; padding: 0; width: 100%; }
+.blogTabContent .tab-pane .tab_cat_lists { list-style: none; padding: 0; }
+.blogTabContent .tab-pane .tab_cat_lists li { margin-bottom: 30px; }
+.blogTabContent .tab-pane .tab_cat_lists li a { cursor: pointer; }
+.blogTabContent .tab-pane .tab_cat_lists li .imgDiv { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.blogTabContent .tab-pane .tab_cat_lists li .imgDiv img { height: auto; width: 100%; }
+.blogTabContent .tab-pane .tab_cat_lists li .textDiv { margin: 0; padding: 0; width: 100%; }
+.blogTabContent .tab-pane .tab_cat_lists li .textDiv h3 { color: #000000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.blogTabContent .tab-pane .tab_cat_lists li .textDiv .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 10px; }
+.blogTabContent .tab-pane .tab_cat_lists li .textDiv p { color: #000000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 23px; margin: 0 0 0 0; }
+
+@media screen and (max-width:767px) { 
+.breadCrumbNav .breadcrumb .breadcrumb-item { font-size: 18px; }
+.left_blog_category h3 { font-size: 20px; }
+.right_blog_category { padding-left: calc(var(--bs-gutter-x) * .5); }
+.right_blog_category .similar_cat li .imgDiv { margin-bottom: 15px; }
+.right_blog_category .similar_cat li .imgDiv img { width: 100%; }
+}

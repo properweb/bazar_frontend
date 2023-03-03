@@ -1,0 +1,92 @@
+<app-after-login-header></app-after-login-header>
+<!-- * * * * * * * * * * * Header End * * * * * * * * * * * -->
+<ng-container *ngIf="cartCount > 0 ">
+    <div class="shoppingBagSec">
+        <div class="container">
+            <h3>Shopping bag</h3>
+            <div class="shoppingBagBorderBox" *ngFor="let cartDetailItem of cartDetails; let i = index;" >
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h4><span class="imgSpan"><img src="{{cartDetailItem?.brand_logo}}" alt=""></span> {{cartDetailItem?.brand_name}}</h4>
+                        <div class="lftPnl" *ngFor="let item of cartDetailItem?.products">
+                            <div class="prdtTblDiv">
+                                <table class="prdtTbl">
+                                    <tbody>
+                                        <tr>
+                                        <td colspan="3">
+                                            <p>Ship ASAP (Est. Delivery Feb 14-24) 
+                                                <a  class="ChangeBtn">Change</a></p>
+                                            <p class="NotePara">Eligible for free returns</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td valign="middle"><img src="{{item.product_image}}" alt="" style="width: 100%; height: 125px;"/></td>
+                                        <td valign="middle">
+                                            <p class="PrdtName">{{item.product_name}}</p>
+                                            <p class="PrdtMaterial" *ngIf="item?.style_name != null" >{{item.style_name}}</p>
+                                            <p *ngIf="item?.style_group_name != null" >{{item.style_group_name}}</p>
+                                            <p *ngIf="item?.product_qty" >Quantity({{item?.product_qty}})
+                                                <span class="qty-update"><input type="number" name="quantity" [value]="item?.product_qty" (change)="onQtyChange($event, item, i)" ></span>
+                                            </p>
+                                        </td>
+                                        <td valign="bottom">
+                                            <a class="RemovePrdt" (click)="deleteCart(item?.id)" ><img src="assets/images/CrossIcon.png" alt=""/></a>
+                                            <p class="PrdtPrice" *ngIf="item?.product_price" >${{item?.product_price ? item?.product_price : ''}}</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="3" valign="middle"><a class="SaveForBtn">Save for later</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="rhtPnl">
+                            <ngb-progressbar type="success" [value]="totalPrice[i]['brand_total']" [max]="cartDetailItem?.brand_min" ></ngb-progressbar>
+                            <p class="priceReached" *ngIf="totalPrice[i]['brand_total'] > cartDetailItem?.brand_min">${{cartDetailItem?.brand_min}} min reached!</p>
+                            <p class="priceReached" *ngIf="cartDetailItem?.brand_min - totalPrice[i]['brand_total'] > 0">${{cartDetailItem?.brand_min - totalPrice[i]['brand_total']}} left. <span class="max-span" *ngIf="totalPrice[i]['brand_total'] < cartDetailItem?.brand_min"> $600 minimun</span></p>
+                            <div class="odrSmryTblSec">
+                                <table class="odrSmryTbl">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2"><p class="title">Order summary</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item total</td>
+                                            <td>${{totalPrice[i]['brand_total']}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping</td>
+                                            <td>Free</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Import duties</td>
+                                            <td>Free</td>
+                                        </tr>
+                                        <tr class="subTotaltr">
+                                            <td>Subtotal</td>
+                                            <td>${{totalPrice[i]['brand_total']}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><a class="btn btn-primary" (click)="handleCheckOut(cartDetailItem?.brand_key, totalPrice[i]['brand_total'],cartDetailItem?.brand_name,cartDetailItem?.brand_key)" >Checkout to this brand</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="cartCount == 0">
+    <div class="shoppingBagSec">
+        <div class="container">
+            <h3>Your cart is empty! </h3>
+        </div>
+    </div>
+</ng-container>

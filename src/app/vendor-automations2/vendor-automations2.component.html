@@ -1,0 +1,52 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Customers who haven't reordered in 60+ days</h3>
+          <p><a>Automations</a></p>
+        </div>
+      </div>
+      <div class="vendor_automations2_body">
+        <h3>Sends 60 days after order</h3>
+        <div class="white_automations2_body">
+          <h3>You know your customer best — Type in a personalized reminder that will resonate with them.</h3>
+          <ul class="automationsFromList">
+            <li>
+              <label class="form-label">Subject</label>
+              <input type="text" class="form-control" placeholder="e.g. Restock on my shop">
+            </li>
+            <li>
+              <label class="form-label">Message</label>
+              <textarea class="form-control textarea-control" rows="3" placeholder="Hello {First name} &#10;&#10;[This is where you should draft your message. It's likely that the retailer simply forgot to reorder. Ask your retailer how your products are doing in store and if they have any questions. If you want, ask them what they think about your products - this is a great touchpoint to get personalized feedback!] &#10;&#10;[Update the retailer on anything new to your line that could incentive a reorder. New products? New materials, formulas, recipes, recommendations for how to display, etc.? Let them know!]"></textarea>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="vendor_automations2_bottom_body">
+        <ul class="btnList">
+          <li>
+            <input type="submit" name="" value="Activate follow-ups" class="btn publish_btn" (click)="openActivationAutomations(content)">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirm Activation</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>What will happen when you activate:</p>
+    <p>Automated emails will be sent to <strong>retailers <br>
+      who received their last order 60+ days ago</strong></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary add-customer-btn" (click)="modal.close('Save click')">Activate Follow-Ups</button>
+  </div>
+</ng-template>
+<!-- Vendor Add Customer Information Modal End --> 

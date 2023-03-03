@@ -1,0 +1,107 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList { list-style: none; margin: 20px 30px 0 0; padding: 0; position: absolute; right: 0; top: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList li { float: left; margin: 0 0 0 20px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList li p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; line-height: 37px; margin: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList li .draft_link { background-color: #393939; border: none; border-radius: 3px; color: #fff; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 37px; line-height: 37px; margin: 0; padding: 0 29px 0 29px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList li .disabled { background: rgba(57, 57, 57, 0.25); }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body { float: left; margin: 0; padding: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list { float: left; list-style: none; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li { color: #000; float: left; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 25px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li span { color: #000; display: block; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 39px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li a { background: #fff; border-radius: 3px; cursor: pointer; display: block; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; line-height: 39px; padding: 0 20px 0 20px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li a img { margin-right: 5px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .rightAccount{ float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel {}
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-header { background: url(../../assets/images/TickIcon.png) no-repeat left 26px center; border:none; padding: 20px 25px 20px 40px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-header .btn { background: url(../../assets/images/OpenArrow.png) no-repeat right center; color: #000; display: block; font: 200 18px 'Futura' !important; outline: none; padding-right: 30px; text-align: left; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-header .collapsed { background: url(../../assets/images/CloseArrow.png) no-repeat right center; padding-right: 30px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-header .btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body { color: #000; font: 200 18px 'Futura' !important; border-top: 1px solid rgba(0,0,0,0.25); padding: 25px 40px 30px 26px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body label { font-size: 14px; margin-bottom: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body h4 { color: #000; font-family: 'Futura' !important; font-size: 15px; font-weight: 500; margin: 20px 0 10px 0; } 
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body h4 .view-link { cursor: pointer; display: inline-block; margin-left: 5px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown { float: left; margin-right: 10px; position: relative; width: 294px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown .custom-contact-link { background: url(../../assets/images/dropdown_arrow.png) no-repeat right 10px center; border: 1px solid rgba(0,0,0,0.50); border-radius: 0.25rem; color: #000; cursor: pointer; font: 200 14px 'Futura' !important; padding: 10px 36px 10px 12px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown .custom-contact-list { background-color: #fff; border: 1px solid rgba(0,0,0,0.50); border-radius: 0 0 0.25rem 0.25rem; display: none; float: left; list-style: none; padding: 15px 15px 5px 15px; position: absolute; top: 38px;     z-index: 1; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown .custom-contact-list li { float: left; margin-bottom: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown .custom-contact-list li .label-span { color: #000; font: 200 16px 'Futura' !important; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .custome-select-dropdown .custom-contact-list li input { float: left; margin-right: 8px; margin-top: 5px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .view-list { float: left; list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .view-list li { float: left; margin-right: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .view-list li span { background: #f5f5f5; color: #000; display: inline-block; font: 200 14px 'Futura' !important; padding: 11px 12px 11px 12px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .view-list li span img { cursor: pointer; height: auto; margin-left: 5px; margin-top: -5px; position: relative; width: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .uploadBtn { background: #f5f5f5; border: none; color: #000; min-width: 156px; font: 200 14px 'Futura' !important; padding: 11px 12px 11px 12px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .uploadBtn .fa { font-size: 14px; margin-right: 8px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .uploadBtn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .SelCust { border:1px solid rgba(0,0,0,0.50); box-shadow: none; color: #000; float: left; font: 200 14px 'Futura' !important; margin-right: 10px; outline: none; padding: 10px 36px 10px 12px; width: 294px;  }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .SubjectLine { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .SubjectLine li { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .SubjectLine li:last-child { margin: 0; }
+.AccordionPanel .card .card-body .SubjectLine li label { color: #000; display: block; font: 200 16px 'Futura' !important; }
+.AccordionPanel .card .card-body .SubjectLine li input[type="text"] { border: 1px solid rgba(0,0,0,0.50); border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; max-width: 451px; outline: none; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .product_tab_content { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .product_tab_content .nav-tabs .nav-item { }
+.middle_vendor_dasboard .middle_content .product_tab_content .nav-tabs .nav-item .nav-link { background: none; border: none; border-bottom: 1px solid transparent; border-radius: 0; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 26px; padding: 0 50px 20px 50px; }
+.middle_vendor_dasboard .middle_content .product_tab_content .nav-tabs .active { border-bottom: 1px solid #000 !important; }
+.middle_vendor_dasboard .middle_content .product_tab_content .nav-tabs .nav-item .nav-link span { background: #ececec; border-radius: 3px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 26px; min-width: 26px; margin-left: 5px; text-align: center; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane h3 { border-bottom: 1px solid rgba(0, 0, 0, 0.25); border-top: 1px solid rgba(0, 0, 0, 0.25); color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; padding: 20px 0 30px 30px; }
+.publish-list { float: right; list-style: none; margin: -53px 30px 0 0; padding: 0; width: auto; }
+.publish-list li { color: #000; cursor: pointer; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 15px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .publicList { float: right; list-style: none; margin: -52px 0 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .publicList li { display: inline-block; margin: 0 20px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .publicList li a { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .publicList li .disabled { color: rgba(0, 0, 0, 0.25); cursor: default; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .productSearch { list-style: none; padding: 30px 0 30px 30px; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .productSearch li .select_from { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .productSearch li .select_from:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .productSearch li .text_form { background: url(../../assets/images/search_icon.png) no-repeat 10px 13px #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 30px; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .productSearch li .text_form:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table th { background: none; border: none; box-shadow: none; color: rgb(51, 51, 51); font-family: 'Futura' !important; font-size: 15px; font-weight: 500; padding: 20px 10px 20px 10px; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table td:nth-child(4) { white-space: nowrap; } 
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table td:nth-child(5) { white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table td:nth-child(6) { white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table td img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table .notfountCol { text-align: center; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table .notfountCol h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .product_tab_content .tab-content .tab-pane .table_sec .table .notfountCol p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_campaign_link { float: left; margin: 15px 0 0 0; }	
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList { margin-top: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .newCampaignsStatusList li { margin-left: 0; margin-right: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list { }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li { margin-bottom: 15px; margin-right: 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li:nth-child(odd) { padding-right: 7.5px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .filter_list li:nth-child(even) { padding-left: 7.5px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .AccordionPanel .card .card-body .uploadBtn { margin-top: 15px; }
+.middle_vendor_dasboard .middle_content .vendor_new_campaigns_body .new-campaign-accordion .card .email-card-body { padding-left: 0; padding-right: 0; }
+}
+/* Responsive End */
