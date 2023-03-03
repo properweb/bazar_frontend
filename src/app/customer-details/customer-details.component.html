@@ -1,0 +1,293 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+    <app-vendor-side-menu></app-vendor-side-menu>
+    <div class="middle_vendor_dasboard">
+        <div class="middle_content">
+            <div class="headingBox">
+                <div class="whiteHeadingBox"> 
+                  <p><a routerLink="/customers">Customers</a></p>
+                  <!-- <a class="upload_video_btn" >Upload video</a> </div> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="my_shop_videos_body">
+                        <h3>Store Name</h3>
+                        <h2>{{custDetail?.store_name && custDetail?.store_name}} <span class="customer-span" style="background-color: rgb(166, 197, 208);">{{this.cust_type}}</span> <span class="bazar-span" style="background-color: rgb(224, 184, 129);">Not on Bazar</span></h2>
+                        <ul class="nav-list">
+                            <li><a><i class="fa-sharp fa-solid fa-ban"></i> Unsubscribe</a></li>
+                            <li><a (click)="openUserLogInModal(addCustomerContent)"><i class="fa-sharp fa-solid fa-pen"></i> Edit</a></li>
+                            <!-- <li><a (click)="deleteCustomer()"><i class="fa-solid fa-trash"></i> Delete</a></li> -->
+                            <li><a (click)="openDeleteModal(deleteModalContent)"><i class="fa-solid fa-trash"></i> Delete</a></li>
+                        </ul>
+                        <ul class="ideaList">
+                            <li>Order volume
+                                <h4>$0</h4>
+                            </li>
+                            <li>Total orders
+                                <h4>0</h4>
+                            </li>
+                            <li>Faire Direct credit
+                                <h4>$0</h4>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="my_shop_videos_body">
+                        <h3>Open Cart</h3>
+                        <ul class="ideaList">
+                            <li>Amount in cart
+                                <h4>$0</h4>
+                            </li>
+                            <li>Total items
+                                <h4>0</h4>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="my_shop_videos_body">
+                        <h3>Recent orders</h3>
+                        <div class="recent-orders_table_sec">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" align="center" style="border-bottom: none;"><p style="color: #000; font-size: 16px; margin: 0; text-align: center;">No orders at this time</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Items</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Images</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Oct 1, 2022</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td>
+                                            <div class="imgDiv">
+                                                <img src="assets/images/product_thumb.png" alt="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                        </div>
+                    </div>
+                    <div class="my_shop_videos_body">
+                        <h3>Customer activity</h3>
+                        <ul class="customer-activity-list">
+                            <li><input type="text" class="form-control text_form" /> <button class="post_btn">Post</button></li>
+                            <!-- <li>
+                                <h4>October 1, 2022</h4>
+                                <h5>Order $60</h5>
+                            </li>
+                            <li>
+                                <h4>October 1, 2022</h4>
+                                <h5>Order $60</h5>
+                            </li>
+                            <li>
+                                <h4>October 1, 2022</h4>
+                                <h5>Order $60</h5>
+                            </li>
+                            <li>
+                                <h4>October 1, 2022</h4>
+                                <h5>Order $60</h5>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 right-customer-details">
+                    <div class="my_shop_videos_body">
+                        <h3>Contact info</h3>
+                        <h4>{{custDetail?.name && custDetail?.name}}</h4>
+                        <p>{{custDetail?.email && custDetail?.email}}</p>
+                        <button class="email_btn" (click)="openSendEmailModal(sendEmailModalContent)">Email {{custDetail?.name && custDetail?.name}}</button><br />
+                        <a class="create-invoice-link">Create invoice</a>
+                    </div>
+
+                    <!-- Visible if customer On Bazar -->
+
+                    <!-- <div class="my_shop_videos_body">
+                        <h3>More info</h3>
+                        <h4>Country</h4>
+                        <p>United States of America</p>
+                        <h4>Preferred language</h4>
+                        <p>English</p>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add-Customer-Modal -->
+<ng-template #addCustomerContent let-modal>
+    <form #addCustomerForm="ngForm">
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <h4>Edit Contact Information</h4>
+      </div>
+      <form #contactForm="ngForm" (ngSubmit)="contactForm.form.valid && sendContactForm(contactForm)" novalidate>
+        <div class="modal-body">
+            <ul class="row form-list">
+                <li class="col-md-12">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Souvik" name="cust_name" [(ngModel)]="cust_name" />
+                </li>
+                <li class="col-md-12">
+                    <label>Store Name</label>
+                    <input type="text" class="form-control" placeholder="Levis" name="cust_storename" [(ngModel)]="cust_storename" />
+                </li>
+                <li class="col-md-12">
+                    <label>Email*</label>
+                    <input type="email" class="form-control" placeholder="Email" name="cust_email" [(ngModel)]="cust_email" #cust_emailval='ngModel' required email/>
+                    <span class="validate_errors"
+                        *ngIf="(cust_emailval.touched || contactForm.submitted) && cust_emailval.errors?.['required']">
+                        This field is required.
+                    </span>
+                    <span class="validate_errors"
+                        *ngIf="(cust_emailval.touched || contactForm.submitted) && cust_emailval.errors?.['email']">
+                        Please enter valid email.
+                    </span>
+                </li>
+                <li class="col-md-12">
+                    <label>Relationship</label>
+                    <ul class="formDiv">
+                        <li>
+                        <span class="radioLabel">Customer 
+                            <input type="radio" value="customer" (change)="onCustTypeChange($event)" name="cust_type" [checked]="cust_type === 'customer'" />
+                            <span class="checkmark"></span>
+                        </span>
+                        </li>
+                        <li>
+                        <span class="radioLabel">Lead
+                            <input type="radio" value="lead" (change)="onCustTypeChange($event)" name="cust_type" [checked]="cust_type === 'lead'" />
+                            <span class="checkmark"></span>
+                        </span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+            <button *ngIf="!btnDis" class="btn btn-primary btn-add" type="submit">Save</button>
+            <button *ngIf="btnDis" class="btn btn-primary btn-add" disabled type="submit">Plaese wait...</button>
+        </div>
+      </form>
+    </form>
+  </ng-template>
+
+<!-- Send-Email-Modal -->
+<ng-template #sendEmailModalContent let-modal>
+    <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4>Send an email</h4>
+    <p>You are sending an email to 1 customer</p>
+    </div>
+    <form #contactForm="ngForm" (ngSubmit)="contactForm.form.valid && sendContactForm(contactForm)" novalidate>
+        <div class="modal-body">
+            <ul class="row form-list">
+                <li class="col-md-12">
+                    <label>Sending to</label>
+                    <input readonly type="text" class="form-control" name="cust_name" [(ngModel)]="cust_name" />
+                </li>
+                <li class="col-md-12">
+                    <label>Subject</label>
+                    <input type="text" class="form-control" name="emailSubject" [(ngModel)]="emailSubject" />
+                </li>
+                <li class="col-md-12" >
+                    <label>CC</label>
+                    <a class="add-bcc" (click)="toggleShowBcc()" style="cursor: pointer;">{{showBcc? 'Remove BCC' : 'Add BCC'}}</a>
+                    <!-- <a *ngIf="showBcc" class="add-bcc" (click)="showBcc = false" >Remove BCC</a> -->
+                    <input type="text" class="form-control" />
+                </li>
+                <li class="col-md-12" *ngIf="showBcc"> 
+                    <label>BCC</label>
+                    <input type="text" class="form-control" />
+                </li>
+                <li class="col-md-12">
+                    <label>Select Send Time</label>
+                    <select name="" id="" class="form-select" (change)="onTypeSendTimeChange($event)" >
+                        <option value="1">Send tomorrow at 9:00 AM (Preferred)</option>
+                        <option value="2">Send now</option>
+                        <option value="3">Pick custom date</option>
+                    </select>
+                    <p>* Open rates are highest on Tues, Wed, Thurs, and Sun</p>
+                </li>
+                <ng-container *ngIf="emaiTypeOfDate === '3'" >
+                    <li class="col-md-12">
+                        <label>Send Email On</label>
+                        <div class="row row-cols-sm-auto">
+                            <div class="col-12">
+                                <div class="dp-hidden">
+                                    <div class="input-group">
+                                    <input readonly class="form-control calnInput" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" name="emailSendDate" [(ngModel)]="emailSendDate" #emailSendDateVal (click)="d.toggle()">
+                                    <!-- <span *ngIf="product_deadline != '' && product_deadline != null" (click)="onDeleteDeadLine()" class="clear-date" ><img src="assets/images/cross_icon.png" alt=""></span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-2" >
+                        <label>Send</label>
+                        <select name="" id="" class="form-select">
+                            <option *ngFor="let item of hoursArray" [value]="item" >{{item}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-2">
+                        <label>Email</label>
+                        <select name="" id="" class="form-select">
+                            <option *ngFor="let item of minArray" [value]="item" >{{item}}</option>
+                        </select>
+                    </li>
+                    <li class="col-md-2">
+                        <label>On</label>
+                        <select name="" id="" class="form-select">
+                            <option *ngFor="let item of amPmArray" [value]="item" >{{item}}</option>
+                        </select>
+                    </li>
+                </ng-container>
+        
+                <li  class="col-md-12">
+                    <div class="white-shadow-box">
+                        <h4>Hi Customer</h4>
+                        <textarea placeholder="Write a message to your retailers here!" name="" id="" cols="30" rows="10" class="form-control textarea-control"></textarea>
+                        <p><a>Click here to shop My Amarant</a></p>
+                        <p>Ali Ali<br>
+                        My Amarant<br>
+                        myamarant.faire.com</p>
+                        <h6><a>Stop receiving this email</a></h6>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <p class="email-para">1 email will be sent</p>
+            <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+            <button class="btn btn-primary btn-add" type="submit" (click)="onSendEmail()" >Send Email</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Conatct-Delete-Modal -->
+<ng-template #deleteModalContent let-modal>
+    <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <h4>Delete customer</h4>
+    </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this customer from your contact list?</p>
+        </div>
+        <div class="modal-footer">
+            <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+            <button *ngIf="!btnDis" class="btn btn-primary btn-add" type="submit" (click)="deleteCustomer()" >Delete</button>
+            <button *ngIf="btnDis" class="btn btn-primary btn-add" type="submit" disabled >Delete</button>
+        </div>
+ 
+</ng-template>

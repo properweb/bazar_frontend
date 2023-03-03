@@ -1,0 +1,83 @@
+.gray_body { background: #e5e5e5; min-height: 100%; }
+.profileDiv { padding-left:0; }
+
+/*----------------right section starts--------------------*/
+.heading { color: #000; font: 500 28px 'Futura' !important; margin: 50px 0 20px 0 }
+.profileDiv .vendor_message_body { float: left; margin: 0; padding: 0px; width: 100%; }
+.profileDiv .vendor_message_body .positive-row { /*position: relative;*/ }
+.profileDiv .vendor_message_body .chatbox { /*background: #f00;*/ float: left; /*height: 100%;*/ margin: 0; padding: 0; /*position: absolute; right: 0; top: 0;*/ width: 74%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box { background-color: #fff; float: left; margin: 0; padding: 0; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header { border-bottom: 1px solid rgba(0, 0, 0, 0.25); margin: 0; padding: 15px 30px 15px 30px; position: relative; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .prev-inbox { display: none; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .img-sec { width: 12%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .img-sec img { border-radius: 100%; height: auto; max-width: 90px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec { width: 88%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec h3 { color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 5px 0; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 0; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body { float: left; margin: 0; padding: 20px 0 20px 0; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list { list-style: none; margin: 0 0 15px 0; max-height: 400px; overflow-y: auto; padding: 0; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li { margin: 0; padding: 10px 30px 10px 30px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .row { align-items: center !important; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .row { flex-direction: row-reverse !important; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-img { }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-img img { border-radius: 100%; height: auto; max-width: 50px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text { }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .user-text { text-align: right; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 0 0; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0 0 0 0; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span { display: block; margin: 0; padding: 0; position: relative; text-align: center; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span:after { background-color: rgba(0, 0, 0, 0.25); content: ""; height: 1px; left: 0; position: absolute; top: 10px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span span { background-color: #fff; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 0 15px 0 15px; position: relative; z-index: 1; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat { float: left; margin: 0; padding: 0 30px 0 30px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat textarea { border: 1px solid rgba(57,57,57,.5); border-radius: 3px; color: #000; height: 120px; font-family: Futura!important; font-size: 16px; font-weight: 200; margin-bottom: 20px; padding: 10px 15px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat textarea:focus { box-shadow: none; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat .btn { background: #393939; border-color: #393939; border-radius: 3px; float: right; font-family: Futura!important; font-size: 18px; font-weight: 200; height: 43px; padding: 0 30px 0 30px; }
+.profileDiv .vendor_message_body .col-custom-width { width: 26%; }
+.profileDiv .vendor_message_body input[type="text"] { background: url(../../assets/images/vendor_brand_shop_search_icon.svg) no-repeat 10px 13px; border: 1px solid rgba(0,0,0,0.50); border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; outline: none; margin-bottom: 20px; padding: 0 10px 0 30px; width: 100%; }
+.profileDiv .vendor_message_body .label-span { color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 10px 0 0; padding: 0; width: auto; }
+.profileDiv .vendor_message_body .radioDiv { float: left; margin: 4px 10px 0 0; padding: 0; width: auto; }
+.profileDiv .vendor_message_body .radioDiv .switch { display: inline-block; height: 15px;  position: relative; width: 27px; }
+.profileDiv .vendor_message_body .radioDiv .switch input { display: none; }
+.profileDiv .vendor_message_body .radioDiv .switch .slider { background-color: #fff; border:#ccc 1px solid; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; }
+.profileDiv .vendor_message_body .radioDiv .switch .slider:before { background: #ccc; bottom: 1.5px; content: ""; height: 10px; left: 2px; position: absolute; transition: .4s; width: 10px; }
+.profileDiv .vendor_message_body .radioDiv .switch input:checked + .slider { background-color: #fff; border: 1px solid #000; }
+.profileDiv .vendor_message_body .radioDiv .switch input:checked + .slider:before { transform: translateX(11px); }
+.profileDiv .vendor_message_body .radioDiv .switch .slider.round { border-radius: 34px; }
+.profileDiv .vendor_message_body .radioDiv .switch .slider.round:before { border-radius: 50%; }
+.profileDiv .vendor_message_body .radioDiv .switch input:checked + .slider:before{ background: #000; }
+.profileDiv .vendor_message_body .message-box { background: #fff; float: left; margin: 20px 0 0 0; padding: 0; width: 100%; }
+.profileDiv .vendor_message_body .message-box .message-list { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.profileDiv .vendor_message_body .message-box .message-list li { float: left; margin: 0; padding: 0; width: 100%; }
+.profileDiv .vendor_message_body .message-box .message-list li .inbox-sec { cursor: pointer; margin-left: 0; margin-right: 0; padding-bottom: 15px; padding-top: 15px; }
+/*.profileDiv .vendor_message_body .message-box .message-list li:hover .inbox-sec { background: #393939; }*/
+.profileDiv .vendor_message_body .message-box .message-list li .active { background: #393939; }
+.profileDiv .vendor_message_body .message-box .message-list li .img-sec { text-align: center; }
+.profileDiv .vendor_message_body .message-box .message-list li .img-sec img { border-radius: 100%; height: auto; max-width: 50px; width: 100%; }
+.profileDiv .vendor_message_body .message-box .message-list li .text-sec { }
+.profileDiv .vendor_message_body .message-box .message-list li .text-sec h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 400; line-height: normal; margin: 0 0 5px 0; }
+.profileDiv .vendor_message_body .message-box .message-list li .read h4 { font-weight: 500; }
+.profileDiv .vendor_message_body .message-box .message-list li .active h4 { color: #FFF; }
+.profileDiv .vendor_message_body .message-box .message-list li .text-sec h4 span { color: rgba(0, 0, 0, 0.5); font-size: 14px; font-weight: 200; margin-left: 5px; }
+.profileDiv .vendor_message_body .message-box .message-list li .active h4 span { color: rgba(255, 255, 255, 0.5); }
+.profileDiv .vendor_message_body .message-box .message-list li .text-sec p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0; }
+.profileDiv .vendor_message_body .message-box .message-list li .active p { color: #FFF; }
+/*----------------right section End--------------------*/
+
+
+/* Responsive Start */
+@media screen and (max-width:767px) {  
+.profileDiv .vendor_message_body .col-custom-width { width: 100%; }
+.profileDiv .vendor_message_body .chatbox { height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box { height: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header { height: 96px; padding-left: 35px; padding-right: 15px; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .prev-inbox { cursor: pointer; display: block; left: 10px; position: absolute; top: 31px; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .img-sec { width: 25%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .img-sec img { max-width: 65px; } 
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec {  width: 75%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body { height: calc(100% - 96px); max-height: calc(100% - 96px); overflow-y: auto; padding-bottom: 100px; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list { max-height: none; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li { padding-left: 15px; padding-right: 15px; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat { background: #fff; bottom: 0; left: 0; padding: 0; position: fixed; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat textarea { border-left: none; border-right: none; border-radius: 0; height: 80px; margin-bottom: 0; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat .btn { background-color: transparent; background-image: url(../../assets/images/send-icon.png); background-position: center; background-repeat: no-repeat; background-size: 30px auto; border: none; border-radius: 0px; bottom: 15px; padding: 0; position: absolute; right: 15px; text-indent: -999em; width: 50px; z-index: 1; }
+}

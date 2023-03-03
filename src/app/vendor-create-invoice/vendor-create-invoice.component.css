@@ -1,0 +1,107 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 10px 0 25px 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body p a { text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_create_body p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_create_body p span a { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_create_body .add-customer-link { color: #000; cursor: pointer; float:  right; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: -24px 0 0 0; text-decoration:  underline; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList { list-style: none; margin-top: 20px; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .noMrgnList { margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li label { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .search_form { background: url(../../assets/images/search_icon.png) no-repeat 10px 13px; padding-left: 30px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field { width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .add_items_link { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox { border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; float: left; margin: 0 0 40px 0; padding: 0; width: 100%; } 
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox a { cursor: pointer; display: block; float: left; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox a:hover { background: rgba(0, 0, 0, 0.05); }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .imgBox { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .imgBox img { height: auto; width: 49px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .productInfoTxt { float: left; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .productInfoTxt h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .productInfoTxt p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .stockTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 0 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .priceTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 20px 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .border_box { background: rgba(57, 57, 57, 0.05); border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; height: 190px; margin: 0; overflow: hidden; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); height: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .imgDiv { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .imgDiv img { border-radius: 3px 3px 0 0; height: 123px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .imgDiv .deleteIcon { background: #fff; border-radius: 3px; color: #393939; cursor: pointer; font-size: 13px; line-height: 25px; position: absolute; right: 8px; text-align: center; top: 8px; width: 25px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv { margin: 0; padding: 10px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv p { color: rgba(0, 0, 0, 0.5);; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body { background: #fff; float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table th:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .imgDiv { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .imgDiv img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .removeLink { background: #F2F2F2; border-radius: 3px; color: #000; cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 31px; display: inline-block; line-height: 29px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan .form-control { border: none; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 29px; padding: 0 15px 0 15px; width: 80px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 { background: #fff; float: left; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body { border-bottom: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0; padding: 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec { float: left; margin: 0; max-width: 350px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500;  margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li { float: left; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; position: relative; padding-left: 26px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel .textSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 5px 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 3px; width: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel:hover input ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel input:checked ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .shipSec .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable { padding-right: 15px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable>:not(:first-child) { border-top: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable th { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: left; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable td { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: right; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable td strong { font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body { float: left; margin: 0; padding: 30px 15px 30px 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body p a { text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body p span a { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .form-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 8px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 0px; margin-top: 0; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .textAreaForm { height: 70px; line-height: normal; padding: 10px 15px 10px 15px; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }	
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec { overflow-x: auto; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table { width: 850px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table th:nth-child(1) { width: 20%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .add_items_link { margin-top: -10px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox { margin-bottom: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .imgBox { width: 49px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .productInfoTxt { width: 79%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .searchBox .priceTag { float: left; margin-left: 0; }
+}
+@media screen and (max-width:767px) { 
+}
+/* Responsive End */

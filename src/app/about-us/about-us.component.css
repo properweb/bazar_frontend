@@ -1,0 +1,63 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.blogBanner { align-items: center; background-position: center; background-repeat: no-repeat; background-size: cover; /*border-top: 1px solid #393939;*/ display: flex; justify-content: center; min-height: 250px; margin: 149px 0 60px 0; padding: 0; position: relative; width: 100%; }
+.blogBanner:after { background-color: rgba(247, 248, 250, 0.5); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.blogBanner h1 { color: #393939; font-family: 'Futura' !important; font-size: 40px; font-weight: 500; margin: 0; position: relative; text-align: center; z-index: 1; }
+.about_left_text h2 { background: url(../../assets/images/border_bottom2_bg.png) no-repeat 0 bottom; color: #393939; font-family: 'Futura' !important; font-size: 32px; font-weight: 500; margin: 0 0 25px 0; padding: 0 0 15px 0; }
+.about_left_text span { color: #393939; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; }
+.about_left_text span strong { font-family: 'Futura' !important; font-weight: 500; }
+.about_left_text p { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 23px; margin: 0 0 20px 0; }
+.about_left_text ul { padding: 0 0 0 20px; margin: 0; width: 100%; }
+.about_left_text ul li { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 23px; margin: 0 0 5px 0; padding: 0; width: 100%; }
+.about_feature { list-style: none; margin-bottom: 80px; margin-top: 80px; padding: 0; }
+.about_feature .border_box { border: 1px solid #393939; margin: 0; padding: 15px; width: 100%; }
+.about_feature .border_box h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0 0 10px 0; }
+.about_feature .border_box p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.about_right_img img { height: auto; width: 100%; }
+.gray_box { background: #f7f8fa; display: flex; margin: 0; padding: 40px 0 60px 0; width: 100%; }
+.gray_box h3 { color: #393939; font-family: 'Futura' !important; font-size: 32px; font-weight: 500; margin: 0 0 40px 0; text-align: center; }
+.gray_box .about_mission_list { list-style: none; padding: 0; }
+.gray_box .about_mission_list .white_box { background: #fff; padding: 80px 15px 40px 15px; position: relative; }
+.gray_box .about_mission_list .white_box h4 { color: #393939; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 20px 0; } 
+.gray_box .about_mission_list .white_box p { color: #393939; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; line-height: 28px; margin: 0 0 0 0; } 
+.gray_box .about_mission_list .img_box { padding: 0; position: relative; }
+.gray_box .about_mission_list .img_box img { height: auto; width: 100%; }
+.gray_box .about_mission_list li:nth-child(2):after { left: 0; top: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; 	border-color: rgba(255, 255, 255, 0); border-left-color: #ffffff; border-width: 15px; margin-top: -15px; }
+.gray_box .about_mission_list li:nth-child(4):after { right: 0; top: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; 	border-color: rgba(255, 255, 255, 0); border-right-color: #ffffff; border-width: 15px; margin-top: -15px; }
+.gray_box .about_mission_list li:nth-child(6):after { top: 0; left: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #ffffff; border-width: 15px; margin-left: -15px; }
+.about_quick_sec { margin: 0; padding: 80px 0 80px 0; width: 100%; }
+.about_quick_sec .imgBox .tab-content { margin: 0; padding: 0; width: 100%; }
+.about_quick_sec .imgBox .tab-content .tab-pane { margin: 0; padding: 0; width: 100%; }
+.about_quick_sec .imgBox img { height: auto; width: 100%; }
+.about_quick_sec .about_quick_list { border-bottom: none; list-style: none; margin: 0; padding: 0; width: 100%; }
+.about_quick_sec .about_quick_list li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.local_banner { align-items: center; background-repeat: no-repeat; background-position: center; background-size: cover; display: flex; justify-content: center; margin: 0; min-height: 650px; padding: 0; width: 100%; }
+.local_banner .white_banner_box { background: rgba(247, 248, 250, 0.67); height: 349px; margin: 0; max-width: 730px; padding: 100px 0 0 0; text-align: center;  width: 90%;  }
+.local_banner .white_banner_box h3 { color: #000; font-family: 'Futura' !important; font-size: 48px; font-weight: 500; margin: 0 0 20px 0; }
+.local_banner .white_banner_box p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; margin: 0 0 30px 0; }
+.local_banner .white_banner_box .sell_on_bazar { background: none; border: 1px solid #000; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0 8px 0 8px; padding: 0 20px 0 20px; transition: all .5s ease-in-out; }
+.local_banner .white_banner_box .sell_on_bazar:hover { background-color: #000; color: #fff; }
+.local_banner .white_banner_box .sign_up_to_shop { background: #393939; border: 1px solid #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0 8px 0 8px; padding: 0 20px 0 20px; transition: all .5s ease-in-out; }
+.local_banner .white_banner_box .sign_up_to_shop:hover { background: #000; border: 1px solid #000; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.flex-col-column-reverse { flex-direction: column-reverse!important; }
+.blogBanner h1 { font-size: 32px; }	
+.about_right_img { margin-bottom: 30px; }
+.about_feature { margin-bottom: 10px; margin-top: 40px; }
+.about_feature li { margin-bottom: 30px; }
+.gray_box { padding-bottom: 40px; padding-left: 10px; padding-right: 10px; }
+.gray_box .about_mission_list .white_box { padding-bottom: 30px; padding-top: 30px; }
+.gray_box .about_mission_list li:nth-child(2):after { top: 0; left: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #ffffff; border-width: 15px; margin-top: 0; }
+.gray_box .about_mission_list li:nth-child(4):after { top: 0; left: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #ffffff; border-width: 15px; margin-top: 0; }
+.gray_box .about_mission_list li:nth-child(6):after { top: 0; left: 50%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none; border-color: rgba(255, 255, 255, 0); border-top-color: #ffffff; border-width: 15px; margin-left: -15px; }
+.about_quick_sec { padding-bottom: 25px; padding-top: 40px; }
+.about_quick_sec .imgBox { margin-bottom: 30px; }
+.local_banner .white_banner_box h3 { font-size: 32px; }	
+.local_banner .white_banner_box .sell_on_bazar { border: 1px solid #000; font-size: 16px; line-height: 38px; margin: 0 8px 0 8px; padding: 0 20px 0 20px; }
+.local_banner .white_banner_box .sign_up_to_shop { font-size: 16px; line-height: 38px; margin: 0 8px 0 8px; padding: 0 20px 0 20px; }
+}
+/* Responsive End */
+

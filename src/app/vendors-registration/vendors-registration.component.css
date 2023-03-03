@@ -1,0 +1,261 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
+input[type=number] { -moz-appearance: textfield; } 
+
+.vendorContainer { max-width: 1440px; } 
+.vendorContainer2 { max-width: 1280px; }
+.validate_errors {color: #f00; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; } 
+.vendor_header { margin: 0; padding: 20px 0 20px 0; width: 100%; }
+.vendor_header .vendor_logo { display: inline-block; line-height: 43px; }
+.vendor_header .vendor_logo img { display: inline-block; }
+.vendor_header .vendorNavs { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
+.vendor_header .vendorNavs li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.vendor_header .vendorNavs li a { border: 1px solid rgba(0,0,0,0.5); border-radius: 3px; color: rgba(0,0,0.5); cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 41px; padding: 0 30px 0 30px; }
+.vendor_header .vendorNavs li a:hover { border-color: #000; color: #000; }
+.step_top { margin: 0 auto; padding: 0; width: 100%; }
+.progressbar { counter-reset: step; list-style: none; margin: 0 0 40px 0; overflow: hidden; padding: 0; text-align: center; width: 100%; }
+.progressbar li { color: rgba(57, 57, 57, 0.5); display: inline-block; /*float: left;*/ font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 10px 0 0; min-height: 59px; min-width: 100px; position: relative; text-align: center; width: auto; }
+.progressbar .step_one { margin-right:-16px; min-width: 0px; }
+.progressbar .step_two { margin-left:-16px; margin-right: -7px; min-width: 0px; }
+.progressbar .step_three { margin-left: -37px; margin-right: -27px; }
+.progressbar .step_four { margin-left: -37px; margin-right: 0; }
+.progressbar .complete { color: #000; }
+.progressbar li:after { background: rgba(57, 57, 57, 0.5); content: ''; height: 2px; left: 0; position: absolute; top: 22px; width: 100%; z-index: -1; }
+.progressbar .active:after { background-color: #000; }
+.progressbar li:first-child:after { content: none; }
+.progressbar .step_two:after { content: none; }
+.progressbar .step_three:after { content: none; }
+.progressbar .step_four:after { content: none; }
+.progressbar li:before { background: #fff; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 100%; color: #000; content: counter(step); counter-increment: step; display: block; font-family: 'Futura' !important; font-size: 12px; font-weight: 500; line-height: 28px; margin: 0 auto 5px auto; text-align: center; width: 28px; }
+.progressbar .one_A:before { display: none; }
+.progressbar .one_B:before { display: none; }
+.progressbar .one_C:before { display: none; }
+.progressbar .one_D:before { display: none; }
+.progressbar .two_A:before { display: none; }
+.progressbar .two_B:before { display: none; }
+.progressbar .two_C:before { display: none; }
+.progressbar .two_D:before { display: none; }
+.progressbar .two_E:before { display: none; }
+.progressbar .two_F:before { display: none; }
+.progressbar .two_G:before { display: none; }
+.progressbar .two_H:before { display: none; }
+.progressbar .two_I:before { display: none; }
+.progressbar .three_A:before { display: none; }
+.progressbar .three_B:before { display: none; }
+.progressbar .three_C:before { display: none; }
+.progressbar .three_D:before { display: none; }
+.progressbar .active:before { background-color: #393939; border-color: #393939; color: #fff; }
+.progressbar .complete:before { background-color: #393939; border-color: #393939; color: #fff; }
+.leftRegistionImg { background-repeat: no-repeat; background-position: 0 0; background-size: cover; min-height: 100vh; }
+.leftRegistionImg .white_logo { display: inline-block; margin: 30px 0 0 30px; }
+.leftRegistionImg .white_logo a { display: block; }
+.step_one_form_box_1 .leftRegistionImg { min-height: 1024px; }
+.step_one_form_box_2 .leftRegistionImg { min-height: 1024px; }
+.form_content_box { margin: 0; padding: 0; width: 100%; }
+.form_content_box .rightRegistionFormBox { padding-left: 30px; }
+.step_one_form_box_3 .RegistionFormPaddingBox { margin: 0; padding: 0 85px 0 65px; width: 100%; }
+.rightRegistionFormBox h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 15px 0; text-align: center; }
+.step_one_form_box_3 h3 { text-align: left; }
+.rightRegistionFormBox p { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 20px 0; text-align: center; }
+.step_one_form_box_3 p { text-align: left; }
+.step_one_form_box_3 .common_btn { background: #393939; border: none; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; text-align: center; width: 100%; }
+.step_one_form_box_3 .common_btn:focus { box-shadow: none; }
+.rightRegistionFormBox .vendorRegFormList { float: left; list-style: none; margin-top: 20px; padding: 0 85px 0 65px; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li { margin-bottom: 20px; position: relative; }
+.rightRegistionFormBox .vendorRegFormList li h5 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 10px 0; }
+.rightRegistionFormBox .vendorRegFormList li .text-right { text-align: right; }
+.rightRegistionFormBox .vendorRegFormList li .span_alert { color: rgba(0,0,0,0.5); display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 8px 0 0 0; }
+.rightRegistionFormBox .vendorRegFormList li .span_alert2 { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 8px 0 0 0; }
+.rightRegistionFormBox .vendorRegFormList li .span_alert2 a { color: #000; cursor: pointer; text-decoration: underline;}
+.rightRegistionFormBox .vendorRegFormList li .skipNow { color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin-top: 5px; }
+.limitSpan { color: #9c9c9c; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 5px 0 0 0; text-align: right; }
+.rightRegistionFormBox .vendorRegFormList li label { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 8px 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .prefix { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; left: 22px; position: absolute; top: 39px; }
+.rightRegistionFormBox .vendorRegFormList li .suburl { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; left: 22px; position: absolute; top: 39px; }
+.rightRegistionFormBox .vendorRegFormList li .normalLabel { font-size: 16px; }
+.rightRegistionFormBox .vendorRegFormList li .form-check .form-check-label { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.rightRegistionFormBox .vendorRegFormList li .form-check .form-check-label a { text-decoration: underline; }
+.rightRegistionFormBox .vendorRegFormList li .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; } 
+.rightRegistionFormBox .vendorRegFormList li .prefix-control { padding: 0 15px 0 25px; }
+.rightRegistionFormBox .vendorRegFormList li .suburl-control { padding-left: 236px; }
+.rightRegistionFormBox .vendorRegFormList li .textareaControl { height: 245px; line-height: normal; padding-bottom: 10px; padding-top: 10px; }
+.rightRegistionFormBox .vendorRegFormList li .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; }
+.rightRegistionFormBox .vendorRegFormList li .smallTextarea { height: 90px; }
+.rightRegistionFormBox .vendorRegFormList li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.rightRegistionFormBox .vendorRegFormList li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.rightRegistionFormBox .vendorRegFormList li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.rightRegistionFormBox .vendorRegFormList li .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list { list-style: none; padding: 0; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list li { margin: 0; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list li .form-check .form-check-label { color: #9c9c9c; margin: 0; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list li .form-check .form-check-input { cursor: pointer; margin-top: 5px; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.rightRegistionFormBox .vendorRegFormList li .sub_product_list li .form-check .form-check-input:focus { box-shadow: none; }
+.rightRegistionFormBox .vendorRegFormList li .upload_files { background: rgba(57,57,57,0.05); border: 2px dashed rgba(0,0,0,.5); border-radius: 3px; height: 162px; margin: 25px 0 0 0; padding: 0; position: relative; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .upload_files p { background: url(../../assets/images/upload_icon.png) no-repeat center 30%; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; height: 100%; line-height: 162px; text-align: center; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadBtn { background: url(../../assets/images/upload_icon.png) no-repeat center 30% rgba(57,57,57,0.05); border: 2px dashed rgba(0,0,0,.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; height: 162px; line-height: 158px; margin: 25px 0 0 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .small_upload_files p { font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: normal; padding-top: 80px; }
+.rightRegistionFormBox .vendorRegFormList li .small_upload_files p strong { font-family: 'Futura' !important; font-weight: 500; }
+.rightRegistionFormBox .vendorRegFormList li .upload_files .uploadInput { cursor: pointer; height: 100%; margin: 0; opacity: 0; outline: none; padding: 0; position: absolute; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_img { height: 162px; margin: 25px 0 10px 0; overflow: hidden; padding: 0; position: relative; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_img img { height: 162px; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_img .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 10px; top: 10px; text-align: center; width: 25px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_img .edit_upload_img img { height: auto; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_cover_image { height: 162px; margin: 25px 0 10px 0; overflow: hidden; padding: 0; position: relative; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_cover_image img { height: 162px; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_cover_image .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 10px; top: 10px; text-align: center; width: 25px; }
+.rightRegistionFormBox .vendorRegFormList li .show_cover_image .edit_upload_img img { height: auto; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_profile_photo { height: 162px; margin: 25px 0 10px 0; overflow: hidden; padding: 0; position: relative; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_profile_photo img { height: 162px; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_profile_photo .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 10px; top: 10px; text-align: center; width: 25px; }
+.rightRegistionFormBox .vendorRegFormList li .show_profile_photo .edit_upload_img img { height: auto; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_profile_img  { border-radius: 100%; height: 162px; margin: 25px 0 10px 0; overflow: hidden; padding: 0; position: relative; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_profile_img  img { height: 162px; width: 162px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_profile_img  .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 28px; top: 20px; text-align: center; width: 25px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_profile_img  .edit_upload_img img { height: auto; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_cover_img { height: 187px; margin: 25px 0 10px 0; overflow: hidden; padding: 0; position: relative; width: 420px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_cover_img img { height: 187px; width: 420px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_cover_img .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 10px; top: 10px; text-align: center; width: 25px; }
+.rightRegistionFormBox .vendorRegFormList li .show_upload_cover_img .edit_upload_img img { height: auto; width: auto; }
+.rightRegistionFormBox .vendorRegFormList li .graySection { background: rgba(57,57,57,0.05); margin: 0; padding: 20px 20px 5px 20px; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .graySection p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 20px 0; }
+.rightRegistionFormBox .vendorRegFormList li .graySection p strong { font-family: 'Futura' !important; font-weight: 500; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists { list-style: none; margin: 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li { border: 1px solid #000; border-radius: 3px; margin: 0 0 15px 0; padding: 0 5px 0 10px; position: relative; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li:after{ border-bottom: 2px solid #000; bottom: -6px; content: ""; left: 2.5px; position: absolute; width: 98%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li .item_name { background: url(../../assets/images/docs_icon.png) no-repeat 0 12px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 38px; padding: 0 0 0 25px; width: 67%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li .item_status { color: rgba(0,0,0,0.5); display: inline-block; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; line-height: 38px; text-align: center; width: 25%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li .item_delete { display: inline-block; line-height: 38px; width: 8%; }
+.rightRegistionFormBox .vendorRegFormList li .uploadSheetsLists li .item_delete a { cursor: pointer; display: block; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists { list-style: none; margin: 15px 0 0 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists li { margin: 0 0 5px 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists li .form-check-label { color: #000; margin: 0 0 0 0; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists li .form-check-input { cursor: pointer; margin-top: 5px; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists li .form-check-input:checked { background: #000; border-color: #000; }
+.rightRegistionFormBox .vendorRegFormList li .radio_lists li .form-check-input:focus { box-shadow: none; }
+.rightRegistionFormBox .vendorRegFormList li .disc_list { list-style: disc; margin: 0; padding: 0 0 0 20px; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .disc_list li { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div { margin: 0; padding: 0; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div .radio_content_list { list-style: none; padding: 0; }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div .radio_content_list li { }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div .radio_content_list li .graySection { background: rgba(57,57,57,0.05); margin: 20px 0 0 0; padding: 20px 20px 5px 20px; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div .radio_content_list li .graySection p { color: #000; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0 0 20px 0; }
+.rightRegistionFormBox .vendorRegFormList li .show_radion_content_div .radio_content_list li .graySection p strong { font-family: 'Futura' !important; font-weight: 500; }
+.rightRegistionFormBox .vendorRegFormList li .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .common_btn:focus { box-shadow: none; }
+.rightRegistionFormBox .vendorRegFormList li .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.rightRegistionFormBox .vendorRegFormList li .back_btn:focus { box-shadow: none; }
+.rightRegistionFormBox .requireList { margin: 0; width: 100%; }
+.rightRegistionFormBox .requireList li { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.step_two_form_box_left .leftRegistionImg { background-size: 100% auto; min-height: 500px; }
+.step_two_form_box_left .leftRegistionImg2 { background-position: center; background-repeat: no-repeat; min-height: 500px; }
+.step_two_form_box_left .rightRegistionFormBox h3 { text-align: left; }
+.step_two_form_box_left .rightRegistionFormBox h4 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500;  margin: -10px 0 10px 0; }
+.step_two_form_box_left .rightRegistionFormBox p { text-align: left; }
+.step_two_form_box_left .rightRegistionFormBox p a { cursor: pointer; text-decoration: underline; }
+.step_two_form_box_left .rightRegistionFormBox .vendorRegFormList { margin-top: 0; padding-left: 0; padding-right: 0; } 
+.rightRegistionFormBox .vendorTagList { list-style: none; padding: 0; /*margin: 0; padding: 0 0 50px 0; text-align: center; width: 100%;*/ }
+.rightRegistionFormBox .vendorTagList li { margin-bottom: 15px; /*display: inline-block; margin: 0 0 10px 0; padding: 0 10px 0 10px; width: auto;*/ }
+.rightRegistionFormBox .vendorTagList li .store_label { background: none; cursor: pointer; display: block; margin: 0; padding: 0 15px 0 15px; position: relative; -webkit-user-select: none; user-select: none; width: 100%; }
+/* Hide the browser's default checkbox */
+.rightRegistionFormBox .vendorTagList li .store_label input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.rightRegistionFormBox .vendorTagList li .store_label h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; text-align: center; }
+/* Create a custom checkbox */
+.rightRegistionFormBox .vendorTagList li .checkmark { background: #fff; border: 1px solid rgba(57,57,57,0.5); border-radius: 3px; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: -1; }
+/* On mouse-over, add a grey background color */
+.rightRegistionFormBox .vendorTagList li .store_label:hover input ~ .checkmark { background-color: rgba(57,57,57,0.05); }
+/* When the checkbox is checked, add a blue background */
+.rightRegistionFormBox .vendorTagList li .store_label input:checked ~ .checkmark { background-color: #393939; border-color: #393939; }
+.rightRegistionFormBox .vendorTagList li .store_label input:checked ~ h4 { color: #fff; }
+/* Create the checkmark/indicator (hidden when not checked) */
+/*.rightRegistionFormBox .vendorTagList li .checkmark:after { content: ""; position: absolute; display: none; }*/
+/* Show the checkmark when checked */
+/*.rightRegistionFormBox .vendorTagList li .store_label input:checked ~ .checkmark:after { display: block; }*/
+/* Style the checkmark/indicator */
+/*.rightRegistionFormBox .vendorTagList li .store_label .checkmark:after { border: solid white; border-width: 0 3px 3px 0; height: 10px; left: 9px; top: 5px; -webkit-transform: rotate(45deg); transform: rotate(45deg); width: 5px; }*/
+.step_two_form_box_left .leftRegistionImg2 .leftInnerRegistionImg { float: right; margin-top: 100px; }
+.brandInformationleft h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 15px 0; }
+.brandInformationleft .brandInfoFormList { list-style: none; padding: 0; }
+.brandInformationleft .brandInfoFormList li { margin-bottom: 20px; }
+.brandInformationleft .brandInfoFormList li label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 0; width: 100%; }
+.brandInformationleft .brandInfoFormList li .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; } 
+.brandInformationleft .brandInfoFormList li .textareaControl { height: 245px; line-height: normal; }
+.brandInformationleft .brandInfoFormList li .smallTextarea { height: 113px; padding-bottom: 10px; padding-top: 10px; }
+.brandInformationleft .brandInfoFormList li .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.brandInformationleft .brandInfoFormList li .sub_product_list { list-style: none; padding: 0; }
+.brandInformationleft .brandInfoFormList li .sub_product_list li { margin: 0; }
+.brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-label { color: #9c9c9c; margin: 0; }
+.brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input { cursor: pointer; margin-top: 5px; }
+.brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.brandInformationleft .brandInfoFormList li .sub_product_list li .form-check .form-check-input:focus { box-shadow: none; }
+.brandInformationleft .uploadSheetsLists { list-style: none; margin: 0; padding: 0; width: 100%; }
+.brandInformationleft .uploadSheetsLists li { border: 1px solid rgba(0,0,0,0.5); border-radius: 3px; margin: 0 0 15px 0; padding: 0 5px 0 10px; position: relative; width: 100%; }
+.brandInformationleft .uploadSheetsLists li:after{ border-bottom: 2px solid #000; bottom: -6px; content: ""; left: 2.5px; position: absolute; width: 98%; }
+.brandInformationleft .uploadSheetsLists li .item_name { background: url(../../assets/images/docs_icon.png) no-repeat 0 12px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 38px; padding: 0 0 0 25px; width: 95%; }
+.brandInformationleft .uploadSheetsLists li .item_delete { display: inline-block; line-height: 38px; text-align: center; width: 5%; }
+.brandInformationleft .uploadSheetsLists li .item_delete a { cursor: pointer; display: block; }
+.brandInformationRight h3 { color: #000; font-family: 'Futura' !important; font-size: 40px; font-weight: 200; line-height: 42px; margin: 0 0 15px 0; }
+.brandInformationRight p { color: #393939; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; margin: 0 0 15px 0; }
+.brandInformationRight .show_upload_profile_img { border-radius: 100%; height: 112px; margin: 25px 0 10px 0; /*overflow: hidden;*/ padding: 0; position: relative; width: 112px; }
+.brandInformationRight .show_upload_profile_img img { height: 112px; width: 112px; }
+.brandInformationRight .show_upload_profile_img .edit_upload_img { background: #fff; border-radius: 3px; cursor: pointer; display: inline-block; height: 25px; line-height: 20px; padding: 0; position: absolute; right: 0; top: 0; text-align: center; width: 25px; }
+.brandInformationRight .show_upload_profile_img .edit_upload_img img { height: auto; width: auto; }
+.brandInformationRight .show_profile_photo { height: 162px; margin: 25px 0 20px 0; overflow: hidden; padding: 0; position: relative; width: 162px; }
+.brandInformationRight .show_profile_photo img { height: 162px; width: 162px; }
+.brandInformationRight .vendorRegFormList { list-style: none; padding: 0; }
+.brandInformationRight .vendorRegFormList li .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.brandInformationRight .vendorRegFormList li .common_btn:focus { box-shadow: none; }
+.brandInformationRight .vendorRegFormList li .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 100%; }
+.brandInformationRight .vendorRegFormList li .back_btn:focus { box-shadow: none; }
+.step_two_form_box_25 h4 { color: #000; font-family: 'Futura' !important; font-size: 40px; font-weight: 200; margin: 0 0 20px 0; text-align: center; }
+.step_two_form_box_25 p { color: #000; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; line-height: 27px; margin: 0 auto; margin-bottom: 100px; max-width: 550px; text-align: center; }
+.step_two_form_box_25 .finalList { list-style: none; padding: 0; }
+.step_two_form_box_25 .finalList li { }
+.step_two_form_box_25 .finalList li h4 { color: #000; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; margin: 0 0 25px 0; }
+.step_two_form_box_25 .finalList li h4 strong { font-family: 'Futura' !important; font-weight: 500; }
+.step_two_form_box_25 .finalList li .imgDiv { margin: 0; padding: 0; position: relative; width: 100%; }
+.step_two_form_box_25 .finalList li .imgDiv img { height: auto; width: 100%; }
+.step_two_form_box_25 .finalList li .imgDiv::after { background-color: #fff; content: ""; height: 100%; left: 0; opacity: 0.4; position: absolute; top: 0; transition: all .5s ease-in-out; width: 100%; }
+.step_two_form_box_25 .finalList li:hover .imgDiv::after { opacity: 0; }
+.step_two_form_box_25 .finalList li .text_div { background: rgba(156,156,156,0.11); margin: 0; padding: 15px; width: 100%; }
+.step_two_form_box_25 .finalList li .text_div h5 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 10px 0; }
+.step_two_form_box_25 .finalList li .text_div p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0; max-width: none; text-align: left; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.progressbar li { min-width: 40px; }
+.progressbar .step_three { margin-left: -18px; margin-right: -8px; }
+.progressbar .step_four { margin-left: -6px; }
+.leftRegistionImg { display: none; }
+.step_one_form_box_1 .leftRegistionImg { display: none; }
+.step_one_form_box_2 .leftRegistionImg { display: none; }
+.form_content_box .rightRegistionFormBox { padding-left: 10px; padding-top: 40px; }
+.step_two_form_box_25 .finalList li { margin-bottom: 40px; }
+}
+@media screen and (max-width:767px) { 
+.vendor_header .vendorNavs li a { padding: 0 10px 0 10px; }
+.progressbar { margin-bottom: 0; }
+.progressbar .one_B { display: none; }
+.progressbar .one_C { display: none; }
+.progressbar .one_D { display: none; }
+.progressbar .two_B { display: none; }
+.progressbar .two_C { display: none; }
+.progressbar .two_D { display: none; }
+.progressbar .two_E { display: none; }
+.progressbar .two_F { display: none; }
+.progressbar .two_G { display: none; }
+.progressbar .two_H { display: none; }
+.progressbar .three_B { display: none; }
+.progressbar .three_C { display: none; }
+.step_two_form_box_left .leftRegistionImg2 { background-size: 330px auto; min-height: 300px; }
+.step_two_form_box_left .rightRegistionFormBox .vendorRegFormList li { padding-left: 0; padding-right: 0; }
+.rightRegistionFormBox .vendorRegFormList { margin-left: 0; margin-right: 0; padding: 0; }
+.step_one_form_box_3 .RegistionFormPaddingBox { padding: 0; }
+.rightRegistionFormBox .vendorRegFormList li .common_btn { margin-top: 0px !important; }
+.step_two_form_box_25 h4 { font-size: 32px; }
+.step_two_form_box_25 p { font-size: 20px; margin-bottom: 30px; }
+}
+@media screen and (max-width:360px) { 
+.rightRegistionFormBox h3 { font-size: 30px; }
+}
+/* Responsive End */

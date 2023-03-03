@@ -1,0 +1,21 @@
+.middle_vendor_dasboard .middle_content .whiteBox h4 { border-bottom: 1px solid rgba(0, 0, 0, 0.25); color: #000; font-family: 'Futura' !important; font-size: 34px; font-weight: 500; margin: 0 0 20px 0; padding: 0 30px 15px 30px; }
+.middle_vendor_dasboard .middle_content .whitebox_content { margin: 0; padding: 0 0 0 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .whitebox_content p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 30px 20px 0; }
+.middle_vendor_dasboard .middle_content .whitebox_content p a { font-family: 'Futura' !important; font-weight: 500; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .whitebox_content p strong { font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .whitebox_content .left_update_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .whitebox_content .left_update_list li { background: rgba(57, 57, 57, 0.05); border-radius: 3px; margin: 0 0 25px 0; padding: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .whitebox_content .left_update_list li h4 { border-bottom: none; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 15px 0; padding: 0; }
+.middle_vendor_dasboard .middle_content .whitebox_content .left_update_list li p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .whitebox_content .left_update_list li .edit_link { background: url(../../assets/images/arrow_right_alt_black_24dp1.png) no-repeat right 10px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 0 20px 0 0; text-decoration: underline; }
+
+.alert-warning {font-family: 'Futura' !important; font-size: 16px; font-weight: 500;}
+.alert-warning a {text-decoration: underline; cursor: pointer;}
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.middle_vendor_dasboard .middle_content h3 { font-size: 24px; }
+.middle_vendor_dasboard .middle_content .whiteBox h4 { font-size: 24px; padding-left: 15px; }
+.middle_vendor_dasboard .middle_content .whitebox_content { padding-left: 15px; padding-right: 15px; }
+}
+/* Responsive End */
