@@ -1,0 +1,143 @@
+<div class="gray_body">
+  <div class="container-fluid profileDiv">
+    <div class="row">
+      <div class="col-lg-2 col-sm-4">
+      	<app-user-left-sidebar></app-user-left-sidebar>  
+      </div>
+      <div class="col-lg-10 col-sm-8">
+        <h2 class="heading">My invoices</h2>
+        <div class="rightAccount">
+          <div class="noOrder"> 
+            <!--<h4>No orders placed yet </h4>
+                        <a href="#" class="moreBtn">Start shopping </a>-->
+            <table id="example" class="table" style="width:100%">
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Seller</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                  <td>1</td>
+                  <td>T-shirt</td>
+                  <td>Best Seller</td>
+                  <td>February 8, 2022</td>
+                  <td>$11.70</td>
+                  <td><a class="downloadSpan">Download</a></td>
+                </tr>
+                <tr>
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                  <td>2</td>
+                  <td>T-shirt</td>
+                  <td>Best Seller</td>
+                  <td>February 8, 2022</td>
+                  <td>$11.70</td>
+                  <td><a class="downloadSpan">Download</a></td>
+                </tr>
+                <!-- <tr>
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                  <td>3</td>
+                  <td>T-shirt</td>
+                  <td>Best Seller</td>
+                  <td>February 8, 2022</td>
+                  <td>$11.70</td>
+                  <td><a class="downloadSpan">Download</a></td>
+                </tr>
+                <tr>
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                  <td>4</td>
+                  <td>T-shirt</td>
+                  <td>Best Seller</td>
+                  <td>February 8, 2022</td>
+                  <td>$11.70</td>
+                  <td><a class="downloadSpan">Download</a></td>
+                </tr>
+                <tr>
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                  <td>5</td>
+                  <td>T-shirt</td>
+                  <td>Best Seller</td>
+                  <td>February 8, 2022</td>
+                  <td>$11.70</td>
+                  <td><a class="downloadSpan">Download</a></td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User-Log-In-Modal -->
+<ng-template #downloadInvoiceContent let-modal>
+  <div id="pdfData" #pdfData>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <a><img src="assets/images/download_icon.svg" alt="" class="downloadIcon"></a> </div>
+  <div class="modal-body" style="height: 500px;">
+    <!-- <iframe
+    src="https://www.africau.edu/images/default/sample.pdf#toolbar=0"
+    frameBorder="0"
+    scrolling="auto"
+    height="100%"
+    width="100%"
+    ></iframe> -->
+    <div class="row topHeader">
+      <div class="col-lg-8 topHeaderLeft">
+        <h3>Invoice #1</h3>
+        <h4>Client Marina Iv</h4>
+        <p>Date Period: June 02- 12 2022<br>
+          Invoice No.: 1111</p>
+      </div>
+      <div class="col-lg-4 topHeaderRight">
+        <p>Maryna Iv<br>
+          Qatar<br>
+          102 Bayview Ave<br>
+          Dokha<br>
+          56777<br>
+          +974 333 33 33</p>
+      </div>
+    </div>
+    <div class="invoiceTableBody">
+      <table id="example" class="table" style="width:100%">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Item total</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Women's Black leather Bomber Jacket</td>
+            <td>$1.120</td>
+            <td>$1.120</td>
+          </tr>
+          <tr class="addiTr">
+            <td colspan="3"><h3>Additional</h3></td>
+          </tr>
+          <tr class="shippingTr">
+            <td>Shipping</td>
+            <td>free</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="shippingTr">
+            <td>Import duties</td>
+            <td>free</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</ng-template>

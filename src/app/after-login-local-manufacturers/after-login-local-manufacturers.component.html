@@ -1,0 +1,190 @@
+<app-after-login-header></app-after-login-header>
+<!-- * * * * * * * * * * * Header End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Banner Start * * * * * * * * * * * -->
+<div class="local_banner after_login_local_banner" style="background-image: url(assets/images/local-brands-image-min.png);">
+    <div class="white_banner_box">
+        <h3>{{localBannerHeading}}</h3>
+        <p>{{localBannerPara}}</p>
+        <a class="btn btn-primary sell_on_bazar"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+        <a class="btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common Section Start * * * * * * * * * * * -->
+<div class="comn_Sec">
+    <div class="container">
+        <div class="afterLoginGrayBox">
+            <h3>Local Middle Eastern Brands</h3>
+            <a class="shopLink">Shop it</a>
+        </div>
+        <div class="carouselSec">
+            <owl-carousel-o [options]="topCustomOptions1">
+                <ng-template carouselSlide *ngFor="let localMiddleArrays of localMiddleArray">
+                    <div class="category_box">
+                        <div class="img_div">
+                            <img src="{{localMiddleArrays.brandImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h3>{{localMiddleArrays.brandTitleName}}</h3>
+                            <h4>{{localMiddleArrays.priceText}}</h4>
+                            <h5>{{localMiddleArrays.discountText}}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common Section End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common-Explore-Cetagory Section Start * * * * * * * * * * * -->
+<div class="comn_explore_cat">
+    <div class="container">
+        <h3>Explore Categories</h3>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="local-brands" role="tabpanel" aria-labelledby="local-manufacturers-tab">
+                <div class="container">
+                    <owl-carousel-o [options]="customOptions">
+                        <ng-template carouselSlide *ngFor="let categoryArrays of categoryArray">
+                            <div class="category_box">
+                                <div class="category_box_inner">
+                                    <div class="img_div">
+                                        <img src="{{categoryArrays.imgName}}" alt="">
+                                    </div>
+                                    <div class="text_div">
+                                        <h3>{{categoryArrays.titleName}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common-Explore-Cetagory Section End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common Section Start * * * * * * * * * * * -->
+<div class="comn_Sec">
+    <div class="container">
+        <div class="afterLoginGrayBox">
+            <h3>Specials in Kitchen & Tabletop</h3>
+            <a class="shopLink">Shop it</a>
+        </div>
+        <div class="carouselSec">
+            <owl-carousel-o [options]="topCustomOptions1">
+                <ng-template carouselSlide *ngFor="let localMiddleArrays of localMiddleArray">
+                    <div class="category_box">
+                        <div class="img_div">
+                            <img src="{{localMiddleArrays.brandImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h3>{{localMiddleArrays.brandTitleName}}</h3>
+                            <h4>{{localMiddleArrays.priceText}}</h4>
+                            <h5>{{localMiddleArrays.discountText}}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="afterLoginGrayBox">
+            <h3>Specials in Home & Garden</h3>
+            <a class="shopLink">Shop it</a>
+        </div>
+        <div class="carouselSec">
+            <owl-carousel-o [options]="topCustomOptions1">
+                <ng-template carouselSlide *ngFor="let localMiddleArrays of localMiddleArray">
+                    <div class="category_box">
+                        <div class="img_div">
+                            <img src="{{localMiddleArrays.brandImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h3>{{localMiddleArrays.brandTitleName}}</h3>
+                            <h4>{{localMiddleArrays.priceText}}</h4>
+                            <h5>{{localMiddleArrays.discountText}}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common Section End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common-clients-Says Section start * * * * * * * * * * * -->
+<div class="trending_on_bazar">
+    <div class="container">
+        <h3>Trending on Bazar</h3>
+        <div class="row">
+            <ul class="trending_list">
+                <li>
+                    <div class="imgDiv"><img src="assets/images/trending-img1.jpg" alt=""></div>
+                    <h4>Hand-made</h4>
+                </li>
+                <li *ngFor="let trendingArrays of trendingArray">
+                    <div class="imgDiv"><img src="{{trendingArrays.trendingImg}}" alt=""></div>
+                    <h4>{{trendingArrays.trendingText}}</h4>
+                </li>  
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common-clients-Says Section end * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common Section Start * * * * * * * * * * * -->
+<div class="comn_Sec">
+    <div class="container">
+        <div class="afterLoginGrayBox">
+            <h3>Specials in Kitchen & Tabletop</h3>
+            <a class="shopLink">Shop it</a>
+        </div>
+        <div class="carouselSec">
+            <owl-carousel-o [options]="topCustomOptions1">
+                <ng-template carouselSlide *ngFor="let localMiddleArrays of localMiddleArray">
+                    <div class="category_box">
+                        <div class="img_div">
+                            <img src="{{localMiddleArrays.brandImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h3>{{localMiddleArrays.brandTitleName}}</h3>
+                            <h4>{{localMiddleArrays.priceText}}</h4>
+                            <h5>{{localMiddleArrays.discountText}}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common Section End * * * * * * * * * * * -->
+
+<!-- * * * * * * * * * * * Common-Local-Brands Section start * * * * * * * * * * * -->
+<div class="new_bazar_section">
+    <div class="container">
+        <h3>Explore Local Brands</h3>
+        <owl-carousel-o [options]="localcarousel2">
+            <ng-template carouselSlide *ngFor="let localCategoryArrays2 of localCategoryArray2">
+                <div class="category_box">
+                    <div class="category_box_inner">
+                        <div class="img_div">
+                            <img src="{{localCategoryArrays2.newImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h4>{{localCategoryArrays2.newTitleName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+        <!--<div class="btn_center">
+            <a class="btn btn btn-primary sell_bazar"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+            <a class="btn btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        </div>-->
+    </div>
+</div>
+<!-- * * * * * * * * * * * Common-Local-Brands Section end * * * * * * * * * * * -->
+
+<app-footer></app-footer> 

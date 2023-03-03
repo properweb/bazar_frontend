@@ -1,0 +1,61 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+    <app-vendor-side-menu></app-vendor-side-menu>
+    <div class="middle_vendor_dasboard">
+        <div class="middle_content">
+            <div class="step_top">
+                <ul id="progressbar" class="progressbar">
+                    <li class="stepAll step_one complete">Personal info</li>
+                    <li class="stepAll step_two active">Store info</li>
+                    <li class="stepAll step_three">Customize</li>
+                </ul>
+            </div>
+            <div class="whiteBox">
+                <div class="store_info_tab">
+                    <img src="assets/images/product_shopify_icon.svg" alt="">
+                    <h3>Connect your Shopify account</h3>
+                    <form #shopifyConnectForm="ngForm" (ngSubmit)="shopifyConnectForm.form.valid && shopifyConnect(shopifyConnectForm)">
+                    <p>Please enter your "myshopify.com" store address to begin the account linking process</p>
+                    <ul class="urlList">
+                        <li>
+                            <label>Api Key</label>
+                            <input type="hidden" name="user_id" [(ngModel)]="user_id" />
+                            <input required type="text" class="form-control" placeholder="Api Key" name="api_key" [(ngModel)]="api_key" #api_keyval='ngModel'>
+                            <span class="idSpan"></span>
+                            <span class="validate_errors"
+                                *ngIf="(api_keyval.touched || shopifyConnectForm.submitted) && api_keyval.errors?.['required']">
+                                 Api key is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Api Password</label>
+                            <input required type="text" class="form-control" placeholder="Api Password" name="api_password" [(ngModel)]="api_password" #api_passwordval='ngModel'>
+                            <span class="idSpan"></span>
+                            <span class="validate_errors"
+                                *ngIf="(api_passwordval.touched || shopifyConnectForm.submitted) && api_passwordval.errors?.['required']">
+                                Api password is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Store URL</label>
+                            <input required type="text" class="form-control" placeholder="My shop" name="store_url" [(ngModel)]="store_url" #store_urlval='ngModel'>
+                            <span class="idSpan">.myshopify.com</span>
+                            <span class="validate_errors"
+                                *ngIf="(store_urlval.touched || shopifyConnectForm.submitted) && store_urlval.errors?.['required']">
+                                Store URL is required
+                            </span>
+                        </li>
+                        <span *ngIf="errorMsg" style="color: red; font-family: 'Futura PT Book'; font-size: 18px;">{{errorMsg}}</span>
+                        <span *ngIf="successMsg" style="background-color: rgb(143, 235, 147); color: #fff; display: block; font-family: 'Futura PT Book'; font-size: 18px; padding: 10px; text-align: center;">{{successMsg}}</span>
+                        <li>
+                            <input type="submit" *ngIf="!spinnerShow" class="btn btn-primary" value="Connect">
+                            <button type="" class="btn btn-primary" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; left: 140px;bottom: -28px;position: absolute;"></button>
+                        </li>
+                    </ul>
+                </form>
+                    <p class="bottomPara">Learn more about how we use and protect your data at Bazar. <a>Privacy at Bazar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

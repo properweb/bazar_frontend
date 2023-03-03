@@ -1,0 +1,1480 @@
+@import url("fonts/fonts.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* font-family: 'Futura' !important;
+   font-weight: 200;
+*/
+
+/* font-family: 'Futura' !important;
+   font-weight: 300;
+*/
+
+/* font-family: 'Futura' !important;
+   font-weight: 400;
+*/
+
+/* font-family: 'Futura' !important;
+   font-weight: 500; 
+*/
+
+/* font-family: 'Futura' !important;
+   font-weight: 700; 
+*/
+
+/* font-family: 'Futura' !important;
+   font-weight: 900; 
+*/
+
+/* 
+font-family: 'Inter', sans-serif;
+*/
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Futura' !important; font-weight: 200; }
+a { text-decoration: none; }
+.h1, .h2, .h3, .h4, .h5, .h6 { font-family: 'Futura' !important; line-height: 1.2; }
+p { font-family: 'Futura' !important; font-weight: 200; }
+input, button { font-family: 'Futura' !important; }
+.form-control, .form-select { font-family: 'Futura' !important; font-weight: 200; }
+.form-select option { font-weight: 200; }
+.container-fluid { max-width: 1440px; }
+.full_container-fluid { max-width: 100%; padding-left: 30px !important; padding-right: 30px !important; }
+.error-msg { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.validate_errors { color: red; font-family: 'Futura' !important; margin-bottom: 10px; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
+input[type=number] { -moz-appearance: textfield; } 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Common Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
+.pagination { display: block; margin: 0 0 40px 0; padding: 20px 0 0 0; text-align: center; width: 100%; }
+.pagination .page-item { display: inline-block; height: 64px; margin: 0 3px 0 3px; vertical-align: middle; }
+.pagination .prev { margin-right: 15px; }
+.pagination .next { margin-left: 15px; }
+.pagination .page-item .page-link { background: none; border: none; border-radius: 0px; color: rgba(156, 156, 156, 0.5); cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; height: 64px; line-height: 64px; padding: 0 10px 0 10px; text-align: center; }
+.pagination .page-item .page-link:hover { color: #000; }
+.pagination .prev .page-link { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; width: 64px; }
+.pagination .prev .page-link:hover { background-image: url(assets/images/pagi_prev_white_icon.png); background-color: #000; }
+.pagination .next .page-link { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; width: 64px; }
+.pagination .next .page-link:hover { background-image: url(assets/images/pagi_next_white_icon.png); background-color: #000; }
+.pagination .active .page-link { color: #000; }
+.pagination .first-item { display: none; }
+.pagination .last-item { display: none; }
+.pagination .previous-item { margin-right: 15px; }
+.pagination .previous-item .page-link { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.pagination .previous-item .page-link:hover { background-image: url(assets/images/pagi_prev_white_icon.png); background-color: #000; cursor: pointer; }
+.pagination .next-item { margin-left: 15px; }
+.pagination .next-item .page-link { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; width: 64px; text-indent: -999em; width: 64px; }
+.pagination .next-item .page-link:hover { background-image: url(assets/images/pagi_next_white_icon.png); background-color: #000; cursor: pointer; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Tab Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box { margin: 0; padding: 0 15px 0 0; width: 100%; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .category_box_inner { margin: 0; padding: 0; position: relative; width: 100%; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item:nth-child(odd) .category_box .category_box_inner { padding-top: 70px; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .img_div { height: 520px; margin: 0; padding: 0; position: relative; width: 100%; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .img_div::after { background-color: #fff; content: ""; height: 100%; left: 0; opacity: 0.4; position: absolute; top: 0; transition: all .5s ease-in-out; width: 100%; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box:hover .img_div::after { opacity: 0; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .img_div img { height: 520px; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .text_div { background-color: #fff; bottom: 0; height: 70px; left: 0; margin: 0; padding: 0; position: relative; width: 100%; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box .text_div h3 { color: #393939; font-size: 24px; font-weight: 500; line-height: 70px; margin: 0; text-align: center; transition: all .5s ease-in-out; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box:hover .text_div h3 { color: #000; }
+.comn_explore_cat .tab-pane .owl-carousel .owl-item:nth-child(odd) .category_box .text_div { position: absolute; top: 0; }
+.comn_explore_cat .tab-pane .owl-theme .owl-nav { margin-top: 30px; width: 100%; }
+.comn_explore_cat .tab-pane .owl-theme .owl-nav .owl-prev { background: url(assets/images/gray_left_arrow.png) no-repeat 0 0; float: left; height: 20px; width: 12px; }
+.comn_explore_cat .tab-pane .owl-theme .owl-nav .owl-next { background: url(assets/images/gray_right_arrow.png) no-repeat 0 0; float: right; height: 20px; width: 12px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Tab Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.new_bazar_section .owl-carousel .owl-stage-outer { margin-right: 1px; }
+.new_bazar_section .owl-theme .owl-nav { width: 100%; }
+.new_bazar_section .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.new_bazar_section .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.category_top .owl-theme .owl-nav { margin-top: -39px; position: relative; width: 100%; z-index: 1; }
+.category_top .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow.svg) no-repeat center; bottom: -48px; float: left; height: 57px; left: -20px; position: absolute; width: 57px; }
+.category_top .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow.svg) no-repeat center; bottom: -48px; float: right; height: 57px; position: absolute; right: -20px; width: 57px; }
+.filter_sec  .owl-theme .owl-nav { margin-top: -50px; position: relative; width: 100%; z-index: 1; }
+.filter_sec  .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; margin-left: -29px; margin-top: 5px; width: 20px; }
+.filter_sec  .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; margin-right: -29px; margin-top: 5px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Our Best Sellers Carousel in Category Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.cat_best_sellers_sec .owl-theme .owl-nav { width: 100%; }
+.cat_best_sellers_sec .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.cat_best_sellers_sec .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Our Best Sellers Carousel in Category Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Left Filter in Sub Category Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.sub_cat_left_sec [aria-controls="config-panel-one"] { display: none; }
+.sub_cat_left_sec .accordion { }
+.sub_cat_left_sec .accordion .accordion-item { border: none; border-radius: 0px; }
+.sub_cat_left_sec .accordion .accordion-item .accordion-button { background: none; border-radius: 0px; box-shadow: none; color: #19191D; font-size: 18px; font-weight: 500; padding: 0 0 0 30px; }
+.sub_cat_left_sec .accordion .accordion-item .accordion-button::after { background-image: url(assets/images/chevron_right.png); background-position: center; background-size: 8px auto; left: 0; position: absolute; top: 3px; }
+.sub_cat_left_sec .accordion .accordion-item .accordion-button:not(.collapsed)::after { background-image: url(assets/images/chevron.right.svg); background-position: center; background-size: 9.868px auto; transform: rotate(0deg); }
+.sub_cat_left_sec .accordion .accordion-item .accordion-body { }
+.sub_cat_left_sec .accordion .accordion-item .accordion-body .cat_sub_lists { list-style: none; margin: 0; padding: 0; width: 100%; }
+.sub_cat_left_sec .accordion .accordion-item .accordion-body .cat_sub_lists li { margin: 0 0 5px 0; padding: 0; width: 100%; }
+.sub_cat_left_sec .accordion .accordion-item .accordion-body .cat_sub_lists li a { color: #19191D; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; padding-left: 10px; }
+.sub_cat_left_sec .btn-group { margin-bottom: 30px; width: 100%; }
+.sub_cat_left_sec .btn-group .btn-primary { background-color: #f7f8fa; color: #000; border: none; padding: 17px 0 17px 0; transition: all .5s linear; }
+.sub_cat_left_sec .btn-group .active { background-color: #393939; color: #fff; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Left Filter in Sub Category Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Faq Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.faqTab .tab-pane .accordion .accordion-item { border: 1px solid rgba(57, 57, 57, 0.5); margin-bottom: 30px; }
+.faqTab .tab-pane .accordion .accordion-item:last-of-type {  border-top: 1px solid rgba(57, 57, 57, 0.5); }
+.faqTab .tab-pane .accordion .accordion-item .accordion-button { background: none; border-radius: 0px; box-shadow: none; color: #000; font-size: 18px; font-weight: 500; }
+.faqTab .tab-pane .accordion .accordion-item .accordion-button:not(.collapsed) { color: #000000; }
+.faqTab .tab-pane .accordion .accordion-item .accordion-button::after { background-image: url(assets/images/chevron.right.svg); background-position: center; background-size: 100% auto; height: 16px; width: 16px; }
+.faqTab .tab-pane .accordion .accordion-item .accordion-button:not(.collapsed)::after { background-image: url(assets/images/chevron.right.svg); }
+.faqTab .tab-pane .accordion .accordion-item .accordion-body p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 20px 0; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Faq Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ About Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.about_quick_sec .about_quick_list li .nav-link { background: none; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-size: 28px; font-weight: 500; margin-bottom: 0; padding: 15px; text-align: left; }
+.about_quick_sec .about_quick_list li .active { background: rgba(57, 57, 57, 0.05); border: 1px solid #393939; }
+.about_quick_sec .about_quick_list li .nav-link span { display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 22px; margin-top: 7px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ About Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Brand Shop Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.brandShopCarousel .owl-theme .owl-nav { margin: 0; width: 100%; }
+.brandShopCarousel .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.brandShopCarousel .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+.brandShopCarousel .owl-theme .owl-dots .owl-dot span { background-color: rgba(57, 57, 57, 0.5); height: 9px; width: 9px; }
+.brandShopCarousel .owl-theme .owl-dots .owl-dot.active span, .brandShopCarousel .owl-theme .owl-dots .owl-dot:hover span { background: #393939; }
+.brandShopcarousel2 .owl-theme .owl-nav { margin: 20px 0 0 0; width: 100%; }
+.brandShopcarousel2 .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.brandShopcarousel2 .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Brand Shop Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomContainer { /*align-items: center; display: flex;*/ /*height: 570px !important;*/ /*justify-content: center;*/ }
+.ngxImageZoomThumbnail { /*align-items: center; display: flex;*/ /*height: auto;*/ width: 800px; /*justify-content: center;*/ }
+.thumbnails li .thumbDiv { height: 140px; width: 140px; }
+.ngx-gallery-image { background-size: contain !important; }
+.ngx-gallery-layout.thumbnails-bottom ngx-gallery-thumbnails { height: 80px !important; }
+.ngx-gallery-thumbnails  { height: 80px !important; }
+.ngx-gallery-thumbnail { background-size: contain !important; border: none !important; height: 80px !important; }
+.slick-slider { /*width: 500px;*/ }
+.client-feedback .slick-list { padding: 0 !important; /*width: 500px;*/ height: 570px; }
+.client-feedback .slick-track { height: 570px; }
+.slick-initialized .slick-slide { display: flex; justify-content: center; align-items: center; }
+.client-feedback .slick-slide img { height: auto; max-width: 100%; width: auto; }
+.client-thumbnails { float: left; width: 140px; }
+.client-thumbnails .slick-list { padding: 0 !important; }
+.client-thumbnails .slick-slide { align-items: center; display: flex; height: 140px; justify-content: center;  }
+.client-thumbnails .slick-slide img { height: auto; max-height: 140px; max-width: 140px; width: auto; }
+/*.client-feedback .slick-slide { width: 100% !important; }*/
+.ngxImageZoomFull { /*top: 71px !important;*/ }
+.ngxImageZoomFullContainer { /*top: 0 !important;*/ /*margin-top: 40px;*/ }
+.client-feedback .slick-prev, .client-feedback .slick-next { height: 44px; top: 45%; width: 45px; z-index: 1; }
+.client-feedback .slick-prev { background: url(assets/images/carousel_prev_arrow.png) no-repeat center; left: 0; }
+.client-feedback .slick-prev:hover { background: url(assets/images/carousel_prev_arrow_active.png) no-repeat center; left: 0; }
+.client-feedback .slick-next { background: url(assets/images/carousel_next_arrow.png) no-repeat center; right: 0; }
+.client-feedback .slick-next:hover { background: url(assets/images/carousel_next_arrow_active.png) no-repeat center; right: 0; }
+.client-feedback .slick-prev:before, .client-feedback .slick-next:before { /*color: red;*/ display: none; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Shopping Bag Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.shoppingBagSec .rhtPnl .progress { border-radius: 20px; height: 8px; margin-bottom: 15px; }
+.shoppingBagSec .rhtPnl .progress-bar { border-radius: 20px; height: 8px; }
+.shoppingBagSec .rhtPnl .bg-success { background-color: #9fcf9e !important; }
+.shoppingBagSec .rhtPnl .bg-secondary { background-color: rgba(57, 57, 57, 0.5) !important; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Shopping Bag Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/**************************************************************** After Login Pages Start *****************************************************************/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.comn_Sec .carouselSec .owl-stage-outer { height: 460px; }
+.comn_Sec .carouselSec .owl-theme .owl-nav { margin: 0; width: 100%; }
+.comn_Sec .carouselSec .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; left: -30px; position: absolute; top: 150px; width: 20px; }
+.comn_Sec .carouselSec .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; position: absolute; top: 150px; right: -30px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.recentViewsCarousel .owl-theme .owl-nav { margin: 20px 0 0 0; width: 100%; }
+.recentViewsCarousel .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.recentViewsCarousel .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/**************************************************************** After Login Pages End *****************************************************************/
+
+/**************************************************************** User Pages Start *****************************************************************/
+
+/**************************************************************** User Pages End *****************************************************************/
+
+
+/**************************************************************** Vendor Pages Start *****************************************************************/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Dashboard-Common-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.dashboard_body { background: #e5e5e5; display: flex; flex: 1 1 0%; margin: 104px 0 0 0; min-height: 100%; overflow: clip; padding: 0 0 0 18%; position: relative; width: 100%; }
+.middle_vendor_dasboard { display: flex; flex-direction: column; flex: 1 1 0%; margin: 0; padding: 30px 30px 0 30px; position: relative; width: 82%; }
+.noMargin_middle_vendor_dasboard { padding-left: 0px; padding-right: 0px; }
+.middle_vendor_dasboard .middle_content { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content h3 { color: #000; font-size: 28px; font-weight: 500; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: -15px 0 30px 0; }
+.middle_vendor_dasboard .middle_content .whiteBox { background: #fff; float: left; margin: 0; padding: 30px 0 0 0; width: 100%; }
+.right_vendor_dasboard { background: #fff; display: flex; flex-direction: column; margin: 0; overflow-x: hidden; padding: 20px 0 0 0; position: relative; transition: width 500ms ease-out 0s; width: 25%; }
+.right_vendor_dasboard .right_bottom_fixed_sec h4 .activeStrong { color: green; }
+.right_content_overflow { max-height: calc(100% - 104px); overflow: auto; padding: 0 0 62px 0; position: fixed; width: 25%; }
+.right_vendor_dasboard h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 20px 20px 20px; }
+.right_vendor_dasboard .right_gray_box { background: #393939; margin: 0; padding: 20px 20px 30px 20px; width: 100%; }
+.right_vendor_dasboard .right_gray_box h3 { background: url(assets/images/dashboard_right_section_bell_icon.svg) no-repeat 0 0; color: #fff; font-size: 18px; font-weight: 500; line-height: 27px; margin: 0 0 20px 0; padding: 0 0 0 35px; }
+.right_vendor_dasboard .right_gray_box p { color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.right_vendor_dasboard .bottomrightbox { margin: 0; padding: 30px 20px 30px 20px; width: 100%; }
+.right_vendor_dasboard .bottomrightbox h3 { color: #000; font-size: 18px; font-weight: 500; margin: 0 0 20px 0; }
+.right_vendor_dasboard .bottomrightbox h3 span { background: url(assets/images/gray_dots.png) no-repeat 0 9px; color: rgba(0, 0, 0, 0.5); display: inline-block; margin-left: 5px; padding-left: 15px; }
+.right_vendor_dasboard .bottomrightbox .task_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.right_vendor_dasboard .bottomrightbox .task_list li { margin: 0 0 10px 0; padding: 0; width: 100%; }
+.right_vendor_dasboard .bottomrightbox .task_list li a { background: rgba(57, 57, 57, 0.05); border-radius: 3px; display: block; line-height: 41px; padding: 0 20px 0 20px; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel { background: url(assets/images/arrow_right_alt_black_24dp1.png) no-repeat right 20px; color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: relative; padding-left: 25px; line-height: 41px; -webkit-user-select: none; user-select: none; }
+.right_vendor_dasboard .bottomrightbox .task_list .complete .radioLabel { background: none; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.right_vendor_dasboard .bottomrightbox .task_list li .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 15px; left: 0; position: absolute; top: 14px; width: 15px; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel:hover input ~ .checkmark { }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel input:checked ~ .checkmark { background: #393939; border-color: #393939; }
+.right_vendor_dasboard .bottomrightbox .task_list .complete .radioLabel input ~ .checkmark { }
+.right_vendor_dasboard .bottomrightbox .task_list .complete .radioLabel input:checked ~ .checkmark { background: #393939; border-color: #393939; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel .checkmark:after { border: solid white; border-width: 0 1px 1px 0; height: 8px; left: 5px; top: 2px; -webkit-transform: rotate(45deg); transform: rotate(45deg); width: 4px; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radio-img { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; }
+.right_vendor_dasboard .bottomrightbox .task_list li .radio-img img { display: inline-block; height: 15px; margin-right: 10px; margin-top: -5px; position: relative; vertical-align: middle; width: 15px; }
+.right_vendor_dasboard .bottomrightbox .task_list .complete .radioLabel input ~ .checkmark:after { display: block; }
+.right_vendor_dasboard .bottomrightbox .task_list .complete .radioLabel input:checked ~ .checkmark:after { display: block; }
+.right_vendor_dasboard .right_bottom_fixed_sec { background: #fff; border-top: 1px solid rgba(57, 57, 57, 0.25); bottom: 0px; margin: 0; padding: 20px 20px 20px 20px; position: fixed; width: 25%; }
+.right_vendor_dasboard .right_bottom_fixed_sec h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.right_vendor_dasboard .right_bottom_fixed_sec h4 strong { font-weight: 500; }
+.right_vendor_dasboard .right_bottom_fixed_sec h4 .inactiveStrong { color: #dd5454; }
+.right_vendor_dasboard .right_bottom_fixed_sec h4 img { display: inline-block; margin: 0 0 0 5px; position: relative; top: -2px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Dashboard-Common-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Promotions-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .suggestions-container ul li { border-left: 1px solid #000; border-right: 1px solid #000; float: left; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .suggestions-container ul li:last-child { border-bottom: 1px solid #000; border-radius: 0 0 3px 3px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Promotions-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Bazar-Direct-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item { border: none; border-top: 1px solid rgba(0, 0, 0, 0.25); border-radius: 0px; padding: 10px; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .accordion-header { margin-bottom: 10px; margin-top: 10px; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .accordion-header .accordion-button { background: none; border-radius: 0px; box-shadow: none; color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; padding: 0 30px 0 0; position: relative; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .accordion-header .accordion-button::after { background-image: url(assets/images/plus.png) !important; background-size: 20px auto; height: 20px; position: absolute; right: 0; top: 5px; transition: .5s ease-in-out; width: 20px; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed)::after{ transform: rotate(45deg); }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .collapse .accordion-body { padding: 20px 0 0 0; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion .accordion .accordion-item .collapse .accordion-body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Bazar-Direct-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Bazar-Direct2-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item { background: #fff; border: 1px solid #000; border-radius: 3px; margin-bottom: 20px; padding-bottom: 10px; padding-left: 15px; padding-right: 15px; padding-top: 10px; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-header .accordion-button { background: none; border-radius: 0px; box-shadow: none; color: rgba(0, 0, 0, 0.5); font: 200 16px 'Futura'; padding: 0; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-header .accordion-button::after { background-image: url(assets/images/gray_down_arrow.png) !important; background-position: center; background-size: 16px auto; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body { border-top: 1px solid rgba(0, 0, 0, 0.25); margin-top: 15px; padding: 20px 0 0 0; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body p { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 10px 0; padding: 0 0 0 30px; position: relative; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body p .spanNum { font-family: 'Futura' !important; font-weight: 500; left: 0; position: absolute; top: 0; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .copyCodeList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .copyCodeList li .copyCode { background: #c4c4c4; border-radius: 3px; height: 41px; margin: 0; overflow: hidden; line-height: 41px; padding: 0 10px; white-space: nowrap; width: 100%; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .copyCodeList li .copySpan { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .copyCodeList li .copySpan .fa-solid { margin-right: 5px; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList { list-style: none; padding: 0; margin: 0 0 30px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .form-label { color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 5px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 0px; margin-top: 0; padding: 0 15px 0 15px; } 
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .textAreaForm { height: 318px; line-height: normal; padding: 15px; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; margin: 10px 0 0 0; padding: 0 50px 0 50px; }
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .widgetsBox .white_text_box .accordion .accordion-item .accordion-body .embadedFormList li .btn:focus { box-shadow: none; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Bazar-Direct2-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Home Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .owl-theme .owl-nav { width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .owl-theme .owl-nav .owl-prev { background: url(assets/images/vendor_home_left_arrow.png) no-repeat center; float: left; height: 20px; left: -20px; margin-top: -20px; position: absolute; top: 50%; width: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .owl-theme .owl-nav .owl-next { background: url(assets/images/vendor_home_right_arrow.png) no-repeat center; float: right; height: 20px; margin-top: -20px; position: absolute; right: -20px; top: 50%; width: 20px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Home-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Add-Product-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete { background: #fff; border: none; border-radius: 0px; box-shadow: none; float: left; margin-top: 10px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .autocomplete-container { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete { border: none; border-radius: 0px; margin-top: 0; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .input-container { background: #fff; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; overflow: hidden; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .autocomplete-container { box-shadow: none; height: 39px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .autocomplete-container .ng-pristine { border: none; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 39px; line-height: 39px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .autocomplete-container .input-container input { background: url(assets/images/search_icon.png) no-repeat 5px 13px; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-left: 29px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container { background: none; border: 1px solid rgba(0,0,0,0); border-radius: 0 0 3px 3px; box-shadow: none; top: 40px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .active .is-visible { background: #fff; border-color: #9C9C9C; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul { }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li .ng-star-inserted { width: 100%; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li .ng-star-inserted .ng-star-inserted { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 38px; padding: 0 10px 0 10px; } 
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li .product_type { color: #000; display: block; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li .product_cat { background: url(assets/images/next_arrow_arrow.png) no-repeat right 8px; background-size: auto 8px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin-right: 10px; padding-right: 14px }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .ng-autocomplete .suggestions-container ul li .product_cat:last-child { background: none; }
+.middle_vendor_dasboard .middle_content .new_product_body .newPrdtFormList li .ng-autocomplete .autocomplete-container .suggestions-container ul .item div a { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Add-Product-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Edit-Order-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.edit-order-dashboard_body { margin-top: 0; padding-left: 0px; }
+.edit-order-dashboard_body .middle_vendor_dasboard { padding-top: 0; padding-left: 0; padding-right: 0; width: 100%; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper { padding-bottom: 0; width: 100%; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper .mat-form-field-underline { display: none; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex { background: none; border-radius: 0; padding: 0; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix { border: none; padding: 0; width: 100%; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-input-element { background: url(assets/images/search_icon.png) no-repeat 10px 13px; border: 1px solid #000; border-radius: 3px; box-sizing: border-box; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px !important; margin: 0; padding: 0 15px 0 30px; position: relative; width: 100%; } 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Edit-Order-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Create-Invoice-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field-wrapper { padding-bottom: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field-wrapper .mat-form-field-underline { display: none; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex { background: none; border-radius: 0; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix { border: none; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .shopInfoList li .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-input-element { background: url(assets/images/search_icon.png) no-repeat 10px 13px; border: 1px solid #000; border-radius: 3px; box-sizing: border-box; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px !important; margin: 0; padding: 0 15px 0 30px; position: relative; width: 100%; } 
+.common-autosearch .autocomplete-container .input-container input[type="text"] { background: url(assets/images/search_icon.png) no-repeat 10px 13px; border: 1px solid #000; border-radius: 3px; box-sizing: border-box; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px !important; margin: 0; padding: 0 15px 0 30px; position: relative; width: 100%; }
+.common-autosearch .suggestions-container { box-shadow: none !important; }
+.customer-autosearch .suggestions-container ul li { border: 1px solid #000; border-bottom: none; border-top: none; }
+.customer-autosearch .suggestions-container ul li:last-child { border-bottom: 1px solid #000 !important; border-radius: 0 0 3px 3px !important; }
+.customer-autosearch .suggestions-container ul li a { color: #000 !important; font-family: 'Futura' !important; font-size: 16px !important; font-weight: 200; } 
+/*.search-autocomplete .mat-option { height: auto; line-height: normal; padding: 14px 15px 14px 15px; }
+.search-autocomplete .mat-option .mat-option-text { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.search-autocomplete .mat-option .lightbox-link { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }*/
+.search-autocomplete2 { border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; box-shadow: none !important; height: auto; line-height: normal; }
+.search-autocomplete2 .mat-active { height: auto; line-height: normal; padding: 0; }
+.search-autocomplete2 .mat-option-text { line-height: normal; }
+.search-autocomplete2 .searchBox { float: left; margin: 0; padding: 0; width: 100%; } 
+.search-autocomplete2 .searchBox a { cursor: pointer; display: block; float: left; padding: 10px; width: 100%; }
+.search-autocomplete2 .searchBox a:hover { background: rgba(0, 0, 0, 0.05); }
+.search-autocomplete2 .searchBox .imgBox { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.search-autocomplete2 .searchBox .imgBox img { height: auto; width: 49px; }
+.search-autocomplete2 .searchBox .productInfoTxt { float: left; margin: 0; padding: 0; width: auto; }
+.search-autocomplete2 .searchBox .productInfoTxt h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; }
+.search-autocomplete2 .searchBox .productInfoTxt p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; }
+.search-autocomplete2 .searchBox .stockTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 0 0 40px; padding: 0; width: auto; }
+.search-autocomplete2 .searchBox .priceTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 20px 0 40px; padding: 0; width: auto; }
+.invoice-search .suggestions-container { box-shadow: none !important; }
+.invoice-search .suggestions-container ul li .searchBox { border-bottom: none !important; border-radius: 0 !important; margin-bottom: 0 !important; }
+.invoice-search .suggestions-container ul li:last-child .searchBox { border-bottom: 1px solid #000 !important; border-radius: 0 0 3px 3px !important; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Create-Invoice-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Campaigns-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.email-template .gjs-editor-cont { /*position: relative; z-index: 999;*/ }
+.email-template .gjs-one-bg { background-color: #fff; box-shadow: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(1) { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(2) { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(3) { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) { left: 50%; margin-left: -139px; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-tablet { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-desktop { background-image: url(assets/images/email-builder-desktop_icon.svg); background-repeat: no-repeat; background-position: center; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-desktop.active { background-image: url(assets/images/email-builder-desktop-active_icon.svg); }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-desktop::before { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-mobile { background-image: url(assets/images/email-builder-smartphone_icon.svg); background-repeat: no-repeat; background-position: center; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-mobile.active { background-image: url(assets/images/email-builder-smartphone-acdtive_icon.svg); }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(4) .gjs-pn-buttons .fa-mobile::before { display: none; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) { width: 21%; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-block { align-items: center; justify-content: center; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .header { order: -5; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .paragraph { order: -4; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .text { order: -3; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .image { order: -2; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .button { order: -1; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-block .gjs-block-label { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 18px; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories { }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category { border-bottom: none; margin-bottom: 20px; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category:nth-child(1) { order: 2; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category .gjs-title { background: none; border-bottom: none; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; letter-spacing: 0; padding: 0; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category .gjs-title .gjs-caret-icon { float: right; margin-right: 0; margin-top: 2px; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category:nth-child(2) .gjs-blocks-c { display: block; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category:nth-child(2) .gjs-blocks-c .templeteOne { flex-direction: row; justify-content: left; margin-left: 0; margin-right: 0; min-height: auto; width: 100%; }
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) .gjs-one-bg .gjs-block-categories .gjs-block-category:nth-child(2) .gjs-blocks-c .templeteOne .gjs-block__media { margin-bottom: 0; margin-right: 10px; }
+.email-template #gjs-tools .gjs-toolbar { background-color: #000; } 
+.email-template #gjs-tools .gjs-rte-toolbar .gjs-rte-actionbar .gjs-rte-action { color: #000; font-family: 'Futura' !important; font-weight: 700; }
+.email-template #gjs-tools .gjs-rte-toolbar .gjs-rte-actionbar .leftAlign { background-image: url(assets/images/left-text-alignment.png); background-repeat: no-repeat; background-position: center; background-size: 12px auto; border-right: 1px solid rgba(0,0,0,.2); text-indent: -999em; width: 25px; }
+.email-template #gjs-tools .gjs-rte-toolbar .gjs-rte-actionbar .centerAlign { background-image: url(assets/images/centered-text-of-alignment-button.png); background-repeat: no-repeat; background-position: center; background-size: 12px auto; text-indent: -999em; width: 25px; }
+.email-template .gjs-mdl-dialog .gjs-mdl-header .gjs-mdl-title { color: #000; font-family: 'Futura' !important; font-weight: 200; }
+.email-template .gjs-mdl-dialog .gjs-mdl-content .gjs-am-file-uploader #gjs-am-title { color: #000; font-family: 'Futura' !important; font-weight: 200; }
+.email-template .gjs-mdl-dialog .gjs-mdl-content .gjs-am-assets-cont .gjs-am-assets-header .gjs-field input { background-color: #fff; color: #000; font-family: 'Futura' !important; font-weight: 200; }
+.email-template .gjs-mdl-dialog .gjs-mdl-content .gjs-am-assets-cont .gjs-am-assets-header .gjs-am-add-asset .gjs-btn-prim { background: #393939; border: 1px solid #393939; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.email-template .gjs-mdl-dialog .gjs-mdl-header .gjs-mdl-btn-close { color: #000; opacity: 1; }
+.email-template .gjs-cv-canvas { left: 50%; margin-left: -400px; width: 600px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Campaigns-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/**************************************************************** Vendor Pages End *****************************************************************/
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION START ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* User Log In Modal Style Start */
+.loginModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.loginModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.loginModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.loginModal .modal-header .btn-close:focus { box-shadow: none; }
+.loginModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.loginModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.loginModal .modal-body .formOne { list-style: none; margin: 0; padding: 0 50px 0 50px; width: 100%; }
+.loginModal .modal-body .formOne li { margin: 0 0 15px 0; overflow: hidden; padding: 0; width: 100%; }
+.loginModal .modal-body .formOne li .form-control { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; margin: 0 0 15px 0; padding: 10px 15px; width: 100%; } 
+.loginModal .modal-body .formOne li .validate_errors { display: block; margin-bottom: 10px; }
+.loginModal .modal-body .formOne li .btn { background: #393939; border: none; float: right; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 47%; }
+.loginModal .modal-body .formOne li .fullBtn { width: 100%; }
+.loginModal .modal-body .formOne li .btn:hover { background: #000; }
+.loginModal .modal-body .formOne li .btn:focus { box-shadow: none; }
+.loginModal .modal-body .formOne li .backButton { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; display: block; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; margin-bottom: 20px; text-align: center; width: 47%; }
+.loginModal .modal-body .formOne li .backButton:hover { background: #fff; }
+.loginModal .modal-body .formOne li .backButton:focus { box-shadow: none; }
+.loginModal .modal-body .sign_in_para { color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0; }
+.loginModal .modal-body .sign_in_para a { color: rgba(57, 57, 57, 0.5); cursor: pointer; text-decoration: underline; }
+.loginModal .modal-body .sign_in_para a:hover { color: #000; text-decoration: none; }
+.loginModal .modal-body .social_login { list-style: none; margin: 25px 0 0 0; padding: 0 50px 0 50px; width: 100%; }
+.loginModal .modal-body .social_login li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.loginModal .modal-body .social_login li .social_link { background: #fff; border: 1px solid #393939; border-radius: 3px; display: block; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; text-align: center; }
+.loginModal .modal-body .social_login li .social_link img { display: inline-block; margin-right: 10px; position: relative; top: -4px; vertical-align: middle; }
+.loginModal .modal-body .social_login li .social_link .social_span { display: inline-block; text-align: left; width: 201px; }
+/* User Log In Modal Style End */
+
+/* User Sign Up Modal Style Start */
+.registerModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.registerModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.registerModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.registerModal .modal-header .btn-close:focus { box-shadow: none; }
+.registerModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.registerModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.registerModal .modal-body .formOne { list-style: none; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.registerModal .modal-body .formOne li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.registerModal .modal-body .formOne li .form-control { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 15px 0 15px; width: 100%; } 
+.registerModal .modal-body .formOne li .btn { background: #393939; border: none; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 100%; }
+.registerModal .modal-body .formOne li .btn:hover { background: #000; }
+.registerModal .modal-body .formOne li .btn:focus { box-shadow: none; }
+.registerModal .modal-body .sign_in_para { color: rgba(57, 57, 57, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0; }
+.registerModal .modal-body .sign_in_para a { color: rgba(57, 57, 57, 0.5); cursor: pointer; text-decoration: underline; }
+.registerModal .modal-body .sign_in_para a:hover { color: #000; text-decoration: none; }
+.registerModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; }
+.registerModal .modal-footer p { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; text-align: center; }
+.registerModal .modal-footer p a { color: #000; text-decoration: underline; }
+/* User Sign Up Modal Style End */
+
+/* User Sign Up Modal Style Start */
+.publishModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.publishModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.publishModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.publishModal .modal-header .btn-close:focus { box-shadow: none; }
+.publishModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.publishModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.publishModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; }
+.publishModal .modal-footer .btn { background: #393939; border: none; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 100%; }
+.publishModal .modal-footer .btn:hover { background: #000; }
+.publishModal .modal-footer .btn:focus { box-shadow: none; }
+/* User Sign Up Modal Style End */
+
+/* User Sign Up Modal Style Start */
+.unPublishModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.unPublishModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.unPublishModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.unPublishModal .modal-header .btn-close:focus { box-shadow: none; }
+.unPublishModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.unPublishModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.unPublishModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; }
+.unPublishModal .modal-footer .btn { background: #393939; border: none; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 100%; }
+.unPublishModal .modal-footer .btn:hover { background: #000; }
+.unPublishModal .modal-footer .btn:focus { box-shadow: none; }
+/* User Sign Up Modal Style End */
+
+/* User Sign Up Modal Style Start */
+.deleteModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.deleteModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.deleteModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.deleteModal .modal-header .btn-close:focus { box-shadow: none; }
+.deleteModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.deleteModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.deleteModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; }
+.deleteModal .modal-footer .btn { background: #393939; border: none; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 100%; }
+.deleteModal .modal-footer .btn:hover { background: #000; }
+.deleteModal .modal-footer .btn:focus { box-shadow: none; }
+/* User Sign Up Modal Style End */
+
+/* Vendor Upload Feature Image Modal Start */
+.featureImgModal .modal-dialog { max-width: 728px; }
+.featureImgModal .modal-content { border-radius: 3px; }
+.featureImgModal .modal-header { position: relative; }
+.featureImgModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.featureImgModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.featureImgModal .modal-header .btn-close:focus { box-shadow: none; }
+.featureImgModal .dragUploadImg { margin: 20px 0 20px 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.featureImgModal .dragUploadImg img { height: auto; width: auto; }
+.featureImgModal .dragOptions { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.featureImgModal .dragOptions img { max-width: 100%; }
+/* zoom start */
+.featureImgModal .image-editor { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.featureImgModal .inputDiv { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.featureImgModal .cropit-preview { background-color: #f8f8f8; background-size: cover; border: none; border-radius: 0; display: inline-block; margin: 0; height: 500px; width: 500px; }    
+.featureImgModal .cropit-preview-image-container { cursor: move; }      
+.featureImgModal .cropit-preview-background { cursor: auto; opacity: .2; }
+.featureImgModal .image-size-label { margin-top: 10px; }
+.featureImgModal .rangeSliderSec { margin: 30px 0 0 0; padding: 0 10%; width: 100%; }
+.featureImgModal .rangeSliderSec .left_minus_div { float: left; margin: 0; padding: 0; }
+.featureImgModal .rangeSliderSec .rangeSliderInput { float: left; margin: -2px 0 0 6%; padding: 0; width: 80%; }
+.featureImgModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input { -webkit-appearance: none; appearance: none; background: #999; height: 2px; outline: none; opacity:1; position: relative; -webkit-transition: .2s; transition: opacity .2s; width: 100%; z-index: 10; }
+.featureImgModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: #393939; border-radius: 100%; cursor: pointer; opacity: 1; height: 15px; width: 15px; }
+.featureImgModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-moz-range-thumb { background: #393939; border-radius: 100%; cursor: pointer; height: 15px; opacity: 1; width: 15px; }
+.featureImgModal .rangeSliderSec .right_plus_div { float: right; margin: 0; padding: 0; }
+/* zoom end */
+.featureImgModal .modal-footer { border-top: none; }
+.featureImgModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.featureImgModal .modal-footer .common_btn:focus { box-shadow: none; }
+.featureImgModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.featureImgModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Upload Feature Image Modal End */
+
+/* Vendor Edit Board Modal Style Start */
+.editboardmodal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.editboardmodal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.editboardmodal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.editboardmodal .modal-header .btn-close:focus { box-shadow: none; }
+.editboardmodal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; text-align: center; }
+.editboardmodal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.editboardmodal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; }
+.editboardmodal .modal-footer .btn { background: #393939; border: none; height: 43px; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin-right: 15px; padding: 0 35px 0 35px; width: auto; }
+.editboardmodal .modal-footer .btn:hover { background: #000; }
+.editboardmodal .modal-footer .btn:focus { box-shadow: none; }
+/* Vendor Edit Board Modal Style End */
+
+/* Vendor Upload Logo Image Modal Start */
+.LogoModal .modal-dialog { max-width: 728px; }
+.LogoModal .modal-content { border-radius: 3px; }
+.LogoModal .modal-header { position: relative; }
+.LogoModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.LogoModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.LogoModal .modal-header .btn-close:focus { box-shadow: none; }
+.LogoModal .dragUploadImg { margin: 20px 0 20px 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.LogoModal .dragUploadImg img { height: auto; width: auto; }
+.LogoModal .dragOptions { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.LogoModal .dragOptions img { max-width: 100%; }
+/* zoom start */
+.LogoModal .image-editor4 { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.LogoModal .inputDiv { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.LogoModal .cropit-preview { background-color: #f8f8f8; background-size: cover; border: none; border-radius: 0; display: inline-block; margin: 0; height: 200px; width: 200px; }    
+.LogoModal .cropit-preview-image-container { cursor: move; }      
+.LogoModal .cropit-preview-background { cursor: auto; opacity: .2; }
+.LogoModal .image-size-label { margin-top: 10px; }
+.LogoModal .rangeSliderSec { margin: 30px 0 0 0; padding: 0 10%; width: 100%; }
+.LogoModal .rangeSliderSec .left_minus_div { float: left; margin: 0; padding: 0; }
+.LogoModal .rangeSliderSec .rangeSliderInput { float: left; margin: -2px 0 0 6%; padding: 0; width: 80%; }
+.LogoModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input { -webkit-appearance: none; appearance: none; background: #999; height: 2px; outline: none; opacity:1; -webkit-transition: .2s; transition: opacity .2s; width: 100%; }
+.LogoModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: #393939; border-radius: 100%; cursor: pointer; opacity: 1; height: 15px; width: 15px; }
+.LogoModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-moz-range-thumb { background: #393939; border-radius: 100%; cursor: pointer; height: 15px; opacity: 1; width: 15px; }
+.LogoModal .rangeSliderSec .right_plus_div { float: right; margin: 0; padding: 0; }
+/* zoom end */
+.LogoModal .modal-footer { border-top: none; }
+.LogoModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.LogoModal .modal-footer .common_btn:focus { box-shadow: none; }
+.LogoModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.LogoModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Upload Logo Image Modal End */
+
+/* Vendor Upload Profile Image Modal Start */
+.UploadProfileModal .modal-dialog { max-width: 728px; }
+.UploadProfileModal .modal-content { border-radius: 3px; }
+.UploadProfileModal .modal-header { position: relative; }
+.UploadProfileModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.UploadProfileModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.UploadProfileModal .modal-header .btn-close:focus { box-shadow: none; }
+.UploadProfileModal .dragUploadImg { margin: 20px 0 20px 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadProfileModal .dragUploadImg img { height: auto; width: auto; }
+.UploadProfileModal .dragOptions { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadProfileModal .dragOptions img { max-width: 100%; }
+/* zoom start */
+.UploadProfileModal .image-editor2 { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadProfileModal .inputDiv { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.UploadProfileModal .cropit-preview { background-color: #f8f8f8; background-size: cover; border: none; border-radius: 0; display: inline-block; height: 500px; margin: 0;  width: 500px; }    
+.UploadProfileModal .cropit-preview-image-container { cursor: move; }      
+.UploadProfileModal .cropit-preview-background { cursor: auto; opacity: .2; }
+.UploadProfileModal .image-size-label { margin-top: 10px; }
+.UploadProfileModal .rangeSliderSec { margin: 30px 0 0 0; padding: 0 10%; width: 100%; }
+.UploadProfileModal .rangeSliderSec .left_minus_div { float: left; margin: 0; padding: 0; }
+.UploadProfileModal .rangeSliderSec .rangeSliderInput { float: left; margin: -2px 0 0 6%; padding: 0; width: 80%; }
+.UploadProfileModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input { -webkit-appearance: none; appearance: none; background: #999; height: 2px; outline: none; opacity:1; -webkit-transition: .2s; transition: opacity .2s; width: 100%; }
+.UploadProfileModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: #393939; border-radius: 100%; cursor: pointer; opacity: 1; height: 15px; width: 15px; }
+.UploadProfileModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-moz-range-thumb { background: #393939; border-radius: 100%; cursor: pointer; height: 15px; opacity: 1; width: 15px; }
+.UploadProfileModal .rangeSliderSec .right_plus_div { float: right; margin: 0; padding: 0; }
+/* zoom end */
+.UploadProfileModal .modal-footer { border-top: none; }
+.UploadProfileModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.UploadProfileModal .modal-footer .common_btn:focus { box-shadow: none; }
+.UploadProfileModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.UploadProfileModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Upload Profile Image Modal End */
+
+/* Vendor Upload Cover Image Modal Start */
+.UploadCoverModal .modal-dialog { max-width: 1143px; }
+.UploadCoverModal .modal-content { border-radius: 3px; }
+.UploadCoverModal .modal-header { position: relative; }
+.UploadCoverModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.UploadCoverModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.UploadCoverModal .modal-header .btn-close:focus { box-shadow: none; }
+.UploadCoverModal .dragUploadImg { margin: 20px 0 20px 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadCoverModal .dragUploadImg img { height: auto; width: auto; }
+.UploadCoverModal .dragOptions { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadCoverModal .dragOptions img { max-width: 100%; }
+/* zoom start */
+.UploadCoverModal .image-editor3 { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.UploadCoverModal .inputDiv { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.UploadCoverModal .cropit-preview { background-color: #f8f8f8; background-size: cover; border: none; border-radius: 0; display: inline-block; height: 252px; margin: 0; width: 1111px; }    
+.UploadCoverModal .cropit-preview-image-container { cursor: move; }      
+.UploadCoverModal .cropit-preview-background { cursor: auto; opacity: .2; }
+.UploadCoverModal .image-size-label { margin-top: 10px; }
+.UploadCoverModal .rangeSliderSec { margin: 30px 0 0 0; padding: 0 10%; width: 100%; }
+.UploadCoverModal .rangeSliderSec .left_minus_div { float: left; margin: 0; padding: 0; }
+.UploadCoverModal .rangeSliderSec .rangeSliderInput { float: left; margin: -2px 0 0 6%; padding: 0; width: 80%; }
+.UploadCoverModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input { -webkit-appearance: none; appearance: none; background: #999; height: 2px; outline: none; opacity:1; -webkit-transition: .2s; transition: opacity .2s; width: 100%; }
+.UploadCoverModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: #393939; border-radius: 100%; cursor: pointer; opacity: 1; height: 15px; width: 15px; }
+.UploadCoverModal .rangeSliderSec .rangeSliderInput .cropit-image-zoom-input::-moz-range-thumb { background: #393939; border-radius: 100%; cursor: pointer; height: 15px; opacity: 1; width: 15px; }
+.UploadCoverModal .rangeSliderSec .right_plus_div { float: right; margin: 0; padding: 0; }
+/* zoom end */
+.UploadCoverModal .modal-footer { border-top: none; }
+.UploadCoverModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.UploadCoverModal .modal-footer .common_btn:focus { box-shadow: none; }
+.UploadCoverModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.UploadCoverModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Upload Cover Image Modal End */
+
+/* Vendor Export Product Modal Start */
+.exportModal .modal-dialog { max-width: 446px; }
+.exportModal .modal-header { border-bottom: 1px solid rgba(0, 0, 0, 0.25); padding: 10px 0 10px 15px; }
+.exportModal .modal-header h4 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; }
+.exportModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 10px; top: 10px; }
+.exportModal .modal-header .btn-close:focus { box-shadow: none; }
+.exportModal .modal-body .exportList { list-style: none; margin: 0; padding: 0; width: 100%; }
+.exportModal .modal-body .exportList li { margin: 0 0 5px 0; padding: 0; width: 100%; }
+.exportModal .modal-body .exportList li .form-check label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.exportModal .modal-body .exportList li .form-check-input { border: 1px solid #393939; margin-top: 5px; }
+.exportModal .modal-body .exportList li .form-check-input:checked[type=radio] { background-image: none; background-color: #393939; border-color: #393939; }
+.exportModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; text-align: center; }
+.exportModal .modal-footer .btn-outline-dark { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 207px; }
+.exportModal .modal-footer .btn-outline-dark:focus { box-shadow: none; }
+/* Vendor Export Product Modal End */
+
+/* Vendor Upload Videos Modal Start */
+.uploadVidModal .modal-dialog { max-width: 446px; }
+.uploadVidModal .modal-header { border-bottom: 1px solid rgba(0, 0, 0, 0.25); justify-content: center; padding: 10px 0 10px 15px; text-align: center; }
+.uploadVidModal .modal-header h4 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; }
+.uploadVidModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 10px; top: 10px; }
+.uploadVidModal .modal-header .btn-close:focus { box-shadow: none; }
+.uploadVidModal .modal-body { text-align: center; }
+.uploadVidModal .modal-body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 20px 20px 20px; }
+.uploadVidModal .modal-body .seeGuidelines { color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; text-decoration: underline; } 
+.uploadVidModal .modal-body .uploadProductVideo { display: inline-block; margin: 0; padding: 0; width: 237px; }
+.uploadVidModal .modal-body .uploadProductVideo .upload-btn-wrapper { display: inline-block; margin: 0; height: 170px; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.uploadVidModal .modal-body .uploadProductVideo .btn { background: rgba(57, 57, 57, 0.05); background-image: url(assets/images/upload_icon.png); background-position: center 60px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 162px; line-height: normal; margin: 0; padding: 40px 0 0 0; width: 100%; }
+.uploadVidModal .modal-body .uploadProductVideo .upload-btn-wrapper input[type=file] { left: 0; position: absolute; opacity: 0; top: 0; }
+.uploadVidModal .modal-footer { border-top: none; justify-content: center; padding-bottom: 30px; text-align: center; }
+.uploadVidModal .modal-footer .btn-outline-dark { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 207px; }
+.uploadVidModal .modal-footer .btn-outline-dark:focus { box-shadow: none; }
+/* Vendor Upload Videos Modal End */
+
+/* Vendor Upload Edit Video Modal Start */
+.editVideoModal .modal-dialog { max-width: 728px; }
+.editVideoModal .modal-content { border-radius: 3px; }
+.editVideoModal .modal-header { position: relative; }
+.editVideoModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.editVideoModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.editVideoModal .modal-header .btn-close:focus { box-shadow: none; }
+.editVideoModal .dragUploadImg { margin: 20px 0 20px 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.editVideoModal .dragUploadImg img { height: auto; width: auto; }
+.editVideoModal .dragOptions { margin: 0; padding: 0; position: relative; text-align: center; width: 100%; }
+.editVideoModal .dragOptions img { max-width: 100%; }
+.editVideoModal .modal-footer { border-top: none; }
+.editVideoModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.editVideoModal .modal-footer .common_btn:focus { box-shadow: none; }
+.editVideoModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.editVideoModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Upload Edit Video Modal End */
+
+/* Vendor Add Customer Information Modal Start */
+.addCustomerInformation .modal-dialog { max-width: 728px; }
+.addCustomerInformation .modal-content { border: none; border-radius: 5px; }
+.addCustomerInformation .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.addCustomerInformation .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.addCustomerInformation .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addCustomerInformation .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.addCustomerInformation .modal-content .modal-body { padding-top: 50px; }
+.addCustomerInformation .modal-content .modal-body .addFormList { margin: 0px; padding: 0 30px; position: relative; width: 100%; }
+.addCustomerInformation .modal-content .modal-body .addFormList .cloneField { cursor: pointer; display: block; position: absolute; right: -5px; top: 6px; width: auto; }
+.addCustomerInformation .modal-content .modal-body .addFormList .col-lg-4 { margin-bottom: 10px; }
+.addCustomerInformation .modal-content .modal-body .addFormList .col-lg-4 .form-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: normal; margin-bottom: 0px; width: 100%; }
+.addCustomerInformation .modal-content .modal-body .addFormList .col-lg-4 .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.addCustomerInformation .modal-content .modal-body .addFormList .col-lg-4 .form-control:focus { box-shadow: none; }
+.addCustomerInformation .modal-content .modal-body .add_fild_sec { margin: 30px 0 40px 0; padding: 0; text-align: center; width: 100%; }
+.addCustomerInformation .modal-content .modal-body .add_fild_sec .add_fild_icon { cursor: pointer; display: inline-block; }
+.addCustomerInformation .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; text-align: center; }
+.addCustomerInformation .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 207px; }
+.addCustomerInformation .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+/* Vendor Add Customer Information Modal End */
+
+/* Vendor Add CSV Customer Information Modal Start */
+.addCsvCustomerInformation .modal-dialog { max-width: 728px; }
+.addCsvCustomerInformation .modal-content { border: none; border-radius: 5px; }
+.addCsvCustomerInformation .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.addCsvCustomerInformation .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.addCsvCustomerInformation .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addCsvCustomerInformation .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.addCsvCustomerInformation .modal-content .modal-body { padding-top: 30px; }
+.addCsvCustomerInformation .modal-content .modal-body .smllCSvDiv { margin: 0 auto 0 auto; max-width: 380px; padding: 0; text-align: center; width: 100%; }
+.addCsvCustomerInformation .modal-content .modal-body .smllCSvDiv h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.addCsvCustomerInformation .modal-content .modal-body .smllCSvDiv h4 a { color: #000; cursor: pointer; display: inline-block; text-decoration: underline; }
+.addCsvCustomerInformation .modal-content .modal-body .smllCSvDiv p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; }
+.addCsvCustomerInformation .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; text-align: center; }
+.addCsvCustomerInformation .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 207px; }
+.addCsvCustomerInformation .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+/* Vendor Add CSV Customer Information Modal End */
+
+/* Vendor Add Customer Contact Modal Start */
+.addCustomerContact .modal-dialog { max-width: 414px; }
+.addCustomerContact .modal-content { border: none; border-radius: 5px; }
+.addCustomerContact .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.addCustomerContact .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.addCustomerContact .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addCustomerContact .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.addCustomerContact .modal-content .modal-body { padding-bottom: 0px; padding-top: 30px; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom { list-style: none; margin: 0; padding: 0; width: 100%; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom li { margin: 0 0 10px 0; padding: 0; position: relative; width: 100%; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom li label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; width: 100%; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom li .countSpan { color: #000; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin-right: 15px; margin-top: -43px; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom li .form-control { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 76px 0 15px; }
+.addCustomerContact .modal-content .modal-body .addCustomerContactFrom li .form-control:focus { box-shadow: none; }
+.addCustomerContact .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; padding-top: 0; text-align: center; }
+.addCustomerContact .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 100%; }
+.addCustomerContact .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+/* Vendor Add Customer Contact Modal End */
+
+/* Vendor Edit Promotion Modal Start */
+.endPromotionModal .modal-dialog { max-width: 414px; }
+.endPromotionModal .modal-content { border: none; border-radius: 5px; }
+.endPromotionModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.endPromotionModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.endPromotionModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.endPromotionModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.endPromotionModal .modal-content .modal-body { padding-bottom: 30px; padding-top: 30px; }
+.endPromotionModal .modal-content .modal-body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; text-align: center; }
+.endPromotionModal .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; padding-top: 0; text-align: center; }
+.endPromotionModal .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 294px; }
+.endPromotionModal .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+.endPromotionModal .modal-content .modal-footer .no-customer-btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 294px; }
+.endPromotionModal .modal-content .modal-footer .no-customer-btn:focus { box-shadow: none; }
+/* Vendor Edit Promotion Modal End */
+
+/* User Invoice Modal Start */
+.downloadInvoiceModal .modal-dialog { max-width: 632px; }
+.downloadInvoiceModal .modal-content { border: none; border-radius: 5px; }
+.downloadInvoiceModal .modal-content .modal-header { border-bottom: none; display: block; position: relative; }
+.downloadInvoiceModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.downloadInvoiceModal .modal-content .modal-header .btn-close { float: right; margin: 0; opacity: 1; padding: 5px; position: relative; }
+.downloadInvoiceModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.downloadInvoiceModal .modal-content .modal-header .downloadIcon { float: right; margin: 3px 20px 0 0; }
+.downloadInvoiceModal .modal-content .modal-body { padding-bottom: 30px; padding-left: 50px; padding-right: 50px; padding-top: 30px; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader { margin-bottom: 70px; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader .topHeaderLeft h3 { color: #111118; font-family: 'Futura' !important; font-size: 32px; font-weight: 700; margin: 0 0 15px 0; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader .topHeaderLeft h4 { color: #111118; font-family: 'Futura' !important; font-size: 16px; font-weight: 700; margin: 0 0 10px 0; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader .topHeaderLeft p { color: #111118; font-family: 'Futura' !important; font-size: 10px; font-weight: 200; line-height: 14px; margin: 0; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader .topHeaderRight p { color: #111118; font-family: 'Futura' !important; font-size: 10px; font-weight: 200; margin: 55px 0 0 0; text-align: right; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody { margin: 0; padding: 0; width: 100%; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table { }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table>:not(:first-child) { border-top: none; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table thead { }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table thead th { border: none; border-bottom: 1px solid #000; color: #111118; font-family: 'Futura' !important; font-size: 10px; font-weight: 700; padding: 0 0 4px 0; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table thead th:nth-child(2) { text-align: right; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table thead th:nth-child(3) { text-align: right; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table td { border: none; color: #111118; font-family: 'Futura' !important; font-size: 10px; font-weight: 200; padding: 15px 0 15px 0; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table td:nth-child(2) { text-align: right; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table td:nth-child(3) { text-align: right; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table .addiTr td { padding-bottom: 0px; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table .shippingTr td { padding-bottom: 3px; padding-top: 3px; }
+.downloadInvoiceModal .modal-content .modal-body .invoiceTableBody .table td h3 { color: #111118; font-family: 'Futura' !important; font-size: 10px; font-weight: 700; margin: 0; }
+/* User Invoice Modal End */
+
+.editboardproductmodal .modal-dialog { max-width: 414px; }
+.editboardproductmodal .modal-content { border: none; border-radius: 5px; }
+.editboardproductmodal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.editboardproductmodal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.editboardproductmodal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.editboardproductmodal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.editboardproductmodal .modal-content .modal-body { padding: 0; }
+.editboardproductmodal .modal-content .board-product-list { float: left; list-style: none; padding: 0; width: 100%; }
+.editboardproductmodal .modal-content .board-product-list li { float: left; padding: 10px; width: 100%; }
+.editboardproductmodal .modal-content .board-product-list .create-modal-list { cursor: pointer; }
+.editboardproductmodal .modal-content .board-product-list .create-modal-list:hover { background-color: #393939; }
+.editboardproductmodal .modal-content .board-product-list li .img-sec { float: left; margin-right: 10px; width: 60px; }
+.editboardproductmodal .modal-content .board-product-list li .img-sec img { height: auto; width: 100%; }
+.editboardproductmodal .modal-content .board-product-list .create-modal-list .img-sec { background-color: #fff; height: 60px; }
+.editboardproductmodal .modal-content .board-product-list .create-modal-list .img-sec img { margin-left: 10px; margin-top: 10px; width: auto; }
+.editboardproductmodal .modal-content .board-product-list li p { float: left; margin: 19px 0 0 0; width: 75%; }
+.editboardproductmodal .modal-content .board-product-list .create-modal-list:hover p { color: #fff; }
+.editboardproductmodal .modal-content .board-product-list li .form-check-input { cursor: pointer; float: right; margin-top: 25px; }
+.editboardproductmodal .modal-content .board-product-list li .form-check-input:checked { background: #000; border-color: #000; }
+.editboardproductmodal .modal-content .board-product-list li .form-check-input:focus { box-shadow: none; }
+/* User Edit Board Product Modal End */
+
+.wishListBoardmodal .modal-dialog { max-width: 414px; }
+.wishListBoardmodal .modal-content { border: none; border-radius: 5px; }
+.wishListBoardmodal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.wishListBoardmodal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.wishListBoardmodal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.wishListBoardmodal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.wishListBoardmodal .modal-content .modal-body { padding: 0; }
+.wishListBoardmodal .modal-content .board-product-list { float: left; list-style: none; padding: 0; width: 100%; }
+.wishListBoardmodal .modal-content .board-product-list li { float: left; padding: 10px; width: 100%; }
+.wishListBoardmodal .modal-content .board-product-list .create-modal-list { cursor: pointer; }
+.wishListBoardmodal .modal-content .board-product-list .create-modal-list:hover { background-color: #393939; }
+.wishListBoardmodal .modal-content .board-product-list li .img-sec { float: left; margin-right: 10px; width: 60px; }
+.wishListBoardmodal .modal-content .board-product-list li .img-sec img { height: auto; width: 100%; }
+.wishListBoardmodal .modal-content .board-product-list .create-modal-list .img-sec { background-color: #fff; height: 60px; }
+.wishListBoardmodal .modal-content .board-product-list .create-modal-list .img-sec img { margin-left: 10px; margin-top: 10px; width: auto; }
+.wishListBoardmodal .modal-content .board-product-list li p { float: left; margin: 9px 0 0 0; width: 75%; }
+.wishListBoardmodal .modal-content .board-product-list .create-modal-list:hover p { color: #fff; }
+.wishListBoardmodal .modal-content .board-product-list li .form-check-input { cursor: pointer; float: right; margin-top: 25px; }
+.wishListBoardmodal .modal-content .board-product-list li .form-check-input:checked { background: #000; border-color: #000; }
+.wishListBoardmodal .modal-content .board-product-list li .form-check-input:focus { box-shadow: none; }
+/* User Wish List Board Product Modal End */
+
+.newBoardProductModal .modal-dialog { max-width: 520px; }
+.newBoardProductModal .modal-content { border: none; border-radius: 5px; }
+.newBoardProductModal h3 { font: 200 32px 'Futura' !important; color: #000; margin: 50px 0 30px; }
+.newBoardProductModal .modal-content .backPrevModal { background: url(assets/images/left_arrow.svg) no-repeat center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; height: 20px; left: 20px; padding: 0 0 0 20px; position: absolute; top: 62px; }
+.newBoardProductModal .imgHolderder { text-align: center; margin: 0px 0 0 0; }
+.newBoardProductModal .modal-body { padding: 0px 50px 70px; }
+.newBoardProductModal .btn-close { position: absolute; right: 20px; top: 20px; font-size: 12px; opacity: 1; z-index: 999; }
+.newBoardProductModal .btn-close:focus { box-shadow: none; }
+/* User New Board Product Modal End */
+
+
+/* Vendor Activation Automations Modal Start */
+.activateAutomationsModal .modal-dialog { max-width: 414px; }
+.activateAutomationsModal .modal-content { border: none; border-radius: 5px; }
+.activateAutomationsModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.activateAutomationsModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.activateAutomationsModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.activateAutomationsModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.activateAutomationsModal .modal-content .modal-body { padding-bottom: 0px; padding-top: 30px; }
+.activateAutomationsModal .modal-content .modal-body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 30px 20px 30px; text-align: center; }
+.activateAutomationsModal .modal-content .modal-body p strong { font-family: 'Futura' !important; font-weight: 500; }
+.activateAutomationsModal .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; padding-top: 10px; text-align: center; }
+.activateAutomationsModal .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0 77.36px 0 77.36px; width: auto; }
+.activateAutomationsModal .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+/* Vendor Activation Automations Modal End */
+
+/* Vendor Campaigns Modal Start */
+.createCampaignsModal .modal-dialog { max-width: 414px; }
+.createCampaignsModal .modal-content { border: none; border-radius: 5px; }
+.createCampaignsModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.createCampaignsModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.createCampaignsModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.createCampaignsModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.createCampaignsModal .modal-content .modal-body { padding-bottom: 0px; padding-top: 30px; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom { list-style: none; margin: 0; padding: 0; width: 100%; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom li { margin: 0 0 10px 0; padding: 0; position: relative; width: 100%; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom li label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; width: 100%; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom li .countSpan { color: #000; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin-right: 15px; margin-top: -43px; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom li .form-control { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 76px 0 15px; }
+.createCampaignsModal .modal-content .modal-body .addCustomerContactFrom li .form-control:focus { box-shadow: none; }
+.createCampaignsModal .modal-content .modal-footer { border-top: none; display: block; padding-bottom: 30px; padding-top: 0; text-align: center; }
+.createCampaignsModal .modal-content .modal-footer .add-customer-btn { background: #393939; border: none; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; padding: 0; width: 100%; }
+.createCampaignsModal .modal-content .modal-footer .add-customer-btn:focus { box-shadow: none; }
+/* Vendor Campaigns Modal End */
+
+/* Vendor CSV Upload Campaigns successful Modal Start */
+.successCampaignsModal .modal-header { border-bottom: none; }
+.successCampaignsModal .modal-body p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; text-align: center; }
+.successCampaignsModal .modal-footer { border-top: none; justify-content: center; padding: 0 0 30px 0; }
+.successCampaignsModal .modal-footer .btn { background: #393939;border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.successCampaignsModal .modal-footer .btn:focus { box-shadow: none; }
+/* Vendor CSV Upload Campaigns successful Modal End */
+
+/* Vendor Add Create Invoice Modal Start */
+.addCustomerModal .modal-dialog { max-width: 632px; }
+.addCustomerModal .modal-content { border: none; border-radius: 5px; }
+.addCustomerModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.addCustomerModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.addCustomerModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addCustomerModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.addCustomerModal .modal-content .modal-body { /*padding-bottom: 0px; padding-top: 30px;*/ }
+.addCustomerModal .modal-content .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; }
+.addCustomerModal .modal-content .modal-body .form-list { list-style: none; padding: 0; }
+.addCustomerModal .modal-content .modal-body .form-list li { margin-bottom: 20px; }
+.addCustomerModal .modal-content .modal-body .form-list li label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 3px 0; width: 100%; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-control { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 76px 0 15px; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-control:focus { box-shadow: none; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-select { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-select:focus { box-shadow: none; }
+.addCustomerModal .modal-content .modal-body .form-list li .telephone-input { background-image: url(assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; padding-left: 15px; padding-right: 15px; width: 100px; }
+.addCustomerModal .modal-content .modal-body .form-list li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .input-group .input-group-text .form-select { border-right: none; border-radius: 0.25rem 0 0 0.25rem; padding-right: 30px; } 
+.addCustomerModal .modal-content .modal-body .form-list li .input-group input::-webkit-outer-spin-button, .addCustomerModal .modal-content .modal-body .form-list li .input-group input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
+.addCustomerModal .modal-content .modal-body .form-list li .input-group .form-control { -moz-appearance: textfield; } 
+.addCustomerModal .modal-content .modal-body .form-list li .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.addCustomerModal .modal-content .modal-footer { border-top: none; }
+.addCustomerModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.addCustomerModal .modal-content .modal-footer .btn-cancel:focus { box-shadow: none; }
+.addCustomerModal .modal-content .modal-footer .btn-add { background: #393939;border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.addCustomerModal .modal-content .modal-footer .btn-add:focus { box-shadow: none; }
+/* Vendor Add Create Invoice Modal End */
+
+/* Vendor Add Custom Item Modal Start */
+.addCustomItemModal .modal-dialog { max-width: 414px; }
+.addCustomItemModal .modal-content { border: none; border-radius: 5px; }
+.addCustomItemModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.addCustomItemModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.addCustomItemModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addCustomItemModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.addCustomItemModal .modal-content .modal-body .form-list { list-style: none; padding: 0; }
+.addCustomItemModal .modal-content .modal-body .form-list li { margin-bottom: 20px; }
+.addCustomItemModal .modal-content .modal-body .form-list li .price-span { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: -30px 0 0 10px; text-transform: uppercase; }
+.addCustomItemModal .modal-content .modal-body .form-list li label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 6px 0; width: 100%; }
+.addCustomItemModal .modal-content .modal-body .form-list li .form-control { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 76px 0 15px; }
+.addCustomItemModal .modal-content .modal-body .form-list li .price-input { padding-left: 47px; }
+.addCustomItemModal .modal-content .modal-body .form-list li .form-control:focus { box-shadow: none; }
+.addCustomItemModal .modal-content .modal-footer { border-top: none; }
+.addCustomItemModal .modal-content .modal-footer .btn { background: #393939;border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.addCustomItemModal .modal-content .modal-footer .btn:focus { box-shadow: none; }
+/* Vendor Add Custom Item Modal End */
+
+/* Vendor Invoice Product Modal Start */
+.invoiceProductModal .modal-dialog { max-width: 728px; }
+.invoiceProductModal .modal-content { border: none; border-radius: 5px; }
+.invoiceProductModal .modal-content .modal-header { border-bottom: none; display: block; position: relative; }
+.invoiceProductModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.invoiceProductModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.invoiceProductModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.invoiceProductModal .modal-content .modal-body .top-main-product { margin: 0; padding: 0; width: 100%; }
+.invoiceProductModal .modal-content .modal-body .top-main-product .table { border-top: none; }
+.invoiceProductModal .modal-content .modal-body .top-main-product .table tbody { border-top: none; }
+.invoiceProductModal .modal-content .modal-body .top-main-product .table td { background: none; border: none; box-shadow: none; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; }
+.invoiceProductModal .modal-content .modal-body .top-main-product .table td img { height: auto; width: 35px; }
+.invoiceProductModal .modal-content .modal-body .search_form { background: url(assets/images/search_icon.png) no-repeat 10px 13px; border: 1px solid #000; border-radius: 3px; box-sizing: border-box; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px !important; margin: 0 0 20px 0; padding: 0 15px 0 30px; position: relative; width: 100%; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list { margin: 0; max-height: 300px; overflow-y: auto; padding: 0; width: 100%; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list .table { border-top: none; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list .table tbody { border-top: none; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list .table td img { height: auto; width: 35px; }
+.invoiceProductModal .modal-content .modal-footer { border-top: none; }
+.invoiceProductModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.invoiceProductModal .modal-content .modal-footer .btn-cancel:focus { box-shadow: none; }
+.invoiceProductModal .modal-content .modal-footer .btn-add { background: #393939;border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.invoiceProductModal .modal-content .modal-footer .btn-add:focus { box-shadow: none; }
+/* Vendor Invoice Product Modal End */
+
+/* Vendor Customer Details Modal Start */
+.addCustomerModal .modal-content .modal-header p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 10px 0 15px 0; text-align: center; }
+.addCustomerModal .modal-content .modal-body .form-list li .add-bcc { color: #000; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin-top: -24px; position: relative; text-decoration: underline; z-index: 1;}
+.addCustomerModal .modal-content .modal-body .form-list li .form-select { background: url(assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; margin: 0; padding: 0 15px; outline: none !important; -webkit-appearance: none; width: 100%; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box { box-shadow: 0 0 10px rgba(0,0,0,.15); margin-top: 20px; padding: 30px; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; text-align: center; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box h6 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 20px 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box h6 a { color: #000; text-decoration: underline; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 20px 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box p a { color: #000; text-decoration: underline; }
+.addCustomerModal .modal-content .modal-body .form-list li .white-shadow-box .textarea-control { border: 1px dashed #000; color: #000; font: 200 16px 'Futura' !important; height: 151px; line-height: normal; margin-bottom: 30px; padding: 15px 76px 15px 15px }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li { float: left; margin: 0 15px 10px 0; padding: 0; width: auto; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; position: relative; padding-left: 26px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel .textSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 5px 0 0 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 3px; width: 20px; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel:hover input ~ .checkmark { }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel input:checked ~ .checkmark { }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.addCustomerModal .modal-content .modal-footer .email-para { color: #000; float: left;  font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 15px 0 0; }
+/* Vendor Customer Details Modal End */
+
+/*-------------------------------------------------- Vendor Order Modal Start --------------------------------------------------*/
+
+/* Vendor Products Confirm Ship Date Modal Style Start */
+.productShipDateModal .modal-dialog { max-width: 510px; }
+.productShipDateModal .modal-content { border-radius: 3px; }
+.productShipDateModal .modal-header { border-bottom: none; position: relative; }
+.productShipDateModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.productShipDateModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.productShipDateModal .modal-header .btn-close:focus { box-shadow: none; }
+.productShipDateModal .modal-body p { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.productShipDateModal .modal-body .dp-hidden { position: relative !important; width: 100%; }
+.productShipDateModal .modal-body .form-control { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; width: 100%; }
+.productShipDateModal .modal-body .calnInput { background: url(assets/images/calender_icon.svg) no-repeat 10px 10px; padding-left: 34px; }
+.productShipDateModal .modal-body .form-control:focus { box-shadow: none; }
+.productShipDateModal .modal-body .input-group .form-control { border-color: rgba(57, 57, 57, 0.5); border-radius: 3px 0 0 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: auto; }
+.productShipDateModal .modal-body .input-group .form-control:focus { box-shadow: none; }
+.productShipDateModal .modal-body .input-group .btn { border-color: rgba(57, 57, 57, 0.5); height: 41px; line-height: 39px; padding: 0 15px 0 15px; }
+.productShipDateModal .modal-body .input-group .btn:focus { box-shadow: none; }
+.productShipDateModal .modal-body .input-group .btn:active { background-color: #fff; color: #6c757d; }
+.productShipDateModal .modal-body .input-group .btn:hover { background-color: #fff; color: #6c757d; }
+.productShipDateModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.productShipDateModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.productShipDateModal .modal-footer .common_btn:focus { box-shadow: none; }
+.productShipDateModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.productShipDateModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Products Confirm Ship Date Modal Style End */
+
+/* Vendor Order Cancel In Modal Style Start */
+.cancelOrderModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.cancelOrderModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.cancelOrderModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.cancelOrderModal .modal-header .btn-close:focus { box-shadow: none; }
+.cancelOrderModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; }
+.cancelOrderModal .modal-body h4 { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 20px 0; }
+.cancelOrderModal .modal-body .formOne { list-style: none; margin: 0; padding: 0 0 0 0; width: 100%; }
+.cancelOrderModal .modal-body .formOne li { margin: 0 0 15px 0; overflow: hidden; padding: 0; width: 100%; }
+.cancelOrderModal .modal-body .formOne li .form-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin-top: 15px; width: 100%; }
+.cancelOrderModal .modal-body .formOne li .form-control { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; margin: 0; padding: 10px 15px; width: 100%; } 
+.cancelOrderModal .modal-body .formOne li .form-textarea { height: 120px; line-height: normal; }
+.cancelOrderModal .modal-body .formOne li .radioLabel { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; position: relative; padding-left: 26px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.cancelOrderModal .modal-body .formOne li .radioLabel .textSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 5px 0 0 0; }
+.cancelOrderModal .modal-body .formOne li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.cancelOrderModal .modal-body .formOne li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 3px; width: 20px; }
+.cancelOrderModal .modal-body .formOne li .radioLabel:hover input ~ .checkmark { }
+.cancelOrderModal .modal-body .formOne li .radioLabel input:checked ~ .checkmark { }
+.cancelOrderModal .modal-body .formOne li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.cancelOrderModal .modal-body .formOne li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.cancelOrderModal .modal-body .formOne li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.cancelOrderModal .modal-body .formOne li .btn { background: #393939; border: none; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0; width: 100%; }
+.cancelOrderModal .modal-body .formOne li .btn:hover { background: #000; }
+.cancelOrderModal .modal-body .formOne li .btn:focus { box-shadow: none; }
+/* Vendor Order Cancel Modal Style End */
+
+/* Vendor Split Order In Modal Style Start */
+.splitOrderModal .modal-dialog { max-width: 700px; }
+.splitOrderModal .modal-header { border-bottom: none; padding: 60px 0 0 0; position: relative; }
+.splitOrderModal .modal-header .modal-title { margin: 0 0 30px 0; text-align: center; width: 100%; }
+.splitOrderModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.splitOrderModal .modal-header .btn-close:focus { box-shadow: none; }
+.splitOrderModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 10px 0; }
+.splitOrderModal .modal-body h4 { color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 20px 0; }
+.splitOrderModal .modal-body .table_sec { margin: 0; max-height: 300px; overflow-y: auto; padding: 0; width: 100%; }
+.splitOrderModal .modal-body .table_sec .table { border-top: none; }
+.splitOrderModal .modal-body .table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.splitOrderModal .modal-body .table_sec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 15px 20px 15px; white-space: nowrap; }
+.splitOrderModal .modal-body .table_sec .table tbody { border-top: none; }
+.splitOrderModal .modal-body .table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 15px 15px 15px; }
+.splitOrderModal .modal-body .table_sec .table td:nth-child(1) { white-space: nowrap; }
+.splitOrderModal .modal-body .table_sec .table td:last-child { white-space: nowrap; }
+.splitOrderModal .modal-body .table_sec .table td .imgDiv { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.splitOrderModal .modal-body .table_sec .table td .imgDiv img { height: auto; width: 35px; }
+.splitOrderModal .modal-body .table_sec .table td .removeLink { background: #F2F2F2; border-radius: 3px; color: #000; cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
+.splitOrderModal .modal-body .table_sec .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; white-space: normal; }
+.splitOrderModal .modal-body .table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0 0 0 0; }
+.splitOrderModal .modal-body .table_sec .table td .quantitySpan { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 31px; display: inline-block; line-height: 29px; padding: 0 15px 0 15px; }
+.splitOrderModal .modal-body .table_sec .table td .quantitySpan .form-control { border: none; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 29px; padding: 0 15px 0 15px; width: 80px; }
+.splitOrderModal .modal-body .table_sec .table td .quantitySpan .form-control:focus { box-shadow: none; }
+.splitOrderModal .modal-body .table_sec .table td .form-select { border: 1px solid rgba(57,57,57,0.5); color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; } 
+.splitOrderModal .modal-body .table_sec .table td .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
+.splitOrderModal .modal-body .table_sec .table td .form-check .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0 0 0 4px; }
+.splitOrderModal .modal-body .table_sec .table td .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
+.splitOrderModal .modal-body .table_sec .table td .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.splitOrderModal .modal-body .table_sec .table td .form-check .form-check-input:focus { box-shadow: none; }
+.splitOrderModal .modal-footer { border-top: none; padding-bottom: 40px; text-align: center; }
+.splitOrderModal .modal-footer .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 40px 0 40px; text-align: center; width: auto; }
+.splitOrderModal .modal-footer .publish_btn:focus { box-shadow: none; }
+.splitOrderModal .modal-footer .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 40px 0 40px; text-align: center; width: auto; }
+.splitOrderModal .modal-footer .draft_btn:focus { box-shadow: none; }
+/* Vendor Split Order Modal Style End */
+
+/*-------------------------------------------------- Vendor Order Modal End --------------------------------------------------*/
+
+/*-------------------------------------------------- Add Products Modal Start --------------------------------------------------*/
+
+/* Vendor Video Modal Style Start */
+.videoModal .modal-dialog { max-width: 600px; }
+.videoModal .modal-content { border-radius: 3px; }
+.videoModal .modal-body { padding-top: 50px; position: relative; } 
+.videoModal .modal-body .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.videoModal .modal-body .btn-close:focus { box-shadow: none; }
+.videoModal .modal-body .htmlVideo { width: 100%; }
+/* Vendor Video Modal Style Start */
+
+/* Add products Options One Modal Style Start */
+.productOptionsModal .modal-dialog { max-width: 920px; }
+.productOptionsModal .modal-content { border-radius: 3px; }
+.productOptionsModal .modal-header { border-bottom: none; position: relative; }
+.productOptionsModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: left; width: 100%; }
+.productOptionsModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.productOptionsModal .modal-header .btn-close:focus { box-shadow: none; }
+.productOptionsModal .modal-body .infoSpan { background: rgba(0, 0, 0, 0.05); color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 30px 0; padding: 15px 30px 15px 30px; }
+.productOptionsModal .modal-body .optionsTable { margin: 0; padding: 0; width: 100%; }
+.productOptionsModal .modal-body .optionsTable .table { }
+.productOptionsModal .modal-body .optionsTable .table>:not(:first-child) { border-top: none; }
+.productOptionsModal .modal-body .optionsTable .table th { border-bottom: 1px solid rgba(0, 0, 0, 0.25); color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 15px 15px 15px 15px; }
+.productOptionsModal .modal-body .optionsTable .table td { padding: 15px 15px 15px 15px; }
+.productOptionsModal .modal-body .optionsTable .table td:nth-child(1) { padding-left: 0; width: 43px; }
+.productOptionsModal .modal-body .optionsTable .table td:nth-child(2) { width: 207px; }
+.productOptionsModal .modal-body .optionsTable .table .noPaddingTd td { padding-bottom: 0; padding-top: 0; }
+.productOptionsModal .modal-body .optionsTable .table td .numberSpan { background: #393939; border-radius: 100%; color: #fff; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 28px; line-height: 28px; padding: 0; text-align:center; width: 28px; }
+.productOptionsModal .modal-body .optionsTable .table td .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; }
+.productOptionsModal .modal-body .optionsTable .table td .smallInput { width: 177px; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete { margin: 0; padding: 0; width: 177px; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete { background: #fff; border: none; border-radius: 0px; box-shadow: none; padding: 0; width: 100%; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .input-container { background: #fff; border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; overflow: hidden; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .input-container input { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .suggestions-container { background: none; border: 1px solid rgba(0,0,0,0); border-radius: 0 0 3px 3px; box-shadow: none; top: 40px; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .active .is-visible { background: #fff; border-color: #9C9C9C; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .autocomplete-container .input-container .ng-star-inserted {display: none; width: auto; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .suggestions-container ul li { width: 100%; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .suggestions-container ul li .ng-star-inserted { width: 100%; }
+.productOptionsModal .modal-body .optionsTable .table td .autoComplete .ng-autocomplete .suggestions-container ul li .ng-star-inserted .ng-star-inserted { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 38px; padding: 0 10px 0 10px; } 
+.productOptionsModal .modal-body .optionsTable .table td .bigInput { width: 551px; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted { align-items: center; padding: 0; width: 551px; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; overflow: hidden; padding: 7.5px 0 7.5px 10px; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input .ng-trigger { background-color: #393939; color: #fff; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; height: 24px; line-height: 24px; padding-left: 15px; padding-right: 15px; width: auto; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input .tag-wrapper { width: auto; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input .tag-wrapper .ng-star-inserted { background-color: rgba(0, 0, 0, 0); background-image: url(assets/images/tags_cross_icon.png); background-position: center; background-repeat: no-repeat;  border-radius: 100%; height: 8px; margin-left: 5px; width: 8px; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input .tag-wrapper .tag__text { font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input .tag-wrapper .ng-star-inserted span { display: none; }
+.productOptionsModal .modal-body .optionsTable .table td .ng-star-inserted .ng2-tag-input__text-input { color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 24px; line-height: 24px; }
+.productOptionsModal .modal-body .optionsTable .table td .addProductOptionsLink { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 24px; padding: 0; }
+.productOptionsModal .modal-body .optionsTable .table td .addProductOptionsLink img { display: inline-block; margin-right: 5px; position: relative; top: -2px; vertical-align: middle; }
+.productOptionsModal .modal-body .optionsTable .table td .deleteIcon { cursor: pointer; }
+.productOptionsModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.productOptionsModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.productOptionsModal .modal-footer .common_btn:focus { box-shadow: none; }
+.productOptionsModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.productOptionsModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Add products Options One Modal Style End */
+
+/* Color Options Two Modal Style Start */
+.colorOptionsModal .modal-dialog { max-width: 920px; }
+.colorOptionsModal .modal-content { border-radius: 3px; }
+.colorOptionsModal .modal-header { border-bottom: none; position: relative; }
+.colorOptionsModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.colorOptionsModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.colorOptionsModal .modal-header .btn-close:focus { box-shadow: none; }
+.colorOptionsModal .modal-body { text-align: center; }
+.colorOptionsModal .swatchesImg { margin: 0 0 40px 0; padding: 0; text-align: center; width: 100%; }
+.colorOptionsModal .swatchesImg img { display: inline-block; height: auto; max-width: 100%; width: auto; }
+.colorOptionsModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; line-height: 37px; margin: 0 0 20px 0; }
+.colorOptionsModal .modal-body p { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; line-height: 24px; margin: 0 12% 30px 12%; }
+.colorOptionsModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.colorOptionsModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.colorOptionsModal .modal-footer .common_btn:focus { box-shadow: none; }
+.colorOptionsModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.colorOptionsModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Color Options Two Modal Style End */
+
+/* Color Options Two Modal Style Start */
+.selectColorModal .modal-dialog { max-width: 920px; }
+.selectColorModal .modal-content { border-radius: 3px; }
+.selectColorModal .modal-header { border-bottom: none; position: relative; }
+.selectColorModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.selectColorModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.selectColorModal .modal-header .btn-close:focus { box-shadow: none; }
+.selectColorModal .modal-body { margin-left: 0; margin-right: 0; padding: 0; }
+.selectColorModal .modal-body .leftUploadImg { background-color: rgba(0, 0, 0, 0.05);  padding-left: 0; padding-right: 0px; text-align: center; }
+.selectColorModal .modal-body .leftUploadImg .addUploadImg { margin: 0 auto; padding: 0; position: absolute; width: 210px; z-index: 1;  }
+.selectColorModal .modal-body .leftUploadImg img { height: auto; max-height: 100%; max-width: 100%; width: auto; }
+.selectColorModal .modal-body .leftUploadImg p { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 10px 0 0 0; }
+.selectColorModal .modal-body .rightUploadContent { padding-bottom: 20px; padding-left: 20px; padding-right: 20px; padding-top: 80px; position: relative; }
+.selectColorModal .modal-body .rightUploadContent .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.selectColorModal .modal-body .rightUploadContent .btn-close:focus { box-shadow: none; }
+.selectColorModal .modal-body .rightUploadContent h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0 0 20px 0; }
+.selectColorModal .modal-body .rightUploadContent p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 24px; margin: 0 0 30px 0; }
+.selectColorModal .modal-body .rightUploadContent .showCropImg { float: left; margin: 0 20px 20px 0; padding: 0; width: auto; }
+.selectColorModal .modal-body .rightUploadContent .showCropImg img { border-radius: 100%; height: 40px; width: 40px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList { float: left; list-style: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li { float: left; margin: 0 20px 20px 0; padding: 0; width: auto; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper { cursor: pointer; display: block; margin: 0; overflow: hidden; padding: 0; position: relative; width: 100px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper .btn { background: rgba(57, 57, 57, 0.05); background-image: url(assets/images/file_upload_black_24dp_icon.svg); background-position: center 25px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; cursor: pointer; color: #000; padding: 35px 0 0 0; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 100px; line-height: normal; width: 100%; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; text-indent: -999em; top: 0; width: 100%; z-index: 1; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder { height: 100px; margin: 0; padding: 0; position: relative; width: 100px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder img { obeject-fit: cover; height: 100px; width: 100px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder .ratingSpan { color: #000; cursor: pointer; position: absolute; right: 5px; top: 5px; text-align: center; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder .ratingSpan .fa-star { font-size: 9px; margin-left: 1px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder .ratingSpan .fa-regular { margin-left: 0px; }
+.selectColorModal .modal-body .rightUploadContent .uploadList li .imgHilder .ratingSpan img { height: auto; max-height: none; width: auto; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter { margin: 0; padding: 0; text-align: center; width: 100%; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .common_btn:focus { box-shadow: none; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .back_btn:focus { box-shadow: none; }
+/* Color Options Two Modal Style End */
+
+/* Color Options Two Modal Style Start */
+.variantsProductsModal .modal-dialog { max-width: 582px; }
+.variantsProductsModal .modal-content { border-radius: 3px; }
+.variantsProductsModal .modal-header { border-bottom: none; position: relative; }
+.variantsProductsModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.variantsProductsModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.variantsProductsModal .modal-header .btn-close:focus { box-shadow: none; }
+.variantsProductsModal .modal-body { margin-left: 0; margin-right: 0; padding: 0 30px 0 30px; }
+.variantsProductsModal .modal-body .rightUploadContent { padding-bottom: 20px; padding-left: 20px; padding-right: 20px; padding-top: 80px; position: relative; }
+.variantsProductsModal .modal-body .rightUploadContent .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.variantsProductsModal .modal-body .rightUploadContent .btn-close:focus { box-shadow: none; }
+.variantsProductsModal .modal-body .rightUploadContent h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0 0 20px 0; text-align: center; }
+.variantsProductsModal .modal-body .rightUploadContent p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 24px; margin: 0 0 30px 0; text-align: center; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList { float: left; list-style: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li { float: left; margin: 0 20px 20px 0; padding: 0; width: auto; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper { cursor: pointer; display: block; margin: 0; overflow: hidden; padding: 0; position: relative; width: 100px; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper .btn { background: rgba(57, 57, 57, 0.05); background-image: url(assets/images/file_upload_black_24dp_icon.svg); background-position: center 25px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; cursor: pointer; color: #000; padding: 35px 0 0 0; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 100px; line-height: normal; width: 100%; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .upload-btn-wrapper input[type=file] { cursor: pointer; height: 100%; left: 0; position: absolute; opacity: 0; text-indent: -999em; top: 0; width: 100%; z-index: 1; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .imgHilder { height: 100px; margin: 0; padding: 0; position: relative; width: 100px; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .imgHilder img { obeject-fit: cover; height: 100px; width: 100px; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .imgHilder .selectSpan { background-color: rgba(0,0,0,0.5); color: #fff; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 100px; height: 100%; left: 0; opacity: 0; position: absolute; text-align: center; transition: all .5s ease-in-out; top: 0; width: 100%; }
+.variantsProductsModal .modal-body .rightUploadContent .uploadList li .imgHilder:hover .selectSpan { opacity: 1; }
+/* Color Options Two Modal Style End */
+
+/*-------------------------------------------------- Add Products Modal End --------------------------------------------------*/
+
+/*-------------------------------------------------- Edit Products Modal Start --------------------------------------------------*/
+.detectChangeModal .modal-dialog { max-width: 450px; }
+.detectChangeModal .modal-content { border-radius: 3px; }
+.detectChangeModal .modal-header { border-bottom: none; position: relative; }
+.detectChangeModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: left; width: 100%; }
+.detectChangeModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.detectChangeModal .modal-header .btn-close:focus { box-shadow: none; }
+.detectChangeModal .modal-body p {  color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0; text-align: center; }
+.detectChangeModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.detectChangeModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.detectChangeModal .modal-footer .common_btn:focus { box-shadow: none; }
+.detectChangeModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.detectChangeModal .modal-footer .back_btn:focus { box-shadow: none; }
+/*-------------------------------------------------- Edit Products Modal End --------------------------------------------------*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+.toast-right-top #close { background: url(assets/images/cross_icon.png) no-repeat 0 0; height: 14px; text-indent: -999em; width: 14px; }
+
+
+/* Responsive Start */
+@media screen and (max-width: 1366px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 535px; }
+.thumbnails li .thumbDiv { height: 80px; width: 80px; }
+.client-feedback .slick-list {  height: 500px; }
+.client-feedback .slick-track { height: 500px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+@media screen and (max-width:1200px) { 
+.dashboard_body { padding-left: 21%; }
+}
+
+@media screen and (max-width: 1025px) { 
+.dashboard_body { padding-left: 24%; }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 440px; }
+.client-thumbnails { width: 100px; }
+.client-feedback .slick-list { height: 455px; }
+.client-feedback .slick-track { height: 455px; }
+.client-thumbnails { width: 80px; }
+.client-thumbnails .slick-slide { height: 80px; }
+.client-thumbnails .slick-slide img { max-height: 80px; max-width: 80px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Edit-Order-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.edit-order-dashboard_body { padding-left: 0; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Edit-Order-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:991px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 570px; }
+.client-feedback .slick-list { height: 570px; }
+.client-feedback .slick-track { height: 570px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/**************************************************************** Vendor Pages Start *****************************************************************/
+
+/* Vendor Header Start */
+.body-menu { overflow: hidden; }
+.vendor_header_container { padding-left: 10px !important; padding-right: 10px !important; } 
+.header_top .navbar-toggler { border: none; padding: 0; }
+/* Vendor Header End */
+
+/* Vendor-Dashboard-Common-Style Start */ 
+.dashboard_body { display: block; margin-top: 50px; overflow: auto; padding-left: 0px; }
+.middle_vendor_dasboard { padding-left: 10px; padding-right: 10px; width: 100%; }
+.right_vendor_dasboard { background: none; margin-top: 20px; padding-bottom: 40px; padding-left: 10px; padding-right: 10px; width: 100%; }
+.right_content_overflow { background: #fff; max-height: none; padding: 20px 0 0 0; position: relative; width: 100%; }
+.right_vendor_dasboard .right_bottom_fixed_sec { position: relative; width: 100%; }
+/* Vendor-Dashboard-Common-Style End */
+
+/* Vendor-Dashboard-Common-Style Start */
+.edit-order-dashboard_body { margin-top: 20px; }
+/* Vendor-Dashboard-Common-Style End */
+
+/**************************************************************** Vendor Pages End *****************************************************************/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION START ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* Vendor Split Order In Modal Style Start */
+.splitOrderModal .modal-body .table_sec { overflow-x: auto; }
+.splitOrderModal .modal-body .table_sec .table { min-width: 700px; }
+/* Vendor Split Order In Modal Style End */
+
+/*-------------------------------------------------- Add Products Modal Start --------------------------------------------------*/
+.productOptionsModal .modal-body .optionsTable { overflow-x: auto; }
+/*-------------------------------------------------- Add Products Modal End --------------------------------------------------*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:767px) { 
+/* Category Page Carousel Start */
+.filter_sec .owl-theme .owl-nav .owl-prev { margin-left: 0; }
+.filter_sec .owl-theme .owl-nav .owl-next { margin-right: 0; }
+/* Category Page Carousel End */
+
+/* Left Filter in Sub Category Page start */
+.sub_cat_left_sec [aria-controls="config-panel-one"] { display: block; }
+/* Left Filter in Sub Category Page End */
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 520px; }
+.client-thumbnails { display:  none; }
+.pagination { margin-bottom: 0px; padding-top: 0; }
+.pagination .prev { margin-left: 3px; margin-right: 3px; }
+.pagination .page-item .page-link { height: 32px; line-height: 32px; padding-left: 5px; padding-right: 5px; }
+.pagination .prev .page-link { height: 32px; line-height: 32px; width: 32px; }
+.pagination .next { margin-left: 3px; margin-right: 3px; }
+.pagination .next .page-link { height: 32px; line-height: 32px; width: 32px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/**************************************************************** Vendor Pages Start *****************************************************************/
+
+/* Vendor-Dashboard-Common-Style Start */ 
+.middle_vendor_dasboard { width: 100%; }
+/* Vendor-Dashboard-Common-Style End */ 
+
+/* Vendor-Create-Invoice-Style Start */
+.search-autocomplete2 .searchBox .imgBox { width: 49px; }
+.search-autocomplete2 .searchBox .productInfoTxt { width: 79%; }
+.search-autocomplete2 .searchBox .priceTag { clear: left; float: left; margin-left: 0; }
+/* Vendor-Create-Invoice-Style End */
+
+/* Vendor-New-Campaigns-Style Start */
+.email-template .gjs-pn-panels .gjs-pn-panel:nth-child(5) { padding-left: 15px; padding-right: 15px; width: 80%; }
+/* Vendor-New-Campaigns-Style End */
+
+/**************************************************************** Vendor Pages End *****************************************************************/
+
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION START ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* User Log In Modal Style Start */
+.loginModal .modal-body .social_login { padding: 0; }
+.loginModal .modal-body .formOne { padding: 0; }
+/* User Log In Modal Style End */
+
+/* User Invoice Modal Start */
+.downloadInvoiceModal .modal-content .modal-body { padding-left: 30px; padding-right: 30px; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader { margin-bottom: 30px; }
+.downloadInvoiceModal .modal-content .modal-body .topHeader .topHeaderRight p { margin: 15px 0 0 0; text-align: left; }
+/* User Invoice Modal End */
+
+/* Vendor Upload Feature Image Modal Start */
+.featureImgModal .image-editor { }
+.featureImgModal .cropit-preview { zoom: 0.6; }
+.featureImgModal .cropit-preview-image-container { }
+.featureImgModal .rangeSliderSec { padding-left: 0; }
+.featureImgModal .rangeSliderSec .rangeSliderInput { margin-left: 3%; }
+.featureImgModal .modal-footer .common_btn { padding-left: 30px; padding-right: 30px; }
+.featureImgModal .modal-footer .back_btn { padding-left: 30px; padding-right: 30px; }
+/* Vendor Upload Feature Image Modal End */
+
+/* Vendor Upload Profile Image Modal Start */
+.UploadProfileModal { }
+.UploadProfileModal .cropit-preview { margin-left: -40px; zoom: 0.3; }
+.UploadProfileModal .rangeSliderSec { padding: 0; }
+.UploadProfileModal .rangeSliderSec .rangeSliderInput { margin-left: 3%; }
+.UploadProfileModal .modal-footer .common_btn { padding-left: 30px; padding-right: 30px; }
+.UploadProfileModal .modal-footer .back_btn { padding-left: 30px; padding-right: 30px; }
+/* Vendor Upload Profile Image Modal End */
+
+/* Vendor Upload Cover Image Modal Start */
+.UploadCoverModal .cropit-preview { zoom: 0.6; }
+.UploadCoverModal .dragUploadImg img { max-width: 100%; }
+.UploadCoverModal .modal-footer .common_btn { padding-left: 30px; padding-right: 30px; }
+.UploadCoverModal .modal-footer .back_btn { padding-left: 30px; padding-right: 30px; }
+/* Vendor Upload Cover Image Modal End */
+
+/* Vendor Upload Videos Modal Start */
+.uploadVidModal .modal-body p { margin-left: 0px; margin-right: 0px; }
+/* Vendor Upload Videos Modal End */
+
+/* Vendor Upload Edit Video Modal Start */
+.editVideoModal .modal-footer .common_btn { padding-left: 30px; padding-right: 30px; }
+.editVideoModal .modal-footer .back_btn { padding-left: 30px; padding-right: 30px; }
+/* Vendor Upload Edit Video Modal End */
+
+/* Vendor Invoice Product Modal Start */
+.invoiceProductModal .modal-content .modal-body .top-main-product { overflow-x: auto; }
+.invoiceProductModal .modal-content .modal-body .top-main-product .table { min-width: 750px; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list { overflow-x: auto; }
+.invoiceProductModal .modal-content .modal-body .invoice-product-table_list .table { min-width: 750px; }
+.invoiceProductModal .modal-content .modal-footer .btn-cancel { padding-left: 30px; padding-right: 30px; }
+.invoiceProductModal .modal-content .modal-footer .btn-add { padding-left: 30px; padding-right: 30px; }
+/* Vendor Invoice Product Modal End */
+
+/* Vendor Split Order In Modal Style Start */
+.cancelOrderModal .modal-body h3 { font-size: 24px; }
+/* Vendor Split Order In Modal Style End */
+
+/*-------------------------------------------------- Add Products Modal Start --------------------------------------------------*/
+.productOptionsModal .modal-body .optionsTable { overflow-x: auto; }
+.productOptionsModal .modal-footer .common_btn { width: 100%; }
+.productOptionsModal .modal-footer .back_btn { width: 100%; }
+.colorOptionsModal .modal-footer .common_btn { width: 100%; }
+.colorOptionsModal .modal-footer .back_btn { width: 100%; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .common_btn { width: 100%; }
+.selectColorModal .modal-body .rightUploadContent .btnFooter .back_btn { width: 100%; }
+/*-------------------------------------------------- Add Products Modal End --------------------------------------------------*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:540px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 520px; }
+.client-feedback .slick-list { height: 500px; }
+.client-feedback .slick-track { height: 500px; }
+.feedback .slick-slide img { width: 100%; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:480px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 460px; }
+.client-feedback .slick-list { height: 450px; }
+.client-feedback .slick-track { height: 450px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:414px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 390px; }
+.client-feedback .slick-list { height: 390px; }
+.client-feedback .slick-track { height: 390px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:393px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 370px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:375px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 355px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:360px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 340px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+
+@media screen and (max-width:320px) { 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.ngxImageZoomThumbnail { width: 300px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+}
+/* Responsive End */
