@@ -1,0 +1,77 @@
+<div class="gray_body">
+    <div class="container-fluid profileDiv">
+        <div class="row">
+            <div class="col-lg-2 col-sm-4">
+                <app-user-left-sidebar></app-user-left-sidebar>
+            </div>
+            <div class="col-lg-10 col-sm-8">
+                <h2 class="heading"></h2>
+                <div class="rightAccount">
+                    <div class="row order-top">
+                        <div class="col-md-9 left-order-top">
+                            <h4>Pending Order From {{allDetails?.brand}}</h4>
+                            <p>Once you confirm this order, {{allDetails?.brand}} will be able to fulfill it.</p>
+                        </div>
+                        <div class="col-md-3 right-order-top">
+                            <a class="btn btn-primary">Confirm Order</a>
+                            <span class="alart-text">Add a <a>payment method</a> to confirm your order</span>
+                        </div>
+                    </div>
+                    <ul class="order-item-list">
+                        <li>
+                            <div class="order-top-details">
+                                <ul>
+                                    <li>
+                                        <label>Pending Order</label>
+                                        <h5>{{order_details?.order_number}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Date Placed</label>
+                                        <h5>{{order_details?.display_shipping_date}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Ship To</label>
+                                        <h5>{{order_details?.address_str}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Total</label>
+                                        <h5>${{order_details?.total_amount}}</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="order-bottom-details">
+                                <table class="table">
+                                    <tr *ngFor="let item of ordersArray">
+                                        <td><img src="{{item?.product_image}}" alt="" /></td>
+                                        <td>
+                                            <h4>{{item?.product_name}}</h4>
+                                            <h5>{{item?.style_group_name}}</h5>
+                                            <ul>
+                                                <li>
+                                                    <label>Items</label>
+                                                    <h6>{{item?.quantity}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Price</label>
+                                                    <h6>${{item?.product_price}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Total Price</label>
+                                                    <h6>${{item?.amount}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Item Status</label>
+                                                    <h6>{{item?.status}}</h6>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

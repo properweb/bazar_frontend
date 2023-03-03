@@ -1,0 +1,52 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_invoice_btn { background: #393939; border-radius: 3px; color: #fff; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; margin: -48px 0 0 0; padding: 0; text-align: center; width: 148px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_invoice_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_invoice_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .videosTabSec { background: #fff; float: left; margin: 0; padding: 20px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .nav-item { }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .nav-item .nav-link { background: none; border: none; border-bottom: 1px solid transparent; border-radius: 0; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 26px; padding: 0 50px 20px 50px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .active { border-bottom: 1px solid #000 !important; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .nav-item .nav-link span { background: #ececec; border-radius: 3px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 26px; min-width: 26px; margin-left: 5px; text-align: center; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch { list-style: none; padding: 30px 0 0 30px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li { }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li .text_form { background: url(../../assets/images/search_icon.svg) no-repeat 10px 13px #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 30px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li .text_form:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li .form-select { background:url(../../assets/images/select_arrow.svg) no-repeat right 15px center; border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; margin: 0; padding: 0 15px; outline: none !important; -webkit-appearance: none; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .borderDiv { border-bottom: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 25px 0 25px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .no_payouts_found { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 40px 0; text-align: center; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table td img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table .notfountCol { text-align: center; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table .notfountCol h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table .notfountCol p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec { padding-top: 8px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs { border-bottom: 1px solid #dee2e6; margin-bottom:20px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .nav-item { float: left; margin-bottom: 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .videosTabSec .nav-tabs .nav-item .nav-link { border-bottom: 1px solid #dee2e6; padding: 8px 0 8px 0; text-align: center; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch { padding: 10px 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .borderDiv { margin-top: 0; }
+}
+@media screen and (max-width:767px) { 
+}
+/* Responsive End */

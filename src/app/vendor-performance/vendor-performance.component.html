@@ -1,0 +1,145 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Performance</h3>
+          <p>Data on your performance on Faire.</p>
+          <div class="selectBoxNew">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Last 3 month by</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select> 
+          </div> 
+        </div>
+      </div>
+      <div class="rightAccount PerformPnl">
+      	<h5>Reviews will be published 2 business days after they're written. <a>Learn More</a></h5>
+        <div class="PerformBox">
+          <h4>Analytics Summary</h4>
+          <p>Your ranking in the marketplace is determined by your store conversion rate, sell-through rate, and average star rating.</p>
+          <table class="perform">
+            <thead>
+              <tr>
+                <th>Order Volume</th>
+                <th>Conversion Rate</th>
+                <th>Sell-through Rate</th>
+                <th>Overall Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>%20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="PerformBox GraphBox">
+          <h4>Total Sales</h4>
+          <p class="dateField">January 12, 2022 - April 12, 2022</p>
+          <div class="clearfix"></div>
+          <!-- <img src="assets/images/GraphImg1.jpg" alt=""> -->
+          <div class="graph-box">
+            <div class="row">
+              <div class="col-md-3">
+                <ul class="graph-list">
+                  <li>
+                    <h4>Order Volume</h4>
+                    <h5>$1000</h5>
+                  </li>
+                  <li>
+                    <h4>Total Orders</h4>
+                    <h5>2</h5>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-9">
+                <canvas ngChartjs [datasets]="lineChartData" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [inlinePlugins]="inlinePlugin">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PerformBox GraphBox">
+          <h4>Shop Traffic</h4>
+          <p class="dateField">January 12, 2022 - April 12, 2022</p>
+          <div class="clearfix"></div>
+          <!-- <img src="assets/images/GraphImg2.jpg" alt="">  -->
+          <div class="graph-box">
+            <div class="row">
+              <div class="col-md-3">
+                <ul class="graph-list">
+                  <li>
+                    <h4>Retailer Page Visits</h4>
+                    <h5>55</h5>
+                  </li>
+                  <li>
+                    <h4>Conversion Rate</h4>
+                    <h5>50%</h5>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-9">
+                <canvas ngChartjs [datasets]="lineChartData" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [inlinePlugins]="inlinePlugin">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="PerformBox GraphBox halfBox">
+          <h4>Sell-through & Returns</h4>
+          <p class="dateField">All time</p>
+          <div class="clearfix"></div>
+          <div class="ContentSec">
+            <p class="Heading">Sell-through Rate</p>
+            <p>Sell-through rate is the rate in which your products were sold in a retailer's store. Items that are not sold are then returned.</p>
+            <p>Once a return has been made that data will show here.</p>
+            <a class="seeAll">See All Returns</a> </div>
+        </div>
+        <div class="PerformBox GraphBox halfBox">
+          <h4>Shop Traffic</h4>
+          <p class="dateField">All time</p>
+          <div class="clearfix"></div>
+          <div class="ContentSec">
+            <ul class="rating-list">
+              <li><label>Overall Rating</label>
+                  <span>-</span>
+              </li>
+              <li><label>Total Reviews</label>
+                <span>-</span>
+              </li>
+              <li><label>5 Star Reviews</label>
+                <span>-</span>
+              </li>
+            </ul>
+            <!-- <table class="perform">
+              <thead>
+                <tr>
+                  <th>Overall Rating</th>
+                  <th>Total Reviews</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table> -->
+            <a class="seeAll">See All Reviews</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

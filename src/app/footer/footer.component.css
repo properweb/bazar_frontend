@@ -1,0 +1,35 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.footer { margin: 0; padding: 0; width: 100%; }
+.topFooter { background: #393939; margin: 0; padding: 30px 0 40px 0; width: 100%; }
+.footer_inner { border-top: 1px solid #fff; margin: 0; padding: 25px 0 0 0; width: 100%; }
+.footer_inner .footer_logo img { height: auto; width: 147px; }
+.footer_inner .footer_menu_same h3 { color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 500;  margin: 0 0 15px 0; }
+.footer_inner .footer_menu_same .f_menu_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.footer_inner .footer_menu_same .f_menu_list li { margin: 0 0 8px 0; padding: 0; width: 100%; }
+.footer_inner .footer_menu_same .f_menu_list li a { color: #fff; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; transition: all .5s ease-in-out; }
+.footer_inner .footer_menu_same .f_menu_list li a:hover { text-decoration: underline; }
+.footer_inner .footer_Social h3 { color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 500;  margin: 0 0 15px 0; }
+.footer_inner .footer_Social .f_menu_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.footer_inner .footer_Social .f_menu_list li { margin: 0 0 8px 0; padding: 0; width: 100%; }
+.footer_inner .footer_Social .f_menu_list li a { color: #fff; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.footer_inner .footer_Social .f_social_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.footer_inner .footer_Social .f_social_list li { display: inline-block; margin: 0 10px 8px 0; padding: 0; width: auto; }
+.footer_inner .footer_Social .f_social_list li a { cursor: pointer; color: #000; display: block; height: 24px; line-height: 24px; text-align: center; width: 24px; }
+.bottomFooter { margin: 0; padding: 25px 0 25px 0; width: 100%; }
+.bottomFooter ul { list-style: none; margin: 0; padding: 0; width: 100%; }
+.bottomFooter ul li { color: #393939; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 50px 0 0; padding: 0; width: auto; }
+.bottomFooter ul li a { color: #393939; cursor: pointer; display: block; }
+.bottomFooter ul li a:hover { text-decoration: underline; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+}	
+@media screen and (max-width:767px) { 
+.footer_logo { margin-bottom: 30px; text-align: center; }
+.footer_inner .footer_menu_same { margin-bottom: 30px; text-align: center; }
+.footer_Social { margin-bottom: 30px; text-align: center; }
+.bottomFooter ul li { margin: 0 0 10px 0; text-align: center; width: 100%; }
+}
+/* Responsive End */

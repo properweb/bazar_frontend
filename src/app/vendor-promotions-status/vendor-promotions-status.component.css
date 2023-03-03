@@ -1,0 +1,42 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList { float: right; list-style: none; margin: -63px 0 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li { float: left; margin: 0 0 0 10px; padding: 0; position: relative; width: auto; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .viewShopLink { background: #fff; border: 1px solid #000; border-radius: 3px; cursor: pointer; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; text-align: center; width: 184px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .newPromotionLink { background-color: #393939; border: 1px solid #393939; border-radius: 3px; cursor: pointer; color: #fff; display: inline-block; height: 43px; padding: 0 0 0 30px; text-align: center; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .newPromotionLink span { background-image: url(../../assets/images/white_dropdown_arrow_icon.svg); background-repeat: no-repeat; background-position: 92% 18px; background-size: 16px auto; color: #fff; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; padding-right: 50px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .new_romotion_active span { background-image: url(../../assets/images/white_dropdown_up_arrow_icon.svg); }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .createPromotionsList { display: none; left: 0; list-style: none; margin: 0; padding: 0; position: absolute; top: 43px; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .createPromotionsList li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .createPromotionsList li a { background: #fff; color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 43px; padding: 0 30px 0 30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .createPromotionsList li a:hover { background: rgba(57, 57, 57, 0.05); }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table { border: none; margin-bottom: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table thead { border-bottom: 1px solid #dfdfdf; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table th { background: none; border: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table td { background: none; border: none; border-bottom: 1px solid #dfdfdf; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table td a { color: #000; cursor: pointer; text-decoration: underline; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }	
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList { float: left; margin-top: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li { margin-bottom: 10px; margin-left: 0; margin-right: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .viewShopLink { padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .newPromotionLink { display: block; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .rightTopPromoList li .newPromotionLink span { display: inline-block; padding-right: 35px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec { overflow-x: auto; padding-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_ststus_body .promotions_ststus_table_sec .table { width: 800px; }
+}
+/* Responsive End */
