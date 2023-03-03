@@ -1,0 +1,134 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+    <app-vendor-side-menu></app-vendor-side-menu>
+    <div class="middle_vendor_dasboard">
+        <div class="middle_content">
+            <h3>Welcome, {{first_name}}</h3>
+            <ng-container *ngIf="!resendBtsDis">
+                <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                    Please verify your Email.
+                    <a (click)="onResendEmailClick()">Resend email.</a>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="resendBtsDis">
+                <div class="alert alert-warning" role="alert" *ngIf="verified != 1 || verified != '1'" >
+                    Please verify your Email.
+                    <a >sending email.</a>
+                </div> 
+            </ng-container>
+            <div class="whiteBox">
+                <h4>Preview your shop page</h4>
+                <div class="whitebox_content">
+                    <p>Need to update something? Use these quick links to edit your imagery, products, ordering
+                        preferences and more before going live. For more help, visit our <a>Help Center</a></p>
+                    <ul class="left_update_list">
+                        <li>
+                            <h4>Update your shop's header details</h4>
+                            <p>Add new brand photography, edit your story, update your social media handle, and
+                                more.
+                            </p>
+                            <a class="edit_link" routerLink="/my-shop" >Edit Shop Page</a>
+                        </li>
+                        <li>
+                            <h4>Add or update products</h4>
+                            <p>Missing products? Add them to your shop, or update your product photos, prices, and
+                                more.
+                            </p>
+                            <a class="edit_link" routerLink="/products">Edit Products</a>
+                        </li>
+                        <li>
+                            <h4>Reorder your product listings</h4>
+                            <p>Choose how your products will appear on your page, or have us sort them
+                                scientifically.
+                            </p>
+                            <a class="edit_link" routerLink="/arrange-items">Edit Arrangement</a>
+                        </li>
+                        <li>
+                            <h4>Review your shop settings</h4>
+                            <p>Set your order preferences, like your order minimum, average lead time, and more.</p>
+                            <a class="edit_link" routerLink="/my-shop/settings">Edit Shop Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right_vendor_dasboard">
+        <div class="right_content_overflow">
+            <h3>Shop assistant</h3>
+            <div class="right_gray_box">
+                <h3>Set up shop on Bazar</h3>
+                <p>Make sure you have all your product details and photography ready to upload! Check out your
+                    shop
+                    page
+                    and
+                    make any final edits before going live.</p>
+            </div>
+            <div class="bottomrightbox">
+                <h3>Tasks <span>15 minutes</span></h3>
+                <ul class="task_list">
+                    <li class="complete">
+                        <a routerLink="/products" *ngIf="added_product == '0'">
+                            <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Add your product catalog</span>
+                        </a>
+                        <a *ngIf="added_product != 0">
+                            <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Add your product catalog</span>
+                        </a>
+                    </li>
+                    <li class="complete">
+                        <a routerLink="/my-shop" *ngIf="previewed_shop_page == '0'">
+                            <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Preview your shop page</span>
+                        </a>
+                        <a *ngIf="previewed_shop_page != '0'">
+                            <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Preview your shop page</span>
+                        </a>
+                    </li>
+
+                    <li *ngIf="added_product == '0' || previewed_shop_page == '0'">
+                        <a>
+                            <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
+                        </a>
+                    </li>
+                    <li *ngIf="added_product != '0' && previewed_shop_page != '0' && go_live == '0'" >
+                        <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
+                            <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
+                        </a>
+                    </li>
+                    <li *ngIf="go_live == '2' || go_live == '1'">
+                        <a>
+                            <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Go live!</span>
+                        </a>
+                    </li>
+                    <!-- <li *ngIf="added_product != '0' && previewed_shop_page != '0'">
+                        <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
+                            <span class="radioLabel">Go live!
+                                <input type="radio" [checked]="go_live == '1' || go_live == '2'" > 
+                                <span class="checkmark"></span>
+                            </span>
+                        </a>
+                    </li> -->
+
+                </ul>
+            </div>
+            <div class="right_bottom_fixed_sec">
+                <h4 *ngIf="go_live == '0'" >Shop status: <strong class="inactiveStrong">Inactive</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
+                <h4 *ngIf="go_live == '1'" >Shop status: <strong class="inactiveStrong">Wating for admin approval.</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
+                <h4 *ngIf="go_live == '2'">Shop status: <strong class="activeStrong">Active</strong></h4>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<ng-template #deleteContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Are you ready to live now?</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p> Now,you are ready to live your page.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="goLiveClick()" *ngIf="!goliveBtsDis" >Go Live</button>
+      <button type="button" class="btn btn-primary" disabled *ngIf="goliveBtsDis" >Go Live</button>
+    </div>
+</ng-template>

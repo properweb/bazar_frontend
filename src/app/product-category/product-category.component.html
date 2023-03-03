@@ -1,0 +1,442 @@
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumbNav">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Home & Garden</li>
+        </ol>
+    </nav>
+</div>
+<div class="category_top">
+    <div class="container">
+        <h2>Home & Garden</h2>
+        <owl-carousel-o [options]="catOptions1">
+            <ng-template carouselSlide *ngFor="let topCatArrays of topCatArray">
+                <div class="category_box">
+                    <div class="category_box_inner">
+                        <div class="img_div">
+                            <img src="{{topCatArrays.newImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h4>{{topCatArrays.newTitleName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>
+<div class="filter_sec">
+    <div class="container">
+        <owl-carousel-o [options]="filterOptions1">
+            <ng-template carouselSlide>
+                <div class="filter_gray_box">
+                    <a class="short_by_icon"><img src="assets/images/short_by_icon.png" alt=""></a>
+                    <a class="short_by_icon2"><img src="assets/images/short_by_icon2.svg" alt=""></a>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Country of origin</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Minimum orders</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Values</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Brands</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Brands</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Ship window</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Lead time</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>
+<div class="bottom_cat_listing">
+    <div class="container">
+        <ul class="row cat_listing_list">
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="gray_cat">
+    <div class="container">
+        <h2>New items</h2>
+        <ul class="row cat_listing_list">
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Banner Start * * * * * * * * * * * -->
+<div class="local_banner" style="background-image: url(assets/images/local-brands-image-min.png);">
+    <div class="white_banner_box">
+        <h3>{{localBannerHeading}}</h3>
+        <p>{{localBannerPara}}</p>
+        <a class="btn btn-primary sell_on_bazar"><span>Sell on Bazar  <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+        <a class="btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->
+<div class="bottom_cat_listing">
+    <div class="container">
+        <ul class="row cat_listing_list">
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="gray_cat">
+    <div class="container">
+        <h2>Local Brands</h2>
+        <ul class="row cat_listing_list">
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/local-brand-product.png);"></div>
+                    <div class="textDiv">
+                        <h3>Star Seller</h3>
+                        <p>80$ minimum</p>
+                        <p class="discount_tag"><span>Up to 30% off  + free shipping</span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/local-brand-product.png);"></div>
+                    <div class="textDiv">
+                        <h3>Star Seller</h3>
+                        <p>80$ minimum</p>
+                        <p class="discount_tag"><span>Up to 30% off  + free shipping</span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/local-brand-product.png);"></div>
+                    <div class="textDiv">
+                        <h3>Star Seller</h3>
+                        <p>80$ minimum</p>
+                        <p class="discount_tag"><span>Up to 30% off  + free shipping</span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Star Seller</h3>
+                        <p>80$ minimum</p>
+                        <p class="discount_tag"><span>Up to 30% off  + free shipping</span></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="bottom_cat_listing">
+    <div class="container">
+        <ul class="row cat_listing_list">
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="cat_best_sellers_sec">
+    <div class="container">
+        <h2>Our Best Sellers</h2>
+        <owl-carousel-o [options]="catOptions2">
+            <ng-template carouselSlide *ngFor="let catBestCatArrays of catBestCatArray">
+                <div class="category_box">
+                    <div class="category_box_inner">
+                        <div class="img_div">
+                            <img src="{{catBestCatArrays.newImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h4>{{catBestCatArrays.newTitleName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Banner Start * * * * * * * * * * * -->
+<div class="cat_bottom_banner" style="background-image: url(assets/images/cat_bottom_banner.png);">
+    <div class="white_banner_box">
+        <h3>Grow your business</h3>
+        <p>Start wholesale with Bazar</p>
+        <a class="btn btn-primary sell_on_bazar"><span>Sell on Bazar  <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+        <a class="btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+    </div>
+</div>
+<!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->
+
+<app-footer></app-footer>

@@ -1,0 +1,332 @@
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumbNav">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item"><a>Home & Garden</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 sub_cat_left_sec">
+            <h3 class="mobile_hide"><span>All categories</span></h3>
+            <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+                <ngb-panel id="toggle-1" title="All categories" id="config-panel-one">
+                  <ng-template ngbPanelContent>
+                    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+                        <ngb-panel title="Kitchen" id="ngb-panel-0">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel title="Living">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel title="Dining">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel title="Decor">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel title="Bathroom">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel title="Carpets">
+                            <ng-template ngbPanelContent>
+                                <ul class="cat_sub_lists">
+                                    <li><a>Glasses</a></li>
+                                    <li><a>Pots</a></li>
+                                    <li><a>Plates</a></li>
+                                    <li><a>Decor</a></li>
+                                </ul>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                    <h4>Sort by</h4>
+                    <div class="btn-group" role="group" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                        <label ngbButtonLabel class="btn-primary">
+                            <input ngbButton type="radio" class="btn-check" value="middle"> Featured
+                        </label>
+                        <label ngbButtonLabel class="btn-primary">
+                            <input ngbButton type="radio" class="btn-check" [value]="false"> New
+                        </label>
+                    </div>
+                    <h4>Location</h4>
+                    <div class="location_search">
+                        <input type="email" class="form-control" placeholder="Search for products or brands">
+                    </div>
+                    <ul class="location_list">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Iordan
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Qatar
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    UAE
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Iraq
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="more_locations">See more locations</a>
+                    <h4>Location</h4>
+                    <ul class="location_list">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    3 days or less
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    9 days or less
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    6 days or less
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    14 days or less
+                                </label>
+                              </div>
+                        </li>
+                    </ul><br>
+                    <h4>Brand minimum</h4>
+                    <ul class="location_list">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    No minimum
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    200$ or less
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    100$ or less
+                                </label>
+                              </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <label class="form-check-label">
+                                    300$ or less
+                                </label>
+                              </div>
+                        </li>
+                    </ul><br>
+                    <h4>Brand minimum</h4>
+                    <ul class="location_list">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Handmade
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Eco-friendly
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Social good
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label">
+                                    Not on Amazon
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="see_more2">See more</a>
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            
+        </div>
+        <div class="col-md-9 sub_cat_right_sec">
+            <h2>Kitchen</h2>
+            <ul class="row cat_listing_list">
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

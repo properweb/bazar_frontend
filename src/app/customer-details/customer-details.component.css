@@ -1,0 +1,67 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .upload_video_btn { background: #393939; border-radius: 3px; color: #fff; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; margin: -68px 0 0 0; padding: 0; text-align: center; width: 148px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .upload_video_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .upload_video_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body h2 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; margin: 0 0 30px 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body h2 .customer-span { background: #54D8DC; border-radius: 28px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin-right: 10px; padding: 4px 18px 4px 18px; position: relative; top: -5px; text-transform: capitalize;}
+.middle_vendor_dasboard .middle_content .my_shop_videos_body h2 .bazar-span { border-radius: 28px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 4px 18px 4px 18px; position: relative; top: -5px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .nav-list { float: right; list-style: none; margin-top: -70px; padding: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .nav-list li { float: left; margin-left: 10px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .nav-list li a { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; } 
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .nav-list li a .fa-solid { margin-right: 5px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .ideaList { list-style: none; padding: 0; margin: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .ideaList li { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 30px 20px 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .ideaList li h4 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 200; margin: 5px 0 0 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table th:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .imgDiv { margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .imgDiv img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .removeLink { background: #F2F2F2; border-radius: 3px; color: #000; cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .quantitySpan { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 31px; display: inline-block; line-height: 29px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .quantitySpan .form-control { border: none; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 29px; padding: 0 15px 0 15px; width: 80px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .recent-orders_table_sec .table td .quantitySpan .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list { float: left; list-style: none; margin-bottom: 20px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li { border-left: 1px solid #eaeaea; float: left; margin-top: 0; padding: 0 0 20px 20px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:nth-child(1) { border-left:  none; margin-top: 0; padding-bottom: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:nth-child(2) { padding-top: 50px; margin-top: -35px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:last-child { padding-bottom: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:after { background-color: #000; border-radius: 5px; content: ""; height: 10px; left: -5px; margin-top: -5px; position: absolute; top: 38%; width: 10px; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:nth-child(1):after { }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:nth-child(2):after { top: 63%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li:last-child:after { top: 49%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li h4 { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li .text_form { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 30px; width: 60%; }
+.middle_vendor_dasboard .middle_content .my_shop_videos_body .customer-activity-list li .post_btn { background: #393939; border: none; border-radius: 3px; color: #fff; cursor: pointer; display: inline-block; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; margin-bottom: 20px; margin-left: 15px; padding: 0; text-align: center; width: 148px; }
+.middle_vendor_dasboard .middle_content .right-customer-details .my_shop_videos_body h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0; }
+.middle_vendor_dasboard .middle_content .right-customer-details .my_shop_videos_body p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .right-customer-details .my_shop_videos_body .email_btn { background: #393939; border: none; border-radius: 3px; color: #fff; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; margin-bottom: 20px; padding: 0; text-align: center; width: 148px; }
+.middle_vendor_dasboard .middle_content .right-customer-details .my_shop_videos_body .create-invoice-link { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 5px; text-align: center; text-decoration: underline; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec { overflow-x: auto; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table { width: 550px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table td .overlaytextDiv { padding-right: 20px; }
+}
+@media screen and (max-width:767px) { 
+}
+/* Responsive End */

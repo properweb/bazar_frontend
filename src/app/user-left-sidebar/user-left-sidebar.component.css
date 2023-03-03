@@ -1,0 +1,41 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+/*-------------- Left Section Starts ------------------*/
+.leftNav { background: #fff; float: left; padding: 20px 10px 15px 10px; width: 100%; }
+.profileImg { margin: 0; padding: 0; text-align: center; width: 100%; }
+.profileImg img { border-radius: 100%; height: 91px; object-fit: cover; width: 91px; }
+.profileImg .profile-text { background-color: #000; border-radius: 100%; color: #fff; display: inline-block; font-family: 'Futura' !important; font-size: 60px; font-weight: 700; line-height: 91px; text-align: center; text-transform: uppercase; width: 91px; }
+.leftNav h3 { color: #000; font: 400 18px 'Futura' !important; margin-top: 10px; text-align: center; }
+.leftNav ul { list-style-type:none; margin: 30px 0 0 0; padding: 0; width: 100%; }
+.leftNav ul li { margin: 0 0 10px 0; padding: 0; width: 100%; }
+.leftNav ul li a { border-radius: 5px; color: #000; cursor: pointer; display: block; font: 500 16px 'Futura' !important; padding: 15px 0 15px 60px; text-decoration: none; }
+.leftNav ul li a:hover { color: #fff; }
+.leftNav ul li .active { color: #fff; }
+.leftNav ul li:first-child a { background: url(../../assets/images/my_profle_icon.svg) no-repeat 20px 13px; }
+.leftNav ul li:first-child a:hover { background: url(../../assets/images/my_profle_hover_icon.svg) no-repeat 20px 13px #393939; }
+.leftNav ul li:first-child .active { background: url(../../assets/images/my_profle_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(2) a { background: url(../../assets/images/my_orders_icon.svg) no-repeat 20px 15px; }
+.leftNav ul li:nth-child(2) a:hover { background: url(../../assets/images/my_orders_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(2) .active { background: url(../../assets/images/my_orders_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(3) a { background: url(../../assets/images/chat_icon.svg) no-repeat 20px 16px; }
+.leftNav ul li:nth-child(3) a:hover { background:url(../../assets/images/chat_hover_icon.svg) no-repeat 20px 16px #393939; }
+.leftNav ul li:nth-child(3) .active { background: url(../../assets/images/chat_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(4) a { background: url(../../assets/images/wishlist_icon.svg) no-repeat 20px 15px; }
+.leftNav ul li:nth-child(4) a:hover { background: url(../../assets/images/wishlist_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(4) .active { background: url(../../assets/images/wishlist_hover_icon.svg) no-repeat 20px 15px #393939; }
+.leftNav ul li:nth-child(5) a { background: url(../../assets/images/invoices_icon.svg) no-repeat 24px 15px; }
+.leftNav ul li:nth-child(5) a:hover { background: url(../../assets/images/invoices_hover_icon.svg) no-repeat 24px 15px #393939; }
+.leftNav ul li:nth-child(5) .active { background: url(../../assets/images/invoices_hover_icon.svg) no-repeat 24px 15px #393939; }
+.leftNav ul li:nth-child(6) { border-top: 1px solid #393939; margin: 20px 0 10px 0; padding: 0; }
+.leftNav ul li:nth-child(7) a { background: url(../../assets/images/logout_icon.svg) no-repeat 20px 16px; }
+.leftNav ul li:nth-child(7) a:hover { background: url(../../assets/images/logout_hover_icon.svg) no-repeat 20px 16px #393939; }
+/*-------------- Left Section Ends ------------------*/
+
+/* Responsive Start */
+@media screen and (min-width: 300px) and (max-width: 767px) {
+/*-------------- Left Section Starts ------------------*/	
+.leftNav { margin-top: 20px; }
+/*-------------- Left Section Ends ------------------*/	
+}
+/* Responsive End */

@@ -1,0 +1,129 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: 0; margin-right: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 20px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h4 { color: #000; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li { }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box { background: #fff; margin: 0; min-height: 156px; padding: 15px 10px 15px 10px; width: 100%;}
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li { }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li h5 a { color: #000; cursor: pointer; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li p { color: #000; font-family: 'Futura' !important; font-size: 15px; font-weight: 400; margin: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li .edit-para { padding-left: 19px; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li .input-group .btn-outline-secondary { border: 1px solid #ced4da; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li .input-group .btn-outline-secondary:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li .input-group .btn-outline-secondary:active { background-color: #fff; color: #6c757d; }
+.middle_vendor_dasboard .middle_content .edit-order-top-list li .white-small-order-box .edit-details-list li .input-group .btn-outline-secondary:hover { background-color: #fff; color: #6c757d; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px 10px 15px 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li label { color: #393939; font: 200 14px 'Futura' !important; margin: 0 0 5px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-control { border: 1px solid #393939; color: #393939; font: 200 14px 'Futura' !important; height: 40px; padding: 8px 12px 8px 12px; } 
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-select { border: 1px solid #393939; color: #393939; cursor: pointer; font-family: Futura !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px; } 
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px 0 15px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 10px 10px 10px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table th:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 15px 20px 15px; text-align: center; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td:nth-child(1) { text-align: left; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .imgDiv { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .imgDiv img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .removeLink { background: #F2F2F2; border-radius: 3px; color: #000; cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .quantitySpan { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 31px; display: inline-block; line-height: 29px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .quantitySpan .form-control { border: none; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 29px; padding: 0 15px 0 15px; width: 80px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table td .quantitySpan .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList { list-style: none; margin-top: 20px; padding: 0 10px 0 10px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .noMrgnList { margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li label { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .search_form { background: url(../../assets/images/search_icon.png) no-repeat 10px 13px; padding-left: 30px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .add_items_link { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox { border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; float: left; margin: 0 0 40px 0; padding: 0; width: 100%; } 
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox a { cursor: pointer; display: block; float: left; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox a:hover { background: rgba(0, 0, 0, 0.05); }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .imgBox { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .imgBox img { height: auto; width: 49px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .productInfoTxt { float: left; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .productInfoTxt h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .productInfoTxt p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .stockTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 0 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .priceTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 20px 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .mat-form-field { width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .add_items_link { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv { float: left; list-style: none; margin: 0; padding: 0 10px 0 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li { float: left; margin: 0 0 25px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 10px 0; position: relative; padding-left: 26px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel .textSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 5px 0 0 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 3px; width: 20px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel:hover input ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel input:checked ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .form-check .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0 0 0 4px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li { float: left; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li .input-span { border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 39px; padding-left: 10px; padding-right: 10px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li .input-front-span { color: #000; float: left; font: 200 16px 'Futura' !important; margin: 10px 0 -31px 15px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li .input-back-span { color: #000; float: right; font: 200 16px 'Futura' !important; margin: -32px 10px 0 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li:nth-child(1) .input-span { border-radius: 3px 0 0 3px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li:nth-child(2) .input-span { border-left: none; border-radius: 0; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li .disabled { background-color: rgba(0,0,0,0.05); color: rgba(0,0,0,0.60); }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .formDiv li .sub-form-list li:nth-child(3) .form-control { border-left: none; border-radius: 0 3px 3px 0; padding-left: 30px; width: 216px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box { margin: 0; padding: 0 10px 0 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box .amountTable { padding-right: 15px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box .amountTable>:not(:first-child) { border-top: none; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box .amountTable th { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: left; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box .amountTable td { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: right; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .total-table-box .amountTable td strong { font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .shop_collections_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:focus { box-shadow: none; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { padding-top: 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { font-size: 24px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec { overflow-x: auto; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec .table { min-width: 1296px; }
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox { margin-bottom: 0px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .imgBox { width: 49px; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .productInfoTxt { width: 79%; }
+.middle_vendor_dasboard .middle_content .edit-order-wide-white-box .shopInfoList li .searchBox .priceTag { float: left; margin-left: 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn { padding-left: 30px; padding-right: 30px; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn { padding-left: 30px; padding-right: 30px; width: auto; }
+}
+/* Responsive End */

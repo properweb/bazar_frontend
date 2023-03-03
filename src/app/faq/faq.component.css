@@ -1,0 +1,20 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.blogBanner { align-items: center; background-position: center; background-repeat: no-repeat; background-size: cover; /*border-top: 1px solid #393939;*/ display: flex; justify-content: center; min-height: 250px; margin: 149px 0 60px 0; padding: 0; position: relative; width: 100%; }
+.blogBanner:after { background-color: rgba(247, 248, 250, 0.5); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.blogBanner h1 { color: #393939; font-family: 'Futura' !important; font-size: 40px; font-weight: 500;  margin: 0; position: relative; text-align: center; z-index: 1; }
+.faqTab { margin: 0 0 80px 0; padding: 0; width: 100%; }
+.faqTab .container { max-width: 780px; }
+.faqTab .nav-tabs { border-bottom: none; margin-bottom: 40px; }
+.faqTab .nav-tabs .nav-item { width: 25%; }
+.faqTab .nav-tabs .nav-link { border: none; border-bottom: 1px solid #fff; border-radius: 0px; color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin-bottom: 0; padding: 0 0 25px 0; text-align: center; width: 100%; }
+.faqTab .nav-tabs .active { border-bottom: 1px solid #393939; }
+.faqTab .tab-content { margin: 0; padding: 0; width: 100%; }
+.faqTab .tab-pane { margin: 0; padding: 0; width: 100%; }
+
+
+@media screen and (max-width:767px) { 
+.faqTab .nav-tabs .nav-item { margin-bottom: 10px; width: 50%; }
+.faqTab .nav-tabs .nav-link { padding-bottom: 15px; }
+}
