@@ -37,17 +37,12 @@ export class AccountSettingsComponent implements OnInit {
   yearError:any = false;
   validError:any = false;
   brandStoryError:any = false;
+  avgLeadError:any = false;
+  reorderErrorMsg:any = '';
+  firstorderError:any = false;
+
   headquateredArray: any = [
-    // {name: 'Austria'},
     {name: 'United States of America'},
-    // {name: 'Canada'},
-    // {name: "United Kingdom"},
-    // {name: "France"},
-    // {name: "Germany"},
-    // {name: "Netherlands"},
-    // {name: "Italy"},
-    // {name: "Spain"},
-    // {name: "Spain"},
   ]
   countriesArray:any = [
     { code: 'JO', code3: 'JOR', name: 'Jordan', number: '400' },  
@@ -64,6 +59,18 @@ export class AccountSettingsComponent implements OnInit {
     { name: 'Shop local', value: 'shop-local' },
     { name: 'Local brand', value: 'local-brand' },
   ];
+
+  storeWorkWith: any = [
+    {name: 'I am new to wholesale'},
+    {name: '1-10'},
+    {name: '11-25'},
+    {name: "26-50"},
+    {name: "51-100"},
+    {name: "101-250"},
+    {name: "251-500"},
+    {name: "500-1000"},
+    {name: "More than 1000"},
+  ]
 
   constructor( private storage: StorageMap , private apiService : ApiService, public modalService: NgbModal , private router : Router, private toast: NgToastService) { }
 
@@ -244,6 +251,34 @@ export class AccountSettingsComponent implements OnInit {
       this.brandStoryError = true;
     } else {
       this.brandStoryError = false;
+    }
+  }
+
+  onAvgLeadChange(event: any) {
+    if(Number(event.target.value) == 0 || Number(event.target.value) > 180 && Number(event.target.value)) {
+      this.avgLeadError = true;
+    } else {
+      this.avgLeadError = false;
+    }
+  }
+
+  on1stOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.firstorderError='First minimum order must be greater than 1.';
+    } else if(event.target.value > 99999) {
+      this.firstorderError='First minimum order must be less than 99999.';
+    } else {
+      this.firstorderError='';
+    }
+  }
+
+  onReOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.reorderErrorMsg='Re-order minumum must be greater than 1.';
+    } else if(event.target.value > 99999) {
+      this.reorderErrorMsg='Re-order minumum must be less than 99999.';
+    } else {
+      this.reorderErrorMsg='';
     }
   }
 

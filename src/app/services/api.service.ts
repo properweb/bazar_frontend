@@ -71,7 +71,7 @@ export class ApiService {
   }
 
   updateVendorDetails(updatedData:any) {
-    return this.http.post(this._Base_URL+'brand/update-shop' , updatedData, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
   }
 
   getProducts(id:any) {
