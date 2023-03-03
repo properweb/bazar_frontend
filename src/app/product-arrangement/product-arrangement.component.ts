@@ -33,7 +33,7 @@ export class ProductArrangementComponent implements OnInit {
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-        this.getProdcuts(this.user_id);
+        this.getProducts(this.user_id);
       
       },
       error: (error) => {
@@ -97,7 +97,7 @@ export class ProductArrangementComponent implements OnInit {
     }
     
     this.apiService.arrangeProducts(values).subscribe((responseBody) => {
-      this.getProdcuts(this.user_id);
+      this.getProducts(this.user_id);
       window.scroll({
         top: 0,
         left: 0,
@@ -134,16 +134,20 @@ export class ProductArrangementComponent implements OnInit {
     },
   ];
 
-  getProdcuts(user_id:any) {
+  getProducts(user_id:any) {
     this.appComponent.showSpinner = true;
     this.apiService.getProducts(user_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.products = response.data;
-      this.products.forEach((element: any) => {
-        element.name = element.name.replace(/\\/g, '');
-        this.storeArrangedItemId.push(String(element.id));
+      if(response.res == true) {
+        this.products = response.data;
+        this.products.forEach((element: any) => {
+          element.name = element.name.replace(/\\/g, '');
+          this.storeArrangedItemId.push(String(element.id));
+        });
         this.appComponent.showSpinner = false;
-      });
+      } else {
+        this.appComponent.showSpinner = false;
+      }
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
       this.appComponent.showSpinner = false;
