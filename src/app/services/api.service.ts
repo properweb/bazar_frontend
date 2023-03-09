@@ -63,15 +63,15 @@ export class ApiService {
   }
 
   getAccountDetails(id:any) {
-    return this.http.get(this._Base_URL+'user/'+'brand/edit/'+id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'user/brand/edit/'+id, this.createAuthorizationHeader());
   }
 
   userAccountUpdate(data:any) {
-    return this.http.post(this._Base_URL+'brand/update-account' , data, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'brands/update/account' , data, this.createAuthorizationHeader());
   }
 
   updateVendorDetails(updatedData:any) {
-    return this.http.post(this._Base_URL+'brand/update-shop' , updatedData, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
   }
 
   getProducts(id:any) {
@@ -83,7 +83,7 @@ export class ApiService {
   }
 
   fetchProductsByShop(id:any , sort_key: any, slug: any ) {
-    return this.http.get(this._Base_URL+'shop/products?brand_id='+id+'&sort_key='+sort_key+'&sort_cat='+slug, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'products?brand_id='+id+'&sort_key='+sort_key+'&sort_cat='+slug, this.createAuthorizationHeader());
   }
 
   getSortProducts(id:any, sort_key: any, page: any, status: any, search_key: any) {
@@ -94,8 +94,8 @@ export class ApiService {
     return this.http.get(this._Base_URL+'product/'+'details?id='+id, this.createAuthorizationHeader());
   }
 
-  getBrandShopDetails(id:any) {
-    return this.http.get(this._Base_URL+'shop/'+'brand/'+id, this.createAuthorizationHeader());
+  getBrandShopDetails(key:any) {
+    return this.http.get(this._Base_URL+'brands/shop/'+key, this.createAuthorizationHeader());
   }
 
   importWordpress(user_id:any , consumer_key:any, website_url:any , consumer_secret:any) {
@@ -163,23 +163,23 @@ export class ApiService {
   }
   
   vendorGoLive(values:any) {
-    return this.http.post(this._Base_URL+'brand/golive' , values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'brands/shop/live' , values, this.createAuthorizationHeader());
   }
   
   addToCart(values:any) {
-    return this.http.post(this._Base_URL+'cart/add' , values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'carts/add' , values, this.createAuthorizationHeader());
   }
 
   fetchCart(user_id: any) {
-    return this.http.get(this._Base_URL+'cart/fetch/'+user_id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'carts/fetch/'+user_id, this.createAuthorizationHeader());
   }
     
   updateCart(values:any) {
-    return this.http.post(this._Base_URL+'cart/update' , values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'carts/update' , values, this.createAuthorizationHeader());
   }
     
   deleteCart(values:any) {
-    return this.http.post(this._Base_URL+'cart/delete',values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'carts/delete',values, this.createAuthorizationHeader());
   }
 
   convertPrice(price: any) {
@@ -207,7 +207,7 @@ export class ApiService {
   }
 
   fetchBrands(user_id: any) {
-    return this.http.get(this._Base_URL+'brand/all/'+user_id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'brands', this.createAuthorizationHeader());
   }
 
   fetchOrders(user_id: any,page: any, status: any, search_key: any) {
@@ -215,7 +215,6 @@ export class ApiService {
   }
 
   orderDetails(values: any) {
-    // return this.http.get(this._Base_URL+'brand/order/' + order_no);
     return this.http.post(this._Base_URL+'orders/details' ,values, this.createAuthorizationHeader());
   }
 
@@ -401,6 +400,10 @@ export class ApiService {
 
   updateBillingAddress(values: any) {
     return this.http.post(this._Base_URL+'orders/updatebilling', values , this.createAuthorizationHeader());
+  }
+
+  vendorCount() {
+    return this.http.get(this._Base_URL+'brands/count', this.createAuthorizationHeader());
   }
 
   logout() {
