@@ -36,7 +36,7 @@
               <div class="row">
                 <div class="col-lg-8 col-sm-6">
                   <h3>Personal Information</h3>
-                  <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</span></p>
+                  <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a routerLink="/my-shop/settings">Shop Settings</a>.</span></p>
                   <div class="tabFormBox">
                     <ul class="row formDiv">
                       <li class="col-lg-6">
@@ -114,11 +114,19 @@
                     </li>
                     <li class="col-lg-4">
                       <label>New Password</label>
-                      <input type="password" value="" name="new_password" [(ngModel)]="new_password" #new_passwordval='ngModel'>
+                      <input type="password" value="" name="new_password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" [(ngModel)]="new_password" #new_passwordval='ngModel'>
+                      <span class="validate_errors"
+                        *ngIf="(new_passwordval.touched || vendorAccountUpdate.submitted) && new_passwordval.errors?.['pattern']">
+                        Password length must be greater than or equal to 8 and must contain one or more uppercase characters, lowercase characters, numeric values, special characters.
+                      </span>
                     </li>
                     <li class="col-lg-4">
                       <label>Confirm new password</label>
-                      <input type="password" value="" name="confirm_password" [(ngModel)]="confirm_password" #confirm_passwordval='ngModel'>
+                      <input type="password" value="" name="confirm_password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" [(ngModel)]="confirm_password" #confirm_passwordval='ngModel'>
+                      <span class="validate_errors"
+                        *ngIf="(confirm_passwordval.touched || vendorAccountUpdate.submitted) && confirm_passwordval.errors?.['pattern']">
+                        Password length must be greater than or equal to 8 and must contain one or more uppercase characters, lowercase characters, numeric values, special characters.
+                      </span>
                     </li>
                     <span class="validate_errors" *ngIf="errorMsg">{{errorMsg}}</span>
                     <li class="col-lg-12">
@@ -134,7 +142,7 @@
             <div class="row">
               <div class="col-lg-8 col-sm-6">
                 <h3>Personal Information</h3>
-                <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</span></p>
+                <p><span>You can edit the company name and fulfillment email address used for order-related activity in <a routerLink="/my-shop/settings">Shop Settings</a>.</span></p>
                 <ul class="row formDiv">
                   <li class="col-lg-6">
                     <label>Account Holder Name</label>
@@ -153,7 +161,7 @@
                     <input type="text" value="">
                   </li>
                 </ul>
-                <p>You can edit the company name and fulfillment email address used for order-related activity in <a>Shop Settings</a>.</p>
+                <p>You can edit the company name and fulfillment email address used for order-related activity in <a routerLink="/my-shop/settings">Shop Settings</a>.</p>
               </div>
             </div>
             <div class="borderBottom"></div>
