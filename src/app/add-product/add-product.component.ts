@@ -92,10 +92,8 @@ export class AddProductComponent implements OnInit {
   colorOptionItems: any = [];
   swatchName !: any;
   swatchIndex: any = 0;
-
   videoModalShow!: any;
   varImageIndex!: any;
-
   product_images: any = [];
   crop_product_images: any = [];
   categories: any = [];
@@ -146,11 +144,9 @@ export class AddProductComponent implements OnInit {
   lists: any = [];
   prepackLists: any = [];
   productKeyword = 'category';
- 
   hoveredDate: NgbDate | null = null;
   fromDate!: any;
   toDate!: any;
-
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -185,12 +181,12 @@ export class AddProductComponent implements OnInit {
   minOrdQtyError:boolean= false;
   prePackNameError:boolean= false;
   skuError:boolean= false;
-    
+  blankImgExist:boolean= false;
+  blankImgExistMsg!: any;
   keyword = 'name';
   data = ['Size' , 'Material',  'Color' , 'Style', 'Scent'];
-
   countriesArray:any = [
-  ]
+  ];
 
   constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private toast: NgToastService) { 
     this.fromDate = null
@@ -213,7 +209,6 @@ export class AddProductComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event']) keyEvent(event: KeyboardEvent) {
     if (event.keyCode === 13) {
-      // alert('Enter pressed!!');o
     }
   }
 
@@ -221,9 +216,6 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -255,10 +247,7 @@ export class AddProductComponent implements OnInit {
   }
 
   closeModal() {  
-    this.selectColorModal.close();
-
     this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
-          
       this.colorOptionItems.forEach((element1 :any) => {
         if(element1.name == element.Color) {
            if(element1.img != '') {
@@ -267,6 +256,22 @@ export class AddProductComponent implements OnInit {
         } 
       });
     });
+    this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
+      this.colorOptionItems.forEach((element1 :any) => {
+        if(element1.img == '') {
+          this.blankImgExist = true;
+        } else {
+          this.blankImgExist = false;
+        }
+      });
+    });
+
+    if(this.blankImgExist) {
+      this.blankImgExistMsg = 'Please choose each variation image swatches to proceed.';
+    } else {
+      this.blankImgExistMsg = '';
+      this.selectColorModal.close();
+    }
   }
 
   clickManageOpt() {
@@ -279,7 +284,6 @@ export class AddProductComponent implements OnInit {
   }
 
   select1stOptionEvent(item:any) {
-    // do something with selected item
     this.option1 = item.name;
   }
 
@@ -339,11 +343,9 @@ export class AddProductComponent implements OnInit {
   }
 
   onFocused(e:any){
-    // do something when input is focused
   }
 
   selectEventCat(item:any) {
-    // do something with selected item
     this.product_type = item.last_id;
   }
 
@@ -353,7 +355,6 @@ export class AddProductComponent implements OnInit {
   }
   
   onFocusedCat(e:any){
-    // do something when input is focused
   }
 
   chooseNoFunction() { 
@@ -422,7 +423,6 @@ export class AddProductComponent implements OnInit {
   
   showPrepackCreate(index: any) {
     this.prepackLists[index].dropActive = true;
-    // this.prepackCreate= true;
   }
 
   savePrePack(index: any) {
@@ -430,11 +430,6 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].dropActive = false;
     }
   } 
-
-  size1stToLastPrePack() {
-    // let
-    return 'hi';
-  }
 
   showCreatePrepack() { 
     this.hideCreatePrepack = true;
@@ -456,24 +451,16 @@ export class AddProductComponent implements OnInit {
     this.productOptions1= false;
     this.moreProductOptions2= false;
     this.moreProductOptions1= true;
-
     this.option1 = '';
     this.option_items = '';
-
     delete this.selectedAttribute.option1;
-
     this.data.push(this.option1);
-
   }
 
-  addbutton()  
-   {  
-     this.lists.push({"declare":""})  
-
+  addbutton() {  
+    this.lists.push({"declare":""})  
     let  namesToDeleteSet = new Set(this.option_type);
-
      this.data =  this.data.filter((name) => {
-      // return those elements not in the namesToDeleteSet
       return !namesToDeleteSet.has(name);
     });
 
@@ -487,7 +474,6 @@ export class AddProductComponent implements OnInit {
   addPrepackRow(i: any) {
     let item = this.prepackLists[i];
     let style = item.style;
-
     let newClone = {active: false,style:style,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''};
     this.prepackLists.splice(i+1, 0, newClone);
   }
@@ -506,9 +492,9 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].size_ratio = event.target.value;
       this.prepackLists[index].ratio_error = '';
-        this.prepackLists[index].size_range = [];
-        this.prepackLists[index].packs_price = '';
-        this.prepackLists[index].size_range.push(sizeItemArray[0].value + '-' + sizeItemArray[sizeItemArray.length - 1].value);
+      this.prepackLists[index].size_range = [];
+      this.prepackLists[index].packs_price = '';
+      this.prepackLists[index].size_range.push(sizeItemArray[0].value + '-' + sizeItemArray[sizeItemArray.length - 1].value);
     } else if (re.test(event.target.value) && splitVal.length == 2 && !remainder) { 
 
       this.prepackLists[index].size_range = [];
@@ -533,20 +519,19 @@ export class AddProductComponent implements OnInit {
       tempArray = [];
       this.resultAttribute.forEach((element :any , key1: any) => {
         if(element.Size){
-           
-            if(element.Size == valElm ) {
-              tempArray.push(element.wholesale_price);
-            }
+          if(element.Size == valElm ) {
+            tempArray.push(element.wholesale_price);
+          }
         }
       });
       resultArray[valElm]=tempArray;
       let average = resultArray[valElm].reduce((a: any, b: any) => a + b, 0) / resultArray[valElm].length;
       sizeCal += splitValRatio[key] * average;
     });
-     this.prepackLists[index].packs_price = sizeCal;
+    this.prepackLists[index].packs_price = sizeCal;
   }
 
-   deletebutton(i: number) {  
+  deletebutton(i: number) {  
     this.data.push(this.option_type[i]); 
     this.lists.splice(i, 1);
     this.option_items.splice(i,1);  
@@ -608,16 +593,13 @@ export class AddProductComponent implements OnInit {
     this.moreProductOptions2= false;
     this.moreProductOptions3= false;
     this.productOptions3= true;
-
     let option1_value2 = this.option_items2.map((item:any) => item.value);
     this.selectedAttribute.option2 = {
       key: this.option2,
       values: option1_value2
     };
-
   }
-  
- 
+
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -633,7 +615,7 @@ export class AddProductComponent implements OnInit {
   }
 
   openAddProductModal(content:any) {
-     this.addProductModal = this.modalService.open(content, { windowClass: 'productOptionsModal' });
+    this.addProductModal = this.modalService.open(content, { windowClass: 'productOptionsModal' });
   }
 
   fileChangeEvent(event: any): void {
@@ -671,27 +653,23 @@ export class AddProductComponent implements OnInit {
   }
 
   cropImage(imgId: any) {
-
     this.currentProcessingImg = imgId;
     var imgObj = this.allImageChangedEventArray.find((x:any) => x.imgId === imgId);
-    
-    //created dummy event Object and set as imageChangedEvent so it will set cropper on this image 
     var event = {
       target: {
         files: [imgObj.imgFile]
       }
     };
     this.imageChangedEvent = event;
-
   }
 
   onCropperImgChange(index:any) {
   }
 
   imageCropped(event: ImageCroppedEvent) {
-      this.colorOptionItems[this.swatchIndex].img = event.base64;
-      this.croppedImage = event.base64;
-      this.croppedImageReady = event.base64;
+    this.colorOptionItems[this.swatchIndex].img = event.base64;
+    this.croppedImage = event.base64;
+    this.croppedImageReady = event.base64;
   }
 
   imageLoaded(image: LoadedImage) {
@@ -708,7 +686,6 @@ export class AddProductComponent implements OnInit {
  
   // upload image
   selectFiles(event: any) {
-
     this.selectedFiles = event.target.files;
     if (this.selectedFiles && this.selectedFiles[0]) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -731,11 +708,10 @@ export class AddProductComponent implements OnInit {
     if(this.selectedFiles.length < 13){
       this.imgCountArr.splice(0 , this.selectedFiles.length);
     }
-    
+    event.target.value = '';
   }
 
   selectAttriImages(event: any , index: any) {
-
     for(let i = 0; i < event.target.files.length; i++) {
       if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
         const reader = new FileReader();
@@ -755,7 +731,6 @@ export class AddProductComponent implements OnInit {
 
   onFeatureImgSelect(index:any) {
     this.featured_image = index;
-
   }
 
   deleteImage(index:any) {
@@ -790,6 +765,7 @@ export class AddProductComponent implements OnInit {
           }
        }
     }
+    event.target.value = '';
   }
   
   openVideoModal(content:any , index:any) { 
@@ -820,7 +796,6 @@ export class AddProductComponent implements OnInit {
           optionValueNotBlank = false;
         }
       });
-    
     }
 
     if(attributes.length > 0 && this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
@@ -872,7 +847,7 @@ export class AddProductComponent implements OnInit {
       if(prepackOptionType.includes('Size')) {
         let index = prepackOptionType.indexOf('Size');
         prepackOptionType.splice(index,1);
-        prepackOptionItems.splice(index,1);
+        prepackOptionItems.splice(index,1); 
       }
   
       if(prepackOptionType.length > 0) {
@@ -929,7 +904,6 @@ export class AddProductComponent implements OnInit {
     let name = this.colorOptionItems.find((element :any , i:any) => i == index);
     this.swatchName = name.name;
     this.swatchIndex = index;
-    
   }
 
   clickEditSwatch(index:any) {
@@ -1134,11 +1108,9 @@ export class AddProductComponent implements OnInit {
           formData.append("video_url[]", this.product_videos[k]);
         }
         for (let index = 0; index < this.resultAttribute.length; index++) {
-
           for (let j = 0; j < this.resultAttribute[index].images.length; j++) {
             formData.append("variations_images["+index+"]" , this.resultAttribute[index].images[j]);
           } 
-          
         }
 
         let varPriceError = 0;
@@ -1156,12 +1128,18 @@ export class AddProductComponent implements OnInit {
           }
         });
         this.resultAttribute.forEach((elementVar: any) => {
-          console.log(elementVar.inventory);
           if( elementVar.inventory && !/^\d+$/.test(elementVar.inventory)) {
             inventoryError = 1;
           }
         });
 
+        this.colorOptionItems.forEach((element1 :any) => {
+          if(element1.img == '') {
+            this.blankImgExist = true;
+          } else {
+            this.blankImgExist = false;
+          }
+        });
         formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
         formData.append("option_type", this.option_type);
         formData.append("variations" , JSON.stringify(this.resultAttribute));
@@ -1206,6 +1184,11 @@ export class AddProductComponent implements OnInit {
           this.notValidError = true;
           this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
           return false;
+        } else if(this.blankImgExist) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Please choose each variation image swatches to proceed.",summary: '' ,duration: 4000});
+          return false;
         } else if(this.caseQtyError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
@@ -1236,10 +1219,10 @@ export class AddProductComponent implements OnInit {
             this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
             return false;
           } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
-          return false;
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
+            return false;
           } else if(this.instRetError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
@@ -1279,7 +1262,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onItemAdded(item:any) {
- 
   }
   
   //date-range
@@ -1332,7 +1314,6 @@ export class AddProductComponent implements OnInit {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
-    
   }
 
   autoPriceCall() {
@@ -1371,7 +1352,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onWSChange(index: any) {
-
     this.apiService.convertPrice(this.resultAttribute[index].wholesale_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.resultAttribute[index].wholesale_price = response.data.USD;
