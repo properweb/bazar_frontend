@@ -54,11 +54,8 @@ export class VendorMyShopComponent implements OnInit {
   ngOnInit(): void {
     const d = new Date();
     let year = d.getFullYear();
-    // console.log(year);
     this.currentYear = year;
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
+
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -178,7 +175,6 @@ export class VendorMyShopComponent implements OnInit {
         let response= JSON.parse(JSON.stringify(responseBody));
         this.cityArray = response.data;
       })
-      console.log(response.data.state, response.data.city)
       this.insta_handle = response.data.insta_handle;
       this.established_year = response.data.established_year;
       this.stored_carried = response.data.stored_carried;
@@ -544,8 +540,6 @@ export class VendorMyShopComponent implements OnInit {
   }
 
   validateYear(event:any) {
-    // console.log(event.target.value);
-    // console.log(this.currentYear);
     if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
       this.yearError = true;
     } else this.yearError = false;

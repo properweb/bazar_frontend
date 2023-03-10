@@ -97,7 +97,7 @@
                                     <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}} </h4>
                                 </div> 
                                 <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
-                            </div>
+                            </div> 
                         </div>
 
                         <div *ngIf="not_logged_in == false && (product?.stock != 'null' && product?.stock != '0' && product?.stock != 'undefined')" class="card" routerLink="/product/{{product.product_key}}" style="cursor: pointer;" >
@@ -113,7 +113,21 @@
                             </div>
                         </div>
     
-                        <div class="card" (click)="openUserLogInModal(userLogInContent)" style="cursor: pointer;" *ngIf="not_logged_in == true" >
+                        <div class="card" (click)="openUserLogInModal(userLogInContent)" style="cursor: pointer;" *ngIf="not_logged_in == true && product?.stock == 0" >
+                            <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
+                            <div class="white-overlay">Out of Stock</div>
+                            <div class="textDiv">
+                                <div class="topTextDiv">
+                                    <h3>{{product.name}}</h3>
+                                    <h4 *ngIf="product.gbr_wholesale_price != '0'">{{product?.default_currency}} {{product.gbr_wholesale_price}}
+                                        <!-- <span>MSRP $34.90</span> -->
+                                    </h4>
+                                </div> 
+                                <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card" (click)="openUserLogInModal(userLogInContent)" style="cursor: pointer;" *ngIf="not_logged_in == true && product?.stock != 0" >
                             <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
                             <div class="textDiv">
                                 <div class="topTextDiv">
