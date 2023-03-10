@@ -78,6 +78,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   isVarAvailable !: any;
   varImageIndex!: any;
 
+
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -161,7 +162,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   ngOnInit(): void {
 
-
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -192,7 +192,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           /* Called if data is invalid */
         },
       });
-
 
     this.featured_image = 0;
     this.lists= [];
@@ -245,7 +244,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
-
   }
   
   getProductDetail() {
@@ -633,6 +631,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   selectCropFiles(event: any): void {
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles && this.selectedFiles[0]) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
           const reader = new FileReader();
@@ -642,12 +641,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           reader.readAsDataURL(this.selectedFiles[i]);
       }
     } 
+
   }
 
   prevDeleteImage(index:any , image:any) {
     let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
     let values = {
-
     })
   }
 
@@ -690,6 +689,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           if(event.target.files[i].size < 5e+6) {
             this.product_videos.push(event.target.files[i]);
             reader.readAsDataURL(event.target.files[i]);
+
             reader.onload = (event:any) => {
               this.video_url.push( event.target.result);
             }
@@ -845,6 +845,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           } else {
             this.notValidError = true;
             this.publistBtnDisabled = false;
+
         })
         return true;
       }
@@ -913,6 +914,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       });
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
+
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
       this.prepackLists.forEach((element: any) => {
@@ -1023,7 +1025,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         }, (error:any) => {
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
-
         })
         return true;
       } 
@@ -1062,6 +1063,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     const parsed = this.formatter.parse(input);
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
+
 
     this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
       this.colorOptionItems.forEach((element1 :any) => {
@@ -1300,7 +1302,6 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
     
-
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
@@ -1318,6 +1319,7 @@ addAttribute() {
     }
   } else {
 
+
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1333,7 +1335,6 @@ addAttribute() {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
             }
           }
-
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1388,6 +1389,7 @@ addAttribute() {
     }
   }
 }
+
     this.lists.push({"declare":""})  
     let  namesToDeleteSet = new Set(this.option_type);
       this.data =  this.data.filter((name) => {
@@ -1481,6 +1483,7 @@ addAttribute() {
   }
 
   select2ndOptionEvent(item:any) {
+
     this.option2 = item.name;
   }
 
@@ -1575,6 +1578,7 @@ addAttribute() {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
+
   
   autoPriceCall() {
     this.apiService.convertPrice(this.usd_wholesale_price).subscribe((responseBody) => {
@@ -1677,6 +1681,7 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
+
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';
@@ -1707,6 +1712,7 @@ addAttribute() {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].ratio_error ='Invalid size ratio';
     }
+
   }
 
   savePrePack(index: any) {
@@ -1780,6 +1786,7 @@ addAttribute() {
       .then(() => {
       });
     }
+
   }
 
   onPrevProductClick() {

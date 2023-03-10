@@ -26,6 +26,7 @@ export class ProductArrangementComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -129,6 +130,7 @@ export class ProductArrangementComponent implements OnInit {
       size: '$11.70',
     },
   ];
+
 
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
