@@ -132,7 +132,6 @@
             <ul class="radioList">
               <li>
                 <div class="form-check styles_form_check">
-                  <input [checked]="isVarAvailable" type="radio" class="form-check-input" name="radio1" (click)="openAddProductModal(optionsContent)" (click)="chooseYesFunction();isDirty = true;">
                   <label class="form-check-label">Yes</label>
                 </div>
               </li>
@@ -395,7 +394,6 @@
               <ul class="radioList2">
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type"  type="radio" value="1" (click)="showCasePacks();isDirty=true; order_case_qty=1; order_min_case_qty=1;">
                     <label class="form-check-label">Case packs <span class="red">Standard</span><br />
                     <span class="spanText">Retails can check out one they've rechead the minimum order quantity for each product option.</span></label>
                   </div>
@@ -436,7 +434,6 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type" type="radio" value="2" (click)="showOpenSizing(); isDirty=true; order_case_qty=0;">
                     <label class="form-check-label">Open sizing<br />
                     <span class="spanText">Retails can choose which size they want to buy. as long as they reach the mimum order quantity for the style.</span></label>
                   </div>
@@ -467,7 +464,6 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type" type="radio" value="3" (click)="showPrePacks();isDirty=true;order_case_qty=1; order_min_case_qty=1;">
                     <label class="form-check-label">Prepacks<br />
                     <span class="spanText">Retails can buy a style as a bundle in a set size run.</span></label>
                     <div *ngIf="prepackError; else prepackElse;" >
@@ -946,8 +942,6 @@
   </div>
   <span *ngIf="optionTypeBlkErr" style="text-align: center;" class="validate_errors">{{optionTypeBlkErr}}</span>
   <div class="modal-footer">
-    <button *ngIf="!option_type.includes('Color')" type="button" class="btn btn-primary common_btn" (click)="addAttribute();">Submit</button><br />
-    <button *ngIf="option_type.includes('Color')" type="button" class="btn btn-primary common_btn" (click)="addAttribute();openAddColorModal(optionsColor)">Submit</button><br />
     <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
   </div>
 </ng-template>

@@ -78,107 +78,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   isVarAvailable !: any;
   varImageIndex!: any;
 
-    // crop
-    imageChangedEvent: any = '';
-    allImageChangedEventArray: any = [];
-    croppedImage: any = '';
-    croppedImageReady: any = '';
-    imgId: any = 0;
-    currentProcessingImg!: any;
-  
-    // attribute variables
-    option1 !: any;
-    option2 !: any;
-    option3 !: any;
-    option_items: any = []; 
-    option_items2!: any; 
-    option_items3!: any; 
-    selectedAttribute : any = {};
-    resultAttribute : any = [];
-    modifiedResultAttribute : any = [];
-    resultAttributeImgPreview : any = [];
-    option_type : any = [];
-    ext_option_type : any = [];
-    indexOfSwatch!: any;
-    colorOptionItems: any = [];
-    swatchName !: any;
-    swatchIndex: any = 0;
-    selectedCropFiles: any[] = [];
-    existingSize: any[] = [];
-    lists: any = [];
-    prepackLists: any = [];
-    sizeItemPrePack: any = [];
-    addOptionsModal: any; 
-    addProductModal: any; 
-    addColorModal: any;
-    selectColorModal: any;
-    variantsProductsModal: any;
-    nextProductId: any;
-    prevProductId: any;
-
-    videoModalShow!: any;
-
-    product_images: any = [];
-    prev_product_images: any = [];
-    all_details_images: any = [];
-    categories: any = [];
-    product_videos: any = [];
-    previews: any[] = [];
-    cropPreviews: any[] = [];
-    video_url: any[] = [];
-    prev_product_videos: any[] = [];
-    all_details_videos: any = [];
-    video_modal_url: any[] = [];
-    selectedFiles: any[] = [];
-    imgCountArr : any[] = [1,2,3,4,5,6,7,8,9,10,11,12];
-    minOrderQtyArr : any[] = [1,2,3,4,5,6,7,8,9,10];
-    pricingCountryArray : any = [
-      {    
-          'country_name':'United States',
-          'wholesale_price': '',
-          'retail_price': '',
-          'currency': '$ USD'   
-      },
-      { 
-          'country_name':'Canada',
-          'wholesale_price': '',
-          'retail_price': '',
-          'currency': '$ CAD'
-      },
-      { 
-          'country_name':'United Kingdom',
-          'wholesale_price': '',
-          'retail_price': '',
-          'currency': '£ GBP'
-      },
-      { 
-          'country_name':'Australia',
-          'wholesale_price': '',
-          'retail_price': '',
-          'currency': '$ AUD'
-      },
-      { 
-          'country_name':'Europe',
-          'wholesale_price': '',
-          'retail_price': '',
-          'currency': '€ EUR'
-      },
-    ]
-    
-
-    initialValue !: any;
-    productKeyword = 'category';
-
-    keyword = 'name';
-    data = [
-      'Size' , 'Material',  'Color' , 'Style', 'Scent'
-    ];
-
-
-  hoveredDate: NgbDate | null = null;
-  fromDate: any;
-  toDate: any;
-
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -246,7 +145,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       .pipe(filter((e: any) => e instanceof RoutesRecognized),
         pairwise()
       ).subscribe((e: any) => {
-
     });
   }
   
@@ -261,10 +159,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-    this.showForm1= true;
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -297,9 +191,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         },
       });
 
-    })
-
-    // this.getCountries();
     this.featured_image = 0;
     this.lists= [];
   }
@@ -351,7 +242,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
-    
   }
   
   getProductDetail() {
@@ -497,10 +387,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.keep_product = response.data[0].keep_product;
       }
 
-
-      if(response.data[0].allvariations.length > 0) {
-        this.isVarAvailable = true;
-
         this.option_type = response.data[0].option_type;
         this.ext_option_type = response.data[0].option_type;
         
@@ -527,13 +413,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
-          if(response.data[0].prepack_type == '1') {
-            this.showSubCasePacks();
-          } else if (response.data[0].prepack_type == '2') {
-            this.showSubOpenSizing();
-          } else {}
-        }
-
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
           if(response.data[0].sell_type == '3') {
@@ -607,14 +486,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             }
           }
         
-          if(this.option_type.includes('Color')){
-            let index = this.option_type.indexOf('Color');
-            let item = this.option_items[index];
-            item.forEach((element: any) => {
-              this.colorOptionItems.push({ 'name': element.value , 'img': ''});
-            });
-          
-          }
         
           if(this.option_type.includes('Size')) {
             let index = this.option_type.indexOf('Size');
@@ -688,7 +559,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   chooseYesFunction() { 
-    this.lists.push({"declare":""});
     this.isVarAvailable = true;
     this.showForm2= true;
     this.showForm3= true;
@@ -711,7 +581,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   clickManageOpt() {
-    this.colorOptionItems = [];
     this.swatchIndex = 0;
   }
 
@@ -760,7 +629,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   selectCropFiles(event: any): void {
     this.selectedFiles = event.target.files;
-
     if (this.selectedFiles && this.selectedFiles[0]) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
           const reader = new FileReader();
@@ -770,41 +638,23 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           reader.readAsDataURL(this.selectedFiles[i]);
       }
     } 
-
-    if(this.selectedFiles.length < 13) {
-      this.imgCountArr.splice(0 , this.previews.length);
-    }
-    
   }
 
   prevDeleteImage(index:any , image:any) {
     let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
     let values = {
-      image_id: imageDetail[0].image_id
-    }
-    this.apiService.deleteProductImage(values).subscribe((responseBody) => {
-      this.previews = this.previews.filter((item:any , i:any) => i !== index);
-      this.featured_image = 0;
-      this.isDirty = true;
     })
   }
 
   newDeleteImage(index:any) {
     this.previews = this.previews.filter((item:any , i:any) => i !== index);
     let prev_product_images = [...this.product_images];
-    if(prev_product_images.length != this.product_images.length) {
-      this.isDirty = true;
-    }
     this.product_images = this.product_images.filter((item:any , i:any) => i !== index);
   }
 
   prevDeleteVideo(index:any , video:any) {
     let videoDetail = this.all_details_videos.filter((item:any) => item.video_url === video);
     let values = {
-      id: videoDetail[0].id
-    }
-    this.apiService.deleteProductVideo(values).subscribe((responseBody) => {
-      this.video_url = this.video_url.filter((item:any , i:any) => i !== index);      
     })
   }
 
@@ -833,7 +683,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           if(event.target.files[i].size < 5e+6) {
             this.product_videos.push(event.target.files[i]);
             reader.readAsDataURL(event.target.files[i]);
-            console.log("this.product_videos", this.product_videos);
             reader.onload = (event:any) => {
               this.video_url.push( event.target.result);
             }
@@ -989,13 +838,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           } else {
             this.notValidError = true;
             this.publistBtnDisabled = false;
-            // this.notValidErrorMsg = 'Something went wrong. please try again later!';
-            this.toast.error({detail: response.msg, summary: "", duration: 4000});
-          }
-        },(error) => {
-          this.publistBtnDisabled = false;
-          this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
-          // this.notValidErrorMsg = 'Something went wrong. please try again later!';
         })
         return true;
       }
@@ -1045,7 +887,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       let varPriceError = 0;
       let skuError = 0;
       let inventoryError = 0;
-
       this.resultAttribute.forEach((elementVar: any) => {
         if( elementVar.status == 'published' && (elementVar.usd_wholesale_price == '' || elementVar.usd_wholesale_price == null || elementVar.usd_wholesale_price == undefined || elementVar.usd_retail_price == '' || elementVar.usd_retail_price == null || elementVar.usd_retail_price == undefined)) {
           varPriceError = 1 ;
@@ -1065,11 +906,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       });
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
-
-      formData.append("option_type", this.option_type);
-      this.resultAttribute.forEach((element: any , index:any) => {
-        this.resultAttribute[index].swatch_image = '';
-      });
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
       this.prepackLists.forEach((element: any) => {
@@ -1175,12 +1011,10 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             this.notValidError = true;
             this.publistBtnDisabled = false;
             this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
-            // this.notValidErrorMsg = 'Something went wrong. please try again later!';
           }
         }, (error:any) => {
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
-          // this.notValidErrorMsg = 'Something went wrong. please try again later!';
         })
         return true;
       } 
@@ -1220,8 +1054,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 
-  closeModal() {  
-    this.selectColorModal.close();
     this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
       this.colorOptionItems.forEach((element1 :any) => {
         if(element1.name == element.Color) {
@@ -1339,31 +1171,6 @@ addAttribute() {
     
     if(this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
-            this.option_items[0].forEach((element :any , key :any) => {
-              let var_options = [attributes[0]];
-                let var_values = [element.value];
-                localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values, 'status': 'published', 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'image_index': '',  'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0 , 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-            });
-          }
-      if(attributes.length == 2) {
-            this.option_items[1]?.forEach((element1 :any) => {
-              this.option_items[0]?.forEach((element0 :any , key: any) => {
-                let var_options = [attributes[0], attributes[1]];
-                let var_values = [element0.value, element1.value];
-                localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0 , 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-              });
-            });
-      }
-      if(attributes.length == 3) {
-            this.option_items[2].forEach((element2 :any) => {
-              this.option_items[1].forEach((element1 :any) => {
-                  this.option_items[0].forEach((element0 :any) => {
-                    let var_options = [attributes[0], attributes[1], attributes[2]];
-                    let var_values = [element0.value, element1.value, element2.value];
-                    localresultAttribute.push({'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0, 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-                });
-              });
-            });
       }
       let prevresultAttribute = [...this.resultAttribute];
       let loopitem = 0;
@@ -1424,14 +1231,6 @@ addAttribute() {
         }
  
       })
-      this.resultAttribute = localresultAttribute;  
-      if(this.option_type.includes('Color')){
-        let index = this.option_type.indexOf('Color');
-        let item = this.option_items[index];
-        item.forEach((element: any) => {
-          this.colorOptionItems.push({ 'name': element.value , 'img': ''});
-        });
-        } 
         this.optionTypeBlkErr = '';
         this.closeOptionModal();
     } else {
@@ -1490,45 +1289,20 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
     
-      if(this.option_type.includes('Color')){
-        let index = this.option_type.indexOf('Color');
-        let item = this.option_items[index];
-        item.forEach((element: any) => {
-          this.colorOptionItems.push({ 'name': element.value , 'img': ''});
-        });
-      
-      }
-
-    
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
         let sizeItemsClone = [...sizeItems];
-        
-        let arrOfSize: any = [];
-        for( let j=0; j<sizeItemsClone.length; j++) {
-          arrOfSize.push(sizeItemsClone[j].value) 
-        }
-    
         let chunkSize = 2;
         let resArray = [];
         for (let i = 0; i < arrOfSize.length; i += chunkSize) {
           let chunk = arrOfSize.slice(i, i + chunkSize);       
           let splited = chunk.join('-');
           resArray.push(splited);
-          // do whatever
-        }
-
-        this.sizeItemPrePack = resArray;
-
-    }
-   
     } else {
       this.prepackError = 'Update your product listing before crafting a new prepack.';
     }
   } else {
-
-
     let prepackOptionType = [...this.option_type];
     let prepackOptionItems = [...this.option_items];
     if(prepackOptionType.includes('Size')) {
@@ -1536,7 +1310,6 @@ addAttribute() {
       prepackOptionType.splice(index,1);
       prepackOptionItems.splice(index,1);
     }
-
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1552,7 +1325,6 @@ addAttribute() {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
             }
           }
-          
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1585,26 +1357,15 @@ addAttribute() {
       }
     }
   
-    if(this.option_type.includes('Color')){
-      let index = this.option_type.indexOf('Color');
-      let item = this.option_items[index];
-      item.forEach((element: any) => {
-        this.colorOptionItems.push({ 'name': element.value , 'img': ''});
-      });
-    
-    }
-
-  
     if(this.option_type.includes('Size')) {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
       let sizeItemsClone = [...sizeItems];
-      
       let arrOfSize: any = [];
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
       }
-  
+
       let chunkSize = 2;
       let resArray = [];
       for (let i = 0; i < arrOfSize.length; i += chunkSize) {
@@ -1616,9 +1377,6 @@ addAttribute() {
     }
   }
 }
-
-  addbutton()  
-  {  
     this.lists.push({"declare":""})  
     let  namesToDeleteSet = new Set(this.option_type);
       this.data =  this.data.filter((name) => {
@@ -1707,12 +1465,12 @@ addAttribute() {
   }
   
   select1stOptionEvent(item:any) {
-    // do something with selected item
+
     this.option1 = item.name;
   }
 
   select2ndOptionEvent(item:any) {
-    // do something with selected item
+
     this.option2 = item.name;
   }
 
@@ -1747,7 +1505,7 @@ addAttribute() {
     this.casePacks= false;
     this.openSizing= false;
     this.prePacks= true;
-    this.casePacks2 = true;
+
     this.minOrdQtyError = false;
     this.caseQtyError = false;
   }
@@ -1778,7 +1536,6 @@ addAttribute() {
 
   selectAttriImages(event: any , index: any) {
     for(let i = 0; i < event.target.files.length; i++) {
-
       if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
         const reader = new FileReader();
         this.product_images.push(event.target.files[i]);
@@ -1787,9 +1544,7 @@ addAttribute() {
           this.previews.push(e.target.result);
         };
         reader.readAsDataURL(event.target.files[i]);
-      } else {
-      }
-     
+
     }
   }
 
@@ -1810,9 +1565,6 @@ addAttribute() {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
-    
-  }
-
   
   autoPriceCall() {
     this.apiService.convertPrice(this.usd_wholesale_price).subscribe((responseBody) => {
@@ -1915,9 +1667,7 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
-  
-  sizeRatioChange(index: any , event: any) {
-    console.log(this.prepackLists[index]);
+
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';
@@ -1948,7 +1698,6 @@ addAttribute() {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].ratio_error ='Invalid size ratio';
     }
-    console.log(this.prepackLists[index]);
   }
 
   savePrePack(index: any) {
@@ -2022,7 +1771,6 @@ addAttribute() {
       .then(() => {
       });
     }
-
   }
 
   onPrevProductClick() {
@@ -2061,6 +1809,5 @@ addAttribute() {
   onDeleteDeadLine() {
     this.product_deadline = null;
   }
-  
   
 }

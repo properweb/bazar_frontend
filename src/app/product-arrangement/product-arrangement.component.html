@@ -26,10 +26,6 @@
             <div class="arrangeSearch">
               <input class="form-control text_form" type="text" placeholder="Search products by name" [(ngModel)]="searchText" >
             </div>
-            <!-- <h3>Page 1 of 1</h3> -->
-            <div class="table_sec" *ngIf="showLoader"><img src="assets/images/loading-24.gif" style="width: 80px; height: 80px; display: block; margin-left: auto; margin-right: auto;" /></div>
-            <div class="arrangeTableSec" *ngIf="!showLoader">
-              <table class="table" *ngIf="products?.length > 0" >
                 <thead>
                   <tr>
                     <th scope="col">Image</th>
@@ -51,21 +47,12 @@
                   </tr>
                 </tbody>
               </table>
-              <table class="table" *ngIf="products?.length == 0">
-                <tbody>
-                  <tr><td align="center">No products found!</td></tr>
-                </tbody>
-              </table>
+
             </div>
           </div>
         </div>
         <div *ngIf="arrange2">
           <div class="arrangeWhiteBox">
-            <!-- <h3>Page 1 of 1</h3> -->
-            <button *ngIf="products?.length > 0" class="btn top-move-btn" (click)="moveToTop()" [disabled]="checkedItems?.length == 0">Move to top</button>
-            <div class="clearfix"></div>
-            <div class="arrangeTableSec">
-              <table class="table" *ngIf="products?.length > 0">
                 <thead>
                   <tr>
                     <th scope="col"><input class="form-check-input" type="checkbox" value="" (change)="checkAll($event)" [ngModel]="selectAll">
@@ -90,14 +77,6 @@
                   </tr>
                 </tbody>
               </table>
-              <table class="table" *ngIf="products?.length == 0">
-                <tbody>
-                  <tr><td align="center">No products found!</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <input *ngIf="products?.length > 0" type="button" name="" value="Move selected items to top" class="btn btn-primary move-btn" (click)="moveToTop()" [disabled]="checkedItems?.length == 0">
         </div>
       </div>
     </div>

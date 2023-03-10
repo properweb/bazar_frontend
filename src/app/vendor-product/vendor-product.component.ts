@@ -21,7 +21,6 @@ export class VendorProductComponent implements OnInit {
   publishSearchText !: any;
   unpublishSearchText !: any;
   checkedItems: any = [];
-  checkedFirstItems: any [] = [];
   selectAll!:any;
   publishModal!: NgbModalRef;
   unPublishModal!: NgbModalRef;
@@ -34,6 +33,7 @@ export class VendorProductComponent implements OnInit {
   constructor(public modalService: NgbModal, private storage: StorageMap , private apiService : ApiService , private router: Router, private appComponent: AppComponent, private toast: NgToastService) { }
 
   ngOnInit(): void {
+
     if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
       this.searchText = localStorage.getItem('searchkey');
     }
@@ -52,15 +52,7 @@ export class VendorProductComponent implements OnInit {
         console.log(error);
       },          
     });
-  }
 
-  openPublishModal(content: any) {  
-    this.publishModal = this.modalService.open(content, { windowClass: 'publishModal' });
-  }
-
-  openUnPublishModal(content: any) {  
-    this.unPublishModal = this.modalService.open(content, { windowClass: 'unPublishModal' });
-  }
 
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
@@ -90,7 +82,6 @@ export class VendorProductComponent implements OnInit {
     return false;
   }
 
-  onChecked(item: any, event: any) {
     let {checked, value} = event.target;
     if(checked) {
       this.checkedItems.push(value);
@@ -98,11 +89,7 @@ export class VendorProductComponent implements OnInit {
       let index = this.checkedItems.indexOf(value);
       if (index !== -1) this.checkedItems.splice(index, 1);
     }
-    if(this.checkedItems?.length > 0) {
-      this.checkedFirstItems.push(item.status);
-    } else {
-      this.checkedFirstItems = [];
-    }
+
   }
 
   checkAll(event: any) {
@@ -112,7 +99,6 @@ export class VendorProductComponent implements OnInit {
     }else {
     this.checkedItems = [];
     }
-    this.checkedFirstItems = [];
   }
 
   onPublishClick() {
@@ -130,7 +116,7 @@ export class VendorProductComponent implements OnInit {
         this.searchText = '';
         this.getProducts(this.user_id, this.sort_key, this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
-        this.checkedFirstItems = [];
+
         this.selectAll = false;
         this.toast.success({detail:"Product published successfully.",summary: '' ,duration: 4000});
         this.publishModal.close();
@@ -162,7 +148,6 @@ export class VendorProductComponent implements OnInit {
         this.searchText = '';
         this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
-        this.checkedFirstItems = [];
         this.selectAll = false;
         this.btnDis = false;
         this.unPublishModal.close();
@@ -191,13 +176,11 @@ export class VendorProductComponent implements OnInit {
       this.searchText = '';
       this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
       this.checkedItems = [];
-      this.checkedFirstItems = [];
       this.selectAll = false;
       this.btnDis = false;
       this.deleteModal.close();
       this.toast.success({detail:"Product deleted successfully.",summary: '' ,duration: 4000});
     }, (error) => {
-      this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
       this.btnDis = false;
     })
 
@@ -241,7 +224,6 @@ export class VendorProductComponent implements OnInit {
 
   tabAllClick() {
     this.checkedItems = [];
-    this.checkedFirstItems = [];
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
@@ -252,7 +234,7 @@ export class VendorProductComponent implements OnInit {
 
   tabPublishClick() {
     this.checkedItems = [];
-    this.checkedFirstItems = [];
+
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
@@ -263,7 +245,6 @@ export class VendorProductComponent implements OnInit {
 
   tabUnPublishClick() {
     this.checkedItems = [];
-    this.checkedFirstItems = [];
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
