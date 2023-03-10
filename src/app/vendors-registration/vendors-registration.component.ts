@@ -114,6 +114,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   toolsUsed:any =[
     { name: 'Shopify', value: 'Shopify' },
+
   ];
 
   tagsArray:any =[
@@ -441,6 +442,7 @@ export class VendorsRegistrationComponent implements OnInit {
     let af = ['.zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed'];
     for (var i = 0; i < event.target.files.length; i++) { 
       if(event.target.files[i].name.endsWith('.zip')){
+
         this.upload_zip.push(event.target.files[i]);
         this.upload_zip_names.push(event.target.files[i].name);  
       } else {       
@@ -671,6 +673,7 @@ export class VendorsRegistrationComponent implements OnInit {
         } else {
           this.nextFiveFunction();
           this.errorMsg = "";
+
           this.btnDis = false;
         }
     }, (error:any) => {
@@ -902,10 +905,12 @@ export class VendorsRegistrationComponent implements OnInit {
       my_object = JSON.parse(localStorage.getItem('reg_user') || '{}');
     }
 
+
     let values = {
       email: my_object.email,
       password: my_object.password
     }
+
   }
 
   openUploadFeatureModal(content: any) {
@@ -1069,6 +1074,7 @@ export class VendorsRegistrationComponent implements OnInit {
       this.brandStoryError = false;
     }
   }
+
   vendorHeader: boolean = false;
   vendorStepProgress: boolean = false;
   vendorStepA: boolean = false;
@@ -2852,6 +2858,7 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   nextEighteenFunction() {
+
     this.vendorHeader = true;
     this.vendorStepProgress = true;
     this.vendorStepA = true;

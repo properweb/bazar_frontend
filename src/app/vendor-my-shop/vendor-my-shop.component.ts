@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class VendorMyShopComponent implements OnInit {
   user_id!: any;
+
   insta_handle!: any;
   established_year!: any; 
   stored_carried!: any;
@@ -136,6 +137,7 @@ export class VendorMyShopComponent implements OnInit {
     { name: "Hand Eye Magazine", value: "hand-eye-magazine" },
     { name: "Health", value: "Health" },
   ];
+
 
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
@@ -541,6 +543,7 @@ export class VendorMyShopComponent implements OnInit {
   }
 
   validateYear(event:any) {
+
     if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
       this.yearError = true;
     } else this.yearError = false;

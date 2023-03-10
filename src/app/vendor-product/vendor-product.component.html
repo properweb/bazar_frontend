@@ -39,10 +39,7 @@
               <h3>Select products to take an action</h3>
 
               <ul class="publicList" *ngIf="checkedItems.length > 0">
-                <li *ngIf="proStatus == 'publish'"><a class="disabled"><i class="fa-solid fa-eye"></i> Publish</a></li>
-                <li *ngIf="proStatus != 'publish'" (click)="openPublishModal(publishContent)"><a ><i class="fa-solid fa-eye"></i> Publish</a></li>
-                <li *ngIf="proStatus == 'unpublish'"><a class="disabled"><i class="fa-solid fa-eye-slash"></i> Unpublish</a></li>
-                <li  *ngIf="proStatus != 'unpublish'" (click)="openUnPublishModal(unPublishContent)"><a ><i class="fa-solid fa-eye-slash"></i> Unpublish</a></li>
+
                 <li (click)="openDeleteModal(deleteContent)"><a ><i class="fa-solid fa-trash"></i> Delete</a></li>               
               </ul>
 
@@ -67,9 +64,7 @@
                       <th scope="col">&nbsp;</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngFor="let product of products">
-                      <td><input class="form-check-input" type="checkbox" [value]="product.id" (change)="onChecked(product, $event)" [checked]="checkedItems.includes(product.id) == true"></td>
+
                       <td><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></td>
                       <td>{{product.name}}</td>
                       <td>{{product?.options_count}} options</td>

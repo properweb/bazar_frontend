@@ -340,6 +340,7 @@
                   *ngIf="(established_yearval.touched || vendorFormStep3.submitted) && established_yearval.errors?.['required']">
                   Year Established is required
                 </span>
+
                 <span class="validate_errors"
                   *ngIf="yearError">
                   Year Established is not valid.
@@ -924,10 +925,12 @@
               <li class="col-lg-6">
                 <label>Re-order Minimum</label>
                 <span class="prefix">$</span>
+
                 <span class="validate_errors"
                   *ngIf="(re_order_minval.touched || vendorFormStep13.submitted) && re_order_minval.errors?.['required']">
                   Re-order is required
                 </span>
+
                 </span>
               </li>
               <li class="col-lg-12">
@@ -998,6 +1001,7 @@
                   <p>Multiple catalogs?<br>
                     <strong>Upload</strong> Another Spreadsheet
                   </p>
+
                 </div>
               </li>
               <li class="col-lg-6">
@@ -1252,6 +1256,7 @@
           </div>
         </div>
         <div class="col-lg-5 rightRegistionFormBox">
+
             <h3>Set Up Your Bazar Direct Link</h3>
             <p>Customize the link to your Bazar Direct page so it represents your shop's name and branding. You'll lock in 0% commission for anyone who orders through Bazar Direct.</p>
             <ul class="vendorRegFormList row">
@@ -1353,6 +1358,7 @@
                 <label class="form-label">Instagram Handle</label>
                 <span style="position: relative; bottom: -31px; left: 10px;">@</span>
                 <input style="padding: 0 0 0 28px;" type="text" pattern="^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$" class="form-control" placeholder="" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
+
                 <span class="validate_errors"
                   *ngIf="(insta_handleval.touched || vendorFinalStep.submitted) && insta_handleval.errors?.['pattern']">
                   This field not valid.
@@ -1361,10 +1367,12 @@
               <li class="col-lg-6">
                 <label class="form-label">Year Established</label>
 
+
                 <span class="validate_errors"
                   *ngIf="(established_yearval.touched || vendorFinalStep.submitted) && established_yearval.errors?.['required']">
                   Year Established is required
                 </span>
+
                 <span class="validate_errors"
                   *ngIf="yearError">
                   Year Established is not valid.
@@ -1379,10 +1387,12 @@
               </li>
               <li class="col-lg-6">
                 <label>Reorder Minimum</label>
+
                 </span>
               </li>
               <li class="col-lg-6">
                 <label>Average Lead Time</label>
+
               </li>
             </ul>
             <h4>Location</h4>
@@ -1400,6 +1410,7 @@
               <li class="col-lg-6">
                 <label class="form-label">Headquatered</label>
                 <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+
                 <select required class="form-select" aria-label="Default select example" (change)="onChangeCountry($event)" name="headquatered" [(ngModel)]="headquatered" #headquateredval="ngModel">
                   <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
                 </select>
@@ -1439,6 +1450,7 @@
 
           <div class="col-lg-6 brandInformationRight">
             <div class="show_profile_photo">
+
             </div>
             <h3>Final Step! Review Your Store Information</h3>
             <p>Please review your profile information on the left side before submitting to the Bazaar team.</p>
@@ -1448,6 +1460,7 @@
                   (click)="backTwentyFiveFunction()">Back</button>
               </li>
               <li class="col-lg-6">
+
               </li>
             </ul>
           </div>

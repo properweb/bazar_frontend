@@ -62,12 +62,14 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
+
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         if(user) {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
+
         }
  
       },
@@ -140,12 +142,14 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   sendSignInData(signInFrom: any) {
+
       let response = JSON.parse(JSON.stringify(responseBody));
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
+
           this.signInModal.close();
           this.spinnerShow = false;
           this.storage
@@ -198,7 +202,6 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   getVendorDetails(brand_id: any) {
     this.apiService.getBrandShopDetails(brand_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-
     });
   }
 

@@ -29,6 +29,7 @@ export class AccountSeeing2Component implements OnInit {
   constructor(private storage: StorageMap, private apiService: ApiService, private toast: NgToastService, private apmService: ApmService, private router: Router) {}
 
   ngOnInit(): void {
+
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */

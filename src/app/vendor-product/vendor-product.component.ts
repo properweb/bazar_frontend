@@ -33,10 +33,7 @@ export class VendorProductComponent implements OnInit {
   constructor(public modalService: NgbModal, private storage: StorageMap , private apiService : ApiService , private router: Router, private appComponent: AppComponent, private toast: NgToastService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-    
+
     if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
       this.searchText = localStorage.getItem('searchkey');
     }
@@ -56,16 +53,7 @@ export class VendorProductComponent implements OnInit {
       },          
     });
 
-  }
 
-
-  openPublishModal(content: any) {  
-  this.publishModal = this.modalService.open(content, { windowClass: 'publishModal' });
-}
-
-  openUnPublishModal(content: any) {  
-  this.unPublishModal = this.modalService.open(content, { windowClass: 'unPublishModal' });
-}
 
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
@@ -82,7 +70,7 @@ export class VendorProductComponent implements OnInit {
         }
         this.products = this.productsArray;
     })
-    
+
   }
     
   openExport(content:any) {
@@ -96,7 +84,7 @@ export class VendorProductComponent implements OnInit {
     return false;
   }
 
-  onChecked(item: any, event: any){
+
     let {checked, value} = event.target;
     if(checked) {
       this.checkedItems.push(value);
@@ -194,7 +182,7 @@ export class VendorProductComponent implements OnInit {
       this.deleteModal.close();
       this.toast.success({detail:"Product deleted successfully.",summary: '' ,duration: 4000});
     }, (error) => {
-      this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
+
       this.btnDis = false;
     })
 
