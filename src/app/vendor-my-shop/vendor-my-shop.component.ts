@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class VendorMyShopComponent implements OnInit {
   user_id!: any;
-  products!: any;
+
   insta_handle!: any;
   established_year!: any; 
   stored_carried!: any;
@@ -55,18 +55,14 @@ export class VendorMyShopComponent implements OnInit {
   ngOnInit(): void {
     const d = new Date();
     let year = d.getFullYear();
-    // console.log(year);
-    this.currentYear = year;
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
+
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
         this.getVendorDetails(this.user_id);
-        this.getProdcuts(this.user_id); 
+
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -142,12 +138,6 @@ export class VendorMyShopComponent implements OnInit {
     { name: "Health", value: "Health" },
   ];
 
-  getProdcuts(user_id:any) {
-    this.apiService.getProducts(user_id).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      this.products = response.data;
-    })
-  }
 
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
@@ -187,7 +177,7 @@ export class VendorMyShopComponent implements OnInit {
         let response= JSON.parse(JSON.stringify(responseBody));
         this.cityArray = response.data;
       })
-      console.log(response.data.state, response.data.city)
+
       this.insta_handle = response.data.insta_handle;
       this.established_year = response.data.established_year;
       this.stored_carried = response.data.stored_carried;
@@ -553,8 +543,7 @@ export class VendorMyShopComponent implements OnInit {
   }
 
   validateYear(event:any) {
-    // console.log(event.target.value);
-    // console.log(this.currentYear);
+
     if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
       this.yearError = true;
     } else this.yearError = false;

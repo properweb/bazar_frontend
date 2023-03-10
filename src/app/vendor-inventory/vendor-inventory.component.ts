@@ -125,6 +125,7 @@ export class VendorInventoryComponent implements OnInit {
   }
 
   onSearchPress() {
+
     this.currentPage = 1;
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
   }

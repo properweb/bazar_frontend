@@ -132,6 +132,7 @@ export class ProductArrangementComponent implements OnInit {
     },
   ];
 
+
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
       this.appComponent.showSpinner = false;

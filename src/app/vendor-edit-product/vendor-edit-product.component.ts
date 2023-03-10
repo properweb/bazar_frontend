@@ -79,7 +79,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   varImageIndex!: any;
 
 
-
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -163,6 +162,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   ngOnInit(): void {
 
+
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -193,7 +193,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           /* Called if data is invalid */
         },
       });
-
 
     this.featured_image = 0;
     this.lists= [];
@@ -246,7 +245,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
-
   }
   
   getProductDetail() {
@@ -393,6 +391,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
 
 
+
         this.option_type = response.data[0].option_type;
         this.ext_option_type = response.data[0].option_type;
         
@@ -419,6 +418,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
+
 
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
@@ -567,6 +567,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   chooseYesFunction() { 
+
     this.isVarAvailable = true;
     this.showForm2= true;
     this.showForm3= true;
@@ -924,7 +925,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       });
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
-
 
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
@@ -1313,7 +1313,6 @@ addAttribute() {
       } else {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
-    
 
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
@@ -1331,6 +1330,7 @@ addAttribute() {
       this.prepackError = 'Update your product listing before crafting a new prepack.';
     }
   } else {
+
 
 
 
@@ -1387,6 +1387,7 @@ addAttribute() {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
       let sizeItemsClone = [...sizeItems];
+
       let arrOfSize: any = [];
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
@@ -1698,6 +1699,7 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
+
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';

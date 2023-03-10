@@ -37,17 +37,6 @@ export class AccountSettingsComponent implements OnInit {
   yearError:any = false;
   validError:any = false;
   brandStoryError:any = false;
-  headquateredArray: any = [
-    // {name: 'Austria'},
-    {name: 'United States of America'},
-    // {name: 'Canada'},
-    // {name: "United Kingdom"},
-    // {name: "France"},
-    // {name: "Germany"},
-    // {name: "Netherlands"},
-    // {name: "Italy"},
-    // {name: "Spain"},
-    // {name: "Spain"},
   ]
   countriesArray:any = [
     { code: 'JO', code3: 'JOR', name: 'Jordan', number: '400' },  
@@ -70,11 +59,6 @@ export class AccountSettingsComponent implements OnInit {
   ngOnInit(): void {
     const d = new Date();
     let year = d.getFullYear();
-    // console.log(year);
-    this.currentYear = year;
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     
     this.storage.get('user_session').subscribe({
       next: (user) => {
@@ -232,8 +216,6 @@ export class AccountSettingsComponent implements OnInit {
   } 
 
   validateYear(event:any) {
-    // console.log(event.target.value);
-    // console.log(this.currentYear);
     if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
       this.yearError = true;
     } else this.yearError = false;

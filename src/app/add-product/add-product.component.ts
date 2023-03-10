@@ -179,7 +179,6 @@ export class AddProductComponent implements OnInit {
   prePackNameError:boolean= false;
   skuError:boolean= false;
 
-
   constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private toast: NgToastService) { 
     this.fromDate = null
     this.toDate = null
@@ -333,6 +332,7 @@ export class AddProductComponent implements OnInit {
   }
   
   onFocusedCat(e:any){
+
   }
 
   chooseNoFunction() { 
@@ -411,6 +411,7 @@ export class AddProductComponent implements OnInit {
   } 
 
 
+
   showCreatePrepack() { 
     this.hideCreatePrepack = true;
   }
@@ -431,6 +432,7 @@ export class AddProductComponent implements OnInit {
     this.productOptions1= false;
     this.moreProductOptions2= false;
     this.moreProductOptions1= true;
+
 
       return !namesToDeleteSet.has(name);
     });
@@ -464,6 +466,7 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].size_ratio = event.target.value;
       this.prepackLists[index].ratio_error = '';
+
     } else if (re.test(event.target.value) && splitVal.length == 2 && !remainder) { 
 
       this.prepackLists[index].size_range = [];
@@ -564,6 +567,7 @@ export class AddProductComponent implements OnInit {
       values: option1_value2
     };
 
+
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -618,6 +622,7 @@ export class AddProductComponent implements OnInit {
 
   cropImage(imgId: any) {
 
+
     var event = {
       target: {
         files: [imgObj.imgFile]
@@ -671,6 +676,7 @@ export class AddProductComponent implements OnInit {
     if(this.selectedFiles.length < 13){
       this.imgCountArr.splice(0 , this.selectedFiles.length);
     }
+
 
     for(let i = 0; i < event.target.files.length; i++) {
       if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
@@ -809,6 +815,7 @@ export class AddProductComponent implements OnInit {
       if(prepackOptionType.includes('Size')) {
         let index = prepackOptionType.indexOf('Size');
         prepackOptionType.splice(index,1);
+
       }
   
       if(prepackOptionType.length > 0) {
@@ -865,6 +872,7 @@ export class AddProductComponent implements OnInit {
     let name = this.colorOptionItems.find((element :any , i:any) => i == index);
     this.swatchName = name.name;
     this.swatchIndex = index;
+
   }
 
   clickEditSwatch(index:any) {
@@ -1070,6 +1078,7 @@ export class AddProductComponent implements OnInit {
         }
         for (let index = 0; index < this.resultAttribute.length; index++) {
 
+
         }
 
         let varPriceError = 0;
@@ -1086,7 +1095,7 @@ export class AddProductComponent implements OnInit {
             skuError = 1 ;
           }
         });
-        this.resultAttribute.forEach((elementVar: any) => {d
+
           if( elementVar.inventory && !/^\d+$/.test(elementVar.inventory)) {
             inventoryError = 1;
           }
@@ -1168,6 +1177,7 @@ export class AddProductComponent implements OnInit {
             this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
             return false;
           } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
+
           } else if(this.instRetError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
@@ -1207,6 +1217,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onItemAdded(item:any) {
+
   }
   
   //date-range
@@ -1259,6 +1270,7 @@ export class AddProductComponent implements OnInit {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
+
   }
 
   autoPriceCall() {
@@ -1297,6 +1309,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onWSChange(index: any) {
+
     this.apiService.convertPrice(this.resultAttribute[index].wholesale_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.resultAttribute[index].wholesale_price = response.data.USD;

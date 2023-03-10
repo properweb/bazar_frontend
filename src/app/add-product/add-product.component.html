@@ -296,7 +296,6 @@
                     </div>
                   </td>   
                   <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-
                   <td>
                     <input type="text" class="form-control" (change)="onVarSkuChange($event, i);" placeholder="" name="resultAttributesku" [(ngModel)]="resultAttribute[i].sku" >
                     <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
@@ -567,7 +566,6 @@
                             <li class="col-lg-6">
                               <label>Minimum Order Quantity</label>
                               <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="onMinOrdQtyChange($event);" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
-
                               <span class="validate_errors" *ngIf="minOrdQtyError">This field is invalid.</span>
                             </li>
                           </ul>
@@ -984,7 +982,6 @@
           </div>
         </li>
       </ul>
-
       <div class="btnFooter">
         <button type="button" class="btn btn-primary common_btn" (click)="closeModal(); ">Submit</button><br />
         <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
