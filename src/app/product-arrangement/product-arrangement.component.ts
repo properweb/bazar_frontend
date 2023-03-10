@@ -25,10 +25,6 @@ export class ProductArrangementComponent implements OnInit {
   constructor(private storage: StorageMap, private apiService : ApiService, private appComponent: AppComponent, private router: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
