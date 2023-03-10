@@ -1,0 +1,523 @@
+<ng-container *ngIf="role == 'brand'">
+  <app-vendor-header></app-vendor-header> 
+</ng-container>
+<ng-container *ngIf="role == 'retailer'">
+  <app-after-login-header></app-after-login-header>
+</ng-container>
+<ng-container *ngIf="role != 'retailer' && role != 'brand' ">
+  <app-header [currentUrl]="currentUrl" ></app-header>
+</ng-container>
+
+<!-- * * * * * * * * * * * Header End * * * * * * * * * * * -->
+<div class="productDetailsTop">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 leftImgtDetails">
+        <ul class="brandShopNav" *ngIf="role == 'retailer'">
+          <li><a><img src="assets/images/compare_icon2.png" alt="img"></a></li>
+          <li>
+
+            <ng-container *ngIf="boardsList?.length == 0">
+              <!-- For normal product -->
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+              </ng-container>
+            </ng-container>
+
+             <!-- For choose board -->
+            <ng-container *ngIf="boardsList?.length > 0">
+              <!-- For normal product -->
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+              </ng-container>
+            </ng-container>
+            
+          </li>
+        </ul>
+        <div class="feedback-slides">
+          <div class="client-feedback" lightbox-group>
+            <ngx-slick-carousel class="carousel feedback" 
+              #slickModal="slick-carousel" 
+              [config]="imagesSlider" 
+              (init)="slickInit($event)"
+              (breakpoint)="breakpoint($event)"
+              (afterChange)="afterChange($event)"
+              (beforeChange)="beforeChange($event)">
+                <div ngxSlickItem *ngFor="let slide of productDetail?.images" class="slide">
+                  <img src="{{ slide.image }}" alt="" lightbox />
+                </div>
+            </ngx-slick-carousel>
+          </div>
+        </div>
+        <div class="client-thumbnails">
+          <ngx-slick-carousel 
+             class="carousel thumbs" 
+             #slickModal="slick-carousel" 
+             [config]="thumbnailsSlider ">
+             <div ngxSlickItem *ngFor="let slide of productDetail?.images" class="slide">
+                     <img src="{{ slide.image }}" alt="">
+             </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+      <div class="col-lg-5 rightProductDetails">
+        <div class="brandLogo" routerLink="/brand/{{productDetail.brand_direct_link}}">
+          <img [src]="productDetail.brand_logo" alt="" onerror="this.src='../assets/images/unnamed.png' " />
+        </div>
+        <h3 routerLink="/brand/{{productDetail.brand_direct_link}}" >{{productDetail.brand_name}}</h3>
+        <p *ngIf="productDetail.min_order_qty != '0' && productDetail.min_order_qty != 'undefined' ">$ {{productDetail.min_order_qty}} Min</p>
+        <div class="clearfix"></div>
+        <div class="productName">{{productDetail.name}}</div>
+        <ul class="brandShopNav" *ngIf="role == 'retailer'">
+          <li>
+            <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+          </li>
+          <li>
+
+            <ng-container *ngIf="boardsList?.length == 0">
+              <!-- For normal product -->
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
+                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
+                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              </ng-container>
+
+              <!-- <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a> -->
+              <!-- <a (click)="addToWishlist()" ><img src="assets/images/Vector-red.png" alt=""></a> -->
+            </ng-container>
+
+            <!-- For choose board -->
+            <ng-container *ngIf="boardsList?.length > 0">
+              <!-- For normal product -->
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
+                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Add to wishlist</a> -->
+                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              </ng-container>
+            </ng-container>
+
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="productPrice" *ngIf="productDetail.variations?.length == 0;else other_content" >$ {{productDetail.usd_wholesale_price}} <span>| MSRP $ {{productDetail.usd_retail_price}}</span></div>
+        <ng-template #other_content>
+          <div class="productPrice" >$ {{productVariationFirst.wholesale_price}} <span>| MSRP $ {{productVariationFirst.retail_price}}</span></div>
+        </ng-template>
+        <h4 *ngIf="productDetail.shipped_from != '' && productDetail.shipped_from != 'undefined' ">Ships from {{productDetail.shipped_from}}</h4>
+        <ul class="productDescriptionList">
+          <li *ngIf="colorAvailable">
+            <div class="colorSec">Color: <span>{{colorName}}</span></div>
+              <ul class="choseColor">
+                <li *ngFor="let item of productDetail.variation_colors; let i = index;">
+                  <label class="store_label">
+                    <input type="radio" class="form-check-input" [value]="item.name" name="color" [checked]="item.name == colorName" (change)="onColorChange($event)" />
+                    <div class="colorBox">
+                      <span [style.background]="'url(' + item.img + ')'"></span> 
+                    </div>
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+          </li>
+            <li *ngFor="let item of productDetail?.variation_options; let i = index;" >
+              <label [style.display]="item.name == 'Color' || (item.name == 'Size' && productDetail?.sell_type == '2' ) || (item.name == 'Size' && productDetail?.prepacks.length > 0 ) ? 'none' : 'block'" >{{item.name}}</label>
+              <ul class="choseDimension">
+                <li *ngFor="let childItem of item.options" [style.display]="item.name == 'Color' || (item.name == 'Size' && productDetail?.sell_type == '2' ) || (item.name == 'Size' && productDetail?.prepacks.length > 0 ) ? 'none' : 'block'" >
+                  <label class="store_label" >
+                    <input type="radio" class="form-check-input" [name]="'dimension'+i" [value]="childItem" (change)="onVariationChange($event)" [checked]="radioBtnValue.includes(childItem)" [(ngModel)]="radioBtnValue[i]" />
+                    <h4>{{childItem}}</h4>
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+            </li>
+          <li *ngIf="productDetail?.sell_type != '2'">
+            
+            <ng-container *ngIf="productDetail?.prepacks?.length > 0">
+              <label>Prepack</label>
+              <select class="form-select" aria-label="Default select example" (change)="onPrepackChange($event)" >
+                <option *ngFor='let item of productDetail?.prepacks ;let i = index' [value]="item.id" >{{item.size_ratio + ';' + item.size_range}}</option>
+              </select>
+            </ng-container>
+
+            <ng-container *ngIf="productDetail?.prepacks?.length == 0">
+              <label *ngIf="productDetail.min_order_qty != 'undefined' ">Item quantity (Minimum {{productDetail.min_order_qty}})</label>
+              <label *ngIf="productDetail.case_quantity != 'undefined' && productDetail.case_quantity != '0' ">Case of {{productDetail.case_quantity}}</label>
+                <select *ngIf="productDetail.variations?.length == 0;else ElseBlock" class="form-select" aria-label="Default select example" (change)="onQtyChange1($event)" >
+                  <option *ngFor='let item of orderQtyCounter(10) ;let i = index' [value]="orderQtyNumber1(productDetail.min_order_qty ,productDetail.case_quantity,i,productDetail.usd_wholesale_price)" >{{orderQtyText1(productDetail.min_order_qty ,productDetail.case_quantity,i,productDetail.usd_wholesale_price)}}</option>
+                </select>
+                <ng-template #ElseBlock >
+                  <select class="form-select" aria-label="Default select example" *ngIf="productDetail.min_order_qty != 'undefined' && productDetail.case_quantity != 'undefined'" (change)="onQtyChange($event)" >
+                    <option *ngFor='let item of orderQtyCounter(10) ;let i = index' [value]="orderQtyNumber(productDetail.min_order_qty ,productDetail.case_quantity,i,productVariationFirst.wholesale_price)" >{{orderQtyText(productDetail.min_order_qty ,productDetail.case_quantity,i,productVariationFirst.wholesale_price)}}</option>
+                  </select>
+                </ng-template>
+            </ng-container>
+
+            <ng-container *ngIf="productDetail?.prepacks?.length > 0">
+              <label>Pack quantity ({{perPrepackValue}} per prepack)</label>
+              <ng-container *ngIf="!custQtyEnable">
+                <select class="form-select" aria-label="Default select example" *ngIf="productDetail.min_order_qty != 'undefined' && productDetail.case_quantity != 'undefined'" (change)="onQtyChange($event)" >
+                  <option *ngFor='let item of orderQtyCounter(10) ;let i = index' [value]="i + 1" >{{i == 10 ? 'Custom quantity' : i + 1}}</option>
+                  <!-- <option value="cs">Custom quantity</option> -->
+                </select> 
+              </ng-container>
+
+              <!-- <ng-container *ngIf="custQtyEnable"> -->
+                <!-- <select class="form-select" aria-label="Default select example" *ngIf="productDetail.min_order_qty != 'undefined' && productDetail.case_quantity != 'undefined'" (change)="onQtyChange($event)" > -->
+                  <!-- <option *ngFor='let item of orderQtyCounter(11) ;let i = index' [value]="i + 1" >{{i == 10 ? 'Custom quantity' : i + 1}}</option> -->
+                  <!-- <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" (change)="onQtyCustChange($event)"> -->
+                  <!-- <option value="cs">Custom quantity</option> -->
+                <!-- </select>  -->
+              <!-- </ng-container> -->
+            </ng-container>
+
+          </li>
+
+          <li *ngIf="productDetail?.sell_type == '2'">
+            <div class="table-quantity-sec">
+              <table class="table">
+                <tr *ngIf="productDetail.min_order_qty != 'undefined' ">
+                  <th style="color: #000; font-family: 'Futura' !important; font-size: 16px;">Sizes</th>
+                  <th style="text-align: right; color: #000; font-family: 'Futura' !important; font-size: 16px;">Min Qty {{productDetail.min_order_qty}}</th>
+                </tr>
+                <tbody>
+                  <tr *ngFor="let item of openSizingArray">
+                    <td style="text-transform: capitalize; color: #000; font-family: 'Futura' !important; font-size: 16px;">{{item.value}}</td>
+                    <td style="text-align: right; color: #000; font-family: 'Futura' !important; font-size: 16px;">
+                      <div class="numberBox"><button (click)="openSizingTotalQtyDec(item, item.qty)" class="btn minus-btn"></button><input type="text" name="" value="{{item.qty}}" class="quantityInput" (change)="onOpenSizeChange(item, $event)" ><button (click)="openSizingTotalQtyInc(item, item.qty)" class="btn plus-btn"></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="color: #000; font-family: 'Futura' !important; font-size: 16px;">Total</td>
+                    <td style="text-align: right; color: #000; font-family: 'Futura' !important; font-size: 16px;">{{openSizingTotalQty}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- <label *ngIf="productDetail.min_order_qty != 'undefined' ">Sizes (Minimum {{productDetail.min_order_qty}})</label>
+            <div *ngFor="let item of openSizingArray">
+              {{item.value}} <button (click)="openSizingTotalQtyDec(item, item.qty)" >-</button> {{item.qty}} <button (click)="openSizingTotalQtyInc(item, item.qty)">+</button><br>
+            </div>
+            <div>total {{openSizingTotalQty}}</div> -->
+          </li>
+          <li *ngIf="role == 'retailer'" >
+            <button class="btn bag-btn" (click)="addToBag()" *ngIf="!addCrtBtn" >Add to bag</button>
+            <button class="btn bag-btn" *ngIf="addCrtBtn" disabled >Adding to bag...</button>
+            <a class="btn negotiate-btn">Negotiate prices with the seller
+            </a>
+
+            <ng-container *ngIf="boardsList?.length == 0">
+              <!-- For normal product -->
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+            </ng-container>
+
+            <!-- For choose board -->
+            <ng-container *ngIf="boardsList?.length > 0">
+              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+
+              <!-- For variation product -->
+              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+            </ng-container>
+
+          </li>
+          <li *ngIf="role == 'retailer'">
+            <div class="grayNote">
+              Bid process: Descripttion, that users can place a bids tto agree
+              about price with seller
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="brandShopBodyBottom">
+  <div class="container">
+    <div class="productDeatilsTabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" *ngIf="productDetail.description != '' && productDetail.description != 'undefined'" >
+          <a class="nav-link active" data-bs-toggle="tab" href="#description">Description</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#dimensions">Dimensions</a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Product Reviews</a>
+        </li> -->
+      </ul>
+      <div class="tab-content" *ngIf="productDetail.description != '' && productDetail.description != 'undefined' " >
+        <div id="description" class="tab-pane active">
+          <p>
+            {{productDetail.description}}
+          </p>
+          <a class="showMoreLink">Show more</a>
+        </div>
+        <!-- <div id="dimensions" class="tab-pane fade">
+          <p>
+            Dimention<br />
+            400 X 400
+          </p>
+        </div> -->
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-lg-3 leftProductDetailsBottom">
+          <div class="brandLogo" routerLink="/brand/{{productDetail.brand_direct_link}}" >
+            <img [src]="productDetail.brand_logo" alt="" onerror="this.src='../assets/images/unnamed.png' " />
+          </div>
+          <h3 routerLink="/brand/{{productDetail.brand_direct_link}}" >{{productDetail.brand_name}}</h3>
+          <ul class="brandList">
+            <li><i class="fa-solid fa-location-dot"></i> {{productDetail.shipped_from}}</li>
+            <li>$ {{productDetail.min_order_qty}} Min</li>
+            <li>
+              <h4 *ngIf="productDetail.brand_avg_lead_time != '' && productDetail.brand_avg_lead_time != 'undefined' " >Fulfill orders witthin {{productDetail.brand_avg_lead_time}} days</h4>
+              <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+              <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+              <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+              <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+              <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-9 rightBrandShopBodyBottom">
+          <ul class="row brandShopProduct_list" *ngIf="relatedProducts?.length > 0" >
+            <li class="col-md-4" *ngFor="let item of relatedProducts" >
+              <div class="card">
+                <div class="imgDiv" [style.background-image]="'url('+ item?.featured_image +')'">
+                  <ul class="brandShopNav">
+                    <li>
+                      <a><img src="assets/images/compare_icon2.png" alt="img"/></a>
+                    </li>
+                    <li>
+                      <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                    </li>
+                  </ul>
+                  <div class="addProductBtn">
+                    <a class="addButton">Add</a>
+                  </div>
+                </div>
+                <div class="textDiv" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;" > 
+                  <h3>{{item?.name}}</h3>
+                  <p class="price_tag" *ngIf="item.usd_wholesale_price != '0' && item.usd_wholesale_price != 'undefined' ">{{item?.default_currency}} {{item?.usd_wholesale_price}} <span *ngIf="item.usd_retail_price != '0' && item.usd_retail_price != 'undefined' " >MSRP {{item?.default_currency}} {{item.usd_retail_price}}</span></p>
+                  <span class="minimumTextSpan" *ngIf="item.min_order_qty != '0' && item.min_order_qty != 'undefined' " >{{item?.default_currency}} {{item.min_order_qty}} minimum</span>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+          <div *ngIf="relatedProducts?.length == 0" style="color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 15px 0; text-align: center;" >No Related Products Found!</div>
+        </div>
+      </div>
+      <div class="productReviewsSec" *ngIf="role == 'retailer'">
+        <h3>256 Product reviews</h3>
+        <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+        <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+        <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+        <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+        <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+        <ul class="reviewsList">
+          <li>
+            <h3>Sarah O.</h3>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="dateSpan">February 2, 2022</span>
+            <h4>Perfect quality!</h4>
+            <p>Quick shopping, good quality, so grateful</p>
+          </li>
+          <li>
+            <h3>Sarah O.</h3>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="dateSpan">February 2, 2022</span>
+            <h4>Perfect quality!</h4>
+            <p>Quick shopping, good quality, so grateful</p>
+          </li>
+          <li>
+            <h3>Sarah O.</h3>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="starSpan"><i class="fa-solid fa-star"></i></span>
+            <span class="dateSpan">February 2, 2022</span>
+            <h4>Perfect quality!</h4>
+            <p>Quick shopping, good quality, so grateful</p>
+          </li>
+        </ul>
+        <!-- <ul class="pagination">
+          <li class="page-item prev"><a class="page-link"></a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item next"><a class="page-link"></a></li>
+        </ul> -->
+        <!-- <div *ngFor="let item of pageOfItems">{{item.name}}</div> -->
+        <jw-pagination [maxPages]="3" [pageSize]="3" [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+    <!-- </ng-container> -->
+  </div>
+
+    <div class="container" *ngIf="recentlyViewedProducts?.length > 0 " >
+      <h3>Recently viewed</h3>
+      <div class="row" *ngIf="recentlyViewedProducts?.length <= 4 " >
+        <div class="col-lg-3 withoutCarousel" *ngFor="let item of recentlyViewedProducts">
+          <div class="category_box">
+            <div class="img_div">
+              <img src="{{ item?.featured_image }}" alt="" />
+              <ul class="brandShopNav">
+                <li>
+                  <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+                </li>
+                <li>
+                  <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                </li>
+              </ul>
+            </div>
+            <div class="text_div" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;">
+              <h3>{{item?.name}}</h3>
+              <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="recentViewsCarousel" *ngIf="recentlyViewedProducts?.length > 4 ">
+        <owl-carousel-o [options]="specialProductOptions1">
+          <ng-template carouselSlide *ngFor="let item of recentlyViewedProducts">
+            <div class="category_box">
+              <div class="img_div">
+                <img src="{{ item?.featured_image }}" alt="" />
+                <ul class="brandShopNav">
+                  <li>
+                    <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+                  </li>
+                  <li>
+                    <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="text_div" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;">
+                <h3>{{item?.name}}</h3>
+                <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+<!-- * * * * * * * * * * * Body Content End * * * * * * * * * * * -->
+<div class="clearfix"></div>
+<app-footer></app-footer>
+
+<!-- Chosse Board Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Select Boards</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <ul class="board-product-list"> 
+          <li *ngFor="let item of boardsList">
+            <input type="radio" class="form-check-input" name="moveBoard" value="{{item?.board_id}}" (change)="onSelectBoard($event)">
+              <div class="img-sec"><img [src]="item?.board_image" alt=""></div>
+              <p>{{item?.board_name}}<br>{{item?.products_count}} Saved</p>
+          </li>
+      </ul>
+  </div>
+</ng-template>

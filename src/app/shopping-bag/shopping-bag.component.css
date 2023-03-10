@@ -1,0 +1,48 @@
+.shoppingBagSec { border-top: 1px solid #000; margin: 145px 0 0 0; padding: 60px 0 0 0; width: 100%; }
+.shoppingBagSec h3 { color: #000; font-family: 'Futura' !important; font-size: 36px; font-weight: 500; margin: 0 0 40px 0; }
+.shoppingBagSec .shoppingBagBorderBox { border-top: 1px solid #c4c4c4; float: left; margin: 0 0 40px 0; padding: 25px 0 0 0; width: 100%; }
+.shoppingBagSec .shoppingBagBorderBox h4 { align-items: center; color: #000; display: flex; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 30px 0; }
+.shoppingBagSec .shoppingBagBorderBox h4 .imgSpan { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 100%; height: 46px; line-height: 44px; margin-right: 15px; overflow: hidden; text-align: center; width: 46px; }
+.shoppingBagSec .shoppingBagBorderBox h4 .imgSpan img { display: inline-block; height: auto; margin-top: -7px; max-height: 44px; max-width: 44px; width: auto; }
+.shoppingBagSec .lftPnl { border: 1px solid #c4c4c4; border-radius: 3px; margin: 0; padding: 0; width: 100%; }
+.shoppingBagSec .lftPnl .prdtTblDiv { margin: 0; padding: 0; width: 100%; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl { margin: 0; width: 100%; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl tr:nth-child(2) { border-bottom: 1px solid #c4c4c4; border-top: 1px solid #c4c4c4; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl tr:nth-child(2) td:first-child { padding: 0; width: 127px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl tr:nth-child(2) td:last-child { position: relative; text-align: right;}
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl tr:last-child td { text-align: center; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td p { margin: 0 0 8px 0;}
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td p:last-child { margin: 0; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td p .qty-update input[type="number"] { border: 1px solid rgba(57, 57, 57, 0.5);  border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-left: 5px; min-width: 80px; padding: 0 10px 0 10px; width: 80px; } 
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .ChangeBtn { color:#000 !important; font-family: 'Futura' !important; font-size: 16px; font-weight: 700; margin-left: 10px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .ChangeBtn:focus-visible { outline: none; outline-offset: 0px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .NotePara { color: rgba(0,0,0,0.5); }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .PrdtName { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .PrdtMaterial { font-size: 18px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .PrdtPrice { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .RemovePrdt { cursor: pointer; position: absolute; top: 20px; right: 20px; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl td .SaveForBtn { font-family: 'Futura' !important; font-size: 18px; font-weight: 700; color: rgba(0,0,0,0.5); text-decoration: underline; }
+.shoppingBagSec .lftPnl .prdtTblDiv .prdtTbl tr:last-child td { padding: 10px 20px; }
+.shoppingBagSec .rhtPnl { margin: 5px 0 0 0; padding: 0; width: 100%; }
+.shoppingBagSec .rhtPnl .priceReached { color: #9fcf9e; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 25px 0; }
+.shoppingBagSec .rhtPnl .priceReached .max-span { color: #000; float: right; }
+.shoppingBagSec .rhtPnl .priceTable { border-collapse: collapse; margin: 0 0 25px 0; width: 100%; }
+.shoppingBagSec .rhtPnl .priceTable td { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.shoppingBagSec .rhtPnl .priceTable td:last-child { text-align: right; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec { border: 1px solid #c4c4c4; border-radius: 3px; margin: 0; padding: 10px 20px; width: 100%; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl { width:100%; margin:0;}
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl td { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 6px 0; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl tr:first-child td { text-align: left; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl tr:nth-child(2) td { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl tr:nth-child(4) td { padding-bottom: 20px; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl td:last-child { text-align: right; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl tr:last-child td { padding-top: 15px; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl .subTotaltr { border-top: 1px solid #c4c4c4; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl .subTotaltr td { color:#000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; padding-top: 25px; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl td .title { color: #000; font-family: 'Futura' !important; font-size: 22px; font-weight: 500; margin: 0 0 22px 0; }
+.shoppingBagSec .rhtPnl .odrSmryTblSec .odrSmryTbl td .btn { background: #393939; border-color: #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; height: 43px; line-height: 41px; padding: 0; width: 100%; }
+ 
+
+
+

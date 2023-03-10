@@ -1,0 +1,1038 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu [item]="currentItem" (newItemEvent)="getRouteName($event)" ></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <form enctype="multipart/form-data" #addProductForm="ngForm" (ngSubmit)="updateProduct(addProductForm)">
+        <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+        <div class="headingBox">
+          <div class="whiteHeadingBox">
+            <h3>Edit product</h3>
+            <p><a (click)="onProRouteClick();" style="cursor: pointer;">Products</a></p>
+          </div>
+        </div>
+        <div class="new_product_body">
+          <h3>Brand Information</h3>
+          <ul class="row newPrdtFormList">
+            <li class="col-lg-6">
+              <label>Product Name* <span class="labelSpan">This will be the name retailers see on your brand page.</span></label>
+              <input (change)="isDirty = true" type="text" class="form-control" onKeyPress="if(this.value.length==60) return false;" (change)="onProNameChange($event)" placeholder="My shop" name="product_name" [(ngModel)]="product_name" #product_nameVal>
+              <span class="countSpan">{{product_nameVal.value.length}}/60</span> 
+              <span class="validate_errors" *ngIf="proNameError">Product name is not valid.</span>
+            </li>
+              <li class="col-lg-6">
+                <label>Product Type* <span class="labelSpan">Determines where your product appears in the marketplace</span></label>
+                <input type="hidden" class="form-control searchForm" placeholder="Select Product Type" name="product_type" [(ngModel)]="product_type" #product_typeVal>
+                <ng-autocomplete [initialValue]="initialValue" [data]="categories" [searchKeyword]="productKeyword" placeholder="Select Category" (selected)='selectEventCat($event)' (inputChanged)='onChangeSearchCat($event)' (inputFocused)='onFocusedCat($event)' (inputCleared)='onInputCleared($event)' [itemTemplate]="catTemplate" [notFoundTemplate]="catNotFound"></ng-autocomplete>
+                <ng-template #catTemplate let-items>
+                    <a [innerHTML]="items.category"></a>
+                </ng-template>
+                <ng-template #catNotFound let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </li>
+          </ul>
+          <ul class="row newPrdtFormList" *ngIf="product_nameVal.value.length > 0 " >
+            <li class="col-lg-6">
+            </li>
+            <li class="col-lg-6 d-none d-lg-block"></li>
+            <li class="col-lg-6">
+              <label>Description</label>
+              <textarea (change)="isDirty = true" class="form-control textAreaForm" rows="3" name="description" [(ngModel)]="description" #descriptionVal></textarea>
+            </li>
+            <li class="col-lg-6 d-none d-lg-block"></li>
+            <li class="col-lg-6">
+              <label>Products Made In*</label>
+              <select (change)="isDirty = true" class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" #product_madeVal>
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+            </li>
+            <li class="col-lg-6 d-none d-lg-block"></li>
+            <li class="col-lg-6">
+              <div class="form-check">
+                <input class="form-check-input" [checked]="is_bestseller == true || is_bestseller == 'true' ? true : false" type="checkbox" value="" name="is_bestseller" (change)="onBestSellerChanged(is_bestsellerVal.checked);isDirty = true" #is_bestsellerVal>
+                <label class="form-check-label">Mark as bestseller</label>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="new_product_body" *ngIf="product_nameVal.value.length > 0 " >
+          <h3>Images & Videos</h3>
+          <ul class="row newPrdtFormList">
+            <li class="col-lg-12">
+              <label>Product Images* <span class="labelSpan">Help retailers see every detail of your product by uploading images that are at least 1050px by 1050px.</span></label>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="grayBox">
+                    <p>High quality product images increase sales by up to 2x.</p>
+                    <ul>
+                      <li>Upload 1+ images.</li>
+                      <li>Go for a white or light-colored background.</li>
+                      <li>Include an image for each product option.</li>
+                    </ul>
+                    <h4><a>Photography Guidelines</a></h4>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <ul class="row uploadList">
+                    <li class="col-6 col-sm-4 col-lg-2" *ngFor='let preview of previews; let i = index' >
+                      <div class="show-upload-img" style="display: block;"> <img [src]="preview" class="preview" onerror="this.src = 'assets/images/unnamed.png'"> 
+                        <a class="ratingSpan" (click)="onFeatureImgSelect(i)" *ngIf="i != featured_image" >
+                        <img src="assets/images/add_product_blank_star_icon.svg" alt="" matTooltipPosition="above" matTooltip="Add featured image">
+                      </a> 
+                      <a class="ratingSpan" *ngIf="i == featured_image" >
+                        <img src="assets/images/add_product_star_icon.svg" alt="" matTooltipPosition="above" matTooltip="Featured image">
+                      </a> 
+                    </div> 
+                    <a class="deleteLink" *ngIf="prev_product_images.includes(preview) && i != featured_image" (click)="prevDeleteImage(i , preview)"><i class="fa-solid fa-trash-can"></i></a>        
+                    <a class="deleteLink" *ngIf="!prev_product_images.includes(preview) && i != featured_image" (click)="newDeleteImage(i)"><i class="fa-solid fa-trash-can"></i></a>        
+                    </li>
+                    <li class="col-6 col-sm-4 col-lg-2"> 
+                      <div class="upload-btn-wrapper">
+                        <button class="btn">Upload</button>
+                        <input type="file" name="myfile" accept="image/*" multiple (change)="selectFiles($event)" />
+                      </div>
+                    </li>          
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="borderLine"></div>
+          <ul class="row newPrdtFormList">
+            <li class="col-lg-12">
+              <label>Product Videos <span class="labelSpan">Upload up to 3 videos to display alongside your product listing. ({{video_url && video_url.length}} / 3)</span></label>
+              <div class="uploadProductVideo" *ngIf="video_url.length < 3">
+                <div class="upload-btn-wrapper">
+                  <button class="btn">Upload</button>
+                  <input type="file" accept="video/*" name="myfile" (change)="onSelectVideoFile($event)" />
+                </div>
+              </div>
+              <div class="uploadProductVideo2" *ngFor="let item of video_url; let i = index">
+                <div class="upload-btn-wrapper" style="display: none;">
+                  <button class="btn">Upload</button>
+                  <input type="file" accept="video/*" name="myfile" />
+                </div>
+
+                <div class="show-upload-video" style="display: block;"> 
+                   <video [src]="item" class="iframeVideo" *ngIf="video_url.length > 0" ></video>
+                  <a (click)="openVideoModal(videoModal , i )"><div class="blackOverlay"></div></a>
+                </div>
+                <div class="clearfix"></div>
+                <a class="deleteLink" *ngIf="prev_product_videos.includes(item)" (click)="prevDeleteVideo(i , item)"><i class="fa-solid fa-trash-can"></i></a>
+                <a class="deleteLink" *ngIf="!prev_product_videos.includes(item)" (click)="newDeleteVideo(i)"><i class="fa-solid fa-trash-can"></i></a>
+              </div>
+          
+            </li>
+          </ul>
+        </div>
+        <div class="new_product_body2" *ngIf="product_nameVal.value.length > 0 ">
+          <div class="heading">
+            <h4>Does this product come in multiple options,like different sizes or colors?*</h4>
+            <ul class="radioList">
+              <li>
+                <div class="form-check styles_form_check">
+                  <label class="form-check-label">Yes</label>
+                </div>
+              </li>
+              <li>
+                <div class="form-check styles_form_check">
+                  <input [checked]="!isVarAvailable" type="radio" class="form-check-input" name="radio1" (click)="chooseNoFunction();isDirty = true;">
+                  <label class="form-check-label">No</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="borderBottom" *ngIf="showForm1"></div>
+          <div class="heading" *ngIf="showForm1 && !isVarAvailable">
+            <h4>Pricing*</h4>
+            <ul class="labelList">
+              <li>
+                <label>
+                  Your wholesale price is what retailers will see on Bazar. Pricing will appear in the retailer's local currency.
+                  <span>Note: To comply with Bazar's pricing policy, your wholesale and retail prices must be the same across all sales channels.</span>
+                </label>
+              </li>
+            </ul>
+            <div class="pricingTable" *ngIf="!isVarAvailable">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <th>Country</th>
+                  <th>Wholesale Price*</th>
+                  <th>Retail Price*</th>
+                </tr>
+                <tr>
+                    <td>United States</td>
+                    <td>
+                      <span class="listSpan" style="border: 1px solid #ccc;">
+                        <span>$USD</span>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control" (change)="autoPriceCall();isDirty = true;" placeholder="0" name="usd_wholesale_price" [(ngModel)]="usd_wholesale_price" >
+                      </span>
+                    </td>
+                    <td>
+                      <span class="listSpan" style="border: 1px solid #ccc;">
+                        <span>$USD</span>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control" (change)="autoRPPriceCall();isDirty = true;" placeholder="0" name="usd_retail_price" [(ngModel)]="usd_retail_price" >
+                      </span>
+                    </td>
+                  </tr>
+                <tr>
+                  <td>Canada</td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>$CAD</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="cad_wholesale_price" [(ngModel)]="cad_wholesale_price">
+                    </span>
+                  </td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>$CAD</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="cad_retail_price" [(ngModel)]="cad_retail_price" >
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>United Kingdom</td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>£GBP</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="gbp_wholesale_price" [(ngModel)]="gbp_wholesale_price">
+                    </span>
+                  </td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>£GBP</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="gbp_retail_price" [(ngModel)]="gbp_retail_price">
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Australia</td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>$AUD</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="aud_wholesale_price" [(ngModel)]="aud_wholesale_price">
+                    </span>
+                  </td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>$AUD</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187"(change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="aud_retail_price" [(ngModel)]="aud_retail_price">
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Europe</td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>€EUR</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false"class="form-control" placeholder="0" name="eur_wholesale_price" [(ngModel)]="eur_wholesale_price">
+                    </span>
+                  </td>
+                  <td>
+                    <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
+                      <span>€EUR</span>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="isDirty = true;" [readonly]="outside_us == false" class="form-control" placeholder="0" name="eur_retail_price" [(ngModel)]="eur_retail_price">
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="setBox">
+              <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
+              <span><strong>Set unique pricing per currency other than USD.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
+            </div>
+          </div>
+          <div class="borderBottom" *ngIf="showForm2"></div>
+          <div class="heading" *ngIf="isVarAvailable" >
+            <h4>Product options</h4>
+            <p>Configure product variants - variants are combinations of product options.</p>
+            <p><span><strong>Note:</strong> To comply with bazar's pricing policy, your wholesale and retails prices must be the across all sales channels.</span></p>
+            <a class="manageOptions" (click)="openAddProductModal(optionsContent); clickManageOpt();">Manage Options</a>
+            <div class="productTableDiv" >
+              <table class="table" >
+                <thead>
+                <tr>
+                  <th scope="col">Photo</th>
+                  <th scope="col" *ngFor="let attribute of option_type" >{{attribute}}</th>
+                  <th scope="col" *ngIf="option_type.includes('Color')">&nbsp;</th>
+                  <th scope="col">SKU</th>
+                  <th scope="col">Usd WholeSale price</th>
+                  <th scope="col">Usd Retail price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Cad WholeSale price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Cad Retail price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Gbp WholeSale price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Gbp Retail price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Eur WholeSale price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Eur Retail price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Aud WholeSale price</th>
+                  <th [style.display]="outside_us == true ? 'table-cell' : 'none'" scope="col">Aud Retail price</th>
+                  <th scope="col">Inventory</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Length</th>
+                  <th scope="col">Width</th>
+                  <th scope="col">Height</th>
+                  <th scope="col">Tariff Code</th>
+                  <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody > 
+                <ng-container *ngFor="let attributes of resultAttribute; let i = index" >
+                  <tr *ngIf="resultAttribute[i].status == 'published'">
+                    <td>
+                      <div class="imgDiv" *ngIf="resultAttributeImgPreview[i].preview_images && resultAttributeImgPreview[i].preview_images.length > 0 ; else elseOFImage;">
+                        <img [src]="resultAttributeImgPreview[i].preview_images && resultAttributeImgPreview[i].preview_images" alt="">
+                        <div class="upload-btn-wrapper"> 
+                          <button type="button" class="btn" (click)="selectVarImageRow(i); openVariantsProductsModal(variantsProducts);"></button>
+                        </div>
+                      </div>
+                      <ng-template #elseOFImage>
+                        <div class="upload-btn-wrapper" >
+                          <button type="button" class="btn" (click)=" selectVarImageRow(i); openVariantsProductsModal(variantsProducts);">Upload</button>
+                        </div>
+                      </ng-template>
+                
+                    </td>               
+                    <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> 
+                    <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image != ''" class="imgTd"><img [src]="resultAttributeImgPreview[i].swatch_image" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
+                    <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image == ''" class="imgTd"> <img src="assets/images/add-product-color-crop-img.png" alt="" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
+
+                    <td>
+                      <input type="text" class="form-control" placeholder="" (change)="isDirty=true;onVarSkuChange($event, i);" [name]="'resultAttributesku'+i" [(ngModel)]="resultAttribute[i].sku" >
+                      <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
+                    </td>
+                    <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="onWSChange(i);isDirty=true;" [name]="'resultAttributews'+i" [(ngModel)]="resultAttribute[i].usd_wholesale_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="onRPChange(i);isDirty=true;" [name]="'resultAttributerp'+i" [(ngModel)]="resultAttribute[i].usd_retail_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributecwp' + i" [(ngModel)]="resultAttribute[i].cad_wholesale_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributecrp' + i" [(ngModel)]="resultAttribute[i].cad_retail_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributegwp' + i" [(ngModel)]="resultAttribute[i].gbp_wholesale_price">
+                      <span class="priceSpan">£</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributegrp' + i" [(ngModel)]="resultAttribute[i].gbp_retail_price">
+                      <span class="priceSpan">£</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributeewp' + i" [(ngModel)]="resultAttribute[i].eur_wholesale_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributeerp' + i" [(ngModel)]="resultAttribute[i].eur_retail_price">
+                      <span class="priceSpan">$</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributeawp' + i" [(ngModel)]="resultAttribute[i].aud_wholesale_price">
+                      <span class="priceSpan">€</span>
+                    </td>
+                    <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributearp' + i" [(ngModel)]="resultAttribute[i].aud_retail_price">
+                      <span class="priceSpan">€</span>
+                    </td>
+                    <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control unitInput" placeholder="" (change)="isDirty=true;onVarInventoryChange($event, i)" [name]="'resultAttributinv'+i" [(ngModel)]="resultAttribute[i].inventory">
+                      <span class="unitsSpan">units</span>
+                      <span class="validate_errors" *ngIf="resultAttribute[i].inventoryError">{{resultAttribute[i].inventoryError}}</span>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributeWeight'+i" [(ngModel)]="resultAttribute[i].weight">
+                        <select class="form-select smallSelect" (change)="isDirty=true;" aria-label="Default select example" [name]="'resultAttributeweight_unit'+i" [(ngModel)]="resultAttribute[i].weight_unit">
+                          <option>kg</option>
+                          <option>g</option>
+                          <option>lb</option>
+                          <option>oz</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributelength'+i" [(ngModel)]="resultAttribute[i].length">
+                        <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit">
+                          <option value="cm">cm</option>
+                          <option value="in">in</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributewidth'+i" [(ngModel)]="resultAttribute[i].width">
+                        <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit">
+                          <option value="cm">cm</option>
+                          <option value="in">in</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributeheight'+i" [(ngModel)]="resultAttribute[i].height" style="padding-left: 10px;">
+                        <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit">
+                          <option value="cm">cm</option>
+                          <option value="in">in</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onkeypress="if(this.value.length == 255) return false;" maxlength="255" class="form-control priceInput" placeholder="" (change)="isDirty=true;" [name]="'resultAttributetariff_code'+i" [(ngModel)]="resultAttribute[i].tariff_code"></td>
+                    <td>
+                      <!-- <a class="iconLink"><i class="fa-solid fa-eye-slash"></i></a> 
+                      <a class="iconLink"><i class="fa-solid fa-calendar-check"></i></a>  -->
+                      <a class="iconLink" (click)="proDelete(i)"><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
+                  </tr>
+                </ng-container>
+                </tbody>
+              </table>
+            </div>
+            <div class="setBox">
+              <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
+              <span><strong>Set unique pricing per currency other than USD.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
+            </div>
+
+            <ng-container *ngIf="option_type.includes('Size')">
+              <h5>How would you like to sell this product?*</h5>
+              <ul class="radioList2">
+                <li>
+                  <div class="form-check">
+
+                    <label class="form-check-label">Case packs <span class="red">Standard</span><br />
+                    <span class="spanText">Retails can check out one they've rechead the minimum order quantity for each product option.</span></label>
+                  </div>
+                  <div class="productOptionsSub" *ngIf="casePacks">
+                    <ul class="row productOptionsSubList">
+                      <li class="col-lg-6"> 
+                        <label>Case Quantity</label>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" (change)="isDirty=true; order_min_case_qty = undefined; onCaseQtyChange($event)" placeholder="" name="order_case_qty" [(ngModel)]="order_case_qty" >
+                        <span class="unitsSpan">Units</span>
+                        <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+                      </li>
+                      <li class="col-lg-6">
+                        <label>Minimum Order Quantity</label>
+                        <select class="form-select" (chane)="isDirty=true;" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" [disabled]="order_case_qty == undefined" >
+                          <ng-container *ngIf="!caseQtyError">
+                            <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
+                          </ng-container>
+                        </select>
+                      </li>
+                    </ul>
+                    <div class="pricingTable">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <th scope="col" *ngFor="let attribute of option_type" >{{attribute}}</th>
+                          <th>Case Quantity</th>
+                          <th>Minimum Order Quantity</th>
+                        </tr>
+
+                        <tr *ngFor="let attributes of resultAttribute; let i = index" >
+                          <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
+                          <td> {{!caseQtyError ? order_case_qty : ''}} </td>
+                          <td> {{order_min_case_qty ? order_min_case_qty : ''}} </td>
+                        </tr>
+                        
+                      </table>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+
+                    <label class="form-check-label">Open sizing<br />
+                    <span class="spanText">Retails can choose which size they want to buy. as long as they reach the mimum order quantity for the style.</span></label>
+                  </div>
+                  <div class="productOptionsSub" *ngIf="openSizing">
+                    <ul class="row productOptionsSubList">
+                      <li class="col-lg-6">
+                        <label>Minimum Order Quantity</label>
+                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="isDirty=true; onMinOrdQtyChange($event)" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
+                        <span class="unitsSpan">Units</span>
+                        <span class="validate_errors" *ngIf="minOrdQtyError">This field is invalid.</span>
+                      </li>
+                    </ul>
+                    <div class="pricingTable">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <th scope="col" *ngFor="let attribute of option_type" >{{attribute}}</th>
+                          <th>Minimum Order Quantity</th>
+                        </tr>
+
+                        <tr *ngFor="let attributes of resultAttribute; let i = index" >
+                          <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
+                          <td *ngIf="order_min_case_qty && !minOrdQtyError"> {{!minOrdQtyError ? order_min_case_qty : ''}} units</td>
+                        </tr>
+
+                      </table>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+d
+                    <label class="form-check-label">Prepacks<br />
+                    <span class="spanText">Retails can buy a style as a bundle in a set size run.</span></label>
+                    <div *ngIf="prepackError; else prepackElse;" >
+                      <span class="validate_errors">{{prepackError}}</span>
+                    </div>
+                    <ng-template #prepackElse>
+                      <ng-container *ngIf="prePacks">
+                        <a class="btn create-prepacks-btn" *ngIf="prePacks" (click)="showCreatePrepack()">Create Prepacks</a>
+                        <div class="clearfix"></div>
+                        <div class="create-prepacks-content" *ngIf="hideCreatePrepack">
+                          <div class="prepack-table-content">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Prepacks</th>
+                                  <th scope="col">Style</th>
+                                  <th scope="col">&nbsp;</th>
+                                  <th scope="col">Packs Name</th>
+                                  <th scope="col">Size Ratio</th>
+                                  <th scope="col">Size Range</th>
+                                  <th scope="col">Packs Price</th>
+                                  <th scope="col">&nbsp;</th>
+                                </tr>
+                              </thead>
+                              <tbody> 
+                                <ng-container *ngFor="let list of prepackLists; index as i;">
+                                  <tr *ngIf="prepackLists[i].status == 'published' ">
+                                    <td>
+                                      <div class="radioDiv">
+                                        <label class="switch" [attr.for]="'prepacksCheckbox1'+i">
+                                          <input type="checkbox" (change)="isDirty=true;" [attr.id]="'prepacksCheckbox1'+i" [name]="'prepackRadioBtn'+i" [checked]="prepackLists[i].active == '1'" (click)="prepackActiveClick(i, $event)" />
+                                          <div class="slider round"></div>
+                                        </label>
+                                      </div>
+                                      <span class="off-span">{{prepackLists[i].active ? 'On' : 'Off'}}</span>
+                                    </td>   
+                                    <td>{{list.style}}</td>
+                                    <td><a class="addLink" (click)="addPrepackRow(i)" ><img src="assets/images/plus_icon_product_options.png" alt="" /></a></td>    
+                                    <td><input type="text" [name]="'prepackName'+i" [value]="prepackLists[i].pack_name" (change)="prepackNameChange(i, $event); isDirty=true;" class="form-control" />
+                                      <span *ngIf="prepackLists[i].name_error" class="validate_errors">{{prepackLists[i].name_error}}</span>
+                                    </td>
+                                    <td>
+                                      <ul class="ratioList">
+                                        <li><a class="dropdownLink" (click)="showPrepackCreate(i)">{{prepackLists[i].size_ratio ? prepackLists[i].size_ratio: '-'}}</a>
+                                          <ul class="dropdownList" *ngIf="prepackLists[i].dropActive">
+                                            <li *ngIf="!prepackLists[i].dropActive"><a class="plus-icon" (click)="prepackLists[i].dropActive = true;" ><img src="assets/images/plus_icon_product_options.png" alt="" /></a></li>
+                                            <li *ngIf="prepackLists[i].dropActive"><input type="text" name="" [value]="prepackLists[i].size_ratio" class="form-control" (change)="sizeRatioChange(i , $event)" placeholder="Enter value" [name]="'prepackRadioSize'+i" ></li>
+                                            <span *ngIf="prepackLists[i].ratio_error" class="validate_errors">{{prepackLists[i].ratio_error}}</span>
+                                            <li *ngIf="prepackLists[i].dropActive"><input type="button" name="" value="Save" class="btn btn-primary" (click)="savePrePack(i);"></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </td>
+                                    <td>
+                                      <select class="form-select" (change)="sizeRangeChange(i , $event); isDirty=true;" [name]="'prepackSizeRange'+i" [(ngModel)]="prepackLists[i].size_range_value" >
+                                        <option *ngFor="let item of prepackLists[i].size_range" [value]="item">{{item}}</option>
+                                      </select>
+                                    </td>
+                                    <td>{{prepackLists[i].packs_price ? prepackLists[i].packs_price : '-' }} per pack</td>
+                                    <td><a class="deleteLink" (click)="delPrepackRow(i)" ><img src="assets/images/delete_icon_product_options.png" alt="" /></a></td>  
+                                  </tr>
+                                </ng-container>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-template>
+                  </div>
+                  <div class="productOptionsSub" *ngIf="prePacks">
+                    <ul class="radioList3">
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input" name="subRadio" type="radio" value="" [checked]="prepack_type == 1" (click)="showSubCasePacks(); isDirty=true; order_case_qty=1; order_min_case_qty=1;">
+                          <label class="form-check-label">Case packs <span class="red">Standard</span><br />
+                          <span class="spanText">Retails can check out one they've rechead the minimum order quantity for each product option.</span></label>
+                        </div>
+                        <div class="productOptionsSub" *ngIf="casePacks2">
+                          <ul class="row productOptionsSubList">
+                            <li class="col-lg-6">
+                              <label>Case Quantity</label>
+                              <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="isDirty=true; onCaseQtyChange($event);" name="order_case_qty" [(ngModel)]="order_case_qty" >
+                              <span class="unitsSpan">Units</span>
+                              <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+                            </li>
+                            <li class="col-lg-6">
+                              <label>Minimum Order Quantity</label>
+                              <select class="form-select" (change)="isDirty=true;" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" [disabled]="order_case_qty == undefined" >
+                                <ng-container *ngIf="!caseQtyError">
+                                  <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
+                                </ng-container>
+                              </select>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input" name="subRadio" type="radio" value="" [checked]="prepack_type == 2" (click)="showSubOpenSizing(); isDirty=true; order_case_qty= undefined">
+                          <label class="form-check-label">Open sizing<br />
+                          <span class="spanText">Retails can choose which size they want to buy. as long as they reach the mimum order quantity for the style.</span></label>
+                        </div>
+                        <div class="productOptionsSub" *ngIf="openSizing2">
+                          <ul class="row productOptionsSubList">
+                            <li class="col-lg-6">
+                              <label>Minimum Order Quantity</label>
+                              <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control"  placeholder="" (change)="isDirty=true; onMinOrdQtyChange($event);" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
+                              <span class="unitsSpan">Units</span>
+                              <span class="validate_errors" *ngIf="minOrdQtyError">This field is invalid.</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </ng-container>
+
+            <ng-container *ngIf="!option_type.includes('Size')">
+              <h4>Ordering details*</h4>
+              <ul class="orderingList">
+                <li>
+                  <label>Case Quantity*</label>
+                  <div class="inputDiv">
+                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="isDirty=true;order_min_case_qty=undefined;onCaseQtyChange($event)" name="order_case_qty" [(ngModel)]="order_case_qty" #order_case_qtyVal> 
+                    <span class="unitsSpan">Units</span>
+                    <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+                  </div>
+                  <span class="rightSpan">A case is the total number of units a retailer is required to buy for a single product. See Example</span>
+                </li>
+                <li>
+                  <label>Minimum Order Quantity</label>
+                  <div class="inputDiv">
+                    <select class="form-select" (change)="isDirty=true;" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" #order_min_case_qtyVal [disabled]="order_case_qty == undefined" > 
+                      <ng-container *ngIf="!caseQtyError">
+                        <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <span class="rightSpan">The minimum order quantity is the number of units a retailer must add to their bag in order to buy a product.</span>
+                </li>
+              </ul>
+            </ng-container>
+
+          </div>
+        </div>
+        <div class="new_product_body2" *ngIf="showForm1 && product_nameVal.value.length > 0 && product_typeVal.value.length > 0 && !isVarAvailable">
+          <div class="heading">
+            <h4>Shipping Details</h4>
+            <div class="smallBox">
+              <ul class="row shippingList">
+                <li class="col-lg-3">
+                  <label>SKU</label>
+                  <input type="text" class="form-control" placeholder="" (change)="isDirty=true; onSkuChange($event);" name="shipping_sku" [(ngModel)]="shipping_sku" #shipping_skuVal>
+                  <span class="validate_errors" *ngIf="skuError">Sku in invalid.</span>
+                </li>
+                <li class="col-lg-3">
+                  <label>Inventory</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control right-control" placeholder="" (change)="isDirty=true; onInventoryChange($event);" name="shipping_inventory" [(ngModel)]="shipping_inventory" #shipping_inventoryVal>
+                  <span class="unitsSpan">Units</span>
+                  <span class="validate_errors" *ngIf="inventoryError">Invenory in invalid.</span>
+                </li>
+                <li class="col-lg-3">
+                  <label>Tariff Code</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onkeypress="if(this.value.length == 255) return false;" maxlength="255" class="form-control" placeholder="" (change)="isDirty=true;" name="shipping_tariff_code" [(ngModel)]="shipping_tariff_code" #shipping_trafic_codeVal>
+                </li>
+              </ul>
+            </div>
+            <div class="smallBox">
+              <ul class="row shippingList">
+                <li class="col-lg-3">
+                  <label>Length</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" (change)="isDirty=true;" name="shipping_length" [(ngModel)]="shipping_length" #shipping_lengthVal>
+                  <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                  </select>
+                </li>
+                <li class="col-lg-3">
+                  <label>Width</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" (change)="isDirty=true;" name="shipping_width" [(ngModel)]="shipping_width" #shipping_widthVal>
+                  <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                  </select>
+                </li>
+                <li class="col-lg-3">
+                  <label>Height</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" (change)="isDirty=true;" name="shipping_height" [(ngModel)]="shipping_height" #shipping_heightVal>
+                  <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                  </select>
+                </li>
+                <li class="col-lg-3">
+                  <label>Weight</label>
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" (change)="isDirty=true;" name="shipping_weight" [(ngModel)]="shipping_weight" #shipping_weightVal>
+                  <select class="form-select smallSelect" aria-label="Default select example" (change)="isDirty=true;" name="weight_unit" [(ngModel)]="weight_unit" #weight_unitVal>
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="lb">lb</option>
+                    <option value="oz">oz</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="borderBottom"></div>
+          <div class="heading">
+            <h4>Ordering details*</h4>
+            <ul class="orderingList">
+              <li>
+                <label>Case Quantity*</label>
+                <div class="inputDiv">
+                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="isDirty=true; order_min_case_qty=undefined; onCaseQtyChange($event)" name="order_case_qty" [(ngModel)]="order_case_qty" #order_case_qtyVal> 
+                  <span class="unitsSpan">Units</span>
+                  <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+                </div>
+                <span class="rightSpan">A case is the total number of units a retailer is required to buy for a single product. See Example</span>
+              </li>
+              <li>
+                <label>Minimum Order Quantity</label>
+                <div class="inputDiv">
+                  <select class="form-select" aria-label="Default select example" (change)="isDirty=true;" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" #order_min_case_qtyVal [disabled]="order_case_qty == undefined" > 
+                    <ng-container *ngIf="!caseQtyError">
+                      <option *ngFor="let item of minOrderQtyArr" value="{{ item*order_case_qty }}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
+                    </ng-container>
+                  </select>
+                </div>
+                <span class="rightSpan">The minimum order quantity is the number of units a retailer must add to their bag in order to buy a product.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="new_product_body2">
+          <div class="heading">
+            <h4>Product settings</h4>
+            <ul class="switchList">
+              <li> <span class="labelSpan">Let retailers buy this product when it's out of stock.</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox1">
+                    <input type="checkbox" id="checkbox1" (change)="isDirty=true;" name="out_of_stock" [(ngModel)]="out_of_stock" #out_of_stockVal />
+                    <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Let retailers buy testers to display in their shops.</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox2">
+                    <input type="checkbox" (change)="onTesterPriceChange($event);isDirty=true;" [checked]="testers_price_radio" id="checkbox2" (click)="showretailersPrice();" />
+                    <div class="slider round"></div>
+                  </label>
+                </div>
+                <div class="retailersPriceSec" *ngIf="retailersPrice">
+                  <ul class="row retailersPriceList">
+                    <li class="col-lg-4">
+                      <label>Price</label>
+                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" placeholder="0.00" (change)="isDirty=true;" class="form-control" name="testers_price" [(ngModel)]="testers_price" #testers_priceVal>
+                      <span class="priceSpan">$</span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Let retailers customize this product.</span>
+              <div class="radioDiv">
+                <label class="switch" for="checkbox3">
+                  <input type="checkbox" id="checkbox3" (change)="onCustProChange($event);isDirty=true;" [checked]="instructionsRetailers" (click)="showinstructionsRetailers()" />
+                  <div class="slider round"></div>
+                </label>
+              </div>
+              <div class="instructionsRetailersSec" *ngIf="instructionsRetailers">
+                <ul class="row instructionsRetailersList">
+                  <li class="col-lg-12">
+                      <label>Instructions For Retailers*</label>
+                      <textarea cols="" rows="" class="form-control textAreaForm" (change)="isDirty=true;onIntRetChange($event)" maxlength="70" name="reatailers_inst" [(ngModel)]="reatailers_inst" #reatailers_instVal placeholder="Let retailers know what kind of customization you allow, e.g. &ldquo;We're happy to customize your order! Please provide the exact wording you'd like printed on this shirt order.&ldquo;."></textarea>
+                      <span class="countSpan">{{reatailers_inst ? reatailers_inst.length : 0}}/70</span>
+                      <span class="validate_errors" *ngIf="instRetError"> This field not not valid.</span>
+                  </li>
+                  <li class="col-lg-4">
+                    <label>Retailer input limit*</label>
+                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control inputControl" placeholder="0" (change)="isDirty=true;" name="reatailer_input_limit" [(ngModel)]="reatailer_input_limit" #reatailer_input_limitVal>
+                    <span class="unitsSpan">characters</span>
+                  </li>
+                  <li class="col-lg-4">
+                    <label>Minimum Order Quantity*</label>
+                    <select class="form-select" aria-label="Default select example" (change)="isDirty=true;" name="retailer_min_qty" [(ngModel)]="retailer_min_qty" #retailer_min_qtyVal> 
+                      <option value="null" hidden></option>
+                      <option value="1">1 units</option>
+                      <option value="2">2 units</option>
+                      <option value="3">3 units</option>
+                      <option value="4">4 units</option>
+                      <option value="5">5 units</option>
+                      <option value="6">6 units</option>
+                      <option value="7">7 units</option>
+                      <option value="8">8 units</option>
+                      <option value="9">9 units</option>
+                      <option value="10+">10+ units</option>
+                    </select>
+                  </li>
+                  <li class="col-lg-4">
+                    <label>Additional Charge</label>
+                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceControl" placeholder="" (change)="isDirty=true;" name="retailer_add_charge" [(ngModel)]="retailer_add_charge" #retailer_add_chargeVal>
+                    <span class="priceSpan">$</span>
+                  </li>
+                </ul>
+              </div>
+              </li>
+              <li><span class="labelSpan">Let retailers preorder this product. <span><a class="subLink" routerLink="/my-shop/settings">Review Preorder Visibility</a></span> </span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox4">
+                    <input type="checkbox" id="checkbox4" (change)="onReatPreChange($event); isDirty = true;" [checked]="retailersPreOrderDate" (click)="showretailersPreOrderDate();" />
+                    <div class="slider round"></div>
+                  </label>
+                </div>
+                <div class="clearfix"></div>
+                <div class="retailersPreOrderDateSec" *ngIf="retailersPreOrderDate">
+                  <ul class="retailersPreOrderDateList"> 
+                      <li>
+                          <label>Ship Date*</label>
+                          <div class="row row-cols-sm-auto">
+                            <div class="col-10">
+                              <div class="dp-hidden position-absolute">
+                                <div class="input-group">
+                                  <input name="datepicker"
+                                  readonly
+                                  class="form-control calnInput"
+                                  ngbDatepicker
+                                  [minDate]="minDate"
+                                  #datepicker="ngbDatepicker"
+                                  [autoClose]="'outside'"
+                                  (dateSelect)="onDateSelection($event)"
+                                  (keyup)="onShipDateChnage($event)"
+                                  [displayMonths]="2" 
+                                  [dayTemplate]="t"
+                                  outsideDays="hidden"
+                                  [startDate]="fromDate!"
+                                  tabindex="-1" [value]="formatter.format(fromDate) + ' - ' + formatter.format(toDate) " placeholder="Select dates" (click)="datepicker.toggle()">
+                                  <ng-template #t let-date let-focused="focused">
+                                    <span class="custom-day"
+                                      [class.focused]="focused"
+                                      [class.range]="isRange(date)"
+                                      [class.faded]="isHovered(date) || isInside(date)"
+                                      (mouseenter)="hoveredDate = date"
+                                      (mouseleave)="hoveredDate = null">
+                                      {{ date.day }}
+                                    </span>
+                                  </ng-template>
+                                  <span *ngIf="fromDate != '' && fromDate != null && toDate != '' && toDate != null" (click)="onDeleteShipDate()" class="clear-date" ><img src="assets/images/cross_icon.png" alt=""></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                        <label>Deadline to place an order</label>
+                        <div class="row row-cols-sm-auto">
+                          <div class="col-12">
+                              <div class="dp-hidden">
+                                <div class="input-group">
+                                  <input readonly class="form-control calnInput" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" (ngModelChange)="isDirty = true;" ngbDatepicker #d="ngbDatepicker" name="product_deadline" [(ngModel)]="product_deadline" #product_deadlineVal (click)="d.toggle()">
+                                  <span *ngIf="product_deadline != '' && product_deadline != null" (click)="onDeleteDeadLine()" class="clear-date" ><img src="assets/images/cross_icon.png" alt=""></span>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" [checked]="keep_product == 'true'" (change)="onKeepProChange($event); isDirty = true;"  name="keep_product">
+                          <label class="form-check-label">Keep this product available for sale after the order by date / ship date</label>
+                        </div>
+                      </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="new_product_body">
+          <ul class="btnList">
+            <!-- <li *ngIf="notValidError"><span class="validate_errors">{{notValidErrorMsg}}</span></li> -->
+            <li *ngIf="prevProductId != '0' && prevProductId != 0">
+              <a class="btn draft_btn" (click)="onPrevProductClick();">Previous Product</a>
+            </li>
+            <li *ngIf="nextProductId != '0' && nextProductId != 0">
+              <a class="btn draft_btn" (click)="onNextProductClick();">Next Product</a>
+            </li>
+            <li>
+              <input *ngIf="!publistBtnDisabled" type="submit" name="" value="Update Product" class="btn publish_btn">
+              <input *ngIf="publistBtnDisabled" type="submit" disabled name="" value="Please Wait..." class="btn publish_btn">
+            </li>
+          </ul>
+
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-------------------- Modal Start -------------------->
+<ng-template #videoModal let-modal>
+  <div class="modal-body">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <div class="videoBox">
+        <video controls class="htmlVideo" *ngFor="let item of video_modal_url; let i = index">
+          <source src="{{item}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+  </div>
+</ng-template>
+<!-- Video Player Modal End -->
+
+<ng-template #detectChangeModal let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Your changes have yet to be saved.</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!publistBtnDisabled" type="button" class="btn btn-primary common_btn" (click)="updateProduct('fromPopup')" >Save Changes</button>
+    <button *ngIf="publistBtnDisabled" type="button" class="btn btn-primary common_btn" disabled >Please Wait...</button>
+    <button type="button" class="btn btn-primary back_btn" (click)="closeDetectChangeModal();">Don't Save</button>
+  </div>
+</ng-template>
+<!-- Detect Change Modal -->
+
+<ng-template #optionsContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Product Options</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <span class="infoSpan">A size option is required for products sold as prepacks or with open sizing. List size options in order from smallest to largest.</span>
+    <div class="optionsTable">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tr>
+          <th>&nbsp;</th>
+          <th>Option</th>
+          <th>Option values</th>
+          <th>&nbsp;</th>
+        </tr>
+
+        <!-- try -->
+
+        <tr *ngFor="let list of lists; index as i;">
+          <td><span class="numberSpan">{{i+1}}</span></td>
+          <td>
+            <div class="autoComplete">
+              <div class="ng-autocomplete">
+                  <ng-autocomplete [data]="data" [searchKeyword]="keyword" placeholder="Select Option" [(ngModel)]="option_type[i]" (selected)='select1stOptionEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"></ng-autocomplete>
+                  <ng-template #itemTemplate let-item >
+                      <a [innerHTML]="item"></a>
+                  </ng-template>
+                  <ng-template #notFoundTemplate let-notFound >
+                      <div [innerHTML]="notFound"></div>
+                  </ng-template>
+              </div>
+            </div>
+          </td>
+          <td>
+            <tag-input (onAdd)="onItemAdded($event)" (onRemove)="onItemRemoved($event)" [(ngModel)]='option_items[i]' [inputClass]="'myinput'" [inputId]="'myinputId'" [secondaryPlaceholder]="option_type[i] == 'Size' ? 'e.g. Small, Medium, Large': option_type[i] == 'Material' ? 'e.g. Wood, Gold' : option_type[i] == 'Color' ? 'e.g. White, Navy' : option_type[i] == 'Style' ? 'e.g. Regular, Tall' : option_type[i] == 'Scent' ? 'e.g. Vanilla, Lavender' : 'Add a variant of the existing products'" [separatorKeyCodes]="[188]" [addOnBlur]="true" [clearOnBlur]="true"></tag-input>
+          </td>
+          <td><a class="deleteIcon" (click)="deletebutton(i)" ><img src="assets/images/delete_icon_product_options.png" alt="" /></a></td>
+        </tr>
+
+        <tr class="noPaddingTd" *ngIf="lists.length < 3" >
+          <td>&nbsp;</td>
+          <td colspan="3"><a class="addProductOptionsLink addProductOptionsLink1" (click)="addbutton()"><img src="assets/images/plus_icon_product_options.png" alt="" class="addProductOptions" /> Add product option</a></td>
+        </tr>
+        
+      </table>
+    </div>
+  </div>
+  <span *ngIf="optionTypeBlkErr" style="text-align: center;" class="validate_errors">{{optionTypeBlkErr}}</span>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+  </div>
+</ng-template>
+<!-- Add Products Options One Modal End -->
+
+<ng-template #optionsColor let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="swatchesImg"><img src="assets/images/add_product_swatches_img.png" alt="" /></div>
+    <h3>Bring your products to life with color swatches</h3>
+    <p>Help retailers quickly browse the different color options your product comes in. All you’ll need is a product image for each color.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary common_btn" (click)="openColorModal(selectColor)">Submit</button><br />
+    <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+  </div>
+</ng-template>
+<!-- Add products Color Options Two Modal End -->
+
+<ng-template #selectColor let-modal>
+  <div class="modal-body row">
+    <div class="col-lg-6 d-flex align-items-center justify-content-center leftUploadImg">
+      <div class="addUploadImg" *ngIf="imageChangedEvent == ''">
+        <img src="assets/images/add-product-upload-img.png" alt="" />
+        <p> Note: Please select swatch images one by one to upload respective image. </p>
+        <p>Upload a product image for your color swatch</p>
+      </div>
+      <image-cropper *ngIf="imageChangedEvent != ''" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+  </div>
+    <div class="rightUploadContent col-lg-6">
+      <p> Note: Please select swatch images one by one to upload respective image. </p>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <h3 *ngIf="swatchName != undefined || swatchName != ''">{{swatchName}}</h3>
+      <h3 *ngIf="swatchName == undefined || swatchName == ''">{{colorOptionItems[0] && colorOptionItems[0].name}}</h3>
+      <div class="showCropImg" *ngFor="let item of colorOptionItems; let i = index;">
+        <img *ngIf="item.img == ''" (click)="changeSwatchName(i)" src="assets/images/add-product-color-crop-img.png" alt="" />
+        <img *ngIf="item.img != ''" (click)="changeSwatchName(i)" [src]="item.img" />
+      </div>
+      <div class="clearfix"></div>
+
+      <p>Choose an image for the color {{swatchName ? swatchName : colorOptionItems[0].name}} or add your own.</p>
+      <ul class="uploadList">
+        <li>
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload</button>
+            <input type="file" accept="image/*" (change)="fileChangeEvent($event)" />
+          </div>
+        </li>
+        <li *ngFor="let item of allImageChangedEventArray">
+          <div class="imgHilder" (click)="cropImage(item.imgId)">
+            <img [src]="item.imgBase64" alt="" />
+          </div>
+        </li>
+      </ul>
+      <div class="btnFooter">
+        <button type="button" class="btn btn-primary common_btn" (click)="closeModal(); ">Submit</button><br />
+        <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!-- Add products Color Options Three Modal End -->
+
+<ng-template #variantsProducts let-modal>
+  <div class="modal-body row">
+    <div class="rightUploadContent col-lg-12">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <h3>Product Images</h3>
+      <p>Select or upload an image</p>
+      <ul class="uploadList">
+        <li>
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload</button>
+            <input type="file" accept="image/*" name="myfile" (change)="selectFiles($event)"/>
+          </div>
+        </li>
+        <li *ngFor='let preview of previews; let i = index'>
+          <div class="imgHilder" (click)="selectVarImage(i)">
+            <img [src]="preview" alt="" />
+            <span class="selectSpan">Select</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+<!-- Varient Products Modal End -->
