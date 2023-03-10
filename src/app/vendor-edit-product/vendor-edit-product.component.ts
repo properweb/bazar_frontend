@@ -145,6 +145,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       .pipe(filter((e: any) => e instanceof RoutesRecognized),
         pairwise()
       ).subscribe((e: any) => {
+
     });
   }
   
@@ -159,6 +160,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   ngOnInit(): void {
+
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -190,6 +192,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           /* Called if data is invalid */
         },
       });
+
 
     this.featured_image = 0;
     this.lists= [];
@@ -242,6 +245,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
+
   }
   
   getProductDetail() {
@@ -643,18 +647,21 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   prevDeleteImage(index:any , image:any) {
     let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
     let values = {
+
     })
   }
 
   newDeleteImage(index:any) {
     this.previews = this.previews.filter((item:any , i:any) => i !== index);
     let prev_product_images = [...this.product_images];
+
     this.product_images = this.product_images.filter((item:any , i:any) => i !== index);
   }
 
   prevDeleteVideo(index:any , video:any) {
     let videoDetail = this.all_details_videos.filter((item:any) => item.video_url === video);
     let values = {
+
     })
   }
 
@@ -1011,10 +1018,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             this.notValidError = true;
             this.publistBtnDisabled = false;
             this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
+
           }
         }, (error:any) => {
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
+
         })
         return true;
       } 
@@ -1171,6 +1180,7 @@ addAttribute() {
     
     if(this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
+
       }
       let prevresultAttribute = [...this.resultAttribute];
       let loopitem = 0;
@@ -1231,6 +1241,7 @@ addAttribute() {
         }
  
       })
+
         this.optionTypeBlkErr = '';
         this.closeOptionModal();
     } else {
@@ -1289,27 +1300,24 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
     
+
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
         let sizeItemsClone = [...sizeItems];
+
         let chunkSize = 2;
         let resArray = [];
         for (let i = 0; i < arrOfSize.length; i += chunkSize) {
           let chunk = arrOfSize.slice(i, i + chunkSize);       
           let splited = chunk.join('-');
           resArray.push(splited);
+
     } else {
       this.prepackError = 'Update your product listing before crafting a new prepack.';
     }
   } else {
-    let prepackOptionType = [...this.option_type];
-    let prepackOptionItems = [...this.option_items];
-    if(prepackOptionType.includes('Size')) {
-      let index = prepackOptionType.indexOf('Size');
-      prepackOptionType.splice(index,1);
-      prepackOptionItems.splice(index,1);
-    }
+
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1325,6 +1333,7 @@ addAttribute() {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
             }
           }
+
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1357,10 +1366,12 @@ addAttribute() {
       }
     }
   
+
     if(this.option_type.includes('Size')) {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
       let sizeItemsClone = [...sizeItems];
+
       let arrOfSize: any = [];
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
@@ -1470,7 +1481,6 @@ addAttribute() {
   }
 
   select2ndOptionEvent(item:any) {
-
     this.option2 = item.name;
   }
 
@@ -1505,7 +1515,6 @@ addAttribute() {
     this.casePacks= false;
     this.openSizing= false;
     this.prePacks= true;
-
     this.minOrdQtyError = false;
     this.caseQtyError = false;
   }
@@ -1536,6 +1545,7 @@ addAttribute() {
 
   selectAttriImages(event: any , index: any) {
     for(let i = 0; i < event.target.files.length; i++) {
+
       if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
         const reader = new FileReader();
         this.product_images.push(event.target.files[i]);
@@ -1667,7 +1677,6 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
-
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';

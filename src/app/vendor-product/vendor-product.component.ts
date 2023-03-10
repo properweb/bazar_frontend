@@ -33,7 +33,6 @@ export class VendorProductComponent implements OnInit {
   constructor(public modalService: NgbModal, private storage: StorageMap , private apiService : ApiService , private router: Router, private appComponent: AppComponent, private toast: NgToastService) { }
 
   ngOnInit(): void {
-
     if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
       this.searchText = localStorage.getItem('searchkey');
     }
@@ -52,7 +51,6 @@ export class VendorProductComponent implements OnInit {
         console.log(error);
       },          
     });
-
 
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
@@ -89,7 +87,6 @@ export class VendorProductComponent implements OnInit {
       let index = this.checkedItems.indexOf(value);
       if (index !== -1) this.checkedItems.splice(index, 1);
     }
-
   }
 
   checkAll(event: any) {
@@ -116,7 +113,6 @@ export class VendorProductComponent implements OnInit {
         this.searchText = '';
         this.getProducts(this.user_id, this.sort_key, this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
-
         this.selectAll = false;
         this.toast.success({detail:"Product published successfully.",summary: '' ,duration: 4000});
         this.publishModal.close();
@@ -234,7 +230,6 @@ export class VendorProductComponent implements OnInit {
 
   tabPublishClick() {
     this.checkedItems = [];
-
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
