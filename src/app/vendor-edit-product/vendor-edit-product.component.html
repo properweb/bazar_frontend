@@ -132,7 +132,6 @@
             <ul class="radioList">
               <li>
                 <div class="form-check styles_form_check">
-
                   <label class="form-check-label">Yes</label>
                 </div>
               </li>
@@ -467,6 +466,7 @@
                 </li>
                 <li>
                   <div class="form-check">
+d
                     <label class="form-check-label">Prepacks<br />
                     <span class="spanText">Retails can buy a style as a bundle in a set size run.</span></label>
                     <div *ngIf="prepackError; else prepackElse;" >
@@ -945,6 +945,7 @@
   </div>
   <span *ngIf="optionTypeBlkErr" style="text-align: center;" class="validate_errors">{{optionTypeBlkErr}}</span>
   <div class="modal-footer">
+
     <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
   </div>
 </ng-template>

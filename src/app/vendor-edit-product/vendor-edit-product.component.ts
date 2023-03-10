@@ -79,6 +79,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   varImageIndex!: any;
 
 
+
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -193,6 +194,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         },
       });
 
+
     this.featured_image = 0;
     this.lists= [];
   }
@@ -244,6 +246,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
+
   }
   
   getProductDetail() {
@@ -389,6 +392,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.keep_product = response.data[0].keep_product;
       }
 
+
         this.option_type = response.data[0].option_type;
         this.ext_option_type = response.data[0].option_type;
         
@@ -415,6 +419,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
+
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
           if(response.data[0].sell_type == '3') {
@@ -488,6 +493,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             }
           }
         
+
         
           if(this.option_type.includes('Size')) {
             let index = this.option_type.indexOf('Size');
@@ -583,6 +589,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   clickManageOpt() {
+
     this.swatchIndex = 0;
   }
 
@@ -642,11 +649,13 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
     } 
 
+
   }
 
   prevDeleteImage(index:any , image:any) {
     let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
     let values = {
+
     })
   }
 
@@ -895,6 +904,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       let varPriceError = 0;
       let skuError = 0;
       let inventoryError = 0;
+
       this.resultAttribute.forEach((elementVar: any) => {
         if( elementVar.status == 'published' && (elementVar.usd_wholesale_price == '' || elementVar.usd_wholesale_price == null || elementVar.usd_wholesale_price == undefined || elementVar.usd_retail_price == '' || elementVar.usd_retail_price == null || elementVar.usd_retail_price == undefined)) {
           varPriceError = 1 ;
@@ -914,6 +924,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       });
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
+
 
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
@@ -1025,6 +1036,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         }, (error:any) => {
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
+
         })
         return true;
       } 
@@ -1302,6 +1314,7 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
     
+
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
@@ -1320,6 +1333,7 @@ addAttribute() {
   } else {
 
 
+
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1335,6 +1349,7 @@ addAttribute() {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
             }
           }
+
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1372,7 +1387,6 @@ addAttribute() {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
       let sizeItemsClone = [...sizeItems];
-
       let arrOfSize: any = [];
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
@@ -1389,6 +1403,7 @@ addAttribute() {
     }
   }
 }
+
 
     this.lists.push({"declare":""})  
     let  namesToDeleteSet = new Set(this.option_type);
@@ -1518,6 +1533,7 @@ addAttribute() {
     this.casePacks= false;
     this.openSizing= false;
     this.prePacks= true;
+
     this.minOrdQtyError = false;
     this.caseQtyError = false;
   }
@@ -1578,6 +1594,7 @@ addAttribute() {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
+
 
   
   autoPriceCall() {
@@ -1681,7 +1698,6 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
-
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';

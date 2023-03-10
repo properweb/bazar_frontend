@@ -54,6 +54,7 @@ export class VendorProductComponent implements OnInit {
     });
 
 
+
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
   }
@@ -181,7 +182,6 @@ export class VendorProductComponent implements OnInit {
       this.deleteModal.close();
       this.toast.success({detail:"Product deleted successfully.",summary: '' ,duration: 4000});
     }, (error) => {
-
       this.btnDis = false;
     })
 

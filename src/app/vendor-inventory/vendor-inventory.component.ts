@@ -31,6 +31,7 @@ export class VendorInventoryComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -124,7 +125,6 @@ export class VendorInventoryComponent implements OnInit {
   }
 
   onSearchPress() {
-
     this.currentPage = 1;
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
   }

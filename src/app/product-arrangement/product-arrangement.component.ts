@@ -95,6 +95,7 @@ export class ProductArrangementComponent implements OnInit {
     }
     
     this.apiService.arrangeProducts(values).subscribe((responseBody) => {
+
       window.scroll({
         top: 0,
         left: 0,
@@ -130,7 +131,6 @@ export class ProductArrangementComponent implements OnInit {
       size: '$11.70',
     },
   ];
-
 
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
