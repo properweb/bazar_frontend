@@ -94,8 +94,6 @@ export class VendorsRegistrationComponent implements OnInit {
   zipError:boolean = false;
   avgLeadError:boolean = false;
   brandStoryError:boolean = false;
-  firstorderError:any = '';
-  reorderErrorMsg:any = '';
 
   submitted :boolean = true;
 
@@ -116,7 +114,6 @@ export class VendorsRegistrationComponent implements OnInit {
 
   toolsUsed:any =[
     { name: 'Shopify', value: 'Shopify' },
-    { name: 'WooCommerce', value: 'WooCommerce' },
   ];
 
   tagsArray:any =[
@@ -686,6 +683,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   sendVendorFormStep4(vendorFormStep4: any) {
     this.saveExitCount=4;
+
     this.apiService.vendorRegistrationStep1(vendorFormStep4.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if( response.res === false) {
@@ -695,8 +693,7 @@ export class VendorsRegistrationComponent implements OnInit {
       } else {
         this.nextSixFunction();
         this.errorMsg = "";
-        this.btnDis = false;
-      }
+
     }, (error:any) => {
       this.spinnerShow = false;
       this.btnDis = false;
@@ -897,57 +894,18 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   sendVendorFinalStep(vendorFinalStep: any) {
-    this.btnDis = true;
+
     var my_object;
     if(JSON.parse(JSON.stringify(localStorage.getItem('from_login_cred')))) {
       my_object = JSON.parse(localStorage.getItem('from_login_cred') || '{}');
     } else {
       my_object = JSON.parse(localStorage.getItem('reg_user') || '{}');
     }
+
     let values = {
       email: my_object.email,
       password: my_object.password
     }
-    this.apiService.vendorRegistrationStep1(vendorFinalStep.value).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        this.apiService.vendorSignIn(values).subscribe((responseBody1) => {
-          let response1 = JSON.parse(JSON.stringify(responseBody1));
-          if (response1.res === false) {
-          } else {
-            this.storage
-            .set('user_session', JSON.parse(JSON.stringify(response1.data)))
-            .subscribe(() => {});
-            localStorage.setItem('local_data', response1.data.role);
-            localStorage.setItem('authorization_data', JSON.stringify(response1.data.authorisation));
-            this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
-            if(response1.data.vendor_data.first_visit == 0) {
-              this.router.navigateByUrl('/account-settings').then(() => {
-              });
-              this.spinnerShow = false;
-            } else {
-              this.router.navigateByUrl('/brand-portal').then(() => {
-              });
-              this.spinnerShow = false;
-            }
-            this.btnDis = false;
-            localStorage.removeItem('from_login_cred');
-            localStorage.removeItem('reg_user');
-          }
-        }, (error) => {
-          this.spinnerShow = false;
-          this.btnDis = false;
-          this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
-        });
-      } else {
-        this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
-      }
-    }, (error) => {
-      this.spinnerShow = false;
-      this.btnDis = false;
-      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
-    });
- 
   }
 
   openUploadFeatureModal(content: any) {
@@ -1111,27 +1069,6 @@ export class VendorsRegistrationComponent implements OnInit {
       this.brandStoryError = false;
     }
   }
-
-    on1stOrdChange(event: any) {
-    if(event.target.value < 1) {
-      this.firstorderError='First minimum order must be greater than 1.';
-    } else if(event.target.value > 99999) {
-      this.firstorderError='First minimum order must be less than 99999.';
-    } else {
-      this.firstorderError='';
-    }
-  }
-
-  onReOrdChange(event: any) {
-    if(event.target.value < 1) {
-      this.reorderErrorMsg='Re-order minumum must be greater than 1.';
-    } else if(event.target.value > 99999) {
-      this.reorderErrorMsg='Re-order minumum must be less than 99999.';
-    } else {
-      this.reorderErrorMsg='';
-    }
-  }
-
   vendorHeader: boolean = false;
   vendorStepProgress: boolean = false;
   vendorStepA: boolean = false;

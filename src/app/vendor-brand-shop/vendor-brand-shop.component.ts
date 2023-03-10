@@ -62,17 +62,12 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-    
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         if(user) {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
-          this.role = user_session.role;
         }
  
       },
@@ -145,17 +140,12 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   sendSignInData(signInFrom: any) {
-    this.spinnerShow = true;
-    this.apiService.vendorSignIn(signInFrom.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-          this.router.navigate([this.currentUrl]).then(() => {
-            window.location.reload();
-          });
           this.signInModal.close();
           this.spinnerShow = false;
           this.storage
@@ -199,17 +189,7 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   checkedLoggedUser() {
-    this.storage.get("user_session").subscribe({
-      next: (user) => {
-        if (user) {
-          this.not_logged_in = false;
-        }
-      },
-      error: (error) => {
-        /* Called if data is invalid */
-        console.log(error);
-      },
-    });
+
   }
 
   notLoggedIn() {
@@ -218,12 +198,7 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   getVendorDetails(brand_id: any) {
     this.apiService.getBrandShopDetails(brand_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.data.length == 0) {
-        // window.location.href = this.appComp.base_url;
-      }
-      this.vendorData = response.data;
-      this.titleService.setTitle(response.data.brand_name);
-    },(error) => {
+
     });
   }
 

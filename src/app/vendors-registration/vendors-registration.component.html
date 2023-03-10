@@ -335,19 +335,7 @@
               </li>
               <li class="col-lg-12">
                 <label class="form-label">Website URL</label>
-                <input required type="text" (change)="websiteValidate($event)" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" placeholder="" name="website_url" [(ngModel)]="website_url" #website_urlval="ngModel">
-                <span class="validate_errors"
-                  *ngIf="(website_urlval.touched || vendorFormStep3.submitted) && website_urlval.errors?.['required']">
-                  Website URL is required
-                </span>
-                <span class="validate_errors"
-                  *ngIf="(website_urlval.touched || vendorFormStep3.submitted) && website_urlval.errors?.['pattern']">
-                  Website URL is not valid.
-                </span>
-              </li>
-              <li class="col-lg-12">
-                <label class="form-label">Year Established</label>
-                <input required pattern="^(194[5-9]|19[5-9]\d|200\d|201\d|202\d)$" (change)="validateYear($event)" type="number" class="form-control" placeholder="" name="established_year" [(ngModel)]="established_year" #established_yearval="ngModel">
+
                 <span class="validate_errors"
                   *ngIf="(established_yearval.touched || vendorFormStep3.submitted) && established_yearval.errors?.['required']">
                   Year Established is required
@@ -361,11 +349,13 @@
                 <label class="form-label">Instagram Handle(optional)</label>
                 <span style="position: relative; bottom: -31px; left: 10px;">@</span>
                 <input style="padding: 0 0 0 28px;" type="text" pattern="^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$" class="form-control" placeholder="" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
+
                 <span class="validate_errors"
                   *ngIf="(insta_handleval.touched || vendorFormStep3.submitted) && insta_handleval.errors?.['pattern']">
                   This field not valid.
                 </span>
               </li>
+
               <li class="col-lg-6">
                 <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span>
                 <button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn next4">Save & Continue</button>
@@ -555,6 +545,7 @@
                   </span>
                 </ul>
               </li>
+
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn5 mt-4" (click)="backSixFunction()">Back</button>
               </li>
@@ -771,6 +762,7 @@
               </li>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn13 mt-4" (click)="backTwelveAFunction()">Back</button>
+
               </li>
               <li class="col-lg-6">
                 <button *ngIf="coverimgError" type="button" class="btn btn-primary common_btn next16 mt-4 disabled">Save & Continue</button>
@@ -842,6 +834,7 @@
               </li>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn16 mt-4" (click)="backFourteenAFunction()">Back</button>
+
               </li>
               <li class="col-lg-6">
                 <button type="submit" class="btn btn-primary common_btn next19 mt-4" >Save & Continue</button>
@@ -899,7 +892,7 @@
         <div class="col-lg-7 leftRegistionImg"
           style="background-image: url(assets/images/vendor-registration-img13.png);"></div>
         <div class="col-lg-5 rightRegistionFormBox">
-          <form #vendorFormStep13="ngForm" (ngSubmit)="vendorFormStep13.form.valid && firstorderError == '' && reorderErrorMsg == '' && sendVendorFormStep13(vendorFormStep13)">
+
             <h3>Set Order Preferences</h3>
             <ul class="vendorRegFormList row">
               <li class="col-lg-12">
@@ -920,27 +913,21 @@
               <li class="col-lg-6">
                 <label>First Order Minimum</label>
                 <span class="prefix">$</span>
-                <input minlength="1" (change)="on1stOrdChange($event)" maxlength="99999" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control prefix-control" name="first_order_min" [(ngModel)]="first_order_min" #first_order_minval="ngModel">
+
                 <span class="validate_errors"
                   *ngIf="(first_order_minval.touched || vendorFormStep13.submitted) && first_order_minval.errors?.['required']">
                   First order is required
                 </span>
-                <span class="validate_errors"
-                  *ngIf="firstorderError">
-                  {{firstorderError}}
+
                 </span>
               </li>
               <li class="col-lg-6">
                 <label>Re-order Minimum</label>
                 <span class="prefix">$</span>
-                <input minlength="1" (change)="onReOrdChange($event)" maxlength="99999" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control prefix-control" name="re_order_min" [(ngModel)]="re_order_min"  #re_order_minval="ngModel" >
                 <span class="validate_errors"
                   *ngIf="(re_order_minval.touched || vendorFormStep13.submitted) && re_order_minval.errors?.['required']">
                   Re-order is required
                 </span>
-                <span class="validate_errors"
-                  *ngIf="reorderErrorMsg">
-                  {{reorderErrorMsg}}
                 </span>
               </li>
               <li class="col-lg-12">
@@ -1265,7 +1252,6 @@
           </div>
         </div>
         <div class="col-lg-5 rightRegistionFormBox">
-          <form #vendorFormStep17="ngForm" (ngSubmit)="vendorFormStep17.form.valid && sendVendorFormStep17(vendorFormStep17)"> 
             <h3>Set Up Your Bazar Direct Link</h3>
             <p>Customize the link to your Bazar Direct page so it represents your shop's name and branding. You'll lock in 0% commission for anyone who orders through Bazar Direct.</p>
             <ul class="vendorRegFormList row">
@@ -1273,11 +1259,7 @@
                 <label>Bazar direct link</label>
                 <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
                 <span class="suburl">https://staging1.bazarcenter.ca/brand/</span>
-                <input type="text"  class="form-control suburl-control" name="bazaar_direct_link" pattern="^[\sa-zA-Zء-ي]*$" [(ngModel)]="bazaar_direct_link" #bazaar_direct_linkval="ngModel">
-                <span class="validate_errors"
-                  *ngIf="(bazaar_direct_linkval.touched || vendorFormStep17.submitted) && bazaar_direct_linkval.errors?.['pattern']">
-                  Invalid link.
-                </span>
+
               </li>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn24 mt-4"
@@ -1341,7 +1323,7 @@
       </div>
     </div>
     <div class="form_content_box step_two_form_box_24 step_two_form_box_left" [hidden]="!vendorStep27">
-      <form #vendorFinalStep="ngForm" (ngSubmit)="vendorFinalStep.form.valid && firstorderError == '' && reorderErrorMsg == '' && sendVendorFinalStep(vendorFinalStep)">
+
         <div class="row customRow">
           <div class="col-lg-6 brandInformationleft">      
             <h4>Brand Information</h4>
@@ -1378,7 +1360,7 @@
               </li>
               <li class="col-lg-6">
                 <label class="form-label">Year Established</label>
-                <input required pattern="^(194[5-9]|19[5-9]\d|200\d|201\d|202\d)$" (change)="validateYear($event)" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" name="established_year" [(ngModel)]="established_year" #established_yearval="ngModel">
+
                 <span class="validate_errors"
                   *ngIf="(established_yearval.touched || vendorFinalStep.submitted) && established_yearval.errors?.['required']">
                   Year Established is required
@@ -1392,51 +1374,15 @@
             <h4>Brand Information</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
-                <label class="form-label">Stores you are carried in</label>
-                <select required class="form-select" aria-label="Default select example" name="stored_carried" [(ngModel)]="stored_carried" #stored_carriedval="ngModel">
-                <option *ngFor="let item of storeWorkWith" value="{{item.name}}">{{item.name}}</option> 
-                </select>
-                <span class="validate_errors"
-                  *ngIf="(stored_carriedval.touched || vendorFinalStep.submitted) && stored_carriedval.errors?.['required']">
-                  This field is required
-                </span>
-              </li>
 
-              <li class="col-lg-6">
-                <label>First Minimum Order</label>
-                <input type="number" minlength="1" (change)="on1stOrdChange($event)" maxlength="99999" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" value="" name="first_order_min" [(ngModel)]="first_order_min" required #first_order_minval="ngModel" >
-                <span class="validate_errors"
-                  *ngIf="(first_order_minval.touched || vendorFinalStep.submitted) && first_order_minval.errors?.['required']">
-                  This field is required
-                </span>
-                <span class="validate_errors"
-                  *ngIf="firstorderError">
-                  {{firstorderError}}
                 </span>
               </li>
               <li class="col-lg-6">
                 <label>Reorder Minimum</label>
-                <input type="number" pattern="^0*[1-9]\d*$" (change)="onReOrdChange($event)" minlength="1" maxlength="99999" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" value="" name="re_order_min" [(ngModel)]="re_order_min" required #re_order_minval="ngModel" >
-                <span class="validate_errors"
-                  *ngIf="(re_order_minval.touched || vendorFinalStep.submitted) && re_order_minval.errors?.['required']">
-                  This field is required
-                </span>
-                <span class="validate_errors"
-                  *ngIf="reorderErrorMsg">
-                  {{reorderErrorMsg}}
                 </span>
               </li>
               <li class="col-lg-6">
                 <label>Average Lead Time</label>
-                <input type="number" (change)="onAvgLeadChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" value="" name="avg_lead_time" [(ngModel)]="avg_lead_time" required #avg_lead_timeval="ngModel" >
-                <span class="validate_errors"
-                  *ngIf="(avg_lead_timeval.touched || vendorFinalStep.submitted) && avg_lead_timeval.errors?.['required']">
-                  This field is required
-                </span>
-                <span class="validate_errors"
-                  *ngIf="avgLeadError">
-                  Average lead time must be greater than 1 & less than 180 days.
-                </span>
               </li>
             </ul>
             <h4>Location</h4>
@@ -1493,7 +1439,6 @@
 
           <div class="col-lg-6 brandInformationRight">
             <div class="show_profile_photo">
-              <img style="border-radius: 100%; width: 150px; " [src]="profile_photo" id="profile_img_show1" alt="upload image">
             </div>
             <h3>Final Step! Review Your Store Information</h3>
             <p>Please review your profile information on the left side before submitting to the Bazaar team.</p>
@@ -1503,10 +1448,6 @@
                   (click)="backTwentyFiveFunction()">Back</button>
               </li>
               <li class="col-lg-6">
-                <button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn next30 mt-4"
-                >Save & Continue</button>
-                <button *ngIf="btnDis" type="submit" class="btn btn-primary common_btn next30 mt-4"
-                >Please wait...</button>
               </li>
             </ul>
           </div>
