@@ -92,7 +92,8 @@ export class AddProductComponent implements OnInit {
   colorOptionItems: any = [];
   swatchName !: any;
   swatchIndex: any = 0;
-
+  videoModalShow!: any;
+  varImageIndex!: any;
   product_images: any = [];
   crop_product_images: any = [];
   categories: any = [];
@@ -143,7 +144,9 @@ export class AddProductComponent implements OnInit {
   lists: any = [];
   prepackLists: any = [];
   productKeyword = 'category';
-
+  hoveredDate: NgbDate | null = null;
+  fromDate!: any;
+  toDate!: any;
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -172,13 +175,28 @@ export class AddProductComponent implements OnInit {
   hideCreatePrepack:boolean= false;
   optionTypeBlkErr!:any;
   proNameError:boolean= false;
-  inventoryError:boolean= false;
-  caseQtyError:boolean= false;
+  inventoryError!:any;
+  tariffError!:any;
+  lengthError!:any;
+  widthError!:any;
+  heightError!:any;
+  weightError!:any;
+  testersPriceError!:any;
+  reatailerInputLimitError!:any;
+  retailerAddChargeError!:any;
+  caseQtyError!:any;
   instRetError:boolean= false;
-  minOrdQtyError:boolean= false;
+  minOrdQtyError!: any;
   prePackNameError:boolean= false;
   skuError:boolean= false;
-
+  blankImgExist:boolean= false;
+  varOptionNotBlank:boolean= false;
+  pricingListError:any = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
+  blankImgExistMsg!: any;
+  keyword = 'name';
+  data = ['Size' , 'Material',  'Color' , 'Style', 'Scent'];
+  countriesArray:any = [
+  ];
 
   constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private toast: NgToastService) { 
     this.fromDate = null
@@ -201,7 +219,6 @@ export class AddProductComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event']) keyEvent(event: KeyboardEvent) {
     if (event.keyCode === 13) {
-
     }
   }
 
@@ -209,7 +226,6 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -225,6 +241,7 @@ export class AddProductComponent implements OnInit {
     this.getCategories();
     this.featured_image = 0;
     this.dimension_unit = 'cm';
+    this.weight_unit = 'kg';
 
     this.lists=[]  
     this.lists.push({"declare":""}) 
@@ -241,7 +258,7 @@ export class AddProductComponent implements OnInit {
   }
 
   closeModal() {  
-
+    this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
       this.colorOptionItems.forEach((element1 :any) => {
         if(element1.name == element.Color) {
            if(element1.img != '') {
@@ -250,7 +267,22 @@ export class AddProductComponent implements OnInit {
         } 
       });
     });
+    this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
+      this.colorOptionItems.forEach((element1 :any) => {
+        if(element1.img == '') {
+          this.blankImgExist = true;
+        } else {
+          this.blankImgExist = false;
+        }
+      });
+    });
 
+    if(this.blankImgExist) {
+      this.blankImgExistMsg = 'Please choose each variation image swatches to proceed.';
+    } else {
+      this.blankImgExistMsg = '';
+      this.selectColorModal.close();
+    }
   }
 
   clickManageOpt() {
@@ -263,7 +295,6 @@ export class AddProductComponent implements OnInit {
   }
 
   select1stOptionEvent(item:any) {
-
     this.option1 = item.name;
   }
 
@@ -275,7 +306,12 @@ export class AddProductComponent implements OnInit {
     this.option3 = item.name;
   }
 
-  onChangeSearch(val: string) {  
+  onChangeSearch(val: any) {  
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onInputClear(val: any) {  
     // fetch remote data from here
     // And reassign the 'data' which is binded to 'data' property.
   }
@@ -287,15 +323,95 @@ export class AddProductComponent implements OnInit {
   }
 
   onInventoryChange(event: any) {
-    if(!/^[0-9]*$/.test(this.shipping_inventory)) {
-      this.inventoryError = true;
-    } else this.inventoryError = false;
+    if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {
+      this.inventoryError = 'Inventory must be number and max 6 numbers.';
+    } else {
+      this.inventoryError = '';
+    }
+  }
+
+  onLengthChange(event: any) {
+    if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {
+      this.lengthError = 'Length must be number and max 6 numbers.';
+    } else this.lengthError = '';
+  }
+
+  onWidthChange(event: any) {
+    if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {
+      this.widthError = 'Width must be number and max 6 numbers.';
+    } else this.widthError = '';
+  }
+
+  onHeightChange(event: any) {
+    if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {
+      this.heightError = 'Height must be number and max 6 numbers.';
+    } else this.heightError = '';
+  }
+
+  onWeightChange(event: any) {
+    if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {
+      this.weightError = 'Weight must be number and max 6 numbers.';
+    } else this.weightError = '';
+  }
+
+  onTariffCodeChange(event: any) {
+    if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {
+      this.tariffError = 'Tariff code must be number and max 6 numbers.';
+    } else this.tariffError = '';
+  }
+
+  onTestersPriceChange(event: any) {
+    if(this.testers_price && !/^[0-9]{0,6}$/.test(this.testers_price)) {
+      this.testersPriceError = 'Testers price must be number and max 6 numbers.';
+    } else this.testersPriceError = '';
+  }
+
+  onRetailerInputChange(event: any) {
+    if(this.reatailer_input_limit && !/^[0-9]{0,6}$/.test(this.reatailer_input_limit)) {
+      this.reatailerInputLimitError = 'Retailer input must be number and max 6 numbers.';
+    } else this.reatailerInputLimitError = '';
+  }
+
+  onRetailerAddChargeChange(event: any) {
+    if(this.retailer_add_charge && !/^[0-9]{0,6}$/.test(this.retailer_add_charge)) {
+      this.retailerAddChargeError = 'Retailer charge must be number and max 6 numbers.';
+    } else this.retailerAddChargeError = '';
   }
 
   onVarInventoryChange(event: any, index: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.resultAttribute[index].inventoryError = "Invalid inventory";
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].inventoryError = "Inventory must be number and max 6 numbers.";
     } else this.resultAttribute[index].inventoryError = "";
+  }
+
+  onVarWeightChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].weightError = "Weight must be number and max 6 numbers.";
+    } else this.resultAttribute[index].weightError = "";
+  }
+
+  onVarLengthChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].lengthError = "Length must be number and max 6 numbers.";
+    } else this.resultAttribute[index].lengthError = "";
+  }
+
+  onVarWidthChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].widthError = "Width must be number and max 6 numbers.";
+    } else this.resultAttribute[index].widthError = "";
+  }
+
+  onVarHeightChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].heightError = "Height must be number and max 6 numbers.";
+    } else this.resultAttribute[index].heightError = "";
+  }
+
+  onVarTariffCodeChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].tariffCodeError = "Tariff must be number and max 6 numbers.";
+    } else this.resultAttribute[index].tariffCodeError = "";
   }
 
   onSkuChange(event: any) {
@@ -310,20 +426,104 @@ export class AddProductComponent implements OnInit {
     } else this.resultAttribute[index].skuError = "";
   }
 
+  onUsdWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].usdws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].usdws = "";
+      this.onWSChange(index);
+    }
+  }
+
+  onUsdRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].usdret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].usdret = "";
+      this.onRPChange(index);
+    }
+  }
+
+  onCadWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].cadws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].cadws = "";
+    }
+  }
+
+  onCadRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].cadret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].cadret = "";
+    }
+  }
+
+  onGbpWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].gbpws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].gbpws = "";
+    }
+  }
+
+  onGbpRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].gbpret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].gbpret = "";
+    }
+  }
+
+  onEurWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].eurws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].eurws = "";
+    }
+  }
+
+  onEurRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].eurret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].eurret = "";
+    }
+  }
+
+  onAudWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].audws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].audws = "";
+    }
+  }
+
+  onAudRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].audret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].audret = "";
+    }
+  }
+
   onCaseQtyChange(event: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.caseQtyError = true;
-    } else this.caseQtyError = false;
+    if(event.target.value && !/^[0-9]{1,6}$/.test(event.target.value)) {
+      this.caseQtyError = 'Case quantity must be number and max 6 numbers.';
+    } else this.caseQtyError = '';
   }
 
   onMinOrdQtyChange(event: any) {
     if(!/^[0-9]*$/.test(event.target.value)) {
-      this.minOrdQtyError = true;
-    } else this.minOrdQtyError = false;
+      this.minOrdQtyError = 'Min order quantity must be number and max 6 numbers.';
+    } else this.minOrdQtyError = '';
   }
 
   onFocused(e:any){
+  }
 
+  selectEventCat(item:any) {
     this.product_type = item.last_id;
   }
 
@@ -372,7 +572,7 @@ export class AddProductComponent implements OnInit {
     this.casePacks2= false;
     this.openSizing2= false;
     this.casePacks= true;
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
     this.hideCreatePrepack = false;
   }
@@ -383,7 +583,7 @@ export class AddProductComponent implements OnInit {
     this.casePacks2= false;
     this.openSizing2= false;
     this.openSizing= true;
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
     this.hideCreatePrepack = false;
   }
@@ -395,13 +595,12 @@ export class AddProductComponent implements OnInit {
     this.openSizing= false;
     this.prePacks= true;
     this.casePacks2 = true;
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
   }
   
   showPrepackCreate(index: any) {
     this.prepackLists[index].dropActive = true;
-
   }
 
   savePrePack(index: any) {
@@ -409,7 +608,6 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].dropActive = false;
     }
   } 
-
 
   showCreatePrepack() { 
     this.hideCreatePrepack = true;
@@ -431,13 +629,28 @@ export class AddProductComponent implements OnInit {
     this.productOptions1= false;
     this.moreProductOptions2= false;
     this.moreProductOptions1= true;
+    this.option1 = '';
+    this.option_items = '';
+    delete this.selectedAttribute.option1;
+    this.data.push(this.option1);
+  }
 
-      return !namesToDeleteSet.has(name);
-    });
-
-    let attribute:any = {
-      option_type: this.option_type,
-      option_item: this.option_items
+  addbutton() { 
+    let tempArray:any = [];
+    this.option_type.forEach((elem:any) => {
+      if(elem !== '') {
+        tempArray.push(elem);
+      }
+    })
+    if(tempArray.length !== this.lists.length) {
+      this.optionTypeBlkErr = 'Please select option to add new section.';
+    } else {
+      this.lists.push({"declare":""})  
+      let  namesToDeleteSet = new Set(this.option_type);
+       this.data = this.data.filter((name) => {
+        return !namesToDeleteSet.has(name);
+      });
+      this.optionTypeBlkErr = '';
     }
 
    }  
@@ -445,7 +658,6 @@ export class AddProductComponent implements OnInit {
   addPrepackRow(i: any) {
     let item = this.prepackLists[i];
     let style = item.style;
-
     let newClone = {active: false,style:style,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''};
     this.prepackLists.splice(i+1, 0, newClone);
   }
@@ -464,6 +676,9 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].size_ratio = event.target.value;
       this.prepackLists[index].ratio_error = '';
+      this.prepackLists[index].size_range = [];
+      this.prepackLists[index].packs_price = '';
+      this.prepackLists[index].size_range.push(sizeItemArray[0].value + '-' + sizeItemArray[sizeItemArray.length - 1].value);
     } else if (re.test(event.target.value) && splitVal.length == 2 && !remainder) { 
 
       this.prepackLists[index].size_range = [];
@@ -488,14 +703,19 @@ export class AddProductComponent implements OnInit {
       tempArray = [];
       this.resultAttribute.forEach((element :any , key1: any) => {
         if(element.Size){
-
+          if(element.Size == valElm ) {
+            tempArray.push(element.wholesale_price);
+          }
         }
       });
       resultArray[valElm]=tempArray;
       let average = resultArray[valElm].reduce((a: any, b: any) => a + b, 0) / resultArray[valElm].length;
       sizeCal += splitValRatio[key] * average;
     });
+    this.prepackLists[index].packs_price = sizeCal;
+  }
 
+  deletebutton(i: number) {  
     this.data.push(this.option_type[i]); 
     this.lists.splice(i, 1);
     this.option_items.splice(i,1);  
@@ -557,12 +777,12 @@ export class AddProductComponent implements OnInit {
     this.moreProductOptions2= false;
     this.moreProductOptions3= false;
     this.productOptions3= true;
-
     let option1_value2 = this.option_items2.map((item:any) => item.value);
     this.selectedAttribute.option2 = {
       key: this.option2,
       values: option1_value2
     };
+  }
 
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
@@ -579,7 +799,7 @@ export class AddProductComponent implements OnInit {
   }
 
   openAddProductModal(content:any) {
-
+    this.addProductModal = this.modalService.open(content, { windowClass: 'productOptionsModal' });
   }
 
   fileChangeEvent(event: any): void {
@@ -617,21 +837,23 @@ export class AddProductComponent implements OnInit {
   }
 
   cropImage(imgId: any) {
-
+    this.currentProcessingImg = imgId;
+    var imgObj = this.allImageChangedEventArray.find((x:any) => x.imgId === imgId);
     var event = {
       target: {
         files: [imgObj.imgFile]
       }
     };
     this.imageChangedEvent = event;
-
   }
 
   onCropperImgChange(index:any) {
   }
 
   imageCropped(event: ImageCroppedEvent) {
-
+    this.colorOptionItems[this.swatchIndex].img = event.base64;
+    this.croppedImage = event.base64;
+    this.croppedImageReady = event.base64;
   }
 
   imageLoaded(image: LoadedImage) {
@@ -648,7 +870,6 @@ export class AddProductComponent implements OnInit {
  
   // upload image
   selectFiles(event: any) {
-
     this.selectedFiles = event.target.files;
     if (this.selectedFiles && this.selectedFiles[0]) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -671,9 +892,12 @@ export class AddProductComponent implements OnInit {
     if(this.selectedFiles.length < 13){
       this.imgCountArr.splice(0 , this.selectedFiles.length);
     }
+    event.target.value = '';
+  }
 
+  selectAttriImages(event: any , index: any) {
     for(let i = 0; i < event.target.files.length; i++) {
-      if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
+      if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg") {
         const reader = new FileReader();
         this.resultAttribute[index].images.push(event.target.files[i]);
         this.resultAttributeImgPreview[index].images.push(event.target.files[i]);
@@ -684,14 +908,13 @@ export class AddProductComponent implements OnInit {
         };
         reader.readAsDataURL(event.target.files[i]);
       } else {
-        this.toast.error({detail:"ERROR",summary: 'Image type not valid!' ,duration: 4000});
+        this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
       }
     }
   }
 
   onFeatureImgSelect(index:any) {
     this.featured_image = index;
-
   }
 
   deleteImage(index:any) {
@@ -726,7 +949,7 @@ export class AddProductComponent implements OnInit {
           }
        }
     }
-
+    event.target.value = '';
   }
   
   openVideoModal(content:any , index:any) { 
@@ -741,9 +964,11 @@ export class AddProductComponent implements OnInit {
     
     let attributes = this.option_type;
     let optionNotBlank =  true;
+    this.varOptionNotBlank = true;
     attributes.forEach((element :any , key :any) => {
       if(element == '') {
         optionNotBlank = false;
+        this.varOptionNotBlank = false;
         return;
       }
     })
@@ -757,21 +982,20 @@ export class AddProductComponent implements OnInit {
           optionValueNotBlank = false;
         }
       });
-
     }
 
     if(attributes.length > 0 && this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
         this.option_items[0].forEach((element :any , key :any) => {
-          this.resultAttribute.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0 , 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-          this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0 , 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+          this.resultAttribute.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '', 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+          this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
         });
       }
       if(attributes.length == 2) {
         this.option_items[1].forEach((element1 :any) => {
           this.option_items[0].forEach((element0 :any , key: any) => {
-            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0, 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0,'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '','inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
 
           });
         });
@@ -780,8 +1004,8 @@ export class AddProductComponent implements OnInit {
         this.option_items[2].forEach((element2 :any) => {
           this.option_items[1].forEach((element1 :any) => {
             this.option_items[0].forEach((element0 :any) => {
-            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0,'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
-            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': 0 , 'retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '','cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
 
           });
           });
@@ -790,7 +1014,7 @@ export class AddProductComponent implements OnInit {
       this.optionTypeBlkErr = '';
       this.closeOptionModal();
     } else {
-      this.optionTypeBlkErr = 'Option Type and Values Can not be blank'
+      this.optionTypeBlkErr = 'Option Type and Values Can not be blank.'
     }
 
     //For Color
@@ -809,6 +1033,7 @@ export class AddProductComponent implements OnInit {
       if(prepackOptionType.includes('Size')) {
         let index = prepackOptionType.indexOf('Size');
         prepackOptionType.splice(index,1);
+        prepackOptionItems.splice(index,1); 
       }
   
       if(prepackOptionType.length > 0) {
@@ -933,44 +1158,75 @@ export class AddProductComponent implements OnInit {
       formData.append("outside_us", this.outside_us ? this.outside_us : '');
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
-  
       let pricingError = 0;
-        if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined) || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined) || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined) || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined) || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined)) {
-          pricingError = 1;
+      if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined) || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined) || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined) || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined) || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined)) {
+        pricingError = 1;
+      }
+      let maxPricingError = 0;
+      Object.values(this.pricingListError).forEach((elem:any) => {
+        if(elem != '') {
+          maxPricingError = 1;
         }
-  
+      })
       if(this.product_made == undefined) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        
         this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
         return false;
-      }else if(this.product_images.length == 0) {
+      } else if(this.product_images.length == 0) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Please add atleast one image.",summary: '' ,duration: 4000});
           return false;
-        } 
-        else if ( pricingError != 1 ) {
+        } else if ( pricingError != 1 ) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          
           this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
+          return false;
+        } else if ( maxPricingError == 1 ) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Pricing list must be number and max 6 numbers.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_sku && !/^[A-Za-z0-9]*$/.test(this.shipping_sku)) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
           return false;
-        } else if(this.shipping_inventory && !/^[\d]*$/.test(this.shipping_inventory)) {       
+        } else if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {       
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Tariff Code must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {       
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Length must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {       
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Width must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {       
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Height must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {       
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Weight must be number and max 6 numbers.",summary: '' ,duration: 4000});
           return false;
         } else if(this.caseQtyError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Case quantity must be number and max 6 numbers.",summary: '' ,duration: 4000});
           return false;
         } else if(this.order_case_qty == undefined || this.order_case_qty == null ){
           this.publistBtnDisabled = false;
@@ -985,13 +1241,26 @@ export class AddProductComponent implements OnInit {
         } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          
           this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
           return false;
-        } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
+        } else if(this.testersPriceError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          
+          this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Retailers input must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Additional must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
           this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
           return false;
         } else if(this.instRetError) {
@@ -1017,7 +1286,8 @@ export class AddProductComponent implements OnInit {
             } else {
               this.notValidError = true;
               this.publistBtnDisabled = false;
-              this.notValidErrorMsg = response.msg;
+              // this.notValidErrorMsg = response.msg;
+              this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
             }
     
           } , (error:any) => {
@@ -1069,13 +1339,27 @@ export class AddProductComponent implements OnInit {
           formData.append("video_url[]", this.product_videos[k]);
         }
         for (let index = 0; index < this.resultAttribute.length; index++) {
-
+          for (let j = 0; j < this.resultAttribute[index].images.length; j++) {
+            formData.append("variations_images["+index+"]" , this.resultAttribute[index].images[j]);
+          } 
         }
 
+        let maxVarPricingError = 0;
         let varPriceError = 0;
         let skuError = 0;
         let inventoryError = 0;
+        let weightError = 0;
+        let lengthError = 0;
+        let widthError = 0;
+        let heightError = 0;
+        let tariffCodeError = 0;
 
+        this.resultAttribute.forEach((elementVar: any) => {
+          if(elementVar.usdws || elementVar.usdret || elementVar.cadws || elementVar.cadret || elementVar.gbpws || elementVar.gbpret || elementVar.eurws || elementVar.eurret || elementVar.audws || elementVar.audret ) {
+            maxVarPricingError = 1 ;
+          }
+        });
+        
         this.resultAttribute.forEach((elementVar: any) => {
           if(elementVar.wholesale_price == '' || elementVar.wholesale_price == null || elementVar.wholesale_price == undefined || elementVar.retail_price == '' || elementVar.retail_price == null || elementVar.retail_price == undefined) {
             varPriceError = 1 ;
@@ -1086,13 +1370,44 @@ export class AddProductComponent implements OnInit {
             skuError = 1 ;
           }
         });
-        this.resultAttribute.forEach((elementVar: any) => {d
-          if( elementVar.inventory && !/^\d+$/.test(elementVar.inventory)) {
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.inventory && !/^[0-9]{0,6}$/.test(elementVar.inventory)) {
             inventoryError = 1;
           }
         });
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.weight && !/^[0-9]{0,6}$/.test(elementVar.weight)) {
+            weightError = 1;
+          }
+        });
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.length && !/^[0-9]{0,6}$/.test(elementVar.length)) {
+            lengthError = 1;
+          }
+        });
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.width && !/^[0-9]{0,6}$/.test(elementVar.width)) {
+            widthError = 1;
+          }
+        });
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.height && !/^[0-9]{0,6}$/.test(elementVar.height)) {
+            heightError = 1;
+          }
+        });
+        this.resultAttribute.forEach((elementVar: any) => {
+          if( elementVar.tariff_code && !/^[0-9]{0,6}$/.test(elementVar.tariff_code)) {
+            tariffCodeError = 1;
+          }
+        });
 
-
+        this.colorOptionItems.forEach((element1 :any) => {
+          if(element1.img == '') {
+            this.blankImgExist = true;
+          } else {
+            this.blankImgExist = false;
+          }
+        });
         formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
         formData.append("option_type", this.option_type);
         formData.append("variations" , JSON.stringify(this.resultAttribute));
@@ -1117,31 +1432,65 @@ export class AddProductComponent implements OnInit {
           this.notValidError = true;
           this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
           return false;
-        }else if(this.product_images.length == 0) {
+        } else if(this.product_images.length == 0) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
             this.toast.error({detail:"Please add atleast one image.",summary: '' ,duration: 4000});
-            return false;
-        } else if(varPriceError == 1) {
-            this.publistBtnDisabled = false;
-            this.notValidError = true;
-            this.toast.error({detail:"Products must have both a wholesale and a retail price.",summary: '' ,duration: 4000});
             return false;
         } else if(skuError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
           return false;
+        } else if(varPriceError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Products must have both a wholesale and a retail price.",summary: '' ,duration: 4000});
+          return false;
+        } else if (maxVarPricingError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
         } else if(inventoryError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
           return false;
-
+        } else if(weightError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Weight must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(lengthError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Length must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(widthError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Width must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(heightError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Height must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(tariffCodeError == 1) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Tariff code must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.blankImgExist) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Please choose each variation image swatches to proceed.",summary: '' ,duration: 4000});
+          return false;
         } else if(this.caseQtyError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Case quantity must be number and max 6 numbers.",summary: '' ,duration: 4000});
           return false;
         } else if(this.order_min_case_qty == undefined || this.order_min_case_qty == null ) {
           this.publistBtnDisabled = false;
@@ -1167,7 +1516,26 @@ export class AddProductComponent implements OnInit {
             this.notValidError = true;
             this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
             return false;
+          } else if(this.testersPriceError) {
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+            return false;
+          } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Retailers input must be number and max 6 numbers.",summary: '' ,duration: 4000});
+            return false;
+          } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Additional Charge must be number and max 6 numbers.",summary: '' ,duration: 4000});
+            return false;
           } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
+            return false;
           } else if(this.instRetError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
@@ -1191,7 +1559,8 @@ export class AddProductComponent implements OnInit {
               } else {
                 this.notValidError = true;
                 this.publistBtnDisabled = false;
-                this.notValidErrorMsg = response.msg;
+                // this.notValidErrorMsg = response.msg;
+                this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
               }
             }, (error:any) => {
               this.publistBtnDisabled = false;
@@ -1357,4 +1726,85 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  onNoUsdWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdws = '';
+      this.autoPriceCall();
+    }
+  }
+
+  onNoUsdRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdret = '';
+      this.autoRPPriceCall();
+    }
+  }
+
+  onNoCadWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadws = '';
+    }
+  }
+
+  onNoCadRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadret = '';
+    }
+  }
+
+  onNoGbpWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpws = '';
+    }
+  }
+
+  onNoGbpRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpret = '';
+    }
+  }
+
+  onNoAudWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audws = '';
+    }
+  }
+
+  onNoAudRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audret = '';
+    }
+  }
+
+  onNoEurWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurws = '';
+    }
+  }
+
+  onNoEurRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurret = '';
+    }
+  }
 }

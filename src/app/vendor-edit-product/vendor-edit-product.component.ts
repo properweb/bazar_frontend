@@ -74,12 +74,102 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   routeName!:any;
   retailers_min_order_qty!:any;
   minDate!: any;
+  options_available!: any;
 
   isVarAvailable !: any;
   varImageIndex!: any;
 
+  // crop
+  imageChangedEvent: any = '';
+  allImageChangedEventArray: any = [];
+  croppedImage: any = '';
+  croppedImageReady: any = '';
+  imgId: any = 0;
+  currentProcessingImg!: any;
 
-
+  // attribute variables
+  option1 !: any;
+  option2 !: any;
+  option3 !: any;
+  option_items: any = []; 
+  option_items2!: any; 
+  option_items3!: any; 
+  selectedAttribute : any = {};
+  resultAttribute : any = [];
+  modifiedResultAttribute : any = [];
+  resultAttributeImgPreview : any = [];
+  option_type : any = [];
+  ext_option_type : any = [];
+  indexOfSwatch!: any;
+  colorOptionItems: any = [];
+  swatchName !: any;
+  swatchIndex: any = 0;
+  selectedCropFiles: any[] = [];
+  existingSize: any[] = [];
+  lists: any = [];
+  prepackLists: any = [];
+  sizeItemPrePack: any = [];
+  addOptionsModal: any; 
+  addProductModal: any; 
+  addColorModal: any;
+  selectColorModal: any;
+  variantsProductsModal: any;
+  nextProductId: any;
+  prevProductId: any;
+  videoModalShow!: any;
+  product_images: any = [];
+  prev_product_images: any = [];
+  all_details_images: any = [];
+  categories: any = [];
+  product_videos: any = [];
+  previews: any[] = [];
+  cropPreviews: any[] = [];
+  video_url: any[] = [];
+  prev_product_videos: any[] = [];
+  all_details_videos: any = [];
+  video_modal_url: any[] = [];
+  selectedFiles: any[] = [];
+  imgCountArr : any[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+  minOrderQtyArr : any[] = [1,2,3,4,5,6,7,8,9,10];
+  pricingCountryArray : any = [
+    {    
+        'country_name':'United States',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ USD'   
+    },
+    { 
+        'country_name':'Canada',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ CAD'
+    },
+    { 
+        'country_name':'United Kingdom',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '£ GBP'
+    },
+    { 
+        'country_name':'Australia',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ AUD'
+    },
+    { 
+        'country_name':'Europe',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '€ EUR'
+    },
+  ]
+  initialValue !: any;
+  productKeyword = 'category';
+  keyword = 'name';
+  data = ['Size' , 'Material',  'Color' , 'Style', 'Scent'];
+  hoveredDate: NgbDate | null = null;
+  fromDate: any;
+  toDate: any;
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -107,12 +197,24 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   prepackCreate:boolean= false;
   hideCreatePrepack:boolean= false;
   proNameError:boolean= false;
-  inventoryError:boolean= false;
-  caseQtyError:boolean= false;
+  inventoryError!:any;
+  tariffError!:any;
+  lengthError!:any;
+  widthError!:any;
+  heightError!:any;
+  weightError!:any;
+  testersPriceError!:any;
+  reatailerInputLimitError!:any;
+  retailerAddChargeError!:any;
+  caseQtyError!:any;
   instRetError:boolean= false;
-  minOrdQtyError:boolean= false;
+  minOrdQtyError!:any;
   prePackNameError:boolean= false;
   skuError:boolean= false;
+  blankImgExist:boolean= false;
+  varOptionNotBlank:boolean= false;
+  pricingListError:any = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
+  blankImgExistMsg!: any;
 
   togglePriceTable(event :any) {
     event.classList.toggle('myClass');
@@ -147,7 +249,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       .pipe(filter((e: any) => e instanceof RoutesRecognized),
         pairwise()
       ).subscribe((e: any) => {
-
     });
   }
   
@@ -162,7 +263,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   ngOnInit(): void {
-
+    this.showForm1= true;
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -193,10 +294,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           /* Called if data is invalid */
         },
       });
-
-
+    })
     this.featured_image = 0;
     this.lists= [];
+    this.dimension_unit = 'cm';
+    this.weight_unit = 'kg';
   }
 
   getCountries() {
@@ -246,7 +348,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     xhr.open('GET', url);
     xhr.responseType = 'blob';
     xhr.send();
-
   }
   
   getProductDetail() {
@@ -392,7 +493,9 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.keep_product = response.data[0].keep_product;
       }
 
-
+      if(response.data[0].allvariations.length > 0) {
+        this.isVarAvailable = true;
+        this.options_available = 1;
         this.option_type = response.data[0].option_type;
         this.ext_option_type = response.data[0].option_type;
         
@@ -419,7 +522,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
-
+          if(response.data[0].prepack_type == '1' || response.data[0].prepack_type == 1) {
+            this.showSubCasePacks();
+          } else if (response.data[0].prepack_type == '2' || response.data[0].prepack_type == 2) {
+            this.showSubOpenSizing();
+          } else {}
+        }
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
           if(response.data[0].sell_type == '3') {
@@ -493,7 +601,14 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             }
           }
         
-
+          // if(this.option_type.includes('Color')){
+          //   let index = this.option_type.indexOf('Color');
+          //   let item = this.option_items[index];
+          //   item.forEach((element: any) => {
+          //     this.colorOptionItems.push({ 'name': element.value , 'img': element.img});
+          //   });
+          
+          // }
         
           if(this.option_type.includes('Size')) {
             let index = this.option_type.indexOf('Size');
@@ -517,6 +632,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
           }
         } else {}
+      } else {
+        this.options_available = 0;
       }
     }, (error) => {
       if(error.status == 401) {
@@ -567,6 +684,13 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   chooseYesFunction() { 
+    if(this.lists.length == 0) {
+      this.lists.push({"declare":""});
+    }
+    if(this.options_available == 0) {
+      this.sell_type = '1';
+      this.showCasePacks();
+    }
     this.isVarAvailable = true;
     this.showForm2= true;
     this.showForm3= true;
@@ -589,7 +713,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   clickManageOpt() {
-
+    // this.colorOptionItems = [];
     this.swatchIndex = 0;
   }
 
@@ -602,7 +726,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     if(this.routeName) {
       this.router.navigate([this.routeName]);
     }
-
     this.isDirty = false;
   }
 
@@ -634,11 +757,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     if(prev_product_images.length == this.product_images.length) {
       this.isDirty = true;
     }
+    event.target.value = '';
   }
 
   selectCropFiles(event: any): void {
     this.selectedFiles = event.target.files;
-
     if (this.selectedFiles && this.selectedFiles[0]) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
           const reader = new FileReader();
@@ -648,28 +771,47 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           reader.readAsDataURL(this.selectedFiles[i]);
       }
     } 
-
-
+    if(this.selectedFiles.length < 13) {
+      this.imgCountArr.splice(0 , this.previews.length);
+    }
   }
 
   prevDeleteImage(index:any , image:any) {
     let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
     let values = {
-
+      image_id: imageDetail[0].image_id,
+      product_id: this.product_id
+    }
+    this.apiService.deleteProductImage(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.previews = this.previews.filter((item:any , i:any) => i !== index);
+        this.featured_image = 0;
+      } else {
+        this.toast.error({detail: response.msg,summary: "" ,duration: 4000});
+      }
     })
   }
 
   newDeleteImage(index:any) {
     this.previews = this.previews.filter((item:any , i:any) => i !== index);
     let prev_product_images = [...this.product_images];
-
     this.product_images = this.product_images.filter((item:any , i:any) => i !== index);
   }
 
   prevDeleteVideo(index:any , video:any) {
     let videoDetail = this.all_details_videos.filter((item:any) => item.video_url === video);
     let values = {
-
+      id: videoDetail[0].id,
+      product_id: this.product_id
+    }
+    this.apiService.deleteProductVideo(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.video_url = this.video_url.filter((item:any , i:any) => i !== index); 
+      } else {
+        this.toast.error({detail: response.msg,summary: "" ,duration: 4000});
+      }     
     })
   }
 
@@ -698,7 +840,6 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           if(event.target.files[i].size < 5e+6) {
             this.product_videos.push(event.target.files[i]);
             reader.readAsDataURL(event.target.files[i]);
-
             reader.onload = (event:any) => {
               this.video_url.push( event.target.result);
             }
@@ -712,6 +853,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     } else {
       this.toast.error({detail:"3 videos allowed!",summary: "" ,duration: 4000});
     }
+    event.target.value = '';
   }
   
   openVideoModal(content:any , index:any) { 
@@ -771,12 +913,18 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("product_deadline", this.formatter.format(this.product_deadline));
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
+      formData.append("options_available", '0');
       
       let pricingError = 0;
       if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined && this.usd_wholesale_price != '0' && this.usd_retail_price != '0') || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined && this.cad_wholesale_price != '0' && this.cad_retail_price != '0') || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined && this.gbp_wholesale_price != '0' && this.gbp_retail_price != '0') || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined &&  this.eur_wholesale_price != '0' && this.eur_retail_price != '0') || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined && this.aud_wholesale_price != '0' && this.aud_retail_price != '0')) {
         pricingError = 1;
       }
-   
+      let maxPricingError = 0;
+      Object.values(this.pricingListError).forEach((elem:any) => {
+        if(elem != '') {
+          maxPricingError = 1;
+        }
+      })
     if(this.product_type ==  undefined || this.product_type == null || this.product_type == 0 || this.product_type == '0') {
       this.publistBtnDisabled = false;
       this.notValidError = true;
@@ -793,42 +941,86 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.notValidError = true;
         this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
         return false;
+      } else if ( maxPricingError == 1 ) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Pricing list must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
       } else if(this.shipping_sku && !/^[A-Za-z0-9]*$/.test(this.shipping_sku)) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
         return false;
-      } else if(this.shipping_inventory && !/^[0-9]*$/.test(this.shipping_inventory)) {
+      } else if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {       
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
+        this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {       
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Tariff Code must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {       
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Length must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {       
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Width must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {       
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Height must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {       
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Weight must be number and max 6 numbers.",summary: '' ,duration: 4000});
         return false;
       } else if(this.caseQtyError) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
+        this.toast.error({detail:"Case quantity must be number and max 6 numbers.",summary: '' ,duration: 4000});
         return false;
-      }
-      else if(this.order_case_qty == undefined || this.order_case_qty == '0'){ 
+      } else if(this.order_case_qty == undefined || this.order_case_qty == '0'){ 
         this.publistBtnDisabled = false;
         this.notValidError = true;
          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
         return false;
       } else if(this.order_min_case_qty == undefined || this.order_min_case_qty == '0') {
-        this.publistBtnDisabled = false;
-        this.notValidError = true;
-         this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
-        return false;
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
+          return false;
         } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
           return false;
-        } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null || this.fromDate == '' || this.toDate == '' )) {
-          this.publistBtnDisabled = false; 
+        } else if(this.testersPriceError) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Retailers input must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Additional must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
+          this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
-          return false; 
+          return false;
         } else if(this.instRetError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
@@ -854,7 +1046,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           } else {
             this.notValidError = true;
             this.publistBtnDisabled = false;
-
+            this.toast.error({detail: response.msg, summary: "", duration: 4000});
+          }
+        },(error) => {
+          this.publistBtnDisabled = false;
+          this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
         })
         return true;
       }
@@ -894,6 +1090,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("retailer_add_charge", this.retailer_add_charge ? this.retailer_add_charge : '');
       formData.append("featured_image", this.featured_image ? this.featured_image : 0);
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
+      formData.append("options_available", '1');
 
       for (var i = 0; i < this.product_images.length; i++) { 
         formData.append("product_images[]", this.product_images[i]);
@@ -901,10 +1098,31 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       for (var k = 0; k < this.product_videos.length; k++) { 
         formData.append("video_url[]", this.product_videos[k]);
       }
+
+      let maxVarPricingError = 0;
       let varPriceError = 0;
       let skuError = 0;
       let inventoryError = 0;
+      let weightError = 0;
+      let lengthError = 0;
+      let widthError = 0;
+      let heightError = 0;
+      let tariffCodeError = 0;
 
+      this.colorOptionItems.forEach((element1 :any) => {
+        if(element1.img == '') {
+          this.blankImgExist = true;
+        } else {
+          this.blankImgExist = false;
+        }
+      });
+
+      this.resultAttribute.forEach((elementVar: any) => {
+        if(elementVar.usdws || elementVar.usdret || elementVar.cadws || elementVar.cadret || elementVar.gbpws || elementVar.gbpret || elementVar.eurws || elementVar.eurret || elementVar.audws || elementVar.audret ) {
+          maxVarPricingError = 1 ;
+        }
+      });
+      
       this.resultAttribute.forEach((elementVar: any) => {
         if( elementVar.status == 'published' && (elementVar.usd_wholesale_price == '' || elementVar.usd_wholesale_price == null || elementVar.usd_wholesale_price == undefined || elementVar.usd_retail_price == '' || elementVar.usd_retail_price == null || elementVar.usd_retail_price == undefined)) {
           varPriceError = 1 ;
@@ -916,6 +1134,36 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           skuError = 1 ;
         }
       });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.inventory && !/^[0-9]{0,6}$/.test(elementVar.inventory)) {
+          inventoryError = 1;
+        }
+      });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.weight && !/^[0-9]{0,6}$/.test(elementVar.weight)) {
+          weightError = 1;
+        }
+      });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.length && !/^[0-9]{0,6}$/.test(elementVar.length)) {
+          lengthError = 1;
+        }
+      });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.width && !/^[0-9]{0,6}$/.test(elementVar.width)) {
+          widthError = 1;
+        }
+      });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.height && !/^[0-9]{0,6}$/.test(elementVar.height)) {
+          heightError = 1;
+        }
+      });
+      this.resultAttribute.forEach((elementVar: any) => {
+        if( elementVar.tariff_code && !/^[0-9]{0,6}$/.test(elementVar.tariff_code)) {
+          tariffCodeError = 1;
+        }
+      });
 
       this.resultAttribute.forEach((elementVar: any) => {
         if( elementVar.status == 'published' && (elementVar.inventory && !/^[0-9]*$/.test(elementVar.inventory))) {
@@ -924,8 +1172,13 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       });
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
+      formData.append("option_type", this.option_type);
 
-
+      if(!this.blankImgExist) {
+        this.resultAttribute.forEach((element: any , index:any) => {
+          this.resultAttribute[index].swatch_image = '';
+        });
+      }
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
       this.prepackLists.forEach((element: any) => {
@@ -955,26 +1208,60 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.notValidError = true;
         this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
         return false;
-      }  
-      else if(varPriceError == 1) {
-        this.publistBtnDisabled = false;
-        this.notValidError = true;
-        this.toast.error({detail:"Products must have both a wholesale and a retail price.",summary: '' ,duration: 4000});
-        return false;
       } else if(skuError == 1) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
         return false;
-      } else if(inventoryError == 1) {
+      } else if(varPriceError == 1) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
+        this.toast.error({detail:"Products must have both a wholesale and a retail price.",summary: '' ,duration: 4000});
+        return false;
+      } else if (maxVarPricingError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      }  else if(inventoryError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(weightError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Weight must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(lengthError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Length must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(widthError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Width must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(heightError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Height must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(tariffCodeError == 1) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Tariff code must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.blankImgExist) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Please choose each variation image swatches to proceed.",summary: '' ,duration: 4000});
         return false;
       } else if(this.caseQtyError) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
+        this.toast.error({detail:"Case quantity must be number and max 6 numbers.",summary: '' ,duration: 4000});
         return false;
       } else if(this.order_min_case_qty == 'undefined' || this.order_min_case_qty == undefined || this.order_min_case_qty == '0' ) {
         this.publistBtnDisabled = false;
@@ -999,6 +1286,21 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.testersPriceError) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Retailers input must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Additional Charge must be number and max 6 numbers.",summary: '' ,duration: 4000});
         return false;
       } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null || this.fromDate == '' || this.toDate == '' )) {
         this.publistBtnDisabled = false; 
@@ -1030,13 +1332,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           } else {
             this.notValidError = true;
             this.publistBtnDisabled = false;
-            this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
-
+            this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
           }
         }, (error:any) => {
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
-
         })
         return true;
       } 
@@ -1076,7 +1376,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 
-
+  closeModal() {   
     this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
       this.colorOptionItems.forEach((element1 :any) => {
         if(element1.name == element.Color) {
@@ -1086,6 +1386,21 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         } 
       });
     });
+    this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
+      this.colorOptionItems.forEach((element1 :any) => {
+        if(element1.img == '') {
+          this.blankImgExist = true;
+        } else {
+          this.blankImgExist = false;
+        }
+      });
+    });
+    if(this.blankImgExist) {
+      this.blankImgExistMsg = 'Please choose each variation image swatches to proceed.';
+    } else {
+      this.blankImgExistMsg = '';
+      this.selectColorModal.close();
+    }
   }
 
   cropImage(imgId: any) {
@@ -1174,9 +1489,11 @@ addAttribute() {
   let localresultAttribute: any = [];
     let attributes = this.option_type;
     let optionNotBlank =  true;
+    this.varOptionNotBlank = true;
     attributes.forEach((element :any , key :any) => {
       if(element == '') {
         optionNotBlank = false;
+        this.varOptionNotBlank = false;
         return;
       }
     })
@@ -1194,7 +1511,31 @@ addAttribute() {
     
     if(this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
-
+        this.option_items[0].forEach((element :any , key :any) => {
+          let var_options = [attributes[0]];
+            let var_values = [element.value];
+            localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values, 'status': 'published', 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'image_index': '',  'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+        });
+      }
+      if(attributes.length == 2) {
+        this.option_items[1]?.forEach((element1 :any) => {
+          this.option_items[0]?.forEach((element0 :any , key: any) => {
+            let var_options = [attributes[0], attributes[1]];
+            let var_values = [element0.value, element1.value];
+            localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+          });
+        });
+      }
+      if(attributes.length == 3) {
+        this.option_items[2].forEach((element2 :any) => {
+          this.option_items[1].forEach((element1 :any) => {
+              this.option_items[0].forEach((element0 :any) => {
+                let var_options = [attributes[0], attributes[1], attributes[2]];
+                let var_values = [element0.value, element1.value, element2.value];
+                localresultAttribute.push({'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+            });
+          });
+        });
       }
       let prevresultAttribute = [...this.resultAttribute];
       let loopitem = 0;
@@ -1255,7 +1596,21 @@ addAttribute() {
         }
  
       })
+      this.resultAttribute = localresultAttribute; 
+      let extArry:any = [];
+      this.colorOptionItems.forEach((opElm: any) => {
+        extArry.push(opElm.name.toLowerCase());
+      })
 
+      if(this.option_type.includes('Color')) {
+        let index = this.option_type.indexOf('Color');
+        let item = this.option_items[index];
+        item.forEach((element: any, key: any) => {
+          if(!extArry.includes(element.value.toLowerCase())) {
+            this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+          }
+        });
+      } 
         this.optionTypeBlkErr = '';
         this.closeOptionModal();
     } else {
@@ -1314,26 +1669,42 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
     
+      // if(this.option_type.includes('Color')){
+      //   let index = this.option_type.indexOf('Color');
+      //   let item = this.option_items[index];
+      //   item.forEach((element: any) => {
+      //     this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+      //   });
+      // }
 
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
         let sizeItemsClone = [...sizeItems];
-
+        let arrOfSize: any = [];
+        for( let j=0; j<sizeItemsClone.length; j++) {
+          arrOfSize.push(sizeItemsClone[j].value) 
+        }
         let chunkSize = 2;
         let resArray = [];
         for (let i = 0; i < arrOfSize.length; i += chunkSize) {
           let chunk = arrOfSize.slice(i, i + chunkSize);       
           let splited = chunk.join('-');
           resArray.push(splited);
-
+        }
+        this.sizeItemPrePack = resArray;
+      }
     } else {
       this.prepackError = 'Update your product listing before crafting a new prepack.';
     }
   } else {
-
-
-
+    let prepackOptionType = [...this.option_type];
+    let prepackOptionItems = [...this.option_items];
+    if(prepackOptionType.includes('Size')) {
+      let index = prepackOptionType.indexOf('Size');
+      prepackOptionType.splice(index,1);
+      prepackOptionItems.splice(index,1);
+    }
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1349,7 +1720,6 @@ addAttribute() {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
             }
           }
-
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1382,7 +1752,13 @@ addAttribute() {
       }
     }
   
-
+    // if(this.option_type.includes('Color')){
+    //   let index = this.option_type.indexOf('Color');
+    //   let item = this.option_items[index];
+    //   item.forEach((element: any) => {
+    //     this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+    //   });
+    // }
     if(this.option_type.includes('Size')) {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
@@ -1391,7 +1767,6 @@ addAttribute() {
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
       }
-
       let chunkSize = 2;
       let resArray = [];
       for (let i = 0; i < arrOfSize.length; i += chunkSize) {
@@ -1404,17 +1779,28 @@ addAttribute() {
   }
 }
 
+  addbutton() {  
+    let tempArray:any = [];
+    this.option_type.forEach((elem:any) => {
+      if(elem !== '') {
+        tempArray.push(elem);
+      }
+    })
+    if(tempArray.length !== this.lists.length) {
+      this.optionTypeBlkErr = 'Please select option to add new section.';
+    } else {
+      this.lists.push({"declare":""})  
+      let  namesToDeleteSet = new Set(this.option_type);
+        this.data =  this.data.filter((name) => {
+        // return those elements not in the namesToDeleteSet
+        return !namesToDeleteSet.has(name);
+      });
 
-    this.lists.push({"declare":""})  
-    let  namesToDeleteSet = new Set(this.option_type);
-      this.data =  this.data.filter((name) => {
-      // return those elements not in the namesToDeleteSet
-      return !namesToDeleteSet.has(name);
-    });
-
-    let attribute:any = {
-      option_type: this.option_type,
-      option_item: this.option_items
+      let attribute:any = {
+        option_type: this.option_type,
+        option_item: this.option_items
+      } 
+      this.optionTypeBlkErr = '';
     }
   } 
 
@@ -1449,15 +1835,95 @@ addAttribute() {
   }
 
   onInventoryChange(event: any) {
-    if(!/^[0-9]*$/.test(this.shipping_inventory)) {
-      this.inventoryError = true;
-    } else this.inventoryError = false;
+     if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {
+      this.inventoryError = 'Inventory must be number and max 6 numbers.';
+    } else {
+      this.inventoryError = '';
+    }
+  }
+
+  onLengthChange(event: any) {
+    if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {
+      this.lengthError = 'Length must be number and max 6 numbers.';
+    } else this.lengthError = '';
+  }
+
+  onWidthChange(event: any) {
+    if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {
+      this.widthError = 'Width must be number and max 6 numbers.';
+    } else this.widthError = '';
+  }
+
+  onHeightChange(event: any) {
+    if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {
+      this.heightError = 'Height must be number and max 6 numbers.';
+    } else this.heightError = '';
+  }
+
+  onWeightChange(event: any) {
+    if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {
+      this.weightError = 'Weight must be number and max 6 numbers.';
+    } else this.weightError = '';
+  }
+
+  onTariffCodeChange(event: any) {
+    if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {
+      this.tariffError = 'Tariff code must be number and max 6 numbers.';
+    } else this.tariffError = '';
+  }
+
+  onTestersPriceChange(event: any) {
+    if(this.testers_price && !/^[0-9]{0,6}$/.test(this.testers_price)) {
+      this.testersPriceError = 'Testers price must be number and max 6 numbers.';
+    } else this.testersPriceError = '';
+  }
+
+  onRetailerInputChange(event: any) {
+    if(this.reatailer_input_limit && !/^[0-9]{0,6}$/.test(this.reatailer_input_limit)) {
+      this.reatailerInputLimitError = 'Retailer input must be number and max 6 numbers.';
+    } else this.reatailerInputLimitError = '';
+  }
+
+  onRetailerAddChargeChange(event: any) {
+    if(this.retailer_add_charge && !/^[0-9]{0,6}$/.test(this.retailer_add_charge)) {
+      this.retailerAddChargeError = 'Retailer charge must be number and max 6 numbers.';
+    } else this.retailerAddChargeError = '';
   }
 
   onVarInventoryChange(event: any, index: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.resultAttribute[index].inventoryError = "Invalid inventory";
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].inventoryError = "Inventory must be number and max 6 numbers.";
     } else this.resultAttribute[index].inventoryError = "";
+  }
+
+  onVarWeightChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].weightError = "Weight must be number and max 6 numbers.";
+    } else this.resultAttribute[index].weightError = "";
+  }
+
+  onVarLengthChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].lengthError = "Length must be number and max 6 numbers.";
+    } else this.resultAttribute[index].lengthError = "";
+  }
+
+  onVarWidthChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].widthError = "Width must be number and max 6 numbers.";
+    } else this.resultAttribute[index].widthError = "";
+  }
+
+  onVarHeightChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].heightError = "Height must be number and max 6 numbers.";
+    } else this.resultAttribute[index].heightError = "";
+  }
+
+  onVarTariffCodeChange(event: any, index: any) {
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.resultAttribute[index].tariffCodeError = "Tariff must be number and max 6 numbers.";
+    } else this.resultAttribute[index].tariffCodeError = "";
   }
 
   onSkuChange(event: any) {
@@ -1472,16 +1938,98 @@ addAttribute() {
     } else this.resultAttribute[index].skuError = "";
   }
 
+  onUsdWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].usdws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].usdws = "";
+      this.onWSChange(index);
+    }
+  }
+
+  onUsdRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].usdret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].usdret = "";
+      this.onRPChange(index);
+    }
+  }
+
+  onCadWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].cadws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].cadws = "";
+    }
+  }
+
+  onCadRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].cadret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].cadret = "";
+    }
+  }
+
+  onGbpWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].gbpws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].gbpws = "";
+    }
+  }
+
+  onGbpRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].gbpret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].gbpret = "";
+    }
+  }
+
+  onEurWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].eurws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].eurws = "";
+    }
+  }
+
+  onEurRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].eurret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].eurret = "";
+    }
+  }
+
+  onAudWsChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].audws = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].audws = "";
+    }
+  }
+
+  onAudRetChange(event: any, index:any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.resultAttribute[index].audret = "This field must be number and max 6 numbers.";
+    } else {
+      this.resultAttribute[index].audret = "";
+    }
+  }
+
   onCaseQtyChange(event: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.caseQtyError = true;
-    } else this.caseQtyError = false;
+    if(event.target.value && !/^[0-9]{1,6}$/.test(event.target.value)) {
+      this.caseQtyError = 'Case quantity must be number and max 6 numbers.';
+    } else this.caseQtyError = '';
   }
 
   onMinOrdQtyChange(event: any) {
     if(!/^[0-9]*$/.test(event.target.value)) {
-      this.minOrdQtyError = true;
-    } else this.minOrdQtyError = false;
+      this.minOrdQtyError = 'Min order quantity must be number and max 6 numbers.';
+    } else this.minOrdQtyError = '';
   }
 
   onIntRetChange(event: any) {
@@ -1493,12 +2041,10 @@ addAttribute() {
   }
   
   select1stOptionEvent(item:any) {
-
     this.option1 = item.name;
   }
 
   select2ndOptionEvent(item:any) {
-
     this.option2 = item.name;
   }
 
@@ -1512,7 +2058,7 @@ addAttribute() {
     this.casePacks2= false;
     this.openSizing2= false;
     this.casePacks= true;
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
     this.hideCreatePrepack = false;
 
@@ -1524,7 +2070,7 @@ addAttribute() {
     this.casePacks2= false;
     this.openSizing2= false;
     this.openSizing= true;
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
     this.hideCreatePrepack = false;
   }
@@ -1533,8 +2079,7 @@ addAttribute() {
     this.casePacks= false;
     this.openSizing= false;
     this.prePacks= true;
-
-    this.minOrdQtyError = false;
+    this.minOrdQtyError = '';
     this.caseQtyError = false;
   }
     
@@ -1564,8 +2109,7 @@ addAttribute() {
 
   selectAttriImages(event: any , index: any) {
     for(let i = 0; i < event.target.files.length; i++) {
-
-      if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg" || event.target.files[i].type == "image/gif") {
+      if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg") {
         const reader = new FileReader();
         this.product_images.push(event.target.files[i]);
         reader.onload = (e: any) => {
@@ -1573,7 +2117,9 @@ addAttribute() {
           this.previews.push(e.target.result);
         };
         reader.readAsDataURL(event.target.files[i]);
-
+      } else {
+        this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      }
     }
   }
 
@@ -1594,8 +2140,7 @@ addAttribute() {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
-
-
+  }
   
   autoPriceCall() {
     this.apiService.convertPrice(this.usd_wholesale_price).subscribe((responseBody) => {
@@ -1698,6 +2243,7 @@ addAttribute() {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
+  sizeRatioChange(index: any , event: any) {
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';
@@ -1716,7 +2262,6 @@ addAttribute() {
         this.prepackLists[index].packs_price = '';
         this.prepackLists[index].size_range.push(sizeItemArray[0].value + '-' + sizeItemArray[sizeItemArray.length - 1].value);
     } else if (re.test(event.target.value) && splitVal.length == 2 && !remainder) { 
-
       this.prepackLists[index].size_range = [];
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].size_range = this.sizeItemPrePack;
@@ -1728,7 +2273,6 @@ addAttribute() {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].ratio_error ='Invalid size ratio';
     }
-
   }
 
   savePrePack(index: any) {
@@ -1802,7 +2346,6 @@ addAttribute() {
       .then(() => {
       });
     }
-
   }
 
   onPrevProductClick() {
@@ -1813,7 +2356,6 @@ addAttribute() {
     } else {
       this.router.navigate([`/edit-product/${this.prevProductId}`]);
     }
-
   }
 
   onProRouteClick() {
@@ -1842,4 +2384,86 @@ addAttribute() {
     this.product_deadline = null;
   }
   
+  onNoUsdWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdws = '';
+      this.autoPriceCall();
+    }
+  }
+
+  onNoUsdRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdret = '';
+      this.autoRPPriceCall();
+    }
+  }
+
+  onNoCadWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadws = '';
+    }
+  }
+
+  onNoCadRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadret = '';
+    }
+  }
+
+  onNoGbpWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpws = '';
+    }
+  }
+
+  onNoGbpRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpret = '';
+    }
+  }
+
+  onNoAudWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audws = '';
+    }
+  }
+
+  onNoAudRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audret = '';
+    }
+  }
+
+  onNoEurWsChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurws = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurws = '';
+    }
+  }
+
+  onNoEurRetChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurret = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurret = '';
+    }
+  }
+
 }

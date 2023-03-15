@@ -229,16 +229,9 @@ input[type=number] { -moz-appearance: textfield; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input { border: 1px solid rgba(0, 0, 0, 0.5); cursor: pointer; height: 20px; width: 20px; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .form-check-input:checked { background-color: #393939; border-color: #393939; }
-
-
-
-
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .create-prepacks-btn { background: #393939;  border: 1px solid #393939; border-radius: 3px; color: #fff; float: right; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; margin: 0 0 0 0; padding: 0; width: 184px; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .create-prepacks-content { margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content { overflow-x: auto; margin: 0; padding: 0; width: 100%; }
-
-
-
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table { border-top: none; min-width: 100%; width: auto; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; white-space: nowrap; }
@@ -252,6 +245,7 @@ input[type=number] { -moz-appearance: textfield; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider:before { background:#ccc; bottom: 1.5px; content: ""; height: 10px; left: 2px; position: absolute; transition: .4s; width: 10px; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider { background-color: #fff; border: 1px solid #000; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider:before { transform: translateX(11px); }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .deleteLink { cursor: pointer; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider.round { border-radius: 34px; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .slider.round:before { border-radius: 50%; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .radioList2 li .form-check .prepack-table-content .table td .radioDiv .switch input:checked + .slider:before{ background: #000; }
