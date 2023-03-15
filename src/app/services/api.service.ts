@@ -67,11 +67,11 @@ export class ApiService {
   }
 
   userAccountUpdate(data:any) {
-    return this.http.put(this._Base_URL+'brands/update/account' , data, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'brands/update/account' , data, this.createAuthorizationHeader());
   }
 
   updateVendorDetails(updatedData:any) {
-    return this.http.put(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
   }
 
   getProducts(id:any) {

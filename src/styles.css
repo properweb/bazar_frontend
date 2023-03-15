@@ -39,6 +39,9 @@ input, button { font-family: 'Futura' !important; }
 .container-fluid { max-width: 1440px; }
 .full_container-fluid { max-width: 100%; padding-left: 30px !important; padding-right: 30px !important; }
 .error-msg { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-feature { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-profile { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-cover { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
 .validate_errors { color: red; font-family: 'Futura' !important; margin-bottom: 10px; }
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
 input[type=number] { -moz-appearance: textfield; } 

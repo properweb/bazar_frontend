@@ -50,6 +50,7 @@ export class VendorsRegistrationComponent implements OnInit {
   tools_used_other!: any;
   featured_image!: any;
   featured_image_hidden!: any;
+  featuredImgAvailable!: any;
   profile_photo!: any;
   cover_image!: any;
   upload_wholesale_img!: any;
@@ -88,13 +89,18 @@ export class VendorsRegistrationComponent implements OnInit {
   currentYear!:any;
   validError:any = false;
   featureimgError:boolean = true;
+  featureimgModalBtn:boolean = true;
   profileimgError:boolean = true;
+  profileimgModalBtn:boolean = true;
   coverimgError:boolean = true;
+  coverimgModalBtn:boolean = true;
   excelError:boolean = false;
   zipError:boolean = false;
   avgLeadError:boolean = false;
   brandStoryError:boolean = false;
-
+  firstorderError:any = '';
+  reorderErrorMsg:any = '';
+  monthSelectError:any = '';
   submitted :boolean = true;
 
   releaseInventoryCheckBox : any = [
@@ -114,7 +120,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   toolsUsed:any =[
     { name: 'Shopify', value: 'Shopify' },
-
+    { name: 'WooCommerce', value: 'WooCommerce' },
   ];
 
   tagsArray:any =[
@@ -218,17 +224,15 @@ export class VendorsRegistrationComponent implements OnInit {
     {name: "Other"},
   ]
 
-  constructor(
-    public modalService: NgbModal,
-    private storage: StorageMap,
-    private apiService: ApiService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private location:Location,
-    private toast: NgToastService
-  ) {}
+  constructor( public modalService: NgbModal, private storage: StorageMap, private apiService: ApiService, private router: Router, private activatedRoute: ActivatedRoute, private location:Location, private toast: NgToastService) {}
 
   ngOnInit(): void {
+    $(".featureclassnoImg").css("display", "block");
+    $(".featureclassImg").css("display", "none");
+    $(".profileclassnoImg").css("display", "block");
+    $(".profileclassImg").css("display", "none");
+    $(".coverclassnoImg").css("display", "block");
+    $(".coverclassImg").css("display", "none");
     const d = new Date();
     let year = d.getFullYear();
     this.currentYear = year;
@@ -248,14 +252,14 @@ export class VendorsRegistrationComponent implements OnInit {
     if(this.stepCount !== 0){
       this.storage.get('user_session').subscribe({
         next: (user) => {
-          let user_session = JSON.parse(JSON.stringify(user));
-          this.user_id = user_session.id;
+          if(user) {
+            let user_session = JSON.parse(JSON.stringify(user));
+            this.user_id = user_session.id;
+          }
         },
         error: (error) => {
         },          
       });
-
-     
     } else {
       this.storage.get('vendor_details').subscribe({
         next: (user) => {
@@ -368,6 +372,7 @@ export class VendorsRegistrationComponent implements OnInit {
       this.upload_contact_list = response.data.upload_contact_list;
       this.profile_photo = response.data.profile_photo;
       this.tagsToolsArray = response.data.tag_shop_page;
+      this.bazaar_direct_link = response.data.bazaar_direct_link
     })
     
   }
@@ -378,9 +383,73 @@ export class VendorsRegistrationComponent implements OnInit {
     } else {
       this.release_inventoryArray = this.release_inventoryArray.filter((item:any) => item !== e.target.value);
     }
-
   }
 
+  onQuaterlyCheckboxChange(e:any , index:any) { 
+    this.release_inventoryArray = [];
+    if (e.target.checked) {
+      if(e.target.value == 'January') {
+        this.release_inventoryArray.push('January','April','July','October');
+      } else if(e.target.value == 'February') {
+        this.release_inventoryArray.push('February','May','August','November');
+      } else if(e.target.value == 'March') {
+        this.release_inventoryArray.push('March','June','September','December');
+      } else if(e.target.value == 'April') {
+        this.release_inventoryArray.push('January','April','July','October');
+      } else if(e.target.value == 'May') {
+        this.release_inventoryArray.push('February','May','August','November');
+      } else if(e.target.value == 'June') {
+        this.release_inventoryArray.push('March','June','September','December');
+      } else if(e.target.value == 'July') {
+        this.release_inventoryArray.push('January','April','July','October');
+      } else if(e.target.value == 'August') {
+        this.release_inventoryArray.push('February','May','August','November');
+      } else if(e.target.value == 'September') {
+        this.release_inventoryArray.push('March','June','September','December');
+      } else if(e.target.value == 'October') {
+        this.release_inventoryArray.push('January','April','July','October');
+      } else if(e.target.value == 'November') {
+        this.release_inventoryArray.push('February','May','August','November');
+      } else if(e.target.value == 'December') {
+        this.release_inventoryArray.push('March','June','September','December');
+      } else {}
+    } else {
+      this.release_inventoryArray = this.release_inventoryArray.filter((item:any) => item !== e.target.value);
+    }
+  }
+
+  onBiQuaterlyCheckboxChange(e:any , index:any) { 
+    this.release_inventoryArray = [];
+    if (e.target.checked) {
+      if(e.target.value == 'January') {
+        this.release_inventoryArray.push('January','July');
+      } else if(e.target.value == 'February') {
+        this.release_inventoryArray.push('February','August');
+      } else if(e.target.value == 'March') {
+        this.release_inventoryArray.push('March','September');
+      } else if(e.target.value == 'April') {
+        this.release_inventoryArray.push('April','October');
+      } else if(e.target.value == 'May') {
+        this.release_inventoryArray.push('May','November');
+      } else if(e.target.value == 'June') {
+        this.release_inventoryArray.push('June','December');
+      } else if(e.target.value == 'July') {
+        this.release_inventoryArray.push('January','July');
+      } else if(e.target.value == 'August') {
+        this.release_inventoryArray.push('February','August');
+      } else if(e.target.value == 'September') {
+        this.release_inventoryArray.push('March','September');
+      } else if(e.target.value == 'October') {
+        this.release_inventoryArray.push('April','October');
+      } else if(e.target.value == 'November') {
+        this.release_inventoryArray.push('May','November');
+      } else if(e.target.value == 'December') {
+        this.release_inventoryArray.push('June','December');
+      }
+    } else {
+      this.release_inventoryArray = this.release_inventoryArray.filter((item:any) => item !== e.target.value);
+    }
+  }
 
   toolsCheckboxChange(e: any) {
     if (e.target.checked) {
@@ -442,7 +511,6 @@ export class VendorsRegistrationComponent implements OnInit {
     let af = ['.zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed'];
     for (var i = 0; i < event.target.files.length; i++) { 
       if(event.target.files[i].name.endsWith('.zip')){
-
         this.upload_zip.push(event.target.files[i]);
         this.upload_zip_names.push(event.target.files[i].name);  
       } else {       
@@ -492,16 +560,26 @@ export class VendorsRegistrationComponent implements OnInit {
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         this.featureimgError = false;
+        this.featureimgModalBtn = false;
         reader.readAsDataURL(event.target.files[0]); // read file as data url
-  
+        
         reader.onload = (event:any) => { // called once readAsDataURL is completed
           this.featureImageUrl = event.target.result;
         }
       }
-    }else{
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-feature").text("");
+    } else{
+      $("#featureModalBtnClose").trigger("click");
+      $(".error-msg-feature").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-feature").text("");
+          };
+        })(),
+        3e3
+      );
     } 
-
   }
 
   getProfileImg(event: any) {
@@ -514,14 +592,25 @@ export class VendorsRegistrationComponent implements OnInit {
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         this.profileimgError = false;
+        this.profileimgModalBtn = false;
         reader.readAsDataURL(event.target.files[0]); // read file as data url
   
         reader.onload = (event:any) => { // called once readAsDataURL is completed
           this.profileImageUrl = event.target.result;
         }
       }
+      $(".error-msg-profile").text("");
     } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $("#profileModalBtnClose").trigger("click");
+      $(".error-msg-profile").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-profile").text("");
+          };
+        })(),
+        3e3
+      );
     }
 
   } 
@@ -532,7 +621,7 @@ export class VendorsRegistrationComponent implements OnInit {
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
       this.cover_image = event.target.files[0];
-
+      this.coverimgModalBtn = false;
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         this.coverimgError = false;
@@ -542,8 +631,18 @@ export class VendorsRegistrationComponent implements OnInit {
           this.coverImageUrl = event.target.result;
         }
       }
+      $(".error-msg-cover").text("");
     } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $("#coverModalBtnClose").trigger("click");
+      $(".error-msg-cover").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-cover").text("");
+          };
+        })(),
+        3e3
+      );
     }
    
   }
@@ -645,7 +744,7 @@ export class VendorsRegistrationComponent implements OnInit {
           error: (error) => {
             /* Called if data is invalid */
             this.spinnerShow = false;
-            this.errorMsg = "something went wrong in server!";
+            this.errorMsg = "something went wrong in server.";
           },          
         });
         this.errorMsg = "";
@@ -673,7 +772,6 @@ export class VendorsRegistrationComponent implements OnInit {
         } else {
           this.nextFiveFunction();
           this.errorMsg = "";
-
           this.btnDis = false;
         }
     }, (error:any) => {
@@ -686,7 +784,6 @@ export class VendorsRegistrationComponent implements OnInit {
 
   sendVendorFormStep4(vendorFormStep4: any) {
     this.saveExitCount=4;
-
     this.apiService.vendorRegistrationStep1(vendorFormStep4.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if( response.res === false) {
@@ -696,7 +793,8 @@ export class VendorsRegistrationComponent implements OnInit {
       } else {
         this.nextSixFunction();
         this.errorMsg = "";
-
+        this.btnDis = false;
+      }
     }, (error:any) => {
       this.spinnerShow = false;
       this.btnDis = false;
@@ -706,20 +804,50 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   sendVendorFormStep5(vendorFormStep5: any) {
-    this.saveExitCount=5;
-    this.nextEigtFunction()
-    let arrayTransform = this.release_inventoryArray.join(',');
-    let data = {
-      step_count: 5,
-      user_id : this.user_id,
-      num_products_sell: this.num_products_sell,
-      num_products_addcatalog: this.num_products_addcatalog,
-      release_inventory: arrayTransform,
-      stored_carried: this.stored_carried,
-      brand_big_box_store: this.brand_big_box_store
+    if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Quarterly') {
+      if(this.release_inventoryArray.length == 0) {
+        this.monthSelectError = 'Please select months.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Bi-yearly') {
+      if(this.release_inventoryArray.length == 0) {
+        this.monthSelectError = 'Please select months.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Yearly') {
+      if(this.release_inventoryArray.length == 0) {
+        this.monthSelectError = 'Please select a month.';
+      } else if(this.release_inventoryArray.length > 1) {
+        this.monthSelectError = 'You can choose only one month.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Other') {
+      if(this.release_inventoryArray.length == 0) {
+        this.monthSelectError = 'Please select a month.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else {}
+    if(this.monthSelectError == '') {
+      this.saveExitCount=5;
+      this.nextEigtFunction();
+      let arrayTransform = this.release_inventoryArray.join(',');
+      let data = {
+        step_count: 5,
+        user_id : this.user_id,
+        num_products_sell: this.num_products_sell,
+        num_products_addcatalog: this.num_products_addcatalog,
+        release_inventory: arrayTransform,
+        stored_carried: this.stored_carried,
+        brand_big_box_store: this.brand_big_box_store
+      }
+      this.apiService.vendorRegistrationStep1(data).subscribe((responseBody) => {
+      })
     }
-    this.apiService.vendorRegistrationStep1(data).subscribe((responseBody) => {
-    })
+
   }
 
   sendVendorFormStep7(vendorFormStep7: any) {
@@ -738,17 +866,29 @@ export class VendorsRegistrationComponent implements OnInit {
 
   sendVendorFormStep9(vendorFormStep9: any , imgVal:any) {
     let value = $('input#purbayan').val();
-    this.saveExitCount=7;
-    let values = {
-      step_count: 7,
-      user_id : this.user_id,
-      featured_image : value
-    }
-    this.apiService.vendorRegistrationStep1(values).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
+    if(value){
+      this.saveExitCount=7;
+      let values = {
+        step_count: 7,
+        user_id : this.user_id,
+        featured_image : value
       }
+      this.nextTwelveFunction();
+      this.errorMsg = "";
+      this.apiService.vendorRegistrationStep1(values).subscribe((responseBody) => {
+        let response = JSON.parse(JSON.stringify(responseBody));
+        if(response.res == true) {
+        } else{
+
+        }
+      }, (error) => {
+      this.errorMsg = "Something went wrong. Please try again.";
+      this.btnDis = false;
     })
+    } else {
+      this.errorMsg = "Please select image to continue.";
+      this.btnDis = false;
+    }
   }
 
   sendVendorFormStep10(vendorFormStep10: any , ProimgVal:any) {  
@@ -897,25 +1037,63 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   sendVendorFinalStep(vendorFinalStep: any) {
-
+    this.btnDis = true;
     var my_object;
     if(JSON.parse(JSON.stringify(localStorage.getItem('from_login_cred')))) {
       my_object = JSON.parse(localStorage.getItem('from_login_cred') || '{}');
     } else {
       my_object = JSON.parse(localStorage.getItem('reg_user') || '{}');
     }
-
-
     let values = {
       email: my_object.email,
       password: my_object.password
     }
-
+    this.apiService.vendorRegistrationStep1(vendorFinalStep.value).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.apiService.vendorSignIn(values).subscribe((responseBody1) => {
+          let response1 = JSON.parse(JSON.stringify(responseBody1));
+          if (response1.res === false) {
+          } else {
+            this.storage
+            .set('user_session', JSON.parse(JSON.stringify(response1.data)))
+            .subscribe(() => {});
+            localStorage.setItem('local_data', response1.data.role);
+            localStorage.setItem('authorization_data', JSON.stringify(response1.data.authorisation));
+            this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+            if(response1.data.vendor_data.first_visit == 0) {
+              this.router.navigateByUrl('/account-settings').then(() => {
+              });
+              this.spinnerShow = false;
+            } else {
+              this.router.navigateByUrl('/brand-portal').then(() => {
+              });
+              this.spinnerShow = false;
+            }
+            this.btnDis = false;
+            localStorage.removeItem('from_login_cred');
+            localStorage.removeItem('reg_user');
+          }
+        }, (error) => {
+          this.spinnerShow = false;
+          this.btnDis = false;
+          this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
+        });
+      } else {
+        this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
+      }
+    }, (error) => {
+      this.spinnerShow = false;
+      this.btnDis = false;
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
+    });
+ 
   }
 
   openUploadFeatureModal(content: any) {
-    
-      this.modalService.open(content, { windowClass: 'featureImgModal' });
+    this.modalService.open(content, { windowClass: 'featureImgModal' });
+    this.featureimgModalBtn = true;
+    $(".featureImgModalBtn").prop("disabled", true);
     $(function () {
       $('.image-editor').cropit({
         exportZoom: 1,
@@ -924,6 +1102,19 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
+          $("#featureModalBtnClose").trigger("click");
+          let value = $('input#purbayan').val();
+          if(value) {
+            $(".featureclassnoImg").css("display", "none");
+            $(".featureclassImg").css("display", "block");
+            $(".featureImgModalBtn").removeAttr('disabled');
+            $(".featureImgSubBtn").removeAttr('disabled');
+          } else {
+            $(".featureclassnoImg").css("display", "block");
+            $(".featureclassImg").css("display", "none");
+            $(".featureImgModalBtn").prop("disabled", true);
+            $(".featureImgSubBtn").prop("disabled", true);
+          }
           $(".error-msg").text(
             "Please use an image that's at least " +
               500 +
@@ -931,19 +1122,25 @@ export class VendorsRegistrationComponent implements OnInit {
               500 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".error-msg-feature").text(
+            "Please use an image that's at least " +
+              500 +
+              "px in width and " +
+              500 +
+              "px in height."
+          ),
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-feature").text("");
+              };
+            })(),
+            3e3
+          );
+          $(".cropit-image-preview").addClass("has-error");
         },
       });
     });
-
 
     $('.export').click(function() {
       var imageData = $('.image-editor').cropit('export', {
@@ -951,14 +1148,20 @@ export class VendorsRegistrationComponent implements OnInit {
           quality: 0.75,
           originalSize: true,
       });
-        $("#hidden_base64").attr('src',imageData);
-        $("#purbayan").val(imageData);
+      $("#hidden_base64").attr('src',imageData);
+      $("#purbayan").val(imageData);
+      $(".featureclassnoImg").css("display", "none");
+      $(".featureclassImg").css("display", "block");
+      $(".featureImgModalBtn").removeAttr('disabled');
+      $(".featureImgSubBtn").removeAttr('disabled');
+      $(".error-msg-feature").text("");
     });
-
   }
 
   openUploadProfileModal(content: any) {
     this.modalService.open(content, { windowClass: 'UploadProfileModal' });
+    this.profileimgModalBtn = true;
+    $(".profileImgModalBtn").prop("disabled", true);
     $(function () {
       $('.image-editor2').cropit({
         exportZoom: 1,
@@ -967,6 +1170,20 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
+          $("#profileModalBtnClose").trigger("click");
+          let value = $('input#profile_img').val();
+
+          if(value) {
+            $(".profileclassnoImg").css("display", "none");
+            $(".profileclassImg").css("display", "block");
+            $(".profileImgModalBtn").removeAttr('disabled');
+            $(".profileImgSubBtn").removeAttr('disabled');
+          } else {
+            $(".profileclassnoImg").css("display", "block");
+            $(".profileclassImg").css("display", "none");
+            $(".profileImgModalBtn").prop("disabled", true);
+            $(".profileImgSubBtn").prop("disabled", true);
+          }
           $(".error-msg").text(
             "Please use an image that's at least " +
               500 +
@@ -974,15 +1191,22 @@ export class VendorsRegistrationComponent implements OnInit {
               500 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".error-msg-profile").text(
+            "Please use an image that's at least " +
+              500 +
+              "px in width and " +
+              500 +
+              "px in height."
+          ),   
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-profile").text("");
+              };
+            })(),
+            3e3
+          );
+            $(".cropit-image-preview").addClass("has-error")
         },
       });
     });
@@ -998,12 +1222,18 @@ export class VendorsRegistrationComponent implements OnInit {
       $("#profile_img_show").attr('src',imageData);
       $("#profile_img_show1").attr('src',imageData);
       $("#profile_img").val(imageData);
-     
-  });
+      $(".profileclassnoImg").css("display", "none");
+      $(".profileclassImg").css("display", "block");
+      $(".profileImgModalBtn").removeAttr('disabled');
+      $(".profileImgSubBtn").removeAttr('disabled');
+      $(".error-msg-profile").text("");
+    });
   }
 
   openUploadCoverModal(content: any) {
     this.modalService.open(content, { windowClass: 'UploadCoverModal' });
+    this.coverimgModalBtn = true;
+    $(".coverImgModalBtn").prop("disabled", true);
     $(function () {
       $('.image-editor3').cropit({
         exportZoom: 1,
@@ -1012,6 +1242,20 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
+          $("#coverModalBtnClose").trigger("click");
+          let value = $('input#cover_img').val();
+          if(value) {
+            $(".coverclassnoImg").css("display", "none");
+            $(".coverclassImg").css("display", "block");
+            $(".coverImgModalBtn").removeAttr('disabled');
+            $(".coverImgSubBtn").removeAttr('disabled');
+          } else {
+            $(".coverclassnoImg").css("display", "block");
+            $(".coverclassImg").css("display", "none");
+            $(".coverImgModalBtn").prop("disabled", true);
+            $(".coverImgSubBtn").prop("disabled", true);
+          }
+
           $(".error-msg").text(
             "Please use an image that's at least " +
               1111 +
@@ -1019,32 +1263,42 @@ export class VendorsRegistrationComponent implements OnInit {
               252 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
-        },
+          $(".error-msg-cover").text(
+            "Please use an image that's at least " +
+              1111 +
+              "px in width and " +
+              252 +
+              "px in height."
+          ),   
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-cover").text("");
+              };
+            })(),
+            3e3
+          );
+          $(".cropit-image-preview").addClass("has-error")
+        }
       });
     });
 
-    
     $('.export').click(function() {
       var imageData = $('.image-editor3').cropit('export', {
           type: 'image/jpeg',
           quality: 0.75,
           originalSize: true,
       });
-  
+
       //Set value of hidden input to base64
       $("#cover_img_show").attr('src',imageData);
       $("#cover_img").val(imageData);
-     
-  });
+      $(".coverclassnoImg").css("display", "none");
+      $(".coverclassImg").css("display", "block");
+      $(".coverImgModalBtn").removeAttr('disabled');
+      $(".coverImgSubBtn").removeAttr('disabled');
+      $(".error-msg-cover").text("");
+    });
   }
 
   validateYear(event:any) {
@@ -1060,7 +1314,7 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   onAvgLeadChange(event: any) {
-    if(Number(event.target.value) == 0 || Number(event.target.value) > 180 && Number(event.target.value)) {
+    if(Number(event.target.value) <= 0 || Number(event.target.value) > 180 && Number(event.target.value)) {
       this.avgLeadError = true;
     } else {
       this.avgLeadError = false;
@@ -1072,6 +1326,46 @@ export class VendorsRegistrationComponent implements OnInit {
       this.brandStoryError = true;
     } else {
       this.brandStoryError = false;
+    }
+  }
+
+    on1stOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.firstorderError='First minimum order must be greater than or equal 1.';
+    } else if(event.target.value > 99999) {
+      this.firstorderError='First minimum order must be less than 99999.';
+    } else {
+      this.firstorderError='';
+    }
+  }
+
+  onReOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.reorderErrorMsg='Re-order minumum must be greater than or equal 1.';
+    } else if(event.target.value > 99999) {
+      this.reorderErrorMsg='Re-order minumum must be less than 99999.';
+    } else {
+      this.reorderErrorMsg='';
+    }
+  }
+
+  onMothTypeChange() {
+    this.release_inventoryArray = [];
+  }
+
+  onMonthSelect() {
+    if(this.num_products_addcatalog == 'Yearly') {
+      if(this.release_inventoryArray.length > 1) {
+        this.monthSelectError = 'You can choose only one month.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog == 'Other') {
+      if(this.release_inventoryArray.length == 0) {
+        this.monthSelectError = 'Please selct a month.';
+      } else {
+        this.monthSelectError = '';
+      }
     }
   }
 
@@ -2858,7 +3152,6 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   nextEighteenFunction() {
-
     this.vendorHeader = true;
     this.vendorStepProgress = true;
     this.vendorStepA = true;
@@ -3655,7 +3948,6 @@ export class VendorsRegistrationComponent implements OnInit {
     this.vendorStep27 = false;
     this.vendorStep28 = false;
 
-    this.bazaar_direct_link = this.brand_name;
   }
 
   backTwentyThreeFunction() {
