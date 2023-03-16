@@ -14,7 +14,6 @@ declare var $: any;
 })
 export class VendorMyShopComponent implements OnInit {
   user_id!: any;
-
   insta_handle!: any;
   established_year!: any; 
   stored_carried!: any;
@@ -55,6 +54,7 @@ export class VendorMyShopComponent implements OnInit {
   ngOnInit(): void {
     const d = new Date();
     let year = d.getFullYear();
+    this.currentYear = year;
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -62,7 +62,6 @@ export class VendorMyShopComponent implements OnInit {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
         this.getVendorDetails(this.user_id);
-
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -138,7 +137,6 @@ export class VendorMyShopComponent implements OnInit {
     { name: "Health", value: "Health" },
   ];
 
-
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -177,7 +175,6 @@ export class VendorMyShopComponent implements OnInit {
         let response= JSON.parse(JSON.stringify(responseBody));
         this.cityArray = response.data;
       })
-
       this.insta_handle = response.data.insta_handle;
       this.established_year = response.data.established_year;
       this.stored_carried = response.data.stored_carried;
@@ -543,7 +540,6 @@ export class VendorMyShopComponent implements OnInit {
   }
 
   validateYear(event:any) {
-
     if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
       this.yearError = true;
     } else this.yearError = false;

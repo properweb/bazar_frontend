@@ -64,8 +64,8 @@
                   Brand Name is required.
                 </span>
                 <span class="validate_errors"
-                *ngIf="(brand_nameval.touched || vendorFormStep1.submitted) && brand_nameval.errors?.['pattern']">
-                Only 255 characters allowed.
+                  *ngIf="(brand_nameval.touched || vendorFormStep1.submitted) && brand_nameval.errors?.['pattern']">
+                  Only 255 characters allowed.
                 </span>
               </li>
               <li class="col-lg-12">
@@ -181,34 +181,26 @@
                 <input type="text" hidden class="form-control" [(ngModel)]="about_us" name="about_us" >
                 <input type="text" hidden class="form-control" name="step_count" [ngModel]=2 >
 
-                <input type="text" autocomplete="off" required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" class="form-control" placeholder="" name="first_name" [(ngModel)]="first_name" #first_nameVal="ngModel">
+                <input type="text" autocomplete="off" required pattern="^[a-zA-Z]{0,255}$" class="form-control" placeholder="" name="first_name" [(ngModel)]="first_name" #first_nameVal="ngModel">
                 <span class="validate_errors"
                   *ngIf="(first_nameVal.touched || vendorFormStep2.submitted) && first_nameVal.errors?.['required']">
                   First Name is required.
                 </span>
                 <span class="validate_errors"
-                  *ngIf="(first_nameVal.touched || vendorFormStep2.submitted) && first_nameVal.errors?.['maxlength']">
-                  First name must be less than 255 characters.
-                </span>
-                <span class="validate_errors"
                   *ngIf="(first_nameVal.touched || vendorFormStep2.submitted) && first_nameVal.errors?.['pattern']">
-                  First name is not valid.
+                  First name accepts only alphabets and less than 255 characters.
                 </span>
               </li>
               <li class="col-lg-12">
                 <label class="form-label">Last name</label>
-                <input type="text" autocomplete="off" required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" class="form-control" placeholder="" name="last_name" [(ngModel)]="last_name" #last_nameVal="ngModel" >      
+                <input type="text" autocomplete="off" required pattern="^[a-zA-Z]{0,255}$" class="form-control" placeholder="" name="last_name" [(ngModel)]="last_name" #last_nameVal="ngModel" >      
                 <span class="validate_errors"
                   *ngIf="(last_nameVal.touched || vendorFormStep2.submitted) && last_nameVal.errors?.['required']">
                   Last Name is required.
                 </span>
                 <span class="validate_errors"
-                  *ngIf="(last_nameVal.touched || vendorFormStep2.submitted) && last_nameVal.errors?.['maxlength']">
-                  Last name must be less than 255 characters.
-                </span>
-                <span class="validate_errors"
                   *ngIf="(last_nameVal.touched || vendorFormStep2.submitted) && last_nameVal.errors?.['pattern']">
-                  Last name is not valid.
+                  Last name accepts only alphabets and less than 255 characters.
                 </span>
               </li>
               <li class="col-lg-12">
@@ -1553,7 +1545,8 @@
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Brand Story</label>
-                <textarea required (change)="onBrandStoryChange($event)" class="form-control textareaControl smallTextarea" rows="3" name="shared_brd_story" maxlength="1500" [(ngModel)]="shared_brd_story" #shared_brd_storyval="ngModel" ></textarea>
+                <textarea required #shared_brd_storyRef1 (change)="onBrandStoryChange($event)" class="form-control textareaControl smallTextarea" rows="3" name="shared_brd_story" maxlength="1500" [(ngModel)]="shared_brd_story" #shared_brd_storyval="ngModel" ></textarea>
+                <span class="limitSpan">{{shared_brd_storyRef1.value?.length}}/1500</span>
                 <span class="validate_errors"
                   *ngIf="(shared_brd_storyval.touched || vendorFinalStep.submitted) && shared_brd_storyval.errors?.['required']">
                   This field is required.

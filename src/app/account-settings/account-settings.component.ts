@@ -180,9 +180,6 @@ export class AccountSettingsComponent implements OnInit {
         exportZoom: 1.25,
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
-        imageState: {
-          src: 'http://lorempixel.com/500/400/',
-        },
       });
     });
 

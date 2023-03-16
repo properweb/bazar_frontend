@@ -35,7 +35,7 @@
           <p>Your logo will appear at the top of any marketing email campaigns you send to retailers.</p>
           <div class="uploadProductVideo">
             <div class="upload-btn-wrapper">
-              <img src="{{logo_image}}" id="logo_img_show" alt="" /><a class="imageEdit"> <i class="fa-solid fa-pencil"  (click)="openUploadLogoModal(uploadContent4)"></i></a>
+              <img src="{{logo_image}}" id="logo_img_show" alt="" /><a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadLogoModal(uploadContent4)"></i></a>
               <input id="logo_img" type="hidden" alt="upload image" #logoImgVal>
             </div>
           </div>
@@ -43,8 +43,8 @@
         <div class="myShopWhite">
           <h3>Share your brand story</h3>
           <p>Add a personal touch to your shop by sharing the story of your brand, who you are, or fun facts about your product lines.</p>
-          <textarea #shared_brd_storyRef required maxlength="1500" (change)="onBrandStoryChange($event)" class="form-control textAreaForm" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" #shared_brd_storyval='ngModel'></textarea>
-          <!-- <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span> -->
+          <textarea style="resize: none;" #shared_brd_storyRef required maxlength="1500" (change)="onBrandStoryChange($event)" class="form-control textAreaForm" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" #shared_brd_storyval='ngModel'></textarea>
+          <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span>
           <span class="validate_errors"
             *ngIf="(shared_brd_storyval.touched || myShopForm.submitted) && shared_brd_storyval.errors?.['required']">
             This field is required
@@ -142,7 +142,8 @@
           <p>Anything missing from the list? Share with us!</p>
           <div class="row">
             <div class="col-lg-7 col-md-8">
-              <input type="text" pattern="^[a-zA-Z0-9_.-]*$" class="form-control" placeholder="" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" #tag_shop_page_aboutval="ngModel">
+              <input style="margin-bottom: 0px !important;" type="text" #extraTagRef maxlength="1000" class="form-control" placeholder="" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" #tag_shop_page_aboutval="ngModel">
+              <span class="limitSpan">{{extraTagRef.value?.length}}/1000</span>
               <span class="validate_errors"
                 *ngIf="(tag_shop_page_aboutval.touched || myShopForm.submitted) && tag_shop_page_aboutval.errors?.['pattern']">
                 This field not valid.

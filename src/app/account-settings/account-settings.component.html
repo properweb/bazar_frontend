@@ -155,7 +155,8 @@
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Brand Story</label> 
-                <textarea name="shared_brd_story" [(ngModel)]="shared_brd_story" required maxlength="1500" (change)="onBrandStoryChange($event)" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3"></textarea>
+                <textarea name="shared_brd_story" #shared_brd_storyRef [(ngModel)]="shared_brd_story" required maxlength="1500" (change)="onBrandStoryChange($event)" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3"></textarea>
+                <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span>
                 <span class="validate_errors"
                   *ngIf="(shared_brd_storyval.touched || vendorAccountUpdate.submitted) && shared_brd_storyval.errors?.['required']">
                   This field is required.
