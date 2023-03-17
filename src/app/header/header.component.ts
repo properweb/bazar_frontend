@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   email!: any;
   userEmail!: any;
   vendorEmail!: any;
+  vendorCount: any = 0;
   log1: boolean = true;
   log2: boolean = false;
   submitted: boolean = false;
@@ -48,8 +49,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getVendorCount();
+  }
 
+  getVendorCount() {
+    this.api.vendorCount().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.vendorCount = response.data;
+    })
+  }
+ 
   openUserLogInModal(content: any) {
     this.signInModal = this.modalService.open(content, { windowClass: 'loginModal' });
   }
@@ -107,6 +117,7 @@ export class HeaderComponent implements OnInit {
       email: signInFrom.value.email_address,
       password: signInFrom.value.password
     }
+    console.log(this.currentUrl);
     this.spinnerShow = true;
     this.api.vendorSignIn(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
@@ -115,20 +126,32 @@ export class HeaderComponent implements OnInit {
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-          this.router.navigate([this.currentUrl]).then(() => {
-            this.onChildChange = true;
-            window.location.reload();
-          });
-          this.signInModal.close();
-          this.spinnerShow = false;
-          this.storage
-          .set('user_session', JSON.parse(JSON.stringify(response.data)))
-          .subscribe(() => {});
-          localStorage.setItem('local_data', response.data.role);
-          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
-
+          if(response.data.step_count !== 12) { 
+            this.storage
+            .set('user_session', JSON.parse(JSON.stringify(response.data)))
+            .subscribe(() => {});
+            localStorage.setItem('from_login_cred', JSON.stringify(values));
+            this.router.navigate(['vendorRegistration',response.data.step_count]);
+            this.signInModal.close();
+            this.spinnerShow = false; 
+          } else {
+            this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+            setTimeout(() => {
+              this.router.navigate([this.currentUrl]).then(() => {
+                this.onChildChange = true;
+                window.location.reload();
+              });
+            }, 500);
+            this.signInModal.close();
+            this.spinnerShow = false;
+            this.storage
+            .set('user_session', JSON.parse(JSON.stringify(response.data)))
+            .subscribe(() => {});
+            localStorage.setItem('local_data', response.data.role);
+            localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
+          }
         } else if(response.data.role === 'brand') {
-          if(response.data.step_count !== 12) {
+          if(response.data.step_count !== 12) { 
             this.storage
             .set('user_session', JSON.parse(JSON.stringify(response.data)))
             .subscribe(() => {});
@@ -164,9 +187,10 @@ export class HeaderComponent implements OnInit {
           .subscribe(() => {});
           localStorage.setItem('local_data', response.data.role);
           localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
-          this.router.navigateByUrl('/retailer-home').then(() => {
-            this.onChildChange = true;
-          });
+          this.router.navigateByUrl('/localBrands');
+          // this.router.navigateByUrl('/retailer-home').then(() => {
+          //   this.onChildChange = true;
+          // });
           this.signInModal.close();
           this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
         }

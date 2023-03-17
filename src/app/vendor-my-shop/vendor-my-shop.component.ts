@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { StorageMap } from "@ngx-pwa/local-storage";
 import { NgToastService } from "ng-angular-popup";
 import { AppComponent } from "../app.component";
 import { ApiService } from "../services/api.service";
+import { VendorDashboardHeaderComponent } from "../vendor-dashboard-header/vendor-dashboard-header.component";
 declare var $: any;
 
 @Component({
@@ -13,6 +14,8 @@ declare var $: any;
   styleUrls: ["./vendor-my-shop.component.css"],
 })
 export class VendorMyShopComponent implements OnInit {
+  @ViewChild(VendorDashboardHeaderComponent) vendorDashboardHeaderComponent !: VendorDashboardHeaderComponent;
+
   user_id!: any;
   insta_handle!: any;
   established_year!: any; 
@@ -48,8 +51,7 @@ export class VendorMyShopComponent implements OnInit {
   brandStoryError: any= false;
   yearError: any= false;
 
-  constructor(
-    private storage: StorageMap, private apiService: ApiService, public modalService: NgbModal, private toast: NgToastService, private appComponent: AppComponent, private router: Router ) {}
+  constructor( private storage: StorageMap, private apiService: ApiService, public modalService: NgbModal, private toast: NgToastService, private appComponent: AppComponent, private router: Router ) {}
 
   ngOnInit(): void {
     const d = new Date();
@@ -167,40 +169,53 @@ export class VendorMyShopComponent implements OnInit {
     this.appComponent.showSpinner = true;
     this.apiService.getVendorDetails(user_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.apiService.getStates(response.data.headquatered).subscribe((responseBody) => {
-        let response= JSON.parse(JSON.stringify(responseBody));
-        this.stateArray = response.data;
-      })
-      this.apiService.getCities(response.data.state).subscribe((responseBody) => {
-        let response= JSON.parse(JSON.stringify(responseBody));
-        this.cityArray = response.data;
-      })
-      this.insta_handle = response.data.insta_handle;
-      this.established_year = response.data.established_year;
-      this.stored_carried = response.data.stored_carried;
-      this.first_order_min = response.data.first_order_min;
-      this.re_order_min = response.data.re_order_min;
-      this.avg_lead_time = response.data.avg_lead_time;
-      this.shared_brd_story = response.data.shared_brd_story;
-      this.product_made = response.data.product_made;
-      this.headquatered = response.data.headquatered;
-      this.tag_shop_page = response.data.tag_shop_page;
-      this.tag_shop_page_about = response.data.tag_shop_page_about;
-      this.profile_photo = response.data.profile_photo;
-      this.cover_image = response.data.cover_image;
-      this.featured_image = response.data.featured_image;
-      this.logo_image = response.data.logo_image;
-      this.video_url = response.data.video_url;
-      this.state = response.data.state;
-      this.city = response.data.city;
-      this.publications = response.data.publications;
-      this.previewed_shop_page = response.data.previewed_shop_page;
-      this.added_product = response.data.added_product;
-      this.go_live = response.data.go_live;
-      this.bazaar_direct_link = response.data.bazaar_direct_link;
+      if( response.res == true) {
+        this.apiService.getStates(response.data.headquatered).subscribe((responseBody) => {
+          let response= JSON.parse(JSON.stringify(responseBody));
+          this.stateArray = response.data;
+        })
+        this.apiService.getCities(response.data.state).subscribe((responseBody) => {
+          let response= JSON.parse(JSON.stringify(responseBody));
+          this.cityArray = response.data;
+        })
+        this.insta_handle = response.data.insta_handle;
+        this.established_year = response.data.established_year;
+        this.stored_carried = response.data.stored_carried;
+        this.first_order_min = response.data.first_order_min;
+        this.re_order_min = response.data.re_order_min;
+        this.avg_lead_time = response.data.avg_lead_time;
+        this.shared_brd_story = response.data.shared_brd_story;
+        this.product_made = response.data.product_made;
+        this.headquatered = response.data.headquatered;
+        this.tag_shop_page = response.data.tag_shop_page;
+        this.tag_shop_page_about = response.data.tag_shop_page_about;
+        this.profile_photo = response.data.profile_photo;
+        $("#profile_img_show").attr("src", response.data.profile_photo);
+        $("#profile_img").val(response.data.profile_photo);
+        this.cover_image = response.data.cover_image;
+        $("#cover_img_show").css("background-image", "url(" + response.data.cover_image + ")");
+        $("#cover_img").val(response.data.cover_image);
+        this.featured_image = response.data.featured_image;
+        $("#hidden_base64").attr("src", response.data.featured_image);
+        $("#purbayan").val(response.data.featured_image);
+        this.logo_image = response.data.logo_image;
+        $("#logo_img_show").attr("src", response.data.logo_image);
+        $("#logo_img").val(response.data.logo_image);
+        this.video_url = response.data.video_url;
+        this.state = response.data.state;
+        this.city = response.data.city;
+        this.publications = response.data.publications;
+        this.previewed_shop_page = response.data.previewed_shop_page;
+        this.added_product = response.data.added_product;
+        this.go_live = response.data.go_live;
+        this.bazaar_direct_link = response.data.bazaar_direct_link;
+  
+        this.tagsToolsArray = response.data.tag_shop_page;
+        this.appComponent.showSpinner = false;
+      } else {
 
-      this.tagsToolsArray = response.data.tag_shop_page;
-      this.appComponent.showSpinner = false;
+      }
+      
     });
   }
 
@@ -224,22 +239,22 @@ export class VendorMyShopComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $(".error-msg").text(
+          $(".error-msg-profile").text(
             "Please use an image that's at least " +
               500 +
               "px in width and " +
               500 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".cropit-image-preview").addClass("has-error"),
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-profile").text("");
+              };
+            })(),
+            3e3
+          );
         },
       });
     });
@@ -251,8 +266,11 @@ export class VendorMyShopComponent implements OnInit {
         originalSize: true,
       });
 
-      $("#profile_img_show").attr("src", imageData);
-      $("#profile_img").val(imageData);
+      if(imageData) {
+        $("#profile_img_show").attr("src", imageData);
+        $("#profile_img").val(imageData);
+      }
+   
     });
   }
 
@@ -266,22 +284,22 @@ export class VendorMyShopComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $(".error-msg").text(
+          $(".error-msg-cover").text(
             "Please use an image that's at least " +
               1111 +
               "px in width and " +
               252 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".cropit-image-preview").addClass("has-error"),
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-cover").text("");
+              };
+            })(),
+            3e3
+          );
         },
       });
     });
@@ -293,9 +311,12 @@ export class VendorMyShopComponent implements OnInit {
         originalSize: true,
       });
 
-      //Set value of hidden input to base64
-      $("#cover_img_show").css("background-image", "url(" + imageData + ")");
-      $("#cover_img").val(imageData);
+      if(imageData) {
+        //Set value of hidden input to base64
+        $("#cover_img_show").css("background-image", "url(" + imageData + ")");
+        $("#cover_img").val(imageData);
+      }
+     
     });
   }
 
@@ -309,22 +330,22 @@ export class VendorMyShopComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $(".error-msg").text(
+          $(".error-msg-feature").text(
             "Please use an image that's at least " +
               500 +
               "px in width and " +
               500 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".cropit-image-preview").addClass("has-error"),
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-feature").text("");
+              };
+            })(),
+            3e3
+          );
         },
       });
     });
@@ -336,10 +357,12 @@ export class VendorMyShopComponent implements OnInit {
         originalSize: true,
       });
 
-      //Set value of hidden input to base64
-
-      $("#hidden_base64").attr("src", imageData);
-      $("#purbayan").val(imageData);
+      if(imageData) {
+        //Set value of hidden input to base64
+        $("#hidden_base64").attr("src", imageData);
+        $("#purbayan").val(imageData);
+      }
+      
     });
   }
 
@@ -353,22 +376,22 @@ export class VendorMyShopComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $(".error-msg").text(
+          $(".error-msg-logo").text(
             "Please use an image that's at least " +
               200 +
               "px in width and " +
               200 +
               "px in height."
           ),
-            $(".cropit-image-preview").addClass("has-error"),
-            window.setTimeout(
-              (function () {
-                return function () {
-                  return $(".cropit-image-preview").removeClass("has-error");
-                };
-              })(),
-              3e3
-            );
+          $(".cropit-image-preview").addClass("has-error"),
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-logo").text("");
+              };
+            })(),
+            3e3
+          );
         },
       });
     });
@@ -380,10 +403,12 @@ export class VendorMyShopComponent implements OnInit {
         originalSize: true,
       });
 
-      //Set value of hidden input to base64
-
-      $("#logo_img_show").attr("src", imageData);
-      $("#logo_img").val(imageData);
+      if(imageData) {
+        //Set value of hidden input to base64
+        $("#logo_img_show").attr("src", imageData);
+        $("#logo_img").val(imageData);
+      }
+     
     });
   }
 
@@ -414,11 +439,12 @@ export class VendorMyShopComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.btnDis = false;
-        this.toast.success({detail:"'Changes Saved.'",summary: '' ,duration: 4000});
+        this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
         this.previewed_shop_page = '1';
+        this.vendorDashboardHeaderComponent.getVendorDetails(this.user_id);
       } else {
         this.btnDis = false;
-        this.toast.error({detail:"Something went wrong. Please try again!",summary: '' ,duration: 4000});
+        this.toast.error({detail: response.msg,summary: '',duration: 4000});
       }
     },(error) => {
       this.btnDis = false;
@@ -468,8 +494,17 @@ export class VendorMyShopComponent implements OnInit {
         reader.onload = (event:any) => { // called once readAsDataURL is completed
         }
       }
+      $(".error-msg-profile").text("");
     } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-profile").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-profile").text("");
+          };
+        })(),
+        3e3
+      );
     }
   } 
 
@@ -487,8 +522,17 @@ export class VendorMyShopComponent implements OnInit {
         reader.onload = (event:any) => { // called once readAsDataURL is completed
         }
       }
+      $(".error-msg-cover").text("");
     } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-cover").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-cover").text("");
+          };
+        })(),
+        3e3
+      );
     }
    
   }
@@ -506,8 +550,17 @@ export class VendorMyShopComponent implements OnInit {
         reader.onload = (event:any) => { // called once readAsDataURL is completed
         }
       }
-    }else{
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-feature").text("");
+    } else{
+      $(".error-msg-feature").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-feature").text("");
+          };
+        })(),
+        3e3
+      );
     } 
 
   }
@@ -525,8 +578,17 @@ export class VendorMyShopComponent implements OnInit {
         reader.onload = (event:any) => { // called once readAsDataURL is completed
         }
       }
-    }else{
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-logo").text("");
+    } else{
+      $(".error-msg-logo").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-logo").text("");
+          };
+        })(),
+        3e3
+      );
     } 
 
   }

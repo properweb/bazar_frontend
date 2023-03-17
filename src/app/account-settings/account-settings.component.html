@@ -100,7 +100,7 @@
                 </span>
                 <span class="validate_errors"
                   *ngIf="avgLeadError">
-                  Average lead time must be greater than 1 & less than 180 days.
+                  Average lead time should be between 1 to 180 days.
                 </span>
               </li>
               <li class="col-lg-6">
@@ -173,7 +173,7 @@
                     <div class="form-check">
                       <!-- <input [value]="item.value" checked (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" [ngModel]="tag_shop_page" #tag_shop_pageval='ngModel'> -->
                       <input [value]="item.value" [checked]="tag_shop_page.includes(item.value) == true" (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" >
-                      <label class="form-check-label">{{item.name}}</label>
+                      <label class="form-check-label">{{item.name}}</label> 
                     </div>
                   </li> 
                   <span class="validate_errors" *ngIf="validError && tagsToolsArray?.length === 0">
@@ -182,10 +182,10 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </div> 
           <div class="col-lg-6 brandInformationRight">
             <div class="brandInformation_Smalldiv">
-              <div class="show_upload_profile_img"><img src="{{profile_photo}}" alt="upload image" id="profile_img_show"> <a class="edit_upload_img" (click)="openUploadProfileModal(uploadContent2)"><img src="assets/images/account_settings_icon.svg" alt="edit icon"></a> </div>
+              <div class="show_upload_profile_img"><img alt="upload image" id="profile_img_show"> <a class="edit_upload_img" (click)="openUploadProfileModal(uploadContent2)"><img src="assets/images/account_settings_icon.svg" alt="edit icon"></a> </div>
               <input id="profile_img" type="hidden" alt="upload image" name="featured_image_hidden" #profileImgVal>
               <h3>Final Step! Review Your Store Information</h3>
               <p>Please review your profile information on the left side before submitting to the Bazar team.</p>
@@ -219,6 +219,7 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" (change)="getProfileImg($event)"  class="cropit-image-input" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
       </div>
+      <div class="error-msg-profile"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->

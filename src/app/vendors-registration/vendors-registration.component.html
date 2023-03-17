@@ -155,7 +155,7 @@
               </li>
             </ul>
           </form>
-        </div>
+        </div> 
       </div>
     </div>
     <!-- Vendor Registration Step 1 Of Step 1 End -->
@@ -277,10 +277,14 @@
                   <label class="form-check-label">To ensure you receive important product and marketting updates from Bazaar, sign up for our emails. You can opt out any time</label>
                 </div>
               </li>
-              <li class="col-lg-12">
-                <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span> 
+              <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span>
+              <li class="col-lg-6">
+                <button type="button" class="btn btn-primary back_btn back_btn2"
+                  (click)="backOneFunction()">Back</button>
+              </li>
+              <li class="col-lg-6">
                 <button type="submit" class="btn btn-primary common_btn next2" *ngIf="!spinnerShow">Save & Continue</button>
-                <button type="submit" class="btn btn-primary common_btn next2" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; left: 140px;bottom: -28px;position: absolute;"></button>
+                <button type="submit" class="btn btn-primary common_btn next2" disabled *ngIf="spinnerShow">Please wait...</button>
               </li>
             </ul>
           </form>
@@ -678,8 +682,6 @@
                 </div>
                 <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
               </li> 
-              <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span>
-              <span class="error-msg-feature" style="color: red;">{{errorMsg}}</span>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn7 mt-4" (click)="backNineFunction()">Back</button>
               </li>
@@ -745,7 +747,7 @@
             </ul>
             <ul class="vendorRegFormList row">
               <li class="col-lg-12 profileclassnoImg">
-                <button class="uploadBtn" (click)="openUploadProfileModal(uploadContent2)">Upload</button>
+                <button type="button" class="uploadBtn" (click)="openUploadProfileModal(uploadContent2)">Upload</button>
                 <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
               </li>
               <li class="col-lg-12 profileclassImg">
@@ -756,7 +758,6 @@
                 </div>
                 <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
               </li>
-              <span class="error-msg-profile"></span>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn10 mt-4" (click)="backTen2Function()">Back</button>
               </li>
@@ -822,7 +823,7 @@
             <ul class="vendorRegFormList row">
               <li class="col-lg-12 coverclassnoImg" >
               <!-- <li class="col-lg-12" *ngIf="!cover_image || coverimgError"> -->
-                <button class="uploadBtn" (click)="openUploadCoverModal(uploadContent3)">Upload</button>
+                <button type="button" class="uploadBtn" (click)="openUploadCoverModal(uploadContent3)">Upload</button>
                 <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
               </li>
               <li class="col-lg-12 coverclassImg">
@@ -833,7 +834,6 @@
                 </div>
                 <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
               </li>
-              <span class="error-msg-cover"></span>
               <li class="col-lg-6">
                 <button type="button" class="btn btn-primary back_btn back_btn13 mt-4" (click)="backTwelveAFunction()">Back</button>
               </li>
@@ -982,7 +982,7 @@
                 </span>
                 <span class="validate_errors"
                   *ngIf="avgLeadError">
-                  Average lead time must be greater than 1 & less than 180 days.
+                  Average lead time should be between 1 to 180 days.
                 </span>
                 <span class="span_alert">How long you usually take to prepare a new order. Delivery window estimates will be shown to retailers separately.</span>
               </li>
@@ -1489,7 +1489,7 @@
                 </span>
                 <span class="validate_errors"
                   *ngIf="avgLeadError">
-                  Average lead time must be greater than 1 & less than 180 days.
+                  Average lead time should be between 1 to 180 days.
                 </span>
               </li>
               <li class="col-lg-6">
@@ -1642,9 +1642,8 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getFeaturedImg($event)" [(ngModel)]="featured_image" [ngModelOptions]="{standalone: true}">
         <input type="hidden" id="hidden_base64">
-
       </div>
-      <!-- <div class="error-msg"></div> -->
+      <div class="error-msg-feature" style="color: red;"></div>
       <div class="cropit-preview" id="featureCropPreview" ></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -1655,8 +1654,8 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary back_btn back_btn8" (click)="modal.dismiss('Cross click')" >Back</button>
-    <button type="button" [disabled]="featureimgModalBtn" class="btn btn-primary common_btn next11 featureImgModalBtn export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
-    <!-- <button type="button" [disabled]="featureimgError" class="btn btn-primary common_btn next11 export" (click)="modal.dismiss('Cross click')" (click)="nextElevenFunction()">Save & Continue</button> -->
+    <button type="button" class="btn btn-primary common_btn next11 export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+    <!-- <button type="button" [disabled]="featureimgModalBtn" class="btn btn-primary common_btn next11 featureImgModalBtn export" (click)="modal.dismiss('Cross click')">Save & Continue</button> -->
   </div>
 </ng-template>
 <!-- Vendor Registration Upload Feature Image Modal End -->
@@ -1671,7 +1670,7 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getProfileImg($event)" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-profile"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -1683,12 +1682,8 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-primary back_btn back_btn11" (click)="modal.dismiss('Cross click')"
       (click)="backTwelveFunction()">Back</button>
-    <button [disabled]="profileimgModalBtn" type="button" class="btn btn-primary common_btn next14 profileImgModalBtn export"
-      (click)="modal.dismiss('Cross click')">Save &
-      Continue</button>
-    <!-- <button [disabled]="profileimgError" type="button" class="btn btn-primary common_btn next14 export" (click)="nextThirteenFunction()"
-      (click)="modal.dismiss('Cross click')">Save &
-      Continue</button> -->
+    <button type="button" class="btn btn-primary common_btn next14 export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+    <!-- <button [disabled]="profileimgModalBtn" type="button" class="btn btn-primary common_btn next14 profileImgModalBtn export" (click)="modal.dismiss('Cross click')">Save & Continue</button> -->
   </div>
 </ng-template>
 <!-- Vendor Registration Upload Profile Photo Modal End -->
@@ -1703,7 +1698,7 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getCoverImg($event)" [(ngModel)]="cover_image" [ngModelOptions]="{standalone: true}">
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-cover"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -1715,12 +1710,8 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-primary back_btn back_btn14" (click)="modal.dismiss('Cross click')"
       (click)="backFourteenFunction()">Back</button>
-    <button [disabled]="coverimgModalBtn" type="button" class="btn btn-primary common_btn next17 coverImgModalBtn export" (click)="modal.dismiss('Cross click')"
-      >Save &
-      Continue</button>
-    <!-- <button [disabled]="coverimgError" type="button" class="btn btn-primary common_btn next17 export" (click)="modal.dismiss('Cross click')"
-      (click)="nextFifteenFunction()">Save &
-      Continue</button> -->
+    <button type="button" class="btn btn-primary common_btn next17 export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+    <!-- <button [disabled]="coverimgModalBtn" type="button" class="btn btn-primary common_btn next17 coverImgModalBtn export" (click)="modal.dismiss('Cross click')">Save & Continue</button> -->
   </div>
 </ng-template>
 <!-- Vendor Registration Upload Cover Image Modal End -->

@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   vendorRegistrationStep1(vendorRegStep1:any) {
-    return this.http.post(this._Base_URL+'brands/update' , vendorRegStep1);
+    return this.http.put(this._Base_URL+'brands/update' , vendorRegStep1);
   }
 
   vendorSignIn(signInData:any) {
@@ -67,11 +67,11 @@ export class ApiService {
   }
 
   userAccountUpdate(data:any) {
-    return this.http.post(this._Base_URL+'brands/update/account' , data, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'brands/update/account' , data, this.createAuthorizationHeader());
   }
 
   updateVendorDetails(updatedData:any) {
-    return this.http.post(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
   }
 
   getProducts(id:any) {
@@ -404,6 +404,10 @@ export class ApiService {
 
   vendorCount() {
     return this.http.get(this._Base_URL+'brands/count', this.createAuthorizationHeader());
+  }
+  
+  vendorInfoUpdate(updatedData:any) {
+    return this.http.put(this._Base_URL+'brands/update/info' , updatedData, this.createAuthorizationHeader());
   }
 
   logout() {

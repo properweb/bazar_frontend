@@ -569,7 +569,6 @@ export class VendorsRegistrationComponent implements OnInit {
       }
       $(".error-msg-feature").text("");
     } else{
-      $("#featureModalBtnClose").trigger("click");
       $(".error-msg-feature").text("Only jpg/jpeg and png files are allowed!");
       window.setTimeout(
         (function () {
@@ -587,8 +586,6 @@ export class VendorsRegistrationComponent implements OnInit {
     var idxDot = fileName.lastIndexOf(".") + 1;
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-      this.profile_photo = event.target.files[0];
-
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
         this.profileimgError = false;
@@ -601,7 +598,6 @@ export class VendorsRegistrationComponent implements OnInit {
       }
       $(".error-msg-profile").text("");
     } else {
-      $("#profileModalBtnClose").trigger("click");
       $(".error-msg-profile").text("Only jpg/jpeg and png files are allowed!");
       window.setTimeout(
         (function () {
@@ -633,7 +629,6 @@ export class VendorsRegistrationComponent implements OnInit {
       }
       $(".error-msg-cover").text("");
     } else {
-      $("#coverModalBtnClose").trigger("click");
       $(".error-msg-cover").text("Only jpg/jpeg and png files are allowed!");
       window.setTimeout(
         (function () {
@@ -1102,7 +1097,6 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $("#featureModalBtnClose").trigger("click");
           let value = $('input#purbayan').val();
           if(value) {
             $(".featureclassnoImg").css("display", "none");
@@ -1115,13 +1109,6 @@ export class VendorsRegistrationComponent implements OnInit {
             $(".featureImgModalBtn").prop("disabled", true);
             $(".featureImgSubBtn").prop("disabled", true);
           }
-          $(".error-msg").text(
-            "Please use an image that's at least " +
-              500 +
-              "px in width and " +
-              500 +
-              "px in height."
-          ),
           $(".error-msg-feature").text(
             "Please use an image that's at least " +
               500 +
@@ -1148,12 +1135,14 @@ export class VendorsRegistrationComponent implements OnInit {
           quality: 0.75,
           originalSize: true,
       });
-      $("#hidden_base64").attr('src',imageData);
-      $("#purbayan").val(imageData);
-      $(".featureclassnoImg").css("display", "none");
-      $(".featureclassImg").css("display", "block");
-      $(".featureImgModalBtn").removeAttr('disabled');
-      $(".featureImgSubBtn").removeAttr('disabled');
+      if(imageData) {
+        $("#hidden_base64").attr('src',imageData);
+        $("#purbayan").val(imageData);
+        $(".featureclassnoImg").css("display", "none");
+        $(".featureclassImg").css("display", "block");
+        $(".featureImgModalBtn").removeAttr('disabled');
+        $(".featureImgSubBtn").removeAttr('disabled');
+      }
       $(".error-msg-feature").text("");
     });
   }
@@ -1162,7 +1151,7 @@ export class VendorsRegistrationComponent implements OnInit {
     this.modalService.open(content, { windowClass: 'UploadProfileModal' });
     this.profileimgModalBtn = true;
     $(".profileImgModalBtn").prop("disabled", true);
-    $(function () {
+    $(function () { 
       $('.image-editor2').cropit({
         exportZoom: 1,
         width: 500,
@@ -1170,7 +1159,6 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $("#profileModalBtnClose").trigger("click");
           let value = $('input#profile_img').val();
 
           if(value) {
@@ -1184,13 +1172,6 @@ export class VendorsRegistrationComponent implements OnInit {
             $(".profileImgModalBtn").prop("disabled", true);
             $(".profileImgSubBtn").prop("disabled", true);
           }
-          $(".error-msg").text(
-            "Please use an image that's at least " +
-              500 +
-              "px in width and " +
-              500 +
-              "px in height."
-          ),
           $(".error-msg-profile").text(
             "Please use an image that's at least " +
               500 +
@@ -1206,7 +1187,7 @@ export class VendorsRegistrationComponent implements OnInit {
             })(),
             3e3
           );
-            $(".cropit-image-preview").addClass("has-error")
+          $(".cropit-image-preview").addClass("has-error")
         },
       });
     });
@@ -1217,15 +1198,16 @@ export class VendorsRegistrationComponent implements OnInit {
           quality: 0.75,
           originalSize: true,
       });
-  
-      //Set value of hidden input to base64
-      $("#profile_img_show").attr('src',imageData);
-      $("#profile_img_show1").attr('src',imageData);
-      $("#profile_img").val(imageData);
-      $(".profileclassnoImg").css("display", "none");
-      $(".profileclassImg").css("display", "block");
-      $(".profileImgModalBtn").removeAttr('disabled');
-      $(".profileImgSubBtn").removeAttr('disabled');
+      if(imageData) {
+        //Set value of hidden input to base64
+        $("#profile_img_show").attr('src',imageData);
+        $("#profile_img_show1").attr('src',imageData);
+        $("#profile_img").val(imageData);
+        $(".profileclassnoImg").css("display", "none");
+        $(".profileclassImg").css("display", "block");
+        $(".profileImgModalBtn").removeAttr('disabled');
+        $(".profileImgSubBtn").removeAttr('disabled');
+      }
       $(".error-msg-profile").text("");
     });
   }
@@ -1242,7 +1224,6 @@ export class VendorsRegistrationComponent implements OnInit {
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
         onImageError: function () {
-          $("#coverModalBtnClose").trigger("click");
           let value = $('input#cover_img').val();
           if(value) {
             $(".coverclassnoImg").css("display", "none");
@@ -1255,14 +1236,6 @@ export class VendorsRegistrationComponent implements OnInit {
             $(".coverImgModalBtn").prop("disabled", true);
             $(".coverImgSubBtn").prop("disabled", true);
           }
-
-          $(".error-msg").text(
-            "Please use an image that's at least " +
-              1111 +
-              "px in width and " +
-              252 +
-              "px in height."
-          ),
           $(".error-msg-cover").text(
             "Please use an image that's at least " +
               1111 +
@@ -1289,14 +1262,15 @@ export class VendorsRegistrationComponent implements OnInit {
           quality: 0.75,
           originalSize: true,
       });
-
-      //Set value of hidden input to base64
-      $("#cover_img_show").attr('src',imageData);
-      $("#cover_img").val(imageData);
-      $(".coverclassnoImg").css("display", "none");
-      $(".coverclassImg").css("display", "block");
-      $(".coverImgModalBtn").removeAttr('disabled');
-      $(".coverImgSubBtn").removeAttr('disabled');
+      if(imageData) {
+        //Set value of hidden input to base64
+        $("#cover_img_show").attr('src',imageData);
+        $("#cover_img").val(imageData);
+        $(".coverclassnoImg").css("display", "none");
+        $(".coverclassImg").css("display", "block");
+        $(".coverImgModalBtn").removeAttr('disabled');
+        $(".coverImgSubBtn").removeAttr('disabled');
+      }
       $(".error-msg-cover").text("");
     });
   }
@@ -1438,6 +1412,56 @@ export class VendorsRegistrationComponent implements OnInit {
     this.vendorStepOneMain = true;
     this.vendorStep1 = false;
     this.vendorStep2 = true;
+    this.vendorStep3 = false;
+    this.vendorStepTwoMain = false;
+    this.vendorStep4 = false;
+    this.vendorStep5 = false;
+    this.vendorStep6 = false;
+    this.vendorStep7 = false;
+    this.vendorStep8 = false;
+    this.vendorStep9 = false;
+    this.vendorStep10 = false;
+    this.vendorStep11 = false;
+    this.vendorStep12 = false;
+    this.vendorStep13 = false;
+    this.vendorStep14 = false;
+    this.vendorStep15 = false;
+    this.vendorStep16 = false;
+    this.vendorStep17 = false;
+    this.vendorStep18 = false;
+    this.vendorStep19 = false;
+    this.vendorStep20 = false;
+    this.vendorStep21 = false;
+    this.vendorStep22 = false;
+    this.vendorStep23 = false;
+    this.vendorStep24 = false;
+    this.vendorStep25 = false;
+    this.vendorStep26 = false;
+    this.vendorStep27 = false;
+    this.vendorStep28 = false;
+  }
+
+  backOneFunction() {
+    this.vendorHeader = false;
+    this.vendorStepProgress = false;
+    this.vendorStepA = false;
+    this.vendorStepB = false;
+    this.vendorStepC = false;
+    this.vendorStepD = false;
+    this.vendorStepE = false;
+    this.vendorStepF = false;
+    this.vendorStepG = false;
+    this.vendorStepH = false;
+    this.vendorStepI = false;
+    this.vendorStepJ = false;
+    this.vendorStepK = false;
+    this.vendorStepL = false;
+    this.vendorStepM = false;
+    this.vendorStepN = false;
+    this.vendorStepO = false;
+    this.vendorStepOneMain = true;
+    this.vendorStep1 = true;
+    this.vendorStep2 = false;
     this.vendorStep3 = false;
     this.vendorStepTwoMain = false;
     this.vendorStep4 = false;
@@ -1617,6 +1641,8 @@ export class VendorsRegistrationComponent implements OnInit {
     this.vendorStep27 = false;
     this.vendorStep28 = false;
   }
+
+
 
   backFourFunction() {
     this.vendorHeader = true;

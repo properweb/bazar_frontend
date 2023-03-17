@@ -11,10 +11,10 @@
         <div class="myShopWhite">
           <h3>Cover image & profile image</h3>
           <p>These images are featured at the top of your brand's shop page.</p>
-          <div class="coverImgSec" id="cover_img_show" [style.backgroundImage]="'url('+cover_image+')'"> <a class="logoEdit">
+          <div class="coverImgSec" id="cover_img_show"> <a class="logoEdit">
             <input id="cover_img" type="hidden" alt="upload image" #coverImgVal>
             <i class="fa-solid fa-pencil" (click)="openUploadCoverModal(uploadContent3)"></i> </a> </div>
-          <div class="vendor_user_logo"> <img src="{{profile_photo}}" id="profile_img_show" alt="" /> <a class="bannerEdit"> <i class="fa-solid fa-pencil"  (click)="openUploadProfileModal(uploadContent2)"></i>
+          <div class="vendor_user_logo"> <img id="profile_img_show" alt="" /> <a class="bannerEdit"> <i class="fa-solid fa-pencil"  (click)="openUploadProfileModal(uploadContent2)"></i>
             <input id="profile_img" type="hidden" alt="upload image" #profileImgVal>
             </a> </div>
           <p><span>Note: Images may be edited or replaced to meet our safety guidelines</span></p>
@@ -22,7 +22,7 @@
           <h3>Cover image & profile image</h3>
           <p>These images are featured at the top of your brand's shop page.</p>
           <div class="row customRow">
-            <div class="col-lg-3 col-md-3 colImgSec"> <img src="{{featured_image}}" id="hidden_base64" alt="" /> <a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadFeatureModal(uploadContent)"></i>
+            <div class="col-lg-3 col-md-3 colImgSec"> <img id="hidden_base64" alt="" /> <a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadFeatureModal(uploadContent)"></i>
               <input id="purbayan" type="hidden" alt="upload image" #featureImgVal>
               </a> </div>
             <div class="col-lg-6 col-md-8 colTextSec">
@@ -35,7 +35,7 @@
           <p>Your logo will appear at the top of any marketing email campaigns you send to retailers.</p>
           <div class="uploadProductVideo">
             <div class="upload-btn-wrapper">
-              <img src="{{logo_image}}" id="logo_img_show" alt="" /><a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadLogoModal(uploadContent4)"></i></a>
+              <img id="logo_img_show" alt="" /><a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadLogoModal(uploadContent4)"></i></a>
               <input id="logo_img" type="hidden" alt="upload image" #logoImgVal>
             </div>
           </div>
@@ -166,8 +166,7 @@
       </div>
     </form>
   </div>
-
-
+  
   <div class="right_vendor_dasboard">
     <div class="right_content_overflow">
       <h3>Shop assistant</h3>
@@ -183,7 +182,7 @@
         <h3>Tasks <span>15 minutes</span></h3>
         <ul class="task_list">
             <li class="complete">
-                <a routerLink="/products" *ngIf="added_product == '0'">
+                <a routerLink="/products" *ngIf="added_product == 0">
                     <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Add your product catalog</span>
                 </a>
                 <a *ngIf="added_product != 0">
@@ -191,25 +190,25 @@
                 </a>
             </li>
             <li class="complete">
-                <a routerLink="/my-shop" *ngIf="previewed_shop_page == '0'">
+                <a routerLink="/my-shop" *ngIf="previewed_shop_page == 0">
                     <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Preview your shop page</span>
                 </a>
-                <a *ngIf="previewed_shop_page != '0'">
+                <a *ngIf="previewed_shop_page != 0">
                     <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Preview your shop page</span>
                 </a>
             </li>
 
-            <li *ngIf="added_product == '0' || previewed_shop_page == '0'">
+            <li *ngIf="added_product == 0 || previewed_shop_page == 0">
                 <a>
                     <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
                 </a>
             </li>
-            <li *ngIf="added_product != '0' && previewed_shop_page != '0' && go_live == '0'" >
-                <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
+            <li *ngIf="added_product != 0 && previewed_shop_page != 0 && go_live == 0" >
+                <a (click)="go_live == 0 && openGoLiveModal(deleteContent)">
                     <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
                 </a>
             </li>
-            <li *ngIf="go_live == '2' || go_live == '1'">
+            <li *ngIf="go_live == 2 || go_live == 1">
                 <a>
                     <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Go live!</span>
                 </a>
@@ -246,7 +245,7 @@
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getProfileImg($event)" >
         <!-- <input type="file" class="cropit-image-input"> -->
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-profile"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -276,7 +275,7 @@
         <!-- <input type="file" class="cropit-image-input"> -->
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getCoverImg($event)" >
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-cover"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -307,7 +306,7 @@
         <!-- <input type="file" class="cropit-image-input"> -->
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getFeaturedImg($event)" >
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-feature"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
@@ -335,7 +334,7 @@
         <!-- <input type="file" class="cropit-image-input"> -->
          <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getLogoImg($event)" >
       </div>
-      <div class="error-msg"></div>
+      <div class="error-msg-logo"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
