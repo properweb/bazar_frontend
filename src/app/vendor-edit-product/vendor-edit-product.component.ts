@@ -405,33 +405,16 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
       this.order_min_case_qty = response.data[0].min_order_qty;
       this.outside_us = response.data[0].outside_us;
-      
-      if(response.data[0].outside_us != '1' ) {
-        this.apiService.convertPrice(response.data[0].usd_wholesale_price).subscribe((responseBody) => {
-          let response = JSON.parse(JSON.stringify(responseBody));
-          this.usd_wholesale_price = response.data.USD;
-          this.usd_retail_price = response.data.USD * 2;
-          this.cad_wholesale_price = response.data.CAD;
-          this.cad_retail_price = response.data.CAD * 2;
-          this.gbp_wholesale_price = response.data.GBP;
-          this.gbp_retail_price = response.data.GBP * 2;
-          this.aud_wholesale_price = response.data.AUD;
-          this.aud_retail_price = response.data.AUD * 2;
-          this.eur_wholesale_price = response.data.EUR;
-          this.eur_retail_price = response.data.EUR * 2;
-        })
-      } else {
-        this.usd_wholesale_price = response.data[0].usd_wholesale_price;
-        this.usd_retail_price = response.data[0].usd_retail_price;
-        this.cad_wholesale_price = response.data[0].cad_wholesale_price;
-        this.cad_retail_price = response.data[0].cad_retail_price;
-        this.gbp_wholesale_price = response.data[0].gbp_wholesale_price;
-        this.gbp_retail_price = response.data[0].gbp_retail_price;
-        this.eur_wholesale_price = response.data[0].eur_wholesale_price;
-        this.eur_retail_price = response.data[0].eur_retail_price;
-        this.aud_wholesale_price = response.data[0].gbr_wholesale_price;
-        this.aud_retail_price = response.data[0].gbr_retail_price;
-      }
+      this.usd_wholesale_price = response.data[0].usd_wholesale_price;
+      this.usd_retail_price = response.data[0].usd_retail_price;
+      this.cad_wholesale_price = response.data[0].cad_wholesale_price;
+      this.cad_retail_price = response.data[0].cad_retail_price;
+      this.gbp_wholesale_price = response.data[0].gbp_wholesale_price;
+      this.gbp_retail_price = response.data[0].gbp_retail_price;
+      this.eur_wholesale_price = response.data[0].eur_wholesale_price;
+      this.eur_retail_price = response.data[0].eur_retail_price;
+      this.aud_wholesale_price = response.data[0].aud_wholesale_price;
+      this.aud_retail_price = response.data[0].aud_retail_price;
 
       this.featured_image = response.data[0].featured_image_key;
       
@@ -458,7 +441,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.out_of_stock = response.data[0].out_of_stock;
       }
      
-      if (response.data[0].usd_tester_price != "undefined" && response.data[0].usd_tester_price != '' && response.data[0].usd_tester_price != '0' && response.data[0].usd_tester_price != 'null' && response.data[0].usd_tester_price != null) {
+      if (response.data[0].usd_tester_price != "undefined" && response.data[0].usd_tester_price != '' && response.data[0].usd_tester_price != '0' && response.data[0].usd_tester_price != '0.00' && response.data[0].usd_tester_price != 'null' && response.data[0].usd_tester_price != null) {
         this.testers_price = response.data[0].usd_tester_price;
         this.testers_price_radio = true;
       }
@@ -914,9 +897,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
       formData.append("options_available", '0');
-      
       let pricingError = 0;
-      if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined && this.usd_wholesale_price != '0' && this.usd_retail_price != '0') || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined && this.cad_wholesale_price != '0' && this.cad_retail_price != '0') || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined && this.gbp_wholesale_price != '0' && this.gbp_retail_price != '0') || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined &&  this.eur_wholesale_price != '0' && this.eur_retail_price != '0') || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined && this.aud_wholesale_price != '0' && this.aud_retail_price != '0')) {
+      if(this.usd_wholesale_price == undefined || this.usd_retail_price == undefined || this.usd_wholesale_price == '0' || this.usd_retail_price == '0' || this.cad_wholesale_price == undefined || this.cad_retail_price == undefined || this.cad_wholesale_price == '0' || this.cad_retail_price == '0' || this.gbp_wholesale_price == undefined || this.gbp_retail_price == undefined || this.gbp_wholesale_price == '0' || this.gbp_retail_price == '0' || this.eur_wholesale_price == undefined || this.eur_retail_price == undefined || this.eur_wholesale_price == '0' || this.eur_retail_price == '0' || this.aud_wholesale_price == undefined || this.aud_retail_price == undefined || this.aud_wholesale_price == '0' || this.aud_retail_price == '0') {
         pricingError = 1;
       }
       let maxPricingError = 0;
@@ -936,7 +918,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
       return false;
     }  
-      else if ( pricingError != 1 ) {
+      else if ( pricingError == 1 ) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
@@ -2145,6 +2127,7 @@ addAttribute() {
   autoPriceCall() {
     this.apiService.convertPrice(this.usd_wholesale_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      this.pricingListError = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
       this.usd_wholesale_price = response.data.USD;
       this.usd_retail_price = this.usd_wholesale_price * 2;
       this.cad_wholesale_price = response.data.CAD;
@@ -2161,6 +2144,7 @@ addAttribute() {
   autoRPPriceCall() {
     this.apiService.convertPrice(this.usd_retail_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      this.pricingListError = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
       this.usd_wholesale_price = this.usd_retail_price / 2;
       this.usd_retail_price = response.data.USD;
       this.cad_wholesale_price = response.data.CAD / 2;

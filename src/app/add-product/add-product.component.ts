@@ -1159,7 +1159,7 @@ export class AddProductComponent implements OnInit {
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
       let pricingError = 0;
-      if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined) || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined) || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined) || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined) || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined)) {
+      if(this.usd_wholesale_price == undefined || this.usd_retail_price == undefined || this.usd_wholesale_price == '0' || this.usd_retail_price == '0' || this.cad_wholesale_price == undefined || this.cad_retail_price == undefined || this.cad_wholesale_price == '0' || this.cad_retail_price == '0' || this.gbp_wholesale_price == undefined || this.gbp_retail_price == undefined || this.gbp_wholesale_price == '0' || this.gbp_retail_price == '0' || this.eur_wholesale_price == undefined || this.eur_retail_price == undefined || this.eur_wholesale_price == '0' || this.eur_retail_price == '0' || this.aud_wholesale_price == undefined || this.aud_retail_price == undefined || this.aud_wholesale_price == '0' || this.aud_retail_price == '0') {
         pricingError = 1;
       }
       let maxPricingError = 0;
@@ -1178,7 +1178,7 @@ export class AddProductComponent implements OnInit {
           this.notValidError = true;
           this.toast.error({detail:"Please add atleast one image.",summary: '' ,duration: 4000});
           return false;
-        } else if ( pricingError != 1 ) {
+        } else if ( pricingError == 1 ) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
@@ -1633,6 +1633,7 @@ export class AddProductComponent implements OnInit {
   autoPriceCall() {
     this.apiService.convertPrice(this.usd_wholesale_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      this.pricingListError = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
       this.usd_wholesale_price = response.data.USD;
       this.usd_retail_price = this.usd_wholesale_price * 2;
       this.cad_wholesale_price = response.data.CAD;
@@ -1649,6 +1650,7 @@ export class AddProductComponent implements OnInit {
   autoRPPriceCall() {
     this.apiService.convertPrice(this.usd_retail_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      this.pricingListError = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
       this.usd_wholesale_price = this.usd_retail_price / 2;
       this.usd_retail_price = response.data.USD;
       this.cad_wholesale_price = response.data.CAD / 2;
