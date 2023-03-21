@@ -1,0 +1,43 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.border_top { /*border-top: 1px solid #393939;*/ margin: 149px 0 0 0; padding: 0; width: 100%; }
+.breadCrumbNav { padding-top: 60px; }
+.breadCrumbNav .breadcrumb .breadcrumb-item { color: rgba(0,0,0,0.3); font-family: 'Futura' !important; font-size: 32px; font-weight: 500; }
+.breadCrumbNav .breadcrumb .breadcrumb-item a { color: #000; }
+.left_blog_category_content { margin: 0 0 40px 0; padding: 0; width: 100%; }
+.left_blog_category h3 { color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500;  margin: 0 0 5px 0; }
+.left_blog_category img { height: auto; margin-bottom: 20px; max-width: 100%; width: 100%; }
+.left_blog_category .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 15px; }
+.left_blog_category p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 20px 0; }
+.left_blog_category p strong { font-family: 'Futura' !important; font-weight: 500; }
+.left_blog_category .left_blog_category_content ul { margin: 0; padding: 0 0 0 20px; width: 100%; }
+.left_blog_category .left_blog_category_content ul li { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 5px 0; padding: 0; width: 100%; }
+.related_blog_sec { margin: 0; padding: 0; width: 100%; }
+.related_blog_sec h5 { border-bottom: 1px solid #9C9C9C; color: #000000; font-family: 'Futura' !important; font-size: 32px; font-weight: 500; margin: 0 0 30px 0; padding: 0 0 20px 0; }
+.related_blog_sec .relatedList { list-style: none; margin-bottom: 40px; padding: 0; }
+.related_blog_sec .relatedList li { }
+.related_blog_sec .relatedList li .imgDiv { margin: 0; padding: 0; width: 100%; }
+.related_blog_sec .relatedList li .imgDiv img { height: auto; max-width: 100%; width: 100%; }
+.related_blog_sec .relatedList li .textDiv { margin: 0; padding: 0; width: 100%; }
+.related_blog_sec .relatedList li .textDiv h3 { color: #000000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.related_blog_sec .relatedList li .textDiv .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 10px; }
+.related_blog_sec .relatedList li .textDiv p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 21px; margin: 0 0 0 0; }
+.related_blog_sec .all_articles_para { text-align: center; }
+.related_blog_sec .all_articles_para .btn-primary { background: #fff; border: 1px solid #000000; border-radius: 3px; color: #393939; height: 43px; line-height: 41px; padding: 0 30px 0 30px; }
+.right_blog_category { padding-left: 30px; }
+.right_blog_category .similar_cat { list-style: none; margin: 0; padding: 0; width: 100%; }
+.right_blog_category .similar_cat li { margin: 0 0 30px 0; padding: 0; width: 100%; }
+.right_blog_category .similar_cat li a { cursor: pointer; }
+.right_blog_category .similar_cat li .imgDiv img { height: auto; max-width: 100%; width: auto; }
+.right_blog_category .similar_cat li .textDiv h3 { color: #000000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.right_blog_category .similar_cat li .textDiv .dateSpan { color: #9C9C9C; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 10px; }
+.right_blog_category .similar_cat li .textDiv p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 21px; margin: 0 0 0 0; }
+
+@media screen and (max-width:767px) { 
+.breadCrumbNav .breadcrumb .breadcrumb-item { font-size: 18px; }
+.left_blog_category h3 { font-size: 20px; }
+.right_blog_category { padding-left: calc(var(--bs-gutter-x) * .5); }
+.right_blog_category .similar_cat li .imgDiv { margin-bottom: 15px; }
+.right_blog_category .similar_cat li .imgDiv img { width: 100%; }
+}

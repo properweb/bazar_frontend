@@ -1,0 +1,17 @@
+<div class="leftNav">
+  <div class="profileImg">
+    <!-- <img src="assets/images/demo-avatar.png" alt=""> -->
+    <span class="profile-text">{{allDetails?.first_name.charAt(0)}}</span>
+  </div>
+  <!-- <div class="profileImg"><img src="assets/images/profile.png" alt=""></div> -->
+  <h3>{{allDetails?.first_name}} {{allDetails?.last_name}}</h3>
+  <ul>
+    <li><a ng-class="getClass('/userProfile')" routerLinkActive="active" routerLink="/profile" href="#/userProfile">My Profile</a></li>
+    <li><a ng-class="getClass('/userMyOrders')" routerLinkActive="active" routerLink="/orders" href="#/userMyOrders">My Orders</a></li>
+    <li><a ng-class="getClass('/userMyOrders')" routerLinkActive="active" routerLink="/chat" href="#/chat">Chat</a></li>
+    <li><a ng-class="getClass('/userWishlist')" routerLinkActive="active" routerLink="/wishlist" href="#/userWishlist">Wishlist</a></li>
+    <li><a ng-class="getClass('/userInvoice')" routerLinkActive="active" routerLink="/invoices" href="#/userInvoice">Invoices</a></li>
+    <li></li>
+    <li><a routerLinkActive="active" (click)="logout()">Logout</a></li>
+  </ul>
+</div>

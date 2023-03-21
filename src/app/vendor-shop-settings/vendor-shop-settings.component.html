@@ -1,0 +1,228 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Shop Settings</h3>
+          <p>Get your Bazar shop ready an running soon</p>
+        </div>
+      </div>
+      <form #shopSettingsForm="ngForm" (ngSubmit)="saveShopSettings(shopSettingsForm)" novalidate>
+        <div class="shop_settings_body">
+          <div class="inner_shop_settings_body">
+            <h3>Order Minimum</h3>
+            <p><span>Set your first order and reorder minimums. For international customers, we'll automatically update your minimum using the daily exchange rate.</span></p>
+          </div>
+          <div class="arrangeTableSec">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Country</th>
+                  <th scope="col">First Order Minimum</th>
+                  <th scope="col">Reorder Minimum</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>United States</td>
+                  <td><input style="border: 1px solid rgba(57,57,57,0.5); " type="text" (change)="autoOrderMinPrice()" name="" placeholder="$" class="form-control" name="usd_order_min" [(ngModel)]="usd_order_min"></td>
+                  <td><input style="border: 1px solid rgba(57,57,57,0.5); " type="text" (change)="autoReOrderMinPrice()" name="" placeholder="$" class="form-control" name="usd_reorder_min" [(ngModel)]="usd_reorder_min"></td>
+                </tr>
+                <tr>
+                  <td>Canada</td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="cad_order_min" [(ngModel)]="cad_order_min"></td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="cad_reorder_min" [(ngModel)]="cad_reorder_min"></td>
+                </tr>
+                <tr>
+                  <td>United Kingdom</td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="£" class="form-control" name="gbp_order_min" [(ngModel)]="gbp_order_min"></td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="£" class="form-control" name="gbp_reorder_min" [(ngModel)]="gbp_reorder_min"></td>
+                </tr>
+                <tr>
+                  <td>Australia</td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="aud_order_min" [(ngModel)]="aud_order_min"></td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="aud_reorder_min" [(ngModel)]="aud_reorder_min"></td>
+                </tr>
+                <tr>
+                  <td>Europe</td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="€" class="form-control" name="eur_order_min" [(ngModel)]="eur_order_min"></td>
+                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="€" class="form-control" name="eur_reorder_min" [(ngModel)]="eur_reorder_min"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="inner_shop_settings_body">
+            <ul class="checkBoxList">
+              <li>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" name="outside_us" [(ngModel)]="outside_us">
+                  <label class="form-check-label">Set specific minimums for countries outside the U.S.</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="switchSection">
+            <ul class="switchList">
+              <li> <span class="labelSpan">Sell to Middle East retailers</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox1">
+                  <input type="checkbox" id="checkbox1" checked="checked" name="sell_to_middle_east" [(ngModel)]="sell_to_middle_east"/>
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Sell to United Kingdom retailers</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox2">
+                  <input type="checkbox" id="checkbox2" checked="checked" name="sell_to_uk" [(ngModel)]="sell_to_uk" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Sell to Australian retailers <span class="subSpan">Set your first order and reorder minimums. For international customers, we'll automatically update your minimum using the daily exchange rate.</span> </span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox3">
+                  <input type="checkbox" id="checkbox3" checked="checked" name="sell_to_aus" [(ngModel)]="sell_to_aus" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Handling & Packaging Costs <span class="subSpan">Charge retailers an additional cost on each order.</span> </span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox4">
+                  <input type="checkbox" id="checkbox4" checked="checked" name="handle_pack_cost" [(ngModel)]="handle_pack_cost" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Sell to Online-Only Retailers</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox5">
+                  <input type="checkbox" id="checkbox5" checked="checked" name="sell_to_online" [(ngModel)]="sell_to_online" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Allow social sellers <span class="subSpan">These are sellers who exclusively sell on social media platforms like Facebook or Instagram. Learn More</span> </span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox6">
+                  <input type="checkbox" id="checkbox6" checked="checked" name="allow_social_sellers" [(ngModel)]="allow_social_sellers" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+              <li> <span class="labelSpan">Sell preorders to qualified retailers only. Learn More</span>
+                <div class="radioDiv">
+                  <label class="switch" for="checkbox7">
+                  <input type="checkbox" id="checkbox7" checked="checked" name="sell_to_qual_reat" [(ngModel)]="sell_to_qual_reat" />
+                  <div class="slider round"></div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="shop_settings_body">
+          <div class="inner_shop_settings_body">
+            <h3>Shop Information</h3>
+            <div class="row">
+              <div class="col-lg-8">
+                <ul class="row shopInfoList">
+                  <li class="col-lg-6">
+                    <label>Company Name</label>
+                    <input type="text" class="form-control" value="" placeholder="My Amarant" name="brand_name" [(ngModel)]="brand_name">
+                    <input type="hidden" class="form-control" value="" placeholder="My Amarant" name="user_id" [(ngModel)]="user_id">
+                  </li>
+                  <li class="col-lg-6">
+                    <label>Fulfillment Email</label>
+                    <input type="email" class="form-control" value="" placeholder="amarant@gmail.com" name="email" [(ngModel)]="email">
+                  </li>
+                  <li class="col-lg-12">
+                    <label>Primary Category</label>
+                    <select class="form-select" aria-label="Default select example" name="prime_cat" [(ngModel)]="prime_cat">
+                      <option *ngFor="let item of primeCatArray; let i = index" [value]="item.cat_id" >{{item.category}}</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shop_settings_body">
+          <div class="inner_shop_settings_body">
+            <h3>Shop Lead Time</h3>
+            <p><span>Let retailers know how long you usually take to fulfill a new order. Listing an accurate lead time tends to drive higher brand satisfaction. <br /><a>Learn More</a></span></p>
+            <div class="row">
+              <div class="col-lg-8">
+                <ul class="row shopInfoList noMrgnList">
+                  <li class="col-lg-12">
+                    <select class="form-select" aria-label="Default select example" name="shop_lead_time" [(ngModel)]="shop_lead_time">
+                      <option *ngFor="let item of shopLeadTime; let i = index" [value]="item.id" >{{item.name}}</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shop_settings_body">
+          <div class="inner_shop_settings_body">
+            <h3>Pause Mode (Previously Vacation Mode)</h3>
+            <p><span>Pause mode lets you temporarily put your shop "on hold". Your products are all still visible & favoritable, but you won't receive new orders. <br /><a>Learn More</a></span></p>
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="row shopInfoList noMrgnList">
+                  <li class="col-lg-8">
+                    <label>Dates</label>
+                    <div class="dp-hidden position-absolute">
+                      <div class="input-group">
+                        <input name="datepicker"
+                        readonly
+                        class="form-control calnInput"
+                        ngbDatepicker
+                        #datepicker="ngbDatepicker"
+                        [autoClose]="'outside'"
+                        (dateSelect)="onDateSelection($event)"
+                        [displayMonths]="2"
+                        [dayTemplate]="t"
+                        outsideDays="hidden"
+                        [startDate]="pause_from_date!"
+                        tabindex="-1" [value]="formatter.format(pause_from_date) + ' - ' + formatter.format(pause_to_date) " placeholder="Select dates" (click)="datepicker.toggle()">
+                        <ng-template #t let-date let-focused="focused">
+                          <span class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                          </span>
+                        </ng-template>
+                        <span style="z-index: 999;" *ngIf="pause_from_date != '' && pause_from_date != null && pause_to_date != '' && pause_to_date != null" (click)="onDeletePauseDate()" class="clear-date" ><img src="assets/images/cross_icon.png" alt=""></span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shop_settings_body">
+          <div class="inner_shop_settings_body">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="btnList">
+                  <li><input *ngIf="!btnDis1" type="submit" name="" value="Save Changes" class="btn publish_btn"></li>
+                  <li><input *ngIf="btnDis1" disabled type="button" name="" value="Saving Changes" class="btn publish_btn"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

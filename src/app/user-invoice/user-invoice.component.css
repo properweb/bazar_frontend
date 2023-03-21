@@ -1,0 +1,50 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.gray_body { background:#e5e5e5; min-height: 100%; }
+
+.profileDiv { padding-left: 0; }
+
+/*-------------- Right Section Starts ------------------*/
+.rightAccount { float: left; width: 100%; }
+.heading { color: #000; font: 500 28px 'Futura' !important;; margin: 50px 0 20px 0 }
+.boxList { float: left; width:100%; }
+.boxList ul { list-style: none; margin: 0; padding: 0; }
+.boxList ul li { float: left; margin-right: 20px;}
+.boxList ul li .WBox { background: #fff; border-radius: 10px; height: 190px; padding: 20px; width: 180px; }
+.boxList ul li .WBox h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; line-height: 31px; margin-bottom: 0; }
+.boxList ul li .WBox p { color: #697887; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 23px; margin-bottom: 0; }
+.boxList ul li .WBox .icon { margin-bottom: 50px; }
+.boxList ul li .WBox .icon img { height: 45px; }
+.noOrder { text-align: center; width:100%; }
+.dataTables_filter { margin: 0 0 15px 0; text-align: left; }	
+.dataTables_filter input[type=search] { background: none; padding: 5px 15px 5px 15px; } 
+.table { background: #fff; }
+.table th { color:rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 500; vertical-align: middle; }
+.table td { font-family: 'Futura' !important; font-size: 16px; font-weight: 200; vertical-align: middle; }
+.table td a { cursor: pointer; display: block; }
+.table>:not(:first-child) { border-top: 2px solid #d1d1d1; }
+.table td .eyeIcon { height: auto; width: auto; }
+.table td .downloadSpan { background: url(../../assets/images/download_icon.svg) no-repeat 0 2px; color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; padding: 0 0 0 30px; }
+em.openTag { background: #54d8dc; border-radius: 28px; color: #fff; padding: 4px 18px 4px 18px; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+em.In-progressTag { background: #f29c6b; border-radius: 28px; color: #fff; padding: 4px 18px 4px 18px; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+em.BidTag { background: #dd5454; border-radius: 28px; color: #fff; padding: 4px 18px 4px 18px;font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+em.CancelledTag { background: #393939; border-radius: 28px; color: #fff; padding: 4px 18px 4px 18px; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+em.CompletedTag { background: #8dcf81; border-radius: 28px; color: #fff; padding: 4px 18px 4px 18px; font-family: 'Futura' !important; font-size: 14px; font-weight: 200;  }
+.paginate_button { color: #697887; font-family: 'Futura' !important; font-size: 15px; font-weight: 200; line-height: 23px; margin-bottom: 0; padding: 0 15px 0 15px; text-decoration:none; }
+.paginate_button.previous { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; line-height: 31px; margin-bottom: 0; text-decoration: none; }
+.paginate_button.next { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; line-height: 31px; margin-bottom: 0; text-decoration: none; }
+.paginate_button.previous.disabled { opacity: 0.5; }
+.paginate_button.next.disabled { opacity: 0.5; }
+.moreBtn { background: #393939; color: #fff !important; border: none; border-radius: 3px; display: block; font: normal 18px 'Futura PT Book'; height: 43px; line-height: 43px; margin: 0 auto; margin-top: 20px; text-align: center; text-decoration: none; width: 246px; }
+.noOrder { float: left; padding-top: 45px; overflow-x: auto; width: 100%; }
+.noOrder h4 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; line-height: 31px; margin-bottom: 0; }
+./*-------------- Right Section Ends ------------------*/
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+.rightAccount h3 { font: 500 17px 'Futura' !important;; }
+}
+@media screen and (min-width: 300px) and (max-width: 767px) {
+.profileDiv { padding-left:12px; }	
+.noOrder .table { width: 700px !important; }
+}

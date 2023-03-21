@@ -1,0 +1,210 @@
+<ng-container *ngIf="role == 'brand'">
+    <app-vendor-header></app-vendor-header>
+</ng-container>
+<ng-container *ngIf="role == 'retailer'">
+    <app-after-login-header></app-after-login-header>
+</ng-container>
+<ng-container *ngIf="role != 'retailer' && role != 'brand' ">
+    <app-header [currentUrl]="currentUrl" [onChildChange]="onChildChange" ></app-header> 
+</ng-container>
+
+<div class="container">
+    <div class="vendor_banner" [style.backgroundImage]="'url('+vendorData?.cover_image+')'"></div> 
+</div>
+<div class="container">
+    <div class="row verndor_shop_content">
+        <div class="col-md-4 col-sm-12 verndor_shop_left_content">
+            <div class="vendor_user_img"><img src="{{vendorData?.profile_photo}}" alt=""></div>
+            <h3>{{vendorData?.brand_name}}</h3>
+            <table class="table">
+                <tr>
+                    <th>Based:</th>
+                    <td>{{vendorData?.headquatered}}</td>
+                </tr>
+                <tr>
+                    <th>Shipping from:</th>
+                    <td>{{vendorData?.product_shipped}}</td>
+                </tr>
+                <tr>
+                    <th>Fulfills orders within </th>
+
+                    <td>{{vendorData?.avg_lead_time}} days</td>
+                </tr>
+            </table>
+            <ul class="tagsList" *ngFor="let item of vendorData?.tag_shop_page">
+                <li *ngIf="vendorData?.tag_shop_page && vendorData.tag_shop_page.length > 0" ><span class="tagsBlocks" style="text-transform:capitalize ;">{{item.split('-').join(" ")}}</span></li>
+            </ul>
+        </div>
+        <div class="col-md-8 col-sm-12 verndor_shop_right_content">
+            <p>{{vendorData?.shared_brd_story}}</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="products?.products.length > 0">
+    <div class="row verndor_shop_bottom_content">
+        <div class="col-md-3 col-sm-12 verndor_shop_bottom_left_content">
+            <select class="form-select short_select" aria-label="Default select example" (change)="onSortingProducts($event)" >
+                <option selected value="1">Sort by featured</option>
+                <option value="2">Newest</option>
+                <option value="3">Lowest price</option>
+                <option value="4">Highest price</option>
+            </select>
+            <input class="form-control search_input" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText">
+            <table class="table">
+                <tr>
+                    <td (click)="onCatClick('all')" style="cursor: pointer;" ><strong>All products</strong></td>
+                    <td><strong>{{products && products.allprdcts_count}}</strong></td>
+                </tr>
+                <tr>
+                    <td (click)="onCatClick('new')" style="cursor: pointer;" >New arrivals</td>
+                    <td>{{products && products.newprdcts_count}}</td>
+                </tr>
+            </table>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" *ngFor="let cat of categories; let i = index">
+                    <h2 class="accordion-header" [id]="'heading'+i">
+                    
+                    <button class="accordion-button collapse collapsed" (click)="onCatClick(cat.slug)" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                        {{cat.name}} <span class="count">{{cat.pcount}}</span>
+                    </button>
+                    </h2>
+                    <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == 0 }" [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">
+                        <div class="accordion-body" *ngIf="cat?.subcategories.length > 0 ">
+                            <ul class="subDropDown">
+                                <li *ngFor="let subCat of cat.subcategories" (click)="onCatClick(subCat.slug)" >{{subCat.name}} <span>{{subCat.pcount}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 verndor_shop_bottom_right_content" >
+            <div class="row">
+                <div class="table_sec" *ngIf="showLoader"><img src="assets/images/loading-24.gif" style="width: 80px; height: 80px; display: block; margin-left: auto; margin-right: auto;" /></div>                
+                <ng-container *ngIf="!showLoader" >
+                    <div class="col-md-3 col-sm-12" *ngFor="let product of products?.products | filter:searchText">
+
+                        <div *ngIf="not_logged_in == false && (product?.stock == 'null' || product?.stock == '0' || product?.stock == 'undefined') " class="card" style="cursor: pointer;">
+                            <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'">
+                            <div class="white-overlay">Out of Stock</div>
+                            </div>
+                            <div class="textDiv">
+                                <div class="topTextDiv">
+                                    <h3>{{product.name}}</h3>
+                                    <h4 *ngIf="product?.usd_wholesale_price != '0'">{{product?.default_currency}} {{product?.usd_wholesale_price}}
+                                        <!-- <span>MSRP $34.90</span> -->
+                                    </h4>
+                                    <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}} </h4>
+                                </div> 
+                                <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                        </div>
+
+                        <div *ngIf="not_logged_in == false && (product?.stock != 'null' && product?.stock != '0' && product?.stock != 'undefined')" class="card" routerLink="/product/{{product.product_key}}" style="cursor: pointer;" >
+                            <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
+                            <div class="textDiv">
+                                <div class="topTextDiv">
+                                    <h3>{{product.name}}</h3>
+                                    <h4 *ngIf="product?.usd_wholesale_price != '0'">{{product?.default_currency}} {{product?.usd_wholesale_price}}
+                                    </h4>
+                                    <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}} </h4>
+                                </div> 
+                                <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                            </div>
+                        </div>
+                            <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
+                            <div class="textDiv">
+                                <div class="topTextDiv">
+                                    <h3>{{product.name}}</h3>
+                                    <h4 *ngIf="product.gbr_wholesale_price != '0'">{{product?.default_currency}} {{product.gbr_wholesale_price}}
+                                        <!-- <span>MSRP $34.90</span> -->
+                                    </h4>
+                                </div> 
+                                <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="products?.products.length == 0" class="no-product" >
+    No Products Yet!
+</div>
+
+<!-- User-Log-In-Modal -->
+<ng-template #userLogInContent let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Welcome back!</h3>
+        <p>Thousands of products await</p>
+            <ul class="formOne">
+            <form #emailForm="ngForm" (ngSubmit)="emailForm.form.valid && send1stSignInData()" (keydown.enter)="emailForm.form.valid && send1stSignInData()" novalidate>
+                <li *ngIf="log1">
+                    <input required email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
+                    <span class="validate_errors"
+                        *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['required']">
+                        This field is required
+                    </span>
+                    <span class="validate_errors"
+                        *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['email']">
+                        Enter an valid email
+                    </span>
+                    <button type="submit" class="btn btn-primary continue_btn fullBtn">Continue</button>
+                </li>
+            </form>
+                <form #signInFrom="ngForm" (ngSubmit)="signInFrom.form.valid && sendSignInData(signInFrom)" novalidate>
+                <li *ngIf="log2">
+                    <input hidden type="text" name="email_address" [(ngModel)]="email_address">
+                    <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" #passwordVal="ngModel">
+                    <span class="validate_errors">{{validateError}}</span>
+                    <button type="button" class="btn btn-primary backButton" (click)="backFirstFunction()">Back</button>
+                    <button type="submit" *ngIf="!spinnerShow" class="btn btn-primary">Continue</button>
+                    <button type="" class="btn btn-primary common_btn next2" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; right: 35px;bottom: -28px;position: absolute;"></button>
+                </li>
+            </form>
+            </ul>
+            <div class="clearfix"></div>
+        <p class="sign_in_para">New to Bazar? <a (click)="modal.dismiss('Cross click')"
+                (click)="openUserSignUpModal(content)">Create an account</a></p>
+        <ul class="social_login">
+            <li><a class="social_link"><span class="social_span"><img src="assets/images/facebook_icon.png"
+                            alt="facebook login">Continue with facebook</span></a></li>
+            <li><a class="social_link"><span class="social_span"><img src="assets/images/google_icon.png"
+                            alt="facebook login">Continue with google</span></a></li>
+        </ul>
+    </div>
+</ng-template>
+
+<!-- User-Sign-Up-Modal -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title"><img src="assets/images/bazar_modal_logo.png" alt="logo"></h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Shop wholesale, online</h3>
+        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+        <form [formGroup]="userRegForm" (ngSubmit)="submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)">
+            <ul class="formOne">
+                <li>
+                    <input required type="email" [(ngModel)]="userEmail" formControlName="userEmail" class="form-control" placeholder="Your business e-mail">
+                </li>
+                <li>
+                    <div class="validate_errors" *ngIf="submitted && userRegForm.controls['userEmail'].invalid">
+                        <strong>Email-id Required</strong> Please enter Valid Email-id.
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get started</button>
+                </li>
+            </ul>
+        </form>
+        <p class="sign_in_para"><a (click)="modal.dismiss('Cross click')" (click)="openUserLogInModal(userLogInContent)">Sign in</a> 
+        </p>
+    </div>
+    <div class="modal-footer">
+        <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
+    </div>
+</ng-template>

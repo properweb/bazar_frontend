@@ -1,0 +1,95 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList { list-style: none; margin: 15px 0 0 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li { margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .form-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 0px; margin-top: 0; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchForm { background: url(../../assets/images/search_icon.png) no-repeat 15px 13px; padding: 0 15px 0 36px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .countSpan { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .textAreaForm { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 113px; margin-bottom: 20px; padding: 10px 15px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox { border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; float: left; margin: 0 0 40px 0; padding: 0; width: 100%; } 
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox a { cursor: pointer; display: block; float: left; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox a:hover { background: rgba(0, 0, 0, 0.05); }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .imgBox { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .imgBox img { height: auto; width: 49px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .productInfoTxt { float: left; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .productInfoTxt h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .productInfoTxt p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .stockTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 0 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .priceTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 20px 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList { list-style: none; margin: 0 0 0 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li { margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel { background: #fff; color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; position: relative; padding: 0 0 20px 30px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 1px; width: 20px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel:hover input ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel input:checked ~ .checkmark { }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .uploadProductVideo { margin: 0; padding: 0; width: 170px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .uploadProductVideo .upload-btn-wrapper { display: inline-block; margin: 0; height: 162px; overflow: hidden; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .uploadProductVideo .btn { background: rgba(57, 57, 57, 0.05); background-image: url(../../assets/images/upload_icon2.svg); background-position: center 50px; background-repeat: no-repeat; border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; height: 162px; line-height: normal; margin: 0; padding: 35px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .uploadProductVideo .upload-btn-wrapper input[type=file] { left: 0; position: absolute; opacity: 0; top: 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .colImgSec { margin: 0; padding: 0; position: relative; width: 170px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .colImgSec img { height: auto; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .colImgSec .imageEdit { background: #fff; border-radius: 3px; box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1); color: #393939; cursor: pointer; height: 25px; line-height: 25px; position: absolute; right: 10px; top: 10px; text-align: center; width: 25px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .colImgSec .imageEdit input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 1; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .selectBoxSec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .selectBoxSec .form-select { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 20px; padding: 0 10px 0 10px; } 
+.middle_vendor_dasboard .middle_content .shop_collections_body .featuredFrormList li .selectBoxSec .form-select:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList { float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table { border-top: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table thead { border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table tbody { border-top: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table .notfountCol { text-align: center; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td img { height: auto; width: 35px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table .notfountCol h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table .notfountCol p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .btn { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 23px; line-height: 21px; padding: 0; width: 23px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .minus-btn { background-image: url(../../assets/images/minus-icon.png); background-position: center; background-repeat: no-repeat; position: relative; top: -3px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .plus-btn { background-image: url(../../assets/images/plus-icon.png); background-position: center; background-repeat: no-repeat; position: relative; top: -3px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .quantityInput { appearance: none; -webkit-appearance: none; background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 30px; margin: 0 10px 0 10px; padding: 0; text-align: center; width: 45px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .quantityInput:focus { outline: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .removeLink { cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table td .removeLink img { height: auto; display: inline-block; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .leftCountResult { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .showResultValue { color: #000; float: right; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .showResultValue strong { font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn:focus { box-shadow: none; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .stockTag { margin: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .formList li .searchBox .priceTag { margin: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec { overflow-x: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .arrangeTableSec .table { width: 800px; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .draft_btn { padding: 0 20px 0 20px; width: auto; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .btnList li .publish_btn { padding: 0 20px 0 20px; width: auto; }
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .leftCountResult { margin-top: 10px; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections_body .searchList .showResultValue { margin-bottom: 20px; text-align: center; width: 100%; }
+}
+/* Responsive End */
