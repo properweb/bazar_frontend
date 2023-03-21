@@ -1,0 +1,167 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <select class="form-select add_product_select" aria-label="Default select example" (change)="navigateTo($event)">
+        <option selected hidden>Add products</option>
+        <option value="add-product">Add single product</option>
+        <option value="shopify-import">Import from Shopify</option>
+        <option value="wordpress-import">Import from Wordpress</option>
+      </select>
+      <h3>Welcome, {{first_name}}</h3>
+      <p>Your wholesale catalog on Bazar</p>
+      <div class="whiteBox" infiniteScroll
+      [infiniteScrollDistance]="2" 
+      [infiniteScrollThrottle]="30"
+      (scrolled)="onScroll()">
+        <div class="product_tab_content">
+          <ul class="nav nav-tabs" role="tablist"> 
+            <li class="nav-item" style="cursor: pointer"><a class="nav-link active" data-bs-toggle="tab" href="#allProduct" (click)="tabAllClick()" >All <span>{{allDetails && allDetails?.allprdcts_count}}</span></a></li>
+            <li class="nav-item" style="cursor: pointer"><a class="nav-link" data-bs-toggle="tab" (click)="tabPublishClick()" >Published <span>{{allDetails && allDetails?.pblshprdcts_count}}</span></a></li>
+            <li class="nav-item" style="cursor: pointer"><a class="nav-link" data-bs-toggle="tab" (click)="tabUnPublishClick()" >Unublished <span>{{allDetails && allDetails?.unpblshprdcts_count}}</span></a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="allProduct" class="container tab-pane active load-more">
+              <ul class="row productSearch">
+                <li class="col-md-3">
+                  <select (change)="onSortChange($event)" class="form-select select_from" aria-label="Default select example">
+                    <option value="1">Sort: A - Z</option>
+                    <option value="2">Sort: Z - A</option>
+                    <option selected value="3">Last Modified</option>
+                  </select>
+                </li>
+                <li class="col-md-3">
+                  <input class="form-control text_form" type="text" (keyup.enter)="onSearchPress($event)" (keyup)="onSearchTextChange($event)" placeholder="Search products" name="search" [(ngModel)]="searchText" > 
+                </li>
+              </ul>
+              <h3>Select products to take an action</h3>
+
+              <ul class="publicList" *ngIf="checkedItems.length > 0">
+
+                <li (click)="openDeleteModal(deleteContent)"><a ><i class="fa-solid fa-trash"></i> Delete</a></li>               
+              </ul>
+
+              <ul class="publicList" *ngIf="checkedItems.length == 0">
+                <li ><a class="disabled"><i class="fa-solid fa-eye"></i> Publish</a></li>
+                <li ><a class="disabled"><i class="fa-solid fa-eye-slash"></i> Unpublish</a></li>
+                <li ><a class="disabled"><i class="fa-solid fa-trash"></i> Delete</a></li>               
+              </ul>
+              
+              <div class="table_sec"> 
+                <table class="table" *ngIf="products?.length > 0"> 
+                  <thead>
+                    <tr>
+                      <th scope="col"><input class="form-check-input" type="checkbox" value="" (change)="checkAll($event)" [ngModel]="selectAll"></th>  
+                      <th scope="col">Image</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Options</th>
+                      <th scope="col">WS Price</th>
+                      <th scope="col">Availability</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">&nbsp;</th>
+                      <th scope="col">&nbsp;</th>
+                    </tr>
+                  </thead>
+
+                      <td><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></td>
+                      <td>{{product.name}}</td>
+                      <td>{{product?.options_count}} options</td>
+                      <td>{{product?.default_currency}} {{product?.price}}</td>
+                      <td>{{product?.availability}}</td>
+                      <td>{{product.status}}</td>
+                      <td><a routerLink="/edit-product/{{product.id}}"><img src="assets/images/edit_icon2.png" style="width: 24px; height:auto; cursor: pointer;" /></a></td>
+                      <td *ngIf="product?.import_type == 'shopify'"><a (click)="syncShopify(product.id,product.website)"><img src="assets/images/shopify-sync.png" style="width: 24px; height:auto; cursor: pointer;" /></a></td>
+                      <td *ngIf="product?.import_type == 'wordpress'"><a (click)="syncToWordpress(product.id,product.website)"><img src="assets/images/wp-ico.png" style="width: 24px; height:auto; cursor: pointer;" /></a></td>
+                    </tr>                    
+                  </tbody>
+                </table>
+
+                <table class="table" *ngIf="products?.length == 0">
+                  <tbody>
+                    <tr><td align="center">No products found!</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Export products</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <ul class="exportList">
+      <li>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="" name="1" checked>
+          <label class="form-check-label">All products</label>
+        </div>
+      </li>
+      <li>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="" name="1">
+          <label class="form-check-label">Filtered products</label>
+        </div>
+      </li>
+      <li>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="" name="1">
+          <label class="form-check-label">Selected (0 produucts)</label>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Export
+    spreadsheet</button>
+  </div>
+</ng-template>
+
+<ng-template #publishContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>This product will be published to your shop page after you activate your Bazar shop.</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" class="btn btn-primary" (click)="onPublishClick()">Publish</button>
+    <button *ngIf="btnDis" type="button" class="btn btn-primary" disabled>Publish</button>
+  </div>
+</ng-template>
+
+<ng-template #unPublishContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Unpublishing this product will remove it from your shop page.</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" class="btn btn-primary" (click)="onUnPublishClick()">Unpublish</button>
+    <button *ngIf="btnDis" type="button" class="btn btn-primary" disabled>Unpublish</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Deleting this product will remove it from your shop and from Bazar.</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" class="btn btn-primary" (click)="onDeleteClick()">Delete</button>
+    <button *ngIf="btnDis" type="button" class="btn btn-primary" disabled>Delete</button>
+  </div>
+</ng-template>

@@ -1,0 +1,52 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Sync</h3>
+          <p><a routerLink="/products">Products</a></p>
+        </div>
+      </div>
+      <div class="whiteBox">
+        <div class="product_tab_content">
+          <!-- Tab panes -->
+          <div class="tab-content" *ngIf="syncList?.length > 0" >
+            <div id="allProduct" class="container tab-pane active">
+              <div class="table_sec">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Website URL</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of syncList; let i = index">
+                      <td>{{item.website}}</td>
+                      <td>{{item.types}}</td>
+                      <td *ngIf="!btnDis && item.types == 'wordpress'" ><button class="btn" (click)="wordpressSync(item.id , i, item?.types)" >Sync from wordpress</button></td>
+                      <td *ngIf="!btnDis && item.types == 'shopify'" ><button class="btn" (click)="updateSync(item.id , i, item?.types)">Sync from shopify</button></td>
+                      <td *ngIf="btnDis && item.types == 'wordpress'" class="btn" style="color: #454545 !important" ><button class="btn" disabled>Sync from wordpress</button></td>
+                      <td *ngIf="btnDis && item.types == 'shopify'" class="btn" style="color: #454545 !important" ><button class="btn" disabled>Sync from shopify</button></td>
+                    </tr>
+                  </tbody> 
+                </table>
+              </div>
+            </div>
+          </div>
+
+            <div *ngIf="syncList?.length == 0" style="padding-left: 30px; padding-bottom: 50px;">
+              <a class="btn button-style" style="margin: 0 10px 0 0;" routerLink="/wordpress-import" >Sync with wordpress</a>
+              <a class="btn button-style" routerLink="/shopify-import" >Sync with Shopify</a>
+            </div>
+     
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

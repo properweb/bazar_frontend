@@ -1,0 +1,49 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+    <app-vendor-side-menu></app-vendor-side-menu>
+    <div class="middle_vendor_dasboard">
+        <div class="middle_content">
+            <div class="whiteBox">
+                <div class="store_info_tab">
+                    <h3>Connect your wordpress account</h3>
+                    <form #wordpressConnectForm="ngForm" (ngSubmit)="wordpressConnectForm.form.valid && wordpressConnect(wordpressConnectForm)">
+                        <ul class="urlList">
+                            <li>
+                                <label>Consumer api key</label>
+                                <input type="hidden" name="user_id" [(ngModel)]="user_id" />
+                                <input required type="text" class="form-control" placeholder="Consumer api key" name="consumer_key" [(ngModel)]="consumer_key" #consumer_keyval='ngModel'>
+                                <span class="validate_errors"
+                                    *ngIf="(consumer_keyval.touched || wordpressConnectForm.submitted) && consumer_keyval.errors?.['required']">
+                                    Consumer api key is required
+                                </span>
+                            </li>
+                            <li>
+                                <label>Website url</label>
+                                <input required type="text" class="form-control" placeholder="Website url" name="website_url" [(ngModel)]="website_url" #website_urlval='ngModel'>
+                                <span class="validate_errors"
+                                    *ngIf="(website_urlval.touched || wordpressConnectForm.submitted) && website_urlval.errors?.['required']">
+                                    Website url is required
+                                </span>
+                            </li>
+                            <li>
+                                <label>Consumer secret key</label>
+                                <input required type="text" class="form-control" placeholder="Consumer secret key" name="consumer_secrect_key" [(ngModel)]="consumer_secrect_key" #consumer_secrect_keyval='ngModel'>
+                                <span class="validate_errors"
+                                    *ngIf="(consumer_secrect_keyval.touched || wordpressConnectForm.submitted) && consumer_secrect_keyval.errors?.['required']">
+                                    Consumer secret key is required
+                                </span>
+                            </li>
+                            <li>
+                                <span *ngIf="errorMsg" style="color: red; font-family: 'Futura PT Book'; font-size: 18px;">{{errorMsg}}</span>
+                                <span *ngIf="successMsg" style="background-color: rgb(143, 235, 147); color: #fff; display: block; font-family: 'Futura PT Book'; font-size: 18px; padding: 10px; text-align: center;">{{successMsg}}</span>
+                                <input type="submit" *ngIf="!spinnerShow" class="btn btn-primary" value="Connect">
+                                <button type="" class="btn btn-primary" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; left: 140px;bottom: -28px;position: absolute;"></button>
+                            </li>
+                        </ul>
+                        <p class="bottomPara">Learn more about how we use and protect your data at Bazar. <a>Privacy at Bazar</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

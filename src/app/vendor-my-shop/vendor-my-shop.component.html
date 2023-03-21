@@ -1,0 +1,364 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header> 
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <form #myShopForm="ngForm" (ngSubmit)="myShopForm.form.valid && updateMyShop(coverImgVal.value , profileImgVal.value , featureImgVal.value , logoImgVal.value)">
+      <div class="middle_content">
+        <div class="myShopTop">
+          <h3>My Shop</h3>  
+          <p>Customize your brand's shop page on Bazar.</p> 
+          <a class="btn btn-primary" routerLink="/brand/{{bazaar_direct_link}}" target="_blank" >View shop</a> </div>
+        <div class="myShopWhite">
+          <h3>Cover image & profile image</h3>
+          <p>These images are featured at the top of your brand's shop page.</p>
+          <div class="coverImgSec" id="cover_img_show" [style.backgroundImage]="'url('+cover_image+')'"> <a class="logoEdit">
+            <input id="cover_img" type="hidden" alt="upload image" #coverImgVal>
+            <i class="fa-solid fa-pencil" (click)="openUploadCoverModal(uploadContent3)"></i> </a> </div>
+          <div class="vendor_user_logo"> <img src="{{profile_photo}}" id="profile_img_show" alt="" /> <a class="bannerEdit"> <i class="fa-solid fa-pencil"  (click)="openUploadProfileModal(uploadContent2)"></i>
+            <input id="profile_img" type="hidden" alt="upload image" #profileImgVal>
+            </a> </div>
+          <p><span>Note: Images may be edited or replaced to meet our safety guidelines</span></p>
+          <div class="border_line"></div>
+          <h3>Cover image & profile image</h3>
+          <p>These images are featured at the top of your brand's shop page.</p>
+          <div class="row customRow">
+            <div class="col-lg-3 col-md-3 colImgSec"> <img src="{{featured_image}}" id="hidden_base64" alt="" /> <a class="imageEdit"> <i class="fa-solid fa-pencil" (click)="openUploadFeatureModal(uploadContent)"></i>
+              <input id="purbayan" type="hidden" alt="upload image" #featureImgVal>
+              </a> </div>
+            <div class="col-lg-6 col-md-8 colTextSec">
+              <p>To request a new feature image, please choose a photo that shows your product(s) in use and contains no text, watermarks, or logos. We'll review your submission within 5-10 business days.</p>
+            </div>
+          </div>
+          <p><span>Note: Images may be edited or replaced to meet our safety guidelines</span></p>
+          <div class="border_line"></div>
+          <h3>Logo</h3>
+          <p>Your logo will appear at the top of any marketing email campaigns you send to retailers.</p>
+          <div class="uploadProductVideo">
+            <div class="upload-btn-wrapper">
+              <img src="{{logo_image}}" id="logo_img_show" alt="" /><a class="imageEdit"> <i class="fa-solid fa-pencil"  (click)="openUploadLogoModal(uploadContent4)"></i></a>
+              <input id="logo_img" type="hidden" alt="upload image" #logoImgVal>
+            </div>
+          </div>
+        </div>
+        <div class="myShopWhite">
+          <h3>Share your brand story</h3>
+          <p>Add a personal touch to your shop by sharing the story of your brand, who you are, or fun facts about your product lines.</p>
+          <textarea #shared_brd_storyRef required maxlength="1500" (change)="onBrandStoryChange($event)" class="form-control textAreaForm" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" #shared_brd_storyval='ngModel'></textarea>
+          <!-- <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span> -->
+          <span class="validate_errors"
+            *ngIf="(shared_brd_storyval.touched || myShopForm.submitted) && shared_brd_storyval.errors?.['required']">
+            This field is required
+          </span>
+          <span class="validate_errors"
+            *ngIf="brandStoryError">
+            This field not not valid.
+          </span>
+        </div>
+        <div class="myShopWhite">
+          <h3>Video</h3>
+          <p>Add a Youtube video to your brand story.</p>
+          <div class="row">
+            <div class="col-lg-6">
+              <input pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" type="text" class="form-control" placeholder="https://" name="video_url" [(ngModel)]="video_url" #video_urlval='ngModel'>
+              <span class="validate_errors"
+                *ngIf="(video_urlval.touched || myShopForm.submitted) && video_urlval.errors?.['pattern']">
+                Please enter valid URL.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="myShopWhite">
+          <h3>About your brand</h3>
+          <div class="row">
+            <div class="col-lg-8 col-md-9">
+              <ul class="row brandFormList">
+                <li class="col-lg-6">
+                  <label class="form-label">Year Established</label>
+                  <input required pattern="^(194[5-9]|19[5-9]\d|200\d|201\d|202\d)$" (change)="validateYear($event)" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="2022" name="established_year" [(ngModel)]="established_year" #established_yearval='ngModel'>
+                  <span class="validate_errors"
+                    *ngIf="(established_yearval.touched || myShopForm.submitted) && established_yearval.errors?.['required']">
+                    Year Established is required
+                  </span>
+                  <span class="validate_errors"
+                    *ngIf="yearError">
+                    Year Established is not valid.
+                  </span>
+                </li>
+                <li class="col-lg-6 col-md-6">
+                  <label class="form-label">Products Made In</label>
+                  <select class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" #product_madeval="ngModel">
+                    <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                  </select>
+                </li>
+                <li class="col-lg-6 col-md-6">
+                  <label class="form-label">Headquartered In</label>
+                  <select class="form-select" aria-label="Default select example" (change)="onChangeCountry($event)" name="headquatered" [(ngModel)]="headquatered" #headquateredval="ngModel">
+                    <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option>  
+                  </select>
+                </li>
+                <li class="col-lg-6 col-md-6">
+                  <label class="form-label">State</label>
+                  <!-- <select class="form-select" aria-label="Default select example" (change)="onChangeState($event)" name="state" value="41"> -->
+                  <select class="form-select" aria-label="Default select example" (change)="onChangeState($event)" name="state" [(ngModel)]="state" #stateval="ngModel">
+                    <!-- <option value="null" hidden ></option> -->
+                    <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>  
+                  </select>
+                </li>
+                <li class="col-lg-6 col-md-6">
+                  <label class="form-label">City</label>
+                  <select required class="form-select" aria-label="Default select example" name="city" [(ngModel)]="city" #cityval="ngModel">
+                    <!-- <option [ngValue]="null" hidden ></option> -->
+                    <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
+                  </select>
+                </li>
+                <li class="col-lg-12">
+                  <label class="form-label">Instagram</label>
+                  <span style="position: relative; bottom: -38px; left: -52px;">@</span>
+                  <input style="padding: 0 0 0 28px;" pattern="^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$" type="text" class="form-control" placeholder="instagram.com/" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
+                  <span class="validate_errors"
+                    *ngIf="(insta_handleval.touched || myShopForm.submitted) && insta_handleval.errors?.['pattern']">
+                    This field not valid.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="border_line"></div>
+          <h3>Tags</h3>
+          <p>Choose details about your business to display on your shop page. All tags are optional.</p>
+          <div class="row">
+            <div class="col-lg-8 col-md-9">
+              <ul class="customerKnownList">
+                <li *ngFor="let item of tagsArray">
+                  <label class="store_label">
+                  <input [value]="item.value" [checked]="tag_shop_page.includes(item.value) == true" (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page">
+                  <h4>{{item.name}}</h4>
+                  <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p>Anything missing from the list? Share with us!</p>
+          <div class="row">
+            <div class="col-lg-7 col-md-8">
+              <input type="text" pattern="^[a-zA-Z0-9_.-]*$" class="form-control" placeholder="" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" #tag_shop_page_aboutval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(tag_shop_page_aboutval.touched || myShopForm.submitted) && tag_shop_page_aboutval.errors?.['pattern']">
+                This field not valid.
+              </span>
+            </div>
+          </div>
+          <div class="border_line"></div>
+          <h3>Publications</h3>
+          <p>Add publications your brand has been featured in.</p>
+          <div class="row">
+            <div class="col-lg-5 col-md-6">
+              <select class="form-select" aria-label="Default select example" name="publications" [(ngModel)]="publications" #publicationsval="ngModel"> 
+                <option *ngFor="let item of publicationsArray" value="{{item.name}}">{{item.name}}</option> 
+              </select>
+            </div>
+          </div>
+          <input *ngIf="!btnDis" type="submit" value="Save Changes" class="accountBtn">
+          <input *ngIf="btnDis" type="button" disabled value="Saving Changes..." class="accountBtn">
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="right_vendor_dasboard">
+    <div class="right_content_overflow">
+      <h3>Shop assistant</h3>
+      <div class="right_gray_box">
+        <h3>Set up shop on Bazar</h3>
+        <p>Make sure you have all your product details and photography ready to upload! Check out your
+          shop
+          page
+          and
+          make any final edits before going live.</p>
+      </div>
+      <div class="bottomrightbox">
+        <h3>Tasks <span>15 minutes</span></h3>
+        <ul class="task_list">
+            <li class="complete">
+                <a routerLink="/products" *ngIf="added_product == '0'">
+                    <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Add your product catalog</span>
+                </a>
+                <a *ngIf="added_product != 0">
+                    <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Add your product catalog</span>
+                </a>
+            </li>
+            <li class="complete">
+                <a routerLink="/my-shop" *ngIf="previewed_shop_page == '0'">
+                    <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Preview your shop page</span>
+                </a>
+                <a *ngIf="previewed_shop_page != '0'">
+                    <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Preview your shop page</span>
+                </a>
+            </li>
+
+            <li *ngIf="added_product == '0' || previewed_shop_page == '0'">
+                <a>
+                    <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
+                </a>
+            </li>
+            <li *ngIf="added_product != '0' && previewed_shop_page != '0' && go_live == '0'" >
+                <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
+                    <span class="radio-img"><img src="assets/images/check-box-circle-icon.png" alt=""> Go live!</span>
+                </a>
+            </li>
+            <li *ngIf="go_live == '2' || go_live == '1'">
+                <a>
+                    <span class="radio-img"><img src="assets/images/tick_circle_icon.png" alt=""> Go live!</span>
+                </a>
+            </li>
+            <!-- <li *ngIf="added_product != '0' && previewed_shop_page != '0'">
+                <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
+                    <span class="radioLabel">Go live!
+                        <input type="radio" [checked]="go_live == '1' || go_live == '2'" > 
+                        <span class="checkmark"></span>
+                    </span>
+                </a>
+            </li> -->
+
+        </ul>
+    </div>
+      <div class="right_bottom_fixed_sec">
+        <h4 *ngIf="go_live == '0'" >Shop status: <strong class="inactiveStrong">Inactive</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
+        <h4 *ngIf="go_live == '1'" >Shop status: <strong class="inactiveStrong">Wating for admin approval.</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
+        <h4 *ngIf="go_live == '2'">Shop status: <strong class="activeStrong">Active</strong></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile image -->
+<ng-template #uploadContent2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="image-editor2">
+      <div class="inputDiv">
+        <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getProfileImg($event)" >
+        <!-- <input type="file" class="cropit-image-input"> -->
+      </div>
+      <div class="error-msg"></div>
+      <div class="cropit-preview"></div>
+      <div class="rangeSliderSec">
+        <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
+        <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
+        <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary back_btn back_btn11" (click)="modal.dismiss('Cross click')"
+      >Back</button>
+    <button type="button" class="btn btn-primary common_btn next14 export"
+      (click)="modal.dismiss('Cross click')">Save &
+      Continue</button>
+  </div>
+</ng-template>
+
+<!-- cover image -->
+<ng-template #uploadContent3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="image-editor3">
+      <div class="inputDiv">
+        <!-- <input type="file" class="cropit-image-input"> -->
+        <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getCoverImg($event)" >
+      </div>
+      <div class="error-msg"></div>
+      <div class="cropit-preview"></div>
+      <div class="rangeSliderSec">
+        <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
+        <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
+        <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary back_btn back_btn14" (click)="modal.dismiss('Cross click')"
+      >Back</button>
+    <button type="button" class="btn btn-primary common_btn next17 export" (click)="modal.dismiss('Cross click')"
+      >Save &
+      Continue</button>
+  </div>
+</ng-template>
+
+<!-- feature image -->
+
+<ng-template #uploadContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="image-editor">
+      <div class="inputDiv">
+        <!-- <input type="file" class="cropit-image-input"> -->
+        <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getFeaturedImg($event)" >
+      </div>
+      <div class="error-msg"></div>
+      <div class="cropit-preview"></div>
+      <div class="rangeSliderSec">
+        <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
+        <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
+        <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary back_btn back_btn8" (click)="modal.dismiss('Cross click')">Back</button>
+    <button type="button" class="btn btn-primary common_btn next11 export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+  </div>
+</ng-template>
+
+<!-- logo image -->
+
+<ng-template #uploadContent4 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="image-editor4">
+      <div class="inputDiv">
+        <!-- <input type="file" class="cropit-image-input"> -->
+         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getLogoImg($event)" >
+      </div>
+      <div class="error-msg"></div>
+      <div class="cropit-preview"></div>
+      <div class="rangeSliderSec">
+        <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
+        <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
+        <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary back_btn back_btn8" (click)="modal.dismiss('Cross click')">Back</button>
+    <button type="button" class="btn btn-primary common_btn next11 export" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you ready to live now?</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p> Now,you are ready to live your page.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="goLiveClick()" *ngIf="!goliveBtsDis" >Go Live</button>
+    <button type="button" class="btn btn-primary" disabled *ngIf="goliveBtsDis" >Go Live</button>
+  </div>
+</ng-template>

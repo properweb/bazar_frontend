@@ -1,0 +1,207 @@
+<div class="gray_body">
+    <div class="container-fluid profileDiv">
+        <div class="row">
+            <div class="col-lg-2 col-sm-4">
+                <app-user-left-sidebar></app-user-left-sidebar>
+            </div>
+            <div class="col-lg-10 col-sm-8">
+                <h2 class="heading">Chat</h2>
+                <div class="vendor_message_body">
+                    <div class="row positive-row">
+                        <div class="col-md-3 col-custom-width">
+                            <input type="text" name="" value="" placeholder="Search">
+                            <span class="label-span">Show unread messages only</span>
+                            <div class="radioDiv">
+                                <label class="switch" for="checkbox1">
+                                    <input type="checkbox" id="checkbox1" />
+                                    <div class="slider round"></div>
+                                </label>
+                            </div>
+                            <span class="label-span">Yes</span>
+                            <div class="message-box">
+                                <ul class="message-list">
+                                    <li>
+                                        <div class="row inbox-sec active read" (click)="showChatBoxFunction()">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row inbox-sec read">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row inbox-sec">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row inbox-sec">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row inbox-sec">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row inbox-sec">
+                                            <div class="col-md-3 col-3 img-sec"><img src="assets/images/message-image.png" alt=""></div>
+                                            <div class="col-md-9 col-9 text-sec">
+                                                <h4>Taylor <span>Bazar support</span></h4>
+                                                <p>Hello! Thank you for contacting...</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="chatbox" *ngIf="chatbox">
+                            <div class="white-chat-box">
+                                <div class="chat-header">
+                                    <span class="prev-inbox" (click)="hideChatBoxFunction()"><img src="assets/images/product_category_left_arrow2.svg" alt=""></span>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 img-sec"><img src="assets/images/chat-main-user-img.png" alt=""></div>
+                                        <div class="col-md-8 text-sec">
+                                            <h3>Taylor</h3>
+                                            <p>Bazar support</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-body">
+                                    <ul class="chat-list">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Taylor</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><span class="border-span"><span>Friday, 25 May</span></span></li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Taylor</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Taylor</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Taylor</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Taylor</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
+                                                <div class="col-md-11 col-10 user-text">
+                                                    <h4>Me</h4>
+                                                    <p>Hello! Thank you for contacting Bazar, Lorem ipsum</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="bottom-chat">
+                                    <textarea name="" id="" cols="" rows="" class="form-control" placeholder="Type a merssage..."></textarea>
+                                    <input type="button" name="" value="Send" class="btn btn-primary disabled">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

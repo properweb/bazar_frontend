@@ -1,0 +1,105 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Embed custom videos right on your shop page. <a>View Best Practices</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox"> 
+          <h3>Videos</h3>
+          <p><a>My shop</a></p>
+          <a class="upload_video_btn" (click)="openExport(content)">Upload video</a> </div>
+      </div>
+      <div class="my_shop_videos_body">
+        <h2>Looking for ideas? Add brand videos to share:</h2>
+        <ul class="ideaList">
+          <li>An introduction to your brand &nbsp; team</li>
+          <li>Details on a line or seasonal collection</li>
+          <li>A behind-the-scenes look at your process</li>
+        </ul>
+      </div>
+      <div class="videosTabSec">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#videosTab">Videos <span>0</span></a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#draftsVideos">Drafts <span>1</span></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="videosTab" class="container tab-pane active">
+            <div class="noVideos">
+              <h4>No videos yet</h4>
+              <p>Ready for your close up? Upload your first video!</p>
+              <a class="upload_video_btn" (click)="openExport(content)">Upload video</a> </div>
+          </div>
+          <div id="draftsVideos" class="container tab-pane fade">
+            <div class="table_sec">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Video</th>
+                    <th scope="col">Date Uploaded</th>
+                    <th scope="col">Views</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="videoImgTd"><div class="videoImg"> <img src="assets/images/video-no-image.png" alt=""> <span class="time_duration">00:10</span> </div></td>
+                    <td>Apr 4, 2022</td>
+                    <td>0</td>
+                    <td><span class="draftSpan">Draft</span>
+                      <div class="overlaytextDiv">
+                        <ul class="editVideoList">
+                          <li><a class="downloadLink"><i class="fa-solid fa-download"></i> Download</a></li>
+                          <li><a class="editLink" (click)="openUploadFeatureModal(uploadContent)"><i class="fa-solid fa-pen-to-square"></i> Edit</a></li>
+                          <li><a class="deleteLink"><i class="fa-solid fa-trash-can"></i> Delete</a></li>
+                          <li><a class="viewVideo">View Video</a></li>
+                        </ul>
+                      </div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload a video</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Select a video file you'd like to upload. We'd recommend your video resolution be at least 1080p.</p>
+    <a class="seeGuidelines">See Guidelines</a>
+    <div class="clearfix"></div>
+    <div class="uploadProductVideo">
+      <div class="upload-btn-wrapper">
+        <button class="btn">Max 2 GB</button>
+        <input type="file" name="myfile">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Upload</button>
+  </div>
+</ng-template>
+<!-- Vendor Upload Video Modal End -->
+
+<ng-template #uploadContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="dragUploadImg"><img src="assets/images/upload-img.png" alt=""></div>
+        <div class="dragOptions"><img src="assets/images/small_big_drag_img.png" alt=""></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Back</button>
+        <button type="button" class="btn btn-primary common_btn" (click)="modal.dismiss('Cross click')">Save & Continue</button>
+    </div>
+</ng-template>
+<!-- Vendor Edit Upload Video Modal End -->

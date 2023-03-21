@@ -1,0 +1,140 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Have a great day, Ali!</h3>
+        </div>
+      </div>
+      <div class="vendor_home_body">
+        <ul class="row top_links_list">
+          <li class="col-lg-2"><a>My orders</a></li>
+          <li class="col-lg-2"><a>Products</a></li>
+          <li class="col-lg-2"><a>Growth &amp; Marketing</a></li>
+          <li class="col-lg-2"><a>Promotions</a></li>
+          <li class="col-lg-2"><a>Bazar Direct</a></li>
+        </ul>
+        <div class="vendor_home_body_white">
+          <h3>Analytics snapshot</h3>
+          <p>Your ranking in the marketplace is determined by your store conversion rate, sell-through rate, and average star rating.</p>
+          <h4 class="right_top_text"><a>Go to Analytics</a></h4>
+          <div class="border_box">
+            <ul class="analytics_lists">
+              <li><span class="heading">Total Sales</span> <span>55</span></li>
+              <li><span class="heading">Conversion Rate</span> <span>20</span></li>
+              <li><span class="heading">Unique Visits</span> <span>55</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="vendor_home_body_white">
+          <h3>Open orders</h3>
+          <p>When you have new or unfulfilled orders, they'll show up here.</p>
+        </div>
+        <div class="vendor_home_body_white">
+          <h3>Top Shop</h3>
+          <p>Here is how you're tracking for Jul-Sep</p>
+          <h4 class="right_top_text"><a>Go to Top Shop</a></h4>
+          <div class="border_box">
+            <ul class="analytics_lists2">
+              <li> <img src="assets/images/workspace_premium_black_24dp_1.png" alt="image">
+                <h5>Current Status</h5>
+                <p class="activePara"><span class="graySpan">Inactive</span></p>
+                <h5>Next Checkpoint</h5>
+                <p class="activePara"><span class="graySpan">Jun 30, 2022</span></p>
+              </li>
+              <li>
+                <p class="smallPara">Here is how you're tracking for Jul-Sep</p>
+                <h3>10 pts</h3>
+                <h4>Merchandising</h4>
+                <p><span>Criteria: 60 points</span></p>
+              </li>
+              <li>
+                <h3>--</h3>
+                <h4>Retailer Rating</h4>
+                <p><span>Criteria: 4.5</span></p>
+              </li>
+              <li>
+                <h3>0%</h3>
+                <h4>Reorder Rate</h4>
+                <p><span>Criteria: 15%</span></p>
+              </li>
+              <li>
+                <h3>0%</h3>
+                <h4>Perfect Order Rate</h4>
+                <p><span>Criteria: 70%</span></p>
+              </li>
+            </ul>
+          </div>
+          <div class="carouselBox">
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide *ngFor="let categoryArrays of categoryArray">
+                <div class="category_box_inner">
+                  <div class="text_div">
+                    <h3>{{categoryArrays.titleText}}</h3>
+                    <p>{{categoryArrays.paraText}}</p>
+                    <a class="learn_more_link">Learn more</a></div>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+          </div>
+        </div>
+        <div class="vendor_home_body_white">
+          <h3>Faire Direct Rewards</h3>
+          <p>Achieve status by Jun 30, 2022</p>
+          <h4><a>Go to Faire Direct Rewards</a></h4>
+          <div class="border_box">
+            <ul class="analytics_lists3">
+              <li> <img src="assets/images/diamond_black_24dp_1.png" alt="image">
+                <h5>Current Status</h5>
+                <p class="activePara"><span class="graySpan">Inactive</span></p>
+                <h5>Next Checkpoint</h5>
+                <p class="activePara"><span class="graySpan">Jun 30, 2022</span></p>
+              </li>
+              <li>
+                <p class="smallPara">Here is how you're tracking for Jul-Sep</p>
+                <h3><span>Silver</span></h3>
+                <p><span>Not yet achieved</span></p>
+              </li>
+              <li>
+                <h3>0%</h3>
+                <h4>Bazar Direct referrals</h4>
+              </li>
+              <li>
+                <h3>0%</h3>
+                <h4>New customers for next quarter</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="vendor_home_body_white">
+          <ul class="referList">
+            <li>
+              <h3>Refer brands, get $200</h3>
+            </li>
+            <li><span>$0 earned</span></li>
+          </ul>
+          <h4 class="right_top_text"><a>Refer Brands</a></h4>
+        </div>
+        <div class="vendor_home_body_white">
+          <ul class="referList">
+            <li>
+              <h3>Unread messages</h3>
+            </li>
+            <li><span>You're all caught up!</span></li>
+          </ul>
+        </div>
+        <div class="vendor_home_body_white">
+          <ul class="referList">
+            <li>
+              <h3>Integrations</h3>
+            </li>
+            <li><span>Sync Faire with your other systems.</span></li>
+          </ul>
+          <h4 class="right_top_text"><a>Go to Integrations</a></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
