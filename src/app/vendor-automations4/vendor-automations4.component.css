@@ -1,0 +1,52 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body { float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body h3 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body { border-bottom: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0; padding: 20px 0 20px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .left_top_automations4_body { float: left; margin: 0; padding: 0 0 0 20px; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .left_top_automations4_body h4 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 10px 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body { float: right; margin: 0; padding: 0 20px 0 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList { border-left: 1px solid rgba(0, 0, 0, 0.25); float: left; list-style: none; margin: 0 0 0 20px; padding: 0 0 0 20px; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList:first-child { border-left: none; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList li { color: #000; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 23px; margin: 0 10px 0 10px; padding: 0; text-align: center; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList li .rateSpan { color: rgba(0, 0, 0, 0.5); display: block; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body { float: left; margin: 0; padding: 20px 20px 0 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body h5 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .editLink { border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; margin: -22px 0 0 0; padding: 0 40px 0 40px; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .automationsFormList { float: left; list-style: none; margin: 20px 0 0 0 0 30px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .automationsFormList li { margin: 0 0 15px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .automationsFormList li .labelSpan { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .automationsFormList li .inputSpan { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body { background: #fff; float: left; margin: 0 0 40px 0; padding: 20px 40px 20px 0; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li .publish_btn:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList li .publish_btn:focus { box-shadow: none; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }	
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body { padding-left: 20px; padding-right: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .left_top_automations4_body { padding-left: 0; width: 100%; }  
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body { padding-right: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList { border-left: none; margin-left: 0; padding-left: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .top_automations4_body .right_top_automations4_body .recepientsList li { float: left; margin-left: 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body h5 { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_automations4_body .vendor_white_automations4_body .bottom_automations4_body .editLink { float: left; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body { padding: 15px; }
+.middle_vendor_dasboard .middle_content .vendor_automations2_bottom_body .btnList { text-align: left; }
+}
+/* Responsive End */

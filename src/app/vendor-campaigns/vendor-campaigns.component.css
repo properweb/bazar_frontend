@@ -1,0 +1,65 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_campaign_link { background-color: #393939; border: none; color: #fff; cursor: pointer; display: block; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 43px; margin: -60px 0 0 0; padding: 0 31px 0 31px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body { background: #fff; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: left; margin: 0 0 80px 0; padding: 20px 50px 30px 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .lftDiv { float: left; margin: 0; padding: 0; max-width: 505px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .lftDiv h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; line-height: 23px; margin: 30px 0 20px 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .lftDiv p { color: #000000; font-family: 'Futura' !important; font-size: 16px; font-weight: 400; line-height: 21px; margin: 20px 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv { float: right; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem { display: flex; float: right; list-style: none; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li { margin: 0 20px 0 0; max-width: 137px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li:last-child { margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem { box-shadow: 0 0 10px rgba(0,0,0,0.1); float: left; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem h5 { color: rgba(0,0,0,0.25); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 14px; margin: 0; padding: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .imgHldr { margin: 0; overflow: hidden; padding: 0; width: 100%;}
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .imgHldr img { height: auto; max-width: 100%; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .txtHldr { float: left; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .txtHldr h4 { color: #000; font-family: 'Futura' !important; font-size: 12px; font-weight: 400; line-height: 16px; margin: 0 0 3px 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .txtHldr p { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 10px; font-weight: 400; line-height: 12px; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv .imgTxtItem li .boxItem .txtHldr .boxBtn { background:#393939; border-radius: 5px; color:#fff; display: inline-block; font-family: 'Futura' !important; font-size: 10px; font-weight: 200; padding: 5px 10px 5px 10px; margin: 0 0 5px 0; text-decoration: none; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body { background: #fff; float: left; margin: 0 0 40px 0; padding: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top { border-bottom: 1px solid rgba(0, 0, 0, 0.25); display: flex; float: left; margin: 0; padding: 20px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs { border-bottom: none; flex-wrap: unset; overflow-x: auto; padding-bottom: 1px; white-space: nowrap; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs::-webkit-scrollbar { display: none; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .nav-item { }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .nav-item .nav-link { background: none; border: none; border-bottom: 1px solid transparent; border-radius: 0; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 26px; padding: 0 40px 23px 40px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .active { border-bottom: 1px solid #000 !important; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .nav-item .nav-link span { background: #ececec; border-radius: 3px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 26px; min-width: 26px; margin-left: 5px; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content { float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane { float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec { background: #fff; float: left; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .no_campaigns_found_sec { float: left; margin: 0; padding: 30px 0 30px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .no_campaigns_found_sec h3 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 400; margin: 0 0 0 0; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .no_campaigns_found_sec p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 400; margin: 0 0 0 0; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec { float: left; margin: 0; padding: 30px 40px 30px 40px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 400; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaignStatusList { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaignStatusList li { color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 400; margin: 0 20px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaignStatusList li span { color: #000; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaign_sent_item { float: right; list-style: none; margin: -60px 0 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaign_sent_item li { float: left; margin: 0 0 0 20px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaign_sent_item li a { cursor: pointer; display: block; line-height: 37px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaign_sent_item li a img { display: inline-block; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab-content .tab-pane .white_tab_filter_sec .campaigns_found_sec .campaign_sent_item li .sentSpan { background: #393939; border-radius: 3px; color: #fff; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; height: 37px; line-height: 37px; padding: 0 30px 0 30px; }
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .create_campaign_link { float: left; margin: 15px 0 0 0; }	
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body { margin-bottom: 40px; padding-right: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .lftDiv { width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_body .rhtDiv { margin-top: 20px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs { border-bottom: 1px solid #dee2e6; flex-wrap: wrap; margin-bottom:20px; white-space: normal; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .nav-item { float: left; margin-bottom: 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .vendor_campaigns_tab_body .tab_top .nav-tabs .nav-item .nav-link { border-bottom: 1px solid #dee2e6; padding: 8px 0 8px 0; text-align: center; }
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+}
+/* Responsive End */

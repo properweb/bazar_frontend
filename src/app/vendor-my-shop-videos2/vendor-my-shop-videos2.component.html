@@ -1,0 +1,114 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">This video is a draft. Publish the video to make it visible on your Bazar shop page.</p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Videos</h3>
+          <p><a>My shop</a></p>
+        </div>
+      </div>
+      <div class="row customRow">
+        <div class="col-lg-8">
+          <div class="my_shop_videos_body2 my_shop_videos_height">
+            <h4>Video thumbnail*</h4>
+            <p class="specialPara">This is the video's preview image that will be shown on your shop page.</p>
+            <div class="uploadProductthumb">
+              <div class="upload-btn-wrapper">
+                <button class="btn">Upload</button>
+                <input type="file" name="myfile">
+              </div>
+            </div>
+            <div class="colImgSec" style="display: none"> <img src="assets/images/upload_thumbnail_img.png" alt=""> <a class="imageEdit"> <i class="fa-solid fa-pencil"></i>
+              <input name="" type="file" />
+              </a> </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="uploadThumbnailSec">
+            <div class="imgText"><img src="assets/images/upload_thumbnail_img_big.png" alt=""></div>
+            <div class="textDiv">
+              <div class="table_sec">
+                <table class="table">
+                  <tr>
+                    <th scope="col">File name</th>
+                    <td scope="col">IMG_4766.MOV</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Link</th>
+                    <td scope="col"><a>https://www.bazar.com/video/bv_y6fuu99teg</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="my_shop_videos_body2">
+        <h3>What type of video is this?</h3>
+        <ul class="formList">
+          <li>
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="">
+            <span class="countSpan">0/60</span> </li>
+          <li>
+            <label class="form-label">Description</label>
+            <textarea class="form-control textAreaForm" rows="3" placeholder="Type product description"></textarea>
+            <span class="countSpan">0/280</span> </li>
+        </ul>
+      </div>
+      <div class="my_shop_videos_body2">
+        <h3>What's your video about?</h3>
+        <p><span>Select any tags that describe this video.</span></p>
+        <ul class="customerKnownList">
+          <li *ngFor="let customerKnownArrays of customerKnownArray">
+            <label class="store_label">
+            <input type="checkbox">
+            <h4>{{customerKnownArrays.HeadText}}</h4>
+            <span class="checkmark"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="my_shop_videos_body2">
+        <h3>How would you like this video published?</h3>
+        <p><span>Choose how people can access your video.</span></p>
+        <ul class="row formDiv">
+          <li class="col-lg-12"><span class="radioLabel">Public<br>
+            <span class="textSpan">This video will be available to anyone who visits your Bazar shop page.</span>
+            <input type="radio" name="1" checked="checked">
+            <span class="checkmark"></span> </span> </li>
+          <li class="col-lg-12"><span class="radioLabel">Private<br>
+            <span class="textSpan">Not ready to make this public on your page yet? Set to Private so only you can watch your video.</span>
+            <input type="radio" name="1">
+            <span class="checkmark"></span> </span></li>
+        </ul>
+      </div>
+      <div class="my_shop_videos_body2">
+        <h3>Products in collection</h3>
+        <p><span>Start putting together your collectionSearch your catalog to add products!</span></p>
+        <ul class="formList">
+          <li>
+            <input class="form-control text_form" type="text" placeholder="Search products">
+            <div class="searchBox"> <a> <span class="imgBox"><img src="assets/images/search-img.png" alt="" /></span> <span class="productInfoTxt">
+              <h4>Grey plate</h4>
+              <p>SKU: AA234</p>
+              </span> <span class="priceTag">$11.70</span> <span class="stockTag">In stock</span> </a> </div>
+          </li>
+        </ul>
+      </div>
+      <div class="my_shop_videos_body2">
+        <ul class="btnList">
+          <li>
+            <input type="button" name="" value="Save as Draft" class="btn draft_btn">
+          </li>
+          <li>
+            <input type="submit" name="" value="Publish Product" class="btn publish_btn">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
+/* Common Style End */
+
+.breadcrumbNav { margin-bottom: 30px; margin-top: 30px; }
+.breadcrumb .breadcrumb-item { color: rgba(0,0,0,0.5); font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 400; }
+.breadcrumb .breadcrumb-item a { color: #000; cursor: pointer; }
+.sub_cat_left_sec { padding-right: 30px; padding-top: 88px; }
+.sub_cat_left_sec h3 { border: 1px solid #333333; border-radius: 8px; color: #393939; font-family: 'Futura' !important; font-size: 17px; font-weight: 500; line-height: 54px; margin: 0 0 30px 0; text-align: center; }
+.sub_cat_left_sec h3 span { background: url(../../assets/images/all_categories_icon.svg) no-repeat 0 18px; display: inline-block; padding: 0 0 0 30px; }
+.sub_cat_left_sec h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 20px 0; }
+.sub_cat_left_sec .accordion { display: block; margin-bottom: 30px; }
+.sub_cat_left_sec .location_search { margin: 0; padding: 0; width: 100%; }
+.sub_cat_left_sec .location_search .form-control { background: url(../../assets/images/search_icon.svg) no-repeat 10px 11px; border: 1px solid #9C9C9C; color: #9C9C9C; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 38px; line-height: 36px; padding: 0 20px 0 35px; }
+.sub_cat_left_sec .location_list { list-style: none; margin: 20px 0 0 0; padding: 0; width: 100%; }
+.sub_cat_left_sec .location_list li { margin: 0 0 10px 0; padding: 0; width: 100%; }
+.sub_cat_left_sec .location_list li .form-check-label { color: #9C9C9C; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
+.sub_cat_left_sec .location_list li .form-check-input:checked { background-color: #000000; border-color: #000000; }
+.sub_cat_left_sec .location_list li .form-check-input:focus { box-shadow: none; }
+.sub_cat_left_sec .more_locations { color: #000000; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin-bottom: 30px; text-decoration: underline; }
+.sub_cat_left_sec .see_more2 { color: #000000; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin-bottom: 30px; text-decoration: underline; }
+.sub_cat_right_sec { }
+.sub_cat_right_sec h2 { color: #393939; font-family: 'Futura' !important; font-size: 40px; font-weight: 500; margin: 0 0 40px 0; text-align: center; }
+.cat_listing_list { list-style: none; padding: 0; }
+.cat_listing_list li { margin-bottom: 30px; }
+.cat_listing_list li .card { }
+.cat_listing_list li .card .imgDiv { background-position: center; background-repeat: no-repeat; background-size: 100% auto; margin: 0; min-height: 199px; padding: 0; width: 100%; }
+.cat_listing_list li .card .textDiv { margin: 0; padding: 15px; width: 100%; }
+.cat_listing_list li .card .textDiv h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 0 0; } 
+.cat_listing_list li .card .textDiv p { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 5px 0; }
+.cat_listing_list li .card .textDiv p strong { font-family: 'Futura' !important; font-weight: 700; }
+.cat_listing_list li .card .textDiv .price_tag { background: url(../../assets/images/lock_icon.png) no-repeat right 1px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 20px 0 0 0; padding: 0 20px 0 0; text-align: right; }
+.cat_listing_list li .card .textDiv .price_tag strong { font-family: 'Futura' !important; font-weight: 700; }
+.cat_listing_list li .card .textDiv .discount_tag { margin: 0; }
+.cat_listing_list li .card .textDiv .discount_tag span { background: rgba(57,57,57,0.05); border-radius: 3px; color: #393939; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 5px 10px; }
+
+@media screen and (max-width:767px) { 
+.sub_cat_left_sec { padding-right: calc(var(--bs-gutter-x) * .5); padding-top: 0px; }
+.sub_cat_left_sec .mobile_hide { display: none; }
+}
+

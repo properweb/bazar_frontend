@@ -1,0 +1,73 @@
+.bazar_body_bg { background: #f5f5f5; margin: 0; min-height: 100%; padding: 0; width: 100%; }
+.dashboard_body { background: #f5f5f5; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body { margin: 0; padding: 0 7% 0 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec { padding-right: 100px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec h3 { color: #000; font-family: 'Futura' !important; font-size: 36px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec p { color: #393939; font-family: 'Futura' !important; font-size: 22px; font-weight: 200; margin: 0 0 40px 0; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec p strong { font-family: 'Futura' !important; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li { }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li .copySpan { background: #fff; border-radius: 3px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; margin: 25px 0 0 0; padding: 0 0 0 10px; width: 85px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li .copySpan .fa-solid { margin-right: 5px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li .form-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 2px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li .form-control { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 0px; margin: 0; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList { list-style: none; margin-top: 50px; padding: 0; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .share_email { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .share_email:hover { background: #000; }	
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .share_email:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .add_website { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .add_website:hover { background: #000; color: #fff; }	
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li .add_website:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .imgSec img { height: auto; width: 100%; }
+/* Home-Banner End */
+.middle_vendor_dasboard .middle_content .home_footer { float: left; margin: 40px 0 70px 0; min-height: 213px; padding: 40px 7% 0 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .home_left_footer { float: left; height: 100%; margin: 0; min-height: 213px; padding: 0; position: relative; text-align: left; width: 20%; }
+.middle_vendor_dasboard .middle_content .home_left_footer h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 400; letter-spacing: 3px; margin: 0; }
+.middle_vendor_dasboard .middle_content .home_left_footer h4 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 400; letter-spacing: 3px; margin: 0; text-transform: uppercase; }
+.middle_vendor_dasboard .middle_content .home_right_footer { float: right; height: 100%; margin: 0; min-height: 213px; padding: 0 0 0 30px; width: 80%; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list li { float: left; margin: 0; padding: 0 30px 0 0; width: 50%; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list li img { height: auto; margin: 0 0 25px 0; width: 60px; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list li h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list li p { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0; }
+/* Home-Page Style End */
+.middle_vendor_dasboard .middle_content .gray_clients__says { /*background: #f7f8fa;*/ background: #f5f5f5; float: left; margin: 0; padding: 50px 0 40px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .gray_clients__says .client_box { margin: 0 auto; max-width: 608px; padding: 0; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .gray_clients__says .client_box img { border-radius: 100%; height: auto; margin-bottom: 30px; width: 84px; }
+.middle_vendor_dasboard .middle_content .gray_clients__says .client_box h4 { color: #000; font-family: 'Futura' !important; font-size: 22px; font-weight: 500; line-height: 29px; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .gray_clients__says .client_box h5 { color: #7C8087; font-family: 'Futura' !important; font-size: 18px; font-weight: 400; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec { background: #fff; float: left; margin: 0; padding: 60px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .container { max-width: 790px; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 30px 0; text-align: center; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .gray_box_list { list-style: none; margin: 0; padding: 0 0 30px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .gray_box_list li { background: rgba(57, 57, 57, 0.05); border-radius: 3px; margin: 0 0 30px 0; padding: 30px 15px 30px 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .gray_box_list li h4 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .gray_box_list li p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 15px 0; }
+.middle_vendor_dasboard .middle_content .white_bazar_direct_sec .gray_box_list li .get_promotion_ideas_link { background: url(../../assets/images/arrow_right_alt_black_24dp1.png) no-repeat right 8px; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; padding: 0 30px 0 0; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .bazar_direct_accordion { margin: 0 0 50px 0; padding: 0; width: 100%; }
+
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) { 
+.middle_vendor_dasboard .middle_content .shop_collections1_body { padding-left: 0; padding-right: 0px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec { padding-right: calc(var(--bs-gutter-x) * .5); }
+}
+
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .shop_collections1_body { padding-left: 0; padding-right: 0; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .row { margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec { margin-bottom: 40px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec h3 { font-size: 32px; margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec p { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList { margin-bottom: 0px; margin-left: -10px; margin-right: -10px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li { margin-bottom: 15px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .fomlList li .copySpan { margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList { margin-bottom: 0px; margin-left: -10px; margin-right: -10px; margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .shop_collections1_body .txtSec .btmList li { margin-bottom: 15px; }
+.middle_vendor_dasboard .middle_content .home_footer { margin-top: 0px; padding-left: 0; padding-right: 0; }
+.middle_vendor_dasboard .middle_content .home_left_footer { margin-bottom: 30px; min-height: 0px; text-align: center; width: 100%; }
+.middle_vendor_dasboard .middle_content .home_right_footer { float: left; height: auto; margin: 0; min-height: 0px; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .home_right_footer .home_footer_list li { padding-left: 10px; padding-right: 10px; text-align: center; }
+}
+/* Responsive End */

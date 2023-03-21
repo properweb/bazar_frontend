@@ -1,0 +1,72 @@
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body { float: left; margin: 0; padding: 0px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .top_links_list { list-style: none; margin-bottom: 20px; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .top_links_list li { width: 20%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .top_links_list li a { border: 1px solid rgba(0, 0, 0, 0.25); color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 68px; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .top_links_list li a:hover { text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white { background: #fff; border-radius: 3px; float: left; margin: 0 0 20px 0; padding: 15px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 10px 0 15px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .right_top_text { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: absolute; right: 15px; top: 15px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .right_top_text a { color: #000; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 25px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box { border-top: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0; padding: 15px 0 0 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists { float: left; list-style: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists li { border-left: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 0 40px 0 0; padding: 8px 0 8px 40px; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists li:first-child { border-left: none; padding-left: 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists li span { color: #000; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists li .heading { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 8px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li { border-left: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 40px 40px 0 0; padding: 0 0 0 20px; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li:first-child { border-left: none; margin-top: 0px; padding-left: 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li:nth-child(2) { margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li img { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li .activePara { margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li .smallPara { font-size: 12px; margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists2 li p .graySpan { font-size: 14px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li { border-left: 1px solid rgba(0, 0, 0, 0.25); float: left; margin: 55px 70px 0 0; padding: 8px 0 8px 20px; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li:first-child { border-left: none; margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li:nth-child(2) { min-height: 120px; margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li img { margin-bottom: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li h3 span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li .activePara { margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li .smallPara { font-size: 12px; margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li p span { color: rgba(0, 0, 0, 0.5); }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .border_box .analytics_lists3 li p .graySpan { font-size: 14px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox { float: left; margin: 20px 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .category_box_inner { float: left; margin: 0; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .text_div { background: #fff; border-left: 5px solid #000; border-radius: 3px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1); margin: 0; padding: 30px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .text_div h3 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .text_div p { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 18px; margin: 0 0 20px 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .carouselBox .text_div .learn_more_link { color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .referList { float: left; list-style: none; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .referList li { float: left; margin: 0 20px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .referList li:first-child { width: 250px; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .referList li h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_home_body .vendor_home_body_white .referList li span { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; }
+
+
+/* Responsive Start */
+@media screen and (max-width:991px) {
+.middle_vendor_dasboard .middle_content .headingBox { margin-left: -10px; margin-right: -10px; }
+
+}
+@media screen and (max-width:767px) { 
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body { padding: 15px; }
+}
+/* Responsive End */
