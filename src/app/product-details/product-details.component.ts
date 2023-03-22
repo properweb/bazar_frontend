@@ -44,6 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   quantity!: any;
   items: any;
   custQtyEnable: any = false;
+  isCustomQtySelected: any = false;
   pageOfItems!: Array<any>;
   addToBagObject: any = {};
   wishlistId!: any
@@ -235,7 +236,7 @@ export class ProductDetailsComponent implements OnInit {
       let qty = int + (caseQty*index);
       return qty;
     }
-  
+
   }
 
   orderQtyText1(minQty: any, caseQty: any, index: any, wsPrice: any) {
@@ -243,11 +244,19 @@ export class ProductDetailsComponent implements OnInit {
       let int = Number(minQty);
       let qty = int + (caseQty*index);
       let price = qty* Number(wsPrice);
-      return qty + '($'+ price +')';
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty + '($'+ price +')';
+      }
     } else {
       let int = Number(minQty);
       let qty = int + (caseQty*index);
-      return qty;
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty;
+      }
     }
   
   }
@@ -265,7 +274,12 @@ export class ProductDetailsComponent implements OnInit {
   orderQtyNumber1(minQty: any, caseQty: any, index: any, wsPrice: any) {
     let int = Number(minQty);
     let qty = int + (caseQty*index);
-    return qty ;
+    // if(index > 9) {
+    //   this.custQtyEnable = true;
+    //   return 'Custom quantity';
+    // } else {
+      return qty;
+    // }
   }
 
   onColorChange(event: any) {
@@ -308,7 +322,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onQtyChange1(event: any) {
-    this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
+    // if(event.target.value == 'Custom quantity') {
+    //   this.isCustomQtySelected = true;
+
+    // } else {
+      this.isCustomQtySelected = false;
+      this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
+    // }
   }
 
   onPrepackChange(event: any) {

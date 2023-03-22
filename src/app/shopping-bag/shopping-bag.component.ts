@@ -17,6 +17,7 @@ export class ShoppingBagComponent implements OnInit {
 
   user_id!: any;
   role!: any;
+  btnDis: any = false;
   cartDetails!: any;
   cartCount!: any;
   quantity!: any;
@@ -86,8 +87,13 @@ export class ShoppingBagComponent implements OnInit {
   }
 
   handleCheckOut(id: any, price: any, brand_name: any, brand_key: any) {
+    this.btnDis = true;
     let specificBrand = this.cartDetails.find((item: any) => item.brand_key === id);
+    specificBrand.products.forEach((elm: any) => {
+      elm.user_id = this.user_id;
+    })
     if(this.qtyError) {
+      this.btnDis = false;
       this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
     } else {
       let valuesCart = {
@@ -106,12 +112,14 @@ export class ShoppingBagComponent implements OnInit {
               price: values
             }
           });
-          // this.toast.success({detail:response.msg ,summary: '' ,duration: 4000});
+          this.btnDis = false;
           this.afterLoginHeaderComp.fetchCart(this.user_id);
         } else {
+          this.btnDis = false;
           this.toast.error({detail:response.msg ,summary: '' ,duration: 4000});
         }
       },(error) => {
+        this.btnDis = false;
         this.toast.error({detail:"Something went wrong. please try again later.",summary: '' ,duration: 4000});
       })
       
