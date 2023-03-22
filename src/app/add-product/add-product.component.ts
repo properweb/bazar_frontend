@@ -111,32 +111,32 @@ export class AddProductComponent implements OnInit {
   pricingCountryArray : any = [
     {    
         'country_name':'United States',
-        'wholesale_price': '',
-        'retail_price': '',
+        'usd_wholesale_price': '',
+        'usd_retail_price': '',
         'currency': '$ USD'   
     },
     { 
         'country_name':'Canada',
-        'wholesale_price': '',
-        'retail_price': '',
+        'usd_wholesale_price': '',
+        'usd_retail_price': '',
         'currency': '$ CAD'
     },
     { 
         'country_name':'United Kingdom',
-        'wholesale_price': '',
-        'retail_price': '',
+        'usd_wholesale_price': '',
+        'usd_retail_price': '',
         'currency': '£ GBP'
     },
     { 
         'country_name':'Australia',
-        'wholesale_price': '',
-        'retail_price': '',
+        'usd_wholesale_price': '',
+        'usd_retail_price': '',
         'currency': '$ AUD'
     },
     { 
         'country_name':'Europe',
-        'wholesale_price': '',
-        'retail_price': '',
+        'usd_wholesale_price': '',
+        'usd_retail_price': '',
         'currency': '€ EUR'
     },
   ]
@@ -704,7 +704,7 @@ export class AddProductComponent implements OnInit {
       this.resultAttribute.forEach((element :any , key1: any) => {
         if(element.Size){
           if(element.Size == valElm ) {
-            tempArray.push(element.wholesale_price);
+            tempArray.push(element.usd_wholesale_price);
           }
         }
       });
@@ -728,7 +728,7 @@ export class AddProductComponent implements OnInit {
 
   prepackNameChange(index: any, event: any) {
     this.prepackLists[index].pack_name = event.target.value;
-    if(!/^[\sa-zA-Zء-ي]*$/.test(event.target.value)) {
+    if(!/[a-zA-Z]{0,255}$/.test(event.target.value)) {
       this.prepackLists[index].name_error = 'Invalid name'
       this.prePackNameError = true;
     } else {
@@ -987,15 +987,15 @@ export class AddProductComponent implements OnInit {
     if(attributes.length > 0 && this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
         this.option_items[0].forEach((element :any , key :any) => {
-          this.resultAttribute.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '', 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-          this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+          this.resultAttribute.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '', 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+          this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
         });
       }
       if(attributes.length == 2) {
         this.option_items[1].forEach((element1 :any) => {
           this.option_items[0].forEach((element0 :any , key: any) => {
-            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '','inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '','inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
 
           });
         });
@@ -1004,8 +1004,8 @@ export class AddProductComponent implements OnInit {
         this.option_items[2].forEach((element2 :any) => {
           this.option_items[1].forEach((element1 :any) => {
             this.option_items[0].forEach((element0 :any) => {
-            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '','cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'wholesale_price': '' , 'retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+            this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '','cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
+            this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
 
           });
           });
@@ -1143,7 +1143,7 @@ export class AddProductComponent implements OnInit {
       formData.append("shipping_height" , this.shipping_height ? this.shipping_height : '');
       formData.append("shipping_weight" , this.shipping_weight ? this.shipping_weight : '');
       formData.append("weight_unit" , this.weight_unit ?  this.weight_unit : '');
-      formData.append("order_case_qty" , this.order_case_qty ? this.order_case_qty : 0);
+      formData.append("order_case_qty" , this.order_case_qty);
       formData.append("order_min_case_qty" , this.order_min_case_qty ? this.order_min_case_qty : '');
       formData.append("featured_image", this.featured_image ? this.featured_image : 0);
       formData.append("product_shipdate", this.formatter.format(this.fromDate));
@@ -1158,6 +1158,11 @@ export class AddProductComponent implements OnInit {
       formData.append("outside_us", this.outside_us ? this.outside_us : '');
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
+      formData.append("options_available", this.clickNo ? '0' : '1');
+      formData.append("instructionsRetailers", this.instructionsRetailers ? '1' : '0');
+      formData.append("retailersPreOrderDate", this.retailersPreOrderDate ? '1' : '0');
+      formData.append("retailersPrice", this.retailersPrice ? '1' : '0');
+      formData.append("fromAdd", '1');
       let pricingError = 0;
       if(this.usd_wholesale_price == undefined || this.usd_retail_price == undefined || this.usd_wholesale_price == '0' || this.usd_retail_price == '0' || this.cad_wholesale_price == undefined || this.cad_retail_price == undefined || this.cad_wholesale_price == '0' || this.cad_retail_price == '0' || this.gbp_wholesale_price == undefined || this.gbp_retail_price == undefined || this.gbp_wholesale_price == '0' || this.gbp_retail_price == '0' || this.eur_wholesale_price == undefined || this.eur_retail_price == undefined || this.eur_wholesale_price == '0' || this.eur_retail_price == '0' || this.aud_wholesale_price == undefined || this.aud_retail_price == undefined || this.aud_wholesale_price == '0' || this.aud_retail_price == '0') {
         pricingError = 1;
@@ -1238,15 +1243,20 @@ export class AddProductComponent implements OnInit {
           this.notValidError = true;
           this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
           return false;
-        } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+        } else if(this.retailersPrice == true && ( this.testers_price  == 'null' || this.testers_price == null || this.testers_price == '' || this.testers_price == 'undefined' || this.testers_price == undefined || this.testers_price == '0' || this.testers_price == 0 )) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Testers price can't be blank.",summary: '' ,duration: 4000});
           return false;
         } else if(this.testersPriceError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
           return false;
         } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
           this.publistBtnDisabled = false;
@@ -1304,7 +1314,7 @@ export class AddProductComponent implements OnInit {
         formData.append("description" ,this.description ? this.description : '');
         formData.append("product_made" ,this.product_made ? this.product_made : '');
         formData.append("is_bestseller" ,this.is_bestseller ? this.is_bestseller : '');
-        formData.append("order_case_qty" ,this.order_case_qty ? this.order_case_qty : 0);
+        formData.append("order_case_qty" ,this.order_case_qty);
         formData.append("order_min_case_qty" ,this.order_min_case_qty ? this.order_min_case_qty : '');
         formData.append("usd_wholesale_price" , '0');
         formData.append("usd_retail_price" , '0');
@@ -1331,7 +1341,12 @@ export class AddProductComponent implements OnInit {
         formData.append("retailer_add_charge", this.retailer_add_charge ? this.retailer_add_charge : '');
         formData.append("outside_us", this.outside_us ? this.outside_us : '');
         formData.append("keep_product", this.keep_product ? this.keep_product : '');
-
+        formData.append("options_available", this.clickNo ? '0' : '1');
+        formData.append("instructionsRetailers", this.instructionsRetailers ? '1' : '0');
+        formData.append("retailersPreOrderDate", this.retailersPreOrderDate ? '1' : '0');
+        formData.append("retailersPrice", this.retailersPrice ? '1' : '0');
+        formData.append("prepackAvailable", this.hideCreatePrepack ? '1' : '0');
+        formData.append("fromAdd", '1');
         for (var i = 0; i < this.product_images.length; i++) { 
           formData.append("product_images[]", this.product_images[i]);
         }
@@ -1361,7 +1376,7 @@ export class AddProductComponent implements OnInit {
         });
         
         this.resultAttribute.forEach((elementVar: any) => {
-          if(elementVar.wholesale_price == '' || elementVar.wholesale_price == null || elementVar.wholesale_price == undefined || elementVar.retail_price == '' || elementVar.retail_price == null || elementVar.retail_price == undefined) {
+          if(elementVar.usd_wholesale_price == '' || elementVar.usd_wholesale_price == null || elementVar.usd_wholesale_price == undefined || elementVar.usd_retail_price == '' || elementVar.usd_retail_price == null || elementVar.usd_retail_price == undefined) {
             varPriceError = 1 ;
           }
         });
@@ -1511,15 +1526,20 @@ export class AddProductComponent implements OnInit {
             this.notValidError = true;
             this.toast.error({detail:"Prepack name is invalid.",summary: '' ,duration: 4000});
             return false;
-          } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+          } else if(this.retailersPrice == true && ( this.testers_price  == 'null' || this.testers_price == null || this.testers_price == '' || this.testers_price == 'undefined' || this.testers_price == undefined || this.testers_price == '0' || this.testers_price == 0 )) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
-            this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
+            this.toast.error({detail:"Testers price can't be blank.",summary: '' ,duration: 4000});
             return false;
           } else if(this.testersPriceError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
             this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+            return false;
+          } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+            this.publistBtnDisabled = false;
+            this.notValidError = true;
+            this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
             return false;
           } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
             this.publistBtnDisabled = false;
@@ -1668,10 +1688,10 @@ export class AddProductComponent implements OnInit {
   }
 
   onWSChange(index: any) {
-    this.apiService.convertPrice(this.resultAttribute[index].wholesale_price).subscribe((responseBody) => {
+    this.apiService.convertPrice(this.resultAttribute[index].usd_wholesale_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.resultAttribute[index].wholesale_price = response.data.USD;
-      this.resultAttribute[index].retail_price = this.resultAttribute[index].wholesale_price * 2;
+      this.resultAttribute[index].usd_wholesale_price = response.data.USD;
+      this.resultAttribute[index].usd_retail_price = this.resultAttribute[index].usd_wholesale_price * 2;
       this.resultAttribute[index].cad_wholesale_price = response.data.CAD;
       this.resultAttribute[index].cad_retail_price = response.data.CAD * 2;
       this.resultAttribute[index].gbp_wholesale_price = response.data.GBP;
@@ -1684,10 +1704,10 @@ export class AddProductComponent implements OnInit {
   }
 
   onRPChange(index: any) {
-    this.apiService.convertPrice(this.resultAttribute[index].retail_price).subscribe((responseBody) => {
+    this.apiService.convertPrice(this.resultAttribute[index].usd_retail_price).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.resultAttribute[index].wholesale_price = this.resultAttribute[index].retail_price / 2;
-      this.resultAttribute[index].retail_price = this.resultAttribute[index].retail_price;
+      this.resultAttribute[index].usd_wholesale_price = this.resultAttribute[index].usd_retail_price / 2;
+      this.resultAttribute[index].usd_retail_price = this.resultAttribute[index].usd_retail_price;
       this.resultAttribute[index].cad_wholesale_price = response.data.CAD / 2;
       this.resultAttribute[index].cad_retail_price = response.data.CAD;
       this.resultAttribute[index].gbp_wholesale_price = response.data.GBP / 2;
@@ -1722,9 +1742,9 @@ export class AddProductComponent implements OnInit {
 
   onIntRetChange(event: any) {
     if(!/^[ A-Za-z0-9_./&+-,']*$/.test(event.target.value)) {
-      this.instRetError = true;
+      // this.instRetError = true;
     } else {
-      this.instRetError = false;
+      // this.instRetError = false;
     }
   }
 

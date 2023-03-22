@@ -313,11 +313,11 @@
                     <input type="text" class="form-control" maxlength="10" (change)="onVarSkuChange($event, i);" placeholder="" name="resultAttributesku" [(ngModel)]="resultAttribute[i].sku" >
                     <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
                   </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdWsChange($event, i);" [name]="'resultAttributews' + i" [(ngModel)]="resultAttribute[i].wholesale_price">
+                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdWsChange($event, i);" [name]="'resultAttributews' + i" [(ngModel)]="resultAttribute[i].usd_wholesale_price">
                     <span class="priceSpan">$</span>
                     <span class="validate_errors" *ngIf="resultAttribute[i].usdws">{{resultAttribute[i].usdws}}</span>
                   </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdRetChange($event, i);" [name]="'resultAttributerp' + i" [(ngModel)]="resultAttribute[i].retail_price">
+                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdRetChange($event, i);" [name]="'resultAttributerp' + i" [(ngModel)]="resultAttribute[i].usd_retail_price">
                     <span class="priceSpan">$</span>
                     <span class="validate_errors" *ngIf="resultAttribute[i].usdret">{{resultAttribute[i].usdret}}</span>
                   </td>
@@ -750,7 +750,7 @@
                 <div class="retailersPriceSec" *ngIf="retailersPrice">
                   <ul class="row retailersPriceList">
                     <li class="col-lg-4">
-                      <label>Price</label>
+                      <label>Price*</label>
                       <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" placeholder="0.00" (change)="onTestersPriceChange($event);" class="form-control" name="testers_price" [(ngModel)]="testers_price" #testers_priceVal>
                       <span class="priceSpan">$</span>
                       <span style="font-size: 13px !important" class="validate_errors" *ngIf="testersPriceError">{{testersPriceError}}</span>
@@ -758,7 +758,7 @@
                   </ul>
                 </div>
               </li>
-              <li> <span class="labelSpan">Let retailers customize this product.</span>
+              <li> <span class="labelSpan">Let retailers customize this product.</span> 
               <div class="radioDiv">
                 <label class="switch" for="checkbox3">
                   <input type="checkbox" id="checkbox3" (click)="showinstructionsRetailers()" />

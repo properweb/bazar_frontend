@@ -882,7 +882,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("shipping_height" , this.shipping_height ? this.shipping_height : '');
       formData.append("shipping_weight" , this.shipping_weight ? this.shipping_weight : '');
       formData.append("weight_unit" , this.weight_unit ? this.weight_unit : '');
-      formData.append("order_case_qty" , this.order_case_qty ? this.order_case_qty : 0);
+      formData.append("order_case_qty" , this.order_case_qty);
       formData.append("order_min_case_qty" , this.order_min_case_qty ? this.order_min_case_qty : '');
       formData.append("out_of_stock" , this.out_of_stock ? this.out_of_stock : '');
       formData.append("featured_image", this.featured_image ? this.featured_image : 0);
@@ -897,6 +897,9 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("sell_type", this.sell_type ? this.sell_type : '');
       formData.append("options_available", '0');
+      formData.append("instructionsRetailers", this.instructionsRetailers ? '1' : '0');
+      formData.append("retailersPreOrderDate", this.retailersPreOrderDate ? '1' : '0');
+      formData.append("retailersPrice", this.retailersPrice ? '1' : '0');
       let pricingError = 0;
       if(this.usd_wholesale_price == undefined || this.usd_retail_price == undefined || this.usd_wholesale_price == '0' || this.usd_retail_price == '0' || this.cad_wholesale_price == undefined || this.cad_retail_price == undefined || this.cad_wholesale_price == '0' || this.cad_retail_price == '0' || this.gbp_wholesale_price == undefined || this.gbp_retail_price == undefined || this.gbp_wholesale_price == '0' || this.gbp_retail_price == '0' || this.eur_wholesale_price == undefined || this.eur_retail_price == undefined || this.eur_wholesale_price == '0' || this.eur_retail_price == '0' || this.aud_wholesale_price == undefined || this.aud_retail_price == undefined || this.aud_wholesale_price == '0' || this.aud_retail_price == '0') {
         pricingError = 1;
@@ -917,8 +920,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       this.notValidError = true;
       this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
       return false;
-    }  
-      else if ( pricingError == 1 ) {
+    } else if ( pricingError == 1 ) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
@@ -978,15 +980,20 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           this.notValidError = true;
           this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
           return false;
-        } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+        } else if(this.retailersPrice == true && ( this.testers_price  == 'null' || this.testers_price == null || this.testers_price == '' || this.testers_price == 'undefined' || this.testers_price == undefined || this.testers_price == '0' || this.testers_price == 0 )) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Testers price can't be blank.",summary: '' ,duration: 4000});
           return false;
         } else if(this.testersPriceError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+          return false;
+        } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+          this.publistBtnDisabled = false;
+          this.notValidError = true;
+          this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
           return false;
         } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
           this.publistBtnDisabled = false;
@@ -1046,7 +1053,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("description" ,this.description ? this.description : '');
       formData.append("product_made" ,this.product_made ? this.product_made : '');
       formData.append("is_bestseller" ,this.is_bestseller ? this.is_bestseller : '');
-      formData.append("order_case_qty" ,this.order_case_qty ? this.order_case_qty : 0);
+      formData.append("order_case_qty" ,this.order_case_qty);
       formData.append("order_min_case_qty" ,this.order_min_case_qty ? this.order_min_case_qty : '');
       formData.append("usd_wholesale_price" , '0');
       formData.append("usd_retail_price" , '0');
@@ -1073,7 +1080,10 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("featured_image", this.featured_image ? this.featured_image : 0);
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
       formData.append("options_available", '1');
-
+      formData.append("instructionsRetailers", this.instructionsRetailers ? '1' : '0');
+      formData.append("retailersPreOrderDate", this.retailersPreOrderDate ? '1' : '0');
+      formData.append("retailersPrice", this.retailersPrice ? '1' : '0');
+      formData.append("prepackAvailable", this.hideCreatePrepack ? '1' : '0');
       for (var i = 0; i < this.product_images.length; i++) { 
         formData.append("product_images[]", this.product_images[i]);
       }
@@ -1264,15 +1274,20 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.notValidError = true;
         this.toast.error({detail:"Prepack name is invalid.",summary: '' ,duration: 4000});
         return false;
-      } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+      } else if(this.retailersPrice == true && ( this.testers_price  == 'null' || this.testers_price == null || this.testers_price == '' || this.testers_price == 'undefined' || this.testers_price == undefined || this.testers_price == '0' || this.testers_price == 0 )) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
-        this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
+        this.toast.error({detail:"Testers price can't be blank.",summary: '' ,duration: 4000});
         return false;
       } else if(this.testersPriceError) {
         this.publistBtnDisabled = false;
         this.notValidError = true;
         this.toast.error({detail:"Testers price must be number and max 6 numbers.",summary: '' ,duration: 4000});
+        return false;
+      } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
         return false;
       } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
         this.publistBtnDisabled = false;
@@ -2016,9 +2031,9 @@ addAttribute() {
 
   onIntRetChange(event: any) {
     if(!/^[ A-Za-z0-9_./&+-,']*$/.test(event.target.value)) {
-      this.instRetError = true;
+      // this.instRetError = true;
     } else {
-      this.instRetError = false;
+      // this.instRetError = false;
     }
   }
   
@@ -2275,7 +2290,7 @@ addAttribute() {
 
   prepackNameChange(index: any, event: any) {
     this.prepackLists[index].pack_name = event.target.value;
-    if(!/^[\sa-zA-Zء-ي]*$/.test(event.target.value)) {
+    if(!/[a-zA-Z]{0,255}$/.test(event.target.value)) {
       this.prepackLists[index].name_error = 'Invalid name'
       this.prePackNameError = true;
     } else {
