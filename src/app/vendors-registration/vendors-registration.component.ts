@@ -802,12 +802,16 @@ export class VendorsRegistrationComponent implements OnInit {
     if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Quarterly') {
       if(this.release_inventoryArray.length == 0) {
         this.monthSelectError = 'Please select months.';
+      } else if(this.release_inventoryArray.length > 4) {
+        this.monthSelectError = 'You can choose only four month.';
       } else {
         this.monthSelectError = '';
       }
     } else if(this.num_products_addcatalog !== undefined && this.num_products_addcatalog == 'Bi-yearly') {
       if(this.release_inventoryArray.length == 0) {
         this.monthSelectError = 'Please select months.';
+      } if(this.release_inventoryArray.length > 2) {
+        this.monthSelectError = 'You can choose only two month.';
       } else {
         this.monthSelectError = '';
       }
@@ -1331,6 +1335,18 @@ export class VendorsRegistrationComponent implements OnInit {
     if(this.num_products_addcatalog == 'Yearly') {
       if(this.release_inventoryArray.length > 1) {
         this.monthSelectError = 'You can choose only one month.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog == 'Quarterly') {
+      if(this.release_inventoryArray.length > 4) {
+        this.monthSelectError = 'You can choose only four month.';
+      } else {
+        this.monthSelectError = '';
+      }
+    } else if(this.num_products_addcatalog == 'Bi-yearly') {
+      if(this.release_inventoryArray.length > 2) {
+        this.monthSelectError = 'You can choose only two month.';
       } else {
         this.monthSelectError = '';
       }

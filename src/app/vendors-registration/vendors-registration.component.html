@@ -506,7 +506,8 @@
                 </span>
               </li>
 
-              <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog !== 'Quarterly' && num_products_addcatalog !== 'Bi-yearly' ">
+              <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly'">
+              <!-- <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog !== 'Quarterly' && num_products_addcatalog !== 'Bi-yearly' "> -->
                 <label class="form-label">In which months do you release new inventory?</label>
                 <ul class="row sub_product_list">         
                   <li class="col-lg-4" *ngFor="let item of releaseInventoryCheckBox; let i = index">
@@ -523,7 +524,7 @@
               </li>
 
               <!-- For Quarterly -->
-              <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog == 'Quarterly' && num_products_addcatalog !== 'Bi-yearly'">
+              <!-- <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog == 'Quarterly' && num_products_addcatalog !== 'Bi-yearly'">
                 <label class="form-label">In which months do you release new inventory?</label>
                 <ul class="row sub_product_list">         
                   <li class="col-lg-4" *ngFor="let item of releaseInventoryCheckBox; let i = index">
@@ -537,10 +538,10 @@
                   *ngIf="num_products_addcatalog == 'Quarterly' && release_inventoryArray.length == 0 && vendorFormStep5.submitted">
                   {{monthSelectError}}
                 </span>
-              </li>
+              </li> -->
 
               <!-- For Bi-yearly -->
-              <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog !== 'Quarterly' && num_products_addcatalog == 'Bi-yearly'">
+              <!-- <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' && num_products_addcatalog !== 'Quarterly' && num_products_addcatalog == 'Bi-yearly'">
                 <label class="form-label">In which months do you release new inventory?</label>
                 <ul class="row sub_product_list">         
                   <li class="col-lg-4" *ngFor="let item of releaseInventoryCheckBox; let i = index">
@@ -554,7 +555,7 @@
                   *ngIf="num_products_addcatalog == 'Bi-yearly' && release_inventoryArray.length == 0 && vendorFormStep5.submitted">
                   {{monthSelectError}}
                 </span>
-              </li>
+              </li> -->
 
               <li class="col-lg-12">
                 <label class="form-label">How many small retail stores carry your brand?</label>

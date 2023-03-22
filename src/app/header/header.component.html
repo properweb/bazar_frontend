@@ -499,8 +499,10 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over {{vendorCount ? vendorCount : 0}} unique vendors. Sign up for free</p> 
+        <!-- <h3>Shop wholesale, online</h3>
+        <p>Purchase from over {{vendorCount ? vendorCount : 0}} unique vendors. Sign up for free</p>  -->
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
         <form [formGroup]="userRegForm" (ngSubmit)="userRegForm.valid && submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)" >
             <ul class="formOne">
                 <li>
@@ -528,8 +530,8 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over {{vendorCount ? vendorCount : 0}} unique vendors. Sign up for free</p>
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
        
         <!-- <form [formGroup]="vendorRegForm" (ngSubmit)="submitEmail(vendorRegForm)">  -->
         <form #vendorRegForm="ngForm" (ngSubmit)="vendorRegForm.form.valid && submitEmail(vendorRegForm)">
