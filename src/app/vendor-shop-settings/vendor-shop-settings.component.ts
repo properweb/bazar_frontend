@@ -39,7 +39,8 @@ export class VendorShopSettingsComponent implements OnInit {
   pause_from_date!:any;
   pause_to_date!:any;
   btnDis1: any;
-
+  minDate: any;
+  pricingListError:any = {usdFom: '', usdReOrd: '', cadFom: '', cadReOrd: '', gbpFom: '', gbpReOrd: '', audFom: '', audReOrd: '', eurFom: '', eurReOrd: '', };
   primeCatArray: any = [];
 
   shopLeadTime: any = [ 
@@ -55,12 +56,15 @@ export class VendorShopSettingsComponent implements OnInit {
   constructor(private apiService: ApiService, private storage: StorageMap, private toast: NgToastService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router: Router) {
     this.pause_from_date = null;
     this.pause_to_date = null;
+    const current = new Date();
+    this.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate()
+    };
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -165,20 +169,33 @@ export class VendorShopSettingsComponent implements OnInit {
       pause_to_date: this.formatter.format(this.pause_to_date),
     }
     
-    this.apiService.updateVendorDetails(values).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == false) {
-        this.btnDis1 = false;
-        this.toast.error({detail:"SUCCESS",summary: response.msg ,duration: 4000});
-      } else {
-        this.toast.success({detail:"SUCCESS",summary: 'Shop Settings updated.' ,duration: 4000});
-        this.btnDis1 = false;
+    let maxPricingError = 0;
+    Object.values(this.pricingListError).forEach((elem:any) => {
+      if(elem != '') {
+        maxPricingError = 1;
       }
-
-    },(error) => {
-      this.btnDis1 = false;
-      this.toast.error({detail:"ERROR",summary: 'Something went wrong. Please try again.' ,duration: 4000});
     })
+
+    if(maxPricingError == 1) {
+      this.toast.error({detail:"First order and re order min must be number and max 6 numbers.",summary:'' ,duration: 4000});
+      this.btnDis1 = false;
+      return false;
+    } else {
+      this.apiService.updateVendorDetails(values).subscribe((responseBody) => {
+        let response = JSON.parse(JSON.stringify(responseBody));
+        if(response.res == false) {
+          this.btnDis1 = false;
+          this.toast.error({detail: response.msg,summary:'' ,duration: 4000});
+        } else {
+          this.toast.success({detail:"Shop Settings updated.",summary: '' ,duration: 4000});
+          this.btnDis1 = false;
+        }
+      },(error) => {
+        this.btnDis1 = false;
+        this.toast.error({detail:"Something went wrong. Please try again.",summary: '' ,duration: 4000});
+      })
+    }
+    return true;
   }
 
   onDateSelection(date: NgbDate) {
@@ -235,6 +252,88 @@ export class VendorShopSettingsComponent implements OnInit {
   onDeletePauseDate() {
     this.pause_to_date = null;
     this.pause_from_date = null;
+  }
+
+  onNousdFomChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdFom = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdFom = '';
+      this.autoOrderMinPrice();
+    }
+  }
+
+  onNousdReOrdChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.usdReOrd = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.usdReOrd = '';
+      this.autoReOrderMinPrice();
+    }
+  }
+
+  onNocadFomChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadFom = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadFom = '';
+    }
+  }
+
+  onNocadReOrdChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.cadReOrd = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.cadReOrd = '';
+    }
+  }
+
+  onNogbpFomChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpFom = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpFom = '';
+    }
+  }
+
+  onNogbpReOrdChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.gbpReOrd = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.gbpReOrd = '';
+    }
+  }
+
+  onNoaudFomChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audFom = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audFom = '';
+    }
+  }
+
+  onNoaudReOrdChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.audReOrd = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.audReOrd = '';
+    }
+  }
+
+  onNoeurFomChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurFom = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurFom = '';
+    }
+  }
+
+  onNoeurReOrdChange(event: any) {
+    if(!/^\d{0,6}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.pricingListError.eurReOrd = 'This field must be number & max 6 numbers.';
+    } else {
+      this.pricingListError.eurReOrd = '';
+    }
   }
 
 }

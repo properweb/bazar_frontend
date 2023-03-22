@@ -126,7 +126,7 @@ export class HeaderComponent implements OnInit {
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-          if(response.data.step_count !== 12) { 
+          if(response.data.role === 'brand' && response.data.step_count !== 12) { 
             this.storage
             .set('user_session', JSON.parse(JSON.stringify(response.data)))
             .subscribe(() => {});
