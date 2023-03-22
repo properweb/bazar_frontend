@@ -20,14 +20,12 @@ export class ShoppingBagComponent implements OnInit {
   cartDetails!: any;
   cartCount!: any;
   quantity!: any;
+  qtyError!: any;
   totalPrice: any = [];
 
   constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router,private titleService: Title, private toast: NgToastService ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.titleService.setTitle('Cart');
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -40,8 +38,8 @@ export class ShoppingBagComponent implements OnInit {
         console.log(error);
       },
     });
-
   }
+
   fetchCart(user_id: any) {
     let totalPriceArr: any = [];
     this.apiService.fetchCart(user_id).subscribe((responseBody) => { 
@@ -65,7 +63,9 @@ export class ShoppingBagComponent implements OnInit {
           this.totalPrice = totalPriceArr;
         }
       });
-    })
+    },(error) => {
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: '' ,duration: 4000});
+   })
   }
 
   deleteCart(id: any) {
@@ -86,33 +86,83 @@ export class ShoppingBagComponent implements OnInit {
   }
 
   handleCheckOut(id: any, price: any, brand_name: any, brand_key: any) {
-    let values = {
-      price: price,
-      brand_name: brand_name,
-      brand_key: brand_key
-    }
-    this.router.navigate(['checkout/' + id], {
-      state:{
-        price: values
+    let specificBrand = this.cartDetails.find((item: any) => item.brand_key === id);
+    if(this.qtyError) {
+      this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
+    } else {
+      let valuesCart = {
+        cart: specificBrand.products
       }
-    });
+      this.apiService.updateCart(valuesCart).subscribe((responseBody) => {
+        let response = JSON.parse(JSON.stringify(responseBody));
+        if(response.res == true) {
+          let values = {
+            price: price,
+            brand_name: brand_name,
+            brand_key: brand_key
+          }
+          this.router.navigate(['checkout/' + id], {
+            state:{
+              price: values
+            }
+          });
+          // this.toast.success({detail:response.msg ,summary: '' ,duration: 4000});
+          this.afterLoginHeaderComp.fetchCart(this.user_id);
+        } else {
+          this.toast.error({detail:response.msg ,summary: '' ,duration: 4000});
+        }
+      },(error) => {
+        this.toast.error({detail:"Something went wrong. please try again later.",summary: '' ,duration: 4000});
+      })
+      
+    }
   }
 
   onQtyChange(event: any, item: any, index: any) {
-    item.product_qty = Number(event.target.value);
-    let totalPriceArr: any = [];
-    this.cartDetails.forEach((cartElement: any, cartkey: any) => {
-      totalPriceArr[cartkey] = [];
-      totalPriceArr[cartkey]['brand_id'] = cartElement.brand_id;
-      if(cartElement.products.length > 0) {
-        let total = 0;
-        cartElement.products.forEach((element: any, key: any) => {
-            total += Number(element.product_qty) * Number(element.product_price);
-        });
-        totalPriceArr[cartkey]['brand_total'] = total;
-        this.totalPrice = totalPriceArr;
+    if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
+      this.qtyError = 'Inventory must be number and max 6 numbers.';
+    } else {
+      this.qtyError = '';
+      item.product_qty = Number(event.target.value);
+      let totalPriceArr: any = [];
+      let products: any = []; 
+      this.cartDetails.forEach((cartElement: any, cartkey: any) => {
+        totalPriceArr[cartkey] = [];
+        totalPriceArr[cartkey]['brand_id'] = cartElement.brand_id;
+        if(cartElement.products.length > 0) {
+          let total = 0;
+          cartElement.products.forEach((element: any, key: any) => {
+              element.user_id = this.user_id;
+              total += Number(element.product_qty) * Number(element.product_price);
+          });
+          totalPriceArr[cartkey]['brand_total'] = total;
+          this.totalPrice = totalPriceArr;
+        }
+      });
+      // let values = {
+      //   id: item?.id,
+      //   user_id: this.user_id,
+      //   product_id: item?.product_id,
+      //   quantity: item?.product_qty
+      // }
+      let specificBrand = this.cartDetails.findIndex((item: any, cartIndex: any) => cartIndex === index);
+      let specificBrdPro = this.cartDetails[specificBrand];
+      let specificProArray = specificBrdPro.products.find((arrayItem: any) => arrayItem.id === item?.id);
+      let valuesCart = {
+        cart: [specificProArray]
       }
-    });
+      this.apiService.updateCart(valuesCart).subscribe((responseBody) => {
+        let response = JSON.parse(JSON.stringify(responseBody));
+        if(response.res == true) {
+          this.toast.success({detail:"Cart updated successfully." ,summary: '' ,duration: 4000});
+          this.afterLoginHeaderComp.fetchCart(this.user_id);
+        } else {
+          this.toast.error({detail:response.msg ,summary: '' ,duration: 4000});
+        }
+      },(error) => {
+        this.toast.error({detail:"Something went wrong. please try again later.",summary: '' ,duration: 4000});
+      })
+    }
   }
 
 }

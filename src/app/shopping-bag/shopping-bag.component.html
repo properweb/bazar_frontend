@@ -25,9 +25,10 @@
                                             <p class="PrdtName">{{item.product_name}}</p>
                                             <p class="PrdtMaterial" *ngIf="item?.style_name != null" >{{item.style_name}}</p>
                                             <p *ngIf="item?.style_group_name != null" >{{item.style_group_name}}</p>
-                                            <p *ngIf="item?.product_qty" >Quantity({{item?.product_qty}})
+                                            <p *ngIf="item?.product_qty" >Quantity
                                                 <span class="qty-update"><input type="number" name="quantity" [value]="item?.product_qty" (change)="onQtyChange($event, item, i)" ></span>
                                             </p>
+                                            <span *ngIf="qtyError" class="validate_errors">{{qtyError}}</span>
                                         </td>
                                         <td valign="bottom">
                                             <a class="RemovePrdt" (click)="deleteCart(item?.id)" ><img src="assets/images/CrossIcon.png" alt=""/></a>

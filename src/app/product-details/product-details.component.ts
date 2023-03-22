@@ -55,10 +55,6 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-    
     this.activatedRoute.params.subscribe((routeParams) => {
       this.productKey = routeParams['id'];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -177,9 +173,7 @@ export class ProductDetailsComponent implements OnInit {
 
         if(response.data.prepacks.length > 0 ) {
           this.productPrepackArray = response.data.prepacks;
-          // this.addToBagObject.prepack_id = response.data.prepacks[0].id;
-          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: firstObject.wholesale_price, quantity: 1, variationWishId: response.data.prepacks[0].variationWishId};
-          this.productVariationFirst = this.addToBagObject;
+          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: response.data.prepacks[0].wholesale_price, quantity: 1, variationWishId: response.data.prepacks[0].variationWishId};
         }
         this.radioBtnValue = [];
         response.data.variation_options.forEach((element: any) => {
@@ -330,7 +324,6 @@ export class ProductDetailsComponent implements OnInit {
       totalPrepack += Number(element);
     });
     this.perPrepackValue = totalPrepack;
-    this.productVariationFirst = firstPrepackOption;
     this.addToBagObject.prepack_id = event.target.value; 
   }
 
