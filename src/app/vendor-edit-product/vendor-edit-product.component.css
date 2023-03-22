@@ -174,7 +174,7 @@ input[type=number] { -moz-appearance: textfield; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th { background: none; border: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 20px 10px 20px 10px; text-align: center; white-space: nowrap; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table th:last-child { text-align: center; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table tbody { border-top: none; }
-.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; white-space: nowrap; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td { background: none; border: none; box-shadow: none; border-bottom: 1px solid #eaeaea; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 20px 10px 20px 10px; vertical-align: middle; white-space: nowrap; position: relative; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(3) { text-align: center; /*width: 150px;*/ }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td:nth-child(4) { /*width: 150px;*/ }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table .imgTd { white-space: nowrap; /*width: auto !important;*/ }

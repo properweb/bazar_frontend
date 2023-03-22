@@ -306,52 +306,58 @@
                 
                     </td>               
                     <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> 
+                    <!-- <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
+                      <select class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
+                        <option value="" hidden>Select option</option>
+                        <option [value]="sOpt.value" *ngFor="let sOpt of option_items[optTypeIndex]">{{sOpt.value}}</option>
+                      </select>
+                    </td> -->
                     <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image != ''" class="imgTd"><img [src]="resultAttributeImgPreview[i].swatch_image" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
                     <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image == ''" class="imgTd"> <img src="assets/images/add-product-color-crop-img.png" alt="" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
 
                     <td>
                       <input type="text" class="form-control" placeholder="" (change)="isDirty=true;onVarSkuChange($event, i);" [name]="'resultAttributesku'+i" [(ngModel)]="resultAttribute[i].sku" >
-                      <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
                     </td>
                     <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdWsChange($event, i);isDirty=true;" [name]="'resultAttributews'+i" [(ngModel)]="resultAttribute[i].usd_wholesale_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].usdws">{{resultAttribute[i].usdws}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].usdws">{{resultAttribute[i].usdws}}</span>
                     </td>
                     <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onUsdRetChange($event, i);isDirty=true;" [name]="'resultAttributerp'+i" [(ngModel)]="resultAttribute[i].usd_retail_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].usdret">{{resultAttribute[i].usdret}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].usdret">{{resultAttribute[i].usdret}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onCadWsChange($event, i);isDirty=true;" [name]="'resultAttributecwp' + i" [(ngModel)]="resultAttribute[i].cad_wholesale_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].cadws">{{resultAttribute[i].cadws}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].cadws">{{resultAttribute[i].cadws}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onCadRetChange($event, i);isDirty=true;" [name]="'resultAttributecrp' + i" [(ngModel)]="resultAttribute[i].cad_retail_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].cadret">{{resultAttribute[i].cadret}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].cadret">{{resultAttribute[i].cadret}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onGbpWsChange($event, i);isDirty=true;" [name]="'resultAttributegwp' + i" [(ngModel)]="resultAttribute[i].gbp_wholesale_price">
                       <span class="priceSpan">£</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].gbpws">{{resultAttribute[i].gbpws}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].gbpws">{{resultAttribute[i].gbpws}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onGbpRetChange($event, i);isDirty=true;" [name]="'resultAttributegrp' + i" [(ngModel)]="resultAttribute[i].gbp_retail_price">
                       <span class="priceSpan">£</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].gbpret">{{resultAttribute[i].gbpret}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].gbpret">{{resultAttribute[i].gbpret}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onEurWsChange($event, i);isDirty=true;" [name]="'resultAttributeewp' + i" [(ngModel)]="resultAttribute[i].eur_wholesale_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].eurws">{{resultAttribute[i].eurws}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].eurws">{{resultAttribute[i].eurws}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onEurRetChange($event, i);isDirty=true;" [name]="'resultAttributeerp' + i" [(ngModel)]="resultAttribute[i].eur_retail_price">
                       <span class="priceSpan">$</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].eurret">{{resultAttribute[i].eurret}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].eurret">{{resultAttribute[i].eurret}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onAudWsChange($event, i);isDirty=true;" [name]="'resultAttributeawp' + i" [(ngModel)]="resultAttribute[i].aud_wholesale_price">
                       <span class="priceSpan">€</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].audws">{{resultAttribute[i].audws}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].audws">{{resultAttribute[i].audws}}</span>
                     </td>
                     <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="0" (change)="onAudRetChange($event, i);isDirty=true;" [name]="'resultAttributearp' + i" [(ngModel)]="resultAttribute[i].aud_retail_price">
                       <span class="priceSpan">€</span>
-                      <span class="validate_errors" *ngIf="resultAttribute[i].audret">{{resultAttribute[i].audret}}</span>
+                      <span style="position: absolute; max-width: 100%; white-space: normal; background-color: #fff; z-index: 1;" class="validate_errors" *ngIf="resultAttribute[i].audret">{{resultAttribute[i].audret}}</span>
                     </td>
                     <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control unitInput" placeholder="" (change)="isDirty=true;onVarInventoryChange($event, i);" [name]="'resultAttributinv'+i" [(ngModel)]="resultAttribute[i].inventory">
                       <span class="unitsSpan">units</span>
@@ -412,6 +418,8 @@
                 </ng-container>
                 </tbody>
               </table>
+              <!-- <p (click)="onAddNewOptionClick()">Add New</p>
+              <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span> -->
             </div>
             <div class="setBox">
               <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
@@ -748,7 +756,7 @@
                   </label>
                 </div>
               </li>
-              <li> <span class="labelSpan">Let retailers buy testers to display in their shops.</span>
+              <li> <span class="labelSpan">Let retailers buy testers to display in their shops.</span> 
                 <div class="radioDiv">
                   <label class="switch" for="checkbox2">
                     <input type="checkbox" (change)="onTesterPriceChange($event);isDirty=true;" [checked]="testers_price_radio" id="checkbox2" (click)="showretailersPrice();" />
