@@ -57,7 +57,7 @@ export class AfterLoginHeaderComponent implements OnInit {
 
         this.role = user_session.role;
         this.user_id = user_session.id;
-        this.fetchCart(user_session.id);
+        this.fetchCart();
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -156,8 +156,8 @@ export class AfterLoginHeaderComponent implements OnInit {
     });
   }
 
-  fetchCart(user_id: any) {
-    this.apiService.fetchCart(user_id).subscribe((responseBody) => {
+  fetchCart() {
+    this.apiService.fetchCart().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.cartCount =  response.data.cart_count;
     })
@@ -166,7 +166,11 @@ export class AfterLoginHeaderComponent implements OnInit {
   logout() {
     this.apiService.logout();
     this.toast.success({ detail:"Logout successful", summary:"", duration: 4000});
-    this.router.navigate(['/localBrands']);
+    setTimeout(() => {
+      this.router.navigate(['/localBrands']).then(() => {
+        window.location.reload();
+      });
+    }, 500);
   }
 
 }
