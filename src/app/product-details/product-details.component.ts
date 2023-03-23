@@ -44,7 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   quantity!: any;
   items: any;
   custQtyEnable: any = false;
-  isCustomQtySelected: any = false;
+
   pageOfItems!: Array<any>;
   addToBagObject: any = {};
   wishlistId!: any
@@ -56,6 +56,7 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     this.activatedRoute.params.subscribe((routeParams) => {
       this.productKey = routeParams['id'];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -141,6 +142,7 @@ export class ProductDetailsComponent implements OnInit {
               element.options.forEach((element1: any) => {
                 this.openSizingArray.push({value: element1, qty: splitQty});
               });
+
             }
           });
         }
@@ -155,6 +157,7 @@ export class ProductDetailsComponent implements OnInit {
           totalPrepack += Number(element);
         });
         this.perPrepackValue = totalPrepack;
+
       }
       this.totalOpenSizingQty();
       if(response.data.variation_options.length > 0 ) {
@@ -170,7 +173,7 @@ export class ProductDetailsComponent implements OnInit {
 
         if(response.data.prepacks.length > 0 ) {
           this.productPrepackArray = response.data.prepacks;
-          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: response.data.prepacks[0].wholesale_price, quantity: 1, variationWishId: response.data.prepacks[0].variationWishId};
+
         }
         this.radioBtnValue = [];
         response.data.variation_options.forEach((element: any) => {
@@ -240,19 +243,7 @@ export class ProductDetailsComponent implements OnInit {
       let int = Number(minQty);
       let qty = int + (caseQty*index);
       let price = qty* Number(wsPrice);
-      if(index > 9) {
-        return 'Custom quantity';
-      } else {
-        return qty + '($'+ price +')';
-      }
-    } else {
-      let int = Number(minQty);
-      let qty = int + (caseQty*index);
-      if(index > 9) {
-        return 'Custom quantity';
-      } else {
-        return qty;
-      }
+
     }
   
   }
@@ -270,12 +261,7 @@ export class ProductDetailsComponent implements OnInit {
   orderQtyNumber1(minQty: any, caseQty: any, index: any, wsPrice: any) {
     let int = Number(minQty);
     let qty = int + (caseQty*index);
-    // if(index > 9) {
-    //   this.custQtyEnable = true;
-    //   return 'Custom quantity';
-    // } else {
-      return qty;
-    // }
+
   }
 
   onColorChange(event: any) {
@@ -305,6 +291,7 @@ export class ProductDetailsComponent implements OnInit {
 
   onQtyChange(event: any) {
     if(event.target.value == 11 || event.target.value == '11') {
+
       this.custQtyEnable = true;
     }
     // this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
@@ -317,13 +304,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onQtyChange1(event: any) {
-    // if(event.target.value == 'Custom quantity') {
-    //   this.isCustomQtySelected = true;
 
-    // } else {
-      this.isCustomQtySelected = false;
-      this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
-    // }
   }
 
   onPrepackChange(event: any) {
@@ -339,6 +320,7 @@ export class ProductDetailsComponent implements OnInit {
       totalPrepack += Number(element);
     });
     this.perPrepackValue = totalPrepack;
+
     this.addToBagObject.prepack_id = event.target.value; 
   }
 
@@ -357,7 +339,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail:"Product added to cart.",summary: '' ,duration: 4000});
-        this.afterLoginHeaderComp.fetchCart();
+
         this.addCrtBtn = false;
       } else {
         this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
@@ -487,7 +469,7 @@ export class ProductDetailsComponent implements OnInit {
       brandTitleName: "Star Seller",
       priceText: "80$ minimum",
       discountText: "Up to 30% off  + free shipping"
-    }
+
   ]
 
   specialProductOptions1: OwlOptions = {
