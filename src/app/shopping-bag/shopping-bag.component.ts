@@ -33,7 +33,7 @@ export class ShoppingBagComponent implements OnInit {
         let user_session = JSON.parse(JSON.stringify(user));
         this.role = user_session.role;
         this.user_id = user_session.id;
-        this.fetchCart(user_session.id);
+        this.fetchCart();
       },
       error: (error) => {
         console.log(error);
@@ -41,9 +41,9 @@ export class ShoppingBagComponent implements OnInit {
     });
   }
 
-  fetchCart(user_id: any) {
+  fetchCart() {
     let totalPriceArr: any = [];
-    this.apiService.fetchCart(user_id).subscribe((responseBody) => { 
+    this.apiService.fetchCart().subscribe((responseBody) => { 
       let response = JSON.parse(JSON.stringify(responseBody));
       this.cartCount = response.data.cart_count;
       if(this.cartCount == 0) {
@@ -71,14 +71,13 @@ export class ShoppingBagComponent implements OnInit {
 
   deleteCart(id: any) {
     let values = {
-      id: id,
-      user_id: this.user_id
+      id: id
     }
     this.apiService.deleteCart(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-        this.afterLoginHeaderComp.fetchCart(this.user_id);
-        this.fetchCart(this.user_id);
+        this.afterLoginHeaderComp.fetchCart();
+        this.fetchCart();
         this.toast.success({detail: 'Cart item removed succesfully',summary: '' ,duration: 4000});
       }
     },(error) => {
@@ -89,9 +88,6 @@ export class ShoppingBagComponent implements OnInit {
   handleCheckOut(id: any, price: any, brand_name: any, brand_key: any) {
     this.btnDis = true;
     let specificBrand = this.cartDetails.find((item: any) => item.brand_key === id);
-    specificBrand.products.forEach((elm: any) => {
-      elm.user_id = this.user_id;
-    })
     if(this.qtyError) {
       this.btnDis = false;
       this.toast.error({detail:"Inventory must be number and max 6 numbers.",summary: '' ,duration: 4000});
@@ -113,7 +109,7 @@ export class ShoppingBagComponent implements OnInit {
             }
           });
           this.btnDis = false;
-          this.afterLoginHeaderComp.fetchCart(this.user_id);
+          this.afterLoginHeaderComp.fetchCart();
         } else {
           this.btnDis = false;
           this.toast.error({detail:response.msg ,summary: '' ,duration: 4000});
@@ -140,19 +136,12 @@ export class ShoppingBagComponent implements OnInit {
         if(cartElement.products.length > 0) {
           let total = 0;
           cartElement.products.forEach((element: any, key: any) => {
-              element.user_id = this.user_id;
               total += Number(element.product_qty) * Number(element.product_price);
           });
           totalPriceArr[cartkey]['brand_total'] = total;
           this.totalPrice = totalPriceArr;
         }
       });
-      // let values = {
-      //   id: item?.id,
-      //   user_id: this.user_id,
-      //   product_id: item?.product_id,
-      //   quantity: item?.product_qty
-      // }
       let specificBrand = this.cartDetails.findIndex((item: any, cartIndex: any) => cartIndex === index);
       let specificBrdPro = this.cartDetails[specificBrand];
       let specificProArray = specificBrdPro.products.find((arrayItem: any) => arrayItem.id === item?.id);
@@ -163,7 +152,7 @@ export class ShoppingBagComponent implements OnInit {
         let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
           this.toast.success({detail:"Cart updated successfully." ,summary: '' ,duration: 4000});
-          this.afterLoginHeaderComp.fetchCart(this.user_id);
+          this.afterLoginHeaderComp.fetchCart();
         } else {
           this.toast.error({detail:response.msg ,summary: '' ,duration: 4000});
         }

@@ -141,7 +141,6 @@ export class ProductDetailsComponent implements OnInit {
               element.options.forEach((element1: any) => {
                 this.openSizingArray.push({value: element1, qty: splitQty});
               });
-              // response.data.variation_options.splice(key, 1);
             }
           });
         }
@@ -156,9 +155,6 @@ export class ProductDetailsComponent implements OnInit {
           totalPrepack += Number(element);
         });
         this.perPrepackValue = totalPrepack;
-          response.data.prepacks.forEach((element:any, key: any) => {
-            // response.data.variation_options.splice(key, 1);
-          });
       }
       this.totalOpenSizingQty();
       if(response.data.variation_options.length > 0 ) {
@@ -309,7 +305,6 @@ export class ProductDetailsComponent implements OnInit {
 
   onQtyChange(event: any) {
     if(event.target.value == 11 || event.target.value == '11') {
-      // alert(event.target.value);
       this.custQtyEnable = true;
     }
     // this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
@@ -362,7 +357,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail:"Product added to cart.",summary: '' ,duration: 4000});
-        this.afterLoginHeaderComp.fetchCart(this.user_id);
+        this.afterLoginHeaderComp.fetchCart();
         this.addCrtBtn = false;
       } else {
         this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
@@ -492,55 +487,7 @@ export class ProductDetailsComponent implements OnInit {
       brandTitleName: "Star Seller",
       priceText: "80$ minimum",
       discountText: "Up to 30% off  + free shipping"
-    },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/after-login-product-band-img.png",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/local-brands-new-bazar-img4.jpg",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
-    // {
-    //   brandImgName: "assets/images/local-brands-new-bazar-img5.jpg",
-    //   brandTitleName: "Star Seller",
-    //   priceText: "80$ minimum",
-    //   discountText: "Up to 30% off  + free shipping"
-    // },
+    }
   ]
 
   specialProductOptions1: OwlOptions = {
