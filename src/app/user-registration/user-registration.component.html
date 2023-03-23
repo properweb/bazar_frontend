@@ -8,18 +8,18 @@
     </ul>
 </div>
 <!-- Step One Form Section Start -->
-<div class="common_step_sec step_one_sec" *ngIf="step1">
+<div class="common_step_sec step_one_sec" *ngIf="step1"> 
     <div class="form_content_box">
         <h3>{{stepOneHeading}}</h3>
-        <p>{{stepOnePara}}</p>
+        <p>Purchase from over {{this.vendorCount}} unique vendors. Sign up for free</p>
         <form #userFormStep1="ngForm" (ngSubmit)="userFormStep1.form.valid && sendUserFormStep1(userFormStep1)" novalidate>
             <ul class="form_list">
                 <li>
                     <label class="form-label" for="fName">First Name</label>
-                    <input id="fName" type="text" autocomplete="off" required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" class="form-control validate" name="first_name" [(ngModel)]="first_name" #first_nameVal='ngModel' aria-required="true">
+                    <input id="fName" type="text" autocomplete="off" required pattern="^[a-zA-Z]{0,255}$" class="form-control validate" name="first_name" [(ngModel)]="first_name" #first_nameVal='ngModel' aria-required="true">
                     <span class="validate_errors"
                         *ngIf="(first_nameVal.touched || userFormStep1.submitted) && first_nameVal.errors?.['required']">
-                        First Name is required
+                        First Name is required.
                     </span>
                     <span class="validate_errors"
                         *ngIf="(first_nameVal.touched || userFormStep1.submitted) && first_nameVal.errors?.['maxlength']">
@@ -27,15 +27,15 @@
                     </span>
                     <span class="validate_errors"
                         *ngIf="(first_nameVal.touched || userFormStep1.submitted) && first_nameVal.errors?.['pattern']">
-                        First name is not valid.
+                        First name accepts only alphabets and less than 255 characters.
                     </span>
                 </li>
                 <li>
                     <label class="form-label" for="lName">Last Name</label>
-                    <input id="lName" type="text" autocomplete="off" required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" class="form-control validate " name="last_name" [(ngModel)]="last_name" #last_nameVal='ngModel' required aria-required="true">
+                    <input id="lName" type="text" autocomplete="off" required pattern="^[a-zA-Z]{0,255}$" class="form-control validate " name="last_name" [(ngModel)]="last_name" #last_nameVal='ngModel' required aria-required="true">
                     <span class="validate_errors"
                         *ngIf="(last_nameVal.touched || userFormStep1.submitted) && last_nameVal.errors?.['required']">
-                        Last Name is required
+                        Last Name is required.
                     </span>
                     <span class="validate_errors"
                         *ngIf="(last_nameVal.touched || userFormStep1.submitted) && last_nameVal.errors?.['maxlength']">
@@ -43,7 +43,7 @@
                     </span>
                     <span class="validate_errors"
                         *ngIf="(last_nameVal.touched || userFormStep1.submitted) && last_nameVal.errors?.['pattern']">
-                        Last name is not valid.
+                        Last name accepts only alphabets and less than 255 characters.
                     </span>
                 </li>
                 <li>
@@ -51,7 +51,7 @@
                     <input id="email" type="text" autocomplete="off" required email pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" class="form-control validate " name="email" [(ngModel)]="email" #emailval='ngModel' aria-required="true">
                     <span class="validate_errors"
                         *ngIf="(emailval.touched || userFormStep1.submitted) && emailval.errors?.['required']">
-                        Email is required
+                        Email is required.
                     </span>
                     <span class="validate_errors"
                         *ngIf="(emailval.touched || userFormStep1.submitted) && emailval.errors?.['pattern']">
@@ -63,7 +63,7 @@
                     <input id="password" type="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control validate" minlength="6" name="password" [(ngModel)]="password" #passwordval='ngModel' aria-required="true" placeholder="Min 8 characters">
                     <span class="validate_errors"
                         *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['required']">
-                        Password is required
+                        Password is required.
                     </span>
                     <span class="validate_errors"
                         *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['pattern']">
@@ -77,7 +77,7 @@
                     </select>
                     <span class="validate_errors"
                         *ngIf="(countryval.touched || userFormStep1.submitted) && countryval.errors?.['required']">
-                        Country is required
+                        Country is required.
                     </span>
                 </li>
                 <li>
@@ -94,7 +94,7 @@
                     </div>
                     <span class="validate_errors"
                         *ngIf="(phone_numberval.touched || userFormStep1.submitted) && phone_numberval.errors?.['required']">
-                        Phone Number is required
+                        Phone Number is required.
                     </span>
                 </li>
                 <li>
@@ -104,7 +104,7 @@
                     </select>
                     <span class="validate_errors"
                         *ngIf="(languageval.touched || userFormStep1.submitted) && languageval.errors?.['required']">
-                        Language is required
+                        Language is required.
                     </span>
                 </li>
                 <li>
@@ -162,7 +162,7 @@
     <!-- User Registration Step 2 Of Step 2 End -->
     <div class="form_content_box step_two_form_box_3" *ngIf="step4">
         <h3>{{stepTwoHeading3}}</h3>
-        <p>{{stepTwoPara3}}</p>
+        <p>Purchase from over {{this.vendorCount}} uniquue vendors. Sign up for free</p>
         <form #userFormStep3="ngForm" (ngSubmit)="userFormStep3.form.valid && senduserFormStep3(userFormStep3)" novalidate>
             <ul class="form_list">
                 <li>
@@ -316,7 +316,8 @@
             <ul class="store_describe_list">
                 <li class="full_width text-center"><img src="assets/images/e-commerce.svg" alt=""></li>
                 <li class="full_width text-center">
-                    <a type="button" class="btn btn-primary common_btn" (click)="onClickStart()">Start Shopping</a>
+                    <a *ngIf="!btnDis" type="button" class="btn btn-primary common_btn" (click)="onClickStart()">Start Shopping</a>
+                    <a *ngIf="btnDis" type="button" class="btn btn-primary common_btn disabled">Please wait..</a>
                     <p>We may contact you for additional info</p>
                 </li>
             </ul>

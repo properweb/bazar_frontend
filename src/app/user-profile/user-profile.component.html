@@ -25,10 +25,10 @@
                                             <li>
                                                 <label>First Name</label>
                                                 <input type="hidden" name="user_id" [(ngModel)]="user_id" #user_idval='ngModel' >
-                                                <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                                <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required pattern="^[a-zA-Z]{0,255}$" >
                                                 <span class="validate_errors"
                                                     *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
-                                                    First Name is required
+                                                    First Name is required.
                                                 </span>
                                                 <span class="validate_errors"
                                                     *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['maxlength']">
@@ -36,15 +36,15 @@
                                                 </span>
                                                 <span class="validate_errors"
                                                     *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['pattern']">
-                                                    First name is not valid.
+                                                    First name accepts only alphabets and less than 255 characters.
                                                 </span>
                                             </li>
                                             <li>
                                                 <label>Last Name</label>
-                                                <input type="text" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                                <input type="text" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required pattern="^[a-zA-Z]{0,255}$">
                                                 <span class="validate_errors"
                                                     *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['required']">
-                                                    Last Name is required
+                                                    Last Name is required.
                                                 </span>
                                                 <span class="validate_errors"
                                                     *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['maxlength']">
@@ -52,7 +52,7 @@
                                                 </span>
                                                 <span class="validate_errors"
                                                     *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['pattern']">
-                                                    Last name is not valid.
+                                                    Last name accepts only alphabets and less than 255 characters.
                                                 </span>
                                             </li>
                                             <li>
@@ -62,14 +62,14 @@
                                                 </select>
                                                 <span class="validate_errors"
                                                     *ngIf="(countryval.touched || userFormStep1.submitted) && countryval.errors?.['required']">
-                                                    Country is required
+                                                    Country is required.
                                                 </span>
                                             </li>
                                             <li>
                                                 <label>Phone Number</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text">
-                                                        <input *ngIf="country_code" type="text" class="form-control telephone-input" [value]="'+'+country_code">
+                                                        <input autocomplete="new-password" *ngIf="country_code" type="text" class="form-control telephone-input" [value]="'+'+country_code">
                                                         <input *ngIf="!country_code" type="text" class="form-control telephone-input" [value]="'+'">
                                                         <select class="form-select telephone-select" aria-label="Default select example" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel' required >
                                                           <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
@@ -80,7 +80,7 @@
                                                 </div>
                                                 <span class="validate_errors"
                                                     *ngIf="(phone_numberval.touched || userFormStep1.submitted) && phone_numberval.errors?.['required']">
-                                                    Phone Number is required
+                                                    Phone Number is required.
                                                 </span>
                                             </li>
                                             <li>
@@ -90,7 +90,7 @@
                                                 </select>
                                                 <span class="validate_errors"
                                                     *ngIf="(languageval.touched || userFormStep1.submitted) && languageval.errors?.['required']">
-                                                    Language is required
+                                                    Language is required.
                                                 </span>
                                             </li>
                                             <li>
@@ -127,7 +127,7 @@
                                                 <input type="text" name="store_name" [(ngModel)]="store_name" #store_nameval='ngModel' required >
                                                 <span class="validate_errors"
                                                     *ngIf="(store_nameval.touched || userFormStep1.submitted) && store_nameval.errors?.['required']">
-                                                    Store Name is required
+                                                    Store Name is required.
                                                 </span>
                                             </li>
                                             <li>
@@ -137,7 +137,7 @@
                                                 </select>
                                                 <span class="validate_errors"
                                                     *ngIf="(store_typeval.touched || userFormStep1.submitted) && store_typeval.errors?.['required']">
-                                                    Store Name is required
+                                                    Store Name is required.
                                                 </span>
                                             </li>
                                             <li>
@@ -340,7 +340,7 @@
               <input type="text" name="card_number" [(ngModel)]="card_number" #card_numberval='ngModel' required>
               <span class="validate_errors"
                 *ngIf="(card_numberval.touched || paymentForm.submitted) && card_numberval.errors?.['required']">
-                This field is required
+                This field is required.
               </span>
             </li>
             <li>
@@ -348,7 +348,7 @@
               <input type="text" name="month_year" [(ngModel)]="month_year" #month_yearval='ngModel' required>
               <span class="validate_errors"
                 *ngIf="(month_yearval.touched || paymentForm.submitted) && month_yearval.errors?.['required']">
-                This field is required
+                This field is required.
               </span>
             </li>
             <li>
@@ -356,7 +356,7 @@
               <input type="text" value="111" name="cvc" [(ngModel)]="cvc" #cvcval='ngModel' required>
               <span class="validate_errors"
                 *ngIf="(cvcval.touched || paymentForm.submitted) && cvcval.errors?.['required']">
-                This field is required
+                This field is required.
               </span>
             </li>
            
@@ -388,7 +388,7 @@
                 <input type="text" value="" name="ship_name" [(ngModel)]="ship_name" #ship_nameval='ngModel' maxlength="255" required pattern="^[\sa-zA-Zء-ي]*$">
                 <span class="validate_errors"
                     *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 <span class="validate_errors"
                     *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['pattern']">
@@ -400,7 +400,7 @@
                 <input type="text" value="" name="ship_address1" [(ngModel)]="ship_address1" #ship_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
                 <span class="validate_errors"
                     *ngIf="(ship_address1val.touched || checkOutForm.submitted) && ship_address1val.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 <span class="validate_errors"
                     *ngIf="(ship_address1val.touched || checkOutForm.submitted) && ship_address1val.errors?.['pattern']">
@@ -422,7 +422,7 @@
                     </select>
                     <span class="validate_errors"
                         *ngIf="(ship_countryval.touched || checkOutForm.submitted) && ship_countryval.errors?.['required']">
-                        This field is required
+                        This field is required.
                     </span>
                 </li>
                 <li>
@@ -433,7 +433,7 @@
                 </select>
                 <span class="validate_errors"
                     *ngIf="(ship_stateval.touched || checkOutForm.submitted) && ship_stateval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
@@ -444,7 +444,7 @@
                 </select>
                 <span class="validate_errors"
                     *ngIf="(ship_cityval.touched || checkOutForm.submitted) && ship_cityval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
@@ -452,14 +452,14 @@
                 <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="ship_pincode" [(ngModel)]="ship_pincode" #ship_pincodeval='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(ship_pincodeval.touched || checkOutForm.submitted) && ship_pincodeval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
                     <label>Phone Number</label>
                     <div class="input-group">
                         <span class="input-group-text">
-                            <input type="text" class="form-control telephone-input" [value]="'+'+ship_phone_code">
+                            <input autocomplete="new-password" type="text" class="form-control telephone-input" [value]="'+'+ship_phone_code">
                             <select class="form-select telephone-select" aria-label="Default select example" name="ship_phone_code" [(ngModel)]="ship_phone_code" #ship_phone_codeval='ngModel' required >
                                 <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
                             </select>
@@ -469,7 +469,7 @@
                     </div>
                     <span class="validate_errors"
                         *ngIf="(ship_phone_numberval.touched || checkOutForm.submitted) && ship_phone_numberval.errors?.['required']">
-                        Phone Number is required
+                        Phone Number is required.
                     </span>
                 <!-- <input type="text" value="" class="countryNum"> -->
                 </li>
@@ -503,7 +503,7 @@
                 <input type="text" value="" name="update_ship_name" [(ngModel)]="update_ship_name" #update_ship_nameval='ngModel' maxlength="255" required pattern="^[\sa-zA-Zء-ي]*$">
                 <span class="validate_errors"
                     *ngIf="(update_ship_nameval.touched || updateShipAddForm.submitted) && update_ship_nameval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 <span class="validate_errors"
                     *ngIf="(update_ship_nameval.touched || updateShipAddForm.submitted) && update_ship_nameval.errors?.['pattern']">
@@ -515,7 +515,7 @@
                 <input type="text" value="" name="update_ship_address1" [(ngModel)]="update_ship_address1" #update_ship_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
                 <span class="validate_errors"
                     *ngIf="(update_ship_address1val.touched || updateShipAddForm.submitted) && update_ship_address1val.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 <span class="validate_errors"
                     *ngIf="(update_ship_address1val.touched || updateShipAddForm.submitted) && update_ship_address1val.errors?.['pattern']">
@@ -537,7 +537,7 @@
                     </select>
                     <span class="validate_errors"
                         *ngIf="(update_ship_countryval.touched || updateShipAddForm.submitted) && update_ship_countryval.errors?.['required']">
-                        This field is required
+                        This field is required.
                     </span>
                 </li>
                 <li>
@@ -548,7 +548,7 @@
                 </select>
                 <span class="validate_errors"
                     *ngIf="(update_ship_stateval.touched || updateShipAddForm.submitted) && update_ship_stateval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
@@ -559,7 +559,7 @@
                 </select>
                 <span class="validate_errors"
                     *ngIf="(update_ship_cityval.touched || updateShipAddForm.submitted) && update_ship_cityval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
@@ -567,14 +567,14 @@
                 <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="update_ship_pincode" [(ngModel)]="update_ship_pincode" #update_ship_pincodeval='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(update_ship_pincodeval.touched || updateShipAddForm.submitted) && update_ship_pincodeval.errors?.['required']">
-                    This field is required
+                    This field is required.
                 </span>
                 </li>
                 <li>
                     <label>Phone Number</label>
                     <div class="input-group">
                         <span class="input-group-text">
-                            <input type="text" class="form-control telephone-input" [value]="'+'+update_ship_phone_code">
+                            <input autocomplete="new-password" type="text" class="form-control telephone-input" [value]="'+'+update_ship_phone_code">
                             <select class="form-select telephone-select" aria-label="Default select example" name="update_ship_phone_code" [(ngModel)]="update_ship_phone_code" #update_ship_phone_codeval='ngModel' required >
                                 <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
                             </select>
@@ -584,7 +584,7 @@
                     </div>
                     <span class="validate_errors"
                         *ngIf="(update_ship_phone_numberval.touched || updateShipAddForm.submitted) && update_ship_phone_numberval.errors?.['required']">
-                        Phone Number is required
+                        Phone Number is required.
                     </span>
                 <!-- <input type="text" value="" class="countryNum"> -->
                 </li>
@@ -620,7 +620,7 @@
                       </select>
                       <span class="validate_errors"
                           *ngIf="(billing_countryval.touched || updateBillingAddForm.submitted) && billing_countryval.errors?.['required']">
-                          This field is required
+                          This field is required.
                       </span>
                   </li>
                   <li>
@@ -631,7 +631,7 @@
                       </select>
                       <span class="validate_errors"
                           *ngIf="(billing_stateval.touched || updateBillingAddForm.submitted) && billing_stateval.errors?.['required']">
-                          This field is required
+                          This field is required.
                       </span>
                   </li>
                   <li>
@@ -642,7 +642,7 @@
                       </select>
                       <span class="validate_errors"
                           *ngIf="(billing_cityval.touched || updateBillingAddForm.submitted) && billing_cityval.errors?.['required']">
-                          This field is required
+                          This field is required.
                       </span>
                   </li>
                   <li>
@@ -650,7 +650,7 @@
                       <input type="text" value="" name="billing_address1" [(ngModel)]="billing_address1" #billing_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
                       <span class="validate_errors"
                           *ngIf="(billing_address1val.touched || updateBillingAddForm.submitted) && billing_address1val.errors?.['required']">
-                          This field is required
+                          This field is required.
                       </span>
                       <span class="validate_errors"
                           *ngIf="(billing_address1val.touched || updateBillingAddForm.submitted) && billing_address1val.errors?.['pattern']">
@@ -662,7 +662,7 @@
                       <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="billing_pincode" [(ngModel)]="billing_pincode" #billing_pincodeval='ngModel' required>
                       <span class="validate_errors"
                           *ngIf="(billing_pincodeval.touched || updateBillingAddForm.submitted) && billing_pincodeval.errors?.['required']">
-                          This field is required
+                          This field is required.
                       </span>
                   </li>
                   <li>
@@ -673,7 +673,7 @@
                       <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="billing_phone_number" [(ngModel)]="billing_phone_number" #billing_phone_numberval='ngModel' required aria-required="true">
                       <span class="validate_errors"
                           *ngIf="(billing_phone_numberval.touched || updateBillingAddForm.submitted) && billing_phone_numberval.errors?.['required']">
-                          Phone Number is required
+                          Phone Number is required.
                       </span>
                   </li>
                   <li>
