@@ -325,7 +325,7 @@ export class AddProductComponent implements OnInit {
 
   onInventoryChange(event: any) {
     if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {
-      this.inventoryError = 'Inventory must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.inventoryError = 'Inventory must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.inventoryError = '';
     }
@@ -333,85 +333,85 @@ export class AddProductComponent implements OnInit {
 
   onLengthChange(event: any) {
     if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {
-      this.lengthError = 'Length must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.lengthError = 'Length must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.lengthError = '';
   }
 
   onWidthChange(event: any) {
     if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {
-      this.widthError = 'Width must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.widthError = 'Width must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.widthError = '';
   }
 
   onHeightChange(event: any) {
     if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {
-      this.heightError = 'Height must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.heightError = 'Height must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.heightError = '';
   }
 
   onWeightChange(event: any) {
     if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {
-      this.weightError = 'Weight must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.weightError = 'Weight must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.weightError = '';
   }
 
   onTariffCodeChange(event: any) {
     if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {
-      this.tariffError = 'Tariff code must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.tariffError = 'Tariff code must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.tariffError = '';
   }
 
   onTestersPriceChange(event: any) {
     if(this.testers_price && !/^[0-9]{0,6}$/.test(this.testers_price)) {
-      this.testersPriceError = 'Testers price must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.testersPriceError = 'Testers price must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.testersPriceError = '';
   }
 
   onRetailerInputChange(event: any) {
     if(this.reatailer_input_limit && !/^[0-9]{0,6}$/.test(this.reatailer_input_limit)) {
-      this.reatailerInputLimitError = 'Retailer input must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.reatailerInputLimitError = 'Retailer input must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.reatailerInputLimitError = '';
   }
 
   onRetailerAddChargeChange(event: any) {
     if(this.retailer_add_charge && !/^[0-9]{0,6}$/.test(this.retailer_add_charge)) {
-      this.retailerAddChargeError = 'Retailer charge must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.retailerAddChargeError = 'Retailer charge must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.retailerAddChargeError = '';
   }
 
   onVarInventoryChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].inventoryError = "Inventory must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].inventoryError = "Inventory must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].inventoryError = "";
   }
 
   onVarWeightChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].weightError = "Weight must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].weightError = "Weight must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].weightError = "";
   }
 
   onVarLengthChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].lengthError = "Length must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].lengthError = "Length must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].lengthError = "";
   }
 
   onVarWidthChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].widthError = "Width must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].widthError = "Width must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].widthError = "";
   }
 
   onVarHeightChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].heightError = "Height must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].heightError = "Height must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].heightError = "";
   }
 
   onVarTariffCodeChange(event: any, index: any) {
     if(event.target.value && !/^[0-9]{0,6}$/.test(event.target.value)) {
-      this.resultAttribute[index].tariffCodeError = "Tariff must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].tariffCodeError = "Tariff must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else this.resultAttribute[index].tariffCodeError = "";
   }
 
@@ -429,7 +429,7 @@ export class AddProductComponent implements OnInit {
 
   onUsdWsChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].usdws = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].usdws = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].usdws = "";
       if(!this.outside_us) {
@@ -440,7 +440,7 @@ export class AddProductComponent implements OnInit {
 
   onUsdRetChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].usdret = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].usdret = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].usdret = "";
       if(!this.outside_us) {
@@ -451,7 +451,7 @@ export class AddProductComponent implements OnInit {
 
   onCadWsChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].cadws = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].cadws = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].cadws = "";
     }
@@ -459,7 +459,7 @@ export class AddProductComponent implements OnInit {
 
   onCadRetChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].cadret = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].cadret = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].cadret = "";
     }
@@ -467,7 +467,7 @@ export class AddProductComponent implements OnInit {
 
   onGbpWsChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].gbpws = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].gbpws = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].gbpws = "";
     }
@@ -475,7 +475,7 @@ export class AddProductComponent implements OnInit {
 
   onGbpRetChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].gbpret = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].gbpret = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].gbpret = "";
     }
@@ -483,7 +483,7 @@ export class AddProductComponent implements OnInit {
 
   onEurWsChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].eurws = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].eurws = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].eurws = "";
     }
@@ -491,7 +491,7 @@ export class AddProductComponent implements OnInit {
 
   onEurRetChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].eurret = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].eurret = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].eurret = "";
     }
@@ -499,7 +499,7 @@ export class AddProductComponent implements OnInit {
 
   onAudWsChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].audws = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].audws = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].audws = "";
     }
@@ -507,7 +507,7 @@ export class AddProductComponent implements OnInit {
 
   onAudRetChange(event: any, index:any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.resultAttribute[index].audret = "This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.";
+      this.resultAttribute[index].audret = "This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.";
     } else {
       this.resultAttribute[index].audret = "";
     }
@@ -515,13 +515,13 @@ export class AddProductComponent implements OnInit {
 
   onCaseQtyChange(event: any) {
     if(event.target.value && !/^[0-9]{1,6}$/.test(event.target.value)) {
-      this.caseQtyError = 'Case quantity must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.caseQtyError = 'Case quantity must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.caseQtyError = '';
   }
 
   onMinOrdQtyChange(event: any) {
     if(!/^[0-9]*$/.test(event.target.value)) {
-      this.minOrdQtyError = 'Min order quantity must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.minOrdQtyError = 'Min order quantity must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else this.minOrdQtyError = '';
   }
 
@@ -988,21 +988,19 @@ export class AddProductComponent implements OnInit {
         }
       });
     }
-    console.log(this.option_type);
-    console.log(this.option_items);
     if(attributes.length > 0 && this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
 
       if(attributes.length == 1) {
         this.resultAttribute.push({'resultAttributeSelect': '', 'option1': attributes[0], 'option2': '','option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'' , 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '', 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'' , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': '','option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'' , 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': '', 'swatch_image': ''});
       }
       if(attributes.length == 2) {
         this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'',[attributes[1]]:'', 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '','inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'',[attributes[1]]:'', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': '', 'value2': '','value3': '',  [attributes[0]]:'',[attributes[1]]:'', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': '', 'swatch_image': ''});
       }
       if(attributes.length == 3) {
         this.resultAttribute.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': '', 'value2': '','value3': 'element2.value', [attributes[0]]:'', [attributes[1]]:'',[attributes[2]]:'element2.value', 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '','cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': '', 'value2': '','value3': 'element2.value', [attributes[0]]:'', [attributes[1]]:'',[attributes[2]]:'element2.value', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+        this.resultAttributeImgPreview.push({ 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': '', 'value2': '','value3': 'element2.value', [attributes[0]]:'', [attributes[1]]:'',[attributes[2]]:'element2.value', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': '' , 'swatch_image': ''});
       }
      
 
@@ -1102,6 +1100,7 @@ export class AddProductComponent implements OnInit {
     let localArray: any = [];
     let error = 0;
     this.resultAttribute[index][attriValue] = event.target.value;
+    this.resultAttributeImgPreview[index][attriValue] = event.target.value;
     this.resultAttribute[index].resultAttributeSelect = event.target.value;
 
     this.resultAttribute.forEach((element: any) => {
@@ -1147,16 +1146,24 @@ export class AddProductComponent implements OnInit {
         // }
       }
       
+      if(this.option_type.includes('Color')) {
+        this.resultAttributeImgPreview.forEach((colorelement: any) => {
+          this.colorOptionItems.forEach((colorelement1 :any) => {
+            if(colorelement1.name == colorelement.Color) {
+               if(colorelement1.img != '') {
+                colorelement.swatch_image = colorelement1.img;
+               }              
+            } 
+          });
+        });
+      }
     
     });
-    
-    console.log(this.resultAttribute);
-    console.log(localArray);
   }
 
   onAddNewOptionClick() {
     this.resultAttribute.push({ 'option1': '', 'option2': '','option3': '', 'value1': '', 'value2': '','value3': '', 'images': [],'preview_images': [], 'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'cad_wholesale_price': '', 'cad_retail_price': '', 'gbp_wholesale_price': '', 'gbp_retail_price': '', 'eur_wholesale_price': '', 'eur_retail_price': '', 'aud_wholesale_price': '', 'aud_retail_price': '', 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '', 'dimension_unit': 'cm' , 'weight_unit': 'kg' , 'tariff_code': ''});
-    this.resultAttributeImgPreview.push({ 'option1': '', 'option2': '','option3': '', 'value1': 'element.value', 'value2': '','value3': '', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': ''});
+    this.resultAttributeImgPreview.push({ 'option1': '', 'option2': '','option3': '', 'value1': 'element.value', 'value2': '','value3': '', 'images': [],'preview_images': [], 'image_index': '', 'sku' : '' , 'usd_wholesale_price': '' , 'usd_retail_price': '' , 'inventory': '', 'weight': '' , 'length': '' , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': '', 'height': '' , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': '', 'swatch_image': ''});
   }
 
   onOpenSwatchModal(color: any) {
@@ -1273,7 +1280,7 @@ export class AddProductComponent implements OnInit {
         } else if ( maxPricingError == 1 ) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Pricing list must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Pricing list must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_sku && !/^[A-Za-z0-9]*$/.test(this.shipping_sku)) {
           this.publistBtnDisabled = false;
@@ -1283,37 +1290,37 @@ export class AddProductComponent implements OnInit {
         } else if(this.shipping_inventory && !/^[0-9]{0,6}$/.test(this.shipping_inventory)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Inventory must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Inventory must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_tariff_code && !/^[0-9]{0,6}$/.test(this.shipping_tariff_code)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Tariff Code must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Tariff Code must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_length && !/^[0-9]{0,6}$/.test(this.shipping_length)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Length must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Length must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_width && !/^[0-9]{0,6}$/.test(this.shipping_width)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Width must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Width must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_height && !/^[0-9]{0,6}$/.test(this.shipping_height)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Height must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Height must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.shipping_weight && !/^[0-9]{0,6}$/.test(this.shipping_weight)) {       
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Weight must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Weight must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.caseQtyError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Case quantity must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Case quantity must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.order_case_qty == undefined || this.order_case_qty == null ){
           this.publistBtnDisabled = false;
@@ -1333,7 +1340,7 @@ export class AddProductComponent implements OnInit {
         } else if(this.testersPriceError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Testers price must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Testers price must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
           this.publistBtnDisabled = false;
@@ -1343,12 +1350,12 @@ export class AddProductComponent implements OnInit {
         } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Retailers input must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Retailers input must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Additional must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Additional must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
           this.publistBtnDisabled = false;
@@ -1462,7 +1469,7 @@ export class AddProductComponent implements OnInit {
               balnkVarError = 1;
             }
           } else if(this.option_type.length == 3) {
-            if(elementVar.value1 == '' || elementVar.value2 == '' || elementVar.value2 == '') {
+            if(elementVar.value1 == '' || elementVar.value2 == '' || elementVar.value3 == '') {
               balnkVarError = 1;
             }
           }
@@ -1574,37 +1581,37 @@ export class AddProductComponent implements OnInit {
         } else if (maxVarPricingError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Price must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Price must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(inventoryError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Inventory must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Inventory must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(weightError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Weight must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Weight must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(lengthError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Length must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Length must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(widthError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Width must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Width must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(heightError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Height must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Height must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(tariffCodeError == 1) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Tariff code must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Tariff code must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.blankImgExist) {
           this.publistBtnDisabled = false;
@@ -1614,7 +1621,7 @@ export class AddProductComponent implements OnInit {
         } else if(this.caseQtyError) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
-          this.toast.error({detail:"Case quantity must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+          this.toast.error({detail:"Case quantity must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
           return false;
         } else if(this.order_min_case_qty == undefined || this.order_min_case_qty == null ) {
           this.publistBtnDisabled = false;
@@ -1643,7 +1650,7 @@ export class AddProductComponent implements OnInit {
           } else if(this.testersPriceError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
-            this.toast.error({detail:"Testers price must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+            this.toast.error({detail:"Testers price must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
             return false;
           } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
             this.publistBtnDisabled = false;
@@ -1653,12 +1660,12 @@ export class AddProductComponent implements OnInit {
           } else if(this.instructionsRetailers == true && this.reatailerInputLimitError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
-            this.toast.error({detail:"Retailers input must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+            this.toast.error({detail:"Retailers input must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
             return false;
           } else if(this.instructionsRetailers == true && this.retailerAddChargeError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
-            this.toast.error({detail:"Additional Charge must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.",summary: '' ,duration: 4000});
+            this.toast.error({detail:"Additional Charge must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
             return false;
           } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
             this.publistBtnDisabled = false;
@@ -1881,7 +1888,7 @@ export class AddProductComponent implements OnInit {
 
   onNoUsdWsChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.usdws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.usdws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.usdws = '';
       if(!this.outside_us) {
@@ -1892,7 +1899,7 @@ export class AddProductComponent implements OnInit {
 
   onNoUsdRetChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.usdret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.usdret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.usdret = '';
       if(!this.outside_us) {
@@ -1903,7 +1910,7 @@ export class AddProductComponent implements OnInit {
 
   onNoCadWsChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.cadws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.cadws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.cadws = '';
     }
@@ -1911,7 +1918,7 @@ export class AddProductComponent implements OnInit {
 
   onNoCadRetChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.cadret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.cadret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.cadret = '';
     }
@@ -1919,7 +1926,7 @@ export class AddProductComponent implements OnInit {
 
   onNoGbpWsChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.gbpws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.gbpws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.gbpws = '';
     }
@@ -1927,7 +1934,7 @@ export class AddProductComponent implements OnInit {
 
   onNoGbpRetChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.gbpret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.gbpret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.gbpret = '';
     }
@@ -1935,7 +1942,7 @@ export class AddProductComponent implements OnInit {
 
   onNoAudWsChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.audws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.audws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.audws = '';
     }
@@ -1943,7 +1950,7 @@ export class AddProductComponent implements OnInit {
 
   onNoAudRetChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.audret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.audret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.audret = '';
     }
@@ -1951,7 +1958,7 @@ export class AddProductComponent implements OnInit {
 
   onNoEurWsChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.eurws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.eurws = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.eurws = '';
     }
@@ -1959,7 +1966,7 @@ export class AddProductComponent implements OnInit {
 
   onNoEurRetChange(event: any) {
     if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.pricingListError.eurret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allow only two digits.';
+      this.pricingListError.eurret = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
     } else {
       this.pricingListError.eurret = '';
     }

@@ -252,7 +252,7 @@
             </div>
             <div class="setBox">
               <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
-              <span><strong>Set unique pricing per currency other than USD.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
+              <span><strong>Set unique pricing per currency.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
             </div>
           </div>
           <div class="borderBottom" *ngIf="showForm2"></div>
@@ -305,13 +305,13 @@
                       </ng-template>
                 
                     </td>               
-                    <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> 
-                    <!-- <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
-                      <select class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
-                        <option value="" hidden>Select option</option>
+                    <!-- <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>  -->
+                    <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
+                      <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i + optTypeIndex" [(ngModel)]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute)" >
+                        <option [value]="null" hidden>Select option</option>
                         <option [value]="sOpt.value" *ngFor="let sOpt of option_items[optTypeIndex]">{{sOpt.value}}</option>
                       </select>
-                    </td> -->
+                    </td>
                     <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image != ''" class="imgTd"><img [src]="resultAttributeImgPreview[i].swatch_image" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
                     <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image == ''" class="imgTd"> <img src="assets/images/add-product-color-crop-img.png" alt="" /> <a (click)=" onOpenSwatchModal(resultAttribute[i].Color) ; openColorModal(selectColor);" class="editSwatchBtn">Edit Swatch</a></td>
 
@@ -418,12 +418,12 @@
                 </ng-container>
                 </tbody>
               </table>
-              <!-- <p (click)="onAddNewOptionClick()">Add New</p>
-              <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span> -->
+              <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
+              <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span>
             </div>
             <div class="setBox">
               <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
-              <span><strong>Set unique pricing per currency other than USD.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
+              <span><strong>Set unique pricing per currency.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
             </div>
 
             <ng-container *ngIf="option_type.includes('Size')">
@@ -461,9 +461,11 @@
                         </tr>
 
                         <tr *ngFor="let attributes of resultAttribute; let i = index" >
-                          <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-                          <td> {{!caseQtyError ? order_case_qty : ''}} </td>
-                          <td> {{order_min_case_qty ? order_min_case_qty : ''}} </td>
+                          <ng-container *ngIf="attributes.status == 'published'">
+                            <td *ngFor="let attribute of option_type">{{resultAttribute[i][attribute]}}</td>
+                            <td> {{!caseQtyError ? order_case_qty : ''}} </td>
+                            <td> {{order_min_case_qty ? order_min_case_qty : ''}} </td>
+                          </ng-container>
                         </tr>
                         
                       </table>
@@ -493,8 +495,10 @@
                         </tr>
 
                         <tr *ngFor="let attributes of resultAttribute; let i = index" >
-                          <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-                          <td *ngIf="order_min_case_qty && !minOrdQtyError"> {{!minOrdQtyError ? order_min_case_qty : ''}} units</td>
+                          <ng-container *ngIf="attributes.status == 'published'">
+                            <td *ngFor="let attribute of option_type">{{resultAttribute[i][attribute]}}</td>
+                            <td *ngIf="order_min_case_qty && !minOrdQtyError"> {{!minOrdQtyError ? order_min_case_qty : ''}} units</td>
+                          </ng-container>
                         </tr>
 
                       </table>

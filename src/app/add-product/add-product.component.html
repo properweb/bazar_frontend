@@ -308,7 +308,7 @@
                   </td>   
                   <!-- <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> -->
                   <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
-                    <select class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
+                    <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
                       <option value="" hidden>Select option</option>
                       <option [value]="sOpt.value" *ngFor="let sOpt of option_items[optTypeIndex]">{{sOpt.value}}</option>
                     </select>
@@ -417,12 +417,12 @@
                 </tr>
                 </tbody>
               </table>
-              <p class="addNewOptBtn" (click)="onAddNewOptionClick()" style="display: block; float: right;">Add New</p>
+              <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
               <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span>
             </div>
             <div class="setBox">
               <input type="checkbox" name="outside_us" [(ngModel)]="outside_us" class="form-check-input" />
-              <span><strong>Set unique pricing per currency other than USD.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
+              <span><strong>Set unique pricing.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
             </div>
             <ng-container *ngIf="option_type.includes('Size')">
               <h5>How would you like to sell this product?*</h5>
