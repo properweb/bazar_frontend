@@ -14,44 +14,64 @@
     <div class="row">
       <div class="col-lg-7 leftImgtDetails">
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
-          <li><a><img src="assets/images/compare_icon2.png" alt="img"></a></li>
+          <!-- <li><a><img src="assets/images/compare_icon2.png" alt="img"></a></li> -->
           <li>
 
             <ng-container *ngIf="boardsList?.length == 0">
+
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt=""></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/like_icon.png" alt=""></a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/Vector-red.png" alt=""></a>
+              </ng-container>
+
               <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+              <!-- <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
                 <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
-              </ng-container>
+              </ng-container> -->
 
               <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+              <!-- <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-              </ng-container>
+              </ng-container> -->
             </ng-container>
 
              <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
+
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/like_icon.png" alt="img" /></a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/Vector-red.png" alt=""></a>
+              </ng-container>
+
               <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+              <!-- <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
                 <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
-              </ng-container>
+              </ng-container> -->
 
               <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+              <!-- <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-              </ng-container>
+              </ng-container> -->
             </ng-container>
             
           </li>
@@ -91,64 +111,31 @@
         <div class="clearfix"></div>
         <div class="productName">{{productDetail.name}}</div>
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
-          <li>
+          <!-- <li>
             <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
-          </li>
+          </li> -->
           <li>
 
             <ng-container *ngIf="boardsList?.length == 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
-              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
-                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/Vector-red.png" alt=""></a>
               </ng-container>
-
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
-                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
-              </ng-container>
-
-              <!-- <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a> -->
-              <!-- <a (click)="addToWishlist()" ><img src="assets/images/Vector-red.png" alt=""></a> -->
             </ng-container>
 
             <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
-              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
-                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
-              </ng-container>
-
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Add to wishlist</a> -->
-                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
-                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" ><img src="assets/images/Vector-red.png" alt=""></a>
               </ng-container>
             </ng-container>
 
@@ -265,47 +252,67 @@
             </a>
 
             <ng-container *ngIf="boardsList?.length == 0">
+
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+
               <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+              <!-- <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+              </ng-container> -->
 
               <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+              <!-- <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+              </ng-container> -->
             </ng-container>
 
             <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+
+              <ng-container *ngIf="wishlistId == ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+              </ng-container>
+              <ng-container *ngIf="wishlistId != ''">
+                <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
+                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
+              </ng-container>
+
+              <!-- <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+              </ng-container> -->
 
               <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
+              <!-- <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+              </ng-container> -->
             </ng-container>
 
           </li>
@@ -324,7 +331,7 @@
   <div class="container">
     <div class="productDeatilsTabs">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" *ngIf="productDetail.description != '' && productDetail.description != 'undefined'" >
+        <li class="nav-item" *ngIf="productDetail.description != '' && productDetail.description != null" >
           <a class="nav-link active" data-bs-toggle="tab" href="#description">Description</a>
         </li>
         <!-- <li class="nav-item">
@@ -334,7 +341,7 @@
           <a class="nav-link" href="#">Product Reviews</a>
         </li> -->
       </ul>
-      <div class="tab-content" *ngIf="productDetail.description != '' && productDetail.description != 'undefined' " >
+      <div class="tab-content" *ngIf="productDetail.description != '' && productDetail.description != null " >
         <div id="description" class="tab-pane active">
           <p>
             {{productDetail.description}}
@@ -372,28 +379,52 @@
         <div class="col-lg-9 rightBrandShopBodyBottom">
           <ul class="row brandShopProduct_list" *ngIf="relatedProducts?.length > 0" >
             <li class="col-md-4" *ngFor="let item of relatedProducts" >
-              <div class="card">
-                <div class="imgDiv" [style.background-image]="'url('+ item?.featured_image +')'">
-                  <ul class="brandShopNav">
-                    <li>
-                      <a><img src="assets/images/compare_icon2.png" alt="img"/></a>
-                    </li>
-                    <li>
-                      <a><img src="assets/images/like_icon.png" alt="img" /></a>
-                    </li>
-                  </ul>
-                  <div class="addProductBtn">
-                    <a class="addButton">Add</a>
+              <ng-container *ngIf="item?.stock == 0">
+                <div class="card">
+                  <div class="imgDiv" [style.background-image]="'url('+ item?.featured_image +')'">
+                    <div class="white-overlay">Out of Stock</div>
+                    <!-- <ul class="brandShopNav">
+                      <li>
+                        <a><img src="assets/images/compare_icon2.png" alt="img"/></a>
+                      </li>
+                      <li>
+                        <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                      </li>
+                    </ul> -->
+                    <!-- <div class="addProductBtn">
+                      <a class="addButton">Add</a>
+                    </div> -->
+                  </div>
+                  <div class="textDiv" style="cursor: pointer;" > 
+                    <h3>{{item?.name}}</h3>
+                    <p class="price_tag" *ngIf="item.usd_wholesale_price != '0' && item.usd_wholesale_price != 'undefined' ">{{item?.default_currency}} {{item?.usd_wholesale_price}} <span *ngIf="item.usd_retail_price != '0' && item.usd_retail_price != 'undefined' " >MSRP {{item?.default_currency}} {{item.usd_retail_price}}</span></p>
+                    <span class="minimumTextSpan" *ngIf="item.min_order_qty != '0' && item.min_order_qty != 'undefined' " >{{item?.default_currency}} {{item.min_order_qty}} minimum</span>
                   </div>
                 </div>
-                <div class="textDiv" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;" > 
-                  <h3>{{item?.name}}</h3>
-                  <p class="price_tag" *ngIf="item.usd_wholesale_price != '0' && item.usd_wholesale_price != 'undefined' ">{{item?.default_currency}} {{item?.usd_wholesale_price}} <span *ngIf="item.usd_retail_price != '0' && item.usd_retail_price != 'undefined' " >MSRP {{item?.default_currency}} {{item.usd_retail_price}}</span></p>
-                  <span class="minimumTextSpan" *ngIf="item.min_order_qty != '0' && item.min_order_qty != 'undefined' " >{{item?.default_currency}} {{item.min_order_qty}} minimum</span>
+              </ng-container>
+              <ng-container *ngIf="item?.stock != 0">
+                <div class="card">
+                  <div class="imgDiv" [style.background-image]="'url('+ item?.featured_image +')'">
+                    <!-- <ul class="brandShopNav">
+                      <li>
+                        <a><img src="assets/images/compare_icon2.png" alt="img"/></a>
+                      </li>
+                      <li>
+                        <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                      </li>
+                    </ul> -->
+                    <div class="addProductBtn">
+                      <a class="addButton" routerLink="/product/{{item?.product_key}}">View</a>
+                    </div>
+                  </div>
+                  <div class="textDiv" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;" > 
+                    <h3>{{item?.name}}</h3>
+                    <p class="price_tag" *ngIf="item.usd_wholesale_price != '0' && item.usd_wholesale_price != 'undefined' ">{{item?.default_currency}} {{item?.usd_wholesale_price}} <span *ngIf="item.usd_retail_price != '0' && item.usd_retail_price != 'undefined' " >MSRP {{item?.default_currency}} {{item.usd_retail_price}}</span></p>
+                    <span class="minimumTextSpan" *ngIf="item.min_order_qty != '0' && item.min_order_qty != 'undefined' " >{{item?.default_currency}} {{item.min_order_qty}} minimum</span>
+                  </div>
                 </div>
-              </div>
+              </ng-container>
             </li>
-
           </ul>
           <div *ngIf="relatedProducts?.length == 0" style="color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 15px 0; text-align: center;" >No Related Products Found!</div>
         </div>
@@ -455,50 +486,97 @@
 
     <div class="container" *ngIf="recentlyViewedProducts?.length > 0 " >
       <h3>Recently viewed</h3>
+
       <div class="row" *ngIf="recentlyViewedProducts?.length <= 4 " >
         <div class="col-lg-3 withoutCarousel" *ngFor="let item of recentlyViewedProducts">
-          <div class="category_box">
-            <div class="img_div">
-              <img src="{{ item?.featured_image }}" alt="" />
-              <ul class="brandShopNav">
-                <li>
-                  <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
-                </li>
-                <li>
-                  <a><img src="assets/images/like_icon.png" alt="img" /></a>
-                </li>
-              </ul>
-            </div>
-            <div class="text_div" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;">
-              <h3>{{item?.name}}</h3>
-              <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="recentViewsCarousel" *ngIf="recentlyViewedProducts?.length > 4 ">
-        <owl-carousel-o [options]="specialProductOptions1">
-          <ng-template carouselSlide *ngFor="let item of recentlyViewedProducts">
+          <ng-container *ngIf="item?.stock == 0">
             <div class="category_box">
               <div class="img_div">
                 <img src="{{ item?.featured_image }}" alt="" />
-                <ul class="brandShopNav">
+                <div class="white-overlay">Out of Stock</div>
+                <!-- <ul class="brandShopNav">
                   <li>
                     <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
                   </li>
                   <li>
                     <a><img src="assets/images/like_icon.png" alt="img" /></a>
                   </li>
-                </ul>
+                </ul> -->
+              </div>
+              <div class="text_div" style="cursor: pointer;">
+                <h3>{{item?.name}}</h3>
+                <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="item?.stock != 0">
+            <div class="category_box">
+              <div class="img_div">
+                <img src="{{ item?.featured_image }}" alt="" />
+                <!-- <ul class="brandShopNav">
+                  <li>
+                    <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+                  </li>
+                  <li>
+                    <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                  </li>
+                </ul> -->
               </div>
               <div class="text_div" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;">
                 <h3>{{item?.name}}</h3>
                 <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
               </div>
             </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="recentViewsCarousel" *ngIf="recentlyViewedProducts?.length > 4 ">
+        <owl-carousel-o [options]="specialProductOptions1">
+          <ng-template carouselSlide *ngFor="let item of recentlyViewedProducts">
+            <ng-container *ngIf="item?.stock == 0">
+              <div class="category_box">
+                <div class="img_div">
+                  <img src="{{ item?.featured_image }}" alt="" />
+                  <div class="white-overlay">Out of Stock</div>
+                  <!-- <ul class="brandShopNav">
+                    <li>
+                      <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+                    </li>
+                    <li>
+                      <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                    </li>
+                  </ul> -->
+                </div>
+                <div class="text_div" style="cursor: pointer;">
+                  <h3>{{item?.name}}</h3>
+                  <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="item?.stock != 0">
+              <div class="category_box">
+                <div class="img_div">
+                  <img src="{{ item?.featured_image }}" alt="" />
+                  <!-- <ul class="brandShopNav">
+                    <li>
+                      <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
+                    </li>
+                    <li>
+                      <a><img src="assets/images/like_icon.png" alt="img" /></a>
+                    </li>
+                  </ul> -->
+                </div>
+                <div class="text_div" routerLink="/product/{{item?.product_key}}" style="cursor: pointer;">
+                  <h3>{{item?.name}}</h3>
+                  <h4 *ngIf="item?.min_order_qty != '0' && item?.min_order_qty != 'undefined'" >${{item?.min_order_qty}}</h4>
+                </div>
+              </div>
+            </ng-container>
           </ng-template>
         </owl-carousel-o>
       </div>
+
     </div>
   </div>
 <!-- * * * * * * * * * * * Body Content End * * * * * * * * * * * -->
