@@ -115,7 +115,6 @@ export class UserRegistrationComponent implements OnInit {
     this.getCountries();
     this.getVendorCount();
     this.country_code = '962';
-    this.nextThreeFunction();
   }
 
   getCountries() {

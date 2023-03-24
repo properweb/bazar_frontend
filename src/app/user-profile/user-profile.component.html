@@ -24,7 +24,8 @@
                                         <ul class="formDiv">
                                             <li>
                                                 <label>First Name</label>
-                                                <input type="hidden" name="user_id" [(ngModel)]="user_id" #user_idval='ngModel' >
+                                                <!-- <input type="hidden" name="user_id" [(ngModel)]="user_id" #user_idval='ngModel' > -->
+                                                <input type="hidden" name="user_key" [(ngModel)]="user_key" #user_keyval='ngModel' >
                                                 <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required pattern="^[a-zA-Z]{0,255}$" >
                                                 <span class="validate_errors"
                                                     *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
