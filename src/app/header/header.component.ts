@@ -29,10 +29,12 @@ export class HeaderComponent implements OnInit {
   log2: boolean = false;
   submitted: boolean = false;
   validateError!: any;
+  sameEmailError!: any;
   email_address!: any;
   password!: any;
   spinnerShow: boolean = false;
   resetEmailSend: boolean = false;
+
 
   constructor( public modalService: NgbModal, private router: Router, private api: ApiService, private storage: StorageMap, private toast: NgToastService) {
     this.vendorRegForm = new FormGroup({
@@ -90,14 +92,28 @@ export class HeaderComponent implements OnInit {
 
   submitEmail(form: any) {
     this.submitted = true;
-    // if (this.vendorRegForm.valid) {
-      let vemail = JSON.parse(JSON.stringify(this.vendorEmail));
-      this.storage.set('vendor_email', vemail).subscribe(() => {});
-      this.modalReference.close();
-      this.router.navigate(['vendorRegistration']);
-    // } else {
-    //   return;
-    // }
+    let values = {
+      email: this.vendorEmail
+    }
+    this.api.checkEmail(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+      // if (this.vendorRegForm.valid) {
+        let vemail = JSON.parse(JSON.stringify(this.vendorEmail));
+        this.storage.set('vendor_email', vemail).subscribe(() => {});
+        this.modalReference.close();
+        this.router.navigate(['vendorRegistration']);
+        this.sameEmailError = '';
+      // } else {
+      //   return;
+      // }
+      } else {
+        this.sameEmailError = response.msg;
+      }
+    },(error) => {
+      this.sameEmailError = 'Something went wrong in server. Please try again.';
+    })
+    
   }
 
   submitUserEmail(form: any) {
@@ -117,7 +133,6 @@ export class HeaderComponent implements OnInit {
       email: signInFrom.value.email_address,
       password: signInFrom.value.password
     }
-    console.log(this.currentUrl);
     this.spinnerShow = true;
     this.api.vendorSignIn(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));

@@ -21,6 +21,7 @@ export class VendorsRegistrationComponent implements OnInit {
   user_id!: any;
   brand_name!: any;
   email!: any;
+  brand_email!: any;
   website_url!: any;
   prime_cat!: any;
   country!: any;

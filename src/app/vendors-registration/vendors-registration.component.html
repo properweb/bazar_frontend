@@ -51,8 +51,8 @@
           style="background-image: url(assets/images/vendor-registration-img1-min-min.jpg);">
           <div class="white_logo"><a><img src="assets/images/bazar_logo_white.svg" alt="" /></a></div>
         </div>
-        <div class="col-lg-5 rightRegistionFormBox">
-          <form #vendorFormStep1="ngForm" (ngSubmit)="vendorFormStep1.form.valid && email.length <= 255 && website_url?.length <= 255 && sendVendorFormStep1(vendorFormStep1)" novalidate>
+        <div class="col-lg-5 rightRegistionFormBox"> 
+          <form #vendorFormStep1="ngForm" (ngSubmit)="vendorFormStep1.form.valid && brand_email.length <= 255 && website_url?.length <= 255 && sendVendorFormStep1(vendorFormStep1)" novalidate>
             <h3>Grow Your Wholesale Business</h3>
             <p>Let's start with few details</p>
             <ul class="vendorRegFormList row">
@@ -69,18 +69,18 @@
                 </span>
               </li>
               <li class="col-lg-12">
-                <label class="form-label">Email Address</label>
-                <input type="text" required email class="form-control" name="email" [(ngModel)]="email" #emailval='ngModel' pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$"> 
+                <label class="form-label">Business Email</label>
+                <input type="text" required email class="form-control" name="brand_email" [(ngModel)]="brand_email" #brand_emailval='ngModel' pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$"> 
                 <span class="validate_errors"
-                  *ngIf="(emailval.touched || vendorFormStep1.submitted) && emailval.errors?.['required']">
+                  *ngIf="(brand_emailval.touched || vendorFormStep1.submitted) && brand_emailval.errors?.['required']">
                   An email is required.
                 </span>
                 <span class="validate_errors"
-                  *ngIf="(emailval.touched || vendorFormStep1.submitted) && email.length > 255">
+                  *ngIf="(brand_emailval.touched || vendorFormStep1.submitted) && brand_email.length > 255">
                   Only 255 characters allowed.
                 </span>
                 <span class="validate_errors"
-                  *ngIf="(emailval.touched || vendorFormStep1.submitted) && emailval.errors?.['pattern']">
+                  *ngIf="(brand_emailval.touched || vendorFormStep1.submitted) && brand_emailval.errors?.['pattern']">
                     Please enter valid email.
                 </span>
               </li>
@@ -150,6 +150,7 @@
                   This field is required.
                 </span>
               </li>
+              <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span>
               <li class="col-lg-12">
                 <button type="submit" class="btn btn-primary common_btn next1" >Save & Continue</button>
               </li>
@@ -179,6 +180,7 @@
                 <input type="text" hidden class="form-control" [(ngModel)]="num_products_sell" name="num_products_sell" >
                 <input type="text" hidden class="form-control" [(ngModel)]="num_store" name="num_store" >
                 <input type="text" hidden class="form-control" [(ngModel)]="about_us" name="about_us" >
+                <input type="text" hidden class="form-control"  [(ngModel)]="brand_email" name="brand_email" >
                 <input type="text" hidden class="form-control" name="step_count" [ngModel]=2 >
 
                 <input type="text" autocomplete="off" required pattern="^[a-zA-Z]{0,255}$" class="form-control" placeholder="" name="first_name" [(ngModel)]="first_name" #first_nameVal="ngModel">
@@ -204,7 +206,7 @@
                 </span>
               </li>
               <li class="col-lg-12">
-                <label class="form-label">Email Address</label>
+                <label class="form-label">Email address</label>
                 <input type="text" autocomplete="off" required email pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" maxlength="255" class="form-control" placeholder="" name="email" [(ngModel)]="email" #emailval1="ngModel">
                 <span class="validate_errors"
                   *ngIf="(emailval1.touched || vendorFormStep2.submitted) && emailval1.errors?.['required']">
@@ -215,7 +217,7 @@
                     Please enter valid email.
                 </span>
                 <span class="validate_errors"
-                  *ngIf="(emailval.touched || vendorFormStep2.submitted) && email.length > 255">
+                  *ngIf="(emailval1.touched || vendorFormStep2.submitted) && email.length > 255">
                   Only 255 characters allowed.
                 </span>
               </li>

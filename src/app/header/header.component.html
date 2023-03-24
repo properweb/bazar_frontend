@@ -553,7 +553,8 @@
                         *ngIf="(vendorEmailval.touched || vendorRegForm.submitted) && vendorEmailval.errors?.['pattern']">
                         Email is not valid.
                     </span>
-                    <button  type="submit" class="btn btn-primary" >Get started</button>
+                    <button type="submit" class="btn btn-primary" >Get started</button>
+                    <span *ngIf="sameEmailError" class="validate_errors">{{sameEmailError}}</span>
                 </li>
             </ul>
         </form>
