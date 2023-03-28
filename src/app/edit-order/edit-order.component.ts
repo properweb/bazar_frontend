@@ -237,6 +237,9 @@ export class EditOrderComponent implements OnInit {
           if(response.res == true) {
             this.btnDis = false;
             this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
+          } else {
+            this.btnDis = false;
+            this.toast.error({detail: response.msg, summary: '', duration: 4000});
           }
         },(error) => {
           this.btnDis = false;
@@ -252,6 +255,9 @@ export class EditOrderComponent implements OnInit {
         if(response.res == true) {
           this.btnDis = false;
           this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
+        } else {
+          this.btnDis = false;
+          this.toast.error({detail: response.msg, summary: '', duration: 4000});
         }
       },(error) => {
         this.btnDis = false;
