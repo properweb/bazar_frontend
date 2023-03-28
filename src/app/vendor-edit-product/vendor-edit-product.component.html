@@ -67,7 +67,7 @@
                   <div class="grayBox">
                     <p>High quality product images increase sales by up to 2x.</p>
                     <ul>
-                      <li>Upload 1+ images.</li>
+                      <li>Upload atleast one image.</li>
                       <li>Go for a white or light-colored background.</li>
                       <li>Include an image for each product option.</li>
                     </ul>
@@ -418,9 +418,10 @@
                 </ng-container>
                 </tbody>
               </table>
-              <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
               <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span>
             </div>
+            <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
+            <div class="clearfix"></div>
             <div class="setBox">
               <input type="checkbox" #outsideUsCheckBox [checked]="outside_us == '1' || outside_us == 1 ? true : false" name="outside_us" (change)="onOutsideUsChanged(outsideUsCheckBox.checked);isDirty=true;" class="form-check-input" />
               <span><strong>Set unique pricing per currency.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
@@ -938,7 +939,7 @@
     <p>Your changes have yet to be saved.</p>
   </div>
   <div class="modal-footer">
-    <button *ngIf="!publistBtnDisabled" type="button" class="btn btn-primary common_btn" (click)="updateProduct('fromPopup')" >Save Changes</button>
+    <button type="button" class="btn btn-primary common_btn" (click)="updateProduct('fromPopup')" >Save Changes</button>
     <button *ngIf="publistBtnDisabled" type="button" class="btn btn-primary common_btn" disabled >Please Wait...</button>
     <button type="button" class="btn btn-primary back_btn" (click)="closeDetectChangeModal();">Don't Save</button>
   </div>

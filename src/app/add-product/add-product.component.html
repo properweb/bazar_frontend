@@ -70,7 +70,7 @@
                   <div class="grayBox">
                     <p>High quality product images increase sales by up to 2x.</p>
                     <ul>
-                      <li>Upload 1+ images.</li>
+                      <li>Upload atleast one image.</li>
                       <li>Go for a white or light-colored background.</li>
                       <li>Include an image for each product option.</li>
                     </ul>
@@ -308,8 +308,8 @@
                   </td>   
                   <!-- <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> -->
                   <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
-                    <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
-                      <option value="" hidden>Select option</option>
+                    <!-- <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" > -->
+                    <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i + optTypeIndex" [(ngModel)]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
                       <option [value]="sOpt.value" *ngFor="let sOpt of option_items[optTypeIndex]">{{sOpt.value}}</option>
                     </select>
                   </td>
@@ -417,9 +417,10 @@
                 </tr>
                 </tbody>
               </table>
-              <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
               <span *ngIf="duplicateOptionError" class="validate_errors">Duplicate values not allowed.</span>
             </div>
+            <p class="addNewOptBtn" (click)="onAddNewOptionClick()">Add New</p>
+            <div class="clearfix"></div>
             <div class="setBox">
               <input type="checkbox" name="outside_us" [(ngModel)]="outside_us" class="form-check-input" />
               <span><strong>Set unique pricing.</strong> <br />Otherwise, we’ll automatically update your international product pricing using the daily exchange rate.</span>
@@ -530,7 +531,7 @@
                                     <div class="slider round"></div>
                                   </label>
                                 </div>
-                                <span class="off-span">{{prepackLists[i].active ? 'On' : 'Off'}}</span>
+                                <span class="off-span">{{prepackLists[i].active ? 'On' : 'Off'}}</span> 
                               </td>   
                               <td>{{list.style}}</td>
                               <td><a class="addLink" (click)="addPrepackRow(i)" ><img src="assets/images/plus_icon_product_options.png" alt="" /></a></td>    

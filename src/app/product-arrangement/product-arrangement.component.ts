@@ -25,13 +25,11 @@ export class ProductArrangementComponent implements OnInit {
   constructor(private storage: StorageMap, private apiService : ApiService, private appComponent: AppComponent, private router: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-
+        this.getProducts(this.user_id);
       
       },
       error: (error) => {
@@ -90,12 +88,12 @@ export class ProductArrangementComponent implements OnInit {
     });
 
     let values = {
-      user_id : this.user_id,
+      // user_id : this.user_id,
       items: this.storeArrangedItemId
     }
     
     this.apiService.arrangeProducts(values).subscribe((responseBody) => {
-
+      this.getProducts(this.user_id);
       window.scroll({
         top: 0,
         left: 0,
@@ -132,6 +130,20 @@ export class ProductArrangementComponent implements OnInit {
     },
   ];
 
+  getProducts(user_id:any) {
+    this.appComponent.showSpinner = true;
+    this.apiService.getProducts().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.products = response.data;
+        this.products.forEach((element: any) => {
+          element.name = element.name.replace(/\\/g, '');
+          this.storeArrangedItemId.push(String(element.id));
+        });
+        this.appComponent.showSpinner = false;
+      } else {
+        this.appComponent.showSpinner = false;
+      }
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
       this.appComponent.showSpinner = false;
@@ -148,7 +160,7 @@ export class ProductArrangementComponent implements OnInit {
       
     })
     let value = {
-      user_id : this.user_id,
+      // user_id : this.user_id,
       items: this.arrangedItemId
     }
     this.arrangedItemId = [];
