@@ -114,11 +114,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   toolsUsed:any =[
     { name: 'Shopify', value: 'Shopify' },
-    // { name: 'QuickBooks Desktop', value: 'QuickBooks Desktop' },
-    // { name: 'NetSuite', value: 'NetSuite' },
-    // { name: 'QuickBooks Online', value: 'QuickBooks Online' },
-    { name: 'WooCommerce', value: 'WooCommerce' },
-    // { name: 'ShipStation', value: 'ShipStation' },
+
   ];
 
   tagsArray:any =[
@@ -446,7 +442,7 @@ export class VendorsRegistrationComponent implements OnInit {
     let af = ['.zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed'];
     for (var i = 0; i < event.target.files.length; i++) { 
       if(event.target.files[i].name.endsWith('.zip')){
-        // this.excelError = true;
+
         this.upload_zip.push(event.target.files[i]);
         this.upload_zip_names.push(event.target.files[i].name);  
       } else {       
@@ -677,7 +673,7 @@ export class VendorsRegistrationComponent implements OnInit {
         } else {
           this.nextFiveFunction();
           this.errorMsg = "";
-          // this.router.navigateByUrl('/vendorRegistration/3');
+
           this.btnDis = false;
         }
     }, (error:any) => {
@@ -690,7 +686,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   sendVendorFormStep4(vendorFormStep4: any) {
     this.saveExitCount=4;
-    // this.nextSixFunction();
+
     this.apiService.vendorRegistrationStep1(vendorFormStep4.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if( response.res === false) {
@@ -700,10 +696,7 @@ export class VendorsRegistrationComponent implements OnInit {
       } else {
         this.nextSixFunction();
         this.errorMsg = "";
-        // this.router.navigateByUrl('/vendorRegistration/3');
-        this.btnDis = false;
-      }
-      // this.router.navigateByUrl('/vendorRegistration/4');
+
     }, (error:any) => {
       this.spinnerShow = false;
       this.btnDis = false;
@@ -904,48 +897,20 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   sendVendorFinalStep(vendorFinalStep: any) {
+
     var my_object;
     if(JSON.parse(JSON.stringify(localStorage.getItem('from_login_cred')))) {
       my_object = JSON.parse(localStorage.getItem('from_login_cred') || '{}');
     } else {
       my_object = JSON.parse(localStorage.getItem('reg_user') || '{}');
     }
-    // var my_object = JSON.parse(localStorage.getItem('reg_user') || '{}');
 
-    this.apiService.vendorRegistrationStep1(vendorFinalStep.value).subscribe((responseBody) => {
-
-    })
 
     let values = {
       email: my_object.email,
       password: my_object.password
     }
-    this.apiService.vendorSignIn(values).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if (response.res === false) {
-      } else {
-        this.storage
-        .set('user_session', JSON.parse(JSON.stringify(response.data)))
-        .subscribe(() => {});
-        localStorage.setItem('local_data', response.data.role);
-        localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
-        this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
-        if(response.data.vendor_data.first_visit == 0) {
-          this.router.navigateByUrl('/account-settings').then(() => {
-          });
-          this.spinnerShow = false;
-        } else {
-          this.router.navigateByUrl('/brand-portal').then(() => {
-          });
-          this.spinnerShow = false;
-        }
-        localStorage.removeItem('from_login_cred');
-        localStorage.removeItem('reg_user');
-      }
-    }, (error) => {
-      this.spinnerShow = false;
-      this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
-    });
+
   }
 
   openUploadFeatureModal(content: any) {
@@ -2893,7 +2858,7 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   nextEighteenFunction() {
-    // this.getVendorDetails(this.user_id);
+
     this.vendorHeader = true;
     this.vendorStepProgress = true;
     this.vendorStepA = true;

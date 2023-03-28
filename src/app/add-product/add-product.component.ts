@@ -189,15 +189,7 @@ export class AddProductComponent implements OnInit {
   minOrdQtyError!: any;
   prePackNameError:boolean= false;
   skuError:boolean= false;
-  blankImgExist:boolean= false;
-  varOptionNotBlank:boolean= false;
-  duplicateOptionError:boolean= false;
-  pricingListError:any = {usdws: '', usdret: '', cadws: '', cadret: '', gbpws: '', gbpret: '', audws: '', audret: '', eurws: '', eurret: '', };
-  blankImgExistMsg!: any;
-  keyword = 'name';
-  data = ['Size' , 'Material',  'Color' , 'Style', 'Scent'];
-  countriesArray:any = [
-  ];
+
 
   constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private toast: NgToastService) { 
     this.fromDate = null
@@ -538,6 +530,7 @@ export class AddProductComponent implements OnInit {
   }
   
   onFocusedCat(e:any){
+
   }
 
   chooseNoFunction() { 
@@ -614,18 +607,7 @@ export class AddProductComponent implements OnInit {
     }
   } 
 
-  showCreatePrepack() {
-    let sizeItem: any = [];
-    this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
-      if(!sizeItem.includes(sizeElm['Size'])) {
-        sizeItem.push(sizeElm['Size']);
-      }
-    })
-    if(sizeItem.length <= 1) {
-      this.toast.error({detail: 'Please select two size for prepack creation.', summary: '', duration: 4000});
-    } else {
-      this.hideCreatePrepack = true;
-    }
+
   }
 
   showSubCasePacks() { 
@@ -650,22 +632,7 @@ export class AddProductComponent implements OnInit {
     this.data.push(this.option1);
   }
 
-  addbutton() { 
-    let tempArray:any = [];
-    this.option_type.forEach((elem:any) => {
-      if(elem !== '') {
-        tempArray.push(elem);
-      }
-    })
-    if(tempArray.length !== this.lists.length) {
-      this.optionTypeBlkErr = 'Please select option to add new section.';
-    } else {
-      this.lists.push({"declare":""})  
-      let  namesToDeleteSet = new Set(this.option_type);
-       this.data = this.data.filter((name) => {
-        return !namesToDeleteSet.has(name);
-      });
-      this.optionTypeBlkErr = '';
+
     }
 
    }  
@@ -697,9 +664,7 @@ export class AddProductComponent implements OnInit {
       this.prepackLists[index].packs_price = '';
       this.prepackLists[index].size_ratio = event.target.value;
       this.prepackLists[index].ratio_error = '';
-      this.prepackLists[index].size_range = [];
-      this.prepackLists[index].packs_price = '';
-      this.prepackLists[index].size_range.push(sizeItemArray[0] + '-' + sizeItemArray[sizeItemArray.length - 1]);
+
     } else if (re.test(event.target.value) && splitVal.length == 2 && !remainder) { 
       this.prepackLists[index].size_range = [];
       this.prepackLists[index].packs_price = '';
@@ -804,6 +769,7 @@ export class AddProductComponent implements OnInit {
     };
   }
 
+
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -857,8 +823,7 @@ export class AddProductComponent implements OnInit {
   }
 
   cropImage(imgId: any) {
-    this.currentProcessingImg = imgId;
-    var imgObj = this.allImageChangedEventArray.find((x:any) => x.imgId === imgId);
+
     var event = {
       target: {
         files: [imgObj.imgFile]
@@ -915,7 +880,7 @@ export class AddProductComponent implements OnInit {
     event.target.value = '';
   }
 
-  selectAttriImages(event: any , index: any) {
+
     for(let i = 0; i < event.target.files.length; i++) {
       if(event.target.files[i].type == "image/jpeg" || event.target.files[i].type == "image/png" || event.target.files[i].type == "image/jpg") {
         const reader = new FileReader();
@@ -1172,7 +1137,7 @@ export class AddProductComponent implements OnInit {
       if(prepackOptionType.includes('Size')) {
         let index = prepackOptionType.indexOf('Size');
         prepackOptionType.splice(index,1);
-        prepackOptionItems.splice(index,1); 
+
       }
 
       prepackOptionType.forEach((elm: any, key: any) => {
@@ -1279,6 +1244,7 @@ export class AddProductComponent implements OnInit {
     let name = this.colorOptionItems.find((element :any , i:any) => i == index);
     this.swatchName = name.name;
     this.swatchIndex = index;
+
   }
 
   clickEditSwatch(index:any) {
@@ -1546,9 +1512,7 @@ export class AddProductComponent implements OnInit {
           formData.append("video_url[]", this.product_videos[k]);
         }
         for (let index = 0; index < this.resultAttribute.length; index++) {
-          for (let j = 0; j < this.resultAttribute[index].images.length; j++) {
-            formData.append("variations_images["+index+"]" , this.resultAttribute[index].images[j]);
-          } 
+
         }
 
         let maxVarPricingError = 0;
@@ -1618,8 +1582,7 @@ export class AddProductComponent implements OnInit {
             skuError = 1 ;
           }
         });
-        this.resultAttribute.forEach((elementVar: any) => {
-          if( elementVar.inventory && !/^[0-9]{0,6}$/.test(elementVar.inventory)) {
+
             inventoryError = 1;
           }
         });
@@ -1800,10 +1763,7 @@ export class AddProductComponent implements OnInit {
             this.toast.error({detail:"Additional Charge must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.",summary: '' ,duration: 4000});
             return false;
           } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
-            this.publistBtnDisabled = false;
-            this.notValidError = true;
-            this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
-            return false;
+
           } else if(this.instRetError) {
             this.publistBtnDisabled = false;
             this.notValidError = true;
@@ -1844,6 +1804,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onItemAdded(item:any) {
+
   }
   
   //date-range
@@ -1896,6 +1857,7 @@ export class AddProductComponent implements OnInit {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
+
   }
 
   autoPriceCall() {
@@ -1936,7 +1898,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onWSChange(index: any) {
-    this.apiService.convertPrice(this.resultAttribute[index].usd_wholesale_price).subscribe((responseBody) => {
+
       let response = JSON.parse(JSON.stringify(responseBody));
       this.resultAttribute[index].usdws = "";
       this.resultAttribute[index].usdret = "";

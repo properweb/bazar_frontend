@@ -306,15 +306,7 @@
                       <button type="button" class="btn" (click)="selectVarImageRow(i); openVariantsProductsModal(variantsProducts);">Upload</button>
                     </div>
                   </td>   
-                  <!-- <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td> -->
-                  <td *ngFor="let attribute of option_type; let optTypeIndex = index;">
-                    <!-- <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i" [value]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" > -->
-                    <select style="width: 120px !important;" class="form-select" [name]="'resultAttributeSelect' + i + optTypeIndex" [(ngModel)]="resultAttribute[i][attribute]" (change)="onVarOptionFromTableChange($event , i, attribute, optTypeIndex)" >
-                      <option [value]="sOpt.value" *ngFor="let sOpt of option_items[optTypeIndex]">{{sOpt.value}}</option>
-                    </select>
-                  </td>
-                  <td *ngIf="option_type.includes('Color') && !resultAttributeImgPreview[i].swatch_image" class="imgTd"><img src="assets/images/add-product-color-crop-img.png" alt="" /><a (click)="openColorModal(selectColor); onOpenSwatchModal(resultAttribute[i].Color) " class="editSwatchBtn">Edit Swatch</a></td>
-                  <td *ngIf="option_type.includes('Color') && resultAttributeImgPreview[i].swatch_image" class="imgTd"><img [src]="resultAttributeImgPreview[i].swatch_image" /><a (click)="openColorModal(selectColor); onOpenSwatchModal(resultAttribute[i].Color) " class="editSwatchBtn">Edit Swatch</a></td>
+
                   <td>
                     <input type="text" class="form-control" maxlength="10" (change)="onVarSkuChange($event, i);" placeholder="" [name]="'resultAttributesku' + i" [(ngModel)]="resultAttribute[i].sku" >
                     <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
@@ -605,8 +597,7 @@
                             <li class="col-lg-6">
                               <label>Minimum Order Quantity</label>
                               <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="onMinOrdQtyChange($event);" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
-                              <span class="unitsSpan">Units</span>
-                              <span class="validate_errors" *ngIf="minOrdQtyError">{{minOrdQtyError}}</span>
+
                             </li>
                           </ul>
                         </div>
@@ -1031,7 +1022,7 @@
           </div>
         </li>
       </ul>
-      <span *ngIf="blankImgExistMsg" style="text-align: center;" class="validate_errors">{{blankImgExistMsg}}</span>
+
       <div class="btnFooter">
         <button type="button" class="btn btn-primary common_btn" (click)="closeModal(); ">Submit</button><br />
         <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>

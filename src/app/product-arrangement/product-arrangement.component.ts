@@ -130,20 +130,7 @@ export class ProductArrangementComponent implements OnInit {
     },
   ];
 
-  getProducts(user_id:any) {
-    this.appComponent.showSpinner = true;
-    this.apiService.getProducts().subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        this.products = response.data;
-        this.products.forEach((element: any) => {
-          element.name = element.name.replace(/\\/g, '');
-          this.storeArrangedItemId.push(String(element.id));
-        });
-        this.appComponent.showSpinner = false;
-      } else {
-        this.appComponent.showSpinner = false;
-      }
+
     },(error) => {
       this.toast.error({detail: "Something went wrong. please try again later!", summary: "", duration: 4000});
       this.appComponent.showSpinner = false;

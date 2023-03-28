@@ -133,7 +133,7 @@
             <ul class="radioList">
               <li>
                 <div class="form-check styles_form_check">
-                  <input [checked]="isVarAvailable" type="radio" class="form-check-input" name="radio1" (click)="openAddProductModal(optionsContent);" (click)="chooseYesFunction();isDirty = true;">
+
                   <label class="form-check-label">Yes</label>
                 </div>
               </li>
@@ -508,7 +508,7 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [checked]="sell_type == 3 || sell_type == '3'" type="radio" value="3" (click)="showPrePacks();isDirty=true;order_case_qty=1; order_min_case_qty=1;sell_type = 3;">
+
                     <label class="form-check-label">Prepacks<br />
                     <span class="spanText">Retails can buy a style as a bundle in a set size run.</span></label>
                     <div *ngIf="prepackError; else prepackElse;" >
