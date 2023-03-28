@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
   @ViewChild('billEditModalCloseBtn') billClose!: ElementRef<HTMLElement>;
 
   user_id!: any;
+  user_key!: any;
   ret_name!: any;
   retailerDetails!: any;
   brand_key!: any;
@@ -81,9 +82,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.titleService.setTitle('Checkout');
      this.storage.get('cart_to_check_data').subscribe({
       next: (data) => {
@@ -96,8 +94,9 @@ export class CheckoutComponent implements OnInit {
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-        this.getShipAddress(user_session.id);
-        this.getRetailerDetails(user_session.id);
+        this.user_key = user_session.user_key;
+        this.getShipAddress();
+        this.getRetailerDetails(user_session.user_key);
       },
       error: (error) => {
       },          
@@ -116,9 +115,9 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  getRetailerDetails(user_id: any) {
+  getRetailerDetails(user_key: any) {
     this.appComponent.showSpinner = true;
-    this.apiService.getRetailerDetails(user_id).subscribe((responseBody) => {
+    this.apiService.getRetailerDetails(user_key).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.ret_name = response.data.first_name + " " + response.data.last_name;
@@ -212,8 +211,8 @@ export class CheckoutComponent implements OnInit {
     })
   }
  
-  getShipAddress(user_id: any) {
-    this.apiService.getShippingAddress(user_id).subscribe((responseBody) => {
+  getShipAddress() {
+    this.apiService.getShippingAddress().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.shipAddressList = response.data;
@@ -271,7 +270,6 @@ export class CheckoutComponent implements OnInit {
     this.btnDis = true;
     let values = {
       id: this.shipAddId,
-      user_id: this.user_id,
       name: updateShipAddForm.value.update_ship_name,
       country: updateShipAddForm.value.update_ship_country,
       street: updateShipAddForm.value.update_ship_address1,
@@ -281,14 +279,15 @@ export class CheckoutComponent implements OnInit {
       zip: updateShipAddForm.value.update_ship_pincode,
       phoneCode: updateShipAddForm.value.update_ship_phone_code,
       phone: updateShipAddForm.value.update_ship_phone_number,
-      type: 'shipping'
+      type: 'shipping',
+      sameAsBilling: this.sameAsBilling ? 1 : 0
     } 
     this.apiService.updateShippingAddress(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         let el: HTMLElement = this.editClose.nativeElement;
         el.click();
-        this.getShipAddress(this.user_id);
+        this.getShipAddress();
         this.btnDis = false;
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
       } else {
@@ -310,7 +309,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.btnDis = true;
       let values = {
-        user_id: this.user_id,
         name: checkOutForm.value.name,
         country: checkOutForm.value.country,
         street: checkOutForm.value.address1,
@@ -329,7 +327,6 @@ export class CheckoutComponent implements OnInit {
           this.firstShipId = response.data.id;
 
           let values1 = {
-            user_id: this.user_id,
             brand_key : this.brand_key,
             shipping_id: this.firstShipId
           } 
@@ -371,7 +368,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.btnDis = true;
       let values = {
-        user_id: this.user_id,
         brand_key : this.brand_key,
         shipping_id: this.firstShipId
       } 
@@ -379,10 +375,11 @@ export class CheckoutComponent implements OnInit {
         let response =  JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
           this.btnDis = false;
-          this.cartDetails = response.data.cart_det[0];
-          this.orderDetails = response.data.order_det;
+          // this.cartDetails = response.data.cart_det[0];
+          // this.orderDetails = response.data.order_det;
           this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
-          this.nextOneFunction();
+          this.router.navigateByUrl('orders');
+          // this.nextOneFunction();
         } else {
           this.btnDis = false;
           this.toast.error({detail: response.msg, summary: "" ,duration: 4000});
@@ -420,7 +417,6 @@ export class CheckoutComponent implements OnInit {
   savepdateBillingAddForm(updateBillingAddForm: any) {
     this.btnDis = true;
     let values = {
-      user_id: this.user_id,
       country: updateBillingAddForm.value.billing_country,
       address1: updateBillingAddForm.value.billing_address1,
       state: updateBillingAddForm.value.billing_state,
@@ -431,7 +427,7 @@ export class CheckoutComponent implements OnInit {
     this.apiService.updateBillingAddress(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-        this.getRetailerDetails(this.user_id);
+        this.getRetailerDetails(this.user_key);
         let el: HTMLElement = this.billClose.nativeElement;
         el.click();
         this.btnDis = false;

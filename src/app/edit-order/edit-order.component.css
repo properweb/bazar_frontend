@@ -32,6 +32,19 @@ input[type=number] { -moz-appearance: textfield; }
 .middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-control:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-select { border: 1px solid #393939; color: #393939; cursor: pointer; font-family: Futura !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px; } 
 .middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .form-select:focus { box-shadow: none; }
+
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .input-group-text { background: none; border: none; border-radius: 0; padding: 0; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .input-group-text input[type="text"] { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px  'Futura' !important;height: 41px; margin: 0; padding:0 15px 0 15px; outline: none !important; width: 100px; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .input-group-text .form-select { border: 1px solid rgba(57,57,57,0.5); border-right: none; border-radius: 0.25rem 0 0 0.25rem; color: #393939; cursor: pointer; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; left: 0; line-height: 41px; opacity: 0; padding: 0 15px 0 15px; padding-right: 30px; position: absolute; top: 0; width: 100px; }  
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .input-group-text .form-select:input:autofill {
+  border-color: #393939;
+}
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .form-select:focus { border-color: #393939; box-shadow: none; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
+.middle_vendor_dasboard .middle_content .ship-wide-white-box .form-list li .input-group .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; }
+
+
 .middle_vendor_dasboard .middle_content .edit-order-wide-white-box { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px 0 15px 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .edit-order-wide-white-box h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 10px 10px 10px; }
 .middle_vendor_dasboard .middle_content .edit-order-wide-white-box .table_sec { margin: 0; padding: 0; width: 100%; }

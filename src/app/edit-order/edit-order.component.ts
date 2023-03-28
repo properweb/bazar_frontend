@@ -14,6 +14,7 @@ import { ApiService } from '../services/api.service';
 export class EditOrderComponent implements OnInit {
 
   user_id!: any;
+  shipping_id!: any;
   ord_no!: any;
   ship_date!: any;
   display_ship_date!: any;
@@ -34,7 +35,8 @@ export class EditOrderComponent implements OnInit {
   address1!: any;
   town!: any;
   state!: any;
-  post_code!: any;
+  phone_code!: any;
+  zipCode!: any;
   phone!: any;
   invoiceProduct!: any;
 
@@ -61,9 +63,6 @@ export class EditOrderComponent implements OnInit {
    }
 
   ngOnInit(): void { 
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -99,7 +98,7 @@ export class EditOrderComponent implements OnInit {
     })
   }
 
-  onChangeCountry(event: any){
+  onChangeCountry(event: any) {
     let countryId = event.target.value;
     this.state = null;
     this.town = null;
@@ -107,6 +106,10 @@ export class EditOrderComponent implements OnInit {
       let response= JSON.parse(JSON.stringify(responseBody));
       this.stateArray = response.data;
     })
+
+    let id = event.target.value;
+    let country = this.countriesArray.filter((item: any) => item.id == id);
+    this.phone_code = country[0].phone_code;
   }
 
   onChangeState(event: any) { 
@@ -129,7 +132,7 @@ export class EditOrderComponent implements OnInit {
       if(response.res == true) {
         this.allDetails = response.data;
         this.cust_details = response.data.order;
-        let items:any = [];
+        let items:any = []; 
         if(response.data.cart.length > 0 ) {
           response.data.cart.forEach((element: any) => {
               items.push(element);
@@ -139,13 +142,15 @@ export class EditOrderComponent implements OnInit {
         this.oldOrdersArray = [...response.data.cart];
         this.ship_date = response.data.order.shipping_date;
         this.display_ship_date = this.formatter.parse(response.data.order.shipping_date);
+        this.shipping_id = response.data.order.shipping_id;
         this.name = response.data.order.shipping_name;
         this.country = response.data.order.shipping_country;
         this.address2 = response.data.order.shipping_suite;
         this.address1 = response.data.order.shipping_street;
         this.town = response.data.order.shipping_town;
         this.state = response.data.order.shipping_state;
-        this.post_code = response.data.order.shipping_phoneCode;
+        this.phone_code = response.data.order.shipping_phoneCode;
+        this.zipCode = response.data.order.shipping_zip;
         this.phone = response.data.order.shipping_phone;
         this.is_discount = Number(response.data.order.has_discount);
         this.disc_amt_type = response.data.order.discount_type;
@@ -185,6 +190,7 @@ export class EditOrderComponent implements OnInit {
     let updatedPrice = event.target.value * obj.product_price;
     obj.quantity = Number(event.target.value);
     obj.amount = updatedPrice;
+    obj.totalPrice = updatedPrice;
     let total = 0;
     // if(this.ordersArray.length > 0) {
       this.ordersArray.forEach((cartElement: any, cartkey: any) => {
@@ -260,8 +266,21 @@ export class EditOrderComponent implements OnInit {
   }
 
   sendcheckOutForm(checkOutForm: any) {
+    let values = {
+      ord_no: this.ord_no,
+      shipping_id: this.shipping_id,
+      shipping_name: checkOutForm.value.name,
+      shipping_phone: checkOutForm.value.phone,
+      shipping_phoneCode: checkOutForm.value.phone_code,
+      shipping_state: checkOutForm.value.state,
+      shipping_street: checkOutForm.value.address1,
+      shipping_suite: checkOutForm.value.address2,
+      shipping_town: checkOutForm.value.town,
+      shipping_zip: checkOutForm.value.zipCode,
+      shipping_country: checkOutForm.value.country
+    }
     this.btnDis = true;
-    this.apiService.changeAddress(checkOutForm.value).subscribe((responseBody) => {
+    this.apiService.changeAddress(values).subscribe((responseBody) => {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.fetchOrderDetails(this.ord_no);

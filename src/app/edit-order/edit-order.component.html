@@ -37,9 +37,10 @@
                       <a><i class="fa-solid fa-marker"></i></a> Ship To
                     </h5>
                     <p class="edit-para">
-                      {{cust_details?.address1}}<br />
-                      {{cust_details?.address2 ? cust_details?.address2 : ''}}<br />
-                      {{cust_details?.country}}
+                      {{cust_details?.shipping_name}}<br/>
+                      {{cust_details?.shipping_street}}<br />
+                      {{cust_details?.shipping_suite ? cust_details?.shipping_suite : ''}}<br />
+                      {{cust_details?.shipping_zip}}
                     </p>
                   </li>
                   <li class="col-md-6">
@@ -81,7 +82,7 @@
               <ul class="row form-list">
                   <li class="col-md-6">
                     <label>Name</label>
-                    <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                    <input type="text" hidden class="form-control" name="shipping_id" [(ngModel)]="shipping_id" >
                     <input type="text" hidden class="form-control" name="ord_no" [(ngModel)]="ord_no" > 
                     <input class="form-control" pattern="^[\sa-zA-Zء-ي]*$" name="" type="text" placeholder="" name="name" [(ngModel)]="name" #nameval='ngModel' required>
                     <span class="validate_errors"
@@ -140,7 +141,7 @@
                 </li>
                 <li class="col-md-6"> 
                     <label>Zip</label>
-                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" placeholder="" name="post_code" onKeyPress="if(this.value.length==20) return false;" maxlength="20" [(ngModel)]="post_code" #pincodeval='ngModel' required >
+                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" placeholder="" name="zipCode" onKeyPress="if(this.value.length==20) return false;" maxlength="20" [(ngModel)]="zipCode" #pincodeval='ngModel' required >
                     <span class="validate_errors"
                         *ngIf="(pincodeval.touched || checkOutForm.submitted) && pincodeval.errors?.['required']">
                         This field is required
@@ -148,7 +149,15 @@
                 </li>
                 <li class="col-md-6">
                     <label>Phone number</label>
-                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <input autocomplete="new-password" type="text" class="form-control telephone-input" [value]="'+'+phone_code">
+                        <select class="form-select telephone-select" aria-label="Default select example" name="phone_code" [(ngModel)]="phone_code" #country_codeval='ngModel' required >
+                          <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                        </select>
+                      </span>
+                      <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                    </div>
                     <span class="validate_errors"
                         *ngIf="(phone_numberval.touched || checkOutForm.submitted) && phone_numberval.errors?.['required']">
                         This field is required
@@ -162,7 +171,7 @@
                   </li>
                   <li>
                     <input *ngIf="!btnDis" type="submit" name="" value="Save" class="btn publish_btn">
-                    <input *ngIf="btnDis" type="button" name="" value="Saving" disabled class="btn publish_btn">
+                    <input *ngIf="btnDis" type="button" name="" value="Please wait..." disabled class="btn publish_btn">
                   </li>
                 </ul>
               </div>
@@ -202,7 +211,7 @@
                           units</span>
                       </td>
                       <td>${{item?.product_price}}</td>
-                      <td>${{(item?.newAmt && is_discount === 1) ? item?.newAmt : item?.amount}}</td>
+                      <td>${{(item?.newAmt && is_discount === 1) ? item?.newAmt : item?.totalPrice}}</td>
                       <td style="text-align: center">
                         <a class="removeLink" (click)="onItemDelete(item)" ><i class="fa-solid fa-trash"></i></a>
                       </td>

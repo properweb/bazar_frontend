@@ -22,10 +22,6 @@ export class UserProductDetailsComponent implements OnInit {
   constructor(public modalService: NgbModal , private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService, private formatter: NgbDateParserFormatter, private appComponent: AppComponent) { }
 
   ngOnInit(): void { 
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -45,7 +41,7 @@ export class UserProductDetailsComponent implements OnInit {
   fetchOrderDetails(ord_no: any) {
     this.appComponent.showSpinner = true;
     let values = {
-      user_id: this.user_id,
+      // user_id: this.user_id,
       order_number: ord_no
     }
     this.apiService.orderDetails(values).subscribe((responseBody) => {
