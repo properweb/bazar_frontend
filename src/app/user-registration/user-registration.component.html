@@ -9,7 +9,14 @@
 </div>
 <!-- Step One Form Section Start -->
 <div class="common_step_sec step_one_sec" *ngIf="step1"> 
+    <!-- <div class="whiteHeadingBox">
+        <p><a style="cursor: pointer;">Back</a></p>
+    </div> -->
     <div class="form_content_box">
+        <div class="whiteHeadingBox">
+            <p><a style="cursor: pointer;" routerLink="/localBrands">Back</a></p>
+        </div>
+        <!-- <p><a style="cursor: pointer; display: block; float: left; margin-top: 10px;">Back</a></p> -->
         <h3>{{stepOneHeading}}</h3>
         <p>Purchase from over {{this.vendorCount}} unique vendors. Sign up for free</p>
         <form #userFormStep1="ngForm" (ngSubmit)="userFormStep1.form.valid && sendUserFormStep1(userFormStep1)" novalidate>

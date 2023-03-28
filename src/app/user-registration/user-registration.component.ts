@@ -168,28 +168,19 @@ export class UserRegistrationComponent implements OnInit {
 
   sendUserFormStep1(userFormStep1: any) {
     this.btnDis = true;
-    let values = { 
-      country: this.country,
-      country_code: this.country_code,
-      email: this.email,
-      first_name: this.first_name,
-      language: this.language,
-      last_name: this.last_name,
-      password: this.password,
-      phone_number: this.phone_number,
+    let values = {
+      email: this.email
     }
-    this.apiService.retailerRegistration(values).subscribe((responseBody) => {
+    this.apiService.checkEmail(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == false){
           this.errorMsg = response.msg;
           this.btnDis= false;
         } else {
-          this.retailer_id = response.data.retailer_id;
           this.nextOneFunction();
           this.errorMsg = '';
           this.btnDis= false;
         }
-        
     },(error) => {
       this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
       this.btnDis= false;
