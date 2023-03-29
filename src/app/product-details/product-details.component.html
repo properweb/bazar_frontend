@@ -15,6 +15,7 @@
       <div class="col-lg-7 leftImgtDetails">
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
 
+
                 <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
@@ -79,6 +80,7 @@
         <div class="clearfix"></div>
         <div class="productName">{{productDetail.name}}</div>
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
+
 
             </ng-container>
 
