@@ -20,11 +20,13 @@ export class EditOrderComponent implements OnInit {
   display_ship_date!: any;
   is_discount: any = 0;
   disc_amt!: any ;
-  disc_amt_type: any = '$' ;
+  disc_amt_type: any = 'amount' ;
   ship_free: any = false ;
   btnDis: any = false ;
   editShipForm: any = false ;
   subTotal!: any;
+  newSubTotal!: any;
+  orderTotal!: any;
   allDetails!: any;
   cust_details!: any;
   ordersArray!: any;
@@ -39,6 +41,7 @@ export class EditOrderComponent implements OnInit {
   zipCode!: any;
   phone!: any;
   invoiceProduct!: any;
+  discAmtError!: any;
 
   stateData!: any;
   orderDetails!: any;
@@ -138,6 +141,7 @@ export class EditOrderComponent implements OnInit {
               items.push(element);
           });
         }
+        this.orderTotal = response.data.orderTotal;
         this.ordersArray = items;
         this.oldOrdersArray = [...response.data.cart];
         this.ship_date = response.data.order.shipping_date;
@@ -230,11 +234,35 @@ export class EditOrderComponent implements OnInit {
       ship_free: shipFree,
       disc_amt_type: this.disc_amt_type
     } 
-    if(this.is_discount == 1) {
-      if(this.disc_amt > 0) {
+    if(this.discAmtError) {
+      this.btnDis = false;
+      this.toast.error({detail: 'Invalid amount.', summary: '', duration: 4000});
+    } else {
+      if(this.is_discount == 1) {
+        if(this.disc_amt > 0) {
+          this.apiService.updateOrder(values).subscribe((responseBody) => {
+            let response = JSON.parse(JSON.stringify(responseBody));
+            if(response.res == true) {
+              this.fetchOrderDetails(this.ord_no);
+              this.btnDis = false;
+              this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
+            } else {
+              this.btnDis = false;
+              this.toast.error({detail: response.msg, summary: '', duration: 4000});
+            }
+          },(error) => {
+            this.btnDis = false;
+            this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
+          })
+        } else {
+          this.toast.error({detail: 'Please enter amount.', summary: '', duration: 4000});
+          this.btnDis = false;
+        }
+      } else {
         this.apiService.updateOrder(values).subscribe((responseBody) => {
           let response = JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
+            this.fetchOrderDetails(this.ord_no);
             this.btnDis = false;
             this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
           } else {
@@ -245,25 +273,9 @@ export class EditOrderComponent implements OnInit {
           this.btnDis = false;
           this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
         })
-      } else {
-        this.toast.error({detail: 'Please enter amount.', summary: '', duration: 4000});
-        this.btnDis = false;
       }
-    } else {
-      this.apiService.updateOrder(values).subscribe((responseBody) => {
-        let response = JSON.parse(JSON.stringify(responseBody));
-        if(response.res == true) {
-          this.btnDis = false;
-          this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
-        } else {
-          this.btnDis = false;
-          this.toast.error({detail: response.msg, summary: '', duration: 4000});
-        }
-      },(error) => {
-        this.btnDis = false;
-        this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
-      })
     }
+    
   
   }
 
@@ -325,18 +337,27 @@ export class EditOrderComponent implements OnInit {
   }
 
   onDiscountChange(event: any) {
-    // if(this.disc_amt_type == "amount") {
-    //   this.ordersArray.forEach((element: any) => {
-    //     element.newAmt = Number(element.amount) - Number(event.target.value);
-    //   });
-    // } else {
-    // }
-    // console.log("this.ordersArray" , this.ordersArray);
+    if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.discAmtError = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
+    } else {
+      this.discAmtError = '';
+      if(this.disc_amt_type == "amount") {
+        // this.ordersArray.forEach((element: any) => {
+        //   element.newAmt = Number(element.amount) - Number(event.target.value);
+        // });
+        this.newSubTotal = this.orderTotal - Number(event.target.value);
+      } else {
+        let percentageCal = 0;
+        percentageCal = this.orderTotal * ((100-Number(event.target.value)) / 100);
+        this.newSubTotal = percentageCal.toFixed(2);
+      }
+      // console.log("this.ordersArray" , this.ordersArray);
+    }
+    
   }
 
   onNoPromotionClick() {
     delete this.ordersArray["newAmt"];
-    console.log("this.ordersArray" , this.ordersArray);
   }
 
 

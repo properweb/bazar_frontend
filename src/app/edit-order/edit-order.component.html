@@ -206,15 +206,16 @@
                       <td>In stock</td>
                       <td>4</td>
                       <td>
-                        <span class="quantitySpan">
+                        {{item?.quantity}} units
+                        <!-- <span class="quantitySpan">
                           <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" name="" (change)="onQtyChange(item?.order_id, $event, item?.quantity, item)" value="{{item?.quantity}}" />
-                          units</span>
+                          units</span> -->
                       </td>
                       <td>${{item?.product_price}}</td>
                       <td>${{(item?.newAmt && is_discount === 1) ? item?.newAmt : item?.totalPrice}}</td>
-                      <td style="text-align: center">
+                      <!-- <td style="text-align: center">
                         <a class="removeLink" (click)="onItemDelete(item)" ><i class="fa-solid fa-trash"></i></a>
-                      </td>
+                      </td> -->
                     </ng-container>
                   </tr>
                 </tbody>
@@ -267,20 +268,21 @@
             <h4>Shop Wide Promotion</h4>
             <ul class="formDiv">
               <li><span class="radioLabel">Custom 
-                <input type="radio" (click)="is_discount = 1" [checked]="is_discount == 1">
+                <input type="radio" (click)="is_discount = 1; disc_amt_type = 'amount'" [checked]="is_discount == 1">
                 <span class="checkmark" ></span> </span>
                 <ul class="sub-form-list" *ngIf="is_discount == 1">
-                  <li (click)="disc_amt_type = 'amount'"><span [ngClass]="disc_amt_type == 'amount' ? 'input-span' : 'input-span disabled'" >$</span></li>
-                  <li (click)="disc_amt_type = 'percent'"><span [ngClass]="disc_amt_type == 'percent' ? 'input-span' : 'input-span disabled'" >%</span></li>
-                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ></li>
-                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" (change)="onDiscountChange($event)" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                  <li (click)="disc_amt_type = 'amount'; disc_amt = ''; newSubTotal = orderTotal"><span [ngClass]="disc_amt_type == 'amount' ? 'input-span' : 'input-span disabled'" >$</span></li>
+                  <li (click)="disc_amt_type = 'percent'; disc_amt = ''; newSubTotal = orderTotal"><span [ngClass]="disc_amt_type == 'percent' ? 'input-span' : 'input-span disabled'" >%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" (change)="onDiscountChange($event)" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
                 </ul>
                 <ul class="sub-form-list" *ngIf="is_discount == 0">
                   <li ><span class="input-span disabled">$</span></li>
                   <li ><span class="input-span disabled">%</span></li>
-                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ></li>
-                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" (change)="onDiscountChange($event)" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="onDiscountChange($event)" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
                 </ul>
+                <span class="validate_errors" *ngIf="discAmtError">{{discAmtError}}</span>
               </li>
               <li>
                 <div class="form-check">
@@ -306,15 +308,18 @@
                     </tr>
                     <tr>
                       <th>Add Promotion</th>
-                      <td><strong>-</strong></td>
+                      <td>
+                        <strong *ngIf="is_discount == 1 && disc_amt_type == 'amount'">${{disc_amt}}</strong>
+                        <strong *ngIf="is_discount == 1 && disc_amt_type == 'percent'">{{disc_amt}}%</strong>
+                      </td>
                     </tr>
                     <tr>
                       <th>Shipping</th>
-                      <td><strong>TBD</strong></td>
+                      <td><strong>{{ship_free == 1 ? 'free' : '-'}}</strong></td>
                     </tr>
                     <tr>
                       <th>Total</th>
-                      <td><strong>${{subTotal}}</strong></td>
+                      <td><strong>${{is_discount == 1 ? (newSubTotal ? newSubTotal : orderTotal) : subTotal}}</strong></td>
                     </tr>
                     <tr>
                       <th>Commission</th>
@@ -332,7 +337,7 @@
               </li>
               <li>
                 <input *ngIf="!btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" (click)="updateOrder()" >
-                <input *ngIf="btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" disabled>
+                <input *ngIf="btnDis" type="submit" name="" value="Please wait..." class="btn publish_btn" disabled>
               </li>
             </ul>
           </div>
