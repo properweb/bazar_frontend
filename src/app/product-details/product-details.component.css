@@ -73,6 +73,7 @@
 .rightBrandShopBodyBottom .brandShopProduct_list li { margin-bottom: 30px; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card { }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv { background-position: center; background-repeat: no-repeat; background-size: 100% auto; margin: 0; min-height: 199px; padding: 0; position: relative; width: 100%; }
+
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav { float: right; list-style: none; margin: 20px 0 0 0; padding: 0; position: relative; width: auto; z-index: 1; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li a { cursor: pointer; display: block; }
@@ -109,6 +110,7 @@
 .recentViewsCarousel { float: left; margin: 0; padding: 0; width: 100%; }
 .recentViewsCarousel .category_box { border: 1px solid #eee; border-radius: 0 0 10px 10px; margin: 0; padding: 0; max-width: 309px; width: 100%; }
 .recentViewsCarousel .category_box .img_div { line-height: 241px; margin: 0; min-height: 241px; overflow: hidden; padding: 0; position: relative; width: 100%; }
+
 .recentViewsCarousel .category_box .img_div img { display: inline-block; height: auto; max-height: 241px; min-width: 100%; width: auto; }
 .recentViewsCarousel .category_box .img_div .brandShopNav { line-height: normal; list-style: none; margin: 0; padding: 0; position: absolute; right: 0; top: 20px; width: auto; z-index: 1; }
 .recentViewsCarousel .category_box .img_div .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }

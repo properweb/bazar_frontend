@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   vendorRegistrationStep1(vendorRegStep1:any) {
-    return this.http.put(this._Base_URL+'brands/update' , vendorRegStep1);
+
   }
 
   vendorSignIn(signInData:any) {
@@ -169,9 +169,6 @@ export class ApiService {
   addToCart(values:any) {
     return this.http.post(this._Base_URL+'carts/add' , values, this.createAuthorizationHeader());
   }
-
-  fetchCart() {
-    return this.http.get(this._Base_URL+'carts/fetch', this.createAuthorizationHeader());
   }
     
   updateCart(values:any) {
@@ -413,6 +410,7 @@ export class ApiService {
   checkEmail(values: any) {
     return this.http.post(this._Base_URL+'user/check-email', values);
   }
+
 
   logout() {
     localStorage.removeItem('local_data');
