@@ -96,6 +96,7 @@ export class CheckoutComponent implements OnInit {
         this.user_id = user_session.id;
         this.user_key = user_session.user_key;
         this.getShipAddress();
+        this.getCountries();
         this.getRetailerDetails(user_session.user_key);
       },
       error: (error) => {
@@ -105,7 +106,6 @@ export class CheckoutComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.brand_key = routeParams['brand_id'];
     })
-    this.getCountries();
   }
 
   getCountries() {
@@ -116,6 +116,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   getRetailerDetails(user_key: any) {
+    this.billing_state = null;
+    this.billing_city = null;
     this.appComponent.showSpinner = true;
     this.apiService.getRetailerDetails(user_key).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -124,17 +126,21 @@ export class CheckoutComponent implements OnInit {
         this.retailerDetails = response.data;
         this.billing_country = response.data.country;
         this.billing_address1 = response.data.address1;
-        this.billing_state = response.data.state;
-        this.billing_city = response.data.town;
         this.billing_pincode = response.data.post_code;
         this.billing_phone_number = response.data.phone_number;
-        this.apiService.getStates(response.data.country).subscribe((responseBody) => {
-          let response= JSON.parse(JSON.stringify(responseBody));
-          this.billstateArray = response.data;
+        this.apiService.getStates(response.data.country).subscribe((responseBody1) => {
+          let response1= JSON.parse(JSON.stringify(responseBody1));
+          if(response1.res == true) {
+            this.billstateArray = response1.data;
+            this.billing_state = response.data.state;
+          }
         })
-        this.apiService.getCities(response.data.state).subscribe((responseBody) => {
-          let response= JSON.parse(JSON.stringify(responseBody));
-          this.billcityArray = response.data;
+        this.apiService.getCities(response.data.state).subscribe((responseBody2) => {
+          let response2= JSON.parse(JSON.stringify(responseBody2));
+          if(response2.res == true) {
+            this.billcityArray = response2.data;
+            this.billing_city = response.data.town;
+          }
         })
         this.appComponent.showSpinner = false;
       } else {
@@ -150,7 +156,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  onChangeCountry(event: any){
+  onChangeCountry(event: any) {
     let countryId = event.target.value;
     let country = this.countriesArray.filter((item: any) => item.id == countryId);
     this.phone_code = country[0].phone_code;
@@ -270,7 +276,6 @@ export class CheckoutComponent implements OnInit {
     this.btnDis = true;
     let values = {
       id: this.shipAddId,
-      // user_id: this.user_id,
       name: updateShipAddForm.value.update_ship_name,
       country: updateShipAddForm.value.update_ship_country,
       street: updateShipAddForm.value.update_ship_address1,
@@ -280,7 +285,8 @@ export class CheckoutComponent implements OnInit {
       zip: updateShipAddForm.value.update_ship_pincode,
       phoneCode: updateShipAddForm.value.update_ship_phone_code,
       phone: updateShipAddForm.value.update_ship_phone_number,
-      type: 'shipping'
+      type: 'shipping',
+      sameAsBilling: this.sameAsBilling ? 1 : 0
     } 
     this.apiService.updateShippingAddress(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -309,7 +315,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.btnDis = true;
       let values = {
-        // user_id: this.user_id,
         name: checkOutForm.value.name,
         country: checkOutForm.value.country,
         street: checkOutForm.value.address1,
@@ -328,7 +333,6 @@ export class CheckoutComponent implements OnInit {
           this.firstShipId = response.data.id;
 
           let values1 = {
-            // user_id: this.user_id,
             brand_key : this.brand_key,
             shipping_id: this.firstShipId
           } 
@@ -370,7 +374,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.btnDis = true;
       let values = {
-        // user_id: this.user_id,
         brand_key : this.brand_key,
         shipping_id: this.firstShipId
       } 
@@ -378,10 +381,11 @@ export class CheckoutComponent implements OnInit {
         let response =  JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
           this.btnDis = false;
-          this.cartDetails = response.data.cart_det[0];
-          this.orderDetails = response.data.order_det;
+          // this.cartDetails = response.data.cart_det[0];
+          // this.orderDetails = response.data.order_det;
           this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
-          this.nextOneFunction();
+          this.router.navigateByUrl('orders');
+          // this.nextOneFunction();
         } else {
           this.btnDis = false;
           this.toast.error({detail: response.msg, summary: "" ,duration: 4000});
@@ -419,7 +423,6 @@ export class CheckoutComponent implements OnInit {
   savepdateBillingAddForm(updateBillingAddForm: any) {
     this.btnDis = true;
     let values = {
-      // user_id: this.user_id,
       country: updateBillingAddForm.value.billing_country,
       address1: updateBillingAddForm.value.billing_address1,
       state: updateBillingAddForm.value.billing_state,
