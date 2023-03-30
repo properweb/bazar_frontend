@@ -67,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
           this.role = user_session.role;
           this.user_id = user_session.id;
           this.getProductDetail(routeParams['id'], user_session.id);
-          this.fetchBoards(user_session.id);
+
           window.scroll({
             top: 0,
             left: 0,
@@ -164,11 +164,7 @@ export class ProductDetailsComponent implements OnInit {
         this.productVariation = Object.keys(response.data.variations);
         let firstObject = response.data.variations[Object.keys(response.data.variations)[0]];
         this.productVariationFirst = firstObject;
-        this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: 1};
-        if(response.data.min_order_qty != 'undefined') {
-          let int = Number(response.data.min_order_qty);
-          let qty = int + Number(response.data.case_quantity*0);
-          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: qty};
+
         }
 
         if(response.data.prepacks.length > 0 ) {
@@ -195,9 +191,7 @@ export class ProductDetailsComponent implements OnInit {
         if(response.data.min_order_qty != 'undefined') {
           let int = Number(response.data.min_order_qty);
           let qty = int + Number(response.data.case_quantity*0);
-          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: qty};
-        } else {
-          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: 1};
+
         }
       }
       this.relatedProducts = response.data.related_products;
@@ -207,8 +201,7 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  fetchBoards(user_id: any) {
-    this.apiService.fetchBoards(user_id).subscribe((responseBody) => {
+
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.boardsList = response.data;
@@ -299,7 +292,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onQtyCustChange(event: any) {
-    this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: Number(event.target.value)};
+
     this.custQtyEnable = false;
   }
 
@@ -391,7 +384,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.getProductDetail(this.productKey, this.user_id);
-        this.fetchBoards(this.user_id);
+
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
@@ -443,7 +436,7 @@ export class ProductDetailsComponent implements OnInit {
       if(response.res == true) {
         this.wishListModalReference.close();
         this.getProductDetail(this.productKey, this.user_id);
-        this.fetchBoards(this.user_id);
+
         this.toast.success({detail:"Product added to wishlist.",summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
