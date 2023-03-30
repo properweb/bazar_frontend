@@ -155,7 +155,7 @@ export class ApiService {
   }
 
   retailerRegistration(values:any) {
-    return this.http.post(this._Base_URL+'retailers', values);
+
   }
 
   fetchProductDetails(id:any, user_id: any) {
@@ -259,20 +259,14 @@ export class ApiService {
     return this.http.post(this._Base_URL+'orders/change-address' , values, this.createAuthorizationHeader());
   }
 
-  getRetailerDetails(key: any) {
-    return this.http.get(this._Base_URL+'retailers/' + key, this.createAuthorizationHeader());
-  }
 
-  updateRetailerDetails(values: any) {
-    return this.http.put(this._Base_URL+'retailers/'+ values.user_key, values, this.createAuthorizationHeader());
   }
 
   retailerOrders(id:any, page: any, status: any) {
     return this.http.get(this._Base_URL+'orders?user_id='+id+'&page='+page+'&status='+status, this.createAuthorizationHeader());
   }
 
-  fetchWishlist() {
-    return this.http.get(this._Base_URL+'wishlist/fetch', this.createAuthorizationHeader());
+
   }
 
   addToWishlist(values: any) {
@@ -299,8 +293,6 @@ export class ApiService {
     return this.http.get(this._Base_URL+'wishlist/fetch-board/'+key, this.createAuthorizationHeader());
   }
 
-  fetchBoards() {
-    return this.http.get(this._Base_URL+'wishlist/fetch-boards', this.createAuthorizationHeader());
   }
 
   changeBoardWishlist(values: any) {
@@ -379,8 +371,6 @@ export class ApiService {
     return this.http.post(this._Base_URL+'shippings/create', values, this.createAuthorizationHeader());
   }
 
-  getShippingAddress() {
-    return this.http.get(this._Base_URL+'shippings/fetch', this.createAuthorizationHeader());
   }
 
   getShippingAddressDeatils(id: any) {

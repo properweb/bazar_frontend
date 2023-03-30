@@ -15,43 +15,32 @@
       <div class="col-lg-7 leftImgtDetails">
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
 
-          <li>
 
-            <ng-container *ngIf="boardsList?.length == 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
                 <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
-              </ng-container>
 
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-              </ng-container>
+
             </ng-container>
 
              <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+
                 <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>            
-              </ng-container>
 
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-              </ng-container>
+
             </ng-container>
             
           </li>
@@ -92,61 +81,12 @@
         <div class="productName">{{productDetail.name}}</div>
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
 
-          <li>
 
-            <ng-container *ngIf="boardsList?.length == 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
-                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
-              </ng-container>
-
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
-                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
-              </ng-container>
-
-              <!-- <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a> -->
-              <!-- <a (click)="addToWishlist()" ><img src="assets/images/Vector-red.png" alt=""></a> -->
             </ng-container>
 
             <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a> -->
-                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
-                <a (click)="removeWishlist(wishlistId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
-              </ng-container>
 
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Add to wishlist</a> -->
-                <a (click)="openWishListModal(content)" ><img src="assets/images/like_icon.png" alt="img" /></a>
-                <!-- <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a> -->
-              </ng-container>
-              <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
-                <a (click)="removeWishlist(productVariationFirst?.variationWishId)" ><img src="assets/images/Vector-red.png" alt=""></a>
-                <!-- <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
-                <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a> -->
               </ng-container>
             </ng-container>
 
@@ -263,47 +203,40 @@
             </a>
 
             <ng-container *ngIf="boardsList?.length == 0">
-              <!-- For normal product -->
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
 
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+
             </ng-container>
 
             <!-- For choose board -->
             <ng-container *ngIf="boardsList?.length > 0">
-              <ng-container *ngIf="wishlistId == '' && productVariation.length == 0">
+
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="wishlistId != '' && productVariation.length == 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(wishlistId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
 
-              <!-- For variation product -->
-              <ng-container *ngIf="productVariationFirst?.variationWishId == '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="openWishListModal(content)" >Add to wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
               </ng-container>
               <ng-container *ngIf="productVariationFirst?.variationWishId != '' && productVariation.length > 0">
                 <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="removeWishlist(productVariationFirst?.variationWishId)" >Remove from wishlist</a>
                 <a *ngIf="addWishBtn" class="btn wishlist-btn" >Removing from wish list...</a>
-              </ng-container>
+
             </ng-container>
 
           </li>
