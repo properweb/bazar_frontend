@@ -143,11 +143,15 @@ const routes: Routes = [
     data: { roles: ['retailer'] }
   },
   {
-    path: 'productCategory',
+    path: 'category/:cat_slug',
     component: ProductCategoryComponent
   },
   {
-    path: 'productSubCategory',
+    path: 'category/:cat_slug/subcategory/:subcat_slug',
+    component: ProductSubCategoryComponent
+  },
+  {
+    path: 'category/:cat_slug/subcategory/:subcat_slug/:subsubcat_slug',
     component: ProductSubCategoryComponent
   },
   {
@@ -481,7 +485,7 @@ const routes: Routes = [
     path: 'edit-order/:id',
     component: EditOrderComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['retailer'] }
+    data: { roles: ['brand'] }
   },
   {
     path: 'view-order/:id',

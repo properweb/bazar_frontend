@@ -32,161 +32,24 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link">All categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Fashion</a>
+                    </li> -->
+                    <li class="nav-item" *ngFor="let item of allCategories; let i = index;" >
+                        <a class="nav-link" routerLink="/category/{{item?.title}}">{{item?.title}}</a>
                         <div class="dropDown_menu">
                             <div class="container-fluid">
                                 <ul class="sub_cat_list">
-                                    <li><a>All Fashion</a>
+                                    <li *ngFor="let subCat of item?.categories"><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">{{subCat?.title}}</a>
                                         <div class="sub_sub_cat_dropdown">
                                             <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
+                                                <li *ngFor="let subChildCat of subCat?.sub_categories">
+                                                    <a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}/{{subChildCat?.title}}">{{subChildCat?.title}}</a>
+                                                </li>
                                             </ul>
                                             <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New brands</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New products</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Apparel</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Women</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Men</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
+                                                <img [src]="subCat?.image" alt="">
+                                                <h3><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">Shop All {{subCat?.title}}</a></h3>
                                             </div>
                                         </div>
                                     </li>
@@ -194,7 +57,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link">Beauty &amp; Wellness</a>
                     </li>
                     <li class="nav-item">
@@ -217,7 +80,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link">Electronics</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="mobile_drop_down">
                     <div class="accordion menuAccordion" id="menuAccordion">

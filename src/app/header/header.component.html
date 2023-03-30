@@ -29,161 +29,24 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link">All categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Fashion</a>
+                    </li> -->
+                    <li class="nav-item" *ngFor="let item of allCategories; let i = index;" >
+                        <a class="nav-link" routerLink="/category/{{item?.title}}">{{item?.title}}</a>
                         <div class="dropDown_menu">
                             <div class="container-fluid">
                                 <ul class="sub_cat_list">
-                                    <li><a>All Fashion</a>
+                                    <li *ngFor="let subCat of item?.categories"><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">{{subCat?.title}}</a>
                                         <div class="sub_sub_cat_dropdown">
                                             <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
+                                                <li *ngFor="let subChildCat of subCat?.sub_categories">
+                                                    <a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}/{{subChildCat?.title}}">{{subChildCat?.title}}</a>
+                                                </li>
                                             </ul>
                                             <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New brands</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New products</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Apparel</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Women</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Men</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
+                                                <img [src]="subCat?.image" alt="">
+                                                <h3><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">Shop All {{subCat?.title}}</a></h3>
                                             </div>
                                         </div>
                                     </li>
@@ -191,7 +54,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link">Beauty &amp; Wellness</a>
                     </li>
                     <li class="nav-item">
@@ -214,7 +77,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link">Electronics</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="mobile_drop_down">
                     <div class="accordion menuAccordion" id="menuAccordion">
@@ -440,7 +303,7 @@
             <ul class="formOne">
                 <form #emailForm="ngForm" (ngSubmit)="emailForm.form.valid && send1stSignInData()" (keydown.enter)="emailForm.form.valid && send1stSignInData()" novalidate>
                     <li *ngIf="log1">
-                        <input required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
+                        <input required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" maxlength="255" email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
                         <span class="validate_errors"
                             *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['required']">
                             This field is required
@@ -448,6 +311,10 @@
                         <span class="validate_errors"
                             *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['pattern']">
                             Enter an valid email
+                        </span>
+                        <span class="validate_errors"
+                            *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['maxlength']">
+                            This field is too long.
                         </span>
                         <button type="submit" class="btn btn-primary continue_btn fullBtn">Continue</button>
                     </li>
@@ -495,8 +362,10 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p> 
+        <!-- <h3>Shop wholesale, online</h3>
+        <p>Purchase from over {{vendorCount ? vendorCount : 0}} unique vendors. Sign up for free</p>  -->
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
         <form [formGroup]="userRegForm" (ngSubmit)="userRegForm.valid && submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)" >
             <ul class="formOne">
                 <li>
@@ -524,8 +393,8 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
        
         <!-- <form [formGroup]="vendorRegForm" (ngSubmit)="submitEmail(vendorRegForm)">  -->
         <form #vendorRegForm="ngForm" (ngSubmit)="vendorRegForm.form.valid && submitEmail(vendorRegForm)">
@@ -547,7 +416,8 @@
                         *ngIf="(vendorEmailval.touched || vendorRegForm.submitted) && vendorEmailval.errors?.['pattern']">
                         Email is not valid.
                     </span>
-                    <button  type="submit" class="btn btn-primary" >Get started</button>
+                    <button type="submit" class="btn btn-primary" >Get started</button>
+                    <span *ngIf="sameEmailError" class="validate_errors">{{sameEmailError}}</span>
                 </li>
             </ul>
         </form>
@@ -557,4 +427,4 @@
     <div class="modal-footer">
         <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
     </div>
-</ng-template>
+</ng-template> 
