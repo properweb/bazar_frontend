@@ -48,6 +48,11 @@
                   </tr>
                 </tbody>
               </table>
+              <table class="table" *ngIf="products?.length == 0">
+                <tbody>
+                  <tr><td align="center">No products found!</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

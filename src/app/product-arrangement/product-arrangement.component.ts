@@ -25,13 +25,11 @@ export class ProductArrangementComponent implements OnInit {
   constructor(private storage: StorageMap, private apiService : ApiService, private appComponent: AppComponent, private router: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-
+        this.getProducts(this.user_id);
       
       },
       error: (error) => {
@@ -90,12 +88,12 @@ export class ProductArrangementComponent implements OnInit {
     });
 
     let values = {
-      user_id : this.user_id,
+      // user_id : this.user_id,
       items: this.storeArrangedItemId
     }
     
     this.apiService.arrangeProducts(values).subscribe((responseBody) => {
-
+      this.getProducts(this.user_id);
       window.scroll({
         top: 0,
         left: 0,
@@ -149,7 +147,7 @@ export class ProductArrangementComponent implements OnInit {
       
     })
     let value = {
-      user_id : this.user_id,
+      // user_id : this.user_id,
       items: this.arrangedItemId
     }
     this.arrangedItemId = [];

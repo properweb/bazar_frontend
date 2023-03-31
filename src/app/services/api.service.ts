@@ -74,20 +74,20 @@ export class ApiService {
     return this.http.put(this._Base_URL+'brands/update/shop' , updatedData, this.createAuthorizationHeader());
   }
 
-  getProducts(id:any) {
-    return this.http.get(this._Base_URL+'product/'+'arrange?user_id='+id, this.createAuthorizationHeader());
+  getProducts() {
+    return this.http.get(this._Base_URL+'product/'+'arrange', this.createAuthorizationHeader());
   }
 
   getInventoryProducts(id:any, page: any, status: any, search_key: any) {
-    return this.http.get(this._Base_URL+'product/'+'fetch-stock?user_id='+id+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'product/'+'fetch-stock?page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
   }
 
   fetchProductsByShop(id:any , sort_key: any, slug: any ) {
-    return this.http.get(this._Base_URL+'products?brand_id='+id+'&sort_key='+sort_key+'&sort_cat='+slug, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'shop/products?brand_id='+id+'&sort_key='+sort_key+'&sort_cat='+slug, this.createAuthorizationHeader());
   }
 
   getSortProducts(id:any, sort_key: any, page: any, status: any, search_key: any) {
-    return this.http.get(this._Base_URL+'product/'+'fetch?user_id='+id+'&sort_key='+sort_key+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'product/'+'fetch?sort_key='+sort_key+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
   }
 
   getProductDetail(id:any) {
@@ -208,11 +208,11 @@ export class ApiService {
   }
 
   fetchOrders(user_id: any,page: any, status: any, search_key: any) {
-    return this.http.get(this._Base_URL+'orders?user_id='+user_id+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader())
+    return this.http.get(this._Base_URL+'orders?page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader())
   }
 
   orderDetails(values: any) {
-    return this.http.post(this._Base_URL+'orders/details' ,values, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'orders/details/' + values.order_number, this.createAuthorizationHeader());
   }
 
   brandShipFrom(values:any) {
@@ -259,13 +259,11 @@ export class ApiService {
     return this.http.post(this._Base_URL+'orders/change-address' , values, this.createAuthorizationHeader());
   }
 
-
   }
 
   retailerOrders(id:any, page: any, status: any) {
-    return this.http.get(this._Base_URL+'orders?user_id='+id+'&page='+page+'&status='+status, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'orders?page='+page+'&status='+status, this.createAuthorizationHeader());
   }
-
 
   }
 
@@ -386,7 +384,7 @@ export class ApiService {
   }
 
   updateBillingAddress(values: any) {
-    return this.http.post(this._Base_URL+'orders/updatebilling', values , this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'orders/update-billing', values , this.createAuthorizationHeader());
   }
 
   vendorCount() {
