@@ -91,7 +91,12 @@ export class EditOrderComponent implements OnInit {
   }
 
   getProducts() {
-    this.apiService.fetchProductsByShop('levis','','').subscribe((responseBody) => {
+    let values = {
+      brand_id: 'levis',
+      sort_key: '',
+      slug: ''
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       response?.data?.products.forEach((element: any) => {
         if(element.stock != '0' || element.stock != 0) {
