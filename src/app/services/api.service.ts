@@ -82,8 +82,8 @@ export class ApiService {
     return this.http.get(this._Base_URL+'product/'+'fetch-stock?page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
   }
 
-  fetchProductsByShop(id:any , sort_key: any, slug: any ) {
-    return this.http.get(this._Base_URL+'shop/brand-products?brand_id='+id+'&sort_key='+sort_key+'&sort_cat='+slug, this.createAuthorizationHeader());
+  fetchProductsByShop(values: any ) {
+    return this.http.post(this._Base_URL+'shop/brand-products', values, this.createAuthorizationHeader());
   }
 
   getSortProducts(id:any, sort_key: any, page: any, status: any, search_key: any) {
@@ -147,11 +147,11 @@ export class ApiService {
   }
 
   bulkUpload(values:any) {
-    return this.http.post(this._Base_URL+'importexport/'+'import' , values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'shop/'+'import-products' , values, this.createAuthorizationHeader());
   }
 
   downloadExistCatalog(id:any) {
-    return this.http.get(this._Base_URL+'importexport/'+'export?user_id='+id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'shop/'+'export-products?user_id='+id, this.createAuthorizationHeader());
   }
 
   retailerRegistration(values:any) {
@@ -159,7 +159,7 @@ export class ApiService {
   }
 
   fetchProductDetails(id:any, user_id: any) {
-    return this.http.get(this._Base_URL+'shop/product?id='+id+'&user_id='+user_id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'shop/product?id='+id, this.createAuthorizationHeader());
   }
   
   vendorGoLive(values:any) {
@@ -420,6 +420,10 @@ export class ApiService {
 
   featuredCategories() {
     return this.http.get(this._Base_URL + 'shop/featured-categories', this.createAuthorizationHeader());
+  }
+
+  fetchProductsByCategory(values: any ) {
+    return this.http.post(this._Base_URL+'shop/category-products', values, this.createAuthorizationHeader());
   }
 
   logout() {
