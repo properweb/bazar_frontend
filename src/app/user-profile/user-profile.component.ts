@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('shipEditModalCloseBtn') editClose!: ElementRef<HTMLElement>;
   @ViewChild('billEditModalCloseBtn') billClose!: ElementRef<HTMLElement>;
   user_id!: any;
+  user_key!: any;
   email !: any;
   retailerDetails !: any;
   first_name !: any;
@@ -85,7 +86,7 @@ export class UserProfileComponent implements OnInit {
   countriesArray:any = [];
   stateArray:any = [];
   cityArray:any = [];
-  billcountriesArray:any = [];
+  shipcountriesArray:any = [];
   billstateArray:any = [];
   billcityArray:any = [];
   tagsToolsArray:any = [];
@@ -156,17 +157,15 @@ export class UserProfileComponent implements OnInit {
   constructor(private storage: StorageMap, private apiService: ApiService,private toast: NgToastService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-        this.getCountries(user_session.id);
-        this.getShipAddress(user_session.id);
+        this.user_key = user_session.user_key;
+        this.getCountries();
+        this.getRetailerDetails(user_session.user_key);
+        this.getShipAddress();
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -175,16 +174,15 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  getCountries(user_id: any) {
+  getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       this.countriesArray = response.data;
-      this.getRetailerDetails(user_id);
     })
   }
 
-  getShipAddress(user_id: any) {
-    this.apiService.getShippingAddress(user_id).subscribe((responseBody) => {
+  getShipAddress() {
+    this.apiService.getShippingAddress().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.shipAddressList = response.data;
@@ -196,9 +194,11 @@ export class UserProfileComponent implements OnInit {
     })
   }
   
-  getRetailerDetails(user_id: any) {
+  getRetailerDetails(user_key: any) {
+    this.billing_state = null;
+    this.billing_city = null;
     this.appComponent.showSpinner = true;
-    this.apiService.getRetailerDetails(user_id).subscribe((responseBody) => {
+    this.apiService.getRetailerDetails(user_key).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.retailerDetails = response.data;
@@ -217,17 +217,21 @@ export class UserProfileComponent implements OnInit {
         // For billing
         this.billing_country = response.data.country;
         this.billing_address1 = response.data.address1;
-        this.billing_state = response.data.state;
-        this.billing_city = response.data.town;
         this.billing_pincode = response.data.post_code;
         this.billing_phone_number = response.data.phone_number;
         this.apiService.getStates(response.data.country).subscribe((responseBody1) => {
           let response1= JSON.parse(JSON.stringify(responseBody1));
-          this.billstateArray = response1.data;
+          if(response1.res == true) {
+            this.billstateArray = response1.data;
+            this.billing_state = response.data.state;
+          }
         })
         this.apiService.getCities(response.data.state).subscribe((responseBody2) => {
           let response2= JSON.parse(JSON.stringify(responseBody2));
-          this.billcityArray = response2.data;
+          if(response2.res == true) {
+            this.billcityArray = response2.data;
+            this.billing_city = response.data.town;
+          }
         })
 
         this.appComponent.showSpinner = false;
@@ -259,8 +263,8 @@ export class UserProfileComponent implements OnInit {
     this.apiService.updateRetailerDetails(userFormStep1.value).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-      this.getCountries(this.user_id);
-      this.userLeftSidebarComponent.getRetailerDetails(this.user_id);
+      this.getCountries();
+      this.userLeftSidebarComponent.getRetailerDetails(this.user_key);
       this.btnDis = false;
       this.errorMsg = '';
       this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
@@ -276,13 +280,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   sendPaymentForm(userFormStep1: any) {
-    console.log(userFormStep1.value);
   }
 
   saveShipAddForm(userFormStep1: any) {
     this.btnDis = true;
     let values = {
-      user_id: this.user_id,
+      // user_id: this.user_id,
       name: userFormStep1.value.ship_name,
       country: userFormStep1.value.ship_country,
       street: userFormStep1.value.ship_address1,
@@ -298,13 +301,9 @@ export class UserProfileComponent implements OnInit {
       if(response.res == true) {
         let el: HTMLElement = this.myDiv.nativeElement;
         el.click();
-        this.getShipAddress(this.user_id);
+        this.getShipAddress();
         this.btnDis = false;
-        // this.getCountries(this.user_id);
-        // this.userLeftSidebarComponent.getRetailerDetails(this.user_id);
-        // this.btnDis = false;
-        // this.errorMsg = '';
-      this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
+        this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
       } else {
         this.btnDis = false;
         this.errorMsg = response.msg;
@@ -320,7 +319,7 @@ export class UserProfileComponent implements OnInit {
   onChangeCountry(event: any){
     let id = event.target.value;
     let country = this.countriesArray.filter((item: any) => item.id == id);
-    this.ship_phone_code = country[0].phone_code;
+    this.update_ship_phone_code = country[0].phone_code;
     let countryId = event.target.value;
     this.ship_state = null;
     this.ship_city = null;
@@ -402,11 +401,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   savepdateShipAddForm(updateShipAddForm: any) {
-    // console.log(updateShipAddForm.value);
     this.btnDis = true;
     let values = {
       id: this.shipAddId,
-      user_id: this.user_id,
+      // user_id: this.user_id,
       name: updateShipAddForm.value.update_ship_name,
       country: updateShipAddForm.value.update_ship_country,
       street: updateShipAddForm.value.update_ship_address1,
@@ -422,7 +420,7 @@ export class UserProfileComponent implements OnInit {
       if(response.res == true) {
         let el: HTMLElement = this.editClose.nativeElement;
         el.click();
-        this.getShipAddress(this.user_id);
+        this.getShipAddress();
         this.btnDis = false;
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
       } else {
@@ -440,12 +438,12 @@ export class UserProfileComponent implements OnInit {
   deleteShipAddress(id:any) {
     let values = {
       id: id,
-      user_id: this.user_id,
+      // user_id: this.user_id,
     } 
     this.apiService.deleteShippingAddress(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-        this.getShipAddress(this.user_id);
+        this.getShipAddress();
         this.btnDis = false;
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
       } else {
@@ -463,7 +461,6 @@ export class UserProfileComponent implements OnInit {
   savepdateBillingAddForm(updateBillingAddForm: any) {
     this.btnDis = true;
     let values = {
-      user_id: this.user_id,
       country: updateBillingAddForm.value.billing_country,
       address1: updateBillingAddForm.value.billing_address1,
       state: updateBillingAddForm.value.billing_state,
@@ -474,7 +471,7 @@ export class UserProfileComponent implements OnInit {
     this.apiService.updateBillingAddress(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-        this.getRetailerDetails(this.user_id);
+        this.getRetailerDetails(this.user_key);
         let el: HTMLElement = this.billClose.nativeElement;
         el.click();
         this.btnDis = false;
