@@ -1,5 +1,5 @@
 .accountBtn { background: #393939; border: none; border-radius: 3px; color: #fff; font: 200 18px 'Futura' !important; height: 54px; margin: 50px 0 0 0; width: 230px; }
-
+.limitSpan { color: #9c9c9c; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 5px 0 0 0; text-align: right; }
 .middle_vendor_dasboard .middle_content .myShopTop { margin: 0 0 30px 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .myShopTop h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0; }
 .middle_vendor_dasboard .middle_content .myShopTop p { color: #000; font-family: 'Futura PT Book'; font-size: 16px; font-weight: 200; margin: 0; }

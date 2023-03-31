@@ -29,7 +29,6 @@ export class AccountSeeing2Component implements OnInit {
   constructor(private storage: StorageMap, private apiService: ApiService, private toast: NgToastService, private apmService: ApmService, private router: Router) {}
 
   ngOnInit(): void {
-
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -84,6 +83,7 @@ export class AccountSeeing2Component implements OnInit {
       .userAccountUpdate(vendorAccountUpdate.value)
       .subscribe((responseBody) => {
         let response = JSON.parse(JSON.stringify(responseBody));
+        if (response.res === false) {
           this.toast.error({detail: response.msg , summary: '', duration: 4000})
           this.btnDis = false;
         } else {
@@ -94,6 +94,9 @@ export class AccountSeeing2Component implements OnInit {
           this.toast.success({detail: response.msg , summary: '', duration: 4000});
           this.btnDis = false;
         }
+      },(error) => {
+        this.toast.error({detail: 'Something went wrong! please try again.' , summary: '', duration: 4000})
+        this.btnDis = false;
       });
   }
 

@@ -24,14 +24,17 @@ export class HeaderComponent implements OnInit {
   email!: any;
   userEmail!: any;
   vendorEmail!: any;
+  vendorCount: any = 0;
   log1: boolean = true;
   log2: boolean = false;
   submitted: boolean = false;
   validateError!: any;
+  sameEmailError!: any;
   email_address!: any;
   password!: any;
   spinnerShow: boolean = false;
   resetEmailSend: boolean = false;
+
 
   constructor( public modalService: NgbModal, private router: Router, private api: ApiService, private storage: StorageMap, private toast: NgToastService) {
     this.vendorRegForm = new FormGroup({
@@ -48,8 +51,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getVendorCount();
+  }
 
+  getVendorCount() {
+    this.api.vendorCount().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.vendorCount = response.data;
+    })
+  }
+ 
   openUserLogInModal(content: any) {
     this.signInModal = this.modalService.open(content, { windowClass: 'loginModal' });
   }
@@ -80,14 +92,28 @@ export class HeaderComponent implements OnInit {
 
   submitEmail(form: any) {
     this.submitted = true;
-    // if (this.vendorRegForm.valid) {
-      let vemail = JSON.parse(JSON.stringify(this.vendorEmail));
-      this.storage.set('vendor_email', vemail).subscribe(() => {});
-      this.modalReference.close();
-      this.router.navigate(['vendorRegistration']);
-    // } else {
-    //   return;
-    // }
+    let values = {
+      email: this.vendorEmail
+    }
+    this.api.checkEmail(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+      // if (this.vendorRegForm.valid) {
+        let vemail = JSON.parse(JSON.stringify(this.vendorEmail));
+        this.storage.set('vendor_email', vemail).subscribe(() => {});
+        this.modalReference.close();
+        this.router.navigate(['vendorRegistration']);
+        this.sameEmailError = '';
+      // } else {
+      //   return;
+      // }
+      } else {
+        this.sameEmailError = response.msg;
+      }
+    },(error) => {
+      this.sameEmailError = 'Something went wrong in server. Please try again.';
+    })
+    
   }
 
   submitUserEmail(form: any) {
@@ -115,20 +141,32 @@ export class HeaderComponent implements OnInit {
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-          this.router.navigate([this.currentUrl]).then(() => {
-            this.onChildChange = true;
-            window.location.reload();
-          });
-          this.signInModal.close();
-          this.spinnerShow = false;
-          this.storage
-          .set('user_session', JSON.parse(JSON.stringify(response.data)))
-          .subscribe(() => {});
-          localStorage.setItem('local_data', response.data.role);
-          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
-
+          if(response.data.role === 'brand' && response.data.step_count !== 12) { 
+            this.storage
+            .set('user_session', JSON.parse(JSON.stringify(response.data)))
+            .subscribe(() => {});
+            localStorage.setItem('from_login_cred', JSON.stringify(values));
+            this.router.navigate(['vendorRegistration',response.data.step_count]);
+            this.signInModal.close();
+            this.spinnerShow = false; 
+          } else {
+            this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+            setTimeout(() => {
+              this.router.navigate([this.currentUrl]).then(() => {
+                this.onChildChange = true;
+                window.location.reload();
+              });
+            }, 500);
+            this.signInModal.close();
+            this.spinnerShow = false;
+            this.storage
+            .set('user_session', JSON.parse(JSON.stringify(response.data)))
+            .subscribe(() => {});
+            localStorage.setItem('local_data', response.data.role);
+            localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
+          }
         } else if(response.data.role === 'brand') {
-          if(response.data.step_count !== 12) {
+          if(response.data.step_count !== 12) { 
             this.storage
             .set('user_session', JSON.parse(JSON.stringify(response.data)))
             .subscribe(() => {});
@@ -164,9 +202,10 @@ export class HeaderComponent implements OnInit {
           .subscribe(() => {});
           localStorage.setItem('local_data', response.data.role);
           localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
-          this.router.navigateByUrl('/retailer-home').then(() => {
-            this.onChildChange = true;
-          });
+          this.router.navigateByUrl('/localBrands');
+          // this.router.navigateByUrl('/retailer-home').then(() => {
+          //   this.onChildChange = true;
+          // });
           this.signInModal.close();
           this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
         }

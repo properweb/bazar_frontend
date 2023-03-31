@@ -10,7 +10,7 @@
           <p>Get your Bazar shop ready an running soon</p>
         </div>
       </div>
-      <form #shopSettingsForm="ngForm" (ngSubmit)="saveShopSettings(shopSettingsForm)" novalidate>
+      <form #shopSettingsForm="ngForm" (ngSubmit)="shopSettingsForm.form.valid && saveShopSettings(shopSettingsForm)" novalidate>
         <div class="shop_settings_body">
           <div class="inner_shop_settings_body">
             <h3>Order Minimum</h3>
@@ -28,28 +28,58 @@
               <tbody>
                 <tr>
                   <td>United States</td>
-                  <td><input style="border: 1px solid rgba(57,57,57,0.5); " type="text" (change)="autoOrderMinPrice()" name="" placeholder="$" class="form-control" name="usd_order_min" [(ngModel)]="usd_order_min"></td>
-                  <td><input style="border: 1px solid rgba(57,57,57,0.5); " type="text" (change)="autoReOrderMinPrice()" name="" placeholder="$" class="form-control" name="usd_reorder_min" [(ngModel)]="usd_reorder_min"></td>
+                  <td>
+                    <input style="border: 1px solid rgba(57,57,57,0.5); " type="number" (change)="onNousdFomChange($event)" name="" placeholder="$" class="form-control" name="usd_order_min" [(ngModel)]="usd_order_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.usdFom">{{pricingListError.usdFom}}</span>
+                  </td>
+                  <td>
+                    <input style="border: 1px solid rgba(57,57,57,0.5); " type="number" (change)="onNousdReOrdChange($event)" name="" placeholder="$" class="form-control" name="usd_reorder_min" [(ngModel)]="usd_reorder_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.usdReOrd">{{pricingListError.usdReOrd}}</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Canada</td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="cad_order_min" [(ngModel)]="cad_order_min"></td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="cad_reorder_min" [(ngModel)]="cad_reorder_min"></td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNocadFomChange($event)" name="" placeholder="$" class="form-control" name="cad_order_min" [(ngModel)]="cad_order_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.cadFom">{{pricingListError.cadFom}}</span>
+                  </td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNocadReOrdChange($event)" name="" placeholder="$" class="form-control" name="cad_reorder_min" [(ngModel)]="cad_reorder_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.cadReOrd">{{pricingListError.cadReOrd}}</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>United Kingdom</td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="£" class="form-control" name="gbp_order_min" [(ngModel)]="gbp_order_min"></td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="£" class="form-control" name="gbp_reorder_min" [(ngModel)]="gbp_reorder_min"></td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNogbpFomChange($event)" name="" placeholder="£" class="form-control" name="gbp_order_min" [(ngModel)]="gbp_order_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.gbpFom">{{pricingListError.gbpFom}}</span>
+                  </td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNogbpReOrdChange($event)" name="" placeholder="£" class="form-control" name="gbp_reorder_min" [(ngModel)]="gbp_reorder_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.gbpReOrd">{{pricingListError.gbpReOrd}}</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Australia</td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="aud_order_min" [(ngModel)]="aud_order_min"></td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="$" class="form-control" name="aud_reorder_min" [(ngModel)]="aud_reorder_min"></td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNoaudFomChange($event)" name="" placeholder="$" class="form-control" name="aud_order_min" [(ngModel)]="aud_order_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.audFom">{{pricingListError.audFom}}</span>
+                  </td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNoaudReOrdChange($event)" name="" placeholder="$" class="form-control" name="aud_reorder_min" [(ngModel)]="aud_reorder_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.audReOrd">{{pricingListError.audReOrd}}</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>Europe</td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="€" class="form-control" name="eur_order_min" [(ngModel)]="eur_order_min"></td>
-                  <td><input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="text" name="" placeholder="€" class="form-control" name="eur_reorder_min" [(ngModel)]="eur_reorder_min"></td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNoeurFomChange($event)" name="" placeholder="€" class="form-control" name="eur_order_min" [(ngModel)]="eur_order_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.eurFom">{{pricingListError.eurFom}}</span>
+                  </td>
+                  <td>
+                    <input [readonly]="outside_us == false" [style.border]=" outside_us == true ? '1px solid rgba(57,57,57,0.5)' : '1px solid #fff'" type="number" (change)="onNoeurReOrdChange($event)" name="" placeholder="€" class="form-control" name="eur_reorder_min" [(ngModel)]="eur_reorder_min">
+                    <span style="font-size: 13px !important;" class="validate_errors" *ngIf="pricingListError.eurReOrd">{{pricingListError.eurReOrd}}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -132,13 +162,21 @@
               <div class="col-lg-8">
                 <ul class="row shopInfoList">
                   <li class="col-lg-6">
-                    <label>Company Name</label>
-                    <input type="text" class="form-control" value="" placeholder="My Amarant" name="brand_name" [(ngModel)]="brand_name">
-                    <input type="hidden" class="form-control" value="" placeholder="My Amarant" name="user_id" [(ngModel)]="user_id">
+                    <label>Brand Name</label>
+                    <input type="text" class="form-control" value="" placeholder="Brand name" name="brand_name" [(ngModel)]="brand_name" pattern="^.{1,255}$" #brand_nameval='ngModel'>
+                    <span class="validate_errors"
+                      *ngIf="(brand_nameval.touched || shopSettingsForm.submitted) && brand_nameval.errors?.['pattern']">
+                      Only 255 characters allowed.
+                    </span>
+                    <input type="hidden" class="form-control" value="" name="user_id" [(ngModel)]="user_id">
                   </li>
                   <li class="col-lg-6">
                     <label>Fulfillment Email</label>
-                    <input type="email" class="form-control" value="" placeholder="amarant@gmail.com" name="email" [(ngModel)]="email">
+                    <input type="email" class="form-control" value="" placeholder="example@gmail.com" name="email" [(ngModel)]="email" #emailval='ngModel' readonly pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$">
+                    <span class="validate_errors"
+                      *ngIf="(emailval.touched || shopSettingsForm.submitted) && emailval.errors?.['pattern']">
+                        Please enter valid email.
+                    </span>
                   </li>
                   <li class="col-lg-12">
                     <label>Primary Category</label>
@@ -183,6 +221,7 @@
                         readonly
                         class="form-control calnInput"
                         ngbDatepicker
+                        [minDate]="minDate"
                         #datepicker="ngbDatepicker"
                         [autoClose]="'outside'"
                         (dateSelect)="onDateSelection($event)"
@@ -216,7 +255,7 @@
               <div class="col-lg-12">
                 <ul class="btnList">
                   <li><input *ngIf="!btnDis1" type="submit" name="" value="Save Changes" class="btn publish_btn"></li>
-                  <li><input *ngIf="btnDis1" disabled type="button" name="" value="Saving Changes" class="btn publish_btn"></li>
+                  <li><input *ngIf="btnDis1" disabled type="button" name="" value="Please wait..." class="btn publish_btn"></li>
                 </ul>
               </div>
             </div>

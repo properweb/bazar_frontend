@@ -40,9 +40,7 @@ export class VendorDashboardHeaderComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.profile_photo = response.data.profile_photo;   
     })
-    
   }
-
   
   isShown: boolean = false ;
 
@@ -70,23 +68,8 @@ export class VendorDashboardHeaderComponent implements OnInit {
 
   logout() {
     this.apiService.logout();
-    this.toast.success({detail:"SUCCESS",summary: 'Logout successful' ,duration: 4000});
+    this.toast.success({detail:"Logout successful.",summary: '' ,duration: 4000});
     this.router.navigate(['/localBrands']);
-    // localStorage.removeItem('local_data');
-    // localStorage.removeItem('authorization_data');
-    // this.storage.delete('user_session').subscribe({
-    //   next: (user) => {
-    //     /* Called if data is valid or `undefined` */
-    //     this.toast.success({detail:"SUCCESS",summary: 'Logout successful' ,duration: 4000});
-    //   this.router.navigate(['/localBrands']);
-      
-    //   },
-    //   error: (error) => {
-    //     /* Called if data is invalid */
-    //     this.toast.error({detail:"ERROR",summary: 'Something went wrong Please try again!' ,duration: 4000});
-    //     console.log(error);
-    //   },          
-    // });
   }
 
 }

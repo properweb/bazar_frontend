@@ -395,9 +395,6 @@ export class ApiService {
     return this.http.put(this._Base_URL+'brands/update/info' , updatedData, this.createAuthorizationHeader());
   }
 
-  checkEmail(values: any) {
-    return this.http.post(this._Base_URL+'user/check-email', values);
-  }
 
 
   logout() {

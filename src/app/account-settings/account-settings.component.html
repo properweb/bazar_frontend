@@ -23,54 +23,108 @@
         </div>
       </div>
       <div class="account_setting_body">
+      <form #vendorAccountUpdate="ngForm" (ngSubmit)="vendorAccountUpdate.form.valid && website_url?.length <= 255 && firstorderError == '' && reorderErrorMsg == '' && sendAccountUpdate(vendorAccountUpdate , profileImgVal.value)">
+        <div class="row customRow">
           <div class="col-lg-6 brandInformationleft">
             <h4>Brand Information</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Brand Name</label>
                 <input hidden name="user_id" [(ngModel)]="user_id" id="user_id" #user_idval='ngModel' type="text" class="form-control" value="">
-                <input name="brand_name" required [(ngModel)]="brand_name" id="brand_name" #brand_nameval='ngModel' type="text" class="form-control" value="">
+                <input name="brand_name" pattern="^.{1,255}$" required [(ngModel)]="brand_name" id="brand_name" #brand_nameval='ngModel' type="text" class="form-control" value="">
                 <span class="validate_errors"
                   *ngIf="(brand_nameval.touched || vendorAccountUpdate.submitted) && brand_nameval.errors?.['required']">
                   Brand name is required.
                 </span>
+                <span class="validate_errors"
+                  *ngIf="(brand_nameval.touched || vendorAccountUpdate.submitted) && brand_nameval.errors?.['pattern']">
+                  Only 255 characters allowed.
+                </span>
               </li>
               <li class="col-lg-6">
                 <label class="form-label">Website URL</label>
-                <input type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" name="website_url" [(ngModel)]="website_url" required #website_urlval='ngModel'> 
+                <input type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" name="website_url" [(ngModel)]="website_url" required #website_urlval='ngModel'> 
                 <span class="validate_errors"
                   *ngIf="(website_urlval.touched || vendorAccountUpdate.submitted) && website_urlval.errors?.['required']">
-                  Website URL is required
+                  Website URL is required.
                 </span>         
                 <span class="validate_errors"
                   *ngIf="(website_urlval.touched || vendorAccountUpdate.submitted) && website_urlval.errors?.['pattern']">
                   Website URL is not valid.
                 </span>         
+                <span class="validate_errors"
+                  *ngIf="(website_urlval.touched || vendorAccountUpdate.submitted) && website_url?.length > 255">
+                  Only 255 characters allowed.
+                </span>         
               </li>
               <li class="col-lg-6">
                 <label class="form-label">Instagram Handle</label>
+                <input style="padding: 0 0 0 28px;" type="text" pattern="^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$" class="form-control" placeholder="" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
+                <span style="position: relative; bottom: 31px; left: 10px;">@</span>
                 <span class="validate_errors"
                   *ngIf="(insta_handleval.touched || vendorAccountUpdate.submitted) && insta_handleval.errors?.['pattern']">
                   This field not valid.
                 </span>
               </li>
               <li class="col-lg-6">
+                <label class="form-label">Year Established</label>
+                <input required pattern="^(194[5-9]|19[5-9]\d|200\d|201\d|202\d)$" (change)="validateYear($event)" type="number" class="form-control" placeholder="" name="established_year" [(ngModel)]="established_year" #established_yearval="ngModel">
+                <span class="validate_errors"
+                  *ngIf="(established_yearval.touched || vendorAccountUpdate.submitted) && established_yearval.errors?.['required']">
+                  Year Established is required.
+                </span>
+                <span class="validate_errors"
+                  *ngIf="yearError">
+                  Year Established is not valid.
+                </span>
+              </li>
             </ul>
             <h4>Brand Information</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label>First Minimum Order</label>
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label>Reorder Minimum</label>
+                <label class="form-label">Stores you are carried in</label>
+                <select required class="form-select" aria-label="Default select example" name="stored_carried" [(ngModel)]="stored_carried" #stored_carriedval="ngModel">
+                <option *ngFor="let item of storeWorkWith" value="{{item.name}}">{{item.name}}</option> 
+                </select>
+                <span class="validate_errors"
+                  *ngIf="(stored_carriedval.touched || vendorAccountUpdate.submitted) && stored_carriedval.errors?.['required']">
+                  This field is required.
                 </span>
               </li>
               <li class="col-lg-6">
                 <label>Average Lead Time</label>
+                <input name="avg_lead_time" (change)="onAvgLeadChange($event)" required onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" [(ngModel)]="avg_lead_time" id="avg_lead_time" #avg_lead_timeval='ngModel' type="number" class="form-control" value="10 days">
+                <span class="validate_errors"
+                  *ngIf="(avg_lead_timeval.touched || vendorAccountUpdate.submitted) && avg_lead_timeval.errors?.['required']">
+                  This field is required.
+                </span>
+                <span class="validate_errors"
+                  *ngIf="avgLeadError">
+                  Average lead time should be between 1 to 180 days.
+                </span>
+              </li>
+              <li class="col-lg-6">
+                <label>First Minimum Order</label>
+                <input name="first_order_min" (change)="on1stOrdChange($event)" minlength="1" maxlength="99999" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" [(ngModel)]="first_order_min" id="first_order_min" #first_order_minval='ngModel' type="number" class="form-control" value="">
+                <span class="validate_errors"
+                  *ngIf="(first_order_minval.touched || vendorAccountUpdate.submitted) && first_order_minval.errors?.['required']">
+                  This field is required.
+                </span>
+                <span class="validate_errors"
+                  *ngIf="firstorderError">
+                  {{firstorderError}}
+                </span>
+              </li>
+              <li class="col-lg-6">
+                <label>Reorder Minimum</label>
+                <input name="re_order_min" (change)="onReOrdChange($event)" minlength="1" maxlength="99999" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" [(ngModel)]="re_order_min" id="re_order_min" #re_order_minval='ngModel' type="number" class="form-control" value="">
+                <span class="validate_errors"
+                  *ngIf="(re_order_minval.touched || vendorAccountUpdate.submitted) && re_order_minval.errors?.['required']">
+                  This field is required.
+                </span>
+                <span class="validate_errors"
+                  *ngIf="reorderErrorMsg">
+                  {{reorderErrorMsg}}
                 </span>
               </li>
             </ul>
@@ -78,15 +132,34 @@
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Products Made In</label>
+                <select class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" id="product_made" required #product_madeval='ngModel'>
+                  <option *ngFor="let item of countries" value="{{item.id}}">{{item.country_name}}</option>
+                </select>
+                <span class="validate_errors"
+                  *ngIf="(product_madeval.touched || vendorAccountUpdate.submitted) && product_madeval.errors?.['required']">
+                  This field is required.
+                </span>
+              </li>
+              <li class="col-lg-6">
+                <label>Headquatered In</label>
+                <select class="form-select" aria-label="Default select example" name="headquatered" [(ngModel)]="headquatered" id="headquatered" required #headquateredval='ngModel'>
+                  <option *ngFor="let item of countries" value="{{item.id}}">{{item.country_name}}</option>
+                </select>
+                <span class="validate_errors"
+                  *ngIf="(headquateredval.touched || vendorAccountUpdate.submitted) && headquateredval.errors?.['required']">
+                  This field is required.
+                </span>
               </li>
             </ul>
             <h4>Story</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Brand Story</label> 
-                <textarea name="shared_brd_story" [(ngModel)]="shared_brd_story" required maxlength="1500" (change)="onBrandStoryChange($event)" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3"></textarea>
+                <textarea name="shared_brd_story" #shared_brd_storyRef [(ngModel)]="shared_brd_story" required maxlength="1500" (change)="onBrandStoryChange($event)" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3"></textarea>
+                <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span>
                 <span class="validate_errors"
                   *ngIf="(shared_brd_storyval.touched || vendorAccountUpdate.submitted) && shared_brd_storyval.errors?.['required']">
+                  This field is required.
                 </span>
                 <span class="validate_errors"
                   *ngIf="brandStoryError">
@@ -100,7 +173,7 @@
                     <div class="form-check">
                       <!-- <input [value]="item.value" checked (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" [ngModel]="tag_shop_page" #tag_shop_pageval='ngModel'> -->
                       <input [value]="item.value" [checked]="tag_shop_page.includes(item.value) == true" (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" checked="checked" name="tag_shop_page" >
-                      <label class="form-check-label">{{item.name}}</label>
+                      <label class="form-check-label">{{item.name}}</label> 
                     </div>
                   </li> 
                   <span class="validate_errors" *ngIf="validError && tagsToolsArray?.length === 0">
@@ -109,10 +182,10 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </div> 
           <div class="col-lg-6 brandInformationRight">
             <div class="brandInformation_Smalldiv">
-              <div class="show_upload_profile_img"><img src="{{profile_photo}}" alt="upload image" id="profile_img_show"> <a class="edit_upload_img" (click)="openUploadProfileModal(uploadContent2)"><img src="assets/images/account_settings_icon.svg" alt="edit icon"></a> </div>
+              <div class="show_upload_profile_img"><img alt="upload image" id="profile_img_show"> <a class="edit_upload_img" (click)="openUploadProfileModal(uploadContent2)"><img src="assets/images/account_settings_icon.svg" alt="edit icon"></a> </div>
               <input id="profile_img" type="hidden" alt="upload image" name="featured_image_hidden" #profileImgVal>
               <h3>Final Step! Review Your Store Information</h3>
               <p>Please review your profile information on the left side before submitting to the Bazar team.</p>
@@ -146,6 +219,7 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" (change)="getProfileImg($event)"  class="cropit-image-input" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
       </div>
+      <div class="error-msg-profile"></div>
       <div class="cropit-preview"></div>
       <div class="rangeSliderSec">
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->

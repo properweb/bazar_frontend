@@ -28,10 +28,6 @@ export class VendorDashboardComponent implements OnInit, AfterViewInit {
   constructor(private storage: StorageMap , private apiService : ApiService, public modalService: NgbModal, private toast: NgToastService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         if(user) {
