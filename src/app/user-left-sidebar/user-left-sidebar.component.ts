@@ -23,7 +23,7 @@ export class UserLeftSidebarComponent implements OnInit {
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
-        this.getRetailerDetails(user_session.id);
+        this.getRetailerDetails(user_session.user_key);
       },
       error: (error) => {
       },          

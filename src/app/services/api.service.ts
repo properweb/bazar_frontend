@@ -169,8 +169,6 @@ export class ApiService {
   addToCart(values:any) {
     return this.http.post(this._Base_URL+'carts/add' , values, this.createAuthorizationHeader());
   }
-
-
   }
     
   updateCart(values:any) {
@@ -295,7 +293,6 @@ export class ApiService {
     return this.http.get(this._Base_URL+'wishlist/fetch-board/'+key, this.createAuthorizationHeader());
   }
 
-
   }
 
   changeBoardWishlist(values: any) {
@@ -374,7 +371,6 @@ export class ApiService {
     return this.http.post(this._Base_URL+'shippings/create', values, this.createAuthorizationHeader());
   }
 
-
   }
 
   getShippingAddressDeatils(id: any) {
@@ -395,6 +391,14 @@ export class ApiService {
 
   vendorCount() {
     return this.http.get(this._Base_URL+'brands/count', this.createAuthorizationHeader());
+  }
+  
+  vendorInfoUpdate(updatedData:any) {
+    return this.http.put(this._Base_URL+'brands/update/info' , updatedData, this.createAuthorizationHeader());
+  }
+
+  checkEmail(values: any) {
+    return this.http.post(this._Base_URL+'user/check-email', values);
   }
 
 
