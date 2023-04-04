@@ -232,9 +232,9 @@ export class ProductCategoryComponent implements OnInit {
 
   catOptions1: OwlOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],

@@ -6,25 +6,31 @@
         </ol>
     </nav>
 </div>
-<div class="category_top">
-    <div class="container">
-        <h2>{{catSlug}}</h2>
-        <owl-carousel-o [options]="catOptions1">
-            <ng-template carouselSlide *ngFor="let topCatArrays of topCatArray">
-                <div class="category_box">
-                    <div class="category_box_inner">
-                        <div class="img_div">
-                            <img src="{{topCatArrays.newImgName}}" alt="">
-                        </div>
-                        <div class="text_div">
-                            <h4>{{topCatArrays.newTitleName}}</h4>
+<ng-container *ngIf="allDetails?.categories?.length > 0">
+    <div class="category_top">
+        <div class="container">
+            <h2>{{catSlug}}</h2>
+            <owl-carousel-o [options]="catOptions1">
+                <ng-template carouselSlide *ngFor="let item of allDetails?.categories">
+                    <div class="category_box">
+                        <div class="category_box_inner">
+                            <a routerLink="/category/{{catSlug}}/subcategory/{{item?.title}}">
+                                <div class="img_div">
+                                    <img [src]="item?.image" alt="">
+                                </div>
+                            </a>
+                            <a routerLink="/category/{{catSlug}}/subcategory/{{item?.title}}">
+                                <div class="text_div">
+                                    <h4>{{item?.title}}</h4>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-        </owl-carousel-o>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
     </div>
-</div>
+</ng-container>
 <div class="filter_sec">
     <div class="container">
         <owl-carousel-o [options]="filterOptions1">
