@@ -29,6 +29,7 @@
                                                 <span class="qty-update"><input type="number" name="quantity" [value]="item?.product_qty" (change)="onQtyChange($event, item, i)" ></span>
                                             </p>
                                         </td>
+                                            <p *ngIf="item?.product_qty" >Quantity({{item?.product_qty}})</p></td>
                                         <td valign="bottom">
                                             <a class="RemovePrdt" (click)="deleteCart(item?.id)" ><img src="assets/images/CrossIcon.png" alt=""/></a>
                                             <p class="PrdtPrice" *ngIf="item?.product_price" >${{item?.product_price ? item?.product_price : ''}}</p>
@@ -47,6 +48,8 @@
                             <ngb-progressbar type="success" [value]="totalPrice[i]['brand_total']" [max]="cartDetailItem?.brand_min" ></ngb-progressbar>
                             <p class="priceReached" *ngIf="totalPrice[i]['brand_total'] > cartDetailItem?.brand_min">${{cartDetailItem?.brand_min}} min reached!</p>
                             <p class="priceReached" *ngIf="cartDetailItem?.brand_min - totalPrice[i]['brand_total'] > 0">${{cartDetailItem?.brand_min - totalPrice[i]['brand_total']}} left. <span class="max-span" *ngIf="totalPrice[i]['brand_total'] < cartDetailItem?.brand_min"> $600 minimun</span></p>
+                            <ngb-progressbar type="success" [value]="100"></ngb-progressbar>
+                            <p class="priceReached">$700 min reached!</p>
                             <div class="odrSmryTblSec">
                                 <table class="odrSmryTbl">
                                     <tbody>
@@ -56,6 +59,7 @@
                                         <tr>
                                             <td>Item total</td>
                                             <td>${{totalPrice[i]['brand_total']}}</td>
+                                            <td>${{totalPrice[i]}}</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping</td>
@@ -71,6 +75,10 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2"><a class="btn btn-primary" (click)="handleCheckOut(cartDetailItem?.brand_key, totalPrice[i]['brand_total'],cartDetailItem?.brand_name,cartDetailItem?.brand_key)" >Checkout to this brand</a></td>
+                                            <td>${{totalPrice[i]}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><a class="btn btn-primary" (click)="handleCheckOut(cartDetailItem?.brand_key, totalPrice[i],cartDetailItem?.brand_name)" >Checkout to this brand</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

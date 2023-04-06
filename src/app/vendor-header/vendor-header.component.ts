@@ -39,6 +39,7 @@ export class VendorHeaderComponent implements OnInit {
   }
 
   onClickedOutside(e: Event) {
+    // console.log('Clicked outside:', e);
     this.isShown=false;
   }
 

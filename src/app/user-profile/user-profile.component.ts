@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
@@ -20,6 +21,9 @@ export class UserProfileComponent implements OnInit {
   user_id!: any;
   email !: any;
   retailerDetails !: any;
+
+  user_id!: any;
+  email !: any;
   first_name !: any;
   last_name !: any;
   password !: any;
@@ -88,6 +92,12 @@ export class UserProfileComponent implements OnInit {
   billcountriesArray:any = [];
   billstateArray:any = [];
   billcityArray:any = [];
+  ship_phone_code!: any;
+  ship_phone_number!: any;
+  
+  countriesArray:any = [];
+  stateArray:any = [];
+  cityArray:any = [];
   tagsToolsArray:any = [];
   proCatArray:any = [];
   chekedStoreTypeArray: any = [];
@@ -167,6 +177,7 @@ export class UserProfileComponent implements OnInit {
         this.user_id = user_session.id;
         this.getCountries(user_session.id);
         this.getShipAddress(user_session.id);
+        // this.getProducts(this.user_id, this.sort_key, 1, 'all', this.searchText);
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -204,6 +215,7 @@ export class UserProfileComponent implements OnInit {
         this.retailerDetails = response.data;
         this.first_name = response.data.first_name;
         this.email = response.data.email;
+        this.first_name = response.data.first_name;
         this.last_name = response.data.last_name;
         this.country = response.data.country;
         this.country_code = response.data.country_code;
@@ -236,6 +248,7 @@ export class UserProfileComponent implements OnInit {
         this.errorMsg = response.msg;
         this.appComponent.showSpinner = false;
       }
+
     },(error) => {
       this.btnDis = false;
       this.errorMsg = '';
@@ -250,6 +263,7 @@ export class UserProfileComponent implements OnInit {
     this.country_code = country[0].phone_code;
   }
  
+
   onCheckBoxChanged(value: any) {
     this.sign_up_for_email = value;
   }
@@ -326,6 +340,14 @@ export class UserProfileComponent implements OnInit {
     this.ship_city = null;
     this.update_ship_state = null;
     this.update_ship_city = null;
+  saveCheckOutForm(userFormStep1: any) {
+    console.log(userFormStep1.value);
+  }
+
+  onChangeCountry(event: any){
+    let countryId = event.target.value;
+    this.ship_state = null;
+    this.ship_city = null;
     this.apiService.getStates(countryId).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       this.stateArray = response.data;

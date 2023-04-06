@@ -3,6 +3,7 @@
   <app-vendor-side-menu></app-vendor-side-menu>
   <div class="middle_vendor_dasboard">
     <form #myShopForm="ngForm" (ngSubmit)="myShopForm.form.valid && updateMyShop(coverImgVal.value , profileImgVal.value , featureImgVal.value , logoImgVal.value)">
+    <form #myShopForm="ngForm" (ngSubmit)="updateMyShop(coverImgVal.value , profileImgVal.value , featureImgVal.value , logoImgVal.value)">
       <div class="middle_content">
         <div class="myShopTop">
           <h3>My Shop</h3>  
@@ -64,6 +65,14 @@
                 *ngIf="(video_urlval.touched || myShopForm.submitted) && video_urlval.errors?.['pattern']">
                 Please enter valid URL.
               </span>
+          <textarea class="form-control textAreaForm" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" #shared_brd_storyval='ngModel'></textarea>
+        </div>
+        <div class="myShopWhite">
+          <h3>Video</h3>
+          <p>Add a Vimeo or Youtube video to your brand story.</p>
+          <div class="row">
+            <div class="col-lg-6">
+              <input type="text" class="form-control" placeholder="https://" name="video_url" [(ngModel)]="video_url" #video_urlval='ngModel'>
             </div>
           </div>
         </div>
@@ -83,6 +92,7 @@
                     *ngIf="yearError">
                     Year Established is not valid.
                   </span>
+                  <input type="text" class="form-control" placeholder="2022" name="established_year" [(ngModel)]="established_year" #established_yearval='ngModel'>
                 </li>
                 <li class="col-lg-6 col-md-6">
                   <label class="form-label">Products Made In</label>
@@ -101,6 +111,8 @@
                   <!-- <select class="form-select" aria-label="Default select example" (change)="onChangeState($event)" name="state" value="41"> -->
                   <select class="form-select" aria-label="Default select example" (change)="onChangeState($event)" name="state" [(ngModel)]="state" #stateval="ngModel">
                     <!-- <option value="null" hidden ></option> -->
+                  <select class="form-select" aria-label="Default select example" (change)="onChangeState($event)" name="state" [(ngModel)]="state" #stateval="ngModel">
+                    <option [ngValue]="null" hidden ></option>
                     <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>  
                   </select>
                 </li>
@@ -108,6 +120,7 @@
                   <label class="form-label">City</label>
                   <select required class="form-select" aria-label="Default select example" name="city" [(ngModel)]="city" #cityval="ngModel">
                     <!-- <option [ngValue]="null" hidden ></option> -->
+                    <option [ngValue]="null" hidden ></option>
                     <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
                   </select>
                 </li>
@@ -119,6 +132,7 @@
                     *ngIf="(insta_handleval.touched || myShopForm.submitted) && insta_handleval.errors?.['pattern']">
                     This field not valid.
                   </span>
+                  <input type="text" class="form-control" placeholder="instagram.com/" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
                 </li>
               </ul>
             </div>
@@ -147,6 +161,7 @@
                 *ngIf="(tag_shop_page_aboutval.touched || myShopForm.submitted) && tag_shop_page_aboutval.errors?.['pattern']">
                 This field not valid.
               </span>
+              <input type="text" class="form-control" placeholder="instagram.com/" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" #tag_shop_page_aboutval="ngModel">
             </div>
           </div>
           <div class="border_line"></div>
@@ -214,6 +229,44 @@
                 </a>
             </li>
             <!-- <li *ngIf="added_product != '0' && previewed_shop_page != '0'">
+          <ul class="task_list">
+            <li class="complete">
+                <a routerLink="/products" *ngIf="added_product == 0">
+                    <span class="radioLabel">Add your product catalog
+                        <input type="radio">
+                        <span class="checkmark"></span>
+                    </span>
+                </a>
+                <a *ngIf="added_product != 0">
+                    <span class="radioLabel">Add your product catalog
+                        <input type="radio" checked>
+                        <span class="checkmark"></span>
+                    </span>
+                </a>
+            </li>
+            <li class="complete">
+                <a routerLink="/my-shop" *ngIf="previewed_shop_page == 0">
+                    <span class="radioLabel">Preview your shop page
+                        <input type="radio">
+                        <span class="checkmark"></span>
+                    </span>
+                </a>
+                <a *ngIf="previewed_shop_page != 0">
+                    <span class="radioLabel">Preview your shop page
+                        <input type="radio" checked>
+                        <span class="checkmark"></span>
+                    </span>
+                </a>
+            </li>
+            <li *ngIf="added_product == '0' || previewed_shop_page == '0'">
+              <a>
+                  <span class="radioLabel">Go live!
+                      <input type="radio" disabled>
+                      <span class="checkmark"></span>
+                  </span>
+              </a>
+            </li>
+            <li *ngIf="added_product != '0' && previewed_shop_page != '0'">
                 <a (click)="go_live == '0' && openGoLiveModal(deleteContent)">
                     <span class="radioLabel">Go live!
                         <input type="radio" [checked]="go_live == '1' || go_live == '2'" > 
@@ -224,6 +277,9 @@
 
         </ul>
     </div>
+            </li>
+        </ul>
+      </div>
       <div class="right_bottom_fixed_sec">
         <h4 *ngIf="go_live == '0'" >Shop status: <strong class="inactiveStrong">Inactive</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
         <h4 *ngIf="go_live == '1'" >Shop status: <strong class="inactiveStrong">Wating for admin approval.</strong> <img src="assets/images/red_status_circle.png" alt=""></h4>
@@ -244,6 +300,7 @@
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getProfileImg($event)" >
         <!-- <input type="file" class="cropit-image-input"> -->
+        <input type="file" class="cropit-image-input">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -251,6 +308,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -274,6 +332,7 @@
       <div class="inputDiv">
         <!-- <input type="file" class="cropit-image-input"> -->
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getCoverImg($event)" >
+        <input type="file" class="cropit-image-input">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -281,6 +340,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -305,6 +365,7 @@
       <div class="inputDiv">
         <!-- <input type="file" class="cropit-image-input"> -->
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getFeaturedImg($event)" >
+        <input type="file" class="cropit-image-input">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -312,6 +373,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -333,6 +395,7 @@
       <div class="inputDiv">
         <!-- <input type="file" class="cropit-image-input"> -->
          <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getLogoImg($event)" >
+        <input type="file" class="cropit-image-input">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -340,6 +403,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StorageMap } from '@ngx-pwa/local-storage';
@@ -14,6 +15,7 @@ import * as $ from 'jquery'
 })
 export class UserWishlistComponent implements OnInit {
   @ViewChild('modalCloseBtn') modalCloseBtn!: ElementRef<HTMLElement>
+
   user_id !:any;
   allWishDetails !:any;
   board_name !:any;
@@ -95,6 +97,11 @@ export class UserWishlistComponent implements OnInit {
       }
     },(error) => {
       this.btnDis = false;
+        this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
+      } else {
+        this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
+      }
+    },(error) => {
       this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
     })
   }

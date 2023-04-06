@@ -7,8 +7,7 @@
    3.npm version - 8.11.0    
 
 # Important Files
-   1. https://github.com/properweb/bazar_frontend/blob/development/jquery-migrate.min.js
-   2. https://github.com/properweb/bazar_frontend/blob/development/jquery.cropit.min.js
+
 
 # How to Install and Run the Project
 

@@ -31,6 +31,30 @@
         </div>
     </div>
 </ng-container>
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Home & Garden</li>
+        </ol>
+    </nav>
+</div>
+<div class="category_top">
+    <div class="container">
+        <h2>Home & Garden</h2>
+        <owl-carousel-o [options]="catOptions1">
+            <ng-template carouselSlide *ngFor="let topCatArrays of topCatArray">
+                <div class="category_box">
+                    <div class="category_box_inner">
+                        <div class="img_div">
+                            <img src="{{topCatArrays.newImgName}}" alt="">
+                        </div>
+                        <div class="text_div">
+                            <h4>{{topCatArrays.newTitleName}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>
 <div class="filter_sec">
     <div class="container">
         <owl-carousel-o [options]="filterOptions1">
@@ -152,6 +176,94 @@
                 </li>
             </ng-container>
 
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
+            <li class="col-md-3">
+                <div class="card">
+                    <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                    <div class="textDiv">
+                        <h3>Vases</h3>
+                        <p>Here can be small description</p>
+                        <p>by <strong>Star Seller</strong></p>
+                        <p class="price_tag">MSRP <strong>14$</strong></p>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
@@ -470,3 +582,4 @@
         <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
     </div>
 </ng-template>
+<app-footer></app-footer>

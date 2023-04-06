@@ -53,6 +53,7 @@ export class VendorShopSettingsComponent implements OnInit {
   ]
 
   constructor(private apiService: ApiService, private storage: StorageMap, private toast: NgToastService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router: Router) {
+  constructor(private apiService: ApiService, private storage: StorageMap, private toast: NgToastService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.pause_from_date = null;
     this.pause_to_date = null;
    }

@@ -78,6 +78,106 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   isVarAvailable !: any;
   varImageIndex!: any;
 
+    // crop
+    imageChangedEvent: any = '';
+    allImageChangedEventArray: any = [];
+    croppedImage: any = '';
+    croppedImageReady: any = '';
+    imgId: any = 0;
+    currentProcessingImg!: any;
+  
+    // attribute variables
+    option1 !: any;
+    option2 !: any;
+    option3 !: any;
+    option_items: any = []; 
+    option_items2!: any; 
+    option_items3!: any; 
+    selectedAttribute : any = {};
+    resultAttribute : any = [];
+    modifiedResultAttribute : any = [];
+    resultAttributeImgPreview : any = [];
+    option_type : any = [];
+    ext_option_type : any = [];
+    indexOfSwatch!: any;
+    colorOptionItems: any = [];
+    swatchName !: any;
+    swatchIndex: any = 0;
+    selectedCropFiles: any[] = [];
+    existingSize: any[] = [];
+    lists: any = [];
+    prepackLists: any = [];
+    sizeItemPrePack: any = [];
+    addOptionsModal: any; 
+    addProductModal: any; 
+    addColorModal: any;
+    selectColorModal: any;
+    variantsProductsModal: any;
+    nextProductId: any;
+    prevProductId: any;
+
+    videoModalShow!: any;
+
+    product_images: any = [];
+    prev_product_images: any = [];
+    all_details_images: any = [];
+    categories: any = [];
+    product_videos: any = [];
+    previews: any[] = [];
+    cropPreviews: any[] = [];
+    video_url: any[] = [];
+    prev_product_videos: any[] = [];
+    all_details_videos: any = [];
+    video_modal_url: any[] = [];
+    selectedFiles: any[] = [];
+    imgCountArr : any[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+    minOrderQtyArr : any[] = [1,2,3,4,5,6,7,8,9,10];
+    pricingCountryArray : any = [
+      {    
+          'country_name':'United States',
+          'wholesale_price': '',
+          'retail_price': '',
+          'currency': '$ USD'   
+      },
+      { 
+          'country_name':'Canada',
+          'wholesale_price': '',
+          'retail_price': '',
+          'currency': '$ CAD'
+      },
+      { 
+          'country_name':'United Kingdom',
+          'wholesale_price': '',
+          'retail_price': '',
+          'currency': '£ GBP'
+      },
+      { 
+          'country_name':'Australia',
+          'wholesale_price': '',
+          'retail_price': '',
+          'currency': '$ AUD'
+      },
+      { 
+          'country_name':'Europe',
+          'wholesale_price': '',
+          'retail_price': '',
+          'currency': '€ EUR'
+      },
+    ]
+    
+
+    initialValue !: any;
+    productKeyword = 'category';
+
+    keyword = 'name';
+    data = [
+      'Size' , 'Material',  'Color' , 'Style', 'Scent'
+    ];
+
+
+  hoveredDate: NgbDate | null = null;
+  fromDate: any;
+  toDate: any;
 
   showForm1:boolean= false;
   showForm2:boolean= false;
@@ -142,6 +242,9 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       month: current.getMonth() + 1,
       day: current.getDate()
     };
+  constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private activatedRoute: ActivatedRoute,  private toast: NgToastService, private appComponent: AppComponent) { 
+    this.fromDate = null;
+    this.toDate = null;
     this.router.events
       .pipe(filter((e: any) => e instanceof RoutesRecognized),
         pairwise()
@@ -162,6 +265,10 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   ngOnInit(): void {
 
+    if(localStorage.getItem('local_data') == null) {
+      this.router.navigate(['/']);
+    } else {}
+    this.showForm1= true;
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -194,6 +301,9 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         },
       });
 
+    })
+
+    // this.getCountries();
     this.featured_image = 0;
     this.lists= [];
   }
@@ -249,6 +359,10 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   
   getProductDetail() {
     this.lists = [];
+    
+  }
+  
+  getProductDetail() {
     this.appComponent.showSpinner = true;
     this.apiService.getProductDetail(this.product_id).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -275,6 +389,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       this.video_url = [];
       this.prev_product_videos = [];
       this.all_details_videos = [];
+      
       for(let j = 0 ; j < response.data[0].videos.length ; j++)
       {
         this.video_url.push(response.data[0].videos[j].video_url);
@@ -347,6 +462,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.testers_price = parseInt(response.data[0].usd_tester_price);
       }
       
+      this.testers_price = parseInt(response.data[0].usd_tester_price);
+
       if(this.testers_price > 0) {
         this.retailersPrice = true;
       }
@@ -391,6 +508,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
 
 
+      if(response.data[0].allvariations.length > 0) {
+        this.isVarAvailable = true;
 
         this.option_type = response.data[0].option_type;
         this.ext_option_type = response.data[0].option_type;
@@ -419,6 +538,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
 
+          if(response.data[0].prepack_type == '1') {
+            this.showSubCasePacks();
+          } else if (response.data[0].prepack_type == '2') {
+            this.showSubOpenSizing();
+          } else {}
+        }
 
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
@@ -458,6 +583,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
                   });
                   if(available == 0 ) {
                     this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+                    this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: ''})
                   }
                 }
                 
@@ -475,6 +601,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
                 });
                 if(available == 0 ) {
                   this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+                  this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: ''})
                 }
               }
                 });
@@ -494,6 +621,14 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           }
         
 
+          if(this.option_type.includes('Color')){
+            let index = this.option_type.indexOf('Color');
+            let item = this.option_items[index];
+            item.forEach((element: any) => {
+              this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+            });
+          
+          }
         
           if(this.option_type.includes('Size')) {
             let index = this.option_type.indexOf('Size');
@@ -530,6 +665,18 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   selectEventCat(item:any) {
+
+      }
+      
+    }, (error) => {
+      this.toast.error({detail:"ERROR",summary: 'Something went wrong. Please try again.' ,duration: 4000});
+      this.appComponent.showSpinner = false;
+    })
+    
+  }
+
+  selectEventCat(item:any) {
+
     if(this.product_type != item.last_id ) {
       this.isDirty = true;
     }
@@ -540,6 +687,15 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
   
   onFocusedCat(e:any){
+
+  }
+
+  onChangeSearchCat(val: string) {
+
+  }
+  
+  onFocusedCat(e:any){
+
   }
 
   onInputCleared(e:any){
@@ -568,11 +724,16 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   chooseYesFunction() { 
 
+    this.lists.push({"declare":""});
     this.isVarAvailable = true;
     this.showForm2= true;
     this.showForm3= true;
     this.showForm1= false;
     this.clickNo = false;
+  }
+
+  blobConversion(blob: any) {
+    alert(blob);
   }
 
   openAddProductModal(content:any) {
@@ -591,6 +752,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
   clickManageOpt() {
 
+    this.colorOptionItems = [];
     this.swatchIndex = 0;
   }
 
@@ -627,6 +789,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
     }
     
+      }
+    } else {
+      alert("Only 12 images allowed!")
+    }
+
     if(this.selectedFiles.length < 13){
       this.imgCountArr.splice(0 , this.previews.length);
     }
@@ -664,6 +831,31 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     this.previews = this.previews.filter((item:any , i:any) => i !== index);
     let prev_product_images = [...this.product_images];
 
+    } else {
+      alert("Only 12 images allowed!")
+    }
+
+    if(this.selectedFiles.length < 13){
+      this.imgCountArr.splice(0 , this.previews.length);
+    }
+    
+  }
+
+  prevDeleteImage(index:any , image:any) {
+
+    let imageDetail = this.all_details_images.filter((item:any) => item.image === image);
+    this.apiService.deleteProductImage(imageDetail[0].image_id).subscribe((responseBody) => {
+      this.previews = this.previews.filter((item:any , i:any) => i !== index);
+      this.featured_image = 0;
+      this.isDirty = true;
+    })
+  }
+  newDeleteImage(index:any) {
+    this.previews = this.previews.filter((item:any , i:any) => i !== index);
+    let prev_product_images = [...this.product_images];
+    if(prev_product_images.length != this.product_images.length) {
+      this.isDirty = true;
+    }
     this.product_images = this.product_images.filter((item:any , i:any) => i !== index);
   }
 
@@ -671,6 +863,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
     let videoDetail = this.all_details_videos.filter((item:any) => item.video_url === video);
     let values = {
 
+    this.apiService.deleteProductVideo(videoDetail[0].id).subscribe((responseBody) => {
+      this.video_url = this.video_url.filter((item:any , i:any) => i !== index);      
     })
   }
 
@@ -712,6 +906,23 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
        }
     } else {
       this.toast.error({detail:"3 videos allowed!",summary: "" ,duration: 4000});
+    if (event.target.files && event.target.files[0] && event.target.files.length < 4 ){
+      for (let i = 0; i < event.target.files.length; i++) {
+        var reader = new FileReader();
+
+        if(event.target.files[i].size < 5e+6) {
+          this.product_videos.push(event.target.files[i]);
+          reader.readAsDataURL(event.target.files[i]);
+      
+          reader.onload = (event:any) => {
+            this.video_url.push( event.target.result);
+          }
+        } else {
+          // alert('File is too large. Over 5mb.');
+        }
+       }
+    } else {
+      // alert("3 videos allowed!")
     }
   }
   
@@ -777,6 +988,48 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined && this.usd_wholesale_price != '0' && this.usd_retail_price != '0') || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined && this.cad_wholesale_price != '0' && this.cad_retail_price != '0') || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined && this.gbp_wholesale_price != '0' && this.gbp_retail_price != '0') || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined &&  this.eur_wholesale_price != '0' && this.eur_retail_price != '0') || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined && this.aud_wholesale_price != '0' && this.aud_retail_price != '0')) {
         pricingError = 1;
       }
+      formData.append("description", this.description);
+      formData.append("product_made", this.product_made);
+      formData.append("is_bestseller", this.is_bestseller);
+      formData.append("usd_wholesale_price" , this.usd_wholesale_price);
+      formData.append("usd_retail_price" , this.usd_retail_price);
+      formData.append("cad_wholesale_price" , this.cad_wholesale_price);
+      formData.append("cad_retail_price" , this.cad_retail_price);
+      formData.append("gbp_wholesale_price" , this.gbp_wholesale_price);
+      formData.append("gbp_retail_price" , this.gbp_retail_price);
+      formData.append("eur_wholesale_price" , this.eur_wholesale_price);
+      formData.append("eur_retail_price" , this.eur_retail_price);
+      formData.append("aud_wholesale_price" , this.aud_wholesale_price);
+      formData.append("aud_retail_price" , this.aud_retail_price);
+      formData.append("outside_us" , this.outside_us);
+      formData.append("shipping_sku" , this.shipping_sku);
+      formData.append("shipping_inventory" , this.shipping_inventory);
+      formData.append("shipping_tariff_code" , this.shipping_tariff_code);
+      formData.append("shipping_length" , this.shipping_length);
+      formData.append("dimension_unit" , this.dimension_unit);
+      formData.append("shipping_width" , this.shipping_width);
+      formData.append("shipping_height" , this.shipping_height);
+      formData.append("shipping_weight" , this.shipping_weight);
+      formData.append("weight_unit" , this.weight_unit);
+      formData.append("order_case_qty" , this.order_case_qty);
+      formData.append("order_min_case_qty" , this.order_min_case_qty);
+      formData.append("out_of_stock" , this.out_of_stock);
+      formData.append("featured_image", this.featured_image);
+      formData.append("testers_price", this.testers_price);
+      formData.append("reatailers_inst", this.reatailers_inst);
+      formData.append("reatailer_input_limit", this.reatailer_input_limit);
+      formData.append("retailer_min_qty", this.retailer_min_qty);
+      formData.append("retailer_add_charge", this.retailer_add_charge);
+      formData.append("product_shipdate", this.formatter.format(this.fromDate));
+      formData.append("product_endshipdate", this.formatter.format(this.toDate));
+      formData.append("product_deadline", this.formatter.format(this.product_deadline));
+      formData.append("keep_product", this.keep_product);
+      formData.append("sell_type", this.sell_type);
+      
+      let pricingError = 0;
+    if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined && this.usd_wholesale_price != '0' && this.usd_retail_price != '0') || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined && this.cad_wholesale_price != '0' && this.cad_retail_price != '0') || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined && this.gbp_wholesale_price != '0' && this.gbp_retail_price != '0') || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined &&  this.eur_wholesale_price != '0' && this.eur_retail_price != '0') || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined && this.aud_wholesale_price != '0' && this.aud_retail_price != '0')) {
+      pricingError = 1;
+    }
    
     if(this.product_type ==  undefined || this.product_type == null || this.product_type == 0 || this.product_type == '0') {
       this.publistBtnDisabled = false;
@@ -811,6 +1064,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         return false;
       }
       else if(this.order_case_qty == undefined || this.order_case_qty == '0'){ 
+      } else if(this.order_case_qty == undefined || this.order_case_qty == '0'){ 
         this.publistBtnDisabled = false;
         this.notValidError = true;
          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
@@ -840,6 +1094,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           let response = JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
             this.toast.success({detail:"Product updated successfully.",summary: '' ,duration: 4000});
+            this.toast.success({detail:"SUCCESS",summary: 'Product updated successfully.' ,duration: 4000});
             this.notValidError = false;
             this.publistBtnDisabled = false;
             this.notValidErrorMsg = '';
@@ -856,6 +1111,16 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
             this.notValidError = true;
             this.publistBtnDisabled = false;
 
+
+          } else {
+            this.notValidError = true;
+            this.publistBtnDisabled = false;
+            this.notValidErrorMsg = 'Something went wrong. please try again later!';
+          }
+  
+        },(error) => {
+          this.publistBtnDisabled = false;
+          this.notValidErrorMsg = 'Something went wrong. please try again later!';
         })
         return true;
       }
@@ -871,6 +1136,13 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("is_bestseller" ,this.is_bestseller ? this.is_bestseller : '');
       formData.append("order_case_qty" ,this.order_case_qty ? this.order_case_qty : 0);
       formData.append("order_min_case_qty" ,this.order_min_case_qty ? this.order_min_case_qty : '');
+      formData.append("outside_us", this.outside_us); 
+      formData.append("product_type" ,this.product_type);
+      formData.append("description" ,this.description);
+      formData.append("product_made" ,this.product_made);
+      formData.append("is_bestseller" ,this.is_bestseller);
+      formData.append("order_case_qty" ,this.order_case_qty);
+      formData.append("order_min_case_qty" ,this.order_min_case_qty);
       formData.append("usd_wholesale_price" , '0');
       formData.append("usd_retail_price" , '0');
       formData.append("cad_wholesale_price" , '0');
@@ -895,6 +1167,16 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("retailer_add_charge", this.retailer_add_charge ? this.retailer_add_charge : '');
       formData.append("featured_image", this.featured_image ? this.featured_image : 0);
       formData.append("keep_product", this.keep_product ? this.keep_product : '');
+      formData.append("out_of_stock", this.out_of_stock);
+      formData.append("sell_type", this.sell_type);
+      formData.append("prepack_type", this.prepack_type);
+      formData.append("testers_price", this.testers_price);
+      formData.append("reatailers_inst", this.reatailers_inst);
+      formData.append("reatailer_input_limit", this.reatailer_input_limit);
+      formData.append("retailer_min_qty", this.retailer_min_qty);
+      formData.append("retailer_add_charge", this.retailer_add_charge);
+      formData.append("featured_image", this.featured_image);
+      formData.append("keep_product", this.keep_product);
 
       for (var i = 0; i < this.product_images.length; i++) { 
         formData.append("product_images[]", this.product_images[i]);
@@ -905,6 +1187,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       let varPriceError = 0;
       let skuError = 0;
       let inventoryError = 0;
+      let varPriceError = 0;
 
       this.resultAttribute.forEach((elementVar: any) => {
         if( elementVar.status == 'published' && (elementVar.usd_wholesale_price == '' || elementVar.usd_wholesale_price == null || elementVar.usd_wholesale_price == undefined || elementVar.usd_retail_price == '' || elementVar.usd_retail_price == null || elementVar.usd_retail_price == undefined)) {
@@ -926,6 +1209,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
 
+      formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
+
+      formData.append("option_type", this.option_type);
+      this.resultAttribute.forEach((element: any , index:any) => {
+        this.resultAttribute[index].swatch_image = '';
+      });
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
       this.prepackLists.forEach((element: any) => {
@@ -984,6 +1273,17 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         } else {
           this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
         }
+      } else if(this.order_min_case_qty == 'undefined' || this.order_min_case_qty == '0' ) {
+        this.publistBtnDisabled = false;
+        this.notValidError = true;
+        if(this.option_type.includes('Size')) {
+  
+          this.toast.error({detail:"Please choose one sell type.",summary: '' ,duration: 4000});
+        } else {
+
+          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
+        }
+        
         return false;
       } else if(this.prepackLists.length > 0 && this.hideCreatePrepack == true && prepackError == 1 ) {
         this.publistBtnDisabled = false;
@@ -1015,6 +1315,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           let response = JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
             this.toast.success({detail:"Product updated successfully.",summary: '' ,duration: 4000});
+            this.toast.success({detail:"SUCCESS",summary: 'Product updated successfully.' ,duration: 4000});
             this.notValidError = false;
             this.publistBtnDisabled = false;
             this.notValidErrorMsg = '';
@@ -1037,6 +1338,15 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           this.publistBtnDisabled = false;
           this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
 
+
+          } else {
+            this.notValidError = true;
+            this.publistBtnDisabled = false;
+            this.notValidErrorMsg = 'Something went wrong. please try again later!';
+          }
+        }, (error:any) => {
+          this.publistBtnDisabled = false;
+          this.notValidErrorMsg = 'Something went wrong. please try again later!';
         })
         return true;
       } 
@@ -1077,6 +1387,8 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
 
+  closeModal() {  
+    this.selectColorModal.close();
     this.resultAttributeImgPreview.forEach((element: any , arttrindex:any) => {
       this.colorOptionItems.forEach((element1 :any) => {
         if(element1.name == element.Color) {
@@ -1119,6 +1431,15 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       }
     } else {
       this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+    this.imageChangedEvent = event;
+    this.selectedCropFiles = event.target.files;
+    for (var i = 0; i < event.target.files.length; i++) {
+      const reader = new FileReader();
+      this.imageProcess(event, event.target.files[i]);
+      reader.onload = (e: any) => {
+       this.previews.push(e.target.result);
+      };
+      reader.readAsDataURL(event.target.files[i]);
     }
 }
 
@@ -1195,6 +1516,31 @@ addAttribute() {
     if(this.lists.length == attributes.length && optionNotBlank == true && optionValueNotBlank == true) {
       if(attributes.length == 1) {
 
+            this.option_items[0].forEach((element :any , key :any) => {
+              let var_options = [attributes[0]];
+                let var_values = [element.value];
+                localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values, 'status': 'published', 'option1': attributes[0], 'option2': '','option3': '', 'value1': element.value, 'value2': '','value3': '',  [attributes[0]]:element.value , 'images': [],'image_index': '',  'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0 , 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+            });
+          }
+      if(attributes.length == 2) {
+            this.option_items[1]?.forEach((element1 :any) => {
+              this.option_items[0]?.forEach((element0 :any , key: any) => {
+                let var_options = [attributes[0], attributes[1]];
+                let var_values = [element0.value, element1.value];
+                localresultAttribute.push({ 'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': '', 'value1': element0.value, 'value2': element1.value,'value3': '',  [attributes[0]]:element0.value,[attributes[1]]:element1.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0 , 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+              });
+            });
+      }
+      if(attributes.length == 3) {
+            this.option_items[2].forEach((element2 :any) => {
+              this.option_items[1].forEach((element1 :any) => {
+                  this.option_items[0].forEach((element0 :any) => {
+                    let var_options = [attributes[0], attributes[1], attributes[2]];
+                    let var_values = [element0.value, element1.value, element2.value];
+                    localresultAttribute.push({'variation_options': var_options, 'variation_values': var_values,'status': 'published', 'option1': attributes[0], 'option2': attributes[1],'option3': attributes[2], 'value1': element0.value, 'value2': element1.value,'value3': element2.value, [attributes[0]]:element0.value, [attributes[1]]:element1.value,[attributes[2]]:element2.value, 'images': [],'image_index': '', 'swatch_image': '', 'sku' : '' , 'usd_wholesale_price': 0 , 'usd_retail_price': 0, 'cad_wholesale_price': 0, 'cad_retail_price': 0, 'gbp_wholesale_price': 0, 'gbp_retail_price': 0, 'eur_wholesale_price': 0, 'eur_retail_price': 0, 'aud_wholesale_price': 0, 'aud_retail_price': 0, 'inventory': 0, 'weight': 0 , 'length': 0 , 'length_unit': '' ,'width_unit': '', 'height_unit': '', 'width': 0, 'height': 0 , 'dimension_unit': '' , 'weight_unit': '' , 'tariff_code': 0});
+                });
+              });
+            });
       }
       let prevresultAttribute = [...this.resultAttribute];
       let loopitem = 0;
@@ -1256,6 +1602,14 @@ addAttribute() {
  
       })
 
+      this.resultAttribute = localresultAttribute;  
+      if(this.option_type.includes('Color')){
+        let index = this.option_type.indexOf('Color');
+        let item = this.option_items[index];
+        item.forEach((element: any) => {
+          this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+        });
+        } 
         this.optionTypeBlkErr = '';
         this.closeOptionModal();
     } else {
@@ -1291,6 +1645,7 @@ addAttribute() {
             });
             if(available == 0 ) {
               this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+              this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: ''})
             }
             
           });
@@ -1306,6 +1661,7 @@ addAttribute() {
             });
             if(available == 0 ) {
               this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+              this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: ''})
             }
             });
           });
@@ -1314,11 +1670,28 @@ addAttribute() {
         this.prepackLists.push({active: false, status: 'published', style:this.product_name,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: ''})
       }
 
+    
+      if(this.option_type.includes('Color')){
+        let index = this.option_type.indexOf('Color');
+        let item = this.option_items[index];
+        item.forEach((element: any) => {
+          this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+        });
+      
+      }
+
+    
       if(this.option_type.includes('Size')) {
         let index = this.option_type.indexOf('Size');
         let sizeItems = this.option_items[index];
         let sizeItemsClone = [...sizeItems];
 
+        
+        let arrOfSize: any = [];
+        for( let j=0; j<sizeItemsClone.length; j++) {
+          arrOfSize.push(sizeItemsClone[j].value) 
+        }
+    
         let chunkSize = 2;
         let resArray = [];
         for (let i = 0; i < arrOfSize.length; i += chunkSize) {
@@ -1326,6 +1699,13 @@ addAttribute() {
           let splited = chunk.join('-');
           resArray.push(splited);
 
+          // do whatever
+        }
+
+        this.sizeItemPrePack = resArray;
+
+    }
+   
     } else {
       this.prepackError = 'Update your product listing before crafting a new prepack.';
     }
@@ -1333,6 +1713,13 @@ addAttribute() {
 
 
 
+    let prepackOptionType = [...this.option_type];
+    let prepackOptionItems = [...this.option_items];
+    if(prepackOptionType.includes('Size')) {
+      let index = prepackOptionType.indexOf('Size');
+      prepackOptionType.splice(index,1);
+      prepackOptionItems.splice(index,1);
+    }
 
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
@@ -1350,6 +1737,10 @@ addAttribute() {
             }
           }
 
+              this.prepackLists.push({active: false, status: 'published', style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: ''})
+            }
+          }
+          
         });
       }
       if(prepackOptionType.length == 2) {
@@ -1364,6 +1755,7 @@ addAttribute() {
           });
           if(available == 0 ) {
             this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+            this.prepackLists.push({active: false, status: 'published', style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: ''})
           }
         }
           });
@@ -1383,16 +1775,28 @@ addAttribute() {
     }
   
 
+    if(this.option_type.includes('Color')){
+      let index = this.option_type.indexOf('Color');
+      let item = this.option_items[index];
+      item.forEach((element: any) => {
+        this.colorOptionItems.push({ 'name': element.value , 'img': ''});
+      });
+    
+    }
+
+  
     if(this.option_type.includes('Size')) {
       let index = this.option_type.indexOf('Size');
       let sizeItems = this.option_items[index];
       let sizeItemsClone = [...sizeItems];
 
+      
       let arrOfSize: any = [];
       for( let j=0; j<sizeItemsClone.length; j++) {
         arrOfSize.push(sizeItemsClone[j].value) 
       }
 
+  
       let chunkSize = 2;
       let resArray = [];
       for (let i = 0; i < arrOfSize.length; i += chunkSize) {
@@ -1406,6 +1810,8 @@ addAttribute() {
 }
 
 
+  addbutton()  
+  {  
     this.lists.push({"declare":""})  
     let  namesToDeleteSet = new Set(this.option_type);
       this.data =  this.data.filter((name) => {
@@ -1495,11 +1901,17 @@ addAttribute() {
   
   select1stOptionEvent(item:any) {
 
+
+
+  
+  select1stOptionEvent(item:any) {
+    // do something with selected item
     this.option1 = item.name;
   }
 
   select2ndOptionEvent(item:any) {
 
+    // do something with selected item
     this.option2 = item.name;
   }
 
@@ -1537,6 +1949,7 @@ addAttribute() {
 
     this.minOrdQtyError = false;
     this.caseQtyError = false;
+    this.casePacks2 = true;
   }
     
   showPrepackCreate(index: any) {
@@ -1575,6 +1988,9 @@ addAttribute() {
         };
         reader.readAsDataURL(event.target.files[i]);
 
+      } else {
+      }
+     
     }
   }
 
@@ -1596,6 +2012,8 @@ addAttribute() {
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
 
+    
+  }
 
   
   autoPriceCall() {
@@ -1673,6 +2091,7 @@ addAttribute() {
     let item = this.prepackLists[i];
     let style = item.style;
     let newClone = {active: false,status: 'published', style:style, pack_name: '', dropActive: false, size_ratio: '', size_range: [], size_range_value: '', packs_price: '', ratio_error: '', name_error: ''};
+    let newClone = {active: false,status: 'published', style:style, pack_name: '', dropActive: false, size_ratio: '', size_range: [], size_range_value: '', packs_price: '', ratio_error: ''};
     this.prepackLists.splice(i+1, 0, newClone);
   }
 
@@ -1703,6 +2122,10 @@ addAttribute() {
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';
+  
+  sizeRatioChange(index: any , event: any) {
+    this.prepackLists[index].size_range = [];
+    this.prepackLists[index].packs_price = '';
     let indexOfSize = this.option_type.indexOf('Size'); 
     let sizeItemArray = this.option_items[indexOfSize];
     let splitVal = event.target.value.split('-');
@@ -1731,6 +2154,7 @@ addAttribute() {
       this.prepackLists[index].ratio_error ='Invalid size ratio';
     }
 
+    
   }
 
   savePrePack(index: any) {
@@ -1756,6 +2180,8 @@ addAttribute() {
       this.prepackLists[index].name_error = ''
       this.prePackNameError = false;
     }
+  prepackNameChange(i: any, event: any) {
+    this.prepackLists[i].pack_name = event.target.value;
   }
 
   onTesterPriceChange(event: any) {
@@ -1843,5 +2269,6 @@ addAttribute() {
   onDeleteDeadLine() {
     this.product_deadline = null;
   }
+  
   
 }

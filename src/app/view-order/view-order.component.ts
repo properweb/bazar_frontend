@@ -46,7 +46,7 @@ export class ViewOrderComponent implements OnInit {
   splitOrderArray:any = [];
   splitOrderError!:any ;
   totalProQty!: any;
-  minDate!: any;
+
 
   cancelReasonsArray = [
     {id: 1 , value: 'The retailer asked to cancel the order'},
@@ -59,14 +59,6 @@ export class ViewOrderComponent implements OnInit {
     {id: 8 , value: "Other"},
   ];
 
-  constructor(public modalService: NgbModal , private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService, private appComponent: AppComponent, public formatter: NgbDateParserFormatter) { 
-    const current = new Date();
-    this.minDate = {
-      year: current.getFullYear(),
-      month: current.getMonth() + 1,
-      day: current.getDate()
-    };
-  }
 
   ngOnInit(): void {
     if(localStorage.getItem('local_data') == null) {
@@ -117,11 +109,7 @@ export class ViewOrderComponent implements OnInit {
   }
 
   fetchOrderDetails(ord_no: any) {
-    let values = {
-      order_number: ord_no
-    }
-    this.appComponent.showSpinner = true;
-    this.apiService.orderDetails(values).subscribe((responseBody) => {
+
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.allDetails = response.data;
@@ -135,6 +123,7 @@ export class ViewOrderComponent implements OnInit {
         this.totalProQty = tQty;
         this.brand_name = response.data.order.brand_name;
         this.brand_country = response.data.order.brand_country;
+
         this.brand_town = response.data.order.brand_town;
         this.brand_address1 = response.data.order.brand_address1;
         this.brand_address2 = response.data.order.brand_address2;
@@ -142,19 +131,6 @@ export class ViewOrderComponent implements OnInit {
         this.brand_phone = response.data.order.brand_phone;
         this.product_deadline = this.formatter.parse(response.data.order.shipping_date);
         this.ship_date = response.data.order.shipping_date;
-        this.apiService.getStates(response.data.order.brand_country).subscribe((responseBody1) => {
-          let response1= JSON.parse(JSON.stringify(responseBody1));
-          // if(response1.res == true) {
-            this.stateArray = response1.data;
-            this.brand_state = response.data.order.brand_state;
-          // }
-        })
-        this.apiService.getCities(response.data.order.brand_state).subscribe((responseBody2) => {
-          let response2= JSON.parse(JSON.stringify(responseBody2));
-          if(response2.res == true) {
-            this.cityArray = response2.data;
-          }
-        })
         this.appComponent.showSpinner = false;
       } else {
       }
@@ -170,7 +146,6 @@ export class ViewOrderComponent implements OnInit {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.btnDis = false;
-        // this.fetchOrderDetails(this.ord_no);
         this.toast.success({detail: "Saved successfully",summary: "" ,duration: 4000});
       } else {
         this.btnDis = false;
@@ -210,8 +185,6 @@ export class ViewOrderComponent implements OnInit {
           this.btnDis = false;
           this.cancelOrderModal.close();
           this.cancelOrderError = '';
-          this.cust_details.status = 'cancelled';
-          // this.fetchOrderDetails(this.ord_no);
           this.toast.success({detail:'Order cancelled successfully.',summary: '', duration: 4000});
         }
       },(error) => {
@@ -222,11 +195,6 @@ export class ViewOrderComponent implements OnInit {
   }
 
   onDateSelect(event: any) {
-
-    let year = event.year;
-    let month = event.month <= 9 ? '0' + event.month : event.month;
-    let day = event.day <= 9 ? '0' + event.day : event.day;;
-    let finalDate = year + "-" + month + "-" + day;
     this.ship_date = finalDate;
     let checkedItems: any = [];
     checkedItems.push(this.cust_details.id);
@@ -238,15 +206,11 @@ export class ViewOrderComponent implements OnInit {
         let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
           this.enableEdit = false;
-          var options: any = { year: 'numeric', month: 'long', day: 'numeric' };
-          var created_date  = new Date(finalDate);
-          var date_month_format = created_date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
-          this.cust_details.display_shipping_date = date_month_format;
+
         }
       })
   }
 
-  qtyCountArray(number: any) {
     let no = Number(number) + 1;
     return new Array(Number(no));
   }
@@ -295,10 +259,7 @@ export class ViewOrderComponent implements OnInit {
         this.apiService.splitOrder(values).subscribe((responseBody) => {
         let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
-          this.splitOrderError = '';
-          this.splitOrderModal.close();
-          this.toast.success({detail: 'Order splited successfully.', summary: '', duration: 4000});
-          this.router.navigate(['/brand-orders']);
+
           this.btnDis = false;
         }
         }, (error) => {

@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   modalReference!: NgbModalRef;
   userSignupModalReference!: NgbModalRef;
   signInModal!: NgbModalRef;
+
   vendorRegForm!: FormGroup;
   userRegForm!: FormGroup;
   email!: any;
@@ -36,6 +37,11 @@ export class HeaderComponent implements OnInit {
   spinnerShow: boolean = false;
   resetEmailSend: boolean = false;
 
+
+  email_address!: any;
+  password!: any;
+  spinnerShow: boolean = false;
+  resetEmailSend: boolean = false;
 
   constructor( public modalService: NgbModal, private router: Router, private api: ApiService, private storage: StorageMap, private toast: NgToastService) {
     this.vendorRegForm = new FormGroup({
@@ -75,6 +81,8 @@ export class HeaderComponent implements OnInit {
     })
   }
  
+  ngOnInit(): void {}
+
   openUserLogInModal(content: any) {
     this.signInModal = this.modalService.open(content, { windowClass: 'loginModal' });
   }
@@ -127,12 +135,22 @@ export class HeaderComponent implements OnInit {
       this.sameEmailError = 'Something went wrong in server. Please try again.';
     })
     
+    if (this.vendorRegForm.valid) {
+      let vemail = JSON.parse(JSON.stringify(this.email));
+      console.log(vemail);
+      this.storage.set('vendor_email', vemail).subscribe(() => {});
+      this.modalReference.close();
+      this.router.navigate(['vendorRegistration']);
+    } else {
+      return;
+    }
   }
 
   submitUserEmail(form: any) {
     this.submitted = true;
     if (this.userRegForm.valid) {
       let uemail = JSON.parse(JSON.stringify(this.userEmail));
+      console.log(uemail);
       this.storage.set('user_email', uemail).subscribe(() => {});
       this.userSignupModalReference.close();
       this.router.navigate(['userRegistration']);
@@ -148,6 +166,15 @@ export class HeaderComponent implements OnInit {
     }
     this.spinnerShow = true;
     this.api.vendorSignIn(values).subscribe((responseBody) => {
+
+  @HostListener('document:keypress', ['$event']) keyEvent(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+    }
+  }
+  sendSignInData(signInFrom: any) {
+    // console.log(signInFrom.value);
+    this.spinnerShow = true;
+    this.api.vendorSignIn(signInFrom.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if (response.res === false) {
         this.validateError = response.msg;
@@ -184,6 +211,24 @@ export class HeaderComponent implements OnInit {
             .set('user_session', JSON.parse(JSON.stringify(response.data)))
             .subscribe(() => {});
             localStorage.setItem('from_login_cred', JSON.stringify(values));
+          this.router.navigate([this.currentUrl]).then(() => {
+            this.onChildChange = true;
+            window.location.reload();
+          });
+          this.signInModal.close();
+          this.spinnerShow = false;
+          this.storage
+          .set('user_session', JSON.parse(JSON.stringify(response.data)))
+          .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+
+        } else
+        if(response.data.role === 'brand') {
+            this.storage
+          .set('user_session', JSON.parse(JSON.stringify(response.data)))
+          .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          if(response.data.step_count !== 12) {
             this.router.navigate(['vendorRegistration',response.data.step_count]);
             this.signInModal.close();
             this.spinnerShow = false;
@@ -204,10 +249,24 @@ export class HeaderComponent implements OnInit {
             } else {
               this.router.navigateByUrl('/brand-portal').then(() => {
                 this.onChildChange = true;
+            this.toast.success({detail:"SUCCESS",summary: "Login successful." ,duration: 4000});
+            if(response.data.vendor_data.first_visit == 0) {
+              this.router.navigateByUrl('/account-settings').then(() => {
+                this.onChildChange = true;
+                // window.location.reload();
+              });
+              this.signInModal.close();
+              this.spinnerShow = false;
+         
+            } else {
+              this.router.navigateByUrl('/brand-portal').then(() => {
+                this.onChildChange = true;
+                // window.location.reload();
               });
               this.signInModal.close();
               this.spinnerShow = false;
             }
+          
           }
         } else if (response.data.role === 'retailer') {
           this.storage
@@ -222,6 +281,15 @@ export class HeaderComponent implements OnInit {
           this.signInModal.close();
           this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
         }
+          this.router.navigateByUrl('/retailer-home').then(() => {
+            this.onChildChange = true;
+            // window.location.reload();
+          });
+          this.signInModal.close();
+          this.toast.success({detail:"SUCCESS",summary: "Login successful." ,duration: 4000});
+        }
+   
+       
       }
     }, (error) => {
       this.spinnerShow = false;
@@ -240,6 +308,7 @@ export class HeaderComponent implements OnInit {
         this.resetEmailSend = true;
       }
     })
+
   }
 
 

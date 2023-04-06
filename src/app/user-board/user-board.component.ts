@@ -169,6 +169,7 @@ export class UserBoardComponent implements OnInit {
         // this.editBoardProductModal.close();
         this.modalService.dismissAll();
         this.toast.success({detail: 'Board removed successfully.',summary: '' ,duration: 4000});
+        this.toast.success({detail: 'Product moved successfully.',summary: '' ,duration: 4000});
         this.router.navigate(['/wishlist']);
       }
     },(error) => {

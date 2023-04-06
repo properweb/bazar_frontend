@@ -19,6 +19,10 @@ export class UserMyOrdersComponent implements OnInit {
   allDetails !:any;
   orders!: any;
   ordersArray: any = [];
+  proStatus !:any;
+  currentPage :any =1;
+  allDetails !:any;
+  orders :any = [];
 
   constructor(private storage: StorageMap, private apiService: ApiService,private toast: NgToastService, private router: Router, private appComponent: AppComponent) { }
 
@@ -60,6 +64,9 @@ export class UserMyOrdersComponent implements OnInit {
 			this.ordersArray.push(element);
       });
 	  this.orders = this.ordersArray;
+        this.orders.push(element);
+      });
+
       }
       this.appComponent.showSpinner = false;
     })
@@ -128,6 +135,7 @@ export class UserMyOrdersComponent implements OnInit {
 
   onTabChange(value: any) {
 	this.ordersArray = [];
+	this.orders = [];
     this.currentPage = 1;
     this.proStatus = value;
     this.getOrders(this.user_id,this.currentPage, this.proStatus);

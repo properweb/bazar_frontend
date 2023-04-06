@@ -49,6 +49,23 @@
                 <li>
                     <label class="form-label" for="lName">Email</label>
                     <input id="email" type="text" autocomplete="off" required email pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" class="form-control validate " name="email" [(ngModel)]="email" #emailval='ngModel' aria-required="true">
+                    <input id="fName" type="text" class="form-control validate" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required aria-required="true">
+                    <span class="validate_errors"
+                        *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
+                        First Name is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="lName">Last Name</label>
+                    <input id="lName" type="text" class="form-control validate " name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required aria-required="true">
+                    <span class="validate_errors"
+                        *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['required']">
+                        Last Name is required
+                    </span>
+                </li>
+                <li>
+                    <label class="form-label" for="lName">Email</label>
+                    <input id="email" type="text" class="form-control validate " name="email" [(ngModel)]="email" #emailval='ngModel' required aria-required="true">
                     <span class="validate_errors"
                         *ngIf="(emailval.touched || userFormStep1.submitted) && emailval.errors?.['required']">
                         Email is required
@@ -61,6 +78,10 @@
                 <li>
                     <label class="form-label" for="password">Password</label>
                     <input id="password" type="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control validate" minlength="6" name="password" [(ngModel)]="password" #passwordval='ngModel' aria-required="true" placeholder="Min 8 characters">
+                </li>
+                <li>
+                    <label class="form-label" for="password">Password</label>
+                    <input id="password" type="password" class="form-control validate" minlength="6" name="password" [(ngModel)]="password" #passwordval='ngModel' required aria-required="true" placeholder="Min 6 characters">
                     <span class="validate_errors"
                         *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['required']">
                         Password is required
@@ -68,6 +89,8 @@
                     <span class="validate_errors"
                         *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['pattern']">
                         Password length must be greater than or equal to 8 and must contain one or more uppercase characters, lowercase characters, numeric values, special characters.
+                        *ngIf="(passwordval.touched || userFormStep1.submitted) && passwordval.errors?.['minlength']">
+                        Password must have six characters.
                     </span>
                 </li>
                 <li>
@@ -85,11 +108,13 @@
                     <div class="input-group">
                         <span class="input-group-text">
                             <input type="text" autocomplete="new-password" class="form-control telephone-input" [value]="'+'+country_code">
+                            <input type="text" class="form-control telephone-input" [value]="'+'+country_code">
                             <select class="form-select telephone-select" aria-label="Default select example" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel' required >
                               <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
                             </select>
                         </span>
                         <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
+                        <input type="tel" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
                         <br>
                     </div>
                     <span class="validate_errors"
@@ -186,6 +211,14 @@
                     </span>         
                   </li>
                 <li>
+                    <label class="form-label">Website</label>
+                    <input type="email" class="form-control" name="website_url" [(ngModel)]="website_url" #website_urlval='ngModel' required >
+                    <span class="validate_errors"
+                        *ngIf="(website_urlval.touched || userFormStep3.submitted) && website_urlval.errors?.['required']">
+                        Website Url is required
+                    </span>
+                </li>
+                <li>
                     <label class="form-label">Years in Business</label>
                     <select class="form-select" aria-label="Default select example" name="years_in_business" [(ngModel)]="years_in_business" #years_in_businessval='ngModel' required >
                         <option *ngFor="let item of yearsInBussArray" [value]="item.value" >{{item.name}}</option>
@@ -193,6 +226,7 @@
                     <span class="validate_errors"
                         *ngIf="(years_in_businessval?.touched || userFormStep3.submitted) && years_in_businessval.errors?.['required']">
                         This field is required.
+                        Website Url is required
                     </span>
                 </li>
                 <li>
@@ -203,6 +237,7 @@
                     <span class="validate_errors"
                         *ngIf="(annual_salesval?.touched || userFormStep3.submitted) && annual_salesval?.errors?.['required']">
                         This field is required.
+                        Website Url is required
                     </span>
                 </li>
                 <li>
@@ -317,6 +352,7 @@
                 <li class="full_width text-center"><img src="assets/images/e-commerce.svg" alt=""></li>
                 <li class="full_width text-center">
                     <a type="button" class="btn btn-primary common_btn" (click)="onClickStart()">Start Shopping</a>
+                    <a type="button" class="btn btn-primary common_btn" routerLink="/localBrands" href="#/localBrands">Start Shopping</a>
                     <p>We may contact you for additional info</p>
                 </li>
             </ul>

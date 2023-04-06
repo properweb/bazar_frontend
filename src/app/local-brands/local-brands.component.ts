@@ -6,6 +6,9 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../services/api.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-local-brands',
@@ -53,6 +56,10 @@ export class LocalBrandsComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem('local_data');
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
     if(localStorage.getItem('local_data') != null) {
       if(localStorage.getItem('local_data') == 'brand') {
         this.router.navigate(['/brand-portal']);
@@ -257,6 +264,13 @@ export class LocalBrandsComponent implements OnInit {
     this.continueFunction();
   }
 
+        this.router.navigate(['/retailer-home']);
+      }
+    } else {
+      
+    }
+  }
+  
   localBannerHeading = "Local Brands Wholesale";
   localBannerPara = "Shop other 20,000 brands, all in one place";
 
@@ -313,6 +327,9 @@ export class LocalBrandsComponent implements OnInit {
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 100,
     navText: ['', ''],
@@ -384,6 +401,9 @@ export class LocalBrandsComponent implements OnInit {
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 100,
     navText: ['', ''],

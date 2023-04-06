@@ -20,12 +20,19 @@ export class VendorProductComponent implements OnInit {
   searchText !: any;
   publishSearchText !: any;
   unpublishSearchText !: any;
+  products : any = [];
+  searchText !: any;
+  publishSearchText !: any;
+  unpublishSearchText !: any;
+  publishedProduct !: any;
+  unPublishedProduct !: any;
   checkedItems: any = [];
   selectAll!:any;
   publishModal!: NgbModalRef;
   unPublishModal!: NgbModalRef;
   deleteModal!: NgbModalRef;
   sort_key:any = 3;
+  showLoader: any = false;
   btnDis: any = false;
   currentPage: any = 1;
   proStatus: any = 'all';
@@ -34,6 +41,10 @@ export class VendorProductComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if(localStorage.getItem('local_data') == null) {
+      this.router.navigate(['/']);
+    } else {}
+    
     if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
       this.searchText = localStorage.getItem('searchkey');
     }
@@ -55,6 +66,17 @@ export class VendorProductComponent implements OnInit {
 
 
 
+  }
+
+
+  openPublishModal(content: any) {  
+  this.publishModal = this.modalService.open(content, { windowClass: 'publishModal' });
+}
+
+  openUnPublishModal(content: any) {  
+  this.unPublishModal = this.modalService.open(content, { windowClass: 'unPublishModal' });
+}
+
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
   }
@@ -71,6 +93,14 @@ export class VendorProductComponent implements OnInit {
         this.products = this.productsArray;
     })
 
+          this.products.push(element);
+          });
+        }
+      this.publishedProduct = this.products.filter((item:any) => item.status === "publish");
+      this.unPublishedProduct = this.products.filter((item:any) => item.status === "unpublish");
+      this.appComponent.showSpinner = false;
+    })
+    
   }
     
   openExport(content:any) {
@@ -85,6 +115,7 @@ export class VendorProductComponent implements OnInit {
   }
 
 
+  onChecked(item: any, event: any){
     let {checked, value} = event.target;
     if(checked) {
       this.checkedItems.push(value);
@@ -95,6 +126,7 @@ export class VendorProductComponent implements OnInit {
   }
 
   checkAll(event: any) {
+  checkAll(event: any){
     let {checked, value} = event.target;
     if(checked) {
       this.products.forEach((i:any) =>  this.checkedItems.push(i.id));
@@ -114,6 +146,10 @@ export class VendorProductComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.productsArray = [];
+    this.apiService.updateProduct(value , 'publish').subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.products = [];
         this.currentPage = 1; 
         this.searchText = '';
         this.getProducts(this.user_id, this.sort_key, this.currentPage, this.proStatus, this.searchText);
@@ -124,6 +160,11 @@ export class VendorProductComponent implements OnInit {
         this.btnDis = false;
       } else {
         this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
+        this.toast.success({detail:"SUCCESS",summary: 'Product published successfully.' ,duration: 4000});
+        this.publishModal.close();
+        this.btnDis = false;
+      } else {
+        this.toast.error({detail:"Missing required fields.",summary: '' ,duration: 4000});
         this.btnDis = false;
         this.publishModal.close();
       }
@@ -159,6 +200,16 @@ export class VendorProductComponent implements OnInit {
         this.unPublishModal.close();
       }
 
+    this.apiService.updateProduct(value , 'unpublish').subscribe((responseBody) => {
+      this.products = [];
+      this.currentPage = 1; 
+      this.searchText = '';
+      this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+      this.checkedItems = [];
+      this.selectAll = false;
+      this.btnDis = false;
+      this.unPublishModal.close();
+      this.toast.success({detail:"SUCCESS",summary: 'Product unpublished successfully.' ,duration: 4000});
     }, (error) => {
       this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
       this.btnDis = false;
@@ -173,6 +224,8 @@ export class VendorProductComponent implements OnInit {
     }
     this.apiService.deleteProduct(values).subscribe((responseBody) => {
       this.productsArray = [];
+    this.apiService.deleteProduct(value).subscribe((responseBody) => {
+      this.products = [];
       this.currentPage = 1; 
       this.searchText = '';
       this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
@@ -183,6 +236,9 @@ export class VendorProductComponent implements OnInit {
       this.toast.success({detail:"Product deleted successfully.",summary: '' ,duration: 4000});
     }, (error) => {
 
+      this.toast.success({detail:"SUCCESS",summary: 'Product deleted successfully.' ,duration: 4000});
+    }, (error) => {
+      this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
       this.btnDis = false;
     })
 
@@ -190,6 +246,7 @@ export class VendorProductComponent implements OnInit {
 
   onSortChange(event: any) {
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1; 
     this.sort_key = event.target.value;
     this.getProducts(this.user_id, event.target.value,this.currentPage, this.proStatus, this.searchText);
@@ -200,6 +257,7 @@ export class VendorProductComponent implements OnInit {
     this.apiService.syncToShopify(id,this.user_id,website).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
+      this.toast.success({detail:"SUCCESS",summary: response.msg ,duration: 4000});
       this.appComponent.showSpinner = false;
     }, (error) => {
       this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
@@ -212,6 +270,7 @@ export class VendorProductComponent implements OnInit {
     this.apiService.syncToWordpress(id,this.user_id,website).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
+      this.toast.success({detail:"SUCCESS",summary: response.msg ,duration: 4000});
       this.appComponent.showSpinner = false;
     }, (error) => {
       this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
@@ -228,6 +287,7 @@ export class VendorProductComponent implements OnInit {
     this.checkedItems = [];
     this.selectAll = false;
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.proStatus = 'all';
     this.searchText = '';
@@ -238,6 +298,7 @@ export class VendorProductComponent implements OnInit {
     this.checkedItems = [];
     this.selectAll = false;
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.proStatus = 'publish';
     this.searchText = '';
@@ -248,6 +309,7 @@ export class VendorProductComponent implements OnInit {
     this.checkedItems = [];
     this.selectAll = false;
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.proStatus = 'unpublish';
     this.searchText = '';
@@ -257,6 +319,7 @@ export class VendorProductComponent implements OnInit {
   onSearchPress(event: any) {
     localStorage.setItem('searchkey', event.target.value);
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
   }
@@ -265,6 +328,7 @@ export class VendorProductComponent implements OnInit {
     if(event.target.value == '') {
       localStorage.removeItem('searchkey');
       this.productsArray = [];
+      this.products = [];
       this.currentPage = 1;
       this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
     }
@@ -274,6 +338,7 @@ export class VendorProductComponent implements OnInit {
   onResetClick() {
     this.searchText = '';
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
   }

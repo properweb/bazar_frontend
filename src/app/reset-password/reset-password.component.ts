@@ -18,6 +18,8 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   confirm_password!: any;
   btnDis!: any ;
   errorMsg!: any ;
+  confirm_password!: any;
+  btnDis!: any ;
   @ViewChild('resetContent') content!: any;
 
   constructor( public modalService: NgbModal,private router: Router, private activatedRoute: ActivatedRoute, private apiService: ApiService, private toast: NgToastService) { }
@@ -49,6 +51,11 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     //   token: this.user_id,
     //   password: this.password
     // }
+    console.log(this.password , this.confirm_password);
+    let values = {
+      token: this.user_id,
+      password: this.password
+    }
     this.apiService.resetPassword(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
@@ -64,6 +71,13 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
       this.btnDis = false;
       this.errorMsg = "";
       this.toast.error({detail: 'Something wenr wrong! please try again.' , summary: '', duration: 4000});
+        this.toast.success({detail: 'password has been reset successfully' , summary: '', duration: 4000})
+        this.btnDis = false;
+        this.resetPassModal.close();
+      }
+    },(error) => {
+      this.btnDis = false;
+      this.toast.error({detail: 'Something wenr wrong! please try again.' , summary: '', duration: 4000})
     })
     
   }

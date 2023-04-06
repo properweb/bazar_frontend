@@ -24,6 +24,9 @@ export class ProductShopifyComponent implements OnInit {
       this.router.navigate(['/']);
     } else {}
 
+  constructor(private storage: StorageMap , private apiService: ApiService) { }
+
+  ngOnInit(): void {
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -39,6 +42,9 @@ export class ProductShopifyComponent implements OnInit {
   shopifyConnect(shopifyConnectForm:any) {
     this.spinnerShow = true;
     this.apiService.importShopify(shopifyConnectForm.value.user_id, shopifyConnectForm.value.api_key,shopifyConnectForm.value.api_password,shopifyConnectForm.value.store_url).subscribe((responseBody) => {
+    console.log(shopifyConnectForm.value);
+    this.apiService.importShopify(shopifyConnectForm.value.user_id, shopifyConnectForm.value.api_key,shopifyConnectForm.value.api_password,shopifyConnectForm.value.store_url).subscribe((responseBody) => {
+      console.log(responseBody);
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res === false) {
         this.errorMsg=response.msg;

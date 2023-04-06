@@ -6,6 +6,8 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../services/api.service';
+import { Component, OnInit } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-product-category',
@@ -197,6 +199,10 @@ export class ProductCategoryComponent implements OnInit {
     },(error) => {
       this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
     })
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
   
   topCatArray:any = [
@@ -235,6 +241,9 @@ export class ProductCategoryComponent implements OnInit {
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],

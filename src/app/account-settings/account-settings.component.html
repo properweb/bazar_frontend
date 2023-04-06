@@ -23,75 +23,31 @@
         </div>
       </div>
       <div class="account_setting_body">
+
           <div class="col-lg-6 brandInformationleft">
             <h4>Brand Information</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Brand Name</label>
-                <input hidden name="user_id" [(ngModel)]="user_id" id="user_id" #user_idval='ngModel' type="text" class="form-control" value="">
-                <input name="brand_name" required [(ngModel)]="brand_name" id="brand_name" #brand_nameval='ngModel' type="text" class="form-control" value="">
-                <span class="validate_errors"
-                  *ngIf="(brand_nameval.touched || vendorAccountUpdate.submitted) && brand_nameval.errors?.['required']">
-                  Brand name is required.
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label class="form-label">Website URL</label>
-                <input type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(:[0-9]{1,5})?(\/.*)?$" class="form-control" name="website_url" [(ngModel)]="website_url" required #website_urlval='ngModel'> 
-                <span class="validate_errors"
-                  *ngIf="(website_urlval.touched || vendorAccountUpdate.submitted) && website_urlval.errors?.['required']">
-                  Website URL is required
-                </span>         
-                <span class="validate_errors"
-                  *ngIf="(website_urlval.touched || vendorAccountUpdate.submitted) && website_urlval.errors?.['pattern']">
-                  Website URL is not valid.
-                </span>         
-              </li>
-              <li class="col-lg-6">
-                <label class="form-label">Instagram Handle</label>
-                <span class="validate_errors"
-                  *ngIf="(insta_handleval.touched || vendorAccountUpdate.submitted) && insta_handleval.errors?.['pattern']">
-                  This field not valid.
-                </span>
-              </li>
-              <li class="col-lg-6">
+
             </ul>
             <h4>Brand Information</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label>First Minimum Order</label>
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label>Reorder Minimum</label>
-                </span>
-              </li>
-              <li class="col-lg-6">
-                <label>Average Lead Time</label>
-                </span>
+
               </li>
             </ul>
             <h4>Location</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
                 <label>Products Made In</label>
+
               </li>
             </ul>
             <h4>Story</h4>
             <ul class="row brandInfoFormList">
               <li class="col-lg-6">
-                <label>Brand Story</label> 
-                <textarea name="shared_brd_story" [(ngModel)]="shared_brd_story" required maxlength="1500" (change)="onBrandStoryChange($event)" id="shared_brd_story" #shared_brd_storyval='ngModel' class="form-control textareaControl smallTextarea" rows="3"></textarea>
-                <span class="validate_errors"
-                  *ngIf="(shared_brd_storyval.touched || vendorAccountUpdate.submitted) && shared_brd_storyval.errors?.['required']">
-                </span>
-                <span class="validate_errors"
-                  *ngIf="brandStoryError">
-                  This field not not valid.
-                </span>
+
               </li>
               <li class="col-lg-6">
                 <label>Values</label>
@@ -103,12 +59,7 @@
                       <label class="form-check-label">{{item.name}}</label>
                     </div>
                   </li> 
-                  <span class="validate_errors" *ngIf="validError && tagsToolsArray?.length === 0">
-                    Select atleast one value.
-                  </span>
-                </ul>
-              </li>
-            </ul>
+
           </div>
           <div class="col-lg-6 brandInformationRight">
             <div class="brandInformation_Smalldiv">
@@ -121,9 +72,6 @@
                   <button type="button" class="btn btn-primary back_btn back_btn27 mt-4">Back</button>
                 </li>
                 <li class="col-lg-6">
-                  <button *ngIf="!btnDis && tagsToolsArray?.length === 0" type="button" class="btn btn-primary common_btn next30 mt-4" (click)="validError = true;" >Finish & Submit</button>
-                  <button *ngIf="!btnDis && tagsToolsArray?.length > 0" type="submit" class="btn btn-primary common_btn next30 mt-4">Finish & Submit</button>
-                  <button *ngIf="btnDis" disabled type="submit" class="btn btn-primary common_btn next30 mt-4">Please wait...</button>
                 </li>
               </ul>
             </div>
@@ -144,13 +92,6 @@
   <div class="modal-body">
     <div class="image-editor2">
       <div class="inputDiv">
-        <input type="file" accept=".jpg,.jpeg,.png" (change)="getProfileImg($event)"  class="cropit-image-input" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div class="cropit-preview"></div>
-      <div class="rangeSliderSec">
-        <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
-        <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
-        <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
       </div>
     </div>
   </div>

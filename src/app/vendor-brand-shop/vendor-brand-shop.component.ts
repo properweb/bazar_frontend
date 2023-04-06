@@ -70,6 +70,10 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
 
+          console.log(user_session);
+          
+          this.user_id = user_session.id;
+          this.role = user_session.role;
         }
  
       },
@@ -121,6 +125,7 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
     this.submitted = true;
     if (this.vendorRegForm.valid) {
       let vemail = JSON.parse(JSON.stringify(this.email));
+      console.log(vemail);
       this.storage.set('vendor_email', vemail).subscribe(() => {});
       this.modalReference.close();
       this.router.navigate(['vendorRegistration']);
@@ -133,6 +138,7 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
     this.submitted = true;
     if (this.userRegForm.valid) {
       let uemail = JSON.parse(JSON.stringify(this.userEmail));
+      console.log(uemail);
       this.storage.set('user_email', uemail).subscribe(() => {});
       this.userSignupModalReference.close();
       this.router.navigate(['userRegistration']);
@@ -144,12 +150,19 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   sendSignInData(signInFrom: any) {
 
       let response = JSON.parse(JSON.stringify(responseBody));
+    this.spinnerShow = true;
+    this.apiService.vendorSignIn(signInFrom.value).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      console.log(response);
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
 
+          this.router.navigate([this.currentUrl]).then(() => {
+            window.location.reload();
+          });
           this.signInModal.close();
           this.spinnerShow = false;
           this.storage
@@ -194,6 +207,17 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
 
   checkedLoggedUser() {
 
+    this.storage.get("user_session").subscribe({
+      next: (user) => {
+        if (user) {
+          this.not_logged_in = false;
+        }
+      },
+      error: (error) => {
+        /* Called if data is invalid */
+        console.log(error);
+      },
+    });
   }
 
   notLoggedIn() {
@@ -202,6 +226,12 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   getVendorDetails(brand_id: any) {
     this.apiService.getBrandShopDetails(brand_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.data.length == 0) {
+        // window.location.href = this.appComp.base_url;
+      }
+      this.vendorData = response.data;
+      this.titleService.setTitle(response.data.brand_name);
+    },(error) => {
     });
   }
 

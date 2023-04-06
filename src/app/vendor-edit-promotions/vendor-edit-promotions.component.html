@@ -28,6 +28,26 @@
           <ul class="promDtlsList">
             <li>{{promotionDetail?.discount_amount}}% off orders ${{promotionDetail?.ordered_amount}}+</li>
             <li>{{promotionDetail?.remaining_days}} days left</li>
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Summersale</h3>
+          <p><a>Promotions</a></p>
+          <div class="editTopPromotions">
+            <p>Last updated on April 11, 2022, 10:04 PM <span class="activePromo">Active</span></p>
+            <a class="end_promotion_link" (click)="openEndPromotion(content)"><span class="end_promotion_span"><i class="fa-solid fa-ban"></i></span> End Promotion</a> </div>
+        </div>
+      </div>
+      <div class="vendor_promotions_body">
+        <h2>This promotion is currently live!</h2>
+        <div class="promo_Details_inner">
+          <h3>Promotion dates</h3>
+          <p>Start: Monday, March 25, 2022<br>
+            End: Thursday, March 28, 2022 </p>
+          <h3>Promotion details:</h3>
+          <ul class="promDtlsList">
+            <li>2% off orders $123+</li>
+            <li>3 days left</li>
           </ul>
         </div>
       </div>
@@ -50,10 +70,18 @@
               <input
                   name="datepicker"
                   class="form-control"
+          <div class="row row-cols-sm-auto"> 
+            <div class="col-10">
+              <!-- <div class="dp-hidden position-absolute">
+                <div class="input-group">
+                  <input name="datepicker"
+                  readonly
+                  class="form-control calnInput"
                   ngbDatepicker
                   #datepicker="ngbDatepicker"
                   [autoClose]="'outside'"
                   (dateSelect)="onDateSelection($event)"
+                  (keyup)="onShipDateChnage($event)"
                   [displayMonths]="2"
                   [dayTemplate]="t"
                   outsideDays="hidden"
@@ -101,6 +129,83 @@
               />
               <!-- <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button> -->
             </div>
+                  tabindex="-1" [value]="formatter.format(fromDate) + ' -- ' + formatter.format(toDate) " placeholder="Select dates" (click)="datepicker.toggle()">
+                  <ng-template #t let-date let-focused="focused">
+                    <span class="custom-day"
+                      [class.focused]="focused"
+                      [class.range]="isRange(date)"
+                      [class.faded]="isHovered(date) || isInside(date)"
+                      (mouseenter)="hoveredDate = date"
+                      (mouseleave)="hoveredDate = null">
+                      {{ date.day }}
+                    </span>
+                  </ng-template>
+                </div>
+              </div> -->
+
+              <div class="dp-hidden position-absolute">
+                <div class="input-group">
+                  <input
+                    name="datepicker"
+                    class="form-control"
+                    ngbDatepicker
+                    #datepicker="ngbDatepicker"
+                    [autoClose]="'outside'"
+                    (dateSelect)="onDateSelection($event)"
+                    [displayMonths]="2"
+                    [dayTemplate]="t"
+                    outsideDays="hidden"
+                    [startDate]="fromDate!"
+                    tabindex="-1"
+                  /><span class="fromSpan">-</span>
+                  <ng-template #t let-date let-focused="focused">
+                    <span
+                      class="custom-day"
+                      [class.focused]="focused"
+                      [class.range]="isRange(date)"
+                      [class.faded]="isHovered(date) || isInside(date)"
+                      (mouseenter)="hoveredDate = date"
+                      (mouseleave)="hoveredDate = null"
+                    >
+                      {{ date.day }}
+                    </span>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="input-group">
+                <input
+                  #dpFromDate
+                  class="form-control calnInput"
+                  placeholder="yyyy-mm-dd"
+                  name="dpFromDate"
+                  [value]="formatter.format(fromDate)"
+                  (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                  (click)="datepicker.toggle()"
+                />
+                <!-- <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button> -->
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="input-group">
+                <input
+                  #dpToDate
+                  class="form-control calnInput"
+                  placeholder="yyyy-mm-dd"
+                  name="dpToDate"
+                  [value]="formatter.format(toDate)"
+                  (input)="toDate = validateInput(toDate, dpToDate.value)"
+                  (click)="datepicker.toggle()"
+                />
+                <!-- <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button> -->
+              </div>
+            </div>
+          </div>
+          <li class="col-lg-2">
+            <input type="text" name="" [value]="formatter.format(fromDate)" class="form-control calnInput" placeholder="From">
+          </li>
+          <li class="col-lg-1 custom_cal_lg"> <span class="fromSpan">-</span> </li>
+          <li class="col-lg-2">
+            <input type="text" name="" [value]="formatter.format(toDate)" class="form-control calnInput" placeholder="Till" >
           </li>
         </ul>
       </div>
@@ -127,6 +232,7 @@
               <li *ngFor="let item of promotionCountryArry">
                 <div class="form-check">
                   <input [value]="item.id" type="checkbox" class="form-check-input" [checked]="promoCountrySelected?.includes(item.id) && true " (change)="promoCountryChange($event)" >
+                  <input [value]="item.id" type="checkbox" class="form-check-input" (change)="promoCountryChange($event)" >
                   <label class="form-check-label">{{item?.country_name}}</label>
                 </div>
               </li>
@@ -146,6 +252,7 @@
                 <span class="checkmark"></span> </span> </li>
               <li><span class="radioLabel">2 Tiers
                 <input type="radio" [value]="2" name="promotion_tier" [(ngModel)]="promotion_tier">
+                <input type="radio" [value]="2" name="promotion_tier" [(ngModel)]="promotion_tier" >
                 <span class="checkmark"></span> </span></li>
               <li><span class="radioLabel">3 Tier
                 <input type="radio" [value]="3" name="promotion_tier" [(ngModel)]="promotion_tier">
@@ -173,6 +280,7 @@
               <li>
                 <label class="form-label">Qualifying Order Amount</label>
                 <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="order_amount" [(ngModel)]="order_amount" class="form-control input1" placeholder="">
+                <input type="number" name="order_amount" [(ngModel)]="order_amount" class="form-control input1" placeholder="">
                 <span class="Span1">$</span> <span class="Span2">Order min: $50.00</span> </li>
               <li *ngIf="promotion_offer_type == 1">
                 <label class="form-label">Discount Amount</label>
@@ -187,6 +295,7 @@
               <li>
                 <div class="form-check">
                   <input *ngIf="promotion_offer_type != 3" type="checkbox" class="form-check-input" name="offer_free_shipping" [(ngModel)]="offer_free_shipping" [checked]="promotion_offer_type == 3 || offer_free_shipping == 1 " >
+                  <input *ngIf="promotion_offer_type != 3" type="checkbox" class="form-check-input" name="offer_free_shipping" [(ngModel)]="offer_free_shipping" [checked]="promotion_offer_type == 3" >
                   <input *ngIf="promotion_offer_type == 3" type="checkbox" class="form-check-input" checked disabled >
                   <label class="form-check-label">Also offer free shipping</label>
                 </div>
@@ -195,6 +304,7 @@
           </div>
         </div>
         <!-- <p class="faireSplPara">Faire covers the cost of shipping for all eligible Insider members. <a>Learn More</a></p> -->
+        <p class="faireSplPara">Faire covers the cost of shipping for all eligible Insider members. <a>Learn More</a></p>
       </div>
       <div class="vendor_promotions_body" *ngIf="type == 'PRODUCT' " >
         <h3>Discount amount</h3>
@@ -262,6 +372,7 @@
           <li>
             <input *ngIf="!btnDis" type="submit" name="" (click)="updatePromotion()" value="Save" class="btn publish_btn">
             <input *ngIf="btnDis" type="submit" name="" disabled value="Please wait..." class="btn publish_btn">
+            <input type="submit" name="" (click)="addPromotion()" value="Save" class="btn publish_btn">
             <!-- <input type="submit" name="" value="Save" class="btn publish_btn disabled"> -->
           </li>
         </ul>
@@ -432,6 +543,14 @@
   <div class="modal-footer">
     <button *ngIf="!changeBtnDis" type="button" class="btn btn-primary add-customer-btn" (click)="deletePromotionStatus()" >Yes</button>
     <button *ngIf="changeBtnDis" type="button" class="btn btn-primary add-customer-btn" disabled>Please wait...</button>
+    <h4 class="modal-title" id="modal-basic-title">End Promotion</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to deactivate this promotion?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary add-customer-btn" (click)="modal.close('Save click')">Yes</button>
     <button type="button" class="btn btn-primary no-customer-btn" (click)="modal.close('Save click')">No</button>
   </div>
 </ng-template>

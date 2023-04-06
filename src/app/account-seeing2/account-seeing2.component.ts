@@ -3,7 +3,7 @@ import { StorageMap } from "@ngx-pwa/local-storage";
 import { NgToastService } from "ng-angular-popup";
 import { ApiService } from "../services/api.service";
 import { ApmService } from '@elastic/apm-rum-angular'
-import { Router } from "@angular/router";
+
 
 @Component({
   selector: "app-account-seeing2",
@@ -26,9 +26,6 @@ export class AccountSeeing2Component implements OnInit {
   resendBtsDis: any = false;
   btnDis: any = false;
 
-  constructor(private storage: StorageMap, private apiService: ApiService, private toast: NgToastService, private apmService: ApmService, private router: Router) {}
-
-  ngOnInit(): void {
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
@@ -62,19 +59,7 @@ export class AccountSeeing2Component implements OnInit {
   getAccountDetails(user_id: any) {
     this.apiService.getVendorDetails(user_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        this.first_name = response.data.first_name;
-        this.last_name = response.data.last_name;
-        this.email = response.data.email;
-        this.country_code = response.data.country_code;
-        this.phone_number = response.data.phone_number;
-        this.verified = response.data.verified;
-        if(response.data.first_visit == "0") {
-          this.router.navigateByUrl('/account-settings');
-        } else {
-          this.router.navigateByUrl('/account-setting');
-        }
-      }
+
     });
   }
 
@@ -84,12 +69,7 @@ export class AccountSeeing2Component implements OnInit {
       .userAccountUpdate(vendorAccountUpdate.value)
       .subscribe((responseBody) => {
         let response = JSON.parse(JSON.stringify(responseBody));
-          this.toast.error({detail: response.msg , summary: '', duration: 4000})
-          this.btnDis = false;
-        } else {
-          this.old_password = '';
-          this.new_password = '';
-          this.confirm_password = '';
+
           this.errorMsg = '';
           this.toast.success({detail: response.msg , summary: '', duration: 4000});
           this.btnDis = false;

@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from '../services/api.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-sub-category',
@@ -200,6 +201,10 @@ export class ProductSubCategoryComponent implements OnInit {
     },(error) => {
       this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
     })
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
   
   model = 'middle';

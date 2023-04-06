@@ -32,71 +32,19 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div id="home" class="container tab-pane active"><br>
-            <form #vendorAccountUpdate="ngForm" (ngSubmit)="vendorAccountUpdate.form.valid && sendAccountUpdate(vendorAccountUpdate)">
-              <div class="row">
-                <div class="col-lg-8 col-sm-6">
-                  <h3>Personal Information</h3>
                   <div class="tabFormBox">
                     <ul class="row formDiv">
                       <li class="col-lg-6">
                         <label>First Name</label>
                         <input type="hidden" name="user_id" [(ngModel)]="user_id" >
-                        <input type="text" value="" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
-                        <span class="validate_errors"
-                          *ngIf="(first_nameval.touched || vendorAccountUpdate.submitted) && first_nameval.errors?.['required']">
-                          First Name is required
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(first_nameval.touched || vendorAccountUpdate.submitted) && first_nameval.errors?.['maxlength']">
-                          First name must be less than 255 characters.
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(first_nameval.touched || vendorAccountUpdate.submitted) && first_nameval.errors?.['pattern']">
-                          First name is not valid.
-                        </span>
-                      </li>
-                      <li class="col-lg-6">
-                        <label>Last Name</label>
-                        <input type="text" value="" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$">
-                        <span class="validate_errors"
-                          *ngIf="(last_nameval.touched || vendorAccountUpdate.submitted) && last_nameval.errors?.['required']">
-                          Last Name is required
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(last_nameval.touched || vendorAccountUpdate.submitted) && last_nameval.errors?.['maxlength']">
-                          Last name must be less than 255 characters.
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(last_nameval.touched || vendorAccountUpdate.submitted) && last_nameval.errors?.['pattern']">
-                          Last name is not valid.
-                        </span>
-                      </li>
-                      <li class="col-lg-6">
-                        <label>Personal Email</label>
-                        <input type="email" value="" name="email" [(ngModel)]="email" #emailval='ngModel' readonly required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$">
-                        <span class="validate_errors"
-                          *ngIf="(emailval.touched || vendorAccountUpdate.submitted) && emailval.errors?.['required']">
-                          Email is required.
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(emailval.touched || vendorAccountUpdate.submitted) && emailval.errors?.['email']">
-                          Email is not valid.
-                        </span>
-                        <span class="validate_errors"
-                          *ngIf="(emailval.touched || vendorAccountUpdate.submitted) && emailval.errors?.['pattern']">
-                          Email is not valid.
-                        </span>
+
                       </li>
                       <li class="col-lg-6">
                         <label>Phone Number</label> 
                         <select class="countryCode" name="country_code" [(ngModel)]="country_code" #country_codeval='ngModel'>
                           <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">+{{item.phone_code}}</option>                         
                         </select>
-                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" placeholder="" class="countryNum" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required>
-                        <span class="validate_errors"
-                          *ngIf="(phone_numberval.touched || vendorAccountUpdate.submitted) && phone_numberval.errors?.['required']">
-                          Phone number is required.
-                        </span>
+
                       </li>
                     </ul>
                   </div>
@@ -128,6 +76,7 @@
             <div class="row">
               <div class="col-lg-8 col-sm-6">
                 <h3>Personal Information</h3>
+
                 <ul class="row formDiv">
                   <li class="col-lg-6">
                     <label>Account Holder Name</label>

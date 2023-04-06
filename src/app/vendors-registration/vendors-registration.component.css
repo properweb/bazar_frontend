@@ -77,6 +77,7 @@ input[type=number] { -moz-appearance: textfield; }
 .rightRegistionFormBox .vendorRegFormList li .form-control { border: 1px solid rgba(57,57,57,0.5); color: #393939; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; } 
 .rightRegistionFormBox .vendorRegFormList li .prefix-control { padding: 0 15px 0 25px; }
 .rightRegistionFormBox .vendorRegFormList li .suburl-control { padding-left: 236px; }
+.rightRegistionFormBox .vendorRegFormList li .suburl-control { padding-left: 382px; }
 .rightRegistionFormBox .vendorRegFormList li .textareaControl { height: 245px; line-height: normal; padding-bottom: 10px; padding-top: 10px; }
 .rightRegistionFormBox .vendorRegFormList li .telephone-input { background-image: url(../../assets/images/dropdown_arrow.png); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 11px auto; width: 100px; }
 .rightRegistionFormBox .vendorRegFormList li .smallTextarea { height: 90px; }

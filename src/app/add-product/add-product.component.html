@@ -16,10 +16,7 @@
           <ul class="row newPrdtFormList">
             <li class="col-lg-6">
               <label>Product Name* <span class="labelSpan">This will be the name retailers see on your brand page.</span></label>
-              <input type="text" class="form-control" onKeyPress="if(this.value.length==60) return false;" (change)="onProNameChange($event)" maxlength="60" placeholder="My shop" name="product_name" [(ngModel)]="product_name" #product_nameVal>
-              <span class="countSpan">{{product_nameVal.value.length}}/60</span> 
-              <span class="validate_errors" *ngIf="proNameError">Product name is not valid.</span>
-            </li>
+
             <li class="col-lg-6">
               <label>Product Type* <span class="labelSpan">Determines where your product appears in the marketplace</span></label>
               <input type="hidden" class="form-control searchForm" placeholder="Select Product Type" name="product_type" [(ngModel)]="product_type" #product_typeVal>
@@ -81,13 +78,7 @@
                     <li class="col-6 col-sm-4 col-lg-2" *ngFor='let preview of previews; let i = index' >
                       <div class="show-upload-img" style="display: block;"> <img [src]="preview" class="preview"> 
                         <a class="ratingSpan" (click)="onFeatureImgSelect(i)" *ngIf="i != featured_image" >
-                        <img src="assets/images/add_product_blank_star_icon.svg" alt="" matTooltipPosition="above" matTooltip="Add featured image">
-                      </a> 
-                      <a class="ratingSpan" *ngIf="i == featured_image" >
-                        <img src="assets/images/add_product_star_icon.svg" alt="" matTooltipPosition="above" matTooltip="Featured image">
-                      </a> 
-                      </div>   
-                      <a class="deleteLink" (click)="deleteImage(i)"><i class="fa-solid fa-trash-can"></i></a>            
+
                     </li>
                     <li class="col-6 col-sm-4 col-lg-2"> 
                       <div class="upload-btn-wrapper">
@@ -170,13 +161,13 @@
                     <td>
                       <span class="listSpan" style="border: 1px solid #ccc;">
                         <span>$USD</span>
-                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control" placeholder="0" (change)="autoPriceCall()" name="usd_wholesale_price" [(ngModel)]="usd_wholesale_price" >
+
                       </span>
                     </td>
                     <td>
                       <span class="listSpan" style="border: 1px solid #ccc;">
                         <span>$USD</span>
-                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control" placeholder="0" (change)="autoRPPriceCall()" name="usd_retail_price" [(ngModel)]="usd_retail_price" >
+
                       </span>
                     </td> 
                   </tr>
@@ -185,13 +176,13 @@
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>$CAD</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="cad_wholesale_price" [(ngModel)]="cad_wholesale_price">
+
                     </span>
                   </td>
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>$CAD</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="cad_retail_price" [(ngModel)]="cad_retail_price" >
+
                     </span>
                   </td>
                 </tr>
@@ -200,13 +191,14 @@
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>£GBP</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="gbp_wholesale_price" [(ngModel)]="gbp_wholesale_price">
+
                     </span>
                   </td>
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>£GBP</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="gbp_retail_price" [(ngModel)]="gbp_retail_price">
+
+
                     </span>
                   </td>
                 </tr>
@@ -215,13 +207,12 @@
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>$AUD</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="aud_wholesale_price" [(ngModel)]="aud_wholesale_price">
+
                     </span>
                   </td>
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>$AUD</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="aud_retail_price" [(ngModel)]="aud_retail_price">
                     </span>
                   </td>
                 </tr>
@@ -230,13 +221,12 @@
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>€EUR</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="eur_wholesale_price" [(ngModel)]="eur_wholesale_price">
+
                     </span>
                   </td>
                   <td>
                     <span class="listSpan" [style.border]=" outside_us == true ? '1px solid #ccc' : '1px solid #fff'">
                       <span>€EUR</span>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" [readonly]="outside_us == false" class="form-control" placeholder="0" name="eur_retail_price" [(ngModel)]="eur_retail_price">
                     </span>
                   </td>
                 </tr>
@@ -296,47 +286,7 @@
                     </div>
                   </td>   
                   <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-                  <td>
-                    <input type="text" class="form-control" (change)="onVarSkuChange($event, i);" placeholder="" name="resultAttributesku" [(ngModel)]="resultAttribute[i].sku" >
-                    <span class="validate_errors" *ngIf="resultAttribute[i].skuError">{{resultAttribute[i].skuError}}</span>
-                  </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="onWSChange(i)" [name]="'resultAttributews' + i" [(ngModel)]="resultAttribute[i].wholesale_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" (change)="onRPChange(i)" [name]="'resultAttributerp' + i" [(ngModel)]="resultAttribute[i].retail_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributecwp' + i" [(ngModel)]="resultAttribute[i].cad_wholesale_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributecrp' + i" [(ngModel)]="resultAttribute[i].cad_retail_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributegwp' + i" [(ngModel)]="resultAttribute[i].gbp_wholesale_price">
-                    <span class="priceSpan">£</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributegrp' + i" [(ngModel)]="resultAttribute[i].gbp_retail_price">
-                    <span class="priceSpan">£</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributeewp' + i" [(ngModel)]="resultAttribute[i].eur_wholesale_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributeerp' + i" [(ngModel)]="resultAttribute[i].eur_retail_price">
-                    <span class="priceSpan">$</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributeawp' + i" [(ngModel)]="resultAttribute[i].aud_wholesale_price">
-                    <span class="priceSpan">€</span>
-                  </td>
-                  <td [style.display]="outside_us == true ? 'table-cell' : 'none'"><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" [name]="'resultAttributearp' + i" [(ngModel)]="resultAttribute[i].aud_retail_price">
-                    <span class="priceSpan">€</span>
-                  </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control unitInput" (change)="onVarInventoryChange($event, i)" placeholder="" name="resultAttributinv" [(ngModel)]="resultAttribute[i].inventory">
-                    <span class="unitsSpan">units</span>
-                    <span class="validate_errors" *ngIf="resultAttribute[i].inventoryError">{{resultAttribute[i].inventoryError}}</span>
-                  </td>
-                  <td>
-                    <div class="input-group">
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" name="resultAttributeWeight" [(ngModel)]="resultAttribute[i].weight">
+\
                       <select class="form-select smallSelect" aria-label="Default select example" name="resultAttributeweight_unit" [(ngModel)]="resultAttribute[i].weight_unit">
                         <option>kg</option>
                         <option>g</option>
@@ -347,7 +297,6 @@
                   </td>
                   <td>
                     <div class="input-group">
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" name="resultAttributelength" [(ngModel)]="resultAttribute[i].length">
                       <select class="form-select smallSelect" aria-label="Default select example" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit"> 
                         <option value="cm">cm</option>
                         <option value="in">in</option>
@@ -356,7 +305,7 @@
                   </td>
                   <td>
                     <div class="input-group">
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" name="resultAttributewidth" [(ngModel)]="resultAttribute[i].width">
+
                       <select class="form-select smallSelect" aria-label="Default select example" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit">
                         <option value="cm">cm</option>
                         <option value="in">in</option>
@@ -365,19 +314,14 @@
                   </td>
                   <td>
                     <div class="input-group"> 
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceInput" placeholder="" name="resultAttributeheight" [(ngModel)]="resultAttribute[i].height" style="padding-left: 10px;">
+
                       <select class="form-select smallSelect" aria-label="Default select example" [name]="'dimension_unitAttri'+i" [(ngModel)]="resultAttribute[i].dimension_unit">
                         <option value="cm">cm</option>
                         <option value="in">in</option>
                       </select>
                     </div>
                   </td>
-                  <td><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control priceInput" placeholder="" name="resultAttributetariff_code" [(ngModel)]="resultAttribute[i].tariff_code"></td>
-                  <td>
-                    <!-- <a class="iconLink"><i class="fa-solid fa-eye-slash"></i></a> 
-                    <a class="iconLink"><i class="fa-solid fa-calendar-check"></i></a>  -->
-                    <a class="iconLink" (click)="proDelete(i)"><i class="fa-solid fa-trash-can"></i></a>
-                  </td>
+
                 </tr>
                 </tbody>
               </table>
@@ -391,7 +335,7 @@
               <ul class="radioList2">
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type"  type="radio" value="1" (click)="showCasePacks(); order_case_qty=1; order_min_case_qty=1;">
+
                     <label class="form-check-label">Case packs <span class="red">Standard</span><br />
                     <span class="spanText">Retails can check out one they've rechead the minimum order quantity for each product option.</span></label>
                   </div>
@@ -399,16 +343,12 @@
                     <ul class="row productOptionsSubList">
                       <li class="col-lg-6">
                         <label>Case Quantity</label>
-                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="order_min_case_qty = undefined; onCaseQtyChange($event)" name="order_case_qty" [(ngModel)]="order_case_qty" >
-                        <span class="unitsSpan">Units</span>
-                        <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+
                       </li>
                       <li class="col-lg-6">
                         <label>Minimum Order Quantity</label>
                         <select class="form-select" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" [disabled]="order_case_qty == undefined" >
-                          <ng-container *ngIf="!caseQtyError">
-                            <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
-                          </ng-container>
+
                         </select>
                       </li>
                     </ul>
@@ -422,8 +362,6 @@
 
                         <tr *ngFor="let attributes of resultAttribute; let i = index" >
                           <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-                          <td> {{!caseQtyError ? order_case_qty : ''}} </td>
-                          <td> {{order_min_case_qty ? order_min_case_qty : ''}} </td>
                         </tr>
                         
                       </table>
@@ -432,7 +370,7 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type" type="radio" value="2" (click)="showOpenSizing(); order_case_qty=0; order_min_case_qty=1;">
+
                     <label class="form-check-label">Open sizing<br />
                     <span class="spanText">Retails can choose which size they want to buy. as long as they reach the mimum order quantity for the style.</span></label>
                   </div>
@@ -440,9 +378,7 @@
                     <ul class="row productOptionsSubList">
                       <li class="col-lg-6">
                         <label>Minimum Order Quantity</label>
-                        <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="onMinOrdQtyChange($event)" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
-                        <span class="unitsSpan">Units</span>
-                        <span class="validate_errors" *ngIf="minOrdQtyError">This field is invalid.</span>
+
                       </li>
                     </ul>
                     <div class="pricingTable">
@@ -454,7 +390,7 @@
 
                         <tr *ngFor="let attributes of resultAttribute; let i = index" >
                           <td *ngFor="let attribute of option_type">{{attributes[attribute]}}</td>
-                          <td *ngIf="order_min_case_qty && !minOrdQtyError">  {{!minOrdQtyError ? order_min_case_qty : ''}} units</td>
+
                         </tr>
 
                       </table>
@@ -463,7 +399,7 @@
                 </li>
                 <li>
                   <div class="form-check">
-                    <input class="form-check-input" name="sell_type" [(ngModel)]="sell_type" type="radio" value="3" (click)="showPrePacks(); order_case_qty=1; order_min_case_qty=1;">
+
                     <label class="form-check-label">Prepacks<br />
                     <span class="spanText">Retails can buy a style as a bundle in a set size run.</span></label>
                     <a class="btn create-prepacks-btn" *ngIf="prePacks" (click)="showCreatePrepack()">Create Prepacks</a>
@@ -496,8 +432,7 @@
                               </td>   
                               <td>{{list.style}}</td>
                               <td><a class="addLink" (click)="addPrepackRow(i)" ><img src="assets/images/plus_icon_product_options.png" alt="" /></a></td>    
-                              <td><input type="text" [name]="'prepackName'+i" [value]="prepackLists[i].pack_name" (change)="prepackNameChange(i, $event)" class="form-control" />
-                                <span *ngIf="prepackLists[i].name_error" class="validate_errors">{{prepackLists[i].name_error}}</span></td>
+
                               <td>
                                 <ul class="ratioList">
                                   <li><a class="dropdownLink" (click)="showPrepackCreate(i)">{{prepackLists[i].size_ratio ? prepackLists[i].size_ratio: '-'}}</a>
@@ -532,7 +467,6 @@
                     <ul class="radioList3">
                       <li>
                         <div class="form-check">
-                          <input class="form-check-input" name="subRadio" type="radio" value="" [checked]="prePacks" (click)="showSubCasePacks(); order_case_qty=1; order_min_case_qty=1;">
                           <label class="form-check-label">Case packs <span class="red">Standard</span><br />
                           <span class="spanText">Retails can check out one they've rechead the minimum order quantity for each product option.</span></label>
                         </div>
@@ -540,16 +474,12 @@
                           <ul class="row productOptionsSubList">
                             <li class="col-lg-6">
                               <label>Case Quantity</label>
-                              <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" (change)="onCaseQtyChange($event);" class="form-control" placeholder="" name="order_case_qty" [(ngModel)]="order_case_qty" >
-                              <span class="unitsSpan">Units</span>
-                              <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+
                             </li>
                             <li class="col-lg-6">
                               <label>Minimum Order Quantity</label>
                               <select class="form-select" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" [disabled]="order_case_qty == undefined" >
-                                <ng-container *ngIf="!caseQtyError">
-                                  <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
-                                </ng-container>
+
                               </select>
                             </li>
                           </ul>
@@ -557,7 +487,7 @@
                       </li>
                       <li>
                         <div class="form-check">
-                          <input class="form-check-input" name="subRadio" type="radio" value="" (click)="showSubOpenSizing(); order_case_qty= undefined;">
+
                           <label class="form-check-label">Open sizing<br />
                           <span class="spanText">Retails can choose which size they want to buy. as long as they reach the mimum order quantity for the style.</span></label>
                         </div>
@@ -565,8 +495,7 @@
                           <ul class="row productOptionsSubList">
                             <li class="col-lg-6">
                               <label>Minimum Order Quantity</label>
-                              <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="onMinOrdQtyChange($event);" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" >
-                              <span class="validate_errors" *ngIf="minOrdQtyError">This field is invalid.</span>
+
                             </li>
                           </ul>
                         </div>
@@ -583,9 +512,7 @@
                 <li>
                   <label>Case Quantity*</label>
                   <div class="inputDiv">
-                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="order_min_case_qty=undefined; onCaseQtyChange($event)" name="order_case_qty" [(ngModel)]="order_case_qty" #order_case_qtyVal> 
-                    <span class="unitsSpan">Units</span>
-                    <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
+
                   </div>
                   <span class="rightSpan">A case is the total number of units a retailer is required to buy for a single product. See Example</span>
                 </li>
@@ -593,9 +520,7 @@
                   <label>Minimum Order Quantity</label>
                   <div class="inputDiv">
                     <select class="form-select" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" #order_min_case_qtyVal [disabled]="order_case_qty == undefined" > 
-                      <ng-container *ngIf="!caseQtyError">
-                        <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
-                      </ng-container>
+
                     </select>
                   </div>
                   <span class="rightSpan">The minimum order quantity is the number of units a retailer must add to their bag in order to buy a product.</span>
@@ -611,18 +536,7 @@
               <ul class="row shippingList">
                 <li class="col-lg-3">
                   <label>SKU</label>
-                  <input type="text" class="form-control" placeholder="" (change)="onSkuChange($event);" name="shipping_sku" [(ngModel)]="shipping_sku" #shipping_skuVal>
-                  <span class="validate_errors" *ngIf="skuError">Sku in invalid.</span>
-                </li>
-                <li class="col-lg-3">
-                  <label>Inventory</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control right-control" placeholder="" (change)="onInventoryChange($event);" name="shipping_inventory" [(ngModel)]="shipping_inventory" #shipping_inventoryVal>
-                  <span class="unitsSpan">Units</span>
-                  <span class="validate_errors" *ngIf="inventoryError">Invenory in invalid.</span>
-                </li>
-                <li class="col-lg-3">
-                  <label>Tariff Code</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onkeypress="if(this.value.length == 255) return false;" class="form-control" placeholder="" name="shipping_tariff_code" [(ngModel)]="shipping_tariff_code" #shipping_trafic_codeVal>
+
                 </li>
               </ul>
             </div>
@@ -630,7 +544,7 @@
               <ul class="row shippingList">
                 <li class="col-lg-3">
                   <label>Length</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" name="shipping_length" [(ngModel)]="shipping_length" #shipping_lengthVal>
+
                   <select class="form-select smallSelect" aria-label="Default select example" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
                     <option value="cm">cm</option>
                     <option value="in">in</option>
@@ -638,7 +552,7 @@
                 </li>
                 <li class="col-lg-3">
                   <label>Width</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" name="shipping_width" [(ngModel)]="shipping_width" #shipping_widthVal>
+
                   <select class="form-select smallSelect" aria-label="Default select example" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
                     <option value="cm">cm</option>
                     <option value="in">in</option>
@@ -646,7 +560,6 @@
                 </li>
                 <li class="col-lg-3">
                   <label>Height</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" name="shipping_height" [(ngModel)]="shipping_height" #shipping_heightVal>
                   <select class="form-select smallSelect" aria-label="Default select example" name="dimension_unit" [(ngModel)]="dimension_unit" #dimension_unitVal>
                     <option value="cm">cm</option>
                     <option value="in">in</option>
@@ -654,7 +567,6 @@
                 </li>
                 <li class="col-lg-3">
                   <label>Weight</label>
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control smallInput" placeholder="" name="shipping_weight" [(ngModel)]="shipping_weight" #shipping_weightVal>
                   <select class="form-select smallSelect" aria-label="Default select example" name="weight_unit" [(ngModel)]="weight_unit" #weight_unitVal>
                     <option value="kg">kg</option>
                     <option value="g">g</option>
@@ -672,9 +584,6 @@
               <li>
                 <label>Case Quantity*</label>
                 <div class="inputDiv">
-                  <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" placeholder="" (change)="order_min_case_qty=undefined; onCaseQtyChange($event)" name="order_case_qty" [(ngModel)]="order_case_qty" #order_case_qtyVal> 
-                  <span class="unitsSpan">Units</span>
-                  <span class="validate_errors" *ngIf="caseQtyError">This field is invalid.</span>
                 </div>
                 <span class="rightSpan">A case is the total number of units a retailer is required to buy for a single product. See Example</span>
               </li>
@@ -682,9 +591,7 @@
                 <label>Minimum Order Quantity</label>
                 <div class="inputDiv">
                   <select class="form-select" aria-label="Default select example" name="order_min_case_qty" [(ngModel)]="order_min_case_qty" #order_min_case_qtyVal [disabled]="order_case_qty == undefined" > 
-                    <ng-container *ngIf="!caseQtyError">
-                      <option *ngFor="let item of minOrderQtyArr" value="{{order_case_qty*item}}" >{{ item == 10 ? (item*order_case_qty + ' +units') : (item*order_case_qty + ' units') }} </option>
-                    </ng-container>
+
                   </select>
                 </div>
                 <span class="rightSpan">The minimum order quantity is the number of units a retailer must add to their bag in order to buy a product.</span>
@@ -715,7 +622,7 @@
                   <ul class="row retailersPriceList">
                     <li class="col-lg-4">
                       <label>Price</label>
-                      <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" placeholder="0.00" class="form-control" name="testers_price" [(ngModel)]="testers_price" #testers_priceVal>
+
                       <span class="priceSpan">$</span>
                     </li>
                   </ul>
@@ -732,13 +639,7 @@
                 <ul class="row instructionsRetailersList">
                   <li class="col-lg-12">
                       <label>Instructions For Retailers*</label>
-                      <textarea cols="" rows="" class="form-control textAreaForm" (change)="onIntRetChange($event);" maxlength="70" name="reatailers_inst" [(ngModel)]="reatailers_inst" #reatailers_instVal placeholder="Let retailers know what kind of customization you allow, e.g. &ldquo;We're happy to customize your order! Please provide the exact wording you'd like printed on this shirt order.&ldquo;."></textarea>
-                      <span class="countSpan">{{reatailers_inst ? reatailers_inst.length : 0}}/70</span>
-                      <span class="validate_errors" *ngIf="instRetError"> This field not not valid.</span>
-                  </li>
-                  <li class="col-lg-4">
-                    <label>Retailer input limit*</label>
-                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control inputControl" placeholder="0" name="reatailer_input_limit" [(ngModel)]="reatailer_input_limit" #reatailer_input_limitVal>
+
                     <span class="unitsSpan">characters</span>
                   </li>
                   <li class="col-lg-4">
@@ -759,7 +660,7 @@
                   </li>
                   <li class="col-lg-4">
                     <label>Additional Charge</label>
-                    <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" class="form-control priceControl" placeholder="" name="retailer_add_charge" [(ngModel)]="retailer_add_charge" #retailer_add_chargeVal>
+
                     <span class="priceSpan">$</span>
                   </li>
                 </ul>
@@ -785,7 +686,6 @@
                               readonly
                               class="form-control calnInput"
                               ngbDatepicker
-                              [minDate]="minDate"
                               #datepicker="ngbDatepicker"
                               [autoClose]="'outside'"
                               (dateSelect)="onDateSelection($event)"
@@ -810,27 +710,10 @@
                           </div>
                         </div>
                       </div>
-                    </li>
-                    <li>
-                      <label>Deadline to place an order</label>
-                      <div class="row row-cols-sm-auto">
-                        <div class="col-12">
-                          <div class="dp-hidden">
-                            <div class="input-group">
-                              <input readonly class="form-control calnInput" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" name="product_deadline" [(ngModel)]="product_deadline" #product_deadlineVal (click)="d.toggle()">
                               <span *ngIf="product_deadline != '' && product_deadline != null" (click)="onDeleteDeadLine()" class="clear-date" ><img src="assets/images/cross_icon.png" alt=""></span>
                               <!-- <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa-solid fa-calendar-days"></i></button> -->
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" checked name="keep_product" [(ngModel)]="keep_product" #keep_productVal>
-                        <label class="form-check-label">Keep this product available for sale after the order by date / ship date</label>
-                      </div>
-                    </li>
                   </ul>
                 </div>
               </li>
@@ -973,11 +856,12 @@
         <li>
           <div class="upload-btn-wrapper">
             <button class="btn">Upload</button>
-            <input type="file" accept="image/*" (change)="fileChangeEvent($event)" />
+
           </div>
         </li>
         <li *ngFor="let item of allImageChangedEventArray">
           <div class="imgHilder" (click)="cropImage(item.imgId)">
+
             <img  [src]="item.imgBase64" alt="" />
           </div>
         </li>

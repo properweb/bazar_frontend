@@ -51,10 +51,22 @@ export class VendorNewCampaignsComponent implements OnInit {
     let editor = grapesjs.init({
       // email-builder
       container: '#gjs-new',
+ 
+  ngOnInit() {
+
+    let editor = grapesjs.init({
+      // email-builder
+      container: '#gjs-new',
+      // canvas: {
+      //   scripts: [
+      //       "https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"
+      //   ]
+      //   },
       plugins: ['gjs-preset-newsletter', 'gjs-plugin-ckeditor'],
       pluginsOpts: {
         'gjs-preset-newsletter': {
           modalTitleImport: 'Import template'
+          // ... other options
         },
         'gjs-plugin-ckeditor' : {
           options: {
@@ -168,6 +180,11 @@ export class VendorNewCampaignsComponent implements OnInit {
     const blocks = editor.BlockManager.getAll();
     console.log(blocks);
     // document.getElementById('some-id')
+
+    // email-builder
+    const bm = editor.Blocks; 
+    const blocks = editor.BlockManager.getAll();
+    console.log(blocks);
     editor.Blocks.get('divider').set({  
       category: 'Step 2 - Customize your email',
       media: "<img src='assets/images/email-builder-divider.svg' alt=''>",

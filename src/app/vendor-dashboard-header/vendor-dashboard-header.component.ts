@@ -51,6 +51,7 @@ export class VendorDashboardHeaderComponent implements OnInit {
   }
 
   onClickedOutside(e: Event) {
+    // console.log('Clicked outside:', e);
     this.isShown=false;
   }
 
@@ -87,6 +88,20 @@ export class VendorDashboardHeaderComponent implements OnInit {
     //     console.log(error);
     //   },          
     // });
+    localStorage.removeItem('local_data');
+    this.storage.delete('user_session').subscribe({
+      next: (user) => {
+        /* Called if data is valid or `undefined` */
+        this.toast.success({detail:"SUCCESS",summary: 'Logout successful' ,duration: 4000});
+      this.router.navigate(['/localBrands']);
+      
+      },
+      error: (error) => {
+        /* Called if data is invalid */
+        this.toast.error({detail:"ERROR",summary: 'Something went wrong Please try again!' ,duration: 4000});
+        console.log(error);
+      },          
+    });
   }
 
 }

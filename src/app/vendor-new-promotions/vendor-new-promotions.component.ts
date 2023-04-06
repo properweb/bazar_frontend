@@ -144,6 +144,21 @@ export class VendorNewPromotionsComponent implements OnInit {
       })
       return true;
     }
+      free_shipping: this.promotion_offer_type == 3 ? true : this.offer_free_shipping
+    }
+    this.apiService.addPromotion(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.toast.success({detail: response.msg, summary: '', duration: 4000});
+        this.btnDis = false;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+        this.btnDis = false;
+      }
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+      this.btnDis = false;
+    })
   }
 
   //date-range

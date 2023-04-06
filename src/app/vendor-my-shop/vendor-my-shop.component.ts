@@ -15,6 +15,7 @@ declare var $: any;
 export class VendorMyShopComponent implements OnInit {
   user_id!: any;
 
+  products!: any;
   insta_handle!: any;
   established_year!: any; 
   stored_carried!: any;
@@ -56,6 +57,13 @@ export class VendorMyShopComponent implements OnInit {
     const d = new Date();
     let year = d.getFullYear();
 
+  isGoliveTrue: any= false;
+  goliveBtsDis: any= false;
+
+  constructor(
+    private storage: StorageMap, private apiService: ApiService, public modalService: NgbModal, private toast: NgToastService, private appComponent: AppComponent ) {}
+
+  ngOnInit(): void {
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -63,6 +71,7 @@ export class VendorMyShopComponent implements OnInit {
         this.user_id = user_session.id;
         this.getVendorDetails(this.user_id);
 
+        this.getProdcuts(this.user_id); 
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -138,6 +147,12 @@ export class VendorMyShopComponent implements OnInit {
     { name: "Health", value: "Health" },
   ];
 
+  getProdcuts(user_id:any) {
+    this.apiService.getProducts(user_id).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.products = response.data;
+    })
+  }
 
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
@@ -147,6 +162,7 @@ export class VendorMyShopComponent implements OnInit {
   }
 
   onChangeCountry(event: any) {
+  onChangeCountry(event: any){
     let countryId = event.target.value;
     this.state = null;
     this.city = null;
@@ -161,6 +177,7 @@ export class VendorMyShopComponent implements OnInit {
     this.city = null;
     this.apiService.getCities(stateId).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
+      console.log(response.data);
       this.cityArray = response.data;
     })
   }
@@ -203,6 +220,14 @@ export class VendorMyShopComponent implements OnInit {
       this.bazaar_direct_link = response.data.bazaar_direct_link;
 
       this.tagsToolsArray = response.data.tag_shop_page;
+      this.apiService.getStates(response.data.headquatered).subscribe((responseBody) => {
+        let response= JSON.parse(JSON.stringify(responseBody));
+        this.stateArray = response.data;
+      })
+      this.apiService.getCities(response.data.state).subscribe((responseBody) => {
+        let response= JSON.parse(JSON.stringify(responseBody));
+        this.cityArray = response.data;
+      })
       this.appComponent.showSpinner = false;
     });
   }
@@ -426,6 +451,11 @@ export class VendorMyShopComponent implements OnInit {
     },(error) => {
       this.btnDis = false;
        this.toast.error({detail:"Something went wrong. Please try again!",summary: '' ,duration: 4000});
+      this.btnDis = false;
+      this.toast.success({detail:"SUCCESS",summary: 'Changes Saved.' ,duration: 4000});
+    },(error) => {
+      this.btnDis = false;
+       this.toast.error({detail:"ERROR",summary: 'Something went wrong. Please try again!' ,duration: 4000});
     })
     
   }
@@ -449,6 +479,12 @@ export class VendorMyShopComponent implements OnInit {
       }
     },(error) => {
       this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+      this.getVendorDetails(this.user_id);
+      this.isGoliveTrue = true;
+      this.goLiveModal.close();
+      this.goliveBtsDis = false;
+    }, (error) => {
+      this.toast.error({detail:"ERROR",summary: 'Something went wrong. Please try again!' ,duration: 4000});
       this.goliveBtsDis = false;
     }); 
   }

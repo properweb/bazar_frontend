@@ -16,6 +16,9 @@ export class UserChatComponent implements OnInit {
     if(localStorage.getItem('local_data') == null) {
       this.router.navigate(['/']);
     } else {}
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
   showChatBoxFunction() {

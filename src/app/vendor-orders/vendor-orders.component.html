@@ -69,6 +69,7 @@
             </ul>
             <div class="table_sec">
               <table class="table" *ngIf="orderList?.length > 0">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col"><input class="form-check-input" type="checkbox" value="" (change)="checkAll($event)" [ngModel]="selectAll"></th>
@@ -80,6 +81,7 @@
                     <th scope="col">Source</th>
                     <th scope="col">Order status</th>
                     <th scope="col">Payout date</th> 
+                    <th scope="col">Payout date</th>
                     <th scope="col">Total</th>
                   </tr>
                 </thead>
@@ -423,6 +425,7 @@
     </div> -->
     <div class="input-group">
       <input readonly class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="minDate" ngbDatepicker #d="ngbDatepicker" name="product_deadline" (ngModelChange)="endSdateErr = '' " [(ngModel)]="product_deadline" #product_deadlineVal (click)="d.toggle()" >
+      <input readonly class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" name="product_deadline" (ngModelChange)="endSdateErr = '' " [(ngModel)]="product_deadline" #product_deadlineVal (click)="d.toggle()" >
       <!-- <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa-solid fa-calendar-days"></i></button> -->
     </div>
     <span class="validate_errors" *ngIf="endSdateErr" >{{endSdateErr}}</span>

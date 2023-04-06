@@ -38,6 +38,7 @@
 
               <div class="table_sec" *ngIf="!showLoader">
                 <table class="table" *ngIf="products?.length > 0">
+                <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">&nbsp;</th>
@@ -57,6 +58,7 @@
                         <div class="numberBox">
                           <button [disabled]="product.stock == 0 || product?.variations_count > 0" (click)="minus(product.id, product.variant_id, product.stock, product)" class="btn btn-primary minus-btn"></button>
                           <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="Quantity" class="quantityInput" [value]="product.stock"  >
+                          <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" name="Quantity" class="quantityInput" [value]="product.stock"  >
                           <button [disabled]="product?.variations_count > 0" (click)="plus(product.id, product.variant_id, product.stock, product)" class="btn btn-primary plus-btn"></button>
                         </div>
                       </td>
@@ -71,6 +73,9 @@
               </div>
             </div>
             <!-- <div id="publishedProduct" class="container tab-pane fade">
+              </div>
+            </div>
+            <div id="publishedProduct" class="container tab-pane fade">
               <ul class="row productSearch productSearch2">
                 <li class="col-md-3">
                   <input class="form-control text_form" type="text" (keyup.enter)="onSearchPress();" (keyup)="onSearchTextChange($event)" placeholder="Search products" [(ngModel)]="searchText">
@@ -98,6 +103,7 @@
                         <div class="numberBox">
                           <button [disabled]="product.stock == 0 || product?.variations_count > 0" (click)="minus(product.id, product.variant_id, product.stock, product)" class="btn btn-primary minus-btn"></button>
                           <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="Quantity" class="quantityInput" [value]="product.stock"  >
+                          <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" name="Quantity" class="quantityInput" [value]="product.stock"  >
                           <button [disabled]="product?.variations_count > 0" (click)="plus(product.id , product.variant_id, product.stock, product)" class="btn btn-primary plus-btn"></button>
                         </div>
                       </td>
@@ -134,6 +140,7 @@
                         <div class="numberBox">
                           <button [disabled]="product.stock == 0 || product?.variations_count > 0" (click)="minus(product.id, product.variant_id, product.stock, product)" class="btn btn-primary minus-btn"></button>
                           <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="Quantity" class="quantityInput" [value]="product.stock"  >
+                          <input  [disabled]="product?.variations_count > 0" (keyup)="onStockChange(product.id , product.variant_id, $event , product)" type="number" name="Quantity" class="quantityInput" [value]="product.stock"  >
                           <button [disabled]="product?.variations_count > 0" (click)="plus(product.id , product.variant_id, product.stock, product)" class="btn btn-primary plus-btn"></button>
                         </div>
                       </td>
@@ -142,6 +149,7 @@
                 </table>
               </div>
             </div> -->
+            </div>
           </div>
         </div>
       </div>

@@ -35,6 +35,7 @@ export class AfterLoginHeaderComponent implements OnInit {
     public modalService: NgbModal,
     private router: Router,
     private apiService: ApiService,
+    private api: ApiService,
     private storage: StorageMap,
     private toast: NgToastService
   ) { 
@@ -60,6 +61,7 @@ export class AfterLoginHeaderComponent implements OnInit {
         this.user_id = user_session.id;
         this.fetchCart();
         this.fetchMenuCategories();
+        this.fetchCart(user_session.id);
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -111,6 +113,7 @@ export class AfterLoginHeaderComponent implements OnInit {
     this.submitted = true;
     if (this.vendorRegForm.valid) {
       let vemail = JSON.parse(JSON.stringify(this.email));
+      console.log(vemail);
       this.storage.set('vendor_email', vemail).subscribe(() => {});
       this.modalReference.close();
       this.router.navigate(['vendorRegistration']);
@@ -123,6 +126,11 @@ export class AfterLoginHeaderComponent implements OnInit {
     this.spinnerShow = true;
     this.apiService.vendorSignIn(signInFrom.value).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+    console.log(signInFrom.value);
+    this.spinnerShow = true;
+    this.api.vendorSignIn(signInFrom.value).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      console.log(response);
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
@@ -171,6 +179,8 @@ export class AfterLoginHeaderComponent implements OnInit {
 
   fetchCart() {
     this.apiService.fetchCart().subscribe((responseBody) => {
+  fetchCart(user_id: any) {
+    this.api.fetchCart(user_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.cartCount =  response.data.cart_count;
     })
@@ -184,6 +194,19 @@ export class AfterLoginHeaderComponent implements OnInit {
         window.location.reload();
       });
     }, 500);
+    localStorage.removeItem('local_data');
+    this.storage.delete('user_session').subscribe({ 
+      next: (user) => {
+        /* Called if data is valid or `undefined` */
+        this.toast.success({detail:"SUCCESS",summary: 'Logout successful' ,duration: 4000});
+      this.router.navigate(['/localBrands']);
+      },
+      error: (error) => {
+        /* Called if data is invalid */
+        this.toast.error({detail:"ERROR",summary: 'Something went wrong Please try again!' ,duration: 4000});
+        console.log(error);
+      },          
+    });
   }
 
 }

@@ -59,6 +59,7 @@ export class EditOrderComponent implements OnInit {
       day: current.getDate()
     };
    }
+  constructor(private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService, private appComponent: AppComponent, public formatter: NgbDateParserFormatter, public modalService: NgbModal) { }
 
   ngOnInit(): void { 
     if(localStorage.getItem('local_data') == null) {
@@ -96,6 +97,7 @@ export class EditOrderComponent implements OnInit {
           this.proData.push(element);
         }
       });
+      console.log(this.proData);
     })
   }
 
@@ -125,6 +127,7 @@ export class EditOrderComponent implements OnInit {
       order_number: ord_no
     }
     this.apiService.orderDetails(values).subscribe((responseBody) => {
+    this.apiService.orderDetails(ord_no).subscribe((responseBody) => {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.allDetails = response.data;
@@ -147,6 +150,17 @@ export class EditOrderComponent implements OnInit {
         this.state = response.data.order.shipping_state;
         this.post_code = response.data.order.shipping_phoneCode;
         this.phone = response.data.order.shipping_phone;
+        this.ordersArray = response.data.cart;
+        this.ship_date = response.data.order.shipping_date;
+        this.display_ship_date = this.formatter.parse(response.data.order.shipping_date);
+        this.name = response.data.order.name;
+        this.country = response.data.order.country_id;
+        this.address2 = response.data.order.address2;
+        this.address1 = response.data.order.address1;
+        this.town = response.data.order.town_id;
+        this.state = response.data.order.state_id;
+        this.post_code = response.data.order.post_code;
+        this.phone = response.data.order.phone;
         this.is_discount = Number(response.data.order.has_discount);
         this.disc_amt_type = response.data.order.discount_type;
         if(response.data.order.discount != '0.00') {
@@ -154,12 +168,14 @@ export class EditOrderComponent implements OnInit {
         }
         this.ship_free = Number(response.data.order.shipping_free);
         this.apiService.getStates(response.data.order.shipping_country).subscribe((responseBody) => {
+        this.apiService.getStates(response.data.order.country_id).subscribe((responseBody) => {
           let response= JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
             this.stateArray = response.data;
           }
         })
         this.apiService.getCities(response.data.order.shipping_state).subscribe((responseBody) => {
+        this.apiService.getCities(response.data.order.state_id).subscribe((responseBody) => {
           let response= JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
             this.cityArray = response.data;
@@ -182,6 +198,7 @@ export class EditOrderComponent implements OnInit {
   }
 
   onQtyChange(id: any, event: any, qty:any, obj: any) {
+    
     let updatedPrice = event.target.value * obj.product_price;
     obj.quantity = Number(event.target.value);
     obj.amount = updatedPrice;
@@ -201,6 +218,25 @@ export class EditOrderComponent implements OnInit {
     let day = event.day <= 9 ? '0' + event.day : event.day;;
     let finalDate = year + "-" + month + "-" + day;
     this.ship_date = finalDate;
+        // if(this.ordersArray.length > 0) {
+          this.ordersArray.forEach((cartElement: any, cartkey: any) => {
+            console.log(cartElement);
+            let total1 = Number(cartElement.quantity) * Number(cartElement.product_price);
+            total += total1;
+          });
+          console.log(total);
+          this.subTotal = total;
+        // }
+  }
+
+  onDateSelect(event: any) {
+  let year = event.year;
+  let month = event.month <= 9 ? '0' + event.month : event.month;;
+  let day = event.day <= 9 ? '0' + event.day : event.day;;
+  let finalDate = year + "-" + month + "-" + day;
+  console.log(finalDate);
+  this.ship_date = finalDate;
+
   }
 
   updateOrder() {
@@ -260,6 +296,12 @@ export class EditOrderComponent implements OnInit {
   }
 
   sendcheckOutForm(checkOutForm: any) {
+    console.log(event.target.value);
+    
+  }
+
+  sendcheckOutForm(checkOutForm: any) {
+    // console.log(checkOutForm.value);
     this.btnDis = true;
     this.apiService.changeAddress(checkOutForm.value).subscribe((responseBody) => {
       let response =  JSON.parse(JSON.stringify(responseBody));
@@ -287,6 +329,7 @@ export class EditOrderComponent implements OnInit {
   }
 
   select1stOptionEvent(event: any) {
+    console.log(event.id);
     let amount = event.usd_wholesale_price * 1;
     this.ordersArray.push({id: event.id,product_image: event.featured_image,product_name: event.name, quantity: 1, product_price: event.usd_wholesale_price, amount: amount});
   }
@@ -312,6 +355,7 @@ export class EditOrderComponent implements OnInit {
   onNoPromotionClick() {
     delete this.ordersArray["newAmt"];
     console.log("this.ordersArray" , this.ordersArray);
+    console.log(this.ordersArray);
   }
 
 

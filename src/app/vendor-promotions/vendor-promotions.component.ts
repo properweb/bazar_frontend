@@ -16,6 +16,7 @@ export class VendorPromotionsComponent implements OnInit {
   promotionList!: any;
 
   constructor(private router: Router, private storage: StorageMap, private apiService: ApiService, private toast: NgToastService, private appComponent: AppComponent ) { }
+  constructor(private router: Router, private storage: StorageMap, private apiService: ApiService, private toast: NgToastService ) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('local_data') == null) {
@@ -52,6 +53,11 @@ export class VendorPromotionsComponent implements OnInit {
     },(error) => {
       this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
       this.appComponent.showSpinner = false;   
+    this.apiService.fetchPromotions(user_id).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.promotionList = response.data;   
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
     })
   }
 

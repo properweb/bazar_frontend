@@ -26,6 +26,9 @@
 <div class="overlaymodal" *ngIf="modalshowSpinner"></div>
 <mat-progress-spinner *ngIf="modalshowSpinner" class="custom-spinnermodal" diameter=50 [mode]="'indeterminate'"></mat-progress-spinner>
 
+<div class="overlay" *ngIf="showSpinner"></div>
+<mat-progress-spinner *ngIf="showSpinner" class="custom-spinner" diameter=50 [mode]="'indeterminate'"></mat-progress-spinner>
+
   <div *ngIf="errorPopup" class="orderPopup">
     <div class="orderInner">
       <a (click)="errorPopup = false" class="crossBtn2"

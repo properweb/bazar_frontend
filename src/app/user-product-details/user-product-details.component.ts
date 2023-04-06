@@ -60,6 +60,9 @@ export class UserProductDetailsComponent implements OnInit {
     },(error) => {
       this.appComponent.showSpinner = false;
     })
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
 }

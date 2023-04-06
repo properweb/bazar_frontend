@@ -22,6 +22,10 @@ export class VendorOrdersComponent implements OnInit {
   currentPage: any = 1;
   searchText !: any;
   minDate !: any;
+  orderList: any = [];
+  activeTab: any = 'all';
+  currentPage: any = 1;
+  searchText !: any;
 
   checkedItems: any = [];
   selectAll!:any;
@@ -49,6 +53,12 @@ export class VendorOrdersComponent implements OnInit {
     if(localStorage.getItem('local_data') == null) {
       this.router.navigate(['/']);
     } else {}
+  constructor(public modalService: NgbModal, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,private apiService: ApiService, private storage: StorageMap, private appComponent: AppComponent) {
+    this.fromDate = calendar.getToday();
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+   }
+
+  ngOnInit(): void {
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -72,6 +82,11 @@ export class VendorOrdersComponent implements OnInit {
         }
         this.orderList = this.orderListArray
         // this.appComponent.showSpinner = false;
+            this.orderList.push(element);
+          });
+        }
+        // this.appComponent.showSpinner = false;
+
       }
     },(error) => {})
   }
@@ -148,6 +163,7 @@ export class VendorOrdersComponent implements OnInit {
           this.endSdateErr = '';
           this.checkedItems = [];
           this.orderListArray= [];
+          this.orderList = [];
           this.selectAll = false;
           this.addProductModal.close();
           this.product_deadline = undefined;
@@ -164,6 +180,7 @@ export class VendorOrdersComponent implements OnInit {
     this.checkedItems = [];
     this.selectAll = false;
     this.orderListArray= [];
+    this.orderList = [];
     this.currentPage = 1;
     // alert(this.limit);
     this.activeTab = tab;
@@ -181,6 +198,7 @@ export class VendorOrdersComponent implements OnInit {
       // alert('empty');
       localStorage.removeItem('searchOrderKey');
       this.orderListArray= [];
+      this.orderList = [];
       this.currentPage = 1;
       this.fetchOrders(this.user_id,this.currentPage, this.activeTab, this.searchText);
     }
@@ -189,6 +207,7 @@ export class VendorOrdersComponent implements OnInit {
   onSearchPress(event: any) {
     localStorage.setItem('searchOrderKey', event.target.value);
     this.orderListArray= [];
+    this.orderList = [];
     this.currentPage = 1;
     this.fetchOrders(this.user_id,this.currentPage, this.activeTab, this.searchText);
   }

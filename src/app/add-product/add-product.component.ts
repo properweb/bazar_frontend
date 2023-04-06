@@ -60,7 +60,7 @@ export class AddProductComponent implements OnInit {
   prepack_type: any = 1; 
   sizeRatioError!: any;
   csrftoken!: any;
-  minDate!: any;
+
   outside_us: any = false; 
     
   addOptionsModal: any; 
@@ -144,6 +144,7 @@ export class AddProductComponent implements OnInit {
   prepackLists: any = [];
   productKeyword = 'category';
 
+
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -171,23 +172,10 @@ export class AddProductComponent implements OnInit {
   prepackCreate:boolean= false;
   hideCreatePrepack:boolean= false;
   optionTypeBlkErr!:any;
-  proNameError:boolean= false;
-  inventoryError:boolean= false;
-  caseQtyError:boolean= false;
-  instRetError:boolean= false;
-  minOrdQtyError:boolean= false;
-  prePackNameError:boolean= false;
-  skuError:boolean= false;
 
   constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private router:  Router, private toast: NgToastService) { 
     this.fromDate = null
     this.toDate = null
-    const current = new Date();
-    this.minDate = {
-      year: current.getFullYear(),
-      month: current.getMonth() + 1,
-      day: current.getDate()
-    };
   }
 
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
@@ -249,7 +237,6 @@ export class AddProductComponent implements OnInit {
         } 
       });
     });
-
   }
 
   clickManageOpt() {
@@ -279,49 +266,6 @@ export class AddProductComponent implements OnInit {
     // And reassign the 'data' which is binded to 'data' property.
   }
 
-  onProNameChange(event: any) {
-    if(!/^[a-zA-Z0-9\.\-|',&\s]*$/.test(event.target.value)) {
-      this.proNameError = true;
-    } else this.proNameError = false;
-  }
-
-  onInventoryChange(event: any) {
-    if(!/^[0-9]*$/.test(this.shipping_inventory)) {
-      this.inventoryError = true;
-    } else this.inventoryError = false;
-  }
-
-  onVarInventoryChange(event: any, index: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.resultAttribute[index].inventoryError = "Invalid inventory";
-    } else this.resultAttribute[index].inventoryError = "";
-  }
-
-  onSkuChange(event: any) {
-    if(!/^[a-zA-Z0-9]*$/.test(event.target.value)) {
-      this.skuError = true;
-    } else this.skuError = false;
-  }
-
-  onVarSkuChange(event: any, index:any) {
-    if(!/^[a-zA-Z0-9]*$/.test(event.target.value)) {
-      this.resultAttribute[index].skuError = "Invalid sku";
-    } else this.resultAttribute[index].skuError = "";
-  }
-
-  onCaseQtyChange(event: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.caseQtyError = true;
-    } else this.caseQtyError = false;
-  }
-
-  onMinOrdQtyChange(event: any) {
-    if(!/^[0-9]*$/.test(event.target.value)) {
-      this.minOrdQtyError = true;
-    } else this.minOrdQtyError = false;
-  }
-
-  onFocused(e:any){
 
     this.product_type = item.last_id;
   }
@@ -372,9 +316,6 @@ export class AddProductComponent implements OnInit {
     this.casePacks2= false;
     this.openSizing2= false;
     this.casePacks= true;
-    this.minOrdQtyError = false;
-    this.caseQtyError = false;
-    this.hideCreatePrepack = false;
   }
 
   showOpenSizing() {
@@ -383,9 +324,7 @@ export class AddProductComponent implements OnInit {
     this.casePacks2= false;
     this.openSizing2= false;
     this.openSizing= true;
-    this.minOrdQtyError = false;
-    this.caseQtyError = false;
-    this.hideCreatePrepack = false;
+
   }
 
   showPrePacks() {
@@ -395,8 +334,6 @@ export class AddProductComponent implements OnInit {
     this.openSizing= false;
     this.prePacks= true;
     this.casePacks2 = true;
-    this.minOrdQtyError = false;
-    this.caseQtyError = false;
   }
   
   showPrepackCreate(index: any) {
@@ -410,7 +347,7 @@ export class AddProductComponent implements OnInit {
     }
   } 
 
-
+t
 
   showCreatePrepack() { 
     this.hideCreatePrepack = true;
@@ -448,14 +385,14 @@ export class AddProductComponent implements OnInit {
     let item = this.prepackLists[i];
     let style = item.style;
 
-    let newClone = {active: false,style:style,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''};
+
     this.prepackLists.splice(i+1, 0, newClone);
   }
 
   sizeRatioChange(index: any , event: any) {
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
-    this.prepackLists[index].size_range_value = '';
+
     let indexOfSize = this.option_type.indexOf('Size');
     let sizeItemArray = this.option_items[indexOfSize];
     let splitVal = event.target.value.split('-');
@@ -508,16 +445,6 @@ export class AddProductComponent implements OnInit {
   delPrepackRow(i: any) {
     this.prepackLists.splice(i, 1);
   }
-
-  prepackNameChange(index: any, event: any) {
-    this.prepackLists[index].pack_name = event.target.value;
-    if(!/^[\sa-zA-Zء-ي]*$/.test(event.target.value)) {
-      this.prepackLists[index].name_error = 'Invalid name'
-      this.prePackNameError = true;
-    } else {
-      this.prepackLists[index].name_error = ''
-      this.prePackNameError = false;
-    }
   }
 
   hideProductOptions2() { 
@@ -567,7 +494,6 @@ export class AddProductComponent implements OnInit {
       values: option1_value2
     };
 
-
   getCountries() {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -584,13 +510,6 @@ export class AddProductComponent implements OnInit {
 
   openAddProductModal(content:any) {
 
-  }
-
-  fileChangeEvent(event: any): void {
-    let fileName = event.target.files[0].name;
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png") {
       this.imageChangedEvent = event;
       this.selectedCropFiles = event.target.files;
 
@@ -601,13 +520,7 @@ export class AddProductComponent implements OnInit {
         this.product_images.push(event.target.files[i]);
 
         reader.onload = (e: any) => {
-          this.previews.push(e.target.result);
-        };
-        reader.readAsDataURL(event.target.files[i]);
-      }
-    } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
-    }
+
   }
 
   imageProcess(event: any, file: any) {
@@ -621,7 +534,6 @@ export class AddProductComponent implements OnInit {
   }
 
   cropImage(imgId: any) {
-
 
     var event = {
       target: {
@@ -654,24 +566,13 @@ export class AddProductComponent implements OnInit {
   // upload image
   selectFiles(event: any) {
 
-    this.selectedFiles = event.target.files;
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        let fileName = event.target.files[i].name;
-        var idxDot = fileName.lastIndexOf(".") + 1;
-        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
           const reader = new FileReader();
           this.product_images.push(this.selectedFiles[i]);
           reader.onload = (e: any) => {
             this.previews.push(e.target.result);
           };
           reader.readAsDataURL(this.selectedFiles[i]);
-        } else {
-          this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
-        }
-      }
-    } 
+
 
     if(this.selectedFiles.length < 13){
       this.imgCountArr.splice(0 , this.selectedFiles.length);
@@ -711,28 +612,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onSelectVideoFile(event:any) {
-    if (event.target.files && event.target.files[0] ) {
-      for (let i = 0; i < event.target.files.length; i++) {
-          let fileName = event.target.files[i].name;
-          var idxDot = fileName.lastIndexOf(".") + 1;
-          var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-          if (extFile=="mp4" || extFile=="mkv" || extFile=="mov") {  // Only mp4, mkv , mov types are allowed.
-            var reader = new FileReader();
-            if(event.target.files[i].size < 5e+6) {
-              this.product_videos.push(event.target.files[i]);
-              reader.readAsDataURL(event.target.files[i]);
-              reader.onload = (event:any) => {
-                this.video_url.push( event.target.result);
-              }
-            } else {
-              this.toast.error({detail:"File is too large. Over 5mb.",summary: '' ,duration: 4000});
-            }
-          } else {
-            this.toast.error({detail:"Only MP4, MOV and MKV files are allowed!",summary: "" ,duration: 4000});
-          }
-       }
-    }
-
   }
   
   openVideoModal(content:any , index:any) { 
@@ -822,13 +701,13 @@ export class AddProductComponent implements OnInit {
         this.prepackLists = [];
         if(prepackOptionType.length == 1) {
           prepackOptionItems[0].forEach((element :any , key :any) => {
-            this.prepackLists.push({active: false,style:element.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [], size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+
           });
         }
         if(prepackOptionType.length == 2) {
           prepackOptionItems[1].forEach((element1 :any) => {
             prepackOptionItems[0].forEach((element0 :any , key: any) => {
-              this.prepackLists.push({active: false,style:element0.value+'/'+element1.value,pack_name: '',dropActive: false,size_ratio: '',size_range: [],size_range_value: '', packs_price: '',ratio_error: '', name_error: ''})
+
             });
           });
         }
@@ -853,11 +732,7 @@ export class AddProductComponent implements OnInit {
           let chunk = arrOfSize.slice(i, i + chunkSize);       
           let splited = chunk.join('-');
           resArray.push(splited);
-        }
-        this.sizeItemPrePack = resArray;
-      }
-    }
-  }
+
 
   onOpenSwatchModal(color: any) {
     this.colorOptionItems.forEach((element: any , index: any) => {
@@ -872,7 +747,6 @@ export class AddProductComponent implements OnInit {
     let name = this.colorOptionItems.find((element :any , i:any) => i == index);
     this.swatchName = name.name;
     this.swatchIndex = index;
-
   }
 
   clickEditSwatch(index:any) {
@@ -903,54 +777,14 @@ export class AddProductComponent implements OnInit {
       formData.append("user_id", this.user_id);
       formData.append("product_name", this.product_name);
       formData.append("product_type", this.product_type);
-      formData.append("description", this.description ? this.description : '');
-      formData.append("product_made", this.product_made ? this.product_made : '');
-      formData.append("is_bestseller", this.is_bestseller ? this.is_bestseller : '');
-      formData.append("usd_wholesale_price" , this.usd_wholesale_price ? this.usd_wholesale_price : '');
-      formData.append("usd_retail_price" , this.usd_retail_price ? this.usd_retail_price : '');
-      formData.append("cad_wholesale_price" , this.cad_wholesale_price ? this.cad_wholesale_price : '');
-      formData.append("cad_retail_price" , this.cad_retail_price ? this.cad_retail_price : '');
-      formData.append("gbp_wholesale_price" , this.gbp_wholesale_price ?  this.gbp_wholesale_price : '');
-      formData.append("gbp_retail_price" , this.gbp_retail_price ? this.gbp_retail_price : '');
-      formData.append("eur_wholesale_price" , this.eur_wholesale_price ? this.eur_wholesale_price : '');
-      formData.append("eur_retail_price" , this.eur_retail_price ? this.eur_retail_price : '');
-      formData.append("aud_wholesale_price" , this.aud_wholesale_price ? this.aud_wholesale_price : '');
-      formData.append("aud_retail_price" , this.aud_retail_price ? this.aud_retail_price : '');
-      formData.append("outside_us" , this.outside_us ? this.outside_us : '');
-      formData.append("shipping_sku" , this.shipping_sku ? this.shipping_sku : '');
-      formData.append("shipping_inventory" , this.shipping_inventory ? this.shipping_inventory : '');
-      formData.append("shipping_tariff_code" , this.shipping_tariff_code ? this.shipping_tariff_code : '');
-      formData.append("shipping_length" , this.shipping_length ? this.shipping_length : '');
-      formData.append("dimension_unit" , this.dimension_unit ? this.dimension_unit : '');
-      formData.append("shipping_width" , this.shipping_width ? this.shipping_width : '');
-      formData.append("shipping_height" , this.shipping_height ? this.shipping_height : '');
-      formData.append("shipping_weight" , this.shipping_weight ? this.shipping_weight : '');
-      formData.append("weight_unit" , this.weight_unit ?  this.weight_unit : '');
-      formData.append("order_case_qty" , this.order_case_qty ? this.order_case_qty : 0);
-      formData.append("order_min_case_qty" , this.order_min_case_qty ? this.order_min_case_qty : '');
-      formData.append("featured_image", this.featured_image ? this.featured_image : 0);
-      formData.append("product_shipdate", this.formatter.format(this.fromDate));
-      formData.append("product_endshipdate", this.formatter.format(this.toDate));
-      formData.append("product_deadline", this.formatter.format(this.product_deadline));
-      formData.append("out_of_stock", this.out_of_stock ? this.out_of_stock : '');
-      formData.append("testers_price", this.testers_price ? this.testers_price :'');
-      formData.append("reatailers_inst", this.reatailers_inst ? this.reatailers_inst : '');
-      formData.append("reatailer_input_limit", this.reatailer_input_limit ? this.reatailer_input_limit : '');
-      formData.append("retailer_min_qty", this.retailer_min_qty ?  this.retailer_min_qty : '');
-      formData.append("retailer_add_charge", this.retailer_add_charge ? this.retailer_add_charge : '');
-      formData.append("outside_us", this.outside_us ? this.outside_us : '');
-      formData.append("keep_product", this.keep_product ? this.keep_product : '');
-      formData.append("sell_type", this.sell_type ? this.sell_type : '');
+
   
       let pricingError = 0;
         if((this.usd_wholesale_price != undefined && this.usd_retail_price != undefined) || (this.cad_wholesale_price != undefined && this.cad_retail_price != undefined) || (this.gbp_wholesale_price != undefined && this.gbp_retail_price != undefined) || (this.eur_wholesale_price != undefined && this.eur_retail_price != undefined) || (this.aud_wholesale_price != undefined && this.aud_retail_price != undefined)) {
           pricingError = 1;
         }
   
-      if(this.product_made == undefined) {
-        this.publistBtnDisabled = false;
-        this.notValidError = true;
-        
+
         this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
         return false;
       }else if(this.product_images.length == 0) {
@@ -958,201 +792,7 @@ export class AddProductComponent implements OnInit {
           this.notValidError = true;
           this.toast.error({detail:"Please add atleast one image.",summary: '' ,duration: 4000});
           return false;
-        } 
-        else if ( pricingError != 1 ) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          
-          this.toast.error({detail:"Pricing list can't be blank.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.shipping_sku && !/^[A-Za-z0-9]*$/.test(this.shipping_sku)) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.shipping_inventory && !/^[\d]*$/.test(this.shipping_inventory)) {       
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.caseQtyError) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.order_case_qty == undefined || this.order_case_qty == null ){
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.order_min_case_qty == undefined || this.order_min_case_qty == null) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Ordering details is required.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.instructionsRetailers == true && ( this.reatailers_inst  == 'null' || this.reatailers_inst == null || this.reatailers_inst == '' || this.reatailers_inst == 'undefined' || this.reatailers_inst == undefined || this.reatailers_inst == '0' || this.reatailers_inst == 0 || this.reatailer_input_limit  == 'null' || this.reatailer_input_limit == null || this.reatailer_input_limit == '' || this.reatailer_input_limit == 'undefined' || this.reatailer_input_limit == undefined || this.reatailer_input_limit == '0' || this.reatailer_input_limit == 0 || this.retailer_min_qty  == 'null' || this.retailer_min_qty == null || this.retailer_min_qty == '' || this.retailer_min_qty == 'undefined' || this.retailer_min_qty == undefined || this.retailer_min_qty == '0' || this.retailer_min_qty == 0  )) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          
-          this.toast.error({detail:"Retailers customize section can't be blank.",summary: '' ,duration: 4000});
-          return false;
-        } else if (this.retailersPreOrderDate == true && ( this.fromDate == null || this.toDate == null )) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          
-          this.toast.error({detail:"Ship date can't be blank.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.instRetError) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Instructions for retailers is not valid.",summary: '' ,duration: 4000});
-          return false;
-        } else {
-          this.apiService.createProduct(formData).subscribe((responseBody) => {
-            let response = JSON.parse(JSON.stringify(responseBody));
-            if(response.res == true) {
-              this.toast.success({detail:"Product Added successfully.",summary: '' ,duration: 4000});
-              this.notValidError = false;
-              this.publistBtnDisabled = false;
-              this.notValidErrorMsg = '';
-              let values = {
-                user_id: this.user_id,
-                added_product: '1'
-              }
-              this.apiService.updateVendorDetails(values).subscribe((responseBody) => {
-              })
-              this.router.navigate(['products']);
-            } else {
-              this.notValidError = true;
-              this.publistBtnDisabled = false;
-              this.notValidErrorMsg = response.msg;
-            }
-    
-          } , (error:any) => {
-            this.publistBtnDisabled = false;
-            this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
-          })
-          return true;
-        }
-      } else {
-        let formData = new FormData();
-        formData.append("user_id" , this.user_id);
-        formData.append("product_name" , this.product_name);
-        formData.append("product_type" ,this.product_type);
-        formData.append("description" ,this.description ? this.description : '');
-        formData.append("product_made" ,this.product_made ? this.product_made : '');
-        formData.append("is_bestseller" ,this.is_bestseller ? this.is_bestseller : '');
-        formData.append("order_case_qty" ,this.order_case_qty ? this.order_case_qty : 0);
-        formData.append("order_min_case_qty" ,this.order_min_case_qty ? this.order_min_case_qty : '');
-        formData.append("usd_wholesale_price" , '0');
-        formData.append("usd_retail_price" , '0');
-        formData.append("cad_wholesale_price" , '0');
-        formData.append("cad_retail_price" , '0');
-        formData.append("gbp_wholesale_price" , '0');
-        formData.append("gbp_retail_price" , '0');
-        formData.append("eur_wholesale_price" , '0');
-        formData.append("eur_retail_price" , '0');
-        formData.append("aud_wholesale_price" , '0');
-        formData.append("aud_retail_price" , '0');
-        formData.append("shipping_inventory" , '0');
-        formData.append("product_shipdate", this.formatter.format(this.fromDate));
-        formData.append("product_endshipdate", this.formatter.format(this.toDate));
-        formData.append("product_deadline", this.formatter.format(this.product_deadline));
-        formData.append("out_of_stock", this.out_of_stock ? this.out_of_stock : '');
-        formData.append("sell_type", this.sell_type ? this.sell_type : '');
-        formData.append("prepack_type", this.prepack_type);
-        formData.append("featured_image", this.featured_image ? this.featured_image : 0);
-        formData.append("testers_price", this.testers_price ? this.testers_price : '');
-        formData.append("reatailers_inst", this.reatailers_inst ? this.reatailers_inst : '');
-        formData.append("reatailer_input_limit", this.reatailer_input_limit ? this.reatailer_input_limit : '');
-        formData.append("retailer_min_qty", this.retailer_min_qty ? this.retailer_min_qty : '');
-        formData.append("retailer_add_charge", this.retailer_add_charge ? this.retailer_add_charge : '');
-        formData.append("outside_us", this.outside_us ? this.outside_us : '');
-        formData.append("keep_product", this.keep_product ? this.keep_product : '');
 
-        for (var i = 0; i < this.product_images.length; i++) { 
-          formData.append("product_images[]", this.product_images[i]);
-        }
-        for (var k = 0; k < this.product_videos.length; k++) { 
-          formData.append("video_url[]", this.product_videos[k]);
-        }
-        for (let index = 0; index < this.resultAttribute.length; index++) {
-
-
-        }
-
-        let varPriceError = 0;
-        let skuError = 0;
-        let inventoryError = 0;
-
-        this.resultAttribute.forEach((elementVar: any) => {
-          if(elementVar.wholesale_price == '' || elementVar.wholesale_price == null || elementVar.wholesale_price == undefined || elementVar.retail_price == '' || elementVar.retail_price == null || elementVar.retail_price == undefined) {
-            varPriceError = 1 ;
-          }
-        });
-        this.resultAttribute.forEach((elementVar: any) => {
-          if( elementVar.sku && !/^[A-Za-z0-9]*$/.test(elementVar.sku)) {
-            skuError = 1 ;
-          }
-        });
-
-          if( elementVar.inventory && !/^\d+$/.test(elementVar.inventory)) {
-            inventoryError = 1;
-          }
-        });
-
-
-        formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
-        formData.append("option_type", this.option_type);
-        formData.append("variations" , JSON.stringify(this.resultAttribute));
-        this.prepackLists.forEach((element: any) => {
-          if(element.active == true) {
-            element.active = '1';
-          } else { 
-            element.active = '0';
-          }
-        });
-        let prepackError = 0;
-        if(this.hideCreatePrepack) {
-          formData.append("pre_packs" , JSON.stringify(this.prepackLists));
-        }
-        this.prepackLists.forEach((element: any) => {
-          if((element.pack_name == '' || element.pack_name == null || element.size_ratio == '' || element.size_ratio == null || element.size_range_value == '' || element.size_range_value == null)) {
-            prepackError = 1 ;
-          }
-        });
-        if(this.product_made == undefined) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Product made field is required.",summary: '' ,duration: 4000});
-          return false;
-        }else if(this.product_images.length == 0) {
-            this.publistBtnDisabled = false;
-            this.notValidError = true;
-            this.toast.error({detail:"Please add atleast one image.",summary: '' ,duration: 4000});
-            return false;
-        } else if(varPriceError == 1) {
-            this.publistBtnDisabled = false;
-            this.notValidError = true;
-            this.toast.error({detail:"Products must have both a wholesale and a retail price.",summary: '' ,duration: 4000});
-            return false;
-        } else if(skuError == 1) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid sku.",summary: '' ,duration: 4000});
-          return false;
-        } else if(inventoryError == 1) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid inventory.",summary: '' ,duration: 4000});
-          return false;
-
-        } else if(this.caseQtyError) {
-          this.publistBtnDisabled = false;
-          this.notValidError = true;
-          this.toast.error({detail:"Invalid case quantity.",summary: '' ,duration: 4000});
-          return false;
-        } else if(this.order_min_case_qty == undefined || this.order_min_case_qty == null ) {
           this.publistBtnDisabled = false;
           this.notValidError = true;
           if(this.option_type.includes('Size')) {
@@ -1217,7 +857,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onItemAdded(item:any) {
-
   }
   
   //date-range
@@ -1270,7 +909,6 @@ export class AddProductComponent implements OnInit {
 
   selectVarImageRow(index: any) {
     this.varImageIndex = index;
-
   }
 
   autoPriceCall() {

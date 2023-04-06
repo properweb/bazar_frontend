@@ -93,6 +93,12 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    component: HomeComponent
+    //redirectTo: '/home', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'localBrands',
@@ -152,6 +158,26 @@ const routes: Routes = [
   },
   {
     path: 'category/:cat_slug/subcategory/:subcat_slug/:subsubcat_slug',
+    component: UserProfileComponent
+  },
+  {
+    path: 'orders',
+    component: UserMyOrdersComponent
+  },
+  {
+    path: 'wishlist',
+    component: UserWishlistComponent
+  },
+  {
+    path: 'invoices',
+    component: UserInvoiceComponent
+  },
+  {
+    path: 'productCategory',
+    component: ProductCategoryComponent
+  },
+  {
+    path: 'productSubCategory',
     component: ProductSubCategoryComponent
   },
   {
@@ -215,6 +241,23 @@ const routes: Routes = [
     component: AddProductComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
+    component: VendorDashboardComponent
+  },
+  {
+    path: 'products',
+    component: VendorProductComponent
+  },
+  {
+    path: 'shopify-import',
+    component: ProductShopifyComponent
+  },
+  {
+    path: 'wordpress-import',
+    component: ProductWordpressComponent
+  },
+  {
+    path: 'add-product',
+    component: AddProductComponent
   },
   {
     path: 'edit-product/:id',
@@ -246,6 +289,23 @@ const routes: Routes = [
     component: VendorMyShopComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
+    canDeactivate: [PendingChangesGuard]
+  },
+  {
+    path: 'account-settings',
+    component: AccountSettingsComponent
+  },
+  {
+    path: 'accountSeeing2',
+    component: AccountSeeing2Component
+  },
+  {
+    path: 'arrange-items',
+    component: ProductArrangementComponent
+  },
+  {
+    path: 'my-shop',
+    component: VendorMyShopComponent
   },
   {
     path: 'collections/new',
@@ -292,6 +352,23 @@ const routes: Routes = [
     component: VendorCreateInvoiceComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
+    component: VendorShopSettingsComponent
+  },
+  {
+    path: 'brand-orders',
+    component: VendorOrdersComponent
+  },
+  {
+    path: 'inventory',
+    component: VendorInventoryComponent
+  },
+  {
+    path: 'brand-portal/invoices',
+    component: VendorInvoicingComponent
+  },
+  {
+    path: 'brand-portal/invoices/new',
+    component: VendorCreateInvoiceComponent
   },
   {
     path: 'vendorOrderPayouts',
@@ -388,6 +465,59 @@ const routes: Routes = [
     component: VendorEmailCampaignsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
+    component: VendorCustomersComponent
+  },
+  {
+    path: 'vendorCustomers2',
+    component: VendorCustomers2Component
+  },
+  {
+    path: 'brand-portal/promotions',
+    component: VendorPromotionsComponent
+  },
+  {
+    path: 'brand-portal/promotions/new',
+    component: VendorNewPromotionsComponent
+  },
+  {
+    path: 'brand-portal/promotions/:id',
+    component: VendorEditPromotionsComponent
+  },
+  {
+    path: 'vendorPromotionsStatus',
+    component: VendorPromotionsStatusComponent
+  },
+  {
+    path: 'vendorAutomations',
+    component: VendorAutomationsComponent
+  },
+  {
+    path: 'vendorAutomations2',
+    component: VendorAutomations2Component
+  },
+  {
+    path: 'vendorAutomations3',
+    component: VendorAutomations3Component
+  },
+  {
+    path: 'vendorAutomations4',
+    component: VendorAutomations4Component
+  },
+  {
+    path: 'vendorAutomationsEdit',
+    component: VendorAutomationsEditComponent
+  },
+  {
+    path: 'brand-portal/marketing/campaigns',
+    component: VendorCampaignsComponent
+  },
+  {
+    path: 'brand-portal/marketing/campaigns/:id',
+    component: VendorNewCampaignsComponent
+  },
+  {
+    path: 'vendorEmailCampaigns',
+    component: VendorEmailCampaignsComponent
   },
   {
     path: 'vendorPerformance',
@@ -458,6 +588,47 @@ const routes: Routes = [
     component: ShoppingBagComponent,
     canActivate: [AuthGuard],
     data: { roles: ['retailer'] }
+    component: VendorSellThroughComponent
+  },
+  {
+    path: 'vendorHome',
+    component: VendorHomeComponent
+  },
+  {
+    path: 'vendorPerformanceReviews',
+    component: VendorPerformanceReviewsComponent
+  },
+  {
+    path: 'bulk-products',
+    component: VendorBulkProductsComponent
+  },
+  {
+    path: 'sync',
+    component: SyncComponent
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailsComponent
+  },
+  {
+    path: 'retailer-home',
+    component: AfterLoginHomeComponent
+  },
+  {
+    path: 'after-login-local-brands',
+    component: AfterLoginLocalBrandsComponent
+  },
+  {
+    path: 'after-login-local-manufacturers',
+    component: AfterLoginLocalManufacturersComponent
+  },
+  {
+    path: 'after-login-international-brands',
+    component: AfterLoginInternationalBrandsComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingBagComponent
   },
   {
     path: 'print-packing-slip/:id',
@@ -476,6 +647,7 @@ const routes: Routes = [
     component: CheckoutComponent,
     canActivate: [AuthGuard],
     data: { roles: ['retailer'] }
+    component: CheckoutComponent
   },
   {
     path: 'reset-password/:id',
@@ -518,6 +690,28 @@ const routes: Routes = [
     data: { roles: ['retailer'] }
   },
   { path: '**', redirectTo: '' }
+    component: EditOrderComponent
+  },
+  {
+    path: 'view-order/:id',
+    component: ViewOrderComponent
+  },
+  {
+    path: 'chat',
+    component: UserChatComponent
+  },
+  {
+    path: 'boards/:id',
+    component: UserBoardComponent
+  },
+  {
+    path: 'brand-portal/customers/:id',
+    component: CustomerDetailsComponent
+  },
+  {
+    path: 'orders/:id',
+    component: UserProductDetailsComponent
+  },
 ];
 
 @NgModule({

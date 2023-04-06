@@ -210,6 +210,7 @@ input[type=number] { -moz-appearance: textfield; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-control:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group .form-control:focus { border-right: none; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: 61px; }
+.middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-select { background-color: #fff; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; padding: 0 10px 0 10px; width: 50px; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .input-group .form-select { border-left: none; border-radius: 0 3px 3px 0; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .form-select:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .new_product_body2 .heading .productTableDiv .table td .iconLink { cursor: pointer; display: inline-block; margin: 0 7px 0 7px; }

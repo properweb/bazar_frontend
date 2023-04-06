@@ -4,6 +4,9 @@
             <!-- <li class="breadcrumb-item"><a>Home</a></li> -->
             <li class="breadcrumb-item"><a routerLink="/category/{{catSlug}}">{{catSlug}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{subCatSlug}}</li>
+            <li class="breadcrumb-item"><a>Home</a></li>
+            <li class="breadcrumb-item"><a>Home & Garden</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
         </ol>
     </nav>
 </div>
@@ -15,6 +18,11 @@
                 <ngb-panel id="toggle-1" title="All categories" id="config-panel-one">
                   <ng-template ngbPanelContent>
                     <!-- <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
+            <h3 class="mobile_hide"><span>All categories</span></h3>
+            <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+                <ngb-panel id="toggle-1" title="All categories" id="config-panel-one">
+                  <ng-template ngbPanelContent>
+                    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
                         <ngb-panel title="Kitchen" id="ngb-panel-0">
                             <ng-template ngbPanelContent>
                                 <ul class="cat_sub_lists">
@@ -76,6 +84,7 @@
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion> -->
+                    </ngb-accordion>
                     <h4>Sort by</h4>
                     <div class="btn-group" role="group" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
                         <label ngbButtonLabel class="btn-primary">
@@ -351,3 +360,97 @@
         <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
     </div>
 </ng-template>
+            <h2>Kitchen</h2>
+            <ul class="row cat_listing_list">
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="card">
+                        <div class="imgDiv" style="background-image: url(assets/images/cat-product-img.png);"></div>
+                        <div class="textDiv">
+                            <h3>Vases</h3>
+                            <p>Here can be small description</p>
+                            <p>by <strong>Star Seller</strong></p>
+                            <p class="price_tag">MSRP <strong>14$</strong></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

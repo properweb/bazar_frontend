@@ -11,6 +11,7 @@
                         <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home">Edit Profile</a></li>
                         <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu1">Payment Methods</a></li>
                         <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu2">Address</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu2">Shipping Address</a> </li>
                         <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#menu3">Email Preferences</a> </li>
                     </ul> 
 
@@ -26,6 +27,7 @@
                                                 <label>First Name</label>
                                                 <input type="hidden" name="user_id" [(ngModel)]="user_id" #user_idval='ngModel' >
                                                 <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                                <input type="text" name="first_name" [(ngModel)]="first_name" #first_nameval='ngModel' required >
                                                 <span class="validate_errors"
                                                     *ngIf="(first_nameval.touched || userFormStep1.submitted) && first_nameval.errors?.['required']">
                                                     First Name is required
@@ -42,6 +44,10 @@
                                             <li>
                                                 <label>Last Name</label>
                                                 <input type="text" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required maxlength="255" pattern="^[\sa-zA-Zء-ي]*$" >
+                                            </li>
+                                            <li>
+                                                <label>Last Name</label>
+                                                <input type="text" name="last_name" [(ngModel)]="last_name" #last_nameval='ngModel' required >
                                                 <span class="validate_errors"
                                                     *ngIf="(last_nameval.touched || userFormStep1.submitted) && last_nameval.errors?.['required']">
                                                     Last Name is required
@@ -76,6 +82,7 @@
                                                         </select>
                                                     </span>
                                                     <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
+                                                    <input type="tel" class="form-control validate" name="phone_number" [(ngModel)]="phone_number" #phone_numberval='ngModel' required aria-required="true">
                                                     <br>
                                                 </div>
                                                 <span class="validate_errors"
@@ -150,6 +157,10 @@
                                                 <span class="validate_errors"
                                                     *ngIf="(website_urlval.touched || userFormStep1.submitted) && website_urlval.errors?.['pattern']">
                                                     Website url is not valid.
+                                                <input type="text" name="website_url" [(ngModel)]="website_url" #website_urlval='ngModel' required>
+                                                <span class="validate_errors"
+                                                    *ngIf="(website_urlval.touched || userFormStep1.submitted) && website_urlval.errors?.['required']">
+                                                    Website Url is required
                                                 </span>
                                             </li>
                                             <!-- <li>
@@ -168,6 +179,7 @@
                                                 Hand-made
                                             </li>
                                             <li class="marginNone"> 
+                                            <li class="marginNone">
                                                 <input type="checkbox" value="">
                                                 Not in Amazon
                                             </li>
@@ -181,6 +193,8 @@
                                     <div class="col-lg-5 col-sm-4">
                                         <input *ngIf="!btnDis" type="submit" value="Save Changes" class="accountBtn" >
                                         <input *ngIf="btnDis" type="submit" value="Saving Changes..." class="accountBtn" disabled="disabled">
+                                        <input *ngIf="!btnDis" type="submit" value="Save changes" class="accountBtn" >
+                                        <input *ngIf="btnDis" type="submit" value="Saving changes..." class="accountBtn" disabled="disabled">
                                     </div>
                                 </div>
                             </form>
@@ -261,11 +275,29 @@
                                         <span class="buttonSpan">Add Shipping Address</span>
                                     </button>
                                 </div>
+                            <div class="col-lg-4 col-sm-11">
+                                <div class="paymentDiv">
+                                    <button type="button" class="shipping-edit" data-bs-toggle="modal" data-bs-target="#shippingModal">
+                                        <img src="assets/images/edit_btn.svg" alt="">
+                                    </button>
+                                    <h3>Marine Lv</h3>
+                                    <p>Street Heat 22</p>
+                                    <p>Dokha, AK 2222</p>
+                                    <p>Qatar</p>
+                                    <p>+972 222 222 22</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-11 paymentAdd">
+                                <button type="button" class="shipping-add" data-bs-toggle="modal" data-bs-target="#shippingModal">
+                                    <img src="assets/images/add_box_black_24dp_1.svg" alt="">
+                                    <span class="buttonSpan">Add Shippind Address</span>
+                                </button>
                             </div>
                         </div>
                         <div id="menu3" class="container tab-pane fade"><br>
                             <div class="col-lg-7 col-sm-11 emailDiv">
                                 <h2>Manage your preferences for <strong>{{email}}</strong></h2>
+                                <h2>Manage your preferences for <strong>123me@gmail.com</strong></h2>
                                 <h3>Promotions & Offers</h3>
                                 <div class="emailHolder">
                                     <ul class="emailSec">
@@ -377,6 +409,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" #shipModalCloseBtn ></button>
         <!-- Modal body -->
         <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && saveShipAddForm(checkOutForm)" novalidate>
+  <!------shipping address modal starts--------->
+  <div class="modal profileModal" id="shippingModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Modal body -->
+        <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && saveCheckOutForm(checkOutForm)" novalidate>
             <div class="modal-body">
             <div class="imgHolderder">
                 <img src="assets/images/Bazar.png" alt="">
@@ -386,6 +425,7 @@
                 <li>
                 <label>Name</label>
                 <input type="text" value="" name="ship_name" [(ngModel)]="ship_name" #ship_nameval='ngModel' maxlength="255" required pattern="^[\sa-zA-Zء-ي]*$">
+                <input type="text" value="" name="ship_name" [(ngModel)]="ship_name" #ship_nameval='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['required']">
                     This field is required
@@ -393,11 +433,21 @@
                 <span class="validate_errors"
                     *ngIf="(ship_nameval.touched || checkOutForm.submitted) && ship_nameval.errors?.['pattern']">
                     Name is not valid.
+                </li>
+                <li>
+                <label>Select Country</label>
+                <select name="ship_country" [(ngModel)]="ship_country" #ship_countryval='ngModel' required (change)="onChangeCountry($event)">
+                    <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                </select>
+                <span class="validate_errors"
+                    *ngIf="(ship_countryval.touched || checkOutForm.submitted) && ship_countryval.errors?.['required']">
+                    This field is required
                 </span>
                 </li>
                 <li>
                 <label>Street and number</label>
                 <input type="text" value="" name="ship_address1" [(ngModel)]="ship_address1" #ship_address1val='ngModel' required pattern="^[#/.0-9a-zA-Z\s,-]+$">
+                <input type="text" value="" name="ship_address1" [(ngModel)]="ship_address1" #ship_address1val='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(ship_address1val.touched || checkOutForm.submitted) && ship_address1val.errors?.['required']">
                     This field is required
@@ -431,6 +481,14 @@
                     <option value="null" hidden></option>
                     <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option> 
                 </select>
+                </li>
+                <li>
+                <label>App, Suite (Optional)</label>
+                <input type="text" value="" name="ship_address2" [(ngModel)]="ship_address2" #ship_address2val='ngModel' >
+                </li>
+                <li>
+                <label>State/Province</label>
+                <input type="text" value="" name="ship_state" [(ngModel)]="ship_state" #ship_stateval='ngModel' required (change)="onChangeState($event)">
                 <span class="validate_errors"
                     *ngIf="(ship_stateval.touched || checkOutForm.submitted) && ship_stateval.errors?.['required']">
                     This field is required
@@ -442,6 +500,7 @@
                     <option value="null" hidden></option>
                     <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
                 </select>
+                <input type="text" value="" name="ship_city" [(ngModel)]="ship_city" #ship_cityval='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(ship_cityval.touched || checkOutForm.submitted) && ship_cityval.errors?.['required']">
                     This field is required
@@ -450,6 +509,7 @@
                 <li>
                 <label>Zip</label>
                 <input type="number" class="form-control" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" value="" name="ship_pincode" [(ngModel)]="ship_pincode" #ship_pincodeval='ngModel' required>
+                <input type="text" value="" name="ship_pincode" [(ngModel)]="ship_pincode" #ship_pincodeval='ngModel' required>
                 <span class="validate_errors"
                     *ngIf="(ship_pincodeval.touched || checkOutForm.submitted) && ship_pincodeval.errors?.['required']">
                     This field is required
@@ -465,6 +525,7 @@
                             </select>
                         </span>
                         <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" class="form-control validate" name="ship_phone_number" [(ngModel)]="ship_phone_number" #ship_phone_numberval='ngModel' required aria-required="true">
+                        <input type="tel" class="form-control validate" name="ship_phone_number" [(ngModel)]="ship_phone_number" #ship_phone_numberval='ngModel' required aria-required="true">
                         <br>
                     </div>
                     <span class="validate_errors"
@@ -476,6 +537,7 @@
                 <li>
                     <input *ngIf="!btnDis" type="submit" value="Save changes" class="accountBtn">
                     <input *ngIf="btnDis" type="submit" value="Saving changes..." class="accountBtn" disabled>
+                    <input *ngIf="btnDis" type="" value="Saving changes..." class="accountBtn" disabled>
                 </li>
             </ul>
             </div>
@@ -687,3 +749,4 @@
       </div>
   </div>
   <!------Billing address edit modal ends--------->
+  <!------shipping address modal ends--------->

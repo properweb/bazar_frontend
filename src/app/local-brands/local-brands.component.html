@@ -7,6 +7,7 @@
 <ng-container *ngIf="role != 'retailer' && role != 'brand' ">
     <app-header [currentUrl]="currentUrl"></app-header> 
 </ng-container>
+<app-header></app-header>
 <!-- * * * * * * * * * * * Header End * * * * * * * * * * * -->
 
 <!-- * * * * * * * * * * * Banner Start * * * * * * * * * * * -->
@@ -16,6 +17,8 @@
         <p>{{localBannerPara}}</p>
         <a class="btn btn-primary sell_on_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
         <a class="btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        <a class="btn btn-primary sell_on_bazar"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+        <a class="btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
     </div>
 </div>
 <!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->
@@ -23,6 +26,7 @@
 <!-- * * * * * * * * * * * Common Section Start * * * * * * * * * * * -->
 <div class="comn_Sec">
     <div class="comn_Sec_left_footer"> 
+    <div class="comn_Sec_left_footer">
         <div class="comn_Sec_left_footer_text">
             <h3>{{localCommonHeading}}</h3>
             <h4>{{localCommonSubHeading}}</h4>
@@ -106,6 +110,15 @@
                                             </h3> -->
                                         </div>
                                     </a>
+                        <ng-template carouselSlide *ngFor="let categoryArrays of categoryArray">
+                            <div class="category_box">
+                                <div class="category_box_inner">
+                                    <div class="img_div">
+                                        <img src="{{categoryArrays.imgName}}" alt="">
+                                    </div>
+                                    <div class="text_div">
+                                        <h3>{{categoryArrays.titleName}}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </ng-template>
@@ -362,3 +375,4 @@
         <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
     </div>
 </ng-template>
+<app-footer></app-footer> 

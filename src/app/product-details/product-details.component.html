@@ -55,6 +55,9 @@
             </ng-container>
             
           </li>
+        <ul class="brandShopNav">
+          <li><a><img src="assets/images/compare_icon2.png" alt="img"></a></li>
+          <li><a (click)="addToWishlist()"><img src="assets/images/like_icon.png" alt="img"></a></li>
         </ul>
         <div class="feedback-slides">
           <div class="client-feedback" lightbox-group>
@@ -91,6 +94,7 @@
         <div class="clearfix"></div>
         <div class="productName">{{productDetail.name}}</div>
         <ul class="brandShopNav" *ngIf="role == 'retailer'">
+        <ul class="brandShopNav">
           <li>
             <a><img src="assets/images/compare_icon2.png" alt="img" /></a>
           </li>
@@ -152,6 +156,7 @@
               </ng-container>
             </ng-container>
 
+            <a (click)="addToWishlist()" ><img src="assets/images/like_icon.png" alt="img" /></a>
           </li>
         </ul>
         <div class="clearfix"></div>
@@ -222,6 +227,7 @@
                 <!-- <select class="form-select" aria-label="Default select example" *ngIf="productDetail.min_order_qty != 'undefined' && productDetail.case_quantity != 'undefined'" (change)="onQtyChange($event)" > -->
                   <!-- <option *ngFor='let item of orderQtyCounter(11) ;let i = index' [value]="i + 1" >{{i == 10 ? 'Custom quantity' : i + 1}}</option> -->
                   <!-- <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" (change)="onQtyCustChange($event)"> -->
+                  <!-- <input type="number" (change)="onQtyCustChange($event)"> -->
                   <!-- <option value="cs">Custom quantity</option> -->
                 <!-- </select>  -->
               <!-- </ng-container> -->
@@ -240,12 +246,21 @@
                   <tr *ngFor="let item of openSizingArray">
                     <td style="text-transform: capitalize; color: #000; font-family: 'Futura' !important; font-size: 16px;">{{item.value}}</td>
                     <td style="text-align: right; color: #000; font-family: 'Futura' !important; font-size: 16px;">
+                  <th>Sizes</th>
+                  <th style="text-align: right;">Min Qty {{productDetail.min_order_qty}}</th>
+                </tr>
+                <tbody>
+                  <tr *ngFor="let item of openSizingArray">
+                    <td style="text-transform: capitalize;">{{item.value}}</td>
+                    <td style="text-align: right;">
                       <div class="numberBox"><button (click)="openSizingTotalQtyDec(item, item.qty)" class="btn minus-btn"></button><input type="text" name="" value="{{item.qty}}" class="quantityInput" (change)="onOpenSizeChange(item, $event)" ><button (click)="openSizingTotalQtyInc(item, item.qty)" class="btn plus-btn"></button></div>
                     </td>
                   </tr>
                   <tr>
                     <td style="color: #000; font-family: 'Futura' !important; font-size: 16px;">Total</td>
                     <td style="text-align: right; color: #000; font-family: 'Futura' !important; font-size: 16px;">{{openSizingTotalQty}}</td>
+                    <td>Total</td>
+                    <td style="text-align: right;">{{openSizingTotalQty}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -310,6 +325,10 @@
 
           </li>
           <li *ngIf="role == 'retailer'">
+            <a *ngIf="!addWishBtn" class="btn wishlist-btn" (click)="addToWishlist()" >Add to wishlist</a>
+            <a *ngIf="addWishBtn" class="btn wishlist-btn" >Adding to wish list...</a>
+          </li>
+          <li>
             <div class="grayNote">
               Bid process: Descripttion, that users can place a bids tto agree
               about price with seller
@@ -399,6 +418,7 @@
         </div>
       </div>
       <div class="productReviewsSec" *ngIf="role == 'retailer'">
+      <div class="productReviewsSec">
         <h3>256 Product reviews</h3>
         <span class="starSpan"><i class="fa-solid fa-star"></i></span>
         <span class="starSpan"><i class="fa-solid fa-star"></i></span>

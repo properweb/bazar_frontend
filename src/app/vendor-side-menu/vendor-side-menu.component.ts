@@ -18,6 +18,7 @@ export class VendorSideMenuComponent implements OnInit {
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
+    // alert(value);
   }
   
   toggleMenuShow(){

@@ -10,6 +10,24 @@
                 <div class="right-select-sec">
                 </div>
                 <div class="rightAccount">
+                <h2 class="heading">{{allDetails?.board_arr?.name}}</h2>
+                <h4>{{allDetails?.board_arr?.products_count}} saved</h4>
+                <div class="right-select-sec">
+                    <!-- <select class="form-select add_product_select" aria-label="Default select example" >
+                        <option selected hidden>Add products</option>
+                        <option value="1">Sort by products</option>
+                        <option value="2">Sort by brands</option>
+                    </select> -->
+                </div>
+                <div>
+                    <a class="edit-btn" (click)="openEditBoardModal(editBoardsContent)">Edit</a>
+                </div>
+                <div class="rightAccount">
+                    <!-- <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#home">My Boards</a>
+                        </li>
+                    </ul> --> 
+
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div id="home" class="container tab-pane active">
@@ -180,6 +198,48 @@
     </form> 
 </ng-template>
 
+<ng-template #editBoardsContent let-modal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"></button>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="ShippingForm" #editBoardForm="ngForm" (ngSubmit)="editBoardForm.form.valid && editBoard(editBoardForm)" novalidate>
+                    <h3>Create new board</h3>
+                    <div class="paymentDiv">
+                        <ul class="paymentForm">
+                            <li>
+                                <label>Name</label>
+                                <input type="text" value="" name="exist_board_name" [(ngModel)]="exist_board_name" #exist_board_nameval='ngModel' required>
+                                <span class="validate_errors"
+                                    *ngIf="(exist_board_nameval.touched || editBoardForm.submitted) && exist_board_nameval.errors?.['required']">
+                                    This field is required
+                                </span>
+                            </li>
+                            <li>
+                                <label>Visibility</label>
+                                <div class="radioDiv">
+                                    <label class="switch" for="checkbox6">
+                                        <input type="checkbox" id="checkbox6" [checked]="exist_board_visibility == '1'" (change)="onCheckChange($event)" />
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="submitBtn">
+                        <input *ngIf="!saveBtnDis" type="submit" value="Save changes" class="paymentBtn">
+                        <input *ngIf="saveBtnDis" type="button" disabled value="Saving changes..." class="paymentBtn">
+                    </div>
+                    <div class="deleteBtn">
+                        <input *ngIf="!deleteBtnDis" type="button" (click)="deleteBoard()" value="Delete Board" class="paymentBtn">
+                        <input *ngIf="deleteBtnDis" type="button" disabled value="Deleting Board..." class="paymentBtn">
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+</ng-template>
 <!------Edit boards modal ends--------->
 
 <!------Edit boards product modal starts--------->

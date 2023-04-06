@@ -37,6 +37,12 @@
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 .date-list .position-absolute { border: none; /*left: 15px;*/ margin: 0; padding: 0; width: 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 .date-list .input-group { /*left: 15px; position: absolute; width: auto;*/ }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 .date-list .position-absolute .form-control { border: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .fromSpan { color: #000; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 41px; text-align: center; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0;  padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .calnInput { background: url(../../assets/images/calender_icon.png) no-repeat 5px 11px; padding-left: 28px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .form-control:disabled, .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li .form-control[readonly] { background-color: #e9ecef; opacity: 1; }
+
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 { list-style: none; margin-bottom: 0; padding: 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li { }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .form-label { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 10px 0; width: 100%; }

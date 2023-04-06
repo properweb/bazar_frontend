@@ -52,6 +52,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor( private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router,private eventService: EventService, private titleServive: Title, private toast: NgToastService, private appComponent: AppComponent, public modalService: NgbModal) {
 
+  constructor( private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router,private eventService: EventService, private titleServive: Title, private toast: NgToastService, private appComponent: AppComponent) {
+
    }
 
   ngOnInit(): void {
@@ -84,6 +86,9 @@ export class ProductDetailsComponent implements OnInit {
     })
     this.currentUrl =this.router.url;
     this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+
+    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -124,6 +129,7 @@ export class ProductDetailsComponent implements OnInit {
   }
   
   beforeChange(e:any) {
+  
   }
 
   getProductDetail(product_id: any, user_id: any) {
@@ -138,6 +144,10 @@ export class ProductDetailsComponent implements OnInit {
 
       if(response.data.sell_type == '2' ) {        
         if(response.data.variation_options.length > 0) {
+
+      if(response.data.sell_type == '2' ) {        
+        if(response.data.variation_options.length > 0) {
+        console.log(response.data.min_order_qty);
           let splitQty = Math.ceil(Number(response.data.min_order_qty / response.data.variation_options.length));
           response.data.variation_options.forEach((element:any, key: any) => {
             if(element.name == 'Size') {
@@ -164,6 +174,12 @@ export class ProductDetailsComponent implements OnInit {
           });
       }
       this.totalOpenSizingQty();
+        
+      }
+
+      console.log(this.openSizingArray);
+      this.totalOpenSizingQty();
+
       if(response.data.variation_options.length > 0 ) {
         this.productVariation = Object.keys(response.data.variations);
         let firstObject = response.data.variations[Object.keys(response.data.variations)[0]];
@@ -182,6 +198,12 @@ export class ProductDetailsComponent implements OnInit {
           this.productVariationFirst = this.addToBagObject;
         }
         this.radioBtnValue = [];
+          console.log(response.data.prepacks[0].id);
+          
+          // this.addToBagObject.prepack_id = response.data.prepacks[0].id;
+          this.addToBagObject = { user_id: this.user_id, product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: firstObject.wholesale_price, quantity: 1};
+        }
+
         response.data.variation_options.forEach((element: any) => {
           this.radioBtnValue.push(element.options[0]);
           if(element.name == 'Color'){                     
@@ -290,6 +312,9 @@ export class ProductDetailsComponent implements OnInit {
 
   onVariationChange(event: any) {
     let keysComp = this.radioBtnValue.join('_');
+    console.log(keysComp);
+    console.log(this.productDetail.variations);
+    
     Object.keys(this.productDetail.variations).forEach(key => {
       if(key == keysComp ) {
         this.productVariationFirst = this.productDetail.variations[key];
@@ -297,6 +322,7 @@ export class ProductDetailsComponent implements OnInit {
         this.addToBagObject.price = this.productVariationFirst.wholesale_price;
       }      
     });
+    
   }
 
   onQtyChange(event: any) {
@@ -319,11 +345,15 @@ export class ProductDetailsComponent implements OnInit {
 
   onPrepackChange(event: any) {
     let firstPrepackOption:any;
+
+    let firstPrepackOption:any;
+    console.log();
     this.productDetail.prepacks.forEach((e: any) => {
       if(e.id == event.target.value) {
         firstPrepackOption = e;
       }
     });
+    
     let calPerPrepackValue = firstPrepackOption.size_ratio.split('-');
     let totalPrepack = 0;
     calPerPrepackValue.forEach((element: any) => {
@@ -344,6 +374,7 @@ export class ProductDetailsComponent implements OnInit {
     } else {
       addToBagObjectString = this.addToBagObject;
     }
+    console.log(addToBagObjectString);
 
     this.apiService.addToCart(addToBagObjectString).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
@@ -373,12 +404,16 @@ export class ProductDetailsComponent implements OnInit {
     } else {
       addToBagObjectString = this.addToBagObject;
     };
+    }
+    console.log(addToBagObjectString);
 
     this.apiService.addToWishlist(addToBagObjectString).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.getProductDetail(this.productKey, this.user_id);
         this.toast.success({detail:"Product added to wishlist.",summary: '' ,duration: 4000});
+        this.toast.success({detail:"Product added to wishlist.",summary: '' ,duration: 4000});
+        // this.afterLoginHeaderComp.fetchCart(this.user_id);
         this.addWishBtn = false;
       } else {
         this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
@@ -419,6 +454,7 @@ export class ProductDetailsComponent implements OnInit {
     for (let i = 0; i < this.openSizingArray.length; i++) {
       sum += this.openSizingArray[i].qty;
     }
+    console.log(sum);
     this.openSizingTotalQty = sum;
   }
 

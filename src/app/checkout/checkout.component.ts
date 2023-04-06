@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
@@ -18,6 +19,8 @@ export class CheckoutComponent implements OnInit {
   user_id!: any;
   ret_name!: any;
   retailerDetails!: any;
+
+  user_id!: any;
   brand_key!: any;
   name!: any;
   country!: any;
@@ -65,6 +68,7 @@ export class CheckoutComponent implements OnInit {
   billing_phone_code: any = "962";
   billing_phone_number!: any;
   errorMsg!:any;
+
   step1:boolean= true;
   step2:boolean= false;
   step3:boolean= false;
@@ -72,6 +76,8 @@ export class CheckoutComponent implements OnInit {
   sameAsBilling:boolean= false;
   
   constructor(private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService,private titleService: Title, private appComponent: AppComponent) { 
+  
+  constructor(private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService,private titleService: Title) { 
     const price = router.getCurrentNavigation()?.extras.state?.['price'];
     if(price != undefined) {
       this.storage
@@ -155,6 +161,8 @@ export class CheckoutComponent implements OnInit {
     let countryId = event.target.value;
     let country = this.countriesArray.filter((item: any) => item.id == countryId);
     this.phone_code = country[0].phone_code;
+  onChangeCountry(event: any){
+    let countryId = event.target.value;
     this.state = null;
     this.town = null;
     this.apiService.getStates(countryId).subscribe((responseBody) => {
@@ -393,6 +401,24 @@ export class CheckoutComponent implements OnInit {
       })
       return true;
     }
+  sendcheckOutForm(checkOutForm: any) {
+    this.btnDis = true;
+    this.apiService.placeOrder(checkOutForm.value).subscribe((responseBody) => {
+      let response =  JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.btnDis = false;
+        this.cartDetails = response.data.cart_det[0];
+        this.orderDetails = response.data.order_det;
+        this.nextOneFunction();
+      } else {
+        this.btnDis = false;
+        this.toast.error({detail: response.msg,summary: "" ,duration: 4000});
+      }
+    },(error) => {
+      this.btnDis = false;
+      this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+    })
+
   }
 
   nextOneFunction() {

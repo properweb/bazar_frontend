@@ -45,6 +45,7 @@
 
 <div class="common_step_sec step_one_sec" [hidden]="!vendorStepOneMain">
   <div class="container vendorContainer">
+    
     <div class="form_content_box step_one_form_box_1" [hidden]="!vendorStep1">
       <div class="row align-items-center customRow">
         <div class="col-lg-7 leftRegistionImg"
@@ -143,6 +144,96 @@
               </li>
             </ul>
           </form>
+        <form #vendorFormStep1="ngForm" (ngSubmit)="vendorFormStep1.form.valid && sendVendorFormStep1(vendorFormStep1)" novalidate>
+          <h3>Grow Your Wholesale Business</h3>
+          <p>Let's start with few details</p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="form-label">Brand Name</label>
+              <input type="text" class="form-control" name="brand_name" [(ngModel)]="brand_name" id="brand_name" #brand_nameval='ngModel' required>
+              <span class="validate_errors"
+                *ngIf="(brand_nameval.touched || vendorFormStep1.submitted) && brand_nameval.errors?.['required']">
+                Brand Name is required
+              </span>
+            </li>
+
+            <li class="col-lg-12">
+              <label class="form-label">Email Address</label>
+              <input type="text" required email class="form-control" name="email" [(ngModel)]="email" #emailval='ngModel'> 
+              <span class="validate_errors"
+                *ngIf="(emailval.touched || vendorFormStep1.submitted) && emailval.errors?.['required']">
+                An email is required
+              </span>
+              <span class="validate_errors"
+                *ngIf="(emailval.touched || vendorFormStep1.submitted) && emailval.errors?.['email']">
+                  Please enter valid email.
+              </span>
+            </li>
+
+            <li class="col-lg-12">
+              <label class="form-label">Website URL</label>
+              <input type="text" class="form-control" name="website_url" [(ngModel)]="website_url" required #website_urlval='ngModel'> 
+              <span class="validate_errors"
+                *ngIf="(website_urlval.touched || vendorFormStep1.submitted) && website_urlval.errors?.['required']">
+                Website URL is required
+              </span>         
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">Primary Category</label>
+              <select required [(ngModel)]="prime_cat" name="prime_cat" class="form-select" aria-label="Default select example" #prime_catval="ngModel" >
+                <option *ngFor="let item of primeCat1Array; let i = index" [value]="item.cat_id" >{{item.category}}</option>    
+              </select>
+              <span class="validate_errors"
+                *ngIf="(prime_catval.touched || vendorFormStep1.submitted) && prime_catval.errors?.['required']">
+                Prime category is required
+            </span>
+    
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">Country</label>
+              <select required [(ngModel)]="country" name="country" (change)="forPhoneCode($event)" class="form-select" aria-label="Default select example" #countryval="ngModel">
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+            <span class="validate_errors"
+                *ngIf="(countryval.touched || vendorFormStep1.submitted) && countryval.errors?.['required']">
+                Country is required
+            </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Number of wholesale products you sell</label>
+              <select required [(ngModel)]="num_products_sell" name="num_products_sell" class="form-select" aria-label="Default select example" #num_products_sellval="ngModel">
+                <option *ngFor="let item of productSellsArray" value="{{item.name}}">{{item.name}}</option>    
+              </select>
+              <span class="validate_errors"
+                *ngIf="(num_products_sellval.touched || vendorFormStep1.submitted) && num_products_sellval.errors?.['required']">
+               This field is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Number of independent store you work with</label>
+              <select required [(ngModel)]="num_store" name="num_store" class="form-select" aria-label="Default select example" #num_storelval="ngModel">
+                <option *ngFor="let item of storeWorkWith" value="{{item.name}}">{{item.name}}</option>     
+              </select>
+              <span class="validate_errors"
+                *ngIf="(num_storelval.touched || vendorFormStep1.submitted) && num_storelval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">How did you hear about us </label>
+              <select required [(ngModel)]="about_us" name="about_us" class="form-select" aria-label="Default select example" #about_usval="ngModel">
+                <option *ngFor="let item of aboutUs" value="{{item.name}}">{{item.name}}</option>       
+              </select>
+              <span class="validate_errors"
+                *ngIf="(about_usval.touched || vendorFormStep1.submitted) && about_usval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <button type="submit" class="btn btn-primary common_btn next1" >Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -276,6 +367,113 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep2="ngForm" (ngSubmit)="vendorFormStep2.form.valid && sendVendorFormStep2(vendorFormStep2)" novalidate>
+          <h3>Grow Your Wholesale Business</h3>
+          <p>Let's start with few details</p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="form-label">First Name</label>
+              <input type="text" hidden class="form-control"  name="brand_name" [(ngModel)]="brand_name" >
+              <input type="text" hidden class="form-control"  name="website_url" [(ngModel)]="website_url" >
+              <input type="text" hidden class="form-control" [(ngModel)]="prime_cat" name="prime_cat" >
+              <input type="text" hidden class="form-control"  [(ngModel)]="country" name="country" >
+              <input type="text" hidden class="form-control"  [(ngModel)]="num_products_sell" name="num_products_sell" >
+              <input type="text" hidden class="form-control"  [(ngModel)]="num_store" name="num_store" >
+              <input type="text" hidden class="form-control" [(ngModel)]="about_us" name="about_us" >
+              <input type="text" hidden class="form-control" name="step_count" [ngModel]=2 >
+
+              <input type="text" required class="form-control" placeholder="" name="first_name" [(ngModel)]="first_name" #first_nameVal="ngModel">
+              <span class="validate_errors"
+                *ngIf="(first_nameVal.touched || vendorFormStep2.submitted) && first_nameVal.errors?.['required']">
+                First Name is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Last name</label>
+              <input type="text" required class="form-control" placeholder="" name="last_name" [(ngModel)]="last_name" #last_nameVal="ngModel" >      
+              <span class="validate_errors"
+                *ngIf="(last_nameVal.touched || vendorFormStep2.submitted) && last_nameVal.errors?.['required']">
+                Last Name is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Email Address</label>
+              <input type="text" required email class="form-control" placeholder="" name="email" [(ngModel)]="email" #emailval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(emailval.touched || vendorFormStep2.submitted) && emailval.errors?.['required']">
+                An email is required
+              </span>
+            <span class="validate_errors"
+              *ngIf="(emailval.touched || vendorFormStep2.submitted) && emailval.errors?.['email']">
+                Please enter valid email.
+            </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="" name="password" minlength="6" [(ngModel)]="password" required #passwordVal="ngModel">
+              <span class="validate_errors"
+                *ngIf="(passwordVal.touched || vendorFormStep2.submitted) && passwordVal.errors?.['required']">
+                Password is required
+              </span>
+              <span class="validate_errors"
+                *ngIf="(passwordVal.touched || vendorFormStep2.submitted) && passwordVal.errors?.['minlength']">
+                Password must have six characters.
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Phone number</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <input type="text" class="form-control telephone-input" [value]="'+'+country_code">
+                  <select class="form-select telephone-select" aria-label="Default select example" name="country_code" [(ngModel)]="country_code" >
+                    <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                  </select>
+                </span>
+                <input required type="number" class="form-control" name="phone_number" [(ngModel)]="phone_number" #phone_numberVal="ngModel">            
+              </div>
+              <span class="validate_errors"
+                *ngIf="(phone_numberVal.touched || vendorFormStep2.submitted) && phone_numberVal.errors?.['required']">
+                Phone number is required
+              </span>
+              <span class="validate_errors"
+                *ngIf="(phone_numberVal.touched || vendorFormStep2.submitted) && phone_numberVal.errors?.['pattern']">
+                Phone number not valid.
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Default language</label>
+              <select required class="form-select" aria-label="Default select example" name="language" [(ngModel)]="language" #languageVal="ngModel">
+                <option *ngFor="let item of defaultLanguageArray" value="{{item.name}}">{{item.name}}</option>       
+              </select>
+              <span class="validate_errors"
+              *ngIf="(languageVal.touched || vendorFormStep2.submitted) && languageVal.errors?.['required']">
+              Language is required
+            </span>
+            </li>
+            <li class="col-lg-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" required value="" name="agree_terms" [(ngModel)]="agree_terms" #agree_termsVal="ngModel">
+                <label class="form-check-label">I agree to Bazar's <a>Terms of service</a>, <a>Brand Agreement</a> and <a>Privacy policy</a></label>
+              </div>
+              <span class="validate_errors"
+              *ngIf="(agree_termsVal.touched || vendorFormStep2.submitted) && agree_termsVal.errors?.['required']">
+              You have to agree our terms and condition for proceed to next step.
+            </span>
+            </li>
+            <li class="col-lg-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" name="update_check" [(ngModel)]="update_check" >
+                <label class="form-check-label">To ensure you receive important product and marketting updates from Bazaar, sign up for our emails. You can opt out any time</label>
+              </div>
+            </li>
+            <li class="col-lg-12">
+              <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span> 
+              <button type="submit" class="btn btn-primary common_btn next2" *ngIf="!spinnerShow">Save & Continue</button>
+              <button type="submit" class="btn btn-primary common_btn next2" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; left: 140px;bottom: -28px;position: absolute;"></button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -288,6 +486,8 @@
           <div class="white_logo"><a><img src="assets/images/bazar_logo_white.svg" alt="" /></a></div>
         </div>
         <div class="col-lg-5 rightRegistionFormBox">
+
+
           <div class="RegistionFormPaddingBox">
             <h3>Welcome to Bazar!</h3>
             <p>Let's start setting up your page so you can unlock access to hundreds of thousand rettailers. You'll be able to save your progress as you go It won't take long: approximately 15 minutes
@@ -364,6 +564,59 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep3="ngForm" (ngSubmit)="vendorFormStep3.form.valid && sendVendorFormStep3(vendorFormStep3)">
+          <h3>Tell Us About Your Brand</h3>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="form-label">Brand Name</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input type="text" hidden class="form-control" name="step_count" [ngModel]=3 >
+              <input required type="text" class="form-control" placeholder="" name="brand_name" [(ngModel)]="brand_name" #brand_nameval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(brand_nameval.touched || vendorFormStep3.submitted) && brand_nameval.errors?.['required']">
+                Brand Name is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Primary Category</label>
+              <select required [(ngModel)]="prime_cat" name="prime_cat" class="form-select" aria-label="Default select example" #prime_catval="ngModel" *ngIf="primeCatArray?.length > 0">
+                <option *ngFor="let item of primeCat1Array" value="{{item.cat_id}}">{{item.category}}</option>    
+              </select>
+              <span class="validate_errors"
+                *ngIf="(prime_catval.touched || vendorFormStep3.submitted) && prime_catval.errors?.['required']">
+                Primary Category is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Website URL</label>
+              <input required type="text" class="form-control" placeholder="" name="website_url" [(ngModel)]="website_url" #website_urlval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(website_urlval.touched || vendorFormStep3.submitted) && website_urlval.errors?.['required']">
+                Website URL is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Year Established</label>
+
+              <input required type="text" class="form-control" placeholder="" name="established_year" [(ngModel)]="established_year" #established_yearval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(established_yearval.touched || vendorFormStep3.submitted) && established_yearval.errors?.['required']">
+                Year Established is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Instagram Handle(optional)</label>
+              <input type="text" class="form-control" placeholder="" name="insta_handle" [(ngModel)]="insta_handle" #insta_handleval="ngModel">
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn1">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next4">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -441,6 +694,73 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep4="ngForm" (ngSubmit)="vendorFormStep4.form.valid && sendVendorFormStep4(vendorFormStep4)">
+          <h3>Your Location</h3>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="form-label">Headquatered</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input type="text" hidden class="form-control" name="step_count" [ngModel]=4 >
+              <select required class="form-select" aria-label="Default select example" (change)="onChangeCountry($event)" name="headquatered" [(ngModel)]="headquatered" #headquateredval="ngModel">
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+              <span class="validate_errors"
+                  *ngIf="(headquateredval.touched || vendorFormStep4.submitted) && headquateredval.errors?.['required']">
+                  Headquatered is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">State</label>
+              <select required class="form-select" aria-label="Default select example" name="state" [(ngModel)]="state" (change)="onChangeState($event)" #stateval="ngModel">
+                <option [ngValue]="null" hidden ></option>
+                <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option> 
+              </select>
+              <span class="validate_errors"
+                *ngIf="(stateval.touched || vendorFormStep4.submitted) && stateval.errors?.['required']">
+                State is required
+               </span>
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">City</label>
+              <select required class="form-select" aria-label="Default select example" name="city" [(ngModel)]="city" #cityval="ngModel">
+                <option [ngValue]="null" hidden ></option>
+                <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option> 
+              </select>
+              <span class="validate_errors"
+                *ngIf="(cityval.touched || vendorFormStep4.submitted) && cityval.errors?.['required']">
+                City is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">Products made in</label>
+              <select required class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" #product_madeval="ngModel">
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+              <span class="validate_errors"
+                *ngIf="(product_madeval.touched || vendorFormStep4.submitted) && product_madeval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <label class="form-label">Products shipped from</label>
+              <select required class="form-select" aria-label="Default select example" name="product_shipped" [(ngModel)]="product_shipped" #product_shippedval="ngModel">
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+              <span class="validate_errors"
+                *ngIf="(product_shippedval.touched || vendorFormStep4.submitted) && product_shippedval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn2 mt-4"
+                (click)="backFourFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next5 mt-4" >Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -518,6 +838,75 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep5="ngForm" (ngSubmit)="vendorFormStep5.form.valid && sendVendorFormStep5(vendorFormStep5)">
+          <h3>Tell Us About Your Business</h3>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="form-label">How many wholesale products do you sell at any given time</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input required type="text" class="form-control" placeholder="" name="num_products_sell" [(ngModel)]="num_products_sell" #num_products_sellval="ngModel">
+              <span class="span_alert">This number should represent how many uniquue products or styles you sell to retailers at a given time</span>
+              <span class="validate_errors"
+                *ngIf="(num_products_sellval.touched || vendorFormStep5.submitted) && num_products_sellval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">How often do you add new products to your catalog</label>
+              <select required class="form-select" aria-label="Default select example" name="num_products_addcatalog" [(ngModel)]="num_products_addcatalog" #num_products_addcatalogval="ngModel" >
+                <option *ngFor="let item of numProductsAddcatalogArray" value="{{item.name}}">{{item.name}}</option> 
+              </select>
+              <span class="validate_errors"
+                *ngIf="(num_products_addcatalogval.touched || vendorFormStep5.submitted) && num_products_addcatalogval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+
+            <li class="col-lg-12" *ngIf="num_products_addcatalog !== undefined && num_products_addcatalog !== 'Weekly' && num_products_addcatalog !== 'Monthly' ">
+              <label class="form-label">In which months do you release new inventory?</label>
+              <ul class="row sub_product_list">         
+                <li class="col-lg-4" *ngFor="let item of releaseInventoryCheckBox; let i = index">
+                  <div class="form-check">
+                    <input type="checkbox" [value]="item.value" class="form-check-input" name="release_inventory" (change)="onCheckboxChange($event , i)" >
+                    <label class="form-check-label">{{item.name}}</label>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li class="col-lg-12">
+              <label class="form-label">How many small retail stores carry your brand</label>
+              <select required class="form-select" aria-label="Default select example" name="stored_carried" [(ngModel)]="stored_carried" #stored_carriedval="ngModel">
+               <option *ngFor="let item of storeWorkWith" value="{{item.name}}">{{item.name}}</option> 
+              </select>
+              <span class="span_alert">This number should represent how many uniquue products or styles
+                you sell to retailers at a given time</span>
+                <span class="validate_errors"
+                  *ngIf="(stored_carriedval.touched || vendorFormStep5.submitted) && stored_carriedval.errors?.['required']">
+                  This field is required
+                </span>
+            </li>
+            <li class="col-lg-12">
+              <label class="form-label">Is your brand in any large retail chains or big-box stores?</label>
+              <select required class="form-select" aria-label="Default select example" name="brand_big_box_store" [(ngModel)]="brand_big_box_store" #brand_big_box_storeval="ngModel">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <span class="validate_errors"
+                *ngIf="(brand_big_box_storeval.touched || vendorFormStep5.submitted) && brand_big_box_storeval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn3 mt-4"
+                (click)="backFiveFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next6 mt-4">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -555,6 +944,40 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep7="ngForm" (ngSubmit)="vendorFormStep7.form.valid && sendVendorFormStep7(vendorFormStep7)">
+          <h3>Tell Us What Tools You're Using</h3>
+          <p>Share which tools you use to run your business. We'll keep you updated when we add new tool integration</p>
+          <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12" >
+              <ul class="row sub_product_list" >
+                <li class="col-lg-6" *ngFor="let item of toolsUsed">
+                  <div class="form-check">
+                    <input required [value]="item.value" (change)="toolsCheckboxChange($event)" type="checkbox" class="form-check-input" name="tools_used" [ngModel]="tools_used" #tools_usedvalue="ngModel">
+                    <label class="form-check-label">{{item.name}}</label>
+                  </div>
+                </li>
+                <span class="validate_errors"
+                  *ngIf="validError && checkedToolsArray?.length === 0"
+                  >
+                  This field is required
+                </span>
+              </ul>
+            </li>
+        
+            <li class="col-lg-12">
+              <label class="form-label">Other</label>
+              <input type="text" class="form-control" name="tools_used_other" [(ngModel)]="tools_used_other" #tools_used_otherval="ngModel">
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn5 mt-4" (click)="backSixFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button (click)="validError = true;" type="submit" class="btn btn-primary common_btn next8 mt-4">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -564,6 +987,7 @@
         <div class="col-lg-7 leftRegistionImg2"
           style="background-image: url(assets/images/vendor-registration-img6.png);">
         </div>
+          style="background-image: url(assets/images/vendor-registration-img6.png);"></div>
         <div class="col-lg-5 rightRegistionFormBox">
           <h3>Now, Let's Set Up Your Shop</h3>
           <p>Your Bazar shop page is your brand's storefront on Bazar. Ut's where retailers will learn about
@@ -621,6 +1045,28 @@
               </li>
             </ul>
           </form>
+          style="background-image: url(assets/images/vendor-registration-img9.png);"></div>
+        <div class="col-lg-5 rightRegistionFormBox">
+          <h3>Upload a Feature Image</h3>
+          <p>This image are used in the market place and in marketing e-mails. Choose a lifestyle photo that
+            showcases your products in context</p>
+          <h4>Requirements:</h4>
+          <ul class="requireList">
+            <li>500 × 500 pixels minimum</li>
+            <li>No added text, watermarks, or logos</li>
+          </ul>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <button class="uploadBtn" (click)="openUploadFeatureModal(uploadContent)">Upload</button>
+              <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn7 mt-4" (click)="backNineFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary common_btn next10 mt-4 disabled">Save & Continue</button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -630,6 +1076,7 @@
         <div class="col-lg-7 leftRegistionImg"
           style="background-image: url(assets/images/vendor-registration-img9.png);">
         </div>
+          style="background-image: url(assets/images/vendor-registration-img9.png);"></div>
         <div class="col-lg-5 rightRegistionFormBox">
         <form #vendorFormStep9="ngForm" (ngSubmit)="sendVendorFormStep9(vendorFormStep9 , featureImgVal.value)">
           <h3>Upload a Feature Image</h3>
@@ -644,6 +1091,7 @@
               <div class="show_upload_img">
                 <input type="hidden" name="user_id" [(ngModel)]="user_id">
                 <img [src]="" id="hidden_base64" alt="upload image" (click)="openUploadFeatureModal(uploadContent)">
+                <img [src]="" id="hidden_base64" alt="upload image">
                 <input id="purbayan" type="hidden" alt="upload image" name="featured_image_hidden" #featureImgVal [ngModel]="featured_image_hidden">
               </div>
               <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
@@ -696,6 +1144,28 @@
               </li>
             </ul>
           </form>
+          style="background-image: url(assets/images/vendor-registration-img10.png);"></div>
+        <div class="col-lg-5 rightRegistionFormBox">
+          <h3>Upload a Profile Photo</h3>
+          <p>This photo is used on your shop page and in messages to retailers. Choose a picture of your
+            brand's primary maker, your teammates, or your brand's logo.</p>
+          <h4>Requirements:</h4>
+          <ul class="requireList">
+            <li>500 × 500 pixels minimum</li>
+            <li>No added text, watermarks, or logos</li>
+          </ul>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <button class="uploadBtn" (click)="openUploadProfileModal(uploadContent2)">Upload</button>
+              <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn10 mt-4" (click)="backElevenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary common_btn next13 mt-4 disabled">Save & Continue</button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -709,6 +1179,8 @@
           <h3>Upload a Profile Photo</h3>
           <p>This photo is used on your shop page and in messages to retailers. Choose a picture of your
             brand's primary maker, your teammates, or your brand's logo.</p>
+          <h3>Upload a Feature Image</h3>
+          <p>This photo is used on your shop page and in messages to retailers. Choose a picture of your brand's primary maker, your teammates, or your brand's logo.</p>
           <h4>Requirements:</h4>
           <ul class="requireList">
             <li>500 × 500 pixels minimum</li>
@@ -771,6 +1243,26 @@
               </li>
             </ul>
           </form>
+          <h3>Upload a Cover Image</h3>
+          <p>This photo is featured at the top of your shop page. Choose a photo that represents your brand aesthetic or highlights your best-selling products.</p>
+          <h4>Requirements:</h4>
+          <ul class="requireList">
+            <li>1111 × 252 pixels minimum</li>
+            <li>No added text, watermarks, or logos</li>
+            <li>No photo collages</li>
+          </ul>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <button class="uploadBtn" (click)="openUploadCoverModal(uploadContent3)">Upload</button>
+              <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn13 mt-4" (click)="backThirteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary common_btn next16 mt-4 disabled">Save & Continue</button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -806,6 +1298,32 @@
               </li>
             </ul>
           </form>
+        <form #vendorFormStepCover="ngForm" (ngSubmit)="sendVendorFormStepCover(vendorFormStepCover , coverImgVal.value)">
+          <h3>Upload a Cover Image</h3>
+          <p>This photo is featured at the top of your shop page. Choose a photo that represents your brand
+            aesthetic or highlights your best-selling products.</p>
+          <h4>Requirements:</h4>
+          <ul class="requireList">
+            <li>1111 × 252 pixels minimum</li>
+            <li>No added text, watermarks, or logos</li>
+            <li>No photo collages</li>
+          </ul>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <div class="show_cover_image">
+                <img [src]="" id="cover_img_show" alt="upload image">
+                <input id="cover_img" type="hidden" alt="upload image" name="featured_image_hidden" #coverImgVal>
+              </div>
+              <span class="span_alert">Note: You'll be able to update this photo at any time.</span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn15 mt-4" (click)="backFourteenAFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next18 mt-4" (click)="nextSixeenFunction()">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -842,6 +1360,29 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep11="ngForm" (ngSubmit)="vendorFormStep11.form.valid && sendVendorFormStep11(vendorFormStep11)">
+          <h3>Share Your Brand Story</h3>
+          <p>This photo is featured at the top of your shop page. Choose a photo that represents your brand aesthetic or highlights your best-selling products.</p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input type="text" hidden class="form-control" name="step_count" [ngModel]=10 >
+              <textarea #shared_brd_storyRef required class="form-control textareaControl" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" #shared_brd_storyval="ngModel"></textarea>
+              <span class="limitSpan">{{shared_brd_storyRef.value?.length}}/1500</span>
+              <span class="validate_errors"
+                *ngIf="(shared_brd_storyval.touched || vendorFormStep11.submitted) && shared_brd_storyval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn16 mt-4" (click)="backFifteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next19 mt-4">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -884,6 +1425,39 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep12="ngForm" (ngSubmit)="vendorFormStep12.form.valid && sendVendorFormStep12(vendorFormStep12)">
+          <h3>Add Tags to Your Shop Page</h3>
+          <p>Choose details about your business to display on your shop page. All tags are optional.</p>
+          <ul class="row vendorTagList">
+            <li class="col-lg-4" *ngFor="let item of tagsArray">
+              <label class="store_label">
+                <input required [value]="item.value" (change)="tagsCheckboxChange($event)" type="checkbox" class="form-check-input" name="tag_shop_page" [ngModel]="tag_shop_page" >
+                <h4>{{item.name}}</h4>
+                <span class="checkmark"></span>
+              </label>
+        
+            </li>
+            <span class="validate_errors"
+            *ngIf="validError && tagsToolsArray?.length === 0"
+            >
+            This field is required
+          </span>
+          </ul>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label class="normalLabel">Anything missing from the list? Share with us!</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <textarea class="form-control textareaControl smallTextarea" rows="3" name="tag_shop_page_about" [(ngModel)]="tag_shop_page_about" ></textarea>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn17 mt-4" (click)="backSixteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button (click)="validError = true;" type="submit" class="btn btn-primary common_btn next20 mt-4">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -951,6 +1525,54 @@
               </li>
             </ul>
           </form>
+        <form #vendorFormStep13="ngForm" (ngSubmit)="vendorFormStep13.form.valid && sendVendorFormStep13(vendorFormStep13)">
+          <h3>Set Order Preferences</h3>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label>Average Lead Time (Days)</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input type="text" hidden class="form-control" name="step_count" [ngModel]=12 >
+              <input required type="number" class="form-control" name="avg_lead_time" [(ngModel)]="avg_lead_time" #avg_lead_timeval="ngModel">
+              <span class="span_alert">How long you usually take to prepare a new order. Delivery window estimates will be shown to retailers separately.</span>
+              <span class="validate_errors"
+                *ngIf="(avg_lead_timeval.touched || vendorFormStep13.submitted) && avg_lead_timeval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <label>First Order Minimum</label>
+              <span class="prefix">$</span>
+              <input required type="number" class="form-control prefix-control" name="first_order_min" [(ngModel)]="first_order_min" #first_order_minval="ngModel">
+              <span class="validate_errors"
+                *ngIf="(first_order_minval.touched || vendorFormStep13.submitted) && first_order_minval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-6">
+              <label>Re-order Minimum</label>
+              <span class="prefix">$</span>
+              <input required type="number" class="form-control prefix-control" name="re_order_min" [(ngModel)]="re_order_min"  #re_order_minval="ngModel" >
+              <span class="validate_errors"
+                *ngIf="(re_order_minval.touched || vendorFormStep13.submitted) && re_order_minval.errors?.['required']">
+                This field is required
+              </span>
+            </li>
+            <li class="col-lg-12">
+              <div class="graySection">
+                <p><strong>New retailers to try your brand!</strong></p>
+                <p>Retailers on Bazaar run small, independent shops. When trying new products for their stores, they tend to look for brands with low first order minimums.</p>
+                <p>We recommend setting your first order minimum under $200.00. You can always change this later.</p>
+              </div>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn18 mt-4"
+                (click)="backSeveenteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next21 mt-4" >Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -964,6 +1586,11 @@
           <form #vendorFormStep14="ngForm" (ngSubmit)="vendorFormStep14.form.valid && sendVendorFormStep14(vendorFormStep14)">
             <h3>Upload Wholesale Catalog</h3>
             <p>Once we have this info, our team can start building your shop on Bazaar. <a style="color: #393939;" href="https://staging.bazarcenter.ca/public/uploads/demo/product_sample.xlsx" download="BazarDemoWholesaleCatalog">Help With Catalog</a>
+
+          <!-- form14 -->
+          <form #vendorFormStep14="ngForm" (ngSubmit)="vendorFormStep14.form.valid && sendVendorFormStep14(vendorFormStep14)">
+            <h3>Upload Wholesale Catalog</h3>
+            <p>Once we have this info, our team can start building your shop on Bazaar. <a style="color: #393939;" href="https://demoupdates.com/updates/new-bazar/dev/admin/public/uploads/sample.xlsx" download="BazarDemoWholesaleCatalog">Help With Catalog</a>
             </p>
             <p>Please download and fill out our linesheet template, or upload an export of your Shopify catalog.
             </p>
@@ -1086,6 +1713,59 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep15="ngForm" (ngSubmit)="sendVendorFormStep15(vendorFormStep15)">
+          <h3>Upload Wholesale Catalog</h3>
+          <p>Once we have this info, our team can start building your shop on Bazaar. <a>Help With Catalog</a>
+          </p>
+          <p>Please download and fill out our linesheet template, or upload an export of your Shopify catalog.
+          </p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-6">
+              <div class="upload_files small_upload_files">
+                <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                <input type="file" multiple class="uploadInput" name="upload_wholesale_xlsx" [(ngModel)]="upload_wholesale_xlsx" >
+                <p>Multiple catalogs?<br>
+                  <strong>Upload</strong> Another Spreadsheet
+                </p>
+              </div>
+            </li>
+            <li class="col-lg-6">
+              <ul class="uploadSheetsLists">
+                <li>
+                  <span class="item_name">products.xlsx</span>
+                  <span class="item_status">100%</span>
+                  <span class="item_delete"><a><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                </li>
+                <li>
+                  <span class="item_name">products.xlsx</span>
+                  <span class="item_status">100%</span>
+                  <span class="item_delete"><a><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                </li>
+                <li>
+                  <span class="item_name">products.xlsx</span>
+                  <span class="item_status">100%</span>
+                  <span class="item_delete"><a><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                </li>
+                <li>
+                  <span class="item_name">products.xlsx</span>
+                  <span class="item_status">100%</span>
+                  <span class="item_delete"><a><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                </li>
+              </ul>
+            </li>
+            <li class="col-lg-12">
+              <label class="normalLabel">Notes</label>
+              <textarea class="form-control textareaControl smallTextarea" rows="3" name="upload_wholesale_notes" [(ngModel)]="upload_wholesale_notes"></textarea>
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn20 mt-4" (click)="backNineteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next23 mt-4" (click)="nextTwentyOneFunction()">Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -1202,6 +1882,106 @@
               </li>
             </ul>
           </form>
+
+        <form #vendorFormStep16="ngForm" (ngSubmit)="sendVendorFormStep16(vendorFormStep16)">
+          <h3>Share Product Photography</h3>
+          <p>Our design team will use these images to build your product listings.</p>
+          <h4>Sharing Reference</h4>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <ul class="radio_lists">
+                <li>
+                  <div class="form-check styles_form_check">
+                    <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                    <input type="radio" [disabled]=" (photo_lib_link && photo_lib_link?.length > 0) || (photo_url && photo_url?.length > 0)" class="form-check-input" name="radio1" (click)="showRadioOneFunction()" checked>
+                    <label class="form-check-label">Upload a ZIP file (Recommended)</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check styles_form_check">
+                    <input type="radio" [disabled]="upload_zip?.length > 0 || (photo_url && photo_url?.length > 0) " class="form-check-input" name="radio1" (click)="showRadioTwoFunction()">
+                    <label class="form-check-label">Link to Google Drive / Dropbox Folder</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check styles_form_check">
+                    <input type="radio" [disabled]="upload_zip?.length > 0 || (photo_lib_link && photo_lib_link?.length > 0)" class="form-check-input" name="radio1" (click)="showRadioThreeFunction()">
+                    <label class="form-check-label">Let Bazar use photos from my website</label>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="col-lg-12">
+              <div class="show_radion_content_div show_upload_zip_radion_content" *ngIf="showRadionContent1">
+                <ul class="radio_content_list row">
+                  <li class="col-lg-6">
+                    <div class="upload_files small_upload_files" *ngIf="upload_zip?.length == 0">
+                      <input type="file" accept="application/zip" class="uploadInput" (change)="getProductZip($event)" >
+                      <p><strong>Upload</strong></p>
+                    </div>
+
+                    <ul class="uploadSheetsLists" *ngIf="upload_zip?.length > 0">
+                      <li *ngFor="let item of upload_zip_names">
+                        <span class="item_name">{{item}}</span>
+                        <span class="item_status">100%</span>
+                        <span class="item_delete"><a (click)="onZipDelete()"><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="col-lg-6">
+                    <h5>Photography requirements:</h5>
+                    <ul class="disc_list">
+                      <li>Add 1 image per product, at least 1050x1050 pixels large</li>
+                      <li>Label all images with product name and/or SKU</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="show_radion_content_div show_upload_zip_radion_content" *ngIf="showRadionContent2">
+                <ul class="radio_content_list row">
+                  <li class="col-lg-6">
+                    <label>Photo Library Link</label>
+                    <input type="text" class="form-control" placeholder="" name="photo_lib_link" [(ngModel)]="photo_lib_link">
+                    <div class="graySection">
+                      <p><strong>Please allow bazar@mail.com access to your shared
+                          folder.</strong> Please review files in your Drive to ensure you are
+                        not providing access to sensitive or personal information.</p>
+                    </div>
+                  </li>
+                  <li class="col-lg-6">
+                    <h5>Photography requirements:</h5>
+                    <ul class="disc_list">
+                      <li>Add 1 image per product, at least 1050x1050 pixels large</li>
+                      <li>Label all images with product name and/or SKU</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="show_radion_content_div show_upload_zip_radion_content" *ngIf="showRadionContent3">
+                <ul class="radio_content_list row">
+                  <li class="col-lg-6">
+                    <label>Website URL</label>
+                    <input type="text" class="form-control" placeholder="22.mysite.com" name="photo_url" [(ngModel)]="photo_url" >
+                  </li>
+                  <li class="col-lg-6">
+                    <h5>Photography requirements:</h5>
+                    <ul class="disc_list">
+                      <li>Add 1 image per product, at least 1050x1050 pixels large</li>
+                      <li>Label all images with product name and/or SKU</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <span *ngIf="zipError" class="validate_errors">Only Zip file allowed!</span>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn21 mt-4" (click)="backNineteenFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next24 mt-4" >Save & Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -1277,6 +2057,27 @@
               </li>
             </ul>
           </form>
+        <form #vendorFormStep17="ngForm" (ngSubmit)="sendVendorFormStep17(vendorFormStep17)">
+          <h3>Set Up Your Bazar Direct Link</h3>
+          <p>Customize the link to your Bazar Direct page so it represents your shop's name and branding. You'll lock in 0% commission for anyone who orders through Bazar Direct.</p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <label>Bazar direct link</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <span class="suburl">https://demoupdates.com/updates/new-bazar/dev/brand-shop/</span>
+              <input type="text" class="form-control suburl-control" name="bazaar_direct_link" [(ngModel)]="bazaar_direct_link" >
+            </li>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn24 mt-4"
+                (click)="backTwentyThreeFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next27 mt-4"
+                (click)="nextTwentyFiveFunction()">Save &
+                Continue</button>
+            </li>
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -1324,6 +2125,40 @@
               </li> 
             </ul>
           </form>
+        <form #vendorFormStep18="ngForm" (ngSubmit)="sendVendorFormStep18(vendorFormStep18)">
+          <h3>Invite Customers to Shop Through Bazar Direct</h3>
+          <p>Upload your contact list so you can easily invite your customers to shop through Bazaar Direct
+            with 0% commission.</p>
+          <ul class="vendorRegFormList row">
+            <li class="col-lg-12">
+              <div class="upload_files">
+                <input type="hidden" class="form-control" name="user_id" [(ngModel)]="user_id" >
+                <input type="file" multiple accept=".xlsx, .xls, .csv" class="uploadInput" (change)="onUploadContactList($event)">
+                <p>Upload</p>
+              </div>
+
+              <ul class="uploadSheetsLists" *ngIf="upload_contact_list != undefined && upload_contact_list != '' && upload_contact_list != null && upload_contact_list != '[]'">
+                <li>
+                  <span class="item_name">{{upload_contact_list_names}}</span>
+                  <span class="item_status">100%</span>
+                  <span class="item_delete"><a (click)="onContactListDelete()"><img src="assets/images/delete_icon.png" alt="delete"></a></span>
+                </li>
+              </ul>
+              <span class="span_alert2">Not sure what to upload? Download our <a href="https://staging.bazarcenter.ca/public/uploads/demo/demo_customers.xlsx" download="BazarCustomerCSVFormat">CSV template</a><br>
+                Please only upload information of customers with their permission.</span>
+            </li>
+            <span *ngIf="excelError" class="validate_errors">Only Excel file allowed!</span>
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn25 mt-4"
+                (click)="backTwentyFourFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next28 mt-4"
+                (click)="nextTwentySevenFunction()">Save & Continue</button>
+              <p class="text-center"><a class="skipNow">Skip for now</a></p>
+            </li> 
+          </ul>
+        </form>
         </div>
       </div>
     </div>
@@ -1467,6 +2302,104 @@
   
         </div>
       </form>
+    <form #vendorFinalStep="ngForm" (ngSubmit)="sendVendorFinalStep(vendorFinalStep)">
+      <div class="row customRow">
+        <div class="col-lg-6 brandInformationleft">      
+          <h4>Brand Information</h4>
+          <ul class="row brandInfoFormList">        
+            <li class="col-lg-6">
+              <label>Brand Name</label>
+              <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+              <input type="text" class="form-control" value="Nil Fashion" name="brand_name" [(ngModel)]="brand_name" >
+            </li>
+            <li class="col-lg-6">
+              <label>Website URL</label>
+              <input type="text" class="form-control" value="www.mysite.com" name="website_url" [(ngModel)]="website_url" >
+            </li>
+            <li class="col-lg-6">
+              <label>Instagram Handle</label>
+              <input type="text" class="form-control" value="-" name="insta_handle" [(ngModel)]="insta_handle" >
+            </li>
+            <li class="col-lg-6">
+              <label>Year Established</label>
+              <input type="text" class="form-control" value="2022" name="established_year" [(ngModel)]="established_year" > 
+            </li>
+          </ul>
+          <h4>Brand Information</h4>
+          <ul class="row brandInfoFormList">
+            <li class="col-lg-6">
+              <label>Stores you are carried in</label>
+              <input type="text" class="form-control" value="Less than 10" name="num_store" [(ngModel)]="num_store" > 
+            </li>
+            <li class="col-lg-6">
+              <label>First Minimum Order</label>
+              <input type="text" class="form-control" value="$100.00" name="first_order_min" [(ngModel)]="first_order_min" >
+            </li>
+            <li class="col-lg-6">
+              <label>Reorder Minimum</label>
+              <input type="text" class="form-control" value="$0.00" name="re_order_min" [(ngModel)]="re_order_min" >
+            </li>
+            <li class="col-lg-6">
+              <label>Average Lead Time</label>
+              <input type="text" class="form-control" value="10 days" name="avg_lead_time" [(ngModel)]="avg_lead_time" >
+            </li>
+          </ul>
+          <h4>Location</h4>
+          <ul class="row brandInfoFormList">
+            <li class="col-lg-6">
+              <label>Products Made In</label>
+              <select class="form-select" aria-label="Default select example" name="product_made" [(ngModel)]="product_made" > 
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option>
+              </select>
+
+            </li>
+            <li class="col-lg-6">
+              <label>Headquatered In</label>
+              <select class="form-select" aria-label="Default select example" name="headquatered" [(ngModel)]="headquatered" >
+                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+              </select>
+            </li>
+          </ul>
+          <h4>Story</h4>
+          <ul class="row brandInfoFormList">
+            <li class="col-lg-6">
+              <label>Brand Story</label>
+              <textarea class="form-control textareaControl smallTextarea" rows="3" name="shared_brd_story" [(ngModel)]="shared_brd_story" ></textarea>
+            </li>
+            <li class="col-lg-6">
+              <label></label>
+              <ul class="sub_product_list">
+              </ul>
+            </li>
+          </ul>
+          <h4 *ngIf="upload_contact_list?.length > 0">Email Contact List</h4>
+          <ul class="uploadSheetsLists" *ngIf="upload_contact_list?.length > 0" >
+            <li *ngFor="let item of upload_contact_list_names">
+              <span class="item_name">{{item}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-6 brandInformationRight">
+          <div class="show_profile_photo">
+            <img style="border-radius: 100%; width: 150px; " [src]="" id="profile_img_show1" alt="upload image">
+          </div>
+          <h3>Final Step! Review Your Store Information</h3>
+          <p>Please review your profile information on the left side before submitting to the Bazaar team.</p>
+          <ul class="row vendorRegFormList">
+            <li class="col-lg-6">
+              <button type="button" class="btn btn-primary back_btn back_btn27 mt-4"
+                (click)="backTwentyFiveFunction()">Back</button>
+            </li>
+            <li class="col-lg-6">
+              <button type="submit" class="btn btn-primary common_btn next30 mt-4"
+                (click)="nextTwentyEightFunction(); saveVendorDetails()">Save & Continue</button>
+            </li>
+          </ul>
+        </div>
+ 
+      </div>
+    </form>
     </div>
     <!-- Vendor Registration Step 24 Of Step 2 End -->
     <div class="form_content_box step_two_form_box_25 step_two_form_box_left" [hidden]="!vendorStep28">
@@ -1516,6 +2449,7 @@
     <div class="image-editor">
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getFeaturedImg($event)" [(ngModel)]="featured_image" [ngModelOptions]="{standalone: true}">
+        <input type="file" class="cropit-image-input" (change)="getFeaturedImg($event)" [(ngModel)]="featured_image" [ngModelOptions]="{standalone: true}">
         <input type="hidden" id="hidden_base64">
 
       </div>
@@ -1525,6 +2459,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -1536,6 +2471,12 @@
 </ng-template>
 <!-- Vendor Registration Upload Feature Image Modal End -->
  
+    <button type="button" class="btn btn-primary back_btn back_btn8" (click)="modal.dismiss('Cross click')" (click)="backTenFunction()">Back</button>
+    <button type="button" [disabled]="featureimgError" class="btn btn-primary common_btn next11 export" (click)="modal.dismiss('Cross click')" (click)="nextElevenFunction()">Save & Continue</button>
+  </div>
+</ng-template>
+<!-- Vendor Registration Upload Feature Image Modal End -->
+
 <ng-template #uploadContent2 let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Reposition image</h4>
@@ -1545,6 +2486,7 @@
     <div class="image-editor2">
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getProfileImg($event)" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
+        <input type="file" class="cropit-image-input" (change)="getProfileImg($event)" [(ngModel)]="profile_photo" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -1552,6 +2494,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -1564,6 +2507,9 @@
     <!-- <button [disabled]="profileimgError" type="button" class="btn btn-primary common_btn next14 export" (click)="nextThirteenFunction()"
       (click)="modal.dismiss('Cross click')">Save &
       Continue</button> -->
+    <button [disabled]="profileimgError" type="button" class="btn btn-primary common_btn next14 export" (click)="nextThirteenFunction()"
+      (click)="modal.dismiss('Cross click')">Save &
+      Continue</button>
   </div>
 </ng-template>
 <!-- Vendor Registration Upload Profile Photo Modal End -->
@@ -1577,6 +2523,7 @@
     <div class="image-editor3">
       <div class="inputDiv">
         <input type="file" accept=".jpg,.jpeg,.png" class="cropit-image-input" (change)="getCoverImg($event)" [(ngModel)]="cover_image" [ngModelOptions]="{standalone: true}">
+        <input type="file" class="cropit-image-input" (change)="getCoverImg($event)" [(ngModel)]="cover_image" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="error-msg"></div>
       <div class="cropit-preview"></div>
@@ -1584,6 +2531,7 @@
         <!-- <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div> -->
         <div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div>
         <!-- <div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div> -->
+        <div class="left_minus_div"><img src="assets/images/slider_minu_icon.png" alt=""></div><div class="rangeSliderInput"><input type="range" class="cropit-image-zoom-input"></div><div class="right_plus_div"><img src="assets/images/slider_plus_icon.png" alt=""></div>
       </div>
     </div>
   </div>
@@ -1596,6 +2544,8 @@
     <!-- <button [disabled]="coverimgError" type="button" class="btn btn-primary common_btn next17 export" (click)="modal.dismiss('Cross click')"
       (click)="nextFifteenFunction()">Save &
       Continue</button> -->
+      (click)="nextFifteenFunction()">Save &
+      Continue</button>
   </div>
 </ng-template>
 <!-- Vendor Registration Upload Cover Image Modal End -->

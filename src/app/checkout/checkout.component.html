@@ -8,6 +8,7 @@
     </ul>
 </div> 
 <div class="container"><a class="checkout-back-link" routerLink="/cart" >Back</a></div>
+</div>
 <!-- Step One Form Section Start -->
 <div class="common_step_sec step_one_sec" *ngIf="step1">
     <div class="container">
@@ -172,6 +173,82 @@
                     <ul>
                         <li>
                             <input *ngIf="!btnDis" name="" type="submit" value="Next" (click)="placeOrder()" >
+                <h5 class="ShipAdrs">Shipping Address</h5>
+                <form class="ShippingForm" #checkOutForm="ngForm" (ngSubmit)="checkOutForm.form.valid && sendcheckOutForm(checkOutForm)" novalidate>
+                    <ul>
+                        <li>
+                            <label>Name</label>
+                            <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                            <input type="text" hidden class="form-control" name="brand_key" [(ngModel)]="brand_key" >
+                            <input class="InputTxt" name="" type="text" placeholder="" name="name" [(ngModel)]="name" #nameval='ngModel' required>
+                            <span class="validate_errors"
+                                *ngIf="(nameval.touched || checkOutForm.submitted) && nameval.errors?.['required']">
+                                 This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Select country</label>
+                            <select class="InputTxt" name="country" [(ngModel)]="country" #countryval='ngModel' required (change)="onChangeCountry($event)" >
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of countriesArray" value="{{item.id}}">{{item.country_name}}</option> 
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(countryval.touched || checkOutForm.submitted) && countryval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Street and number</label>
+                            <input class="InputTxt" type="text" placeholder="" name="address1" [(ngModel)]="address1" #street_noval='ngModel' required>
+                            <span class="validate_errors"
+                                *ngIf="(street_noval.touched || checkOutForm.submitted) && street_noval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Apt, Suite (Optional)</label>
+                            <input class="InputTxt" type="text" placeholder="" name="address2" [(ngModel)]="address2" #apartment_nameval='ngModel' >
+                        </li>
+                        <li>
+                            <label>State/Province</label>
+                            <select class="InputTxt" name="state" [(ngModel)]="state" #stateval='ngModel' required (change)="onChangeState($event)" >
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of stateArray" value="{{item.id}}">{{item.state_name}}</option>
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(stateval.touched || checkOutForm.submitted) && stateval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li class="SplitList">
+                            <label>Town/Locality</label>
+                            <select class="InputTxt" name="town" [(ngModel)]="town" #townval='ngModel' required>
+                                <option [ngValue]="null" hidden ></option>
+                                <option *ngFor="let item of cityArray" value="{{item.id}}">{{item.city_name}}</option>
+                            </select>
+                            <span class="validate_errors"
+                                *ngIf="(townval.touched || checkOutForm.submitted) && townval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li class="SplitList FltRht"> 
+                            <label>Zip</label>
+                            <input class="InputTxt"type="text" placeholder="" name="post_code" [(ngModel)]="post_code" #pincodeval='ngModel' required >
+                            <span class="validate_errors"
+                                *ngIf="(pincodeval.touched || checkOutForm.submitted) && pincodeval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <label>Phone number</label>
+                            <input class="InputTxt" type="tel" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                            <span class="validate_errors"
+                                *ngIf="(phone_numberval.touched || checkOutForm.submitted) && phone_numberval.errors?.['required']">
+                                This field is required
+                            </span>
+                        </li>
+                        <li>
+                            <input *ngIf="!btnDis" name="" type="submit" value="Next" >
                             <input *ngIf="btnDis" name="" type="submit" value="Please wait..." disabled>
                         </li>
                     </ul>
@@ -539,3 +616,4 @@
     </div>
   </div>
   <!------shipping address edit modal ends--------->
+<!-- Step Three Form Section End -->

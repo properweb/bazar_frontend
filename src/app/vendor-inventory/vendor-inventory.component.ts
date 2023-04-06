@@ -15,6 +15,7 @@ export class VendorInventoryComponent implements OnInit {
   user_id!: any;
   products!: any;
   productsArray: any = [];
+  products: any = [];
   inStockProducts: any = [];
   outOfStockProducts: any = [];
   itemQuantity: number = 0;
@@ -32,11 +33,15 @@ export class VendorInventoryComponent implements OnInit {
   ngOnInit(): void {
 
 
+  constructor(public modalService: NgbModal,private storage: StorageMap , private apiService : ApiService, private appComponent: AppComponent ) { }
+
+  ngOnInit(): void {
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
+        // console.log("user-id =>" ,user_session.id);
         this.getProducts(this.user_id, 1, 'all', this.searchText);
       
       },
@@ -58,6 +63,9 @@ export class VendorInventoryComponent implements OnInit {
         });
       }
       this.products = this.productsArray;
+          this.products.push(element);
+        });
+      }
       this.products.forEach((element: any) => {
         element.name = element.name.replace(/\\/g, '');
         element.stock = parseInt(element.stock);
@@ -126,6 +134,7 @@ export class VendorInventoryComponent implements OnInit {
 
   onSearchPress() {
 
+    this.products = [];
     this.currentPage = 1;
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
   }
@@ -133,6 +142,7 @@ export class VendorInventoryComponent implements OnInit {
   onSearchTextChange(event: any) {
     if(event.target.value == '') {
       this.productsArray = [];
+      this.products = [];
       this.currentPage = 1;
       this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
     }
@@ -141,6 +151,7 @@ export class VendorInventoryComponent implements OnInit {
   tabAllClick() {
     this.currentPage = 1;
     this.productsArray = [];
+    this.products = [];
     this.status = 'all';
     this.searchText = '';
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
@@ -149,6 +160,7 @@ export class VendorInventoryComponent implements OnInit {
   tabInstockClick() {
     this.currentPage = 1;
     this.productsArray = [];
+    this.products = [];
     this.status = 'instock';
     this.searchText = '';
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
@@ -157,6 +169,7 @@ export class VendorInventoryComponent implements OnInit {
   tabOutOfStockClick() {
     this.currentPage = 1;
     this.productsArray = [];
+    this.products = [];
     this.status = 'outofstock';
     this.searchText = '';
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
@@ -165,6 +178,7 @@ export class VendorInventoryComponent implements OnInit {
   onResetClick() {
     this.searchText = '';
     this.productsArray = [];
+    this.products = [];
     this.currentPage = 1;
     this.getProducts(this.user_id, this.currentPage, this.status, this.searchText);
   }

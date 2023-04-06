@@ -244,6 +244,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ApmModule,
     NgChartjsModule,
     MatTooltipModule
+    NgChartjsModule
   ],
   // providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   providers: [

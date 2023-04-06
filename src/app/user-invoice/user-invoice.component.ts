@@ -18,6 +18,9 @@ export class UserInvoiceComponent implements OnInit {
     if(localStorage.getItem('local_data') == null) {
       this.router.navigate(['/']);
     } else {}
+  constructor(public modalService: NgbModal) { }
+
+  ngOnInit(): void {
   }
   
   downloadPdf() {

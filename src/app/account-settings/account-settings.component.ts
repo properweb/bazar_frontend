@@ -30,13 +30,7 @@ export class AccountSettingsComponent implements OnInit {
   upload_contact_list!: any;
   tagsToolsArray:any = [];
   profile_photo!:any;
-  currentYear!:any;
-  verified: any = 1;
-  resendBtsDis: any = false;
-  btnDis: any = false;
-  yearError:any = false;
-  validError:any = false;
-  brandStoryError:any = false;
+
   ]
   countriesArray:any = [
     { code: 'JO', code3: 'JOR', name: 'Jordan', number: '400' },  
@@ -57,9 +51,7 @@ export class AccountSettingsComponent implements OnInit {
   constructor( private storage: StorageMap , private apiService : ApiService, public modalService: NgbModal , private router : Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-    const d = new Date();
-    let year = d.getFullYear();
-    
+
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -81,6 +73,7 @@ export class AccountSettingsComponent implements OnInit {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.countries = response.data;
+
     })
   }
 
@@ -104,13 +97,13 @@ export class AccountSettingsComponent implements OnInit {
       this.upload_contact_list = response.data.upload_contact_list;
       this.profile_photo = response.data.profile_photo;
       this.verified = response.data.verified;
-      this.tagsToolsArray = response.data.tag_shop_page;
+
     })
     
   }
 
   sendAccountUpdate(vendorAccountUpdate:any , imgVal :any) {
-    this.btnDis = true;
+
     let arrayTransform = this.tagsToolsArray.join(',');
     let values = {
       user_id: this.user_id,
@@ -130,28 +123,12 @@ export class AccountSettingsComponent implements OnInit {
       profile_photo: imgVal
     }
     this.apiService.updateVendorDetails(values).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        this.toast.success({detail:"Submitted successfully.",summary: "" ,duration: 4000});
-        this.router.navigateByUrl('brand-portal');
-        this.validError = false;
-        this.btnDis = false;
-      } else {
-        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
-        this.btnDis = false;
-      }
-    },(error) => {
-      this.toast.error({detail: "Something went wrong. Please try again!", summary: "" ,duration: 4000});
-      this.btnDis = false;
-    });
-  }
-
-  tagsCheckboxChange(e: any) {
     if (e.target.checked) {
       this.tagsToolsArray.push(e.target.value);
     } else {
       this.tagsToolsArray = this.tagsToolsArray.filter((item:any) => item !== e.target.value);
     }
+
   }
 
   openUploadProfileModal(content: any) {
@@ -195,39 +172,6 @@ export class AccountSettingsComponent implements OnInit {
     })
   }
 
-  getProfileImg(event: any) {
-    let fileName = event.target.files[0].name;
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-      this.profile_photo = event.target.files[0];
-
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-  
-        reader.onload = (event:any) => { // called once readAsDataURL is completed
-        }
-      }
-    } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
-    }
-
-  } 
-
-  validateYear(event:any) {
-    if(Number(event.target.value) > Number(this.currentYear) || Number(event.target.value) <= 1899 ) {
-      this.yearError = true;
-    } else this.yearError = false;
-  }
-
-  onBrandStoryChange(event: any) {
-    if(!/^[ A-Za-z0-9_./&+-,']*$/.test(event.target.value)) {
-      this.brandStoryError = true;
-    } else {
-      this.brandStoryError = false;
-    }
-  }
 
 
 }

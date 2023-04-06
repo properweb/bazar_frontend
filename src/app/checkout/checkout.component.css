@@ -33,6 +33,8 @@
 .LftPnl .checkout-list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
 .LftPnl .checkout-list li .form-check .form-check-input:focus { box-shadow: none; }
 .LftPnl .add-shipping-address { background: #393939; border: none; border-radius: 3px; font: 200 18px 'Futura' !important; margin: 10px 0 20px 0; padding: 10px 35px 10px 35px; } 
+.common_step_sec { margin: 0; padding: 0 0 30px 0; width: 100%; }
+.LftPnl .ShipAdrs { background: rgba(57,57,57,0.05); color: #000; font: 500 16px 'Futura' !important; margin: 0 0 20px 0; padding: 12px 30px 12px 30px; }
 .LftPnl .ShippingForm { padding: 0 30px 0 30px; width: 100%; }
 .LftPnl .ShippingForm ul { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
 .LftPnl .ShippingForm ul li { float: left; margin:0 0 15px 0; padding: 0; width: 100%; }

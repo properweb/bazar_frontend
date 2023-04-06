@@ -17,6 +17,7 @@
 .rightAccount ul.formDiv .marginNone { margin: 0 0 5px 0; }
 .rightAccount ul.formDiv .valueMrgn { margin: 20px 0 10px 0; }
 .rightAccount ul.formDiv li label { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-bottom: 5px; width: 100%; }
+.rightAccount ul.formDiv li label { color: #000; float: left; font: normal 16px 'Futura PT Book'; margin-bottom: 5px; width: 100%; }
 .rightAccount ul.formDiv li .form-control { border: 1px solid #000; border-radius: 0 3px 3px 0; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 41px; line-height: 41px; padding: 0 15px 0 15px; }
 .rightAccount ul.formDiv li .form-control:focus { border-color: #393939; box-shadow: none; }
 .rightAccount ul.formDiv li input[type="checkbox"] { height: 18px; margin-right: 5px; position: relative; top: 4px; width: 18px;}
@@ -41,6 +42,7 @@
 
 .accountBtn { background:#393939; border: none; border-radius: 3px; color: #fff; float: left; font: 200 18px  'Futura' !important; height: 54px; margin-top: 50px; width: 230px; }
 .paymentDiv { border: 1px solid #909090; border-radius: 5px; float: left; margin-bottom: 30px; padding: 30px; position: relative; width:100%; }
+.paymentDiv { border: 1px solid #909090; border-radius: 5px; float: left; padding: 30px; position: relative; width:100%; }
 .paymentForm { list-style: none; margin: 0; padding: 0; }
 .paymentForm li { color: #000; float: left; font: 200 16px  'Futura' !important; margin: 0 0 20px 0; width:100%; }
 .paymentForm li:nth-child(2) { float: left; margin: 0; width: 50%; }
@@ -55,6 +57,10 @@
 .shipping-add .buttonSpan { color: #000; display: block; font: 500 18px  'Futura' !important; }
 .shipping-edit { background: none; border: none; position: absolute; right: 27px; top: 5px; }
 .delete-address { color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: absolute; right: 8px; top: 9px; }
+.shipping-add { background-color: rgba(57, 57, 57, 0.05); border: 1px dashed rgba(0, 0, 0, 0.5); height: 208px; margin: 30px 0 0 0; padding: 0; text-align: center; width: 100%; }
+.shipping-add img { height: auto; margin-bottom: 5px; margin-top: 0; width: auto; }
+.shipping-add .buttonSpan { color: #000; display: block; font: 500 18px  'Futura' !important; }
+.shipping-edit { background: none; border: none; position: absolute; right: 8px; top: 5px; }
 .profileModal .modal-dialog { max-width: 920px; }
 .shippingForm { list-style: none; padding: 0; margin: 0; }
 .shippingForm li { color: #000; float: left; margin: 0 0 20px; font: 200 16px  'Futura' !important; width: 100%; }

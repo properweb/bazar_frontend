@@ -46,6 +46,9 @@ export class VendorCustomersComponent implements OnInit {
       this.router.navigate(['/']);
     } else {}
 
+  constructor(public modalService: NgbModal,private apiService: ApiService, private storage: StorageMap, private toast: NgToastService ) { }
+
+  ngOnInit(): void {
     this.lists.push({"store_name": "","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""}) 
 
     this.storage.get('user_session').subscribe({

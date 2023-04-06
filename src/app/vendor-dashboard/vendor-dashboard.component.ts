@@ -40,11 +40,17 @@ export class VendorDashboardComponent implements OnInit, AfterViewInit {
           this.first_name = user_session.vendor_data.first_name;
           this.getVendorDetails(this.user_id);
         }
+
       },
       error: (error) => {
       },          
     });
  
+    if(localStorage.getItem('local_data') == null) {
+      this.router.navigate(['/']);
+    } else {
+      
+    }
   } 
 
   ngAfterViewInit(): void {
@@ -79,6 +85,10 @@ export class VendorDashboardComponent implements OnInit, AfterViewInit {
         this.toast.error({detail: response.msg, summary: '', duration: 4000});
         this.goliveBtsDis = false;
       }
+      this.getVendorDetails(this.user_id);
+      this.isGoliveTrue = true;
+      this.goliveBtsDis = false;
+      this.goLiveModal.close();
     },(error) => {
       this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
       this.goliveBtsDis = false;

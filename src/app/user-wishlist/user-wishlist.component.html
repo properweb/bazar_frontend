@@ -51,6 +51,10 @@
                                                             <img style="cursor: pointer" [src]="item?.product_image" alt="" routerLink="/product/{{item?.product_key}}">
                                                         </div>
                                                         <div style="cursor: pointer" class="wisBoxTxt" routerLink="/product/{{item?.product_key}}" >
+                                                        <div class="wisBoxImg"><span class="love" (click)="removeWishlist(item?.id)" style="cursor: pointer;" ><img
+                                                                    src="assets/images/Vector-red.png" alt=""></span> <img
+                                                                [src]="item?.product_image" alt=""></div>
+                                                        <div class="wisBoxTxt">
                                                             <div class="wisBoxTxtTop">
                                                                 <h4>{{item?.product_name}}</h4>
                                                                 <p>${{item?.product_wholesale_price}}<span>MSRP ${{item?.product_retail_price}}</span></p>
@@ -104,6 +108,10 @@
                                                             <img style="cursor: pointer" [src]="childItem?.product_image" alt="" routerLink="/product/{{childItem?.product_key}}">
                                                         </div>
                                                         <div style="cursor: pointer" class="wisBoxTxt" routerLink="/product/{{childItem?.product_key}}">
+                                                        <div class="wisBoxImg" style="cursor: pointer;"><span class="love"><img
+                                                                    src="assets/images/Vector-red.png" alt=""></span> <img
+                                                                [src]="childItem?.product_image" alt=""></div>
+                                                        <div class="wisBoxTxt">
                                                             <div class="wisBoxTxtTop">
                                                                 <h4>{{childItem?.product_name}}</h4>
                                                                 <p>${{childItem?.product_wholesale_price}}<span>MSRP ${{childItem?.product_retail_price}}</span></p>
@@ -120,6 +128,7 @@
                                         </div>
                                     </div>
                                     <a class="moreBtn" routerLink="/after-login-local-brands">More brands</a>
+                                    <a class="moreBtn">More brands</a>
                                 </div>
                             </ng-container>
                             <ng-container *ngIf="allWishDetails?.brand_arr?.length <= 0 ">
@@ -142,6 +151,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <button #modalCloseBtn type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             <!-- Modal body -->
                 <div class="modal-body">
                     <form class="ShippingForm" #addBoard="ngForm" (ngSubmit)="addBoard.form.valid && saveAddBoard(addBoard)" novalidate>
@@ -171,6 +181,7 @@
                         <div class="submitBtn">
                             <input *ngIf="!btnDis" type="submit" value="Save changes" class="paymentBtn">
                             <input *ngIf="btnDis" type="submit" value="Saving changes" disabled class="paymentBtn">
+                            <input type="submit" value="Save changes" class="paymentBtn">
                         </div>
                     </form>
                 </div>

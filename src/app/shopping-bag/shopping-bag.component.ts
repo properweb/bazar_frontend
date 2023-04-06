@@ -42,6 +42,7 @@ export class ShoppingBagComponent implements OnInit {
     });
 
   }
+
   fetchCart(user_id: any) {
     let totalPriceArr: any = [];
     this.apiService.fetchCart(user_id).subscribe((responseBody) => { 
@@ -49,7 +50,6 @@ export class ShoppingBagComponent implements OnInit {
       this.cartCount = response.data.cart_count;
       if(this.cartCount == 0) {
         setTimeout(() => {
-          this.router.navigateByUrl("/");
         }, 5000);
       }
       this.cartDetails = response.data.cart_arr; 
@@ -63,9 +63,21 @@ export class ShoppingBagComponent implements OnInit {
           });
           totalPriceArr[cartkey]['brand_total'] = total;
           this.totalPrice = totalPriceArr;
+      this.cartDetails = response.data.cart_arr;
+      response.data.cart_arr.forEach((cartElement: any, cartkey: any) => {
+          cartElement.products.forEach((element: any, key: any) => {
+              let total = Number(element.product_qty) * Number(element.product_price);
+              totalPriceArr.push(total);
+          });
+          
+          let total1 = 0;
+          totalPriceArr.forEach((element1: any) => {
+            total1 = 0;
+            total1 += element1;
+          });
+          this.totalPrice.push(total1); 
         }
       });
-    })
   }
 
   deleteCart(id: any) {
@@ -74,6 +86,7 @@ export class ShoppingBagComponent implements OnInit {
       user_id: this.user_id
     }
     this.apiService.deleteCart(values).subscribe((responseBody) => {
+    this.apiService.deleteCart(id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.afterLoginHeaderComp.fetchCart(this.user_id);
@@ -90,6 +103,10 @@ export class ShoppingBagComponent implements OnInit {
       price: price,
       brand_name: brand_name,
       brand_key: brand_key
+  handleCheckOut(id: any, price: any, brand_name: any) {
+    let values = {
+      price: price,
+      brand_name: brand_name
     }
     this.router.navigate(['checkout/' + id], {
       state:{

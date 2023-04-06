@@ -122,20 +122,22 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   tagsCheckboxChange(e: any) {
+   
     if (e.target.checked) {
       this.tagsToolsArray.push(e.target.value);
     } else {
       this.tagsToolsArray = this.tagsToolsArray.filter((item:any) => item !== e.target.value);
     }
+
   }
 
-  onProCatChange(e: any) {
    
     if (e.target.checked) {
       this.proCatArray.push(e.target.value);
     } else {
       this.proCatArray = this.proCatArray.filter((item:any) => item !== e.target.value);
     }
+    console.log(this.proCatArray);
   }
 
   storeTypeCheckboxChange(e: any) {
@@ -158,6 +160,7 @@ export class UserRegistrationComponent implements OnInit {
 
   sendUserFormStep1(userFormStep1: any) {
     this.btnDis = true;
+    console.log("userFormStep1 =>", userFormStep1.value);
     let values = {
       country: this.country,
       country_code: this.country_code,
@@ -188,6 +191,31 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   senduserFormStep2(userFormStep2: any) {
+    console.log(values);
+
+        this.apiService.retailerRegistration(values).subscribe((responseBody) => {
+          let response = JSON.parse(JSON.stringify(responseBody));
+            if(response.res == false){
+              this.errorMsg = response.msg;
+              this.btnDis= false;
+            } else {
+              this.retailer_id = response.data.retailer_id;
+              this.nextOneFunction();
+              this.errorMsg = '';
+              this.btnDis= false;
+            }
+           
+        },(error) => {
+          this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+          this.btnDis= false;
+        })
+        return true;
+      
+
+  }
+
+  senduserFormStep2(userFormStep2: any) {
+    console.log("userFormStep2 =>", userFormStep2.value);
     this.nextThreeFunction();
   }
 
@@ -197,6 +225,14 @@ export class UserRegistrationComponent implements OnInit {
   
   senduserFormStep4(userFormStep4: any) {   
     if(this.describe_stores && this.describe_stores.length > 0) {
+    console.log("userFormStep3 =>", userFormStep3.value);
+    this.nextFourFunction();
+  }
+  
+
+  senduserFormStep4(userFormStep4: any) {   
+    if(this.describe_stores && this.describe_stores.length > 0) {
+      console.log("userFormStep4 =>", this.describe_stores);
       this.nextFiveFunction();
     }
   }
@@ -255,6 +291,33 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   storeCheckboxChange(event: any) {
+    console.log(values);
+      if(this.tag_shop_page_about == undefined && this.tagsToolsArray.length == 0 ) {
+        this.errorMsg = 'This field is required!'
+        this.btnDis= false;
+        return false;
+      } else {
+        this.apiService.retailerRegistration(values).subscribe((responseBody) => {
+          let response = JSON.parse(JSON.stringify(responseBody));
+            if(response.res == false){
+              this.errorMsg = response.msg;
+              this.btnDis= false;
+            } else {
+              this.nextSevenFunction();
+              this.errorMsg = '';
+              this.btnDis= false;
+            }
+           
+        },(error) => {
+          this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+          this.btnDis= false;
+        })
+        return true;
+      }
+  }
+
+  storeCheckboxChange(event: any) {
+
     if(event.target.checked) {
       this.describe_stores.push(event.target.value);
     } else {
@@ -263,11 +326,14 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onClickStart() {
+  
+    console.log(this.describe_stores);
     
   }
   
   stepOneHeading = "Welcome to BAZAR";
   stepOnePara = "Purchase from over 40.000 unique vendors. Sign up for free";
+  stepOnePara = "Purchase from over 40.000 uniquue vendors. Sign up for free";
 
   stepTwoHeading1 = "What Type of Store Do You Have?";
   stepTwoPara1 = "Select the one that suits you best!";

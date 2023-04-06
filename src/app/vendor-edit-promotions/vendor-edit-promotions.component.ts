@@ -30,6 +30,7 @@ export class VendorEditPromotionsComponent implements OnInit {
   changeBtnDis: any = false;
   promotionCountryArry!: any;
   promotionDetail!: any;
+  promotionCountryArry!: any;
   promoCountrySelected: any = [];
   hoveredDate: NgbDate | null = null;
   fromDate!: any;
@@ -44,6 +45,7 @@ export class VendorEditPromotionsComponent implements OnInit {
   ];
 
   constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, public toast: NgToastService ) {
+  constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, ) {
     this.fromDate = null
     this.toDate = null
   }
@@ -66,6 +68,8 @@ export class VendorEditPromotionsComponent implements OnInit {
     this.activatedRoute.params.subscribe((routeParams) => {
       this.promo_key = routeParams['id'];
     })
+      alert(routeParams['id']);
+    } )
     this.getPromotionCountries();
 
   }
@@ -103,6 +107,10 @@ export class VendorEditPromotionsComponent implements OnInit {
     })
   }
 
+      this.promotionCountryArry = response.data;
+    })
+  }
+  
   promoCountryChange(e: any) {
     if (e.target.checked) {
       this.promoCountrySelected.push(e.target.value);
@@ -189,6 +197,28 @@ export class VendorEditPromotionsComponent implements OnInit {
       this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
       this.changeBtnDis = false;
     })
+  addPromotion() {
+    let sepByComma = this.promoCountrySelected.join(',');
+
+    let values = {
+      brand_id: this.user_id,
+      title: this.title,
+      promotion_to: this.promotion_to,
+      promotion_country: sepByComma,
+      promotion_tier: this.promotion_tier,
+      promotion_offer_type: this.promotion_offer_type,
+      order_amount: this.order_amount,
+      discount_amount: this.discount_amount,
+      from_date: this.formatter.format(this.fromDate),
+      to_date: this.formatter.format(this.toDate),
+      offer_free_shipping: this.promotion_offer_type == 3 ? true : this.offer_free_shipping
+    }
+    console.log(values);
+
+    this.apiService.addPromotion(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+    })
+    
   }
 
   //date-range
@@ -236,6 +266,7 @@ export class VendorEditPromotionsComponent implements OnInit {
   
   openEndPromotion(content:any) {
     this.deletePromotionModal = this.modalService.open(content, { windowClass: 'endPromotionModal' });
+    this.modalService.open(content, { windowClass: 'endPromotionModal' });
   }
 
   openInvoiceProductModal(content: any) {

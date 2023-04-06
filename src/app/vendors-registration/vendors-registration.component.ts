@@ -62,6 +62,8 @@ export class VendorsRegistrationComponent implements OnInit {
   avg_lead_time!: any;
   first_order_min: any = 1;
   re_order_min: any = 1;
+  first_order_min!: any;
+  re_order_min!: any;
   upload_zip: any = [];
   upload_zip_names: any = [];
   photo_lib_link!: any;
@@ -87,6 +89,7 @@ export class VendorsRegistrationComponent implements OnInit {
   errorMsg!:any;
   currentYear!:any;
   validError:any = false;
+  validError!: any;
   featureimgError:boolean = true;
   profileimgError:boolean = true;
   coverimgError:boolean = true;
@@ -115,6 +118,11 @@ export class VendorsRegistrationComponent implements OnInit {
   toolsUsed:any =[
     { name: 'Shopify', value: 'Shopify' },
 
+    { name: 'QuickBooks Desktop', value: 'QuickBooks Desktop' },
+    { name: 'NetSuite', value: 'NetSuite' },
+    { name: 'QuickBooks Online', value: 'QuickBooks Online' },
+    { name: 'WooCommerce', value: 'WooCommerceme' },
+    { name: 'ShipStation', value: 'ShipStation' },
   ];
 
   tagsArray:any =[
@@ -232,6 +240,10 @@ export class VendorsRegistrationComponent implements OnInit {
     const d = new Date();
     let year = d.getFullYear();
     this.currentYear = year;
+    private location:Location
+  ) {}
+
+  ngOnInit(): void {
     this.activatedRoute.params.subscribe((params:any) => {
          this.stepCount = parseInt(params['step_count']);
       });
@@ -266,6 +278,7 @@ export class VendorsRegistrationComponent implements OnInit {
         },
       });
     }
+
     switch (this.stepCount) {
       case 2:
         this.nextFourFunction();
@@ -391,11 +404,15 @@ export class VendorsRegistrationComponent implements OnInit {
   }
 
   tagsCheckboxChange(e: any) {
+   
     if (e.target.checked) {
       this.tagsToolsArray.push(e.target.value);
     } else {
       this.tagsToolsArray = this.tagsToolsArray.filter((item:any) => item !== e.target.value);
     } 
+    }
+
+    
   }
 
   getWholeSaleCat(event: any) {
@@ -443,6 +460,7 @@ export class VendorsRegistrationComponent implements OnInit {
     for (var i = 0; i < event.target.files.length; i++) { 
       if(event.target.files[i].name.endsWith('.zip')){
 
+        // this.excelError = true;
         this.upload_zip.push(event.target.files[i]);
         this.upload_zip_names.push(event.target.files[i].name);  
       } else {       
@@ -546,6 +564,45 @@ export class VendorsRegistrationComponent implements OnInit {
       this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
     }
    
+    this.featured_image = event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      this.featureimgError = false;
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event:any) => { // called once readAsDataURL is completed
+        this.featureImageUrl = event.target.result;
+      }
+    }
+  }
+
+  getProfileImg(event: any) {
+    this.profile_photo = event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      this.profileimgError = false;
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event:any) => { // called once readAsDataURL is completed
+        this.profileImageUrl = event.target.result;
+      }
+    }
+  }
+
+  getCoverImg(event: any) {
+    this.cover_image = event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      this.coverimgError = false;
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event:any) => { // called once readAsDataURL is completed
+        this.coverImageUrl = event.target.result;
+      }
+    }
   }
 
   saveAndExit() {
@@ -641,6 +698,8 @@ export class VendorsRegistrationComponent implements OnInit {
             /* Called if data is valid or `undefined` */
             let vendorDetails = JSON.parse(JSON.stringify(user));
             this.user_id = vendorDetails.data['user_id'];
+            this.user_id = vendorDetails.data['vendor_id'];
+            
           },
           error: (error) => {
             /* Called if data is invalid */
@@ -649,6 +708,7 @@ export class VendorsRegistrationComponent implements OnInit {
           },          
         });
         this.errorMsg = "";
+
         this.spinnerShow = false;
         this.nextThreeFunction();
 
@@ -681,6 +741,10 @@ export class VendorsRegistrationComponent implements OnInit {
       this.btnDis = false;
       this.toast.error({detail: "something went wrong in server! please try again.", summary: "", duration: 4000})
       this.errorMsg = "";
+    this.saveExitCount =3;
+    this.nextFiveFunction();
+    this.apiService.vendorRegistrationStep1(vendorFormStep3.value).subscribe((responseBody) => {
+
     })
   }
 
@@ -702,6 +766,9 @@ export class VendorsRegistrationComponent implements OnInit {
       this.btnDis = false;
       this.toast.error({detail: "something went wrong in server! please try again.", summary: "", duration: 4000})
       this.errorMsg = "";
+    this.nextSixFunction();
+    this.apiService.vendorRegistrationStep1(vendorFormStep4.value).subscribe((responseBody) => {
+
     })
   }
 
@@ -748,6 +815,9 @@ export class VendorsRegistrationComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
       }
+      featured_image : imgVal
+    }
+    this.apiService.vendorRegistrationStep1(values).subscribe((responseBody) => {
     })
   }
 
@@ -764,6 +834,9 @@ export class VendorsRegistrationComponent implements OnInit {
       if(response.res == true) {
 
       }
+      profile_photo : ProimgVal
+    }
+    this.apiService.vendorRegistrationStep1(values).subscribe((responseBody) => {
     })
   }
 
@@ -779,6 +852,9 @@ export class VendorsRegistrationComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
       }
+      cover_image : coverImgVal
+    }
+    this.apiService.vendorRegistrationStep1(values).subscribe((responseBody) => {
     })
   }
 
@@ -800,6 +876,7 @@ export class VendorsRegistrationComponent implements OnInit {
       tag_shop_page : arrayTransform,
       tag_shop_page_about : this.tag_shop_page_about
     }
+
     this.apiService.vendorRegistrationStep1(tools).subscribe((responseBody) => {
     })
   }
@@ -822,6 +899,11 @@ export class VendorsRegistrationComponent implements OnInit {
     }, (error) => {
       this.errorMsg = "Something went wrong. Please try again.";
       this.btnDis = false;
+    this.nextNineteenFunction();
+  
+    this.saveExitCount=12;
+    this.apiService.vendorRegistrationStep1(vendorFormStep13.value).subscribe((responseBody) => {
+    this.getVendorDetails(this.user_id);
     })
   }
 
@@ -879,6 +961,7 @@ export class VendorsRegistrationComponent implements OnInit {
       }
     }, (error) => {
       this.toast.error({detail: "Something went wrong. PLease try again.",summary: '' ,duration: 4000});
+
     })
   }
 
@@ -911,6 +994,12 @@ export class VendorsRegistrationComponent implements OnInit {
       password: my_object.password
     }
 
+    this.apiService.vendorRegistrationStep1(vendorFinalStep.value).subscribe((responseBody) => {
+
+    })
+  }
+
+  saveVendorDetails() {
   }
 
   openUploadFeatureModal(content: any) {
@@ -954,6 +1043,15 @@ export class VendorsRegistrationComponent implements OnInit {
         $("#hidden_base64").attr('src',imageData);
         $("#purbayan").val(imageData);
     });
+  $('.export').click(function() {
+    var imageData = $('.image-editor').cropit('export', {
+        type: 'image/jpeg',
+        quality: 0.75,
+        originalSize: true,
+    });
+      $("#hidden_base64").attr('src',imageData);
+      $("#purbayan").val(imageData);
+});
 
   }
 
@@ -2859,6 +2957,7 @@ export class VendorsRegistrationComponent implements OnInit {
 
   nextEighteenFunction() {
 
+    this.getVendorDetails(this.user_id);
     this.vendorHeader = true;
     this.vendorStepProgress = true;
     this.vendorStepA = true;

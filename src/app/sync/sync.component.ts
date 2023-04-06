@@ -22,6 +22,9 @@ export class SyncComponent implements OnInit {
     if(localStorage.getItem('local_data') == null) {
       this.router.navigate(['/']);
     } else {}
+  constructor(private apiService: ApiService, private storage: StorageMap, private toast: NgToastService, private appComponent: AppComponent ) { }
+
+  ngOnInit(): void {
 
     this.storage.get("user_session").subscribe({
       next: (user) => {
