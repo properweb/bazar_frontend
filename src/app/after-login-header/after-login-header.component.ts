@@ -19,6 +19,7 @@ export class AfterLoginHeaderComponent implements OnInit {
 
   user_id!: any;
   role!: any;
+  allCategories!: any;
   vendorRegForm!: FormGroup;
   email!: any;
   validateError!: any;
@@ -58,6 +59,7 @@ export class AfterLoginHeaderComponent implements OnInit {
         this.role = user_session.role;
         this.user_id = user_session.id;
         this.fetchCart();
+        this.fetchMenuCategories();
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -154,6 +156,17 @@ export class AfterLoginHeaderComponent implements OnInit {
        
       }
     });
+  }
+
+  fetchMenuCategories() {
+    this.apiService.manuCategories().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allCategories =  response.data;
+      }
+    }, (error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
   }
 
   fetchCart() {

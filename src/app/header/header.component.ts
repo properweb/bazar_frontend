@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   sameEmailError!: any;
   email_address!: any;
   password!: any;
+  allCategories!: any;
   spinnerShow: boolean = false;
   resetEmailSend: boolean = false;
 
@@ -53,12 +54,24 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getVendorCount();
+    this.fetchMenuCategories();
   }
 
   getVendorCount() {
     this.api.vendorCount().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.vendorCount = response.data;
+    })
+  }
+
+  fetchMenuCategories() {
+    this.api.manuCategories().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allCategories =  response.data;
+      }
+    }, (error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
     })
   }
  
