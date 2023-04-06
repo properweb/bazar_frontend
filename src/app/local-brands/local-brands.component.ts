@@ -17,6 +17,7 @@ export class LocalBrandsComponent implements OnInit {
   user_id!: any;
   role!: any;
   brandList!: any;
+  featuredCategoryList!: any;
   currentUrl!: any;
   modalReference!: NgbModalRef;
   signInModal!: NgbModalRef;
@@ -75,12 +76,20 @@ export class LocalBrandsComponent implements OnInit {
     this.fetchBrands(this.user_id);
     this.currentUrl =this.router.url;
     this.getVendorCount();
+    this.featuredCategories();
   }
 
   getVendorCount() {
     this.apiService.vendorCount().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.vendorCount = response.data;
+    })
+  }
+
+  featuredCategories() {
+    this.apiService.featuredCategories().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.featuredCategoryList = response.data;
     })
   }
 
@@ -301,9 +310,9 @@ export class LocalBrandsComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 100,
     navText: ['', ''],
@@ -372,9 +381,9 @@ export class LocalBrandsComponent implements OnInit {
 
   customOptions4: OwlOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 100,
     navText: ['', ''],
