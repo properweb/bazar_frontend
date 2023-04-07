@@ -25,9 +25,7 @@
                                             <p class="PrdtName">{{item.product_name}}</p>
                                             <p class="PrdtMaterial" *ngIf="item?.style_name != null" >{{item.style_name}}</p>
                                             <p *ngIf="item?.style_group_name != null" >{{item.style_group_name}}</p>
-                                            <p *ngIf="item?.product_qty" >Quantity({{item?.product_qty}})
-                                                <span class="qty-update"><input type="number" name="quantity" [value]="item?.product_qty" (change)="onQtyChange($event, item, i)" ></span>
-                                            </p>
+
                                         </td>
                                         <td valign="bottom">
                                             <a class="RemovePrdt" (click)="deleteCart(item?.id)" ><img src="assets/images/CrossIcon.png" alt=""/></a>
@@ -70,7 +68,7 @@
                                             <td>${{totalPrice[i]['brand_total']}}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2"><a class="btn btn-primary" (click)="handleCheckOut(cartDetailItem?.brand_key, totalPrice[i]['brand_total'],cartDetailItem?.brand_name,cartDetailItem?.brand_key)" >Checkout to this brand</a></td>
+
                                         </tr>
                                     </tbody>
                                 </table>

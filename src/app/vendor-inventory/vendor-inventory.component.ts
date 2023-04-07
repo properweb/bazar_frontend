@@ -30,8 +30,6 @@ export class VendorInventoryComponent implements OnInit {
   constructor(public modalService: NgbModal,private storage: StorageMap , private apiService : ApiService, private appComponent: AppComponent, private router: Router ) { }
 
   ngOnInit(): void {
-
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */

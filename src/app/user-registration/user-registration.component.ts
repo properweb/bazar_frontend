@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from '../services/api.service';
@@ -34,6 +35,7 @@ export class UserRegistrationComponent implements OnInit {
   btnDis!: any;
   errorMsg!: any;
   retailer_id: any = null;
+  vendorCount: any = 0;
 
   countriesArray:any = [];
   tagsToolsArray:any = [];
@@ -48,12 +50,12 @@ export class UserRegistrationComponent implements OnInit {
     { name: 'Shop local', value: '5' },
     { name: 'Local brand', value: '6' },
   ];
-  
+
   yearsInBussArray:any =[
-    { name: 'Opening Soon', value: '1' },
-    { name: 'Started in 2022', value: '2' },
-    { name: 'Started in 2017-2022', value: '3' },
-    { name: 'Started before 2017', value: '4' },
+    { name: 'Opening Soon', value: 'OPENING_SOON' },
+    { name: 'Started in ' + new Date().getFullYear(), value: 'STARTED_THIS_YEAR' },
+    { name: 'Started between ' + (new Date().getFullYear() - 5) + '-' + (new Date().getFullYear() - 1), value: 'BETWEEN_5_AND_1_YEAR_AGO' },
+    { name: 'Started before ' + (new Date().getFullYear() - 5), value: 'BEFORE_5_YEAR_AGO' },
   ];
   
   annualSalesArray:any =[
@@ -94,7 +96,7 @@ export class UserRegistrationComponent implements OnInit {
     { name: 'Other', value: '11' },
   ]
 
-  constructor(private storage: StorageMap, private apiService: ApiService,private toast: NgToastService ) { }
+  constructor(private storage: StorageMap, private apiService: ApiService,private toast: NgToastService, private router: Router ) { }
 
   ngOnInit(): void {
     this.storage.get('user_email').subscribe({
@@ -111,6 +113,7 @@ export class UserRegistrationComponent implements OnInit {
     });
 
     this.getCountries();
+    this.getVendorCount();
     this.country_code = '962';
   }
 
@@ -118,6 +121,13 @@ export class UserRegistrationComponent implements OnInit {
     this.apiService.getCountries().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       this.countriesArray = response.data;
+    })
+  }
+
+  getVendorCount() {
+    this.apiService.vendorCount().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.vendorCount = response.data;
     })
   }
 
@@ -159,29 +169,20 @@ export class UserRegistrationComponent implements OnInit {
   sendUserFormStep1(userFormStep1: any) {
     this.btnDis = true;
     let values = {
-      country: this.country,
-      country_code: this.country_code,
-      email: this.email,
-      first_name: this.first_name,
-      language: this.language,
-      last_name: this.last_name,
-      password: this.password,
-      phone_number: this.phone_number,
+      email: this.email
     }
-    this.apiService.retailerRegistration(values).subscribe((responseBody) => {
+    this.apiService.checkEmail(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == false){
           this.errorMsg = response.msg;
           this.btnDis= false;
         } else {
-          this.retailer_id = response.data.retailer_id;
           this.nextOneFunction();
           this.errorMsg = '';
           this.btnDis= false;
         }
-        
     },(error) => {
-      this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
       this.btnDis= false;
     })
     return true;
@@ -247,7 +248,7 @@ export class UserRegistrationComponent implements OnInit {
           }
           
       },(error) => {
-        this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+        this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
         this.btnDis= false;
       })
       return true;
@@ -263,11 +264,35 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onClickStart() {
-    
+    this.btnDis= true;
+    let values = {
+      email: this.email,
+      password: this.password
+    }
+    this.apiService.vendorSignIn(values).subscribe((responseBody1) => {
+      let response1 = JSON.parse(JSON.stringify(responseBody1));
+      if (response1.res === false) {
+        this.btnDis= false;
+        this.toast.error({detail:response1.msg ,summary: "" ,duration: 4000});
+      } else {
+        this.storage
+        .set('user_session', JSON.parse(JSON.stringify(response1.data)))
+        .subscribe(() => {});
+        localStorage.setItem('local_data', response1.data.role);
+        localStorage.setItem('authorization_data', JSON.stringify(response1.data.authorisation));
+        this.router.navigateByUrl('/retailer-home').then(() => {
+        });
+        this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+        this.btnDis= false;
+      }
+    }, (error) => {
+      this.btnDis = false;
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
+    });
   }
   
   stepOneHeading = "Welcome to BAZAR";
-  stepOnePara = "Purchase from over 40.000 unique vendors. Sign up for free";
+  stepOnePara = `Purchase from over ${this.vendorCount} unique vendors. Sign up for free`;
 
   stepTwoHeading1 = "What Type of Store Do You Have?";
   stepTwoPara1 = "Select the one that suits you best!";
@@ -304,7 +329,7 @@ export class UserRegistrationComponent implements OnInit {
   stepTwoPara2 = "Select Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries";
 
   stepTwoHeading3 = "Tell Us About Your Store";
-  stepTwoPara3 = "Purchase from over 40.000 uniquue vendors. Sign up for free";
+  stepTwoPara3 = `Purchase from over ${this.vendorCount} uniquue vendors. Sign up for free`;
 
   stepThreeHeading1 = "What Best Describes Your Store?";
   stepThreePara1 = "We will use it to find your best match!";

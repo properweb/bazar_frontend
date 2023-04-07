@@ -96,6 +96,7 @@ export class CheckoutComponent implements OnInit {
         this.user_id = user_session.id;
         this.user_key = user_session.user_key;
         this.getShipAddress();
+        this.getCountries();
         this.getRetailerDetails(user_session.user_key);
       },
       error: (error) => {
@@ -105,7 +106,6 @@ export class CheckoutComponent implements OnInit {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.brand_key = routeParams['brand_id'];
     })
-    this.getCountries();
   }
 
   getCountries() {
@@ -116,6 +116,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   getRetailerDetails(user_key: any) {
+    this.billing_state = null;
+    this.billing_city = null;
     this.appComponent.showSpinner = true;
     this.apiService.getRetailerDetails(user_key).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
@@ -124,17 +126,21 @@ export class CheckoutComponent implements OnInit {
         this.retailerDetails = response.data;
         this.billing_country = response.data.country;
         this.billing_address1 = response.data.address1;
-        this.billing_state = response.data.state;
-        this.billing_city = response.data.town;
         this.billing_pincode = response.data.post_code;
         this.billing_phone_number = response.data.phone_number;
-        this.apiService.getStates(response.data.country).subscribe((responseBody) => {
-          let response= JSON.parse(JSON.stringify(responseBody));
-          this.billstateArray = response.data;
+        this.apiService.getStates(response.data.country).subscribe((responseBody1) => {
+          let response1= JSON.parse(JSON.stringify(responseBody1));
+          if(response1.res == true) {
+            this.billstateArray = response1.data;
+            this.billing_state = response.data.state;
+          }
         })
-        this.apiService.getCities(response.data.state).subscribe((responseBody) => {
-          let response= JSON.parse(JSON.stringify(responseBody));
-          this.billcityArray = response.data;
+        this.apiService.getCities(response.data.state).subscribe((responseBody2) => {
+          let response2= JSON.parse(JSON.stringify(responseBody2));
+          if(response2.res == true) {
+            this.billcityArray = response2.data;
+            this.billing_city = response.data.town;
+          }
         })
         this.appComponent.showSpinner = false;
       } else {
@@ -150,7 +156,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  onChangeCountry(event: any){
+  onChangeCountry(event: any) {
     let countryId = event.target.value;
     let country = this.countriesArray.filter((item: any) => item.id == countryId);
     this.phone_code = country[0].phone_code;

@@ -29,161 +29,24 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link">All categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Fashion</a>
+                    </li> -->
+                    <li class="nav-item" *ngFor="let item of allCategories; let i = index;" >
+                        <a class="nav-link" routerLink="/category/{{item?.title}}">{{item?.title}}</a>
                         <div class="dropDown_menu">
                             <div class="container-fluid">
                                 <ul class="sub_cat_list">
-                                    <li><a>All Fashion</a>
+                                    <li *ngFor="let subCat of item?.categories"><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">{{subCat?.title}}</a>
                                         <div class="sub_sub_cat_dropdown">
                                             <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
+                                                <li *ngFor="let subChildCat of subCat?.sub_categories">
+                                                    <a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}/{{subChildCat?.title}}">{{subChildCat?.title}}</a>
+                                                </li>
                                             </ul>
                                             <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New brands</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>New products</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Apparel</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Women</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a>Men</a>
-                                        <div class="sub_sub_cat_dropdown">
-                                            <ul class="sub_sub_cat">
-                                                <li><a>All Women's</a></li>
-                                                <li><a>Outwear</a></li>
-                                                <li><a>New Brands</a></li>
-                                                <li><a>Shorts</a></li>
-                                                <li><a>New Pruducts</a></li>
-                                                <li><a>Jumpsuits</a></li>
-                                                <li><a>Skirts</a></li>
-                                                <li><a>Swimwear</a></li>
-                                                <li><a>Blouses</a></li>
-                                                <li><a>Kimonos &amp; Kaftans</a></li>
-                                                <li><a>Dresses</a></li>
-                                                <li><a>Lingerie</a></li>
-                                                <li><a>Socks</a></li>
-                                                <li><a>Accessorise</a></li>
-                                                <li><a>Sweaters</a></li>
-                                            </ul>
-                                            <div class="cat_img_sec">
-                                                <img src="assets/images/women-img.png" alt="">
-                                                <h3>Shop All Women</h3>
+                                                <img [src]="subCat?.image" alt="">
+                                                <h3><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">Shop All {{subCat?.title}}</a></h3>
                                             </div>
                                         </div>
                                     </li>
@@ -191,204 +54,28 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Beauty &amp; Wellness</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Home &amp; Garden</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Office &amp; Stationery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Kids &amp; Baby</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Pets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Constructive &amp; Hardware</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Food &amp; Drinks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Electronics</a>
-                    </li>
                 </ul>
                 <div class="mobile_drop_down">
                     <div class="accordion menuAccordion" id="menuAccordion">
-                        <div class="accordion-item">
+                        <!-- <div class="accordion-item">
                             <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">All categories</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header fashionMenu" id="fashionMenu"><a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fashion" aria-expanded="true" aria-controls="fashion">Fashion</a>
+                        </div> -->
+                        <div class="accordion-item" *ngFor="let item of allCategories; let i = index;">
+                            <h2 class="accordion-header fashionMenu" [id]="'fashionMenu' + i"><a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#fashion'+i" aria-expanded="true" [attr.aria-controls]="'fashion'+i">{{item?.title}}</a>
                             </h2>
-                            <div id="fashion" class="accordion-collapse collapse" aria-labelledby="fashionMenu"
+                            <div [id]="'fashion' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'fashionMenu'+i"
                                 data-bs-parent="#menuAccordion">
                                 <div class="accordion-body">
                                     <div class="accordion fashionAccordion" id="fashionAccordion">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header collapsed" id="AllFashionMenu"><a class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#allFashion" aria-expanded="true" aria-controls="allFashion">All Fashion</a></h2>
-                                            <div id="allFashion" class="accordion-collapse collapse" aria-labelledby="AllFashionMenu" data-bs-parent="#fashionAccordion">
+                                        <div class="accordion-item" *ngFor="let subCat of item?.categories; let subCatInd = index;">
+                                            <h2 class="accordion-header collapsed" [id]="'AllFashionMenu' + i + subCatInd" ><a class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#allFashion' + i + subCatInd" aria-expanded="true" [attr.aria-controls]="'allFashion' + i + subCatInd">{{subCat?.title}}</a></h2>
+                                            <div [id]="'allFashion' + i + subCatInd" class="accordion-collapse collapse" [attr.aria-labelledby]="'AllFashionMenu' + i + subCatInd" data-bs-parent="#fashionAccordion">
                                                 <div class="accordion-body">
                                                     <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos &amp; Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
+                                                        <li *ngFor="let subChildCat of subCat?.sub_categories"><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}/{{subChildCat?.title}}">{{subChildCat?.title}}</a></li>
                                                     </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="newBrandsMenu"><a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newBrands" aria-expanded="false" aria-controls="newBrands">New brands</a></h2>
-                                            <div id="newBrands" class="accordion-collapse collapse" aria-labelledby="newBrandsMenu" data-bs-parent="#fashionAccordion">
-                                                <div class="accordion-body">
-                                                    <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos &amp; Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
-                                                    </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="newProductsMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#newProducts" aria-expanded="false" aria-controls="newProducts">New products</a>
-                                            </h2>
-                                            <div id="newProducts" class="accordion-collapse collapse" aria-labelledby="newProductsMenu" data-bs-parent="#fashionAccordion">
-                                                <div class="accordion-body">
-                                                    <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos &amp; Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
-                                                    </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="apparelMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#apparel" aria-expanded="false" aria-controls="apparel">Apparel</a></h2>
-                                            <div id="apparel" class="accordion-collapse collapse"
-                                                aria-labelledby="apparelMenu" data-bs-parent="#fashionAccordion">
-                                                <div class="accordion-body">
-                                                    <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos &amp; Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
-                                                    </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="womenMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#women" aria-expanded="false" aria-controls="women">Women</a> </h2>
-                                            <div id="women" class="accordion-collapse collapse"
-                                                aria-labelledby="womenMenu" data-bs-parent="#fashionAccordion">
-                                                <div class="accordion-body">
-                                                    <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos &amp; Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
-                                                    </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="menMenu"> <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#men" aria-expanded="false" aria-controls="men">Men</a> </h2>
-                                            <div id="men" class="accordion-collapse collapse" aria-labelledby="menMenu" data-bs-parent="#fashionAccordion">
-                                                <div class="accordion-body">
-                                                    <ul class="sub_sub_cat">
-                                                        <li><a>All Women's</a></li>
-                                                        <li><a>Outwear</a></li>
-                                                        <li><a>New Brands</a></li>
-                                                        <li><a>Shorts</a></li>
-                                                        <li><a>New Pruducts</a></li>
-                                                        <li><a>Jumpsuits</a></li>
-                                                        <li><a>Skirts</a></li>
-                                                        <li><a>Swimwear</a></li>
-                                                        <li><a>Blouses</a></li>
-                                                        <li><a>Kimonos & Kaftans</a></li>
-                                                        <li><a>Dresses</a></li>
-                                                        <li><a>Lingerie</a></li>
-                                                        <li><a>Socks</a></li>
-                                                        <li><a>Accessorise</a></li>
-                                                        <li><a>Sweaters</a></li>
-                                                    </ul>
-                                                    <div class="cat_img_sec"> <img src="assets/images/women-img.png" alt="">
-                                                        <h3>Shop All Women</h3>
+                                                    <div class="cat_img_sec"> <img [src]="subCat?.image" alt="">
+                                                        <h3><a routerLink="/category/{{item?.title}}/subcategory/{{subCat?.title}}">Shop All {{subCat?.title}}</a></h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -396,31 +83,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown">Beauty &amp; Wellness</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Home &amp; Garden</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Office &amp; Stationery</a>
-                            </h2>
-                        </div>
-                        <div class="accordion-item"> 
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Kids &amp; Baby</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Pets</a></h2> 
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Constructive &amp; Hardware</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Food &amp; Drinks</a></h2>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header"><a class="accordion-button collapsed no_dropdown" type="button">Electronics</a></h2>
                         </div>
                     </div>
                 </div>
@@ -440,7 +102,7 @@
             <ul class="formOne">
                 <form #emailForm="ngForm" (ngSubmit)="emailForm.form.valid && send1stSignInData()" (keydown.enter)="emailForm.form.valid && send1stSignInData()" novalidate>
                     <li *ngIf="log1">
-                        <input required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
+                        <input required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" maxlength="255" email type="text" class="form-control" placeholder="E-mail" name="email_address" [(ngModel)]="email_address" #email_addressVal="ngModel">
                         <span class="validate_errors"
                             *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['required']">
                             This field is required
@@ -448,6 +110,10 @@
                         <span class="validate_errors"
                             *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['pattern']">
                             Enter an valid email
+                        </span>
+                        <span class="validate_errors"
+                            *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['maxlength']">
+                            This field is too long.
                         </span>
                         <button type="submit" class="btn btn-primary continue_btn fullBtn">Continue</button>
                     </li>
@@ -495,8 +161,10 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p> 
+        <!-- <h3>Shop wholesale, online</h3>
+        <p>Purchase from over {{vendorCount ? vendorCount : 0}} unique vendors. Sign up for free</p>  -->
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
         <form [formGroup]="userRegForm" (ngSubmit)="userRegForm.valid && submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)" >
             <ul class="formOne">
                 <li>
@@ -524,8 +192,8 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
        
         <!-- <form [formGroup]="vendorRegForm" (ngSubmit)="submitEmail(vendorRegForm)">  -->
         <form #vendorRegForm="ngForm" (ngSubmit)="vendorRegForm.form.valid && submitEmail(vendorRegForm)">
@@ -547,7 +215,8 @@
                         *ngIf="(vendorEmailval.touched || vendorRegForm.submitted) && vendorEmailval.errors?.['pattern']">
                         Email is not valid.
                     </span>
-                    <button  type="submit" class="btn btn-primary" >Get started</button>
+                    <button type="submit" class="btn btn-primary" >Get started</button>
+                    <span *ngIf="sameEmailError" class="validate_errors">{{sameEmailError}}</span>
                 </li>
             </ul>
         </form>
@@ -557,4 +226,4 @@
     <div class="modal-footer">
         <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
     </div>
-</ng-template>
+</ng-template> 

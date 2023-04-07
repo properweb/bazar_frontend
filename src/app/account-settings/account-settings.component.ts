@@ -37,6 +37,12 @@ export class AccountSettingsComponent implements OnInit {
   yearError:any = false;
   validError:any = false;
   brandStoryError:any = false;
+  avgLeadError:any = false;
+  reorderErrorMsg:any = '';
+  firstorderError:any = false;
+
+  headquateredArray: any = [
+    {name: 'United States of America'},
   ]
   countriesArray:any = [
     { code: 'JO', code3: 'JOR', name: 'Jordan', number: '400' },  
@@ -54,11 +60,24 @@ export class AccountSettingsComponent implements OnInit {
     { name: 'Local brand', value: 'local-brand' },
   ];
 
+  storeWorkWith: any = [
+    {name: 'I am new to wholesale'},
+    {name: '1-10'},
+    {name: '11-25'},
+    {name: "26-50"},
+    {name: "51-100"},
+    {name: "101-250"},
+    {name: "251-500"},
+    {name: "500-1000"},
+    {name: "More than 1000"},
+  ]
+
   constructor( private storage: StorageMap , private apiService : ApiService, public modalService: NgbModal , private router : Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
     const d = new Date();
     let year = d.getFullYear();
+    this.currentYear = year;
     
     this.storage.get('user_session').subscribe({
       next: (user) => {
@@ -103,6 +122,8 @@ export class AccountSettingsComponent implements OnInit {
       this.tag_shop_page = response.data.tag_shop_page;
       this.upload_contact_list = response.data.upload_contact_list;
       this.profile_photo = response.data.profile_photo;
+      $("#profile_img").val(response.data.profile_photo);
+      $("#profile_img_show").attr('src',response.data.profile_photo);
       this.verified = response.data.verified;
       this.tagsToolsArray = response.data.tag_shop_page;
     })
@@ -111,10 +132,11 @@ export class AccountSettingsComponent implements OnInit {
 
   sendAccountUpdate(vendorAccountUpdate:any , imgVal :any) {
     this.btnDis = true;
+    let value = $('input#profile_img').val();
     let arrayTransform = this.tagsToolsArray.join(',');
     let values = {
       user_id: this.user_id,
-      brand_name:this.brand_name,
+      brand_name:this.brand_name, 
       website_url: this.website_url,
       insta_handle: this.insta_handle ,
       established_year: this.established_year,
@@ -127,9 +149,9 @@ export class AccountSettingsComponent implements OnInit {
       headquatered: this.headquatered  ,
       tag_shop_page: arrayTransform,
       upload_contact_list: this.upload_contact_list,
-      profile_photo: imgVal
+      profile_photo: value
     }
-    this.apiService.updateVendorDetails(values).subscribe((responseBody) => {
+    this.apiService.vendorInfoUpdate(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail:"Submitted successfully.",summary: "" ,duration: 4000});
@@ -158,11 +180,28 @@ export class AccountSettingsComponent implements OnInit {
     this.modalService.open(content, { windowClass: 'UploadProfileModal' });
     $(function () {
       $('.image-editor2').cropit({
-        exportZoom: 1.25,
+        exportZoom: 1,
+        width: 500,
+        height: 500,
         imageBackground: true,
         imageBackgroundBorderWidth: 30,
-        imageState: {
-          src: 'http://lorempixel.com/500/400/',
+        onImageError: function () {
+          $(".error-msg-profile").text(
+            "Please use an image that's at least " +
+              500 +
+              "px in width and " +
+              500 +
+              "px in height."
+          ),   
+          window.setTimeout(
+            (function () {
+              return function () {
+                return $(".error-msg-profile").text("");
+              };
+            })(),
+            3e3
+          );
+          $(".cropit-image-preview").addClass("has-error")
         },
       });
     });
@@ -174,10 +213,11 @@ export class AccountSettingsComponent implements OnInit {
           originalSize: true,
       });
   
+      if(imageData) {
       //Set value of hidden input to base64
       $("#profile_img_show").attr('src',imageData);
       $("#profile_img").val(imageData);
-     
+      }
   });
   }
 
@@ -200,7 +240,6 @@ export class AccountSettingsComponent implements OnInit {
     var idxDot = fileName.lastIndexOf(".") + 1;
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-      this.profile_photo = event.target.files[0];
 
       if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
@@ -208,9 +247,19 @@ export class AccountSettingsComponent implements OnInit {
   
         reader.onload = (event:any) => { // called once readAsDataURL is completed
         }
+        $(".error-msg-profile").text("");
       }
     } else {
-      this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      // this.toast.error({detail:"Only jpg/jpeg and png files are allowed!",summary: "" ,duration: 4000});
+      $(".error-msg-profile").text("Only jpg/jpeg and png files are allowed!");
+      window.setTimeout(
+        (function () {
+          return function () {
+            return $(".error-msg-profile").text("");
+          };
+        })(),
+        3e3
+      )
     }
 
   } 
@@ -226,6 +275,34 @@ export class AccountSettingsComponent implements OnInit {
       this.brandStoryError = true;
     } else {
       this.brandStoryError = false;
+    }
+  }
+
+  onAvgLeadChange(event: any) {
+    if(Number(event.target.value) <= 0 || Number(event.target.value) > 180 && Number(event.target.value)) {
+      this.avgLeadError = true;
+    } else {
+      this.avgLeadError = false;
+    }
+  }
+
+  on1stOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.firstorderError='First minimum order must be greater than or equal 1.';
+    } else if(event.target.value > 99999) {
+      this.firstorderError='First minimum order must be less than 99999.';
+    } else {
+      this.firstorderError='';
+    }
+  }
+
+  onReOrdChange(event: any) {
+    if(event.target.value < 1) {
+      this.reorderErrorMsg='Re-order minumum must be greater than or equal 1.';
+    } else if(event.target.value > 99999) {
+      this.reorderErrorMsg='Re-order minumum must be less than 99999.';
+    } else {
+      this.reorderErrorMsg='';
     }
   }
 

@@ -62,14 +62,14 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-
+    this.role = localStorage.getItem('local_data');
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         if(user) {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
-
+          // this.role = user_session.role;
         }
  
       },
@@ -142,24 +142,39 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   sendSignInData(signInFrom: any) {
-
+    let values = {
+      email: signInFrom.value.email_address,
+      password: signInFrom.value.password
+    }
+    this.spinnerShow = true;
+    this.apiService.vendorSignIn(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-
+          this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+          setTimeout(() => {
+            this.router.navigate([this.currentUrl]).then(() => {
+              this.onChildChange = true;
+              window.location.reload();
+            });
+          }, 500);
           this.signInModal.close();
           this.spinnerShow = false;
           this.storage
           .set('user_session', JSON.parse(JSON.stringify(response.data)))
           .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
         } else
         if(response.data.role === 'brand') {
             this.storage
           .set('user_session', JSON.parse(JSON.stringify(response.data)))
           .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
           if(response.data.step_count !== 12) {
             this.router.navigate(['vendorRegistration',response.data.step_count]);
             this.signInModal.close();
@@ -180,6 +195,11 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
           
           }
         } else if (response.data.role === 'retailer') {
+          this.storage
+          .set('user_session', JSON.parse(JSON.stringify(response.data)))
+          .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
           this.router.navigateByUrl('/retailer-home');
           this.signInModal.close();
           this.toast.success({detail:"SUCCESS",summary: "Login successful." ,duration: 4000});
@@ -193,7 +213,9 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   checkedLoggedUser() {
-
+    if(localStorage.getItem('local_data')) {
+      this.not_logged_in = false;
+    }
   }
 
   notLoggedIn() {
@@ -202,6 +224,18 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   getVendorDetails(brand_id: any) {
     this.apiService.getBrandShopDetails(brand_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res === true) {
+        if(response.data.length == 0) {
+          // window.location.href = this.appComp.base_url;
+        }
+      } else {
+        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
+      }
+
+      this.vendorData = response.data;
+      this.titleService.setTitle(response.data.brand_name);
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
     });
   }
 
