@@ -37,9 +37,10 @@
                       <a><i class="fa-solid fa-marker"></i></a> Ship To
                     </h5>
                     <p class="edit-para">
-                      {{cust_details?.address1}}<br />
-                      {{cust_details?.address2 ? cust_details?.address2 : ''}}<br />
-                      {{cust_details?.country}}
+                      {{cust_details?.shipping_name}}<br/>
+                      {{cust_details?.shipping_street}}<br />
+                      {{cust_details?.shipping_suite ? cust_details?.shipping_suite : ''}}<br />
+                      {{cust_details?.shipping_zip}}
                     </p>
                   </li>
                   <li class="col-md-6">
@@ -81,7 +82,7 @@
               <ul class="row form-list">
                   <li class="col-md-6">
                     <label>Name</label>
-                    <input type="text" hidden class="form-control" name="user_id" [(ngModel)]="user_id" >
+                    <input type="text" hidden class="form-control" name="shipping_id" [(ngModel)]="shipping_id" >
                     <input type="text" hidden class="form-control" name="ord_no" [(ngModel)]="ord_no" > 
                     <input class="form-control" pattern="^[\sa-zA-Zء-ي]*$" name="" type="text" placeholder="" name="name" [(ngModel)]="name" #nameval='ngModel' required>
                     <span class="validate_errors"
@@ -140,7 +141,7 @@
                 </li>
                 <li class="col-md-6"> 
                     <label>Zip</label>
-                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" placeholder="" name="post_code" onKeyPress="if(this.value.length==20) return false;" maxlength="20" [(ngModel)]="post_code" #pincodeval='ngModel' required >
+                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" placeholder="" name="zipCode" onKeyPress="if(this.value.length==20) return false;" maxlength="20" [(ngModel)]="zipCode" #pincodeval='ngModel' required >
                     <span class="validate_errors"
                         *ngIf="(pincodeval.touched || checkOutForm.submitted) && pincodeval.errors?.['required']">
                         This field is required
@@ -148,7 +149,15 @@
                 </li>
                 <li class="col-md-6">
                     <label>Phone number</label>
-                    <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <input autocomplete="new-password" type="text" class="form-control telephone-input" [value]="'+'+phone_code">
+                        <select class="form-select telephone-select" aria-label="Default select example" name="phone_code" [(ngModel)]="phone_code" #country_codeval='ngModel' required >
+                          <option *ngFor="let item of countriesArray" value="{{item.phone_code}}">{{item.country_name}} <span>+{{item.phone_code}}</span> </option>
+                        </select>
+                      </span>
+                      <input class="form-control" type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" onKeyPress="if(this.value.length==10) return false;" maxlength="10" placeholder="" name="phone" [(ngModel)]="phone" #phone_numberval='ngModel' required >
+                    </div>
                     <span class="validate_errors"
                         *ngIf="(phone_numberval.touched || checkOutForm.submitted) && phone_numberval.errors?.['required']">
                         This field is required
@@ -162,7 +171,7 @@
                   </li>
                   <li>
                     <input *ngIf="!btnDis" type="submit" name="" value="Save" class="btn publish_btn">
-                    <input *ngIf="btnDis" type="button" name="" value="Saving" disabled class="btn publish_btn">
+                    <input *ngIf="btnDis" type="button" name="" value="Please wait..." disabled class="btn publish_btn">
                   </li>
                 </ul>
               </div>
@@ -197,15 +206,16 @@
                       <td>In stock</td>
                       <td>4</td>
                       <td>
-                        <span class="quantitySpan">
+                        {{item?.quantity}} units
+                        <!-- <span class="quantitySpan">
                           <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" class="form-control" name="" (change)="onQtyChange(item?.order_id, $event, item?.quantity, item)" value="{{item?.quantity}}" />
-                          units</span>
+                          units</span> -->
                       </td>
                       <td>${{item?.product_price}}</td>
-                      <td>${{(item?.newAmt && is_discount === 1) ? item?.newAmt : item?.amount}}</td>
-                      <td style="text-align: center">
+                      <td>${{(item?.newAmt && is_discount === 1) ? item?.newAmt : item?.totalPrice}}</td>
+                      <!-- <td style="text-align: center">
                         <a class="removeLink" (click)="onItemDelete(item)" ><i class="fa-solid fa-trash"></i></a>
-                      </td>
+                      </td> -->
                     </ng-container>
                   </tr>
                 </tbody>
@@ -258,20 +268,21 @@
             <h4>Shop Wide Promotion</h4>
             <ul class="formDiv">
               <li><span class="radioLabel">Custom 
-                <input type="radio" (click)="is_discount = 1" [checked]="is_discount == 1">
+                <input type="radio" (click)="is_discount = 1; disc_amt_type = 'amount'" [checked]="is_discount == 1">
                 <span class="checkmark" ></span> </span>
                 <ul class="sub-form-list" *ngIf="is_discount == 1">
-                  <li (click)="disc_amt_type = 'amount'"><span [ngClass]="disc_amt_type == 'amount' ? 'input-span' : 'input-span disabled'" >$</span></li>
-                  <li (click)="disc_amt_type = 'percent'"><span [ngClass]="disc_amt_type == 'percent' ? 'input-span' : 'input-span disabled'" >%</span></li>
-                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ></li>
-                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" (change)="onDiscountChange($event)" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                  <li (click)="disc_amt_type = 'amount'; disc_amt = ''; newSubTotal = orderTotal"><span [ngClass]="disc_amt_type == 'amount' ? 'input-span' : 'input-span disabled'" >$</span></li>
+                  <li (click)="disc_amt_type = 'percent'; disc_amt = ''; newSubTotal = orderTotal"><span [ngClass]="disc_amt_type == 'percent' ? 'input-span' : 'input-span disabled'" >%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" (change)="onDiscountChange($event)" value="" class="form-control" [disabled]="is_discount == 0" name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
                 </ul>
                 <ul class="sub-form-list" *ngIf="is_discount == 0">
                   <li ><span class="input-span disabled">$</span></li>
                   <li ><span class="input-span disabled">%</span></li>
-                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ></li>
-                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" (change)="onDiscountChange($event)" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
+                  <li *ngIf="disc_amt_type == 'amount'" ><span class="input-front-span">$</span><input type="number" (change)="onDiscountChange($event)" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ></li>
+                  <li *ngIf="disc_amt_type == 'percent'" ><input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 187" (change)="onDiscountChange($event)" name="" value="" class="form-control" disabled name="disc_amt" [(ngModel)]="disc_amt" ><span class="input-back-span">%</span></li>
                 </ul>
+                <span class="validate_errors" *ngIf="discAmtError">{{discAmtError}}</span>
               </li>
               <li>
                 <div class="form-check">
@@ -297,15 +308,18 @@
                     </tr>
                     <tr>
                       <th>Add Promotion</th>
-                      <td><strong>-</strong></td>
+                      <td>
+                        <strong *ngIf="is_discount == 1 && disc_amt_type == 'amount'">${{disc_amt}}</strong>
+                        <strong *ngIf="is_discount == 1 && disc_amt_type == 'percent'">{{disc_amt}}%</strong>
+                      </td>
                     </tr>
                     <tr>
                       <th>Shipping</th>
-                      <td><strong>TBD</strong></td>
+                      <td><strong>{{ship_free == 1 ? 'free' : '-'}}</strong></td>
                     </tr>
                     <tr>
                       <th>Total</th>
-                      <td><strong>${{subTotal}}</strong></td>
+                      <td><strong>${{is_discount == 1 ? (newSubTotal ? newSubTotal : orderTotal) : subTotal}}</strong></td>
                     </tr>
                     <tr>
                       <th>Commission</th>
@@ -323,7 +337,7 @@
               </li>
               <li>
                 <input *ngIf="!btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" (click)="updateOrder()" >
-                <input *ngIf="btnDis" type="submit" name="" value="Update Order" class="btn publish_btn" disabled>
+                <input *ngIf="btnDis" type="submit" name="" value="Please wait..." class="btn publish_btn" disabled>
               </li>
             </ul>
           </div>

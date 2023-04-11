@@ -14,16 +14,19 @@ import { ApiService } from '../services/api.service';
 export class EditOrderComponent implements OnInit {
 
   user_id!: any;
+  shipping_id!: any;
   ord_no!: any;
   ship_date!: any;
   display_ship_date!: any;
   is_discount: any = 0;
   disc_amt!: any ;
-  disc_amt_type: any = '$' ;
+  disc_amt_type: any = 'amount' ;
   ship_free: any = false ;
   btnDis: any = false ;
   editShipForm: any = false ;
   subTotal!: any;
+  newSubTotal!: any;
+  orderTotal!: any;
   allDetails!: any;
   cust_details!: any;
   ordersArray!: any;
@@ -34,9 +37,11 @@ export class EditOrderComponent implements OnInit {
   address1!: any;
   town!: any;
   state!: any;
-  post_code!: any;
+  phone_code!: any;
+  zipCode!: any;
   phone!: any;
   invoiceProduct!: any;
+  discAmtError!: any;
 
   stateData!: any;
   orderDetails!: any;
@@ -61,9 +66,6 @@ export class EditOrderComponent implements OnInit {
    }
 
   ngOnInit(): void { 
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -89,7 +91,12 @@ export class EditOrderComponent implements OnInit {
   }
 
   getProducts() {
-    this.apiService.fetchProductsByShop('levis','','').subscribe((responseBody) => {
+    let values = {
+      brand_id: 'levis',
+      sort_key: '',
+      slug: ''
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       response?.data?.products.forEach((element: any) => {
         if(element.stock != '0' || element.stock != 0) {
@@ -99,7 +106,7 @@ export class EditOrderComponent implements OnInit {
     })
   }
 
-  onChangeCountry(event: any){
+  onChangeCountry(event: any) {
     let countryId = event.target.value;
     this.state = null;
     this.town = null;
@@ -107,6 +114,10 @@ export class EditOrderComponent implements OnInit {
       let response= JSON.parse(JSON.stringify(responseBody));
       this.stateArray = response.data;
     })
+
+    let id = event.target.value;
+    let country = this.countriesArray.filter((item: any) => item.id == id);
+    this.phone_code = country[0].phone_code;
   }
 
   onChangeState(event: any) { 
@@ -129,23 +140,26 @@ export class EditOrderComponent implements OnInit {
       if(response.res == true) {
         this.allDetails = response.data;
         this.cust_details = response.data.order;
-        let items:any = [];
+        let items:any = []; 
         if(response.data.cart.length > 0 ) {
           response.data.cart.forEach((element: any) => {
               items.push(element);
           });
         }
+        this.orderTotal = response.data.orderTotal;
         this.ordersArray = items;
         this.oldOrdersArray = [...response.data.cart];
         this.ship_date = response.data.order.shipping_date;
         this.display_ship_date = this.formatter.parse(response.data.order.shipping_date);
+        this.shipping_id = response.data.order.shipping_id;
         this.name = response.data.order.shipping_name;
         this.country = response.data.order.shipping_country;
         this.address2 = response.data.order.shipping_suite;
         this.address1 = response.data.order.shipping_street;
         this.town = response.data.order.shipping_town;
         this.state = response.data.order.shipping_state;
-        this.post_code = response.data.order.shipping_phoneCode;
+        this.phone_code = response.data.order.shipping_phoneCode;
+        this.zipCode = response.data.order.shipping_zip;
         this.phone = response.data.order.shipping_phone;
         this.is_discount = Number(response.data.order.has_discount);
         this.disc_amt_type = response.data.order.discount_type;
@@ -185,6 +199,7 @@ export class EditOrderComponent implements OnInit {
     let updatedPrice = event.target.value * obj.product_price;
     obj.quantity = Number(event.target.value);
     obj.amount = updatedPrice;
+    obj.totalPrice = updatedPrice;
     let total = 0;
     // if(this.ordersArray.length > 0) {
       this.ordersArray.forEach((cartElement: any, cartkey: any) => {
@@ -224,34 +239,48 @@ export class EditOrderComponent implements OnInit {
       ship_free: shipFree,
       disc_amt_type: this.disc_amt_type
     } 
-    if(this.is_discount == 1) {
-      if(this.disc_amt > 0) {
+    if(this.discAmtError) {
+      this.btnDis = false;
+      this.toast.error({detail: 'Invalid amount.', summary: '', duration: 4000});
+    } else {
+      if(this.is_discount == 1) {
+        if(this.disc_amt > 0) {
+          this.apiService.updateOrder(values).subscribe((responseBody) => {
+            let response = JSON.parse(JSON.stringify(responseBody));
+            if(response.res == true) {
+              this.fetchOrderDetails(this.ord_no);
+              this.btnDis = false;
+              this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
+            } else {
+              this.btnDis = false;
+              this.toast.error({detail: response.msg, summary: '', duration: 4000});
+            }
+          },(error) => {
+            this.btnDis = false;
+            this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
+          })
+        } else {
+          this.toast.error({detail: 'Please enter amount.', summary: '', duration: 4000});
+          this.btnDis = false;
+        }
+      } else {
         this.apiService.updateOrder(values).subscribe((responseBody) => {
           let response = JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
+            this.fetchOrderDetails(this.ord_no);
             this.btnDis = false;
             this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
+          } else {
+            this.btnDis = false;
+            this.toast.error({detail: response.msg, summary: '', duration: 4000});
           }
         },(error) => {
           this.btnDis = false;
           this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
         })
-      } else {
-        this.toast.error({detail: 'Please enter amount.', summary: '', duration: 4000});
-        this.btnDis = false;
       }
-    } else {
-      this.apiService.updateOrder(values).subscribe((responseBody) => {
-        let response = JSON.parse(JSON.stringify(responseBody));
-        if(response.res == true) {
-          this.btnDis = false;
-          this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
-        }
-      },(error) => {
-        this.btnDis = false;
-        this.toast.error({detail: 'Something went wrong! Please try again.', summary: '', duration: 4000});
-      })
     }
+    
   
   }
 
@@ -260,8 +289,21 @@ export class EditOrderComponent implements OnInit {
   }
 
   sendcheckOutForm(checkOutForm: any) {
+    let values = {
+      ord_no: this.ord_no,
+      shipping_id: this.shipping_id,
+      shipping_name: checkOutForm.value.name,
+      shipping_phone: checkOutForm.value.phone,
+      shipping_phoneCode: checkOutForm.value.phone_code,
+      shipping_state: checkOutForm.value.state,
+      shipping_street: checkOutForm.value.address1,
+      shipping_suite: checkOutForm.value.address2,
+      shipping_town: checkOutForm.value.town,
+      shipping_zip: checkOutForm.value.zipCode,
+      shipping_country: checkOutForm.value.country
+    }
     this.btnDis = true;
-    this.apiService.changeAddress(checkOutForm.value).subscribe((responseBody) => {
+    this.apiService.changeAddress(values).subscribe((responseBody) => {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.fetchOrderDetails(this.ord_no);
@@ -300,18 +342,27 @@ export class EditOrderComponent implements OnInit {
   }
 
   onDiscountChange(event: any) {
-    // if(this.disc_amt_type == "amount") {
-    //   this.ordersArray.forEach((element: any) => {
-    //     element.newAmt = Number(element.amount) - Number(event.target.value);
-    //   });
-    // } else {
-    // }
-    // console.log("this.ordersArray" , this.ordersArray);
+    if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.discAmtError = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
+    } else {
+      this.discAmtError = '';
+      if(this.disc_amt_type == "amount") {
+        // this.ordersArray.forEach((element: any) => {
+        //   element.newAmt = Number(element.amount) - Number(event.target.value);
+        // });
+        this.newSubTotal = this.orderTotal - Number(event.target.value);
+      } else {
+        let percentageCal = 0;
+        percentageCal = this.orderTotal * ((100-Number(event.target.value)) / 100);
+        this.newSubTotal = percentageCal.toFixed(2);
+      }
+      // console.log("this.ordersArray" , this.ordersArray);
+    }
+    
   }
 
   onNoPromotionClick() {
     delete this.ordersArray["newAmt"];
-    console.log("this.ordersArray" , this.ordersArray);
   }
 
 

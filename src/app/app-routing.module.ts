@@ -481,7 +481,7 @@ const routes: Routes = [
     path: 'edit-order/:id',
     component: EditOrderComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['retailer'] }
+    data: { roles: ['brand'] }
   },
   {
     path: 'view-order/:id',
