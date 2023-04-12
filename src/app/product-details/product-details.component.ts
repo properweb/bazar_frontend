@@ -44,19 +44,20 @@ export class ProductDetailsComponent implements OnInit {
   quantity!: any;
   items: any;
   custQtyEnable: any = false;
-
+  isCustomQtySelected: any = false;
   pageOfItems!: Array<any>;
   addToBagObject: any = {};
   wishlistId!: any
   wishListModalReference!: NgbModalRef;
   boardsList!: any;
 
+  p: number = 1;
+
   constructor( private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router,private eventService: EventService, private titleServive: Title, private toast: NgToastService, private appComponent: AppComponent, public modalService: NgbModal) {
 
    }
 
   ngOnInit(): void {
-
     this.activatedRoute.params.subscribe((routeParams) => {
       this.productKey = routeParams['id'];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -67,7 +68,7 @@ export class ProductDetailsComponent implements OnInit {
           this.role = user_session.role;
           this.user_id = user_session.id;
           this.getProductDetail(routeParams['id'], user_session.id);
-
+          this.fetchBoards();
           window.scroll({
             top: 0,
             left: 0,
@@ -81,10 +82,11 @@ export class ProductDetailsComponent implements OnInit {
 
     })
     this.currentUrl =this.router.url;
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+    this.items = Array(1000).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
 
   onChangePage(pageOfItems: Array<any>) {
+    console.log(pageOfItems);
     this.pageOfItems = pageOfItems;
   }
 
@@ -125,7 +127,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductDetail(product_id: any, user_id: any) {
-    this.appComponent.showSpinner = true;
+    // this.appComponent.showSpinner = true;
     this.productVariationFirst = {};
     this.openSizingArray = [];
     this.apiService.fetchProductDetails(product_id, user_id).subscribe((responseBody) => {
@@ -142,7 +144,6 @@ export class ProductDetailsComponent implements OnInit {
               element.options.forEach((element1: any) => {
                 this.openSizingArray.push({value: element1, qty: splitQty});
               });
-
             }
           });
         }
@@ -157,19 +158,22 @@ export class ProductDetailsComponent implements OnInit {
           totalPrepack += Number(element);
         });
         this.perPrepackValue = totalPrepack;
-
       }
       this.totalOpenSizingQty();
       if(response.data.variation_options.length > 0 ) {
         this.productVariation = Object.keys(response.data.variations);
         let firstObject = response.data.variations[Object.keys(response.data.variations)[0]];
         this.productVariationFirst = firstObject;
-
+        this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: 1};
+        if(response.data.min_order_qty != 'undefined') {
+          let int = Number(response.data.min_order_qty);
+          let qty = int + Number(response.data.case_quantity*0);
+          this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: qty};
         }
 
         if(response.data.prepacks.length > 0 ) {
           this.productPrepackArray = response.data.prepacks;
-
+          this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: response.data.prepacks[0].wholesale_price, quantity: 1, variationWishId: response.data.prepacks[0].variationWishId};
         }
         this.radioBtnValue = [];
         response.data.variation_options.forEach((element: any) => {
@@ -191,7 +195,9 @@ export class ProductDetailsComponent implements OnInit {
         if(response.data.min_order_qty != 'undefined') {
           let int = Number(response.data.min_order_qty);
           let qty = int + Number(response.data.case_quantity*0);
-
+          this.addToBagObject = { product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: qty};
+        } else {
+          this.addToBagObject = { product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: 1};
         }
       }
       this.relatedProducts = response.data.related_products;
@@ -201,7 +207,8 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-
+  fetchBoards() {
+    this.apiService.fetchBoards().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.boardsList = response.data;
@@ -236,7 +243,19 @@ export class ProductDetailsComponent implements OnInit {
       let int = Number(minQty);
       let qty = int + (caseQty*index);
       let price = qty* Number(wsPrice);
-
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty + '($'+ price +')';
+      }
+    } else {
+      let int = Number(minQty);
+      let qty = int + (caseQty*index);
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty;
+      }
     }
   
   }
@@ -254,7 +273,12 @@ export class ProductDetailsComponent implements OnInit {
   orderQtyNumber1(minQty: any, caseQty: any, index: any, wsPrice: any) {
     let int = Number(minQty);
     let qty = int + (caseQty*index);
-
+    // if(index > 9) {
+    //   this.custQtyEnable = true;
+    //   return 'Custom quantity';
+    // } else {
+      return qty;
+    // }
   }
 
   onColorChange(event: any) {
@@ -284,7 +308,6 @@ export class ProductDetailsComponent implements OnInit {
 
   onQtyChange(event: any) {
     if(event.target.value == 11 || event.target.value == '11') {
-
       this.custQtyEnable = true;
     }
     // this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
@@ -292,12 +315,18 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onQtyCustChange(event: any) {
-
+    this.addToBagObject = { product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: Number(event.target.value)};
     this.custQtyEnable = false;
   }
 
   onQtyChange1(event: any) {
+    // if(event.target.value == 'Custom quantity') {
+    //   this.isCustomQtySelected = true;
 
+    // } else {
+      this.isCustomQtySelected = false;
+      this.addToBagObject = { product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
+    // }
   }
 
   onPrepackChange(event: any) {
@@ -313,7 +342,6 @@ export class ProductDetailsComponent implements OnInit {
       totalPrepack += Number(element);
     });
     this.perPrepackValue = totalPrepack;
-
     this.addToBagObject.prepack_id = event.target.value; 
   }
 
@@ -332,7 +360,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail:"Product added to cart.",summary: '' ,duration: 4000});
-
+        this.afterLoginHeaderComp.fetchCart();
         this.addCrtBtn = false;
       } else {
         this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
@@ -384,7 +412,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.getProductDetail(this.productKey, this.user_id);
-
+        this.fetchBoards();
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
@@ -436,7 +464,7 @@ export class ProductDetailsComponent implements OnInit {
       if(response.res == true) {
         this.wishListModalReference.close();
         this.getProductDetail(this.productKey, this.user_id);
-
+        this.fetchBoards();
         this.toast.success({detail:"Product added to wishlist.",summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
@@ -448,6 +476,11 @@ export class ProductDetailsComponent implements OnInit {
       this.addWishBtn = false;
       this.toast.error({detail:"Something went wrong. please try again later.",summary: '' ,duration: 4000});
     })
+  }
+
+  onPageChange(event: any) {
+    console.log(event);
+    this.p = event;
   }
 
   specialProductTwoArray:any = [
@@ -462,7 +495,7 @@ export class ProductDetailsComponent implements OnInit {
       brandTitleName: "Star Seller",
       priceText: "80$ minimum",
       discountText: "Up to 30% off  + free shipping"
-
+    }
   ]
 
   specialProductOptions1: OwlOptions = {

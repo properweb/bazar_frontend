@@ -32,7 +32,6 @@ export class UserBoardComponent implements OnInit {
   constructor(private storage: StorageMap, private apiService: ApiService,private toast: NgToastService, private router: Router, private appComponent: AppComponent, public modalService: NgbModal, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
       this.board_id = this.activatedRoute.snapshot.paramMap.get('id');
       this.fetchBoard(this.board_id);
       this.storage.get('user_session').subscribe({
@@ -41,7 +40,7 @@ export class UserBoardComponent implements OnInit {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
           if(user_session.id) {
-
+            this.fetchBoardList();
           }
         },
         error: (error) => {
@@ -53,12 +52,28 @@ export class UserBoardComponent implements OnInit {
   }
 
   fetchBoard(board_id:any) {
-
+    this.appComponent.showSpinner = true;
+    this.apiService.fetchBoardWishlist(board_id).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allDetails = response.data;
+        this.exist_board_name = response.data.board_arr.name;
+        this.exist_board_visibility = response.data.board_arr.visibility;
+        this.appComponent.showSpinner = false;
+      } else {
+        this.appComponent.showSpinner = false;
+        this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
+      }
+    },(error) => {
+      this.appComponent.showSpinner = false;
+      this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
     })
     
   } 
 
-
+  fetchBoardList() {
+    // this.appComponent.showSpinner = true;
+    this.apiService.fetchBoards().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
 	    this.boardList = response.data;
     })
@@ -159,7 +174,9 @@ export class UserBoardComponent implements OnInit {
         this.modalService.dismissAll();
         this.toast.success({detail: 'Board removed successfully.',summary: '' ,duration: 4000});
         this.router.navigate(['/wishlist']);
-
+      } else {
+        this.deleteBtnDis = false;
+        this.toast.error({detail: response.msg ,summary: '' ,duration: 4000});
       }
     },(error) => {
       this.deleteBtnDis = false;
@@ -180,6 +197,8 @@ export class UserBoardComponent implements OnInit {
         this.modalService.dismissAll();
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
         // this.router.navigate(['/wishlist']);
+      } else {
+        this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
       }
     },(error) => {
       this.deleteBtnDis = false;
