@@ -21,6 +21,7 @@ export class VendorProductComponent implements OnInit {
   publishSearchText !: any;
   unpublishSearchText !: any;
   checkedItems: any = [];
+  checkedFirstItems: any [] = [];
   selectAll!:any;
   publishModal!: NgbModalRef;
   unPublishModal!: NgbModalRef;
@@ -29,11 +30,12 @@ export class VendorProductComponent implements OnInit {
   btnDis: any = false;
   currentPage: any = 1;
   proStatus: any = 'all';
+  paginateItems:any = [];
+  actionInfoList!: any;
   
   constructor(public modalService: NgbModal, private storage: StorageMap , private apiService : ApiService , private router: Router, private appComponent: AppComponent, private toast: NgToastService) { }
 
   ngOnInit(): void {
-
     if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
       this.searchText = localStorage.getItem('searchkey');
     }
@@ -44,33 +46,49 @@ export class VendorProductComponent implements OnInit {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
         this.first_name = user_session.vendor_data.first_name;
-        this.getProducts(this.user_id, this.sort_key, 1, 'all', this.searchText);
-      
+        this.getProducts(this.sort_key, 1, 'all', this.searchText);
+        this.fetchWordpressActionInfoList();
+        
       },
       error: (error) => {
         /* Called if data is invalid */
         console.log(error);
       },          
     });
+  }
 
+  openPublishModal(content: any) {  
+    this.publishModal = this.modalService.open(content, { windowClass: 'publishModal' });
+  }
 
+  openUnPublishModal(content: any) {  
+    this.unPublishModal = this.modalService.open(content, { windowClass: 'unPublishModal' });
+  }
 
   openDeleteModal(content: any) {  
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
   }
 
-  getProducts(user_id:any, sort_key: any, currPage: any, status: any, search_key: any) {
-    this.apiService.getSortProducts(user_id, sort_key, currPage, status, search_key).subscribe((responseBody) => {
+  fetchWordpressActionInfoList() {
+    this.apiService.wordpressActionInfo().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.actionInfoList = response.data;
+    })
+  }
+
+  getProducts(sort_key: any, currPage: any, status: any, search_key: any) {
+    this.apiService.getSortProducts(sort_key, currPage, status, search_key).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.allDetails = response.data; 
-        if(response.data.products.length > 0) {
-          response.data.products.forEach((element: any) => {
-          this.productsArray.push(element);
-          });
-        }
-        this.products = this.productsArray;
+        // if(response.data.products.length > 0) {
+        //   response.data.products.forEach((element: any) => {
+        //   this.productsArray.push(element);
+        //   });
+        // }
+        // this.products = this.productsArray;
+        this.products = response?.data?.products;
+        this.paginateItems = Array(Number(response?.data?.allprdcts_count ? response?.data?.allprdcts_count : 0));
     })
-
   }
     
   openExport(content:any) {
@@ -84,13 +102,18 @@ export class VendorProductComponent implements OnInit {
     return false;
   }
 
-
+  onChecked(item: any, event: any) {
     let {checked, value} = event.target;
     if(checked) {
       this.checkedItems.push(value);
     } else {
       let index = this.checkedItems.indexOf(value);
       if (index !== -1) this.checkedItems.splice(index, 1);
+    }
+    if(this.checkedItems?.length > 0) {
+      this.checkedFirstItems.push(item.status);
+    } else {
+      this.checkedFirstItems = [];
     }
   }
 
@@ -101,6 +124,7 @@ export class VendorProductComponent implements OnInit {
     }else {
     this.checkedItems = [];
     }
+    this.checkedFirstItems = [];
   }
 
   onPublishClick() {
@@ -116,8 +140,9 @@ export class VendorProductComponent implements OnInit {
         this.productsArray = [];
         this.currentPage = 1; 
         this.searchText = '';
-        this.getProducts(this.user_id, this.sort_key, this.currentPage, this.proStatus, this.searchText);
+        this.getProducts(this.sort_key, this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
+        this.checkedFirstItems = [];
         this.selectAll = false;
         this.toast.success({detail:"Product published successfully.",summary: '' ,duration: 4000});
         this.publishModal.close();
@@ -147,8 +172,9 @@ export class VendorProductComponent implements OnInit {
         this.productsArray = [];
         this.currentPage = 1; 
         this.searchText = '';
-        this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+        this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
+        this.checkedFirstItems = [];
         this.selectAll = false;
         this.btnDis = false;
         this.unPublishModal.close();
@@ -175,14 +201,15 @@ export class VendorProductComponent implements OnInit {
       this.productsArray = [];
       this.currentPage = 1; 
       this.searchText = '';
-      this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+      this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
       this.checkedItems = [];
+      this.checkedFirstItems = [];
       this.selectAll = false;
       this.btnDis = false;
       this.deleteModal.close();
       this.toast.success({detail:"Product deleted successfully.",summary: '' ,duration: 4000});
     }, (error) => {
-
+      this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
       this.btnDis = false;
     })
 
@@ -192,7 +219,7 @@ export class VendorProductComponent implements OnInit {
     this.productsArray = [];
     this.currentPage = 1; 
     this.sort_key = event.target.value;
-    this.getProducts(this.user_id, event.target.value,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(event.target.value,this.currentPage, this.proStatus, this.searchText);
   }
 
   syncShopify(id: any, website: any) {
@@ -221,44 +248,47 @@ export class VendorProductComponent implements OnInit {
 
   onScroll() {
     this.currentPage ++;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
   }
 
   tabAllClick() {
     this.checkedItems = [];
+    this.checkedFirstItems = [];
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
     this.proStatus = 'all';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
   }
 
   tabPublishClick() {
     this.checkedItems = [];
+    this.checkedFirstItems = [];
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
     this.proStatus = 'publish';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, 'publish', this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, 'publish', this.searchText);
   }
 
   tabUnPublishClick() {
     this.checkedItems = [];
+    this.checkedFirstItems = [];
     this.selectAll = false;
     this.productsArray = [];
     this.currentPage = 1;
     this.proStatus = 'unpublish';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, 'unpublish', this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, 'unpublish', this.searchText);
   }
 
   onSearchPress(event: any) {
     localStorage.setItem('searchkey', event.target.value);
     this.productsArray = [];
     this.currentPage = 1;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
   }
 
   onSearchTextChange(event: any) {
@@ -266,16 +296,28 @@ export class VendorProductComponent implements OnInit {
       localStorage.removeItem('searchkey');
       this.productsArray = [];
       this.currentPage = 1;
-      this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+      this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
     }
   }
-  
 
   onResetClick() {
     this.searchText = '';
     this.productsArray = [];
     this.currentPage = 1;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
+  }
+
+  onPageChange(event: any) {
+    this.currentPage = event;
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
+  }
+
+  wordpressSyncFromNotification(id: any) {
+    this.fetchWordpressActionInfoList();
+  }
+
+  notificationDelete(index: any) {
+    this.actionInfoList.splice(index, 1);
   }
 
 }

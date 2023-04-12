@@ -1,7 +1,7 @@
 <app-vendor-dashboard-header></app-vendor-dashboard-header>
 <div class="dashboard_body">
   <app-vendor-side-menu></app-vendor-side-menu>
-  <div class="middle_vendor_dasboard">
+  <div class="middle_vendor_dasboard"> 
     <div class="middle_content">
       <select class="form-select add_product_select" aria-label="Default select example" (change)="navigateTo($event)">
         <option selected hidden>Add products</option>
@@ -11,10 +11,27 @@
       </select>
       <h3>Welcome, {{first_name}}</h3>
       <p>Your wholesale catalog on Bazar</p>
-      <div class="whiteBox" infiniteScroll
+      <!-- <ng-container>
+        <div class="alert alert-warning" role="alert" >
+            Please verify your Email.
+            <a (click)="onResendEmailClick()">Resend email.</a>
+        </div>
+      </ng-container> -->
+      <!-- <div class="whiteBox" 
+      infiniteScroll
       [infiniteScrollDistance]="2" 
       [infiniteScrollThrottle]="30"
-      (scrolled)="onScroll()">
+      (scrolled)="onScroll()"> -->
+
+      <ng-container *ngIf="actionInfoList?.length > 0">
+        <ngb-alert type="danger" class="gray-message-alert" style="margin-bottom: 15px;" *ngFor="let item of actionInfoList; let i = index;" >
+          <span class="cross-message-alert" (click)="notificationDelete(i)"><img src="assets/images/cross_icon.png" alt="cross img"></span>
+          {{item?.message}}
+          <input type="button" value="Sync" class="btn" (click)="wordpressSyncFromNotification(item?.id)" >
+        </ngb-alert>
+      </ng-container>
+
+      <div class="whiteBox">
         <div class="product_tab_content">
           <ul class="nav nav-tabs" role="tablist"> 
             <li class="nav-item" style="cursor: pointer"><a class="nav-link active" data-bs-toggle="tab" href="#allProduct" (click)="tabAllClick()" >All <span>{{allDetails && allDetails?.allprdcts_count}}</span></a></li>
@@ -39,7 +56,10 @@
               <h3>Select products to take an action</h3>
 
               <ul class="publicList" *ngIf="checkedItems.length > 0">
-
+                <li *ngIf="proStatus == 'publish' || checkedFirstItems[0] == 'publish'"><a class="disabled"><i class="fa-solid fa-eye"></i> Publish</a></li>
+                <li *ngIf="proStatus != 'publish' && checkedFirstItems[0] != 'publish'" (click)="openPublishModal(publishContent)"><a ><i class="fa-solid fa-eye"></i> Publish</a></li>
+                <li *ngIf="proStatus == 'unpublish' || checkedFirstItems[0] == 'unpublish'"><a class="disabled"><i class="fa-solid fa-eye-slash"></i> Unpublish</a></li>
+                <li *ngIf="proStatus != 'unpublish' && checkedFirstItems[0] != 'unpublish'" (click)="openUnPublishModal(unPublishContent)"><a ><i class="fa-solid fa-eye-slash"></i> Unpublish</a></li>
                 <li (click)="openDeleteModal(deleteContent)"><a ><i class="fa-solid fa-trash"></i> Delete</a></li>               
               </ul>
 
@@ -64,7 +84,9 @@
                       <th scope="col">&nbsp;</th>
                     </tr>
                   </thead>
-
+                  <tbody> 
+                    <tr *ngFor="let product of products">
+                      <td><input class="form-check-input" type="checkbox" [disabled]="checkedFirstItems.length > 0 && checkedFirstItems[0] != product?.status ? true : false" [value]="product.id" (change)="onChecked(product, $event)" [checked]="checkedItems.includes(product.id) == true"></td>
                       <td><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></td>
                       <td>{{product.name}}</td>
                       <td>{{product?.options_count}} options</td>
@@ -87,6 +109,10 @@
             </div>
           </div>
         </div>
+        <ul style="display: none;">
+          <li *ngFor="let item of paginateItems | paginate: { itemsPerPage: 10, currentPage: currentPage }"> ... </li>
+        </ul>
+        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
       </div>
     </div>
   </div>

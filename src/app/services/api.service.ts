@@ -86,7 +86,7 @@ export class ApiService {
     return this.http.post(this._Base_URL+'shop/brand-products', values, this.createAuthorizationHeader());
   }
 
-  getSortProducts(id:any, sort_key: any, page: any, status: any, search_key: any) {
+  getSortProducts(sort_key: any, page: any, status: any, search_key: any) {
     return this.http.get(this._Base_URL+'product/'+'fetch?sort_key='+sort_key+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
   }
 
@@ -98,8 +98,9 @@ export class ApiService {
     return this.http.get(this._Base_URL+'brands/shop/'+key, this.createAuthorizationHeader());
   }
 
-  importWordpress(user_id:any , consumer_key:any, website_url:any , consumer_secret:any) {
-    return this.http.get(this._Base_URL+'wordpress/'+'importwordpress?user_id='+user_id+'&consumer_key='+consumer_key+'&website='+website_url+'&consumer_secret='+consumer_secret, this.createAuthorizationHeader());
+  importWordpress(values:any) {
+    // return this.http.get(this._Base_URL+'wordpress/'+'wordpress-import?user_id='+user_id+'&consumer_key='+consumer_key+'&website='+website_url+'&consumer_secret='+consumer_secret, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'wordpress', values, this.createAuthorizationHeader());
   }
 
   importShopify(user_id:any , api_key:any, api_password:any , store_url:any) {
@@ -424,6 +425,10 @@ export class ApiService {
 
   fetchProductsByCategory(values: any ) {
     return this.http.post(this._Base_URL+'shop/category-products', values, this.createAuthorizationHeader());
+  }
+  
+  wordpressActionInfo() {
+    return this.http.get(this._Base_URL+'wordpress/action-info', this.createAuthorizationHeader());
   }
 
   logout() {

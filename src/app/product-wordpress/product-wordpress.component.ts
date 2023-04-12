@@ -21,10 +21,6 @@ export class ProductWordpressComponent implements OnInit {
   constructor(private storage: StorageMap , private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -38,7 +34,12 @@ export class ProductWordpressComponent implements OnInit {
 
   wordpressConnect(wordpressConnectForm:any) {
     this.spinnerShow = true;
-    this.apiService.importWordpress(this.user_id, wordpressConnectForm.value.consumer_key,wordpressConnectForm.value.website_url,wordpressConnectForm.value.consumer_secrect_key).subscribe((responseBody) => {
+    let values = {
+      consumerKey: wordpressConnectForm.value.consumer_key,
+      website: wordpressConnectForm.value.website_url,
+      consumerSecret: wordpressConnectForm.value.consumer_secrect_key,
+    }
+    this.apiService.importWordpress(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res === false) {
         this.errorMsg=response.msg;
