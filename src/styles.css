@@ -1,5 +1,6 @@
 @import url("fonts/fonts.css");
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 /* font-family: 'Futura' !important;
    font-weight: 200;
 */
@@ -39,9 +40,14 @@ input, button { font-family: 'Futura' !important; }
 .container-fluid { max-width: 1440px; }
 .full_container-fluid { max-width: 100%; padding-left: 30px !important; padding-right: 30px !important; }
 .error-msg { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-feature { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-profile { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-cover { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
+.error-msg-logo { color: #f00; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: -20px 0 50px 0; padding: 0; width: 100%; }
 .validate_errors { color: red; font-family: 'Futura' !important; margin-bottom: 10px; }
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
 input[type=number] { -moz-appearance: textfield; } 
+:focus-visible { outline: none; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Common Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
@@ -64,6 +70,25 @@ input[type=number] { -moz-appearance: textfield; }
 .pagination .next-item { margin-left: 15px; }
 .pagination .next-item .page-link { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; width: 64px; text-indent: -999em; width: 64px; }
 .pagination .next-item .page-link:hover { background-image: url(assets/images/pagi_next_white_icon.png); background-color: #000; cursor: pointer; }
+
+
+.ngx-pagination { text-align: center; }
+.ngx-pagination li { color: rgba(156, 156, 156, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 3px 0 3px; }
+.ngx-pagination li a { background: none; border: none; border-radius: 0px; color: rgba(156, 156, 156, 0.5) !important; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; height: 64px; line-height: 64px; padding: 0 10px 0 10px; text-align: center; }
+.ngx-pagination li a:hover { background: none !important; color: #000 !important; }
+.ngx-pagination .current { background: none !important; color: #000 !important; }
+.ngx-pagination .current:hover { background: none !important; color: #000 !important; }
+.ngx-pagination .pagination-previous::before { display: none !important; }
+.ngx-pagination .pagination-previous::after { display: none !important; }
+.ngx-pagination .pagination-previous span { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-previous a { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-previous a:hover { background: url(assets/images/pagi_prev_white_icon.png) no-repeat center !important; background-color: #000 !important; cursor: pointer; }
+.ngx-pagination .pagination-next::before { display: none !important; }
+.ngx-pagination .pagination-next::after { display: none !important; }
+.ngx-pagination .pagination-next span { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-next a { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-next a:hover { background: url(assets/images/pagi_next_white_icon.png) no-repeat center !important; background-color: #000 !important; cursor: pointer; }
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Tab Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
@@ -91,12 +116,32 @@ input[type=number] { -moz-appearance: textfield; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.filter_sec .owl-theme .owl-stage-outer { height: 500px; overflow-x: hidden; overflow-y: clip; z-index: 2; }
+.filter_sec .filter_gray_box2 .custom-class { position: relative; top: -57px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-btn { /*background-color: #f7f8fa;*/ background: none; border: none; border-radius: 5px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 57px; min-height: 57px; padding: 0 10px 0 10px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-down, .filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-up { height: 23px; line-height: 23px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-down c-icon, .filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-up c-icon { position: relative; top: -3px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-list { display: none; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-btn .c-remove c-icon { position: relative; top: -3px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list { bottom: auto !important; left: 0 !important; padding-top: 0 !important; /*position: absolute !important; top: 42px !important;*/ position: relative !important; top: 0 !important; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .arrow-up { display: none; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .list-area { border-bottom: none; border-radius: 5px 5px 0 0; box-shadow: none; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label { color: #000; font: 200 16px 'Futura' !important; line-height: 22px; height: 22px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label:before { border: 1px solid rgba(0,0,0,.25); border-radius: 0.25em; height: 20px; margin-top: -11px; width: 20px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type="checkbox"]:checked + label:before { background-color: #000; border-color: #000; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label:after { left: 6px; margin-top: -5px; }
+
+
+
 .category_top .owl-theme .owl-nav { margin-top: -39px; position: relative; width: 100%; z-index: 1; }
 .category_top .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow.svg) no-repeat center; bottom: -48px; float: left; height: 57px; left: -20px; position: absolute; width: 57px; }
 .category_top .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow.svg) no-repeat center; bottom: -48px; float: right; height: 57px; position: absolute; right: -20px; width: 57px; }
-.filter_sec  .owl-theme .owl-nav { margin-top: -50px; position: relative; width: 100%; z-index: 1; }
-.filter_sec  .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; margin-left: -29px; margin-top: 5px; width: 20px; }
-.filter_sec  .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; margin-right: -29px; margin-top: 5px; width: 20px; }
+
+
+
+.filter_sec .owl-theme .owl-nav { margin-top: -50px; position: absolute; top: 131px; width: 100%; z-index: 1; }
+.filter_sec .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; margin-left: -29px; margin-top: 5px; width: 20px; }
+.filter_sec .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; margin-right: -29px; margin-top: 5px; width: 20px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Our Best Sellers Carousel in Category Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -396,6 +441,9 @@ input[type=number] { -moz-appearance: textfield; }
 .email-template .gjs-mdl-dialog .gjs-mdl-header .gjs-mdl-btn-close { color: #000; opacity: 1; }
 .email-template .gjs-cv-canvas { left: 50%; margin-left: -400px; width: 600px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Campaigns-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+
 
 /**************************************************************** Vendor Pages End *****************************************************************/
 
@@ -760,6 +808,35 @@ input[type=number] { -moz-appearance: textfield; }
 .endPromotionModal .modal-content .modal-footer .no-customer-btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 294px; }
 .endPromotionModal .modal-content .modal-footer .no-customer-btn:focus { box-shadow: none; }
 /* Vendor Edit Promotion Modal End */
+
+
+/* Vendor Filter Modal Style Start */
+.filterModal .modal-header { /*border-bottom: 1px solid rgba(57, 57, 57, 0.15);*/ padding: 15px 0 20px 0; position: relative; }
+.filterModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.filterModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.filterModal .modal-header .btn-close:focus { box-shadow: none; }
+.filterModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0 0 10px 0; }
+.filterModal .modal-body .radio-filter-list { border-bottom: 1px solid rgba(57, 57, 57, 0.15); float: left; list-style: none; margin: 0 0 25px 0; padding: 0 0 20px 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li { float: left; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li .radioLabel { cursor: pointer; float: left; height: 20px; margin: 0 10px 0 0; position: relative; padding: 0; -webkit-user-select: none; user-select: none; width: 20px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; float: left; height: 20px; left: 0; position: absolute; top: 1px; width: 20px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel:hover input ~ .checkmark { }
+.filterModal .modal-body .radio-filter-list li .radioLabel input:checked ~ .checkmark { }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.filterModal .modal-body .radio-filter-list li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.filterModal .modal-body .radio-filter-list li .label-span { color: #000; float: left; font: 200 16px 'Futura' !important; height: 20px; line-height: 20px; }
+.filterModal .modal-body .select-filter-list { border-bottom: 1px solid rgba(57, 57, 57, 0.15); float: left; list-style: none; margin: 0 0 25px 0; padding: 0 0 20px 0; width: 100%; }
+.filterModal .modal-body .select-filter-list li { float: left; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.filterModal .modal-body .select-filter-list li .form-check-input { cursor: pointer; float: left; height: 20px; margin: 0 10px 0 0; width: 20px; }
+.filterModal .modal-body .select-filter-list li .form-check-input:checked { background-color: #000; border-color: #000; }
+.filterModal .modal-body .select-filter-list li .form-check-input:focus { box-shadow: none; }
+.filterModal .modal-body .select-filter-list li .label-span { color: #000; float: left; font: 200 16px 'Futura' !important; height: 20px; line-height: 20px; }
+.filterModal .modal-footer .clear-all-btn { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; padding: 0 30px 0 30px; text-align: center; }
+.filterModal .modal-footer .apply-btn { background: #393939; border: none; color: #fff; cursor: pointer; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0 30px 0 30px; text-align: center; }
+/* Vendor Filter Modal Style End */
+
 
 /* User Invoice Modal Start */
 .downloadInvoiceModal .modal-dialog { max-width: 632px; }
@@ -1296,6 +1373,11 @@ input[type=number] { -moz-appearance: textfield; }
 /* Vendor-Dashboard-Common-Style Start */
 .edit-order-dashboard_body { margin-top: 20px; }
 /* Vendor-Dashboard-Common-Style End */
+
+/* Category Page Carousel Start */
+.filter_sec .owl-theme .owl-stage { margin-top: 50px; }
+.filter_sec .owl-theme .owl-nav { margin-top: 0; top: 0; }
+/* Category Page Carousel End */
 
 /**************************************************************** Vendor Pages End *****************************************************************/
 

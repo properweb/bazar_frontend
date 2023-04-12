@@ -80,7 +80,97 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   isVarAvailable !: any;
   varImageIndex!: any;
 
+  // crop
+  imageChangedEvent: any = '';
+  allImageChangedEventArray: any = [];
+  croppedImage: any = '';
+  croppedImageReady: any = '';
+  imgId: any = 0;
+  currentProcessingImg!: any;
 
+  // attribute variables
+  option1 !: any;
+  option2 !: any;
+  option3 !: any;
+  option_items: any = []; 
+  option_items2!: any; 
+  option_items3!: any; 
+  selectedAttribute : any = {};
+  resultAttribute : any = [];
+  modifiedResultAttribute : any = [];
+  resultAttributeImgPreview : any = [];
+  option_type : any = [];
+  ext_option_type : any = [];
+  indexOfSwatch!: any;
+  colorOptionItems: any = [];
+  swatchName !: any;
+  swatchIndex: any = 0;
+  selectedCropFiles: any[] = [];
+  existingSize: any[] = [];
+  lists: any = [];
+  prepackLists: any = [];
+  sizeItemPrePack: any = [];
+  addOptionsModal: any; 
+  addProductModal: any; 
+  addColorModal: any;
+  selectColorModal: any;
+  variantsProductsModal: any;
+  nextProductId: any;
+  prevProductId: any;
+  videoModalShow!: any;
+  product_images: any = [];
+  prev_product_images: any = [];
+  all_details_images: any = [];
+  categories: any = [];
+  product_videos: any = [];
+  previews: any[] = [];
+  cropPreviews: any[] = [];
+  video_url: any[] = [];
+  prev_product_videos: any[] = [];
+  all_details_videos: any = [];
+  video_modal_url: any[] = [];
+  selectedFiles: any[] = [];
+  imgCountArr : any[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+  minOrderQtyArr : any[] = [1,2,3,4,5,6,7,8,9,10];
+  pricingCountryArray : any = [
+    {    
+        'country_name':'United States',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ USD'   
+    },
+    { 
+        'country_name':'Canada',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ CAD'
+    },
+    { 
+        'country_name':'United Kingdom',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '£ GBP'
+    },
+    { 
+        'country_name':'Australia',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '$ AUD'
+    },
+    { 
+        'country_name':'Europe',
+        'wholesale_price': '',
+        'retail_price': '',
+        'currency': '€ EUR'
+    },
+  ]
+  initialValue !: any;
+  productKeyword = 'category';
+  keyword = 'name';
+  data = ['Size' , 'Material',  'Color' , 'Style', 'Scent'];
+  hoveredDate: NgbDate | null = null;
+  fromDate: any;
+  toDate: any;
   showForm1:boolean= false;
   showForm2:boolean= false;
   showForm3:boolean= false;
@@ -177,7 +267,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   ngOnInit(): void {
-
+    this.showForm1= true;
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -208,7 +298,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
           /* Called if data is invalid */
         },
       });
-
+    })
     this.featured_image = 0;
     this.lists= [];
     this.dimension_unit = 'cm';
@@ -390,7 +480,9 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
         this.keep_product = response.data[0].keep_product;
       }
 
-
+      if(response.data[0].allvariations.length > 0) {
+        this.isVarAvailable = true;
+        this.options_available = 1;
         this.option_type = response.data[0].option_type;
         this.prevOptionsType = [...response.data[0].option_type];
         this.ext_option_type = response.data[0].option_type;
@@ -428,7 +520,12 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         if(response.data[0].prepack_type != null) {
           this.prepack_type = response.data[0].prepack_type;
-
+          if(response.data[0].prepack_type == '1' || response.data[0].prepack_type == 1) {
+            this.showSubCasePacks();
+          } else if (response.data[0].prepack_type == '2' || response.data[0].prepack_type == 2) {
+            this.showSubOpenSizing();
+          } else {}
+        }
         if(response.data[0].pre_packs.length > 0){
           this.hideCreatePrepack = true;
           if(response.data[0].sell_type == '3') {
@@ -585,7 +682,13 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
   }
 
   chooseYesFunction() { 
-
+    if(this.lists.length == 0) {
+      this.lists.push({"declare":""});
+    }
+    if(this.options_available == 0) {
+      this.sell_type = '1';
+      this.showCasePacks();
+    }
     this.isVarAvailable = true;
     this.showForm2= true;
     this.showForm3= true;
@@ -1139,7 +1242,11 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
       formData.append("colorOptionItems", JSON.stringify(this.colorOptionItems));
       formData.append("option_type", this.option_type);
 
-
+      if(!this.blankImgExist) {
+        this.resultAttribute.forEach((element: any , index:any) => {
+          this.resultAttribute[index].swatch_image = '';
+        });
+      }
 
       formData.append("variations" , JSON.stringify(this.resultAttribute));
       this.prepackLists.forEach((element: any) => {
@@ -1640,8 +1747,10 @@ addAttribute() {
       prepackOptionType.forEach((elm: any, key: any) => {
         selectedprepackOptionItem[elm] = [];
         this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
-          if(!selectedprepackOptionItem[elm].includes(sizeElm[elm])) {
-            selectedprepackOptionItem[elm].push(sizeElm[elm]);
+          if(sizeElm.status == 'published') {
+            if(!selectedprepackOptionItem[elm].includes(sizeElm[elm])) {
+              selectedprepackOptionItem[elm].push(sizeElm[elm]);
+            }
           }
         })
       })
@@ -1683,8 +1792,10 @@ addAttribute() {
       if(this.option_type.includes('Size')) {
         let sizeItems: any = [];
         this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
-          if(!sizeItems.includes(sizeElm['Size'])) {
-            sizeItems.push(sizeElm['Size']);
+          if(sizeElm.status == 'published') {
+            if(!sizeItems.includes(sizeElm['Size'])) {
+              sizeItems.push(sizeElm['Size']);
+            }
           }
         })
         // let index = this.option_type.indexOf('Size');
@@ -1723,7 +1834,17 @@ prepackRowGeneration() {
       prepackOptionItems.splice(index,1); 
     }
 
-
+    prepackOptionType.forEach((elm: any, key: any) => {
+      selectedprepackOptionItem[elm] = [];
+      this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
+        if(sizeElm.status == 'published') {
+          if(!selectedprepackOptionItem[elm].includes(sizeElm[elm])) {
+            selectedprepackOptionItem[elm].push(sizeElm[elm]);
+          }
+        }
+      })
+    })
+    
     if(prepackOptionType.length > 0) {
       this.prepackLists = [];
       if(prepackOptionType.length == 1) {
@@ -1771,7 +1892,10 @@ prepackRowGeneration() {
       }
     }
 
-
+    let sizeItems: any = [];
+    this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
+      if(!sizeItems.includes(sizeElm['Size'])) {
+        sizeItems.push(sizeElm['Size']);
       }
     })
 
@@ -2178,8 +2302,10 @@ onVarOptionFromTableChange(event: any, index: any, attriValue: any) {
   showCreatePrepack() { 
     let sizeItem: any = [];
     this.resultAttribute.forEach((sizeElm: any, sizeKey: any) => {
-      if(!sizeItem.includes(sizeElm['Size'])) {
-        sizeItem.push(sizeElm['Size']);
+      if(sizeElm.status == 'published') {
+        if(!sizeItem.includes(sizeElm['Size'])) {
+          sizeItem.push(sizeElm['Size']);
+        }
       }
     })
     if(sizeItem.length <= 1) {
@@ -2417,7 +2543,7 @@ onVarOptionFromTableChange(event: any, index: any, attriValue: any) {
      this.prepackLists[index].packs_price = sizeCal;
   }
   
-
+  sizeRatioChange(index: any , event: any) {
     this.prepackLists[index].size_range = [];
     this.prepackLists[index].packs_price = '';
     this.prepackLists[index].size_range_value = '';

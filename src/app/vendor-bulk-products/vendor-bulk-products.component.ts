@@ -28,10 +28,6 @@ export class VendorBulkProductsComponent implements OnInit {
   constructor( private storage: StorageMap , private apiService : ApiService , private router: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-    
     this.storage.get('user_session').subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -122,7 +118,9 @@ export class VendorBulkProductsComponent implements OnInit {
   donwloadExistCatalog(user_id: any) {
     this.apiService.downloadExistCatalog(user_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.existCatalog = response.data;
+      if(response.res == true) {
+        this.existCatalog = response.data;
+      }
     })
   }
 
