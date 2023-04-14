@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./product-sub-category.component.css']
 })
 export class ProductSubCategoryComponent implements OnInit {
-  @Input() currentUrl = ''
+  @Input() currentUrl = '';
   userSignupModalReference!: NgbModalRef;
   signInModal!: NgbModalRef;
   catSlug!: any;
@@ -30,6 +30,21 @@ export class ProductSubCategoryComponent implements OnInit {
   submitted: boolean = false;
   userRegForm!: FormGroup;
   userEmail!: any;
+  sort_key: any = 'featured';
+  sortValues!: any;
+  filterMinOrderSelectedValue!: any;
+  filterLeadTimeSelectedValue!: any;
+  filterValuesSelectedArray: any = [];
+  searchBrandText!: any;
+  searchLocationText!: any;
+  filterBrandSelectedArray: any = [];
+  filterPromotionSelectedArray: any = [];
+  filterLocationSelectedArray: any = [];
+  
+  leadTimeFilterValues:any = [{value:'3', display: '3 days or less'}, {value:'6', display: '6 days or less'}, {value:'9', display: '9 days or less'}, {value:'14', display: '14 days or less'}];
+  minOrderFilterValues:any = [{value:'0', display: 'No minimum'}, {value:'100', display: '$100 or less'}, {value:'200', display: '$200 or less'}, {value:'300', display: '$300 or less'}];
+  tagsArray:any =['Eco-friendly', 'Not on Amazon', 'Made in Europe', 'Social good', 'Shop local', 'Local brand'];
+  promotionsArray:any =[{value:'free_shipping', display: 'Free shipping'}, {value:'40', display: '40% off & up'}, {value:'30', display: '30% off & up'}, {value:'20', display: '20% off & up'}, {value:'15', display: '15% off & up'}, {value:'10', display: '10% off & up'}, {value:'less_than_10', display: 'Less than 10% off'}, {value:'amount_off', display: 'Amount off'}];
 
   constructor( private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private toast: NgToastService, public modalService: NgbModal) { 
     this.userRegForm = new FormGroup({
@@ -62,6 +77,7 @@ export class ProductSubCategoryComponent implements OnInit {
       this.subCatSlug = routeParams['subcat_slug'];
       this.subSubCatSlug = routeParams['subsubcat_slug'];
       this.getProductsByCategory(routeParams['cat_slug'], routeParams['subcat_slug'], routeParams['subsubcat_slug']);
+      this.fetchProductFilterValues(routeParams['cat_slug'], routeParams['subcat_slug'], routeParams['subsubcat_slug']);
       window.scroll({
         top: 0,
         left: 0,
@@ -184,11 +200,36 @@ export class ProductSubCategoryComponent implements OnInit {
     }
   }
 
+  fetchProductFilterValues(category: any, subCat: any, subSubCat: any) {
+    let values = {
+      main_category: category,
+      category: subCat,
+      sub_category: subSubCat ? subSubCat : '',
+    }
+    this.apiService.fetchProductFilterValues(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.sortValues = response.data;
+      } else {
+        this.toast.error({detail: response.data, summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
+  }
+
   getProductsByCategory(category: any, subCat: any, subSubCat: any) {
     let values = {
       main_category: category,
       category: subCat,
-      sub_category: subSubCat ? subSubCat : ''
+      sub_category: subSubCat ? subSubCat : '',
+      brandSort: this.filterBrandSelectedArray,
+      leadTimeSort: this.filterLeadTimeSelectedValue,
+      minOrderSort: this.filterMinOrderSelectedValue,
+      valuesSort: this.filterValuesSelectedArray,
+      locationSort: this.filterLocationSelectedArray,
+      promotionSort: this.filterPromotionSelectedArray,
+      sortKey: this.sort_key
     }
     this.apiService.fetchProductsByCategory(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
@@ -202,6 +243,53 @@ export class ProductSubCategoryComponent implements OnInit {
     })
   }
   
+  onFilterChange(filterValue: any, event: any) {
+    if(filterValue === 'brand') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterBrandSelectedArray.push(value);
+      } else {
+        let index = this.filterBrandSelectedArray.indexOf(value);
+        this.filterBrandSelectedArray.splice(index, 1);
+      }
+    } else if(filterValue === 'LeadTime') {
+      let { value , checked } = event.target;
+      this.filterLeadTimeSelectedValue = value;
+    } else if(filterValue === 'minOrder') {
+      let { value , checked } = event.target;
+      this.filterMinOrderSelectedValue = value;
+    } else if(filterValue === 'values') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterValuesSelectedArray.push(value);
+      } else {
+        let index = this.filterValuesSelectedArray.indexOf(value);
+        this.filterValuesSelectedArray.splice(index, 1);
+      }
+      // this.valuesSelected = false;
+    } else if(filterValue === 'promotion') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterPromotionSelectedArray.push(value);
+      } else {
+        let index = this.filterPromotionSelectedArray.indexOf(value);
+        this.filterPromotionSelectedArray.splice(index, 1);
+      }
+      // this.valuesSelected = false;
+    } else if(filterValue === 'location') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterLocationSelectedArray.push(value);
+      } else {
+        let index = this.filterLocationSelectedArray.indexOf(value);
+        this.filterLocationSelectedArray.splice(index, 1);
+      }
+      // this.valuesSelected = false;
+    }
+
+    this.getProductsByCategory(this.catSlug, this.subCatSlug, this.subSubCatSlug);
+  }
+
   model = 'middle';
 
 }

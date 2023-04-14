@@ -36,84 +36,238 @@
         <owl-carousel-o [options]="filterOptions1">
             <ng-template carouselSlide>
                 <div class="filter_gray_box">
-                    <a class="short_by_icon"><img src="assets/images/short_by_icon.png" alt=""></a>
-                    <a class="short_by_icon2"><img src="assets/images/short_by_icon2.svg" alt=""></a>
+                    <a *ngIf="!sortDropDownOpen" class="short_by_icon" (click)="sortDropDownOpen = true;">
+                        <img src="assets/images/short_by_icon.png" alt="" class="short-img-gray">
+                    </a>
+                    <!-- active -->
+                    <a class="short_by_icon short_by-active" *ngIf="sortDropDownOpen" (click)="sortDropDownOpen = false;">
+                        <img src="assets/images/short_by-white-icon.svg" class="short-img-white" alt="" >
+                    </a>
+                    <div class="short-radio-dropdown-sec" *ngIf="sortDropDownOpen">
+                        <h3>Sort by</h3>
+                        <ul class="short-radio-dropdown-list">
+                            <li><span class="radioLabel" (click)="sort_key = 'featured'">
+                                    <input type="radio" name="sort_key1" [checked]="sort_key == 'featured'" class="form-radio-input">
+                                    <span class="checkmark"></span> 
+                                </span>
+                                <span class="label-span">Featured</span>
+                            </li>
+                            <li><span class="radioLabel" (click)="sort_key = 'new'">
+                                    <input type="radio" name="sort_key2" [checked]="sort_key == 'new'" class="form-radio-input">
+                                    <span class="checkmark"></span> 
+                                </span>
+                                <span class="label-span">New</span>
+                            </li>
+                        </ul> 
+                        <div class="custom-label-sec">
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick();sortDropDownOpen = false;" />
+                        </div>   
+                    </div>  
+                    <a *ngIf="filterCount == 0 || filterCount == ''" class="short_by_icon2" (click)="openFilterModal(filterContent)">
+                        <img src="assets/images/short_by_icon2.svg" alt="" class="short-img2-gray">
+                    </a>
+                    <!-- active -->
+                    <a *ngIf="filterCount > 0" class="short_by_icon2 short_by2-active">
+                        <img src="assets/images/short_by_icon2-white.svg" class="short-img2-white" alt="" (click)="openFilterModal(filterContent)"> {{filterCount}} <span class="cross-span" *ngIf="clickedApplyBtn"><img src="assets/images/cross-white_icon.png" alt="" (click)="modalClearAll()"></span>
+                    </a>
                 </div>
             </ng-template>
             <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Country of origin</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label *ngIf="filterPromotionSelectedArray?.length == 0" [ngClass]="[filterClickedValue == 'promotion' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'promotion'; toggleFilterDropdown();">Promotions</label>
+                    <label *ngIf="filterPromotionSelectedArray?.length > 0" [ngClass]="[filterClickedValue == 'promotion' || filterPromotionSelectedArray?.length > 0 ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'promotion'; toggleFilterDropdown();">Promotions {{ clickedApplyBtn ? '('+filterPromotionSelectedArray?.length+')' : ''}}
+                        <span class="cross-span" (click)="clearFilterValue('promotion');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="select-dropdown-sec" *ngIf="filterClickedValue == 'promotion' && showFilterDropdown">
+                        <h3>Brand promotions</h3>
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('promotion');" >Clear All</span>
+                        <!-- <span class="clear-all-span" (click)="clearFilterValue('promotion');" >Clear All</span> -->
+                        <ul class="select-dropdown-list">
+                            <li *ngFor="let item of promotionsArray; let i = index;"><input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item.value" [(ngModel)]="filterPromotionSelectedChecked[i]" [checked]="filterPromotionSelectedArray.includes(item.value) == true" (change)="onFilterChange('promotion', $event);"> <span class="label-span">{{item.display}}</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick();" />
+                        </div>  
+                    </div>                
                 </div>
             </ng-template>
             <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Minimum orders</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label *ngIf="!filterMinOrderSelectedValue" [ngClass]="[filterClickedValue == 'minOrder' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'minOrder'; toggleFilterDropdown();">Minimun order</label>
+                    <label *ngIf="filterMinOrderSelectedValue" [ngClass]="[filterClickedValue == 'minOrder' || filterMinOrderSelectedValue ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'minOrder'; toggleFilterDropdown();"> {{ (clickedApplyBtn && minOrderSelected) ? filterMinOrderSelectedValue : 'Minimun order'}}
+                        <span class="cross-span" (click)="clearFilterValue('minOrder');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="radio-dropdown-sec" *ngIf="filterClickedValue == 'minOrder' && showFilterDropdown">
+                        <h3>Minimun order</h3>
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('minOrder');" >Clear All</span>
+                        <ul class="radio-dropdown-list">
+                            <li *ngFor="let item of minOrderFilterValues; let i = index;">
+                                <span class="radioLabel" (click)="filterMinOrderSelectedValue=item.value; minOrderSelected = false;">
+                                    <input type="radio" [checked]="filterMinOrderSelectedValue == item.value" class="form-radio-input">
+                                    <span class="checkmark"></span> 
+                                </span>
+                                <span class="label-span">{{item.display}}</span>
+                            </li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick(); minOrderSelected = true;" />
+                        </div>  
+                    </div>              
                 </div>
             </ng-template>
             <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Values</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label *ngIf="!filterLeadTimeSelectedValue" [ngClass]="[filterClickedValue == 'LeadTime' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'LeadTime'; toggleFilterDropdown();">Lead time</label>
+                    <label *ngIf="filterLeadTimeSelectedValue" [ngClass]="[filterClickedValue == 'LeadTime' || filterLeadTimeSelectedValue ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'LeadTime'; toggleFilterDropdown();">{{ (clickedApplyBtn && leadSelected) ? filterLeadTimeSelectedValue : 'Lead time'}}
+                        <span class="cross-span" (click)="clearFilterValue('LeadTime');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="radio-dropdown-sec" *ngIf="filterClickedValue == 'LeadTime' && showFilterDropdown">
+                        <h3>Lead time</h3>
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('LeadTime');" >Clear All</span>
+                        <ul class="radio-dropdown-list">
+                            <!-- <li *ngFor="let item of leadTimeFilterValues; let i = index;"><input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item" [(ngModel)]="filterLeadTimeSelectedChecked[i]" [checked]="filterLeadTimeSelectedArray.includes(item) == true" (change)="onFilterChange('LeadTime', $event);"> <span class="label-span">{{item}}</span></li> -->
+                            <li *ngFor="let item of leadTimeFilterValues; let i = index;">
+                                <span class="radioLabel" (click)="filterLeadTimeSelectedValue=item.value; leadSelected = false;">
+                                    <input type="radio" [checked]="filterLeadTimeSelectedValue == item.value" class="form-radio-input">
+                                    <span class="checkmark"></span> 
+                                </span>
+                                <span class="label-span">{{item.display}}</span>
+                            </li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick(); leadSelected = true;" />
+                        </div>  
+                    </div>                
+                </div>
+            </ng-template>
+            <!-- <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <label class="radio-filter-label no-arrow-label">Country of origin (3) <span class="cross-span"><img src="assets/images/cross_icon.png" alt=""></span></label>
+                    <div class="select-dropdown-sec" style="display: none;">
+                        <span class="clear-all-span opacity-all-span">Clear All</span>
+                        <ul class="select-dropdown-list">
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <span class="product-count">103 Products</span>
+                            <input type="button" value="Apply" class="apply-button" />
+                        </div>  
+                    </div>                
+                </div>
+            </ng-template> -->        
+            <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <label *ngIf="filterValuesSelectedArray?.length == 0" [ngClass]="[filterClickedValue == 'values' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'values'; toggleFilterDropdown();">Values</label>
+                    <label *ngIf="filterValuesSelectedArray?.length > 0" [ngClass]="[filterClickedValue == 'values' || filterValuesSelectedArray?.length > 0 ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'values'; toggleFilterDropdown();">Values {{ (clickedApplyBtn && valuesSelected) ? '('+filterValuesSelectedArray?.length+')' : ''}}
+                        <span class="cross-span" (click)="clearFilterValue('values');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="select-dropdown-sec" *ngIf="filterClickedValue == 'values' && showFilterDropdown">
+                        <h3>Values</h3>
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('values');" >Clear All</span>
+                        <ul class="select-dropdown-list">
+                            <li *ngFor="let item of tagsArray; let i = index;"><input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item" [(ngModel)]="filterValuesSelectedChecked[i]" [checked]="filterValuesSelectedArray.includes(item) == true" (change)="onFilterChange('values', $event);"> <span class="label-span">{{item}}</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick(); valuesSelected = true;" />
+                        </div>  
+                    </div>                
                 </div>
             </ng-template>
             <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Brands</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label *ngIf="filterLocationSelectedArray?.length == 0" [ngClass]="[filterClickedValue == 'location' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'location'; toggleFilterDropdown();">location</label>
+                    <label *ngIf="filterLocationSelectedArray?.length > 0" [ngClass]="[filterClickedValue == 'location' || filterLocationSelectedArray?.length > 0 ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'location'; toggleFilterDropdown();">location {{ clickedApplyBtn ? '('+filterLocationSelectedArray?.length+')' : ''}}
+                        <span class="cross-span" (click)="clearFilterValue('location');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="select-dropdown-sec" *ngIf="filterClickedValue == 'location' && showFilterDropdown">
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('location');" >Clear All</span>
+                        <div class="category_search">
+                            <input class="form-control" type="search" placeholder="Search for products or brands" aria-label="Search" [(ngModel)]="searchLocationText">
+                        </div>
+                        <ul class="select-dropdown-list">
+                            <li *ngFor="let item of sortValues?.countries | filter:searchLocationText; let i = index;"><input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterLocationSelectedChecked[i]" [checked]="filterLocationSelectedArray.includes(item?.id) == true" (change)="onFilterChange('location', $event);"> <span class="label-span">{{item?.value}}</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick();" />
+                        </div>  
+                    </div>                
                 </div>
             </ng-template>
+            <!-- <ng-template carouselSlide>
+                <div class="filter_gray_box2">
+                    <label class="radio-filter-label no-arrow-label">Markup<span class="cross-span"><img src="assets/images/cross_icon.png" alt=""></span></label>
+                    <div class="select-dropdown-sec" style="display: none;">
+                        <span class="clear-all-span opacity-all-span">Clear All</span>
+                        <ul class="select-dropdown-list">
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <span class="product-count">103 Products</span>
+                            <input type="button" value="Apply" class="apply-button" />
+                        </div>  
+                    </div>                
+                </div>
+            </ng-template> -->
             <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Brands</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label *ngIf="filterBrandSelectedArray?.length == 0" [ngClass]="[filterClickedValue == 'brands' && showFilterDropdown ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'brands'; toggleFilterDropdown();">Brands</label>
+                    <label *ngIf="filterBrandSelectedArray?.length > 0" [ngClass]="[filterClickedValue == 'brands' || filterBrandSelectedArray?.length > 0 ? 'radio-filter-label active' : 'radio-filter-label']" (click)="filterClickedValue = 'brands'; toggleFilterDropdown();">Brands {{ clickedApplyBtn ? '('+filterBrandSelectedArray?.length+')' : ''}}
+                        <span class="cross-span" (click)="clearFilterValue('brand');" ><img src="assets/images/cross-white_icon.png" alt=""></span>
+                    </label>
+                    <div class="select-dropdown-sec" *ngIf="filterClickedValue == 'brands' && showFilterDropdown">
+                        <span class="clear-all-span opacity-all-span" (click)="clearFilterValue('brand');" >Clear All</span>
+                        <div class="category_search">
+                            <input class="form-control" type="search" placeholder="Search for products or brands" aria-label="Search" [(ngModel)]="searchBrandText">
+                        </div>
+                        <ul class="select-dropdown-list">
+                            <li *ngFor="let item of sortValues?.brands | filter:searchBrandText; let i = index;"><input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterBrandSelectedChecked[i]" [checked]="filterBrandSelectedArray.includes(item?.id) == true" (change)="onFilterChange('brand', $event);"> <span class="label-span">{{item?.value}}</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <!-- <span class="product-count">103 Products</span> -->
+                            <input type="button" value="Apply" class="apply-button" (click)="onFilterApplyClick();" />
+                        </div>  
+                    </div>                
                 </div>
             </ng-template>
-            <ng-template carouselSlide>
+            <!-- <ng-template carouselSlide>
                 <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Ship window</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label class="radio-filter-label no-arrow-label">Ship window<span class="cross-span"><img src="assets/images/cross_icon.png" alt=""></span></label>
+                    <div class="select-dropdown-sec" style="display: none;">
+                        <span class="clear-all-span opacity-all-span">Clear All</span>
+                        <ul class="select-dropdown-list">
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                            <li><input type="checkbox" class="form-check-input" checked="checked"> <span class="label-span">One</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Two</span></li>
+                            <li><input type="checkbox" class="form-check-input"> <span class="label-span">Three</span></li>
+                        </ul>  
+                        <div class="custom-label-sec">
+                            <span class="product-count">103 Products</span>
+                            <input type="button" value="Apply" class="apply-button" />
+                        </div>  
+                    </div>                
                 </div>
-            </ng-template>
-            <ng-template carouselSlide>
-                <div class="filter_gray_box2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Lead time</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                </div>
-            </ng-template>
+            </ng-template> -->
         </owl-carousel-o>
     </div>
 </div>
-<div class="bottom_cat_listing">
+<div class="bottom_cat_listing bottom_cat_listing-no-mrgn">
     <div class="container">
         <ul class="row cat_listing_list">
 
@@ -209,8 +363,8 @@
 <!-- * * * * * * * * * * * Banner Start * * * * * * * * * * * -->
 <div class="local_banner" style="background-image: url(assets/images/local-brands-image-min.png);">
     <div class="white_banner_box">
-        <h3>{{localBannerHeading}}</h3>
-        <p>{{localBannerPara}}</p>
+        <h3>Local Brands Wholesale</h3>
+        <p>Shop other {{vendorCount ? vendorCount : 0}} brands, all in one place</p>
         <a class="btn btn-primary sell_on_bazar"><span>Sell on Bazar  <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
         <a class="btn btn-primary sign_up_to_shop"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
     </div>
@@ -410,7 +564,7 @@
                     <span class="validate_errors"
                         *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['required']">
                         This field is required
-                    </span>
+                    </span> 
                     <span class="validate_errors"
                         *ngIf="(email_addressVal.touched || emailForm.submitted) && email_addressVal.errors?.['email']">
                         Enter an valid email
@@ -467,6 +621,119 @@
         </p>
     </div>
     <div class="modal-footer">
-        <p>By signing up for Bazar, you are aagreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
+        <p>By signing up for Bazar, you are agreeing to our <a>Terms</a> and <a>Privacy policy</a></p>
+    </div>
+</ng-template>
+
+<!-- Product-Filter-Modal -->
+<ng-template #filterContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">All Filters</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Sort by</h3>
+        <ul class="radio-filter-list">
+            <li>
+                <span class="radioLabel" (click)="sort_key = 'featured'" >
+                    <input type="radio" name="sort_key1" [checked]="sort_key == 'featured'" class="form-radio-input" >
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">Featured</span>
+            </li>
+            <li>
+                <span class="radioLabel" (click)="sort_key = 'new'">
+                    <input type="radio" name="sort_key2" [checked]="sort_key == 'new'" class="form-radio-input" >
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">New</span>
+            </li>
+        </ul>
+        <h3>Promotions</h3>
+        <ul class="select-filter-list">
+            <!-- <li *ngFor="let item of sortValues?.brands | filter:searchBrandText; let i = index;"><input type="checkbox" class="form-check-input" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterBrandSelectedChecked[i]" [checked]="filterBrandSelectedArray.includes(item?.id) == true" (change)="onFilterChange('brand', $event);"><span class="label-span">{{item?.value}}</span></li> -->
+            <li *ngFor="let item of promotionsArray; let i = index;">
+                <input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item.value" [(ngModel)]="filterPromotionSelectedChecked[i]" [checked]="filterPromotionSelectedArray.includes(item.value) == true" (change)="onFilterChange('promotion', $event);"> 
+                <span class="label-span">{{item.display}}</span>
+            </li>
+        </ul> 
+        <h3>Minimun order</h3>
+        <ul class="radio-filter-list">
+            <li *ngFor="let item of minOrderFilterValues; let i = index;">
+                <span class="radioLabel" (click)="filterMinOrderSelectedValue=item.value; minOrderSelected = false;">
+                    <input type="radio" [checked]="filterMinOrderSelectedValue == item.value" class="form-radio-input">
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">{{item.display}}</span>
+            </li>
+        </ul> 
+        <h3>Lead Time</h3>
+        <ul class="radio-filter-list">
+            <!-- <li *ngFor="let item of leadTimeFilterValues; let i = index;"><input type="checkbox" class="form-check-input" [name]="'filter'+i" class="form-check-input" [value]="item" [(ngModel)]="filterLeadTimeSelectedChecked[i]" [checked]="filterLeadTimeSelectedArray.includes(item) == true" (change)="onFilterChange('LeadTime', $event);"><span class="label-span">{{item}}</span></li> -->
+            <li *ngFor="let item of leadTimeFilterValues; let i = index;">
+                <span class="radioLabel" (click)="filterLeadTimeSelectedValue=item.value">
+                    <input type="radio" [checked]="filterLeadTimeSelectedValue == item.value" class="form-radio-input">
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">{{item.display}}</span>
+            </li>
+        </ul> 
+        <h3>Values</h3>
+        <ul class="select-filter-list">
+            <!-- <li *ngFor="let item of sortValues?.brands | filter:searchBrandText; let i = index;"><input type="checkbox" class="form-check-input" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterBrandSelectedChecked[i]" [checked]="filterBrandSelectedArray.includes(item?.id) == true" (change)="onFilterChange('brand', $event);"><span class="label-span">{{item?.value}}</span></li> -->
+            <li *ngFor="let item of tagsArray; let i = index;">
+                <input type="checkbox" [name]="'filter'+i" class="form-check-input" [value]="item" [(ngModel)]="filterValuesSelectedChecked[i]" [checked]="filterValuesSelectedArray.includes(item) == true" (change)="onFilterChange('values', $event);"> 
+                <span class="label-span">{{item}}</span>
+            </li>
+        </ul> 
+        <h3>Location</h3>
+        <ul class="select-filter-list">
+            <input type="search" placeholder="Search" [(ngModel)]="searchLocationText">
+            <li *ngFor="let item of sortValues?.countries | filter:searchLocationText; let i = index;">
+                <input type="checkbox" class="form-check-input" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterLocationSelectedChecked[i]" [checked]="filterLocationSelectedArray.includes(item?.id) == true" (change)="onFilterChange('location', $event);">
+                <span class="label-span">{{item?.value}}</span>
+            </li>
+        </ul> 
+        <h3>Brands</h3>
+        <ul class="select-filter-list">
+            <input type="search" placeholder="Search" [(ngModel)]="searchBrandText">
+            <li *ngFor="let item of sortValues?.brands | filter:searchBrandText; let i = index;">
+                <input type="checkbox" class="form-check-input" [name]="'filter'+i" class="form-check-input" [value]="item?.id" [(ngModel)]="filterBrandSelectedChecked[i]" [checked]="filterBrandSelectedArray.includes(item?.id) == true" (change)="onFilterChange('brand', $event);">
+                <span class="label-span">{{item?.value}}</span>
+            </li>
+        </ul> 
+    </div>
+    <div class="modal-footer">
+        <a class="clear-all-btn" (click)="modalClearAll();">Clear All</a>
+        <a (click)="modal.dismiss('Cross click');onFilterApplyClick();" class="apply-btn">Apply</a>
+    </div>
+</ng-template>
+
+<!-- Product-Sort-Modal -->
+<ng-template #sortContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Sort by</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ul class="radio-filter-list" style="border-bottom: none !important;">
+            <li>
+                <span class="radioLabel" (click)="sort_key = 'featured'" >
+                    <input type="radio" name="sort_key1" [checked]="sort_key == 'featured'" class="form-radio-input" >
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">Featured</span>
+            </li>
+            <li>
+                <span class="radioLabel" (click)="sort_key = 'new'">
+                    <input type="radio" name="sort_key2" [checked]="sort_key == 'new'" class="form-radio-input" >
+                    <span class="checkmark"></span> 
+                </span>
+                <span class="label-span">New</span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a (click)="modal.dismiss('Cross click');onFilterApplyClick();" class="apply-btn">Apply</a>
     </div>
 </ng-template>

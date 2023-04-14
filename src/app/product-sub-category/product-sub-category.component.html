@@ -78,158 +78,86 @@
                     </ngb-accordion> -->
                     <h4>Sort by</h4>
                     <div class="btn-group" role="group" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
-                        <label ngbButtonLabel class="btn-primary">
+                        <label ngbButtonLabel class="btn-primary" (click)="sort_key = 'featured'; onFilterChange('sort','');">
                             <input ngbButton type="radio" class="btn-check" value="middle"> Featured
                         </label>
-                        <label ngbButtonLabel class="btn-primary">
+                        <label ngbButtonLabel class="btn-primary" (click)="sort_key = 'new'; onFilterChange('sort','');">
                             <input ngbButton type="radio" class="btn-check" [value]="false"> New
                         </label>
                     </div>
+                    <h4>Promotions</h4>
+                    <ul class="location_list">
+                        <li *ngFor="let item of promotionsArray; let i = index;">
+                            <div class="form-check">
+                                <input [name]="'filter'+i" class="form-check-input" type="checkbox" [value]="item.value" [checked]="filterValuesSelectedArray.includes(item.value) == true" (change)="onFilterChange('promotion', $event);" >
+                                <label class="form-check-label">
+                                    {{item.display}}
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4>Minimun order</h4>
+                    <ul class="location_list">
+                        <li *ngFor="let item of minOrderFilterValues; let i = index;">
+                            <div class="form-check" (click)="filterMinOrderSelectedValue=item.value; onFilterChange('','');">
+                                <input class="form-check-input" type="radio" name="minimunOrder" [checked]="filterMinOrderSelectedValue == item.value">
+                                <label class="form-check-label">
+                                    {{item.display}}
+                                </label>
+                            </div>
+                        </li>
+                    </ul><br>
+                    <h4>Lead time</h4>
+                    <ul class="location_list">
+                        <li *ngFor="let item of leadTimeFilterValues; let i = index;">
+                            <div class="form-check" (click)="filterLeadTimeSelectedValue=item.value; onFilterChange('','');">
+                                <input class="form-check-input" type="radio" name="leadTime" [checked]="filterLeadTimeSelectedValue == item.value">
+                                <label class="form-check-label">
+                                    {{item.display}}
+                                </label>
+                            </div>
+                        </li>
+                    </ul><br>
+                    <h4>Values</h4>
+                    <ul class="location_list">
+                        <li *ngFor="let item of tagsArray; let i = index;">
+                            <div class="form-check">
+                                <input [name]="'filter'+i" class="form-check-input" type="checkbox" [value]="item" [checked]="filterValuesSelectedArray.includes(item) == true" (change)="onFilterChange('values', $event);" >
+                                <label class="form-check-label">
+                                    {{item}}
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
                     <h4>Location</h4>
                     <div class="location_search">
-                        <input type="email" class="form-control" placeholder="Search for products or brands">
+                        <input type="search" class="form-control" placeholder="Search by brands" [(ngModel)]="searchLocationText">
                     </div>
                     <ul class="location_list">
-                        <li>
+                        <li *ngFor="let item of sortValues?.countries | filter:searchLocationText; let i = index;">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
+                                <input class="form-check-input" type="checkbox" [name]="'filter'+i" [value]="item?.id" [checked]="filterLocationSelectedArray.includes(item?.id) == true" (change)="onFilterChange('location', $event);">
                                 <label class="form-check-label">
-                                    Iordan
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Qatar
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    UAE
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Iraq
+                                    {{item?.value}}
                                 </label>
                             </div>
                         </li>
                     </ul>
-                    <a class="more_locations">See more locations</a>
-                    <h4>Location</h4>
+                    <h4>Brands</h4>
+                    <div class="location_search">
+                        <input type="search" class="form-control" placeholder="Search by brands" [(ngModel)]="searchBrandText">
+                    </div>
                     <ul class="location_list">
-                        <li>
+                        <li *ngFor="let item of sortValues?.brands | filter:searchBrandText; let i = index;">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                <input class="form-check-input" type="checkbox" [name]="'filter'+i" [value]="item?.id" [checked]="filterBrandSelectedArray.includes(item?.id) == true" (change)="onFilterChange('brand', $event);">
                                 <label class="form-check-label">
-                                    3 days or less
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    9 days or less
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    6 days or less
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    14 days or less
-                                </label>
-                              </div>
-                        </li>
-                    </ul><br>
-                    <h4>Brand minimum</h4>
-                    <ul class="location_list">
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    No minimum
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    200$ or less
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    100$ or less
-                                </label>
-                              </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                <label class="form-check-label">
-                                    300$ or less
-                                </label>
-                              </div>
-                        </li>
-                    </ul><br>
-                    <h4>Brand minimum</h4>
-                    <ul class="location_list">
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Handmade
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Eco-friendly
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Social good
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                                <label class="form-check-label">
-                                    Not on Amazon
+                                    {{item?.value}}
                                 </label>
                             </div>
                         </li>
                     </ul>
-                    <a class="see_more2">See more</a>
+                    <!-- <a class="more_locations">See more locations</a> -->
                   </ng-template>
                 </ngb-panel>
               </ngb-accordion>

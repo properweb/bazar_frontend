@@ -13,7 +13,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./product-category.component.css']
 })
 export class ProductCategoryComponent implements OnInit {
-  @Input() currentUrl = ''
+  @Input() currentUrl = '';
   userSignupModalReference!: NgbModalRef;
   signInModal!: NgbModalRef;
   catSlug!: any;
@@ -29,6 +29,37 @@ export class ProductCategoryComponent implements OnInit {
   submitted: boolean = false;
   userRegForm!: FormGroup;
   userEmail!: any;
+  filterModal!: NgbModalRef;
+  SortModal!: NgbModalRef;
+  filterClickedValue!: any;
+  showFilterDropdown: boolean = false;
+  clickedApplyBtn: boolean = false;
+  filterBrandSelectedArray: any = [];
+  filterBrandSelectedChecked: any = [];
+  searchBrandText!: any;
+  filterLeadTimeSelectedValue!: any;
+  leadSelected: boolean = false;
+  filterMinOrderSelectedValue!: any;
+  minOrderSelected: boolean = false;
+  filterValuesSelectedArray: any = [];
+  filterValuesSelectedChecked: any = [];
+  valuesSelected: boolean = false
+  filterKeys: any = [];
+  sort_key: any = 'featured';
+  sortDropDownOpen: boolean = false;
+  vendorCount!: any;
+  sortValues!: any;
+  filterLocationSelectedArray: any = [];
+  filterLocationSelectedChecked: any = [];
+  searchLocationText!: any;
+  filterPromotionSelectedArray: any = [];
+  filterPromotionSelectedChecked: any = [];
+  filterCount: any = 0;
+
+  leadTimeFilterValues:any = [{value:'3', display: '3 days or less'}, {value:'6', display: '6 days or less'}, {value:'9', display: '9 days or less'}, {value:'14', display: '14 days or less'}];
+  minOrderFilterValues:any = [{value:'0', display: 'No minimum'}, {value:'100', display: '$100 or less'}, {value:'200', display: '$200 or less'}, {value:'300', display: '$300 or less'}];
+  tagsArray:any =['Eco-friendly', 'Not on Amazon', 'Made in Europe', 'Social good', 'Shop local', 'Local brand'];
+  promotionsArray:any =[{value:'free_shipping', display: 'Free shipping'}, {value:'40', display: '40% off & up'}, {value:'30', display: '30% off & up'}, {value:'20', display: '20% off & up'}, {value:'15', display: '15% off & up'}, {value:'10', display: '10% off & up'}, {value:'less_than_10', display: 'Less than 10% off'}, {value:'amount_off', display: 'Amount off'}];
 
   constructor( private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private toast: NgToastService, public modalService: NgbModal) { 
     this.userRegForm = new FormGroup({
@@ -50,8 +81,10 @@ export class ProductCategoryComponent implements OnInit {
       this.storage.get("user_session").subscribe({
         next: (user) => {
           /* Called if data is valid or `undefined` */
-          let user_session = JSON.parse(JSON.stringify(user));
-          // this.user_id = user_session.id;
+          if(user) {
+            let user_session = JSON.parse(JSON.stringify(user));
+            // this.user_id = user_session.id;
+          }
         },
         error: (error) => {
           /* Called if data is invalid */
@@ -59,6 +92,7 @@ export class ProductCategoryComponent implements OnInit {
       });
       this.catSlug = routeParams['cat_slug'];
       this.getProductsByCategory(routeParams['cat_slug']);
+      this.fetchProductFilterValues(routeParams['cat_slug']);
       window.scroll({
         top: 0,
         left: 0,
@@ -67,6 +101,14 @@ export class ProductCategoryComponent implements OnInit {
     })
     this.currentUrl = decodeURIComponent(this.router.url);
     this.checkedLoggedUser();
+    this.getVendorCount();
+  }
+
+  getVendorCount() {
+    this.apiService.vendorCount().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.vendorCount = response.data;
+    })
   }
 
   checkedLoggedUser() {
@@ -77,7 +119,7 @@ export class ProductCategoryComponent implements OnInit {
 
   openUserLogInModal(content: any) {
     this.signInModal = this.modalService.open(content, { windowClass: 'loginModal' });
-  }
+  } 
 
   continueFunction() {
     this.log1 = false;
@@ -107,7 +149,6 @@ export class ProductCategoryComponent implements OnInit {
       } else {
         if(this.currentUrl) {
           this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
-          console.log(decodeURIComponent(this.currentUrl));
           setTimeout(() => {
             this.router.navigate([this.currentUrl]).then(() => {
               this.onChildChange = true;
@@ -185,7 +226,14 @@ export class ProductCategoryComponent implements OnInit {
     let values = {
       main_category: category,
       category: '',
-      sub_category: ''
+      sub_category: '',
+      brandSort: this.filterBrandSelectedArray,
+      leadTimeSort: this.filterLeadTimeSelectedValue,
+      minOrderSort: this.filterMinOrderSelectedValue,
+      valuesSort: this.filterValuesSelectedArray,
+      locationSort: this.filterLocationSelectedArray,
+      promotionSort: this.filterPromotionSelectedArray,
+      sortKey: this.sort_key
     }
     this.apiService.fetchProductsByCategory(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
@@ -198,7 +246,125 @@ export class ProductCategoryComponent implements OnInit {
       this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
     })
   }
+
+  fetchProductFilterValues(category: any) {
+    let values = {
+      main_category: category,
+      category: '',
+      sub_category: '',
+    }
+    this.apiService.fetchProductFilterValues(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.sortValues = response.data;
+      } else {
+        this.toast.error({detail: response.data, summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
+  }
+
+  toggleFilterDropdown() {
+    this.showFilterDropdown = !this.showFilterDropdown;
+  }
   
+  onFilterChange(filterValue: any, event: any) {
+    if(filterValue === 'brand') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterBrandSelectedArray.push(value);
+      } else {
+        let index = this.filterBrandSelectedArray.indexOf(value);
+        this.filterBrandSelectedArray.splice(index, 1);
+      }
+    } else if(filterValue === 'LeadTime') {
+      let { value , checked } = event.target;
+      this.filterLeadTimeSelectedValue = value;
+    } else if(filterValue === 'minOrder') {
+      let { value , checked } = event.target;
+      this.filterMinOrderSelectedValue = value;
+    } else if(filterValue === 'values') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterValuesSelectedArray.push(value);
+      } else {
+        let index = this.filterValuesSelectedArray.indexOf(value);
+        this.filterValuesSelectedArray.splice(index, 1);
+      }
+      this.valuesSelected = false;
+    } else if(filterValue === 'location') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterLocationSelectedArray.push(value);
+      } else {
+        let index = this.filterLocationSelectedArray.indexOf(value);
+        this.filterLocationSelectedArray.splice(index, 1);
+      }
+    } else if(filterValue === 'promotion') {
+      let { value , checked } = event.target;
+      if(checked) {
+        this.filterPromotionSelectedArray.push(value);
+      } else {
+        let index = this.filterPromotionSelectedArray.indexOf(value);
+        this.filterPromotionSelectedArray.splice(index, 1);
+      }
+    }
+  }
+
+  clearFilterValue(filterValue: any) {
+    if(filterValue === 'brand') {
+      this.filterBrandSelectedArray = [];
+      this.filterBrandSelectedChecked = [];
+    } else if(filterValue === 'LeadTime') {
+      this.filterLeadTimeSelectedValue = '';
+    } else if(filterValue === 'minOrder') {
+      this.filterMinOrderSelectedValue = '';
+    } else if(filterValue === 'values') {
+      this.filterValuesSelectedArray = [];
+      this.filterValuesSelectedChecked = [];
+    } else if(filterValue === 'location') {
+      this.filterLocationSelectedArray = [];
+      this.filterLocationSelectedChecked = [];
+    } else if(filterValue === 'promotion') {
+      this.filterPromotionSelectedArray = [];
+      this.filterPromotionSelectedChecked = [];
+    } else {}
+    this.allFilterCount();
+    this.getProductsByCategory(this.catSlug);
+  }
+
+  modalClearAll() {
+    this.filterBrandSelectedArray = [];
+    this.filterBrandSelectedChecked = [];
+    this.filterLeadTimeSelectedValue = '';
+    this.filterMinOrderSelectedValue = '';
+    this.filterValuesSelectedArray = [];
+    this.filterValuesSelectedChecked = [];
+    this.filterLocationSelectedArray = [];
+    this.filterLocationSelectedChecked = [];
+    this.filterPromotionSelectedArray = [];
+    this.filterPromotionSelectedChecked = [];
+    this.allFilterCount();
+    this.getProductsByCategory(this.catSlug);
+  }
+
+  onFilterApplyClick() {
+    let filter_keys: any = [];
+    this.clickedApplyBtn = true;
+    this.filterClickedValue = '';
+    this.showFilterDropdown = false;
+    this.filterKeys = filter_keys;
+    this.allFilterCount();
+    this.getProductsByCategory(this.catSlug);
+  }
+
+  allFilterCount() {
+    let count = 0;
+    count = (this.filterBrandSelectedArray ? this.filterBrandSelectedArray.length : 0) + (this.filterLeadTimeSelectedValue ? 1 : 0) + (this.filterMinOrderSelectedValue ? 1 : 0) + (this.filterValuesSelectedArray ? this.filterValuesSelectedArray.length : 0) + (this.filterLocationSelectedArray ? this.filterLocationSelectedArray.length : 0) + (this.filterPromotionSelectedArray ? this.filterPromotionSelectedArray.length : 0);
+    this.filterCount = count > 0 ? count : '' ;
+  }
+
   topCatArray:any = [
     {
       newImgName: "assets/images/local-brands-new-bazar-img1.jpg",
@@ -255,12 +421,20 @@ export class ProductCategoryComponent implements OnInit {
     nav: true
   }
 
+  openFilterModal(content: any) {
+    this.filterModal = this.modalService.open(content, { windowClass: 'filterModal' });
+  }
+
+  openSortModal(content: any) {
+    this.SortModal = this.modalService.open(content, { windowClass: 'filterModal' });
+  }
+
   filterOptions1: OwlOptions = {
     loop: false,
     margin: 10,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
     dots: false,
     navSpeed: 700,
     autoWidth: true,
