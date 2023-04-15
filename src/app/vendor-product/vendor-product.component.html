@@ -25,9 +25,9 @@
 
       <ng-container *ngIf="actionInfoList?.length > 0">
         <ngb-alert type="danger" class="gray-message-alert" style="margin-bottom: 15px;" *ngFor="let item of actionInfoList; let i = index;" >
-          <span class="cross-message-alert" (click)="notificationDelete(i)"><img src="assets/images/cross_icon.png" alt="cross img"></span>
+          <span class="cross-message-alert" (click)="notificationDelete(i,item?.id)"><img src="assets/images/cross_icon.png" alt="cross img"></span>
           {{item?.message}}
-          <input type="button" value="Sync" class="btn" (click)="wordpressSyncFromNotification(item?.id)" >
+          <!-- <input type="button" value="Sync" class="btn" (click)="wordpressSyncFromNotification(item?.id)" > -->
         </ngb-alert>
       </ng-container>
 

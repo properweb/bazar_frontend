@@ -99,7 +99,6 @@ export class ApiService {
   }
 
   importWordpress(values:any) {
-    // return this.http.get(this._Base_URL+'wordpress/'+'wordpress-import?user_id='+user_id+'&consumer_key='+consumer_key+'&website='+website_url+'&consumer_secret='+consumer_secret, this.createAuthorizationHeader());
     return this.http.post(this._Base_URL+'wordpress', values, this.createAuthorizationHeader());
   }
 
@@ -312,7 +311,7 @@ export class ApiService {
   }
 
   fetchCustomers(user_id: any,page: any, status: any, search_key: any, sort_key: any) {
-    return this.http.get(this._Base_URL+'customers?user_id='+user_id+'&page='+page+'&status='+status+'&search_key='+search_key+'&sort_key='+sort_key, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'customers?page='+page+'&status='+status+'&search_key='+search_key+'&sort_key='+sort_key, this.createAuthorizationHeader());
   }
   
   addCustomers(values: any) {
@@ -429,6 +428,14 @@ export class ApiService {
   
   wordpressActionInfo() {
     return this.http.get(this._Base_URL+'wordpress/action-info', this.createAuthorizationHeader());
+  }
+  
+  wordpressDeleteNotification(values: any) {
+    return this.http.post(this._Base_URL+'wordpress/delete-notification', values, this.createAuthorizationHeader());
+  }
+  
+  fetchProductFilterValues(values: any ) {
+    return this.http.post(this._Base_URL+'shop/product-filters',values, this.createAuthorizationHeader());
   }
 
   logout() {

@@ -316,8 +316,20 @@ export class VendorProductComponent implements OnInit {
     this.fetchWordpressActionInfoList();
   }
 
-  notificationDelete(index: any) {
-    this.actionInfoList.splice(index, 1);
+  notificationDelete(index: any, id: any) {
+    let values = {
+      id: id
+    };
+    this.apiService.wordpressDeleteNotification(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.actionInfoList.splice(index, 1);
+      } else {
+        this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
+      }
+    }, (error) => {
+      this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
+    })
   }
 
 }
