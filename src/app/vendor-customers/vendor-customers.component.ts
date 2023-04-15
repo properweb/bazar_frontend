@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from '../services/api.service';
@@ -17,10 +17,11 @@ export class VendorCustomersComponent implements OnInit {
 
   user_id!: any;
   csvModal!: any;
+  deleteModal!: NgbModalRef;
   lists: any = [];
   store_name!: any;
-  contact_name!: any; 
-  email_address!: any;
+  name!: any; 
+  email!: any;
   customerImfomModal!: any;
   errorMsg!: any;
   searchText!: any;
@@ -42,11 +43,7 @@ export class VendorCustomersComponent implements OnInit {
   constructor(public modalService: NgbModal,private apiService: ApiService, private storage: StorageMap, private toast: NgToastService, private router: Router ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
-    this.lists.push({"store_name": "","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""}) 
+    this.lists.push({"store_name": "","name": "", "email": ""},{"store_name":"","name": "", "email": ""},{"store_name":"","name": "", "email": ""},{"store_name":"","name": "", "email": ""}) 
 
     this.storage.get('user_session').subscribe({
       next: (user) => {
@@ -91,7 +88,7 @@ export class VendorCustomersComponent implements OnInit {
   }
 
   addField() {
-    this.lists.push({"store_name": "","contact_name": "", "email_address": ""});
+    this.lists.push({"store_name": "","name": "", "email": ""});
   }
 
   deleteField(index: any)  {
@@ -101,7 +98,7 @@ export class VendorCustomersComponent implements OnInit {
   sendAddContactInformation() {
     this.btnDis = true;
     let values = {
-      user_id: this.user_id,
+      // user_id: this.user_id,
       customers: this.lists
     }
     this.apiService.addCustomers(values).subscribe((responseBody) => {
@@ -112,7 +109,7 @@ export class VendorCustomersComponent implements OnInit {
         this.customerImfomModal.close();
         this.fetchCustomers(this.user_id, 1, 'all', this.searchText, this.sort_key);
         this.lists = [];
-        this.lists.push({"store_name": "","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""},{"store_name":"","contact_name": "", "email_address": ""}) 
+        this.lists.push({"store_name": "","name": "", "email": ""},{"store_name":"","name": "", "email": ""},{"store_name":"","name": "", "email": ""},{"store_name":"","name": "", "email": ""}) 
         this.toast.success({detail: response.msg, summary: '', duration: 4000})
       }
     },(error) => {
@@ -135,7 +132,7 @@ export class VendorCustomersComponent implements OnInit {
         } else {
           const formData = new FormData();
           formData.append("upload_contact_list", event.target.files[0]);
-          formData.append("user_id", this.user_id);    
+          // formData.append("user_id", this.user_id);    
           this.upload_contact_list=event.target.files[0];
           this.upload_contact_list_names=event.target.files[0].name;
           this.apiService.uploadCsvCustomers(formData).subscribe((responseBody) => {
@@ -179,10 +176,10 @@ export class VendorCustomersComponent implements OnInit {
     }
   } 
 
-  checkAll(event: any){
+  checkAll(event: any) {
     let {checked} = event.target;
     if(checked) {
-      this.customerList?.customers.forEach((i:any) => {
+      this.customerListArray.forEach((i:any) => {
         if(this.checkedItems.indexOf(i.customer_key) == -1)  this.checkedItems.push(i.customer_key)
       });
     }else {
@@ -204,7 +201,8 @@ export class VendorCustomersComponent implements OnInit {
           this.checkedItems = [];
           this.selectAll = false;
           this.btnDis = false;
-          this.toast.success({detail: 'Contact deleted succesfully.', summary: '', duration: 4000});
+          this.deleteModal.close();
+          this.toast.success({detail: response.msg, summary: '', duration: 4000});
         }else {
           this.btnDis = false;
           this.toast.error({detail: response.msg, summary: '', duration: 4000});
@@ -232,7 +230,7 @@ export class VendorCustomersComponent implements OnInit {
         this.exportBtnDis = false;
         this.toast.success({detail: 'Contacts exported succesfully.', summary: '', duration: 4000});
         window.location.href = response.data;
-      }else {
+      } else {
         this.exportBtnDis = false;
         this.toast.error({detail: response.msg, summary: '', duration: 4000});
       }
@@ -286,6 +284,10 @@ export class VendorCustomersComponent implements OnInit {
       if (index !== -1) this.selectedCustomerColoumList.splice(index, 1);
     }
     console.log(this.selectedCustomerColoumList);
+  }
+
+  openDeleteModal(content: any) {
+    this.deleteModal = this.modalService.open(content, { windowClass: 'addCustomerModal' });
   }
 
 

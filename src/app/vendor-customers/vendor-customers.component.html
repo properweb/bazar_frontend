@@ -50,14 +50,21 @@
             </div>
             <ul class="filter_list">
               <li><span>{{customerListArray?.length}} contacts</span> </li>
-              <li>
+              <li *ngIf="checkedItems.length > 0">
                 <a *ngIf="!exportBtnDis" (click)="exportCustomers()"><img src="assets/images/upload_icon.svg" alt="" /> Export</a>
                 <a *ngIf="exportBtnDis" disabled><img src="assets/images/upload_icon.svg" alt="" /> Exporting...</a>
               </li>
+              <li *ngIf="checkedItems.length == 0">
+                <a disabled><img src="assets/images/upload_icon.svg" alt="" /> Export</a>
+              </li>
               <!-- <li><a><img src="assets/images/email_icon.svg" alt="" /> Email</a></li> -->
-              <li>
-                <a *ngIf="!btnDis" (click)="deleteCustomer()"><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a>
-                <a *ngIf="btnDis" disabled><img src="assets/images/delete_icon2.svg" alt="" /> Deleting...</a>
+              <li *ngIf="checkedItems.length > 0">
+                <a (click)="openDeleteModal(deleteModalContent)"><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a>
+                <!-- <a *ngIf="!btnDis" (click)="deleteCustomer()"><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a>
+                <a *ngIf="btnDis" disabled><img src="assets/images/delete_icon2.svg" alt="" /> Deleting...</a> -->
+              </li>
+              <li *ngIf="checkedItems.length == 0">
+                <a disabled><img src="assets/images/delete_icon2.svg" alt="" /> Delete</a>
               </li>
             </ul>
             <div class="table_sec">
@@ -130,7 +137,7 @@
                 </tbody>
               </table>
 
-              <table class="table" *ngIf="customerListArray?.length < 1">
+              <table class="table" *ngIf="customerListArray?.length == 0">
                 <tbody>
                   <tr><td align="center">No records!</td></tr>
                 </tbody>
@@ -164,20 +171,26 @@
       </div>
       <div class="row addFormList" *ngFor="let list of lists; let i = index;">
         <div class="col-lg-4">
-          <input type="text" name="" value="" class="form-control" [name]="'list.store_name' +i" [(ngModel)]="list.store_name" >
+          <input type="text" name="" value="" class="form-control" [name]="'list.store_name' +i" [(ngModel)]="list.store_name" pattern="^[a-zA-Z]{0,255}$" #store_nameVal="ngModel">
+          <div class="validate_errors" *ngIf="(store_nameVal.touched || addContactInformation.submitted) && store_nameVal.errors?.['pattern']">
+            Store name accepts only alphabets and less than 255 characters.
+          </div>
         </div>
         <div class="col-lg-4">
-          <input type="text" name="" value="" class="form-control" [name]="'list.contact_name' +i" [(ngModel)]="list.contact_name" required #contact_nameVal="ngModel">
+          <input type="text" name="" value="" class="form-control" [name]="'list.name' +i" [(ngModel)]="list.name" required pattern="^[a-zA-Z]{0,255}$" #contact_nameVal="ngModel">
           <div class="validate_errors" *ngIf="(contact_nameVal.touched || addContactInformation.submitted) && contact_nameVal.errors?.['required']">
             Contact name is required. 
           </div>
+          <div class="validate_errors" *ngIf="(contact_nameVal.touched || addContactInformation.submitted) && contact_nameVal.errors?.['pattern']">
+            Contact name accepts only alphabets and less than 255 characters.
+          </div>
         </div>
         <div class="col-lg-4">
-          <input type="email" name="" value="" class="form-control" [name]="'list.email_address' +i" [(ngModel)]="list.email_address" required email="true" #email_addressVal="ngModel">
+          <input type="email" name="" value="" class="form-control" [name]="'list.email' +i" [(ngModel)]="list.email" required email="true" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$" maxlength="255" #email_addressVal="ngModel">
           <div class="validate_errors" *ngIf="(email_addressVal.touched || addContactInformation.submitted) && email_addressVal.errors?.['required']">
             Email address is required. 
           </div>
-          <div class="validate_errors" *ngIf="(email_addressVal.touched || addContactInformation.submitted) && email_addressVal.errors?.['email']">
+          <div class="validate_errors" *ngIf="(email_addressVal.touched || addContactInformation.submitted) && email_addressVal.errors?.['pattern']">
             Email address is not valid. 
           </div>
         </div>
@@ -214,3 +227,20 @@
   </div>
 </ng-template>
 <!-- Vendor add Upload CSV Customer Information Modal End --> 
+
+<!-- Conatct-Delete-Modal -->
+<ng-template #deleteModalContent let-modal>
+  <div class="modal-header">
+  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  <h4>Delete customer</h4>
+  </div>
+      <div class="modal-body">
+          <p>Are you sure you want to delete this customer from your contact list?</p>
+      </div>
+      <div class="modal-footer">
+          <a (click)="modal.dismiss('Cross click')" class="btn btn-primary btn-cancel">Cancel</a>
+          <button *ngIf="!btnDis" class="btn btn-primary btn-add" type="submit" (click)="deleteCustomer()" >Delete</button>
+          <button *ngIf="btnDis" class="btn btn-primary btn-add" type="submit" disabled >Delete</button>
+      </div>
+
+</ng-template>

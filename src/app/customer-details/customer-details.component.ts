@@ -23,7 +23,7 @@ export class CustomerDetailsComponent implements OnInit {
   cust_name!: any;
   cust_storename!: any;
   cust_type!: any;
-  emailSendDate!: any;
+  cust_typeShow!: any;
   btnDis: any = false;
   showBcc: any = false;
   
@@ -31,9 +31,12 @@ export class CustomerDetailsComponent implements OnInit {
   emailSubject!: any;
   emailCc!: any;
   emailBcc!: any;
-  emaiTypeOfDate!: any;
+  emaiTypeOfDate: any = 1;
+  emailSendDate!: any;
   emailDate!: any;
-  emailTime!: any;
+  emailTimeHours!: any;
+  emailTimeMinutes!: any;
+  emailTimeAMorPM!: any;
   emailMessage!: any;
   hoursArray: any = ['01','02','03','04','05','06','07','08','09','10','11','12'];
   minArray: any = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60'];
@@ -42,10 +45,6 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(public modalService: NgbModal, private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router, private toast: NgToastService ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
-
     this.activatedRoute.params.subscribe((routeParams) => {
       this.storage.get("user_session").subscribe({
         next: (user) => {
@@ -90,6 +89,7 @@ export class CustomerDetailsComponent implements OnInit {
         this.cust_name = response.data.name;
         this.cust_storename = response.data.store_name;
         this.cust_type = response.data.type;
+        this.cust_typeShow = response.data.type;
       }
     })
   }
@@ -150,7 +150,17 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   onSendEmail() {
-
+    let values = {
+      sendingTo: this.cust_name,
+      emailSubject: this.emailSubject,
+      emailCc: this.emailCc,
+      emailBcc: this.emailBcc,
+      emaiTypeOfDate: this.emaiTypeOfDate,
+      emailSendDate: this.emailSendDate,
+      emailTimeHours: this.emailTimeHours,
+      emailTimeMinutes: this.emailTimeMinutes,
+      emailTimeAMorPM: this.emailTimeAMorPM,
+    }
   }
 
 

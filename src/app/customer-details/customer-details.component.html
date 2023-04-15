@@ -13,7 +13,7 @@
                 <div class="col-md-8">
                     <div class="my_shop_videos_body">
                         <h3>Store Name</h3>
-                        <h2>{{custDetail?.store_name && custDetail?.store_name}} <span class="customer-span" style="background-color: rgb(166, 197, 208);">{{this.cust_type}}</span> <span class="bazar-span" style="background-color: rgb(224, 184, 129);">Not on Bazar</span></h2>
+                        <h2>{{custDetail?.store_name && custDetail?.store_name}} <span class="customer-span" style="background-color: rgb(166, 197, 208);">{{this.cust_typeShow}}</span> <span class="bazar-span" style="background-color: rgb(224, 184, 129);">Not on Bazar</span></h2>
                         <ul class="nav-list">
                             <li><a><i class="fa-sharp fa-solid fa-ban"></i> Unsubscribe</a></li>
                             <li><a (click)="openUserLogInModal(addCustomerContent)"><i class="fa-sharp fa-solid fa-pen"></i> Edit</a></li>
@@ -190,7 +190,7 @@
     <h4>Send an email</h4>
     <p>You are sending an email to 1 customer</p>
     </div>
-    <form #contactForm="ngForm" (ngSubmit)="contactForm.form.valid && sendContactForm(contactForm)" novalidate>
+    <form>
         <div class="modal-body">
             <ul class="row form-list">
                 <li class="col-md-12">
@@ -205,15 +205,15 @@
                     <label>CC</label>
                     <a class="add-bcc" (click)="toggleShowBcc()" style="cursor: pointer;">{{showBcc? 'Remove BCC' : 'Add BCC'}}</a>
                     <!-- <a *ngIf="showBcc" class="add-bcc" (click)="showBcc = false" >Remove BCC</a> -->
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" name="emailCc" [(ngModel)]="emailCc" />
                 </li>
                 <li class="col-md-12" *ngIf="showBcc"> 
                     <label>BCC</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" name="emailBcc" [(ngModel)]="emailBcc" />
                 </li>
                 <li class="col-md-12">
                     <label>Select Send Time</label>
-                    <select name="" id="" class="form-select" (change)="onTypeSendTimeChange($event)" >
+                    <select name="" id="" class="form-select" (change)="onTypeSendTimeChange($event)" name="emaiTypeOfDate" [(ngModel)]="emaiTypeOfDate" >
                         <option value="1">Send tomorrow at 9:00 AM (Preferred)</option>
                         <option value="2">Send now</option>
                         <option value="3">Pick custom date</option>
@@ -236,19 +236,19 @@
                     </li>
                     <li class="col-md-2" >
                         <label>Send</label>
-                        <select name="" id="" class="form-select">
+                        <select name="" id="" class="form-select" name="emailTimeHours" [(ngModel)]="emailTimeHours">
                             <option *ngFor="let item of hoursArray" [value]="item" >{{item}}</option>
                         </select>
                     </li>
                     <li class="col-md-2">
                         <label>Email</label>
-                        <select name="" id="" class="form-select">
+                        <select name="" id="" class="form-select" name="emailTimeMinutes" [(ngModel)]="emailTimeMinutes">
                             <option *ngFor="let item of minArray" [value]="item" >{{item}}</option>
                         </select>
                     </li>
                     <li class="col-md-2">
                         <label>On</label>
-                        <select name="" id="" class="form-select">
+                        <select name="" id="" class="form-select" name="emailTimeAMorPM" [(ngModel)]="emailTimeAMorPM" >
                             <option *ngFor="let item of amPmArray" [value]="item" >{{item}}</option>
                         </select>
                     </li>
@@ -257,7 +257,7 @@
                 <li  class="col-md-12">
                     <div class="white-shadow-box">
                         <h4>Hi Customer</h4>
-                        <textarea placeholder="Write a message to your retailers here!" name="" id="" cols="30" rows="10" class="form-control textarea-control"></textarea>
+                        <textarea placeholder="Write a message to your retailers here!" name="" id="" cols="30" rows="10" class="form-control textarea-control" name="emailMessage" [(ngModel)]="emailMessage" ></textarea>
                         <p><a>Click here to shop My Amarant</a></p>
                         <p>Ali Ali<br>
                         My Amarant<br>
