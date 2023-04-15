@@ -241,7 +241,12 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
 
   getProducts(brand_id:any , sort_key: any) {
     this.appComponent.showSpinner = true;
-    this.apiService.fetchProductsByShop(brand_id , sort_key , '').subscribe((responseBody) => {
+    let values = {
+      brand_id: brand_id,
+      sort_key: sort_key,
+      sort_cat: ''
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.products = response.data;
       this.categories =  response.data.categories 
@@ -253,7 +258,12 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
 
   onCatClick(slug: any) {
     this.showLoader = true;
-    this.apiService.fetchProductsByShop(this.brand_id , this.sort_key , slug).subscribe((responseBody) => {
+    let values = {
+      brand_id: this.brand_id,
+      sort_key: this.sort_key,
+      sort_cat: slug
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.products = response.data;
       this.showLoader = false;
