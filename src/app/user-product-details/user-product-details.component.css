@@ -10,7 +10,7 @@
 .heading { font: 500 28px 'Futura' !important; color: #000; margin: 50px 0 20px 0 }
 .rightAccount .order-top { margin-bottom: 30px; }
 .rightAccount .order-top .left-order-top h4 { font-size: 20px; font-family: 'Futura' !important; font-weight: 500; margin: 0 0 15px 0; }
-.rightAccount .order-top .left-order-top p { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; margin: 0 0 0 0; }
+.rightAccount .order-top .left-order-top p { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; margin: 0; }
 .rightAccount .order-top .right-order-top .btn-primary { background: #393939; border: 1px solid #393939; border-radius: 0px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0 0 10px 0; padding: 0; position: relative; transition: all .5s ease-in-out; width: 100%; }
 .rightAccount .order-top .right-order-top .alart-text { color: #f00; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; } 
 .rightAccount .order-top .right-order-top .alart-text a { cursor: pointer; text-decoration: underline; }
@@ -19,18 +19,30 @@
 .rightAccount .order-item-list li .order-top-details { border-bottom: 1px solid #eee; float: left; margin: 0; padding: 15px; width: 100%; }
 .rightAccount .order-item-list li .order-top-details ul { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
 .rightAccount .order-item-list li .order-top-details ul li { border: none; float: left; margin-right: 30px; width: auto; }
+.rightAccount .order-item-list li .order-top-details ul .last-list { float: right; margin-right: 0; }
 .rightAccount .order-item-list li .order-top-details ul li label { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 5px 0; }
-.rightAccount .order-item-list li .order-top-details ul li h5 { color: #000; font-size: 16px; font-family: 'Futura' !important; font-weight: 200; margin: 0 0 0 0; }
+.rightAccount .order-item-list li .order-top-details ul li h5 { color: #000; font-size: 16px; font-family: 'Futura' !important; font-weight: 200; margin: 0; }
+.rightAccount .order-item-list li .order-top-details ul .sub-list { float: left; list-style: none; margin: 0; padding: 0; width: auto; }
+.rightAccount .order-item-list li .order-top-details ul .sub-list li { float: left; margin-bottom: 0; margin-left: 10px; margin-right: 0; }
+.rightAccount .order-item-list li .order-top-details ul .sub-list li .common-order-link { background: none; border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 38px; line-height: 36px; padding: 0 15px 0 15px; text-align: center; }
 .rightAccount .order-item-list li .order-bottom-details .table>:not(:first-child) { border-top: 2px solid #eee; }
 .rightAccount .order-item-list li .order-bottom-details .table td { padding: 15px; }
 .rightAccount .order-item-list li .order-bottom-details .table td:nth-child(1) { width: 150px; }
+.rightAccount .order-item-list li .order-bottom-details .table td:nth-child(3) { text-align: right; width: 270px; }
 .rightAccount .order-item-list li .order-bottom-details .table td img { height: auto; max-width: 120px; width: auto; }
 .rightAccount .order-item-list li .order-bottom-details .table td h4 { color: #000; font-size: 20px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 5px 0; padding: 0; }
 .rightAccount .order-item-list li .order-bottom-details .table td h5 { color: rgba(0,0,0,0.5); font-size: 16px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 10px 0; padding: 0; }
 .rightAccount .order-item-list li .order-bottom-details .table td ul { border: none; box-shadow: none; list-style: none; padding: 0; }
 .rightAccount .order-item-list li .order-bottom-details .table td ul li { border: none; margin-right: 50px; width: auto; }
-.rightAccount .order-item-list li .order-bottom-details .table td ul li label { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 17px; font-weight: 500; margin: 0 0 0 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td ul li label { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 17px; font-weight: 500; margin: 0; }
 .rightAccount .order-item-list li .order-bottom-details .table td ul li h6 { color: #000; font-size: 16px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0 0 10px 0; padding: 0; }
+.rightAccount .order-item-list li .order-bottom-details .table td .common-order-link { background: none; border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 38px; line-height: 36px; margin-bottom: 10px; padding: 0; text-align: center; }
+.rightAccount .reviews-white-sec { background: #fff; float: left; margin: 0; padding: 30px 15px 30px 15px; width: 100%; }
+.rightAccount .reviews-white-sec h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 15px 0; }
+.rightAccount .reviews-white-sec .give-reviews-list { float: left; list-style: none; padding: 0; width: 100%; }
+.rightAccount .reviews-white-sec .give-reviews-list li { margin-bottom: 15px; }
+.rightAccount .reviews-white-sec .give-reviews-list li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 70px; line-height: normal; margin-bottom: 0px; margin-top: 0; padding: 10px 15px 10px 15px; } 
+.rightAccount .reviews-white-sec .give-reviews-list li .btn-primary { background: #393939; border: 1px solid #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; padding: 0 20px 0 20px; position: relative; text-align: center; transition: all .5s ease-in-out; width: 190px; }
 /*-------------- Right-Section Ends ------------------ */
 
 /*-------------- Right-Section Starts ------------------ */
