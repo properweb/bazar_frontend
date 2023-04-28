@@ -112,26 +112,26 @@
                 <tbody>
                   <tr *ngFor="let item of customerListArray">
                     <td><input class="form-check-input" type="checkbox" [value]="item.customer_key" (change)="onChecked(item, $event)" [checked]="checkedItems.includes(item.customer_key) == true"></td>
-                    <td style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" >{{item?.store_name}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('contact name')">{{item?.name}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email address')">{{item?.email}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('on bazar')">Yes</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('relationship')">{{item?.type}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('source')">{{item?.source}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('amount in cart')">{{item?.cart_amount}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order amount')">{{item?.ordered_amount}}</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last ordered')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last order delivered')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last contacted')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('date added')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('bazar direct credit expiry')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order minimum type')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account status')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account type')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('invite sent')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('preferred language')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('country')">-</td>
-                    <td class="text-center" style="cursor: pointer;" routerLink="/brand-portal/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email delivery')">-</td>
+                    <td style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" >{{item?.store_name}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('contact name')">{{item?.name}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email address')">{{item?.email}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('on bazar')">Yes</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('relationship')">{{item?.type}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('source')">{{item?.source}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('amount in cart')">{{item?.cart_amount}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order amount')">{{item?.ordered_amount}}</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last ordered')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last order delivered')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('last contacted')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('date added')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('bazar direct credit expiry')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('order minimum type')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account status')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('account type')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('invite sent')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('preferred language')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('country')">-</td>
+                    <td class="text-center" style="cursor: pointer;" routerLink="/customers/{{item?.customer_key}}" *ngIf="selectedCustomerColoumList.includes('email delivery')">-</td>
                     <td>&nbsp;</td>
                   </tr>
                 </tbody>
@@ -177,7 +177,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <input type="text" name="" value="" class="form-control" [name]="'list.name' +i" [(ngModel)]="list.name" required pattern="^[a-zA-Z]{0,255}$" #contact_nameVal="ngModel">
+          <input type="text" name="" value="" class="form-control" [name]="'list.name' +i" [(ngModel)]="list.name" required pattern="^[a-zA-Z ]{0,255}$" #contact_nameVal="ngModel">
           <div class="validate_errors" *ngIf="(contact_nameVal.touched || addContactInformation.submitted) && contact_nameVal.errors?.['required']">
             Contact name is required. 
           </div>
