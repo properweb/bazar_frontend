@@ -46,9 +46,6 @@ export class VendorOrdersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -84,7 +81,6 @@ export class VendorOrdersComponent implements OnInit {
       let index = this.checkedItems.indexOf(Number(value));
       if (index !== -1) this.checkedItems.splice(index, 1);
     }
-    console.log(this.checkedItems);
   }
 
   checkAll(event: any){
@@ -94,7 +90,6 @@ export class VendorOrdersComponent implements OnInit {
     }else {
     this.checkedItems = [];
     }
-    console.log(this.checkedItems);
   }
 
   sendOrderMultiple() {
@@ -160,7 +155,6 @@ export class VendorOrdersComponent implements OnInit {
   }
 
   onTabChnage(tab: any) {
-    console.log(this.activeTab);
     this.checkedItems = [];
     this.selectAll = false;
     this.orderListArray= [];

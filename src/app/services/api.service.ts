@@ -86,7 +86,7 @@ export class ApiService {
     return this.http.post(this._Base_URL+'shop/brand-products', values, this.createAuthorizationHeader());
   }
 
-  getSortProducts(id:any, sort_key: any, page: any, status: any, search_key: any) {
+  getSortProducts(sort_key: any, page: any, status: any, search_key: any) {
     return this.http.get(this._Base_URL+'product/'+'fetch?sort_key='+sort_key+'&page='+page+'&status='+status+'&search_key='+search_key, this.createAuthorizationHeader());
   }
 
@@ -98,8 +98,8 @@ export class ApiService {
     return this.http.get(this._Base_URL+'brands/shop/'+key, this.createAuthorizationHeader());
   }
 
-  importWordpress(user_id:any , consumer_key:any, website_url:any , consumer_secret:any) {
-    return this.http.get(this._Base_URL+'wordpress/'+'importwordpress?user_id='+user_id+'&consumer_key='+consumer_key+'&website='+website_url+'&consumer_secret='+consumer_secret, this.createAuthorizationHeader());
+  importWordpress(values:any) {
+    return this.http.post(this._Base_URL+'wordpress', values, this.createAuthorizationHeader());
   }
 
   importShopify(user_id:any , api_key:any, api_password:any , store_url:any) {
@@ -190,8 +190,8 @@ export class ApiService {
     return this.http.get(this._Base_URL+'shopify/'+'synctoshopify?product_id='+id+'&user_id='+user_id+'&website='+website, this.createAuthorizationHeader());
   }
 
-  syncToWordpress(id: any, user_id: any, website: any) { 
-    return this.http.get(this._Base_URL+'wordpress/'+'synctowordpress?user_id='+user_id+'&website='+website+'&product_id='+id, this.createAuthorizationHeader());
+  syncToWordpress(values: any) { 
+    return this.http.post(this._Base_URL+'wordpress/syncWordpress', values, this.createAuthorizationHeader());
   }
 
   verifyEmail(token: any) {
@@ -311,7 +311,11 @@ export class ApiService {
   }
 
   fetchCustomers(user_id: any,page: any, status: any, search_key: any, sort_key: any) {
-    return this.http.get(this._Base_URL+'customers?user_id='+user_id+'&page='+page+'&status='+status+'&search_key='+search_key+'&sort_key='+sort_key, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'customers?page='+page+'&status='+status+'&search_key='+search_key+'&sort_key='+sort_key, this.createAuthorizationHeader());
+  }
+
+  fetchAllCustomers() {
+    return this.http.get(this._Base_URL+'customers/all', this.createAuthorizationHeader());
   }
   
   addCustomers(values: any) {
@@ -424,6 +428,150 @@ export class ApiService {
 
   fetchProductsByCategory(values: any ) {
     return this.http.post(this._Base_URL+'shop/category-products', values, this.createAuthorizationHeader());
+  }
+  
+  wordpressActionInfo() {
+    return this.http.get(this._Base_URL+'wordpress/action-info', this.createAuthorizationHeader());
+  }
+  
+  wordpressDeleteNotification(values: any) {
+    return this.http.post(this._Base_URL+'wordpress/delete-notification', values, this.createAuthorizationHeader());
+  }
+  
+  fetchProductFilterValues(values: any ) {
+    return this.http.post(this._Base_URL+'shop/product-filters',values, this.createAuthorizationHeader());
+  }
+
+  fetchNewBrands() {
+    return this.http.get(this._Base_URL+'shop/new-brands', this.createAuthorizationHeader());
+  }
+
+  fetchTrendingCategories() {
+    return this.http.get(this._Base_URL+'shop/trending-categories', this.createAuthorizationHeader());
+  }
+
+  fetchTestimonials() {
+    return this.http.get(this._Base_URL+'shop/testimonials', this.createAuthorizationHeader());
+  }
+
+  createCustomer(values: any) {
+    return this.http.post(this._Base_URL+'customers/create', values, this.createAuthorizationHeader());
+  }
+
+  updateCustomerInfo(values: any) {
+    return this.http.post(this._Base_URL+'customers/update-info', values, this.createAuthorizationHeader());
+  }
+
+  updateCustomerShipping(values: any) {
+    return this.http.post(this._Base_URL+'customers/update-shipping', values, this.createAuthorizationHeader());
+  }
+  
+  fetchProductsForDropdown() {
+    return this.http.get(this._Base_URL+'product/fetch-products', this.createAuthorizationHeader());
+  }
+  
+  createBrandInvoice(values: any) {
+    return this.http.post(this._Base_URL+'invoices', values, this.createAuthorizationHeader());
+  }
+  
+  fetchBrandInvoice(status: any, search_key: any) {
+    return this.http.get(this._Base_URL+'invoices?status='+ status + '&search_key='+search_key, this.createAuthorizationHeader());
+  }
+  
+  fetchBrandInvoiceDetails(id: any) {
+    return this.http.get(this._Base_URL+ 'invoices/' + id, this.createAuthorizationHeader());
+  }
+
+  updateBrandInvoice(values: any) {
+    return this.http.post(this._Base_URL+'invoices/update', values, this.createAuthorizationHeader());
+  }
+
+  deleteBrandInvoice(id: any) {
+    return this.http.delete(this._Base_URL+'invoices/delete/'+ id, this.createAuthorizationHeader());
+  }
+  
+  vendorOrderIssue() {
+    return this.http.get(this._Base_URL+'analytic/order-issues', this.createAuthorizationHeader());
+  }
+  
+  vendorOrderCancel() {
+    return this.http.post(this._Base_URL+'analytic/order-cancel','', this.createAuthorizationHeader());
+  }
+  
+  vendorSellTopSelling() {
+    return this.http.post(this._Base_URL+'analytic/top-selling','', this.createAuthorizationHeader());
+  }
+
+  vendorTotalSales(values: any) {
+    return this.http.post(this._Base_URL+'analytic/total-sales', values, this.createAuthorizationHeader());
+  }
+
+  vendorTotalSalesDate(values: any) {
+    return this.http.post(this._Base_URL+'analytic/total-sales-date', values, this.createAuthorizationHeader());
+  }
+
+  vendorSellThrough(values: any) {
+    return this.http.post(this._Base_URL+'analytic/sell-through', values, this.createAuthorizationHeader());
+  }
+
+  reviewSubmit(values: any) {
+    return this.http.post(this._Base_URL+'orders/review', values, this.createAuthorizationHeader());
+  }
+
+  brandOrderReview(sort_key: any) {
+    return this.http.get(this._Base_URL+'brands/order/reviews?sort_key='+ sort_key, this.createAuthorizationHeader());
+  }
+
+  retailerOrderReview(product_key: any, page: any) {
+    return this.http.get(this._Base_URL+'shop/brand-reviews?product_key='+ product_key + '&page=' + page, this.createAuthorizationHeader());
+  }
+
+  shopVisit(values: any) {
+    return this.http.post(this._Base_URL+'analytic/shop-visit', values, this.createAuthorizationHeader());
+  }
+
+  getIpAddress() {
+    return this.http.get('https://geolocation-db.com/json/');
+  }
+
+  vendorTraffice(values: any) {
+    return this.http.post(this._Base_URL+'analytic/traffic', values, this.createAuthorizationHeader());
+  }
+
+  fetchReturnReasons() {
+    return this.http.get(this._Base_URL+'orders/return-reasons', this.createAuthorizationHeader());
+  }
+
+  fetchReturnPolicies() {
+    return this.http.get(this._Base_URL+'orders/return-policies', this.createAuthorizationHeader());
+  }
+
+  returnOrder(values: any) {
+    return this.http.post(this._Base_URL+'orders/return-order', values,this.createAuthorizationHeader());
+  }
+
+  cancelOrderRequest(values: any) {
+    return this.http.post(this._Base_URL+'orders/cancel-request', values,this.createAuthorizationHeader());
+  }
+
+  vendorTotalTraffic(values: any) {
+    return this.http.post(this._Base_URL+'analytic/total-traffic', values, this.createAuthorizationHeader());
+  }
+
+  showMessageMembers() {
+    return this.http.post(this._Base_URL+'message/show-member', '', this.createAuthorizationHeader());
+  }
+
+  showChatDetail(values: any) {
+    return this.http.post(this._Base_URL+'message/chat-detail', values, this.createAuthorizationHeader());
+  }
+
+  messageCreate(values: any) {
+    return this.http.post(this._Base_URL+'message/create', values, this.createAuthorizationHeader());
+  }
+
+  allChat(values: any) {
+    return this.http.post(this._Base_URL+'message/all-chat', values, this.createAuthorizationHeader());
   }
 
   logout() {

@@ -3,10 +3,15 @@
 .middle_vendor_dasboard .middle_content .headingBox { display: flex; margin-bottom: 30px; margin-left: -30px; margin-right: -30px; }
 .middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox { background: #fff; float: left; margin: 0; padding: 30px 30px 30px 30px; width: 100%; }
 .middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox h3 { color: #000; font-family: 'Futura' !important; font-size: 28px; font-weight: 500; margin: 0 0 10px 0; }
-.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; }
 .middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox p a { background: url(../../assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; padding: 0 0 0 20px; }
-.middle_vendor_dasboard .middle_content .vendor_create_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px; width: 100%; }
-.middle_vendor_dasboard .middle_content .vendor_create_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .payment-status-span { border-radius: 28px; float: right; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: -38px 0 0 0; padding: 4px 18px; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .awaiting-payment { background: #F29C6B; color: #fff; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .payment-complete { background: #8DCF81; color: #fff; }
+.middle_vendor_dasboard .middle_content .headingBox .whiteHeadingBox .delete-invoice { color: #000; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin-top: -20px }
+.middle_vendor_dasboard .middle_content .vendor_create_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 15px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 20px 0 30px 0; }
 .middle_vendor_dasboard .middle_content .vendor_create_body p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 10px 0 25px 0; }
 .middle_vendor_dasboard .middle_content .vendor_create_body p a { text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .vendor_create_body p span { color: rgba(0, 0, 0, 0.5); }
@@ -41,6 +46,23 @@
 .middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv { margin: 0; padding: 10px; position: relative; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; }
 .middle_vendor_dasboard .middle_content .vendor_create_body .show_product_list li .complete_border_box .txtDiv p { color: rgba(0, 0, 0, 0.5);; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .customer-info-sec { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .hide-customer-info { position: absolute; right: 0; top: 0; cursor: pointer;}
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list { list-style: none; margin-bottom: 0; padding: 0; margin-top: 10px; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list li { }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list li .white-small-order-box { }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list li .white-small-order-box h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list li .white-small-order-box .edit-link { color: #000; cursor: pointer; margin-left: 5px; display: inline-block; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list .edit-details-list { list-style: none; margin-top: 0; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list .edit-details-list li { }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list .edit-details-list li p { color: #000; font-family: 'Futura' !important; font-size: 15px; font-weight: 400; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .edit-order-top-list .edit-details-list li .add-payment-link { color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 15px; font-weight: 200; text-decoration: underline; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list { float: left; list-style: none; margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list li { float: left; margin: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list li:nth-child(2) { float: right; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list li h5 { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list li p { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 20px; } 
+.middle_vendor_dasboard .middle_content .vendor_create_body .invoice-sent-list li a { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin-left: 10px; text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body { background: #fff; float: left; margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec { margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table { border-top: none; }
@@ -54,7 +76,7 @@
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .imgDiv img { height: auto; width: 35px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .removeLink { background: #F2F2F2; border-radius: 3px; color: #000; cursor: pointer; display: inline-block; line-height: 30px; width: 30px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 0 0; }
-.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 0; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: rgba(0, 0, 0, 0.5); float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 31px; display: inline-block; line-height: 29px; padding: 0 15px 0 15px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan .form-control { border: none; color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 29px; padding: 0 15px 0 15px; width: 80px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body .table_sec .table td .quantitySpan .form-control:focus { box-shadow: none; }
@@ -76,6 +98,7 @@
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable { padding-right: 15px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable>:not(:first-child) { border-top: none; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable th { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: left; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable th .add-promotion-link { color: #000; cursor: pointer; padding: 0; text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable td { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding-bottom: 5px; padding-top: 5px; text-align: right; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .top_create_body .amountTable td strong { font-family: 'Futura' !important; font-weight: 500; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body { float: left; margin: 0; padding: 30px 15px 30px 15px; width: 100%; }
@@ -86,9 +109,15 @@
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body p span a { color: rgba(0, 0, 0, 0.5); }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList { list-style: none; margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .countSpan { color: rgba(0, 0, 0, 0.5);display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; text-align: right; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .form-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 8px 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 41px; line-height: 39px; margin-bottom: 0px; margin-top: 0; padding: 0 15px 0 15px; }
 .middle_vendor_dasboard .middle_content .vendor_white_create_body2 .bottom_create_body .formList li .textAreaForm { height: 70px; line-height: normal; padding: 10px 15px 10px 15px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .btnList { list-style: none; margin: 0; padding: 0 30px 30px 0; text-align: right; width: 100%; margin-top: 30px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body li .draft_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_white_create_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
 
 /* Responsive Start */
 @media screen and (max-width:991px) {
