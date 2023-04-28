@@ -36,16 +36,18 @@ export class VendorNewPromotionsComponent implements OnInit {
   fromDate!: any;
   toDate!: any;
   invoiceProduct!: any;
+  bazaar_direct_link!: any;
   proKeyword = 'name';
-  proData = [ 
-    { id: 1, img: 'assets/images/search-img.png', name: 'Grey plate', sku: 'AA234', stock: 'In stock', price: '$11.70' , variations: []},
-    { id: 2, img: 'assets/images/search-img.png', name: 'abcd', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [
-      {id: 2, variation_id: 111, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (12 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-      {id: 2, variation_id: 222, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (50 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-      {id: 2, variation_id: 333, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (100 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-    ]},
-    { id: 3, img: 'assets/images/product-img.jpeg', name: 'Test', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [1]},
-  ];
+  // proData = [ 
+  //   { id: 1, img: 'assets/images/search-img.png', name: 'Grey plate', sku: 'AA234', stock: 'In stock', price: '$11.70' , variations: []},
+  //   { id: 2, img: 'assets/images/search-img.png', name: 'abcd', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [
+  //     {id: 2, variation_id: 111, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (12 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
+  //     {id: 2, variation_id: 222, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (50 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
+  //     {id: 2, variation_id: 333, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (100 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
+  //   ]},
+  //   { id: 3, img: 'assets/images/product-img.jpeg', name: 'Test', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [1]},
+  // ];
+  proData: any = [];
 
   constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, public toast: NgToastService ) {
     this.fromDate = null
@@ -53,13 +55,11 @@ export class VendorNewPromotionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
+        this.getVendorDetails(user_session.id);
       },
       error: (error) => {
       },          
@@ -68,9 +68,36 @@ export class VendorNewPromotionsComponent implements OnInit {
       this.type = params.get('type') || '';
     })
     this.getPromotionCountries();
+  }
 
-    
+  getVendorDetails(user_id: any) {
+    this.apiService.getVendorDetails(user_id).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if( response.res == true) {
+        this.bazaar_direct_link = response.data.bazaar_direct_link;
+        this.getProducts();
+      } else {
+        this.toast.success({detail: response.msg, summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+    })
+  }
 
+  getProducts() {
+    let values = {
+      brand_id: this.bazaar_direct_link, 
+      sort_key: '',
+      slug: ''
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
+      let response= JSON.parse(JSON.stringify(responseBody)); 
+      response?.data?.products.forEach((element: any) => {
+        if(element.stock != '0' || element.stock != 0) {
+          this.proData.push(element);
+        }
+      });
+    })
   }
 
   getPromotionCountries() {
@@ -92,7 +119,7 @@ export class VendorNewPromotionsComponent implements OnInit {
     this.btnDis = true;
     let sepByComma = this.promoCountrySelected.join(',');
     let values = {
-      brand_id: this.user_id,
+      // brand_id: this.user_id,
       title: this.title,
       type: this.promotion_to,
       country: sepByComma,
@@ -133,7 +160,7 @@ export class VendorNewPromotionsComponent implements OnInit {
         if(response.res == true) {
           this.toast.success({detail: response.msg, summary: '', duration: 4000});
           this.btnDis = false;
-          this.router.navigate(['/brand-portal/promotions/']);
+          this.router.navigate(['/promotions/']);
         } else {
           this.toast.error({detail: response.msg, summary: '', duration: 4000});
           this.btnDis = false;
@@ -216,7 +243,13 @@ export class VendorNewPromotionsComponent implements OnInit {
       if (index !== -1) this.selectedProducts.splice(index, 1);
     }
   }
-  
 
+  deleteSelectedProduct(i: any) {
+    this.selectedProducts.splice(i,1);
+  }
+  
+  onDropProSelect() {
+    
+  }
 
 }

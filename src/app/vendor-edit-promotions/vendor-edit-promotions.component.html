@@ -7,7 +7,7 @@
       <div class="headingBox">
         <div class="whiteHeadingBox">
           <h3>{{promotionDetail?.title}}</h3>
-          <p><a routerLink="/brand-portal/promotions/" >Promotions</a></p>
+          <p><a routerLink="/promotions/" >Promotions</a></p>
           <div class="editTopPromotions" *ngIf="promotionDetail?.status == 1" >
             <p>Last updated on {{promotionDetail?.updated_at_str}} <span class="activePromo">Active</span></p>
             <!-- <a class="end_promotion_link" (click)="openEndPromotion(content)"><span class="end_promotion_span"><i class="fa-solid fa-ban"></i></span> End Promotion</a>  -->
@@ -141,7 +141,7 @@
           <li class="col-lg-4">
             <label class="form-label">Add tiers to create a "buy more, save more" promotion</label>
             <ul class="formDiv">
-              <li><span class="radioLabel">1Tier
+              <li><span class="radioLabel">1 Tier
                 <input type="radio" [value]="1" name="promotion_tier" [(ngModel)]="promotion_tier">
                 <span class="checkmark"></span> </span> </li>
               <li><span class="radioLabel">2 Tiers
@@ -159,7 +159,7 @@
                 <input type="radio" [value]="1" name="promotion_offer_type" [(ngModel)]="promotion_offer_type">
                 <span class="checkmark"></span> </span> </li>
               <li><span class="radioLabel">$ Off
-                <input type="radio" [value]="2" name="promotion_offer_type" [(ngModel)]="promotion_offer_type" checked="checked">
+                <input type="radio" [value]="2" name="promotion_offer_type" [(ngModel)]="promotion_offer_type">
                 <span class="checkmark"></span> </span></li>
               <li><span class="radioLabel">Free Shipping
                 <input type="radio" [value]="3" name="promotion_offer_type" [(ngModel)]="promotion_offer_type">
@@ -232,7 +232,7 @@
                 <a [innerHTML]="item.name">{{item.name}}</a>
             </ng-template>
             <ng-template #notFoundTemplate2 let-notFound >
-                <div [innerHTML]="notFound"></div>
+              <div [innerHTML]="notFound"></div>
             </ng-template>
           </li>
         </ul>

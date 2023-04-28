@@ -7,7 +7,7 @@
       <div class="headingBox">
         <div class="whiteHeadingBox">
           <h3>New Promotion</h3>
-          <p><a routerLink="/brand-portal/promotions/" >Promotions</a></p>
+          <p><a routerLink="/promotions/" >Promotions</a></p>
         </div>
       </div>
       <div class="vendor_promotions_body">
@@ -174,7 +174,7 @@
         </div>
         <!-- <p class="faireSplPara">Bazar covers the cost of shipping for all eligible Insider members. <a>Learn More</a></p> -->
       </div>
-      <div class="vendor_promotions_body" *ngIf="type == 'PRODUCT' " >
+      <div class="vendor_promotions_body" *ngIf="type == 'PRODUCT'" >
         <h3>Discount amount</h3>
         <p>The discount will apply to all the products you add to the promotion, including variants like different sizes or colors</p>
         <div class="row discountFormSec">
@@ -188,55 +188,49 @@
           </div>
         </div>
       </div>
-      <div class="vendor_promotions_body" *ngIf="type == 'PRODUCT' " >
+      <div class="vendor_promotions_body" *ngIf="type == 'PRODUCT'" >
         <h3>Recommend Additional Products</h3>
         <p><span class="grayPara">Introduce your customers to new products or recommend items that complement their order. Customers will be able to add recommended products to their order when checking out. <a>View Example</a></span></p><br >
-        <h3>Add products</h3>
+        <h3>Add products</h3> 
         <ul class="row shopInfoList">
           <li class="col-lg-10 searchBox">
-            <ng-autocomplete [data]="proData" [searchKeyword]="proKeyword" #autoComId placeholder="Select Option" (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate2" [notFoundTemplate]="notFoundTemplate2" class="common-autosearch invoice-search" id="ajkahfjdif"></ng-autocomplete>
+            <ng-autocomplete [data]="proData" [searchKeyword]="proKeyword" #autoComId placeholder="Select products" (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate2" [notFoundTemplate]="notFoundTemplate2" class="common-autosearch invoice-search" id="ajkahfjdif"></ng-autocomplete>
             <ng-template #itemTemplate2 let-item>
               <!-- <div class="searchBox"> -->
-                <a *ngIf="item.variations.length == 0" (click)="onAddingProduct(item)" >
-                  <span class="imgBox" ><img src="assets/images/search-img.png" alt="" /></span>
+                <a *ngIf="item?.variations?.length > 0" (click)="settingVariation(item); openInvoiceProductModal(invoiceProductContent)" >
+                  <span class="imgBox" ><img [src]="item?.featured_image" alt="" /></span>
                   <span class="productInfoTxt">
                     <h4 [innerHTML]="item.name">{{item.name}}</h4>
-                    <p>SKU: AA234</p>
-                  </span>
-                  <span class="priceTag">${{item.price}}</span>
-                  <span class="stockTag">{{item.stock}}</span>
+                    <p *ngIf="item?.sku">SKU: {{item?.sku}}</p>
+                  </span> 
+                  <span class="priceTag" >${{item?.usd_wholesale_price}}</span>
+                  <span class="stockTag">In stock</span>
                 </a>
-                <a *ngIf="item.variations.length > 0" (click)="settingVariation(item);openInvoiceProductModal(invoiceProductContent)">
-                  <span class="imgBox" ><img src="assets/images/search-img.png" alt="" /></span>
+                <a (click)="onAddingProduct(item)" *ngIf="item?.variations?.length <= 0" >
+                  <span class="imgBox" ><img [src]="item?.featured_image" alt="" /></span>
                   <span class="productInfoTxt">
                     <h4 [innerHTML]="item.name">{{item.name}}</h4>
-                    <p>SKU: AA234</p>
+                    <p *ngIf="item?.sku">SKU: {{item?.sku}}</p>
                   </span>
-                  <span class="priceTag">${{item.price}}</span>
-                  <span class="stockTag">{{item.stock}}</span>
+                  <span class="priceTag" >${{item?.usd_wholesale_price}}</span>
+                  <span class="stockTag">In stock</span>
                 </a>
               <!-- </div> -->
             </ng-template>
             <ng-template #notFoundTemplate2 let-notFound >
-                <div [innerHTML]="notFound"></div>
+              <div [innerHTML]="notFound"></div>
             </ng-template>
           </li>
         </ul>
         <ul class="row show_product_list">
-          <li class="col-lg-2">
+          <li class="col-lg-2" *ngFor="let item of selectedProducts; let i = index;">
             <div class="border_box complete_border_box">
-              <div class="imgDiv"> <img src="assets/images/no-revisions-Pu0sndkokuA-unsplash-1.png" alt="" /> <a class="deleteIcon"><i class="fa-solid fa-trash"></i></a> </div>
+              <div class="imgDiv"> <img [src]="item?.featured_image" alt="" /> <a class="deleteIcon" (click)="deleteSelectedProduct(i);" ><i class="fa-solid fa-trash"></i></a> </div>
               <div class="txtDiv">
-                <h4>Grey plate</h4>
-                <p>$11.70</p>
+                <h4>{{item.name}}</h4>
+                <p>${{item?.usd_wholesale_price}}</p>
               </div>
             </div>
-          </li>
-          <li class="col-lg-2">
-            <div class="border_box"></div>
-          </li>
-          <li class="col-lg-2">
-            <div class="border_box"></div>
           </li>
         </ul>
       </div>

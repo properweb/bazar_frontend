@@ -49,9 +49,6 @@ export class VendorEditPromotionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get('user_session').subscribe({
       next: (user) => {
         let user_session = JSON.parse(JSON.stringify(user));
@@ -115,7 +112,7 @@ export class VendorEditPromotionsComponent implements OnInit {
     this.btnDis = true;
     let sepByComma = this.promoCountrySelected.join(',');
     let values = {
-      brand_id: this.user_id,
+      // brand_id: this.user_id,
       promotion_key: this.promo_key,
       title: this.title,
       type: this.promotion_to,
@@ -171,7 +168,7 @@ export class VendorEditPromotionsComponent implements OnInit {
   deletePromotionStatus() {
     this.changeBtnDis = true;
     let values = {
-      brand_id: this.user_id,
+      // brand_id: this.user_id,
       promotion_key: this.promo_key,
     }
     this.apiService.deletePromotions(values).subscribe((responseBody) => {
@@ -180,7 +177,7 @@ export class VendorEditPromotionsComponent implements OnInit {
         this.toast.success({detail: 'Promotion deleted successfully.', summary: '', duration: 4000});
         this.deletePromotionModal.close();
         this.changeBtnDis = false;
-        this.router.navigate(['/brand-portal/promotions/']);
+        this.router.navigate(['/promotions/']);
       } else {
         this.toast.error({detail: response.msg, summary: '', duration: 4000});
         this.changeBtnDis = false;
