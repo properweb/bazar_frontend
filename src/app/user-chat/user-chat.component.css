@@ -2,7 +2,7 @@
 .profileDiv { padding-left:0; }
 
 /*----------------right section starts--------------------*/
-.heading { color: #000; font: 500 28px 'Futura' !important; margin: 50px 0 20px 0 }
+.heading { color: #000; font: 500 28px 'Futura' !important; margin: 50px 0 20px 0 } 
 .profileDiv .vendor_message_body { float: left; margin: 0; padding: 0px; width: 100%; }
 .profileDiv .vendor_message_body .positive-row { /*position: relative;*/ }
 .profileDiv .vendor_message_body .chatbox { /*background: #f00;*/ float: left; /*height: 100%;*/ margin: 0; padding: 0; /*position: absolute; right: 0; top: 0;*/ width: 74%; }
@@ -14,21 +14,23 @@
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec { width: 88%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec h3 { color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 5px 0; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 0; }
-.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body { float: left; margin: 0; padding: 20px 0 20px 0; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body { float: left; margin: 0; padding: 20px 0 20px 0; width: 100%; min-height: 355px; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list { list-style: none; margin: 0 0 15px 0; max-height: 400px; overflow-y: auto; padding: 0; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li { margin: 0; padding: 10px 30px 10px 30px; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .row { align-items: center !important; }
-.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .row { flex-direction: row-reverse !important; }
+/* .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .row { flex-direction: row-reverse !important; } */
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list .evenList .row { flex-direction: row-reverse !important; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-img { }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-img img { border-radius: 100%; height: auto; max-width: 50px; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text { }
-.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .user-text { text-align: right; }
+/* .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li:nth-child(even) .user-text { text-align: right; } */
+.profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list .evenList .user-text { text-align: right; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; margin: 0 0 0 0; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .user-text p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0 0 0 0; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span { display: block; margin: 0; padding: 0; position: relative; text-align: center; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span:after { background-color: rgba(0, 0, 0, 0.25); content: ""; height: 1px; left: 0; position: absolute; top: 10px; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li .border-span span { background-color: #fff; color: #000; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; padding: 0 15px 0 15px; position: relative; z-index: 1; }
-.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat { float: left; margin: 0; padding: 0 30px 0 30px; width: 100%; }
+.profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat { float: left; margin: 0; padding: 10px 30px 10px 30px; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat textarea { border: 1px solid rgba(57,57,57,.5); border-radius: 3px; color: #000; height: 120px; font-family: Futura!important; font-size: 16px; font-weight: 200; margin-bottom: 20px; padding: 10px 15px; width: 100%; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat textarea:focus { box-shadow: none; }
 .profileDiv .vendor_message_body .chatbox .white-chat-box .bottom-chat .btn { background: #393939; border-color: #393939; border-radius: 3px; float: right; font-family: Futura!important; font-size: 18px; font-weight: 200; height: 43px; padding: 0 30px 0 30px; }
