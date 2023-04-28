@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from '../services/api.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-local-brands',
@@ -13,10 +14,14 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./local-brands.component.css']
 })
 export class LocalBrandsComponent implements OnInit {
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
   @Input() onChildChange:any
   user_id!: any;
   role!: any;
   brandList!: any;
+  newBrandList!: any;
+  trendingCategoriesList!: any;
+  testimonilasList!: any;
   featuredCategoryList!: any;
   currentUrl!: any;
   modalReference!: NgbModalRef;
@@ -36,7 +41,7 @@ export class LocalBrandsComponent implements OnInit {
   password!: any;
   vendorCount: any = 0;
 
-  constructor(private router: Router,private apiService: ApiService, private storage: StorageMap, public modalService: NgbModal,  private toast: NgToastService) {
+  constructor(private router: Router, private apiService: ApiService, private storage: StorageMap, public modalService: NgbModal,  private toast: NgToastService) {
     this.vendorRegForm = new FormGroup({
       vendorEmail: new FormControl(null, [
         Validators.required,
@@ -74,6 +79,9 @@ export class LocalBrandsComponent implements OnInit {
       },
     });
     this.fetchBrands(this.user_id);
+    this.fetchNewBrands();
+    this.fetchTrendingCategories();
+    this.fetchTestimonials();
     this.currentUrl =this.router.url;
     this.getVendorCount();
     this.featuredCategories();
@@ -98,6 +106,39 @@ export class LocalBrandsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res ==  true) {
         this.brandList = response.data;
+      } else {
+
+      }
+    })
+  }
+
+  fetchNewBrands() {
+    this.apiService.fetchNewBrands().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res ==  true) {
+        this.newBrandList = response.data;
+      } else {
+
+      }
+    })
+  }
+
+  fetchTrendingCategories() {
+    this.apiService.fetchTrendingCategories().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res ==  true) {
+        this.trendingCategoriesList = response.data;
+      } else {
+
+      }
+    })
+  }
+
+  fetchTestimonials() {
+    this.apiService.fetchTestimonials().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res ==  true) {
+        this.testimonilasList = response.data;
       } else {
 
       }
@@ -257,6 +298,10 @@ export class LocalBrandsComponent implements OnInit {
     this.continueFunction();
   }
 
+  click() {
+    this.headerComponent.signInOpenModal();
+  }
+
   localBannerHeading = "Local Brands Wholesale";
   localBannerPara = "Shop other 20,000 brands, all in one place";
 
@@ -402,6 +447,31 @@ export class LocalBrandsComponent implements OnInit {
       940: {
         items: 5,
         slideBy: 5
+      }
+    },
+    nav: true
+  }
+
+  customOptions5: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 100,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1,
+      },
+      740: {
+        items: 1,
+      },
+      940: {
+        items: 1
       }
     },
     nav: true

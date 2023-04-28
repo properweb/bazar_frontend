@@ -19,7 +19,7 @@
             <div class="mobile_bottom_btn_link">
                 <ul class="top_nav">
                     <li><a class="btn btn-primary sell_on_bazar" (click)="openVendorSignUpModal(vendorsRegistration)">SELL ON BAZAR</a></li>
-                    <li><a class="btn btn-primary sign_in" (click)="openUserLogInModal(userLogInContent)">Sign IN</a></li>
+                    <li><a class="btn btn-primary sign_in" #userLoginClick (click)="openUserLogInModal(userLogInContent)">Sign IN</a></li>
                     <li><a class="btn btn-primary sign_up" routerLink="/userRegistration">Sign UP</a></li>
                 </ul>
             </div>

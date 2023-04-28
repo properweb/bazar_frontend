@@ -14,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('closeModal') closeModal!: ElementRef;
+  @ViewChild('userLoginClick') userLoginClick!: ElementRef;
   @Input() currentUrl = ''
   @Input() onChildChange:any
   modalReference!: NgbModalRef;
@@ -242,6 +243,8 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-
+  signInOpenModal() {
+    this.userLoginClick.nativeElement.click();
+  }
 
 }
