@@ -19,7 +19,7 @@
 .middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .leftSellthroughBox .perform td { color: #000; font: 500 18px 'Futura' !important; padding: 5px 20px 5px 0; }
 .middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox { float: left; margin: 0; padding: 0 50px 0 0; width: 50%; }
 .middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox .grayDiv { background: rgba(0, 0, 0, 0.05); border-radius: 3px; float: left; margin: 0; padding: 20px 80px 30px 20px; position: relative; width: 100%; }
-.middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox .grayDiv .crossLink { position: absolute; right: 20px; top: 10px; }
+.middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox .grayDiv .crossLink { cursor: pointer; position: absolute; right: 20px; top: 10px; }
 .middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox .grayDiv p { color: #000; font: 200 16px/21px 'Futura' !important; margin: 0 0 15px 0; }
 .middle_vendor_dasboard .middle_content .PerformPnl .sellthroughBox .rightSellthroughBox .grayDiv p a { color: #000; text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .PerformBox { background: #fff; border-radius: 3px; float: left; margin: 0 0 20px 0; padding: 20px; width: 100%; }

@@ -6,13 +6,14 @@
       <div class="headingBox">
         <div class="whiteHeadingBox">
           <h3>Sell-through</h3>
-          <p><a>Performance</a></p>
+          <p><a routerLink="/analytics">Analytics</a></p>
           <div class="selectBoxNew">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Last 3 month by</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+            <select class="form-select" aria-label="Default select example" (change)="onSortChange($event)">
+              <option value="1">Last month</option>
+              <option value="3" selected>Last 3 months</option>
+              <option value="6">Last 6 months</option>
+              <option value="12">Last 12 months</option>
+              <option value="13">all time</option>
             </select>
           </div>
         </div>
@@ -20,7 +21,7 @@
       <div class="PerformPnl">
         <div class="sellthroughBox">
           <h4>Analytics Summary</h4>
-          <p class="dateField">All time</p>
+          <p class="dateField">{{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <div class="leftSellthroughBox">
             <p>Sell-through is the consumer purchase rate of your products sold in a retailer's store. This rate is the % of items that are not returned.</p>
@@ -32,15 +33,15 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>-</td>
+                  <td>{{sellThroughList?.sellthrough_rate ? sellThroughList?.sellthrough_rate + '%' : '-'}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="rightSellthroughBox">
-            <div class="grayDiv"> <a class="crossLink"><img src="assets/images/cross_icon.png" alt=""></a>
+          <div class="rightSellthroughBox" *ngIf="grayDivShow">
+            <div class="grayDiv"> <a class="crossLink" (click)="grayDivShow = false;" ><img src="assets/images/cross_icon.png" alt=""></a>
               <p>Listings with product dimension details and images of the item's packaging and presentation can help increase your sell-through!</p>
-              <p><a>Update Product Listings</a></p>
+              <p><a routerLink="/products">Update Product Listings</a></p>
             </div>
           </div>
         </div>
@@ -49,16 +50,23 @@
           <table class="perform">
             <thead>
               <tr>
+                <th>Product name</th>
                 <th>Total Ordered</th>
                 <th>Total Returned</th>
                 <th>Sell-through Rate</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="topSellingList?.length > 0">
+              <tr *ngFor="let item of topSellingList; let i = index;">
+                <td>{{item?.product}}</td>
+                <td>{{item?.totalOrder ? item?.totalOrder : '-'}}</td>
+                <td>{{item?.total_returned ? item?.total_returned : '-'}}</td>
+                <td>{{item?.sellthrough_rate && item?.sellthrough_rate != 0.00 ? item?.sellthrough_rate : '-'}}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="topSellingList?.length == 0">
               <tr>
-                <td>2</td>
-                <td>-</td>
-                <td>-</td>
+                <td>No records found.</td>
               </tr>
             </tbody>
           </table>
@@ -68,20 +76,29 @@
           <table class="perform">
             <thead>
               <tr>
+                <th>Product name</th>
                 <th>Total Ordered</th>
                 <th>Total Returned</th>
                 <th>Sell-through Rate</th>
               </tr>
             </thead>
+            <tbody *ngIf="sellThroughList?.top_returned_items?.length > 0">
+              <tr *ngFor="let item of sellThroughList?.top_returned_items; let i = index;">
+                <td>{{item?.product_name}}</td>
+                <td>{{item?.order_quantity ? item?.order_quantity : '-'}}</td>
+                <td>{{item?.returned_quantity ? item?.returned_quantity : '-'}}</td>
+                <td>{{item?.sellthrough_rate && item?.sellthrough_rate != '0.00' ? item?.sellthrough_rate : '-'}}</td>
+              </tr>
+            </tbody>
           </table>
-          <div class="borderBottomBox">
+          <div class="borderBottomBox" *ngIf="sellThroughList?.top_returned_items?.length == 0">
             <h5>Not Enough Data Yet</h5>
             <p>We are still gathering data, on your store. Once a return has been made that data will show here.</p>
           </div>
         </div>
         <div class="PerformBox">
           <h4>Returns</h4>
-          <p class="dateField">All time</p>
+          <p class="dateField">{{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <table class="perform">
             <thead>
@@ -92,8 +109,8 @@
             </thead>
             <tbody>
               <tr>
-                <td>0</td>
-                <td>-</td>
+                <td>{{sellThroughList?.total_returned ? sellThroughList?.total_returned : 0}}</td>
+                <td>{{sellThroughList?.avg_returned_items ? sellThroughList?.avg_returned_items : '-'}}</td>
               </tr>
             </tbody>
           </table>

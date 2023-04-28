@@ -1,0 +1,124 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Order issues</h3>
+          <p>Review orders that had customer service issues in the last 90 days. <span>Learn more</span></p><br>
+          <p><a routerLink="/analytics">Analytics</a></p>
+        </div>
+      </div>
+      <div class="videosTabSec">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><a [ngClass]="!returnActive ? 'nav-link active' : 'nav-link'" data-bs-toggle="tab" href="#lateShipmentsTab" >Late shipments</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#canceledOrdersTab" >Canceled orders</a></li>
+          <li class="nav-item"><a [ngClass]="returnActive ? 'nav-link active' : 'nav-link'" data-bs-toggle="tab" href="#missingDamagedItemsTab">Missing or damaged items</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="lateShipmentsTab" [ngClass]="!returnActive ? 'container tab-pane active' : 'container tab-pane fade'">
+            <div class="table_sec">
+                <table class="table" *ngIf="allDetails?.lateshipped_orders?.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Order Date</th>
+                            <th>Customer</th>
+                            <th>Expected ship date</th>
+                            <th>Actual ship date</th>
+                            <th>Days late</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allDetails?.lateshipped_orders; let i = index;">
+                            <td>{{item?.order_number}}</td>
+                            <td>{{item?.order_date}}</td>
+                            <td>{{item?.store}}</td>
+                            <td>{{item?.expected_shipping_date}}</td>
+                            <td>{{item?.actual_shipping_date}}</td>
+                            <td>{{item?.date_late}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" *ngIf="allDetails?.lateshipped_orders?.length == 0">
+                    <tbody>
+                        <tr>
+                            <td align="center">No orders in the last 90 days.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+          <div id="canceledOrdersTab" class="container tab-pane fade">
+            <div class="table_sec">
+                <table class="table" *ngIf="allDetails?.cancelled_orders.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Order Date</th>
+                            <th>Customer</th>
+                            <th>Cancelation date</th>
+                            <th>Canceled by</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allDetails?.cancelled_orders; let i = index;">
+                            <td style="text-transform: uppercase;">#{{item?.order_number}}</td>
+                            <td>{{item?.order_date}}</td>
+                            <td>{{item?.store}}</td>
+                            <td>{{item?.cancel_date}}</td>
+                            <td>{{item?.canceled_by ? item?.canceled_by : '-' }}</td>
+                            <td>{{item?.reason}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" *ngIf="allDetails?.cancelled_orders?.length == 0">
+                    <tbody>
+                        <tr>
+                            <td align="center">No orders in the last 90 days.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+          <div id="missingDamagedItemsTab" [ngClass]="returnActive ? 'container tab-pane active' : 'container tab-pane fade'">
+            <div class="table_sec">
+                <table class="table" *ngIf="allDetails?.issuedOrders.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Order Date</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Items ordered</th>
+                            <th>Items with issues</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allDetails?.issuedOrders; let i = index;">
+                            <td style="text-transform: uppercase;">#{{item?.order_number}}</td>
+                            <td>{{item?.order_date}}</td>
+                            <td>{{item?.store}}</td>
+                            <td>{{item?.total_amount}}</td>
+                            <td>{{item?.ordered_items }}</td>
+                            <td>{{item?.returned_items}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" *ngIf="allDetails?.issuedOrders.length == 0">
+                    <tbody>
+                        <tr>
+                            <td align="center">No orders in the last 90 days.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,9 +22,9 @@
             </thead>
             <tbody>
               <tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>{{allDetails?.overallRating ? allDetails?.overallRating : '-'}}</td>
+                <td>{{allDetails?.totalReviews ? allDetails?.totalReviews : '-'}}</td>
+                <td>{{allDetails?.fiveStarReviews ? allDetails?.fiveStarReviews : '-'}}</td>
               </tr>
             </tbody>
           </table>
@@ -32,41 +32,31 @@
         <div class="reviewsBox">
           <h4>All Reviews</h4>
           <div class="selectBoxNew">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Newest</option>
-              <option value="1">Old</option>
+            <select class="form-select" aria-label="Default select example" (change)="onSortChange($event);" >
+              <option selected value="new">Newest</option>
+              <option value="old">Oldest</option>
+              <option value="high">Highest rating</option>
+              <option value="low">Lowest rating</option>
             </select>
           </div>
-          <div class="no_reviews_sec">
+          <div class="no_reviews_sec" *ngIf="allDetails?.reviews?.length == 0">
           	<h3>No Reviews Yet</h3>
             <p>Once retailers who have ordered from you submit a review, they will appear here.</p>
           </div>
-          <ul class="reviewsList">
-          	<li>
-            	<h3>Best Seller</h3>
-                <h5>25.03.2022</h5>
+          <ul class="reviewsList" *ngIf="allDetails?.reviews?.length > 0">
+          	<li *ngFor="let item of allDetails?.reviews;">
+            	<h3>{{item?.store_name}}</h3>
+                <h5>{{item?.created_at}}</h5>
                 <ul class="starRatingList">
-                	<li><i class="fa-solid fa-star"></i></li>
+                	<!-- <li><i class="fa-solid fa-star"></i></li>
                     <li><i class="fa-solid fa-star"></i></li>
                     <li><i class="fa-solid fa-star"></i></li>
                     <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li> -->
+                    <li><ngb-rating [max]="5" [(rate)]="item.rate" class="star-rating" [readonly]="true"></ngb-rating></li>
                 </ul>
                 <div class="clearfix"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            </li>
-            <li>
-            	<h3>Best Seller</h3>
-                <h5>25.03.2022</h5>
-                <ul class="starRatingList">
-                	<li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                    <li><i class="fa-solid fa-star"></i></li>
-                </ul>
-                <div class="clearfix"></div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>{{item?.review}}</p>
             </li>
           </ul>
         </div>

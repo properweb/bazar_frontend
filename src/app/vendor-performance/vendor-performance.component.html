@@ -5,14 +5,15 @@
     <div class="middle_content">
       <div class="headingBox">
         <div class="whiteHeadingBox">
-          <h3>Performance</h3>
+          <h3>Analytics</h3>
           <p>Data on your performance on Faire.</p>
           <div class="selectBoxNew">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Last 3 month by</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+            <select class="form-select" aria-label="Default select example" (change)="onSortChange($event)">
+              <option value="1">Last month</option>
+              <option value="3" selected>Last 3 months</option>
+              <option value="6">Last 6 months</option>
+              <option value="12">Last 12 months</option>
+              <option value="13">all time</option>
             </select> 
           </div> 
         </div>
@@ -33,17 +34,17 @@
             </thead>
             <tbody>
               <tr>
-                <td>%20</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>${{totalSellList?.totalAmount}}</td>
+                <td>{{trafficList?.rate ? trafficList?.rate : '-'}}</td>
+                <td>{{sellThroughList?.sellthrough_rate ? sellThroughList?.sellthrough_rate + '%' : '-'}}</td>
+                <td>{{reviewDetails?.overallRating ? reviewDetails?.overallRating : '-'}}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="PerformBox GraphBox">
           <h4>Total Sales</h4>
-          <p class="dateField">January 12, 2022 - April 12, 2022</p>
+          <p class="dateField"> {{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <!-- <img src="assets/images/GraphImg1.jpg" alt=""> -->
           <div class="graph-box">
@@ -52,11 +53,11 @@
                 <ul class="graph-list">
                   <li>
                     <h4>Order Volume</h4>
-                    <h5>$1000</h5>
+                    <h5>${{totalSellList?.totalAmount}}</h5>
                   </li>
                   <li>
                     <h4>Total Orders</h4>
-                    <h5>2</h5>
+                    <h5>{{totalSellList?.totalOrder}}</h5>
                   </li>
                 </ul>
               </div>
@@ -71,7 +72,7 @@
         </div>
         <div class="PerformBox GraphBox">
           <h4>Shop Traffic</h4>
-          <p class="dateField">January 12, 2022 - April 12, 2022</p>
+          <p class="dateField">{{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <!-- <img src="assets/images/GraphImg2.jpg" alt="">  -->
           <div class="graph-box">
@@ -80,17 +81,17 @@
                 <ul class="graph-list">
                   <li>
                     <h4>Retailer Page Visits</h4>
-                    <h5>55</h5>
+                    <h5>{{trafficList?.totalVisit ? trafficList?.totalVisit : 0}}</h5>
                   </li>
                   <li>
                     <h4>Conversion Rate</h4>
-                    <h5>50%</h5>
+                    <h5>{{trafficList?.rate ? trafficList?.rate : 0}}%</h5>
                   </li>
                 </ul>
               </div>
               <div class="col-md-9">
-                <canvas ngChartjs [datasets]="lineChartData" [labels]="lineChartLabels"
-                [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"
+                <canvas ngChartjs [datasets]="lineChartData1" [labels]="lineChartLabels1"
+                [options]="lineChartOptions1" [legend]="lineChartLegend" [chartType]="lineChartType"
                 [inlinePlugins]="inlinePlugin">
                 </canvas>
               </div>
@@ -99,28 +100,29 @@
         </div>
         <div class="PerformBox GraphBox halfBox">
           <h4>Sell-through & Returns</h4>
-          <p class="dateField">All time</p>
+          <p class="dateField">{{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <div class="ContentSec">
             <p class="Heading">Sell-through Rate</p>
+            <p class="Heading">{{sellThroughList?.sellthrough_rate ? sellThroughList?.sellthrough_rate + '%' : '-'}}</p>
             <p>Sell-through rate is the rate in which your products were sold in a retailer's store. Items that are not sold are then returned.</p>
             <p>Once a return has been made that data will show here.</p>
-            <a class="seeAll">See All Returns</a> </div>
+            <a class="seeAll" routerLink="/analytics/sell-through">See All Returns</a> </div>
         </div>
         <div class="PerformBox GraphBox halfBox">
           <h4>Shop Traffic</h4>
-          <p class="dateField">All time</p>
+          <p class="dateField">{{!allTime ? from_dateDisplay + '-' + to_dateDisplay : 'All time'}}</p>
           <div class="clearfix"></div>
           <div class="ContentSec">
             <ul class="rating-list">
               <li><label>Overall Rating</label>
-                  <span>-</span>
+                  <span>{{reviewDetails?.overallRating ? reviewDetails?.overallRating : '-'}}</span>
               </li>
               <li><label>Total Reviews</label>
-                <span>-</span>
+                <span>{{reviewDetails?.totalReviews ? reviewDetails?.totalReviews : '-'}}</span>
               </li>
               <li><label>5 Star Reviews</label>
-                <span>-</span>
+                <span>{{reviewDetails?.fiveStarReviews ? reviewDetails?.fiveStarReviews : '-'}}</span>
               </li>
             </ul>
             <!-- <table class="perform">
@@ -137,7 +139,7 @@
                 </tr>
               </tbody>
             </table> -->
-            <a class="seeAll">See All Reviews</a> </div>
+            <a class="seeAll" routerLink="/analytics/reviews">See All Reviews</a> </div>
         </div>
       </div>
     </div>
