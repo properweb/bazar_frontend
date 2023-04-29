@@ -13,25 +13,25 @@
       <div class="vendor_message_body">
         <div class="row positive-row">
             <div class="col-md-3 col-custom-width">
-                <input type="text" name="" value="" placeholder="Search">
+                <input type="text" name="" value="" placeholder="Search" [(ngModel)]="searchText">
                 <span class="label-span">Show unread messages only</span>
                 <div class="radioDiv">
                     <label class="switch" for="checkbox1">
-                        <input type="checkbox" id="checkbox1" />
+                        <input type="checkbox" id="checkbox1" (change)="onRadioChange($event);"/>
                         <div class="slider round"></div>
                     </label>
                 </div>
                 <span class="label-span">Yes</span>
                 <div class="message-box">
                     <ul class="message-list">
-                        <li *ngFor="let item of memberList; let i  = index;">
+                        <li *ngFor="let item of sortedMemberList | filter:searchText; let i  = index;">
                             <div [ngClass]="activeChat == i ? 'row inbox-sec active read' : 'row inbox-sec'" (click)="showChatBoxFunction(item, i, item?.user_id);">
                                 <div class="col-md-3 col-3 img-sec"><img [src]="item?.logo ? item?.logo : 'assets/images/user-chat-img.png'" alt=""></div>
                                 <div class="col-md-9 col-9 text-sec">
                                     <h4>{{item?.user}} 
                                         <!-- <span>Bazar support</span> -->
                                     </h4>
-                                    <!-- <p>Hello! Thank you for contacting...</p> -->
+                                    <p [ngClass]="item?.status == 0 ? 'unRead' : ''" *ngIf="item?.message">{{item?.message?.message}}</p>
                                 </div>
                             </div>
                         </li>
@@ -47,12 +47,12 @@
                             <div class="col-md-2 img-sec"><img [src]="selectedChatDetails?.logo ? selectedChatDetails?.logo : 'assets/images/user-chat-img.png'" alt=""></div>
                             <div class="col-md-8 text-sec">
                                 <h3>{{selectedChatDetails?.user}}</h3>
-                                <!-- <p>Bazar support</p> -->
+                                <a routerLink="/brand-invoices/new" [queryParams]="{retailer: selectedChatDetails?.retailer_key}">Create invoice</a>
                             </div>
                         </div>
                     </div>
                     <div class="chat-body">
-                        <ul class="chat-list" #content>
+                        <ul class="chat-list" #content (scroll)="onScroll($event)">
                             <!-- <li>
                                 <div class="row">
                                     <div class="col-md-1 col-2 user-img"><img src="assets/images/message-image.png" alt=""></div>
@@ -153,7 +153,7 @@
                                         <div class="row">
                                             <div class="col-md-1 col-2 user-img"><img [src]="childItem?.brandLogo" alt=""></div>
                                             <div class="col-md-11 col-10 user-text">
-                                                <h4>Me</h4>
+                                                <h4>You</h4>
                                                 <p>{{childItem?.message}}</p>
                                             </div>
                                         </div>

@@ -13,14 +13,14 @@
                             <span class="label-span">Show unread messages only</span>
                             <div class="radioDiv">
                                 <label class="switch" for="checkbox1">
-                                    <input type="checkbox" id="checkbox1" />
+                                    <input type="checkbox" id="checkbox1" (change)="onRadioChange($event);" />
                                     <div class="slider round"></div>
                                 </label>
                             </div>
                             <span class="label-span">Yes</span>
                             <div class="message-box">
                                 <ul class="message-list">
-                                    <li *ngFor="let item of memberList | filter:searchText; let i  = index;">
+                                    <li *ngFor="let item of sortedMemberList | filter:searchText; let i  = index;">
                                         <div [ngClass]="activeChat == i ? 'row inbox-sec active read' : 'row inbox-sec'" (click)="showChatBoxFunction(item, i, item?.user_id);">
                                             <div class="col-md-3 col-3 img-sec"><img [src]="item?.logo" alt=""></div>
                                             <div class="col-md-9 col-9 text-sec">
@@ -28,6 +28,7 @@
                                                     <!-- <span>Bazar support</span> -->
                                                 </h4>
                                                 <!-- <p>Hello! Thank you for contacting...</p> -->
+                                                <p [ngClass]="item?.status == 0 ? 'unRead' : ''" *ngIf="item?.message">{{item?.message?.message}}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -148,7 +149,7 @@
                                                     <div class="row">
                                                         <div class="col-md-1 col-2 user-img"><img src="assets/images/user-chat-img.png" alt=""></div>
                                                         <div class="col-md-11 col-10 user-text">
-                                                            <!-- <h4>Me</h4> -->
+                                                            <h4>You</h4>
                                                             <p>{{childItem?.message}}</p>
                                                         </div>
                                                     </div>

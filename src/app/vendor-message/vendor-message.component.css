@@ -16,6 +16,7 @@
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec { width: 88%; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec h3 { color: #000000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 5px 0; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-header .text-sec a { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 0 0; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-body { float: left; margin: 0; padding: 20px 0 20px 0; width: 100%; min-height: 355px; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list { list-style: none; margin: 0 0 15px 0; max-height: 400px; overflow-y: auto; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .chatbox .white-chat-box .chat-body .chat-list li { margin: 0; padding: 10px 30px 10px 30px; width: 100%; }
@@ -64,6 +65,7 @@
 .middle_vendor_dasboard .middle_content .vendor_message_body .message-box .message-list li .text-sec h4 span { color: rgba(0, 0, 0, 0.5); font-size: 14px; font-weight: 200; margin-left: 5px; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .message-box .message-list li .active h4 span { color: rgba(255, 255, 255, 0.5); }
 .middle_vendor_dasboard .middle_content .vendor_message_body .message-box .message-list li .text-sec p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0; }
+.middle_vendor_dasboard .middle_content .vendor_message_body .message-box .message-list li .text-sec .unRead { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500 !important; line-height: 20px; margin: 0; }
 .middle_vendor_dasboard .middle_content .vendor_message_body .message-box .message-list li .active p { color: #FFF; }
 
 

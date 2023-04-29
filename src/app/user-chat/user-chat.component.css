@@ -62,6 +62,7 @@
 .profileDiv .vendor_message_body .message-box .message-list li .text-sec h4 span { color: rgba(0, 0, 0, 0.5); font-size: 14px; font-weight: 200; margin-left: 5px; }
 .profileDiv .vendor_message_body .message-box .message-list li .active h4 span { color: rgba(255, 255, 255, 0.5); }
 .profileDiv .vendor_message_body .message-box .message-list li .text-sec p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0; }
+.profileDiv .vendor_message_body .message-box .message-list li .text-sec .unRead { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 500 !important; line-height: 20px; margin: 0; }
 .profileDiv .vendor_message_body .message-box .message-list li .active p { color: #FFF; }
 /*----------------right section End--------------------*/
 
