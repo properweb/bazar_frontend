@@ -130,9 +130,8 @@ export class VendorNewPromotionsComponent implements OnInit {
       from_date: this.formatter.format(this.fromDate),
       to_date: this.formatter.format(this.toDate),
       free_shipping: this.promotion_offer_type == 3 ? true : this.offer_free_shipping,
-      products: []
+      products: this.selectedProducts
     }
-    console.log(this.fromDate);
     if(this.title == undefined || this.title == null) {
       this.toast.error({detail: "Promotion name is required.", summary: '', duration: 4000});
       this.btnDis = false;
@@ -153,8 +152,11 @@ export class VendorNewPromotionsComponent implements OnInit {
       this.toast.error({detail: "Please enter order amount.", summary: '', duration: 4000});
       this.btnDis = false;
       return false;
-    }
-    else {
+    } else if(this.type == 'PRODUCT' && this.selectedProducts.length == 0) {
+      this.toast.error({detail: "Please Select atleast one product.", summary: '', duration: 4000});
+      this.btnDis = false;
+      return false;
+    } else {
       this.apiService.addPromotion(values).subscribe((responseBody) => {
         let response = JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
@@ -224,7 +226,7 @@ export class VendorNewPromotionsComponent implements OnInit {
     if(this.selectedProducts.indexOf(item) == -1) {
       this.selectedProducts.push(item);
     }
-    console.log(this.selectedProducts);
+    // console.log(this.selectedProducts);
   }
 
   settingVariation(item: any) {
