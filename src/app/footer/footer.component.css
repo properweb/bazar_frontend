@@ -25,6 +25,7 @@
 
 /* Responsive Start */
 @media screen and (max-width:991px) {
+.bottomFooter ul li { margin-right: 33px; }	
 }	
 @media screen and (max-width:767px) { 
 .footer_logo { margin-bottom: 30px; text-align: center; }

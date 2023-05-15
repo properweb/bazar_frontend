@@ -145,6 +145,7 @@
 .about_bazar_sec .imgDiv { margin-top: 30px; }
 }
 @media screen and (max-width:767px) { 
+.local_banner { margin-top: 0; }
 .after_login_local_banner { margin-top: 108px; }
 .local_banner .white_banner_box .sell_on_bazar { margin-bottom: 10px; }
 .comn_Sec .afterLoginGrayBox { padding-bottom: 20px; padding-top: 20px; }

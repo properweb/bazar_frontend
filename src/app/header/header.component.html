@@ -2,9 +2,23 @@
     <div class="header_top">
         <div class="container-fluid">
             <a class="navbar-brand" href=""><img src="assets/images/logo.png" alt="logo"></a>
-            <form class="me-auto top_search">
-                <input class="form-control me-2" type="search" placeholder="Search for products or brands" aria-label="Search">
-            </form>
+            <div class="me-auto top_search">
+                <input class="form-control me-2" type="text" placeholder="Search for products or brands" (keyup)="onSearchPress($event)" (keyup.enter)="onSearchPress($event)" [(ngModel)]="searchText" aria-label="Search">
+                <ng-container *ngIf="searchText">
+                    <a class="search-closs-btn" (click)="onCrossClick();"><img src="assets/images/cross_icon.png" alt="cross img"></a>
+                    <div class="dropdown-search">
+                        <ul class="search-list-1" >
+                            <li *ngFor="let item of allSearchRes?.product"><a (click)="onSearchClick(item.name);" routerLink="/search/{{item.name}}">{{item?.name}}</a></li>
+                        </ul>
+                        <ng-container *ngIf="allSearchRes?.brand?.length > 0">
+                            <h3>Brands</h3>
+                            <ul class="search-list-2">
+                                <li *ngFor="let item of allSearchRes?.brand"><a routerLink="/brand/{{item?.bazaar_direct_link}}"><img src="{{item?.brand_logo}}" alt=""/>{{item?.name}}</a></li>
+                            </ul>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <ul class="top_lang">

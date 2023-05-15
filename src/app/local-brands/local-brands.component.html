@@ -14,8 +14,10 @@
     <div class="white_banner_box">
         <h3>{{localBannerHeading}}</h3>
         <p>{{localBannerPara}}</p>
-        <a class="btn btn-primary sell_on_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
-        <a class="btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        <ng-container *ngIf="role == null">
+            <a class="btn btn-primary sell_on_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+            <a class="btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        </ng-container>
     </div>
 </div>
 <!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->
@@ -185,7 +187,7 @@
                 <ul>
                     <li *ngFor="let bazarListArrays of bazarListArray" [innerHtml]="bazarListArrays.textContent"></li>
                 </ul>
-                <div class="btn_center">
+                <div class="btn_center" *ngIf="role == null">
                     <a class="btn btn btn-primary sell_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
                     <a class="btn btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
                 </div>
@@ -259,8 +261,10 @@
     <div class="white_banner_box">
         <h3>Are you ready for wholesale?</h3>
         <p>Reach new level in sales</p>
-        <a class="btn btn-primary sell_on_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
-        <a class="btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        <ng-container *ngIf="role == null">
+            <a class="btn btn-primary sell_on_bazar" (click)="openUserLogInModal(userLogInContent)"><span>Sell on Bazar <img src="assets/images/right-arrows-black.png" alt="" class="black_arrow"></span></a>
+            <a class="btn btn-primary sign_up_to_shop" routerLink="/userRegistration"><span>Sign up to shop <img src="assets/images/right-arrows-white.png" alt="" class="white_arrow"></span></a>
+        </ng-container>
     </div>
 </div>
 <!-- * * * * * * * * * * * Banner End * * * * * * * * * * * -->

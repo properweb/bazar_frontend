@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit {
   allCategories!: any;
   spinnerShow: boolean = false;
   resetEmailSend: boolean = false;
-
+  allSearchRes!: any;
+  searchText!: any;
 
   constructor( public modalService: NgbModal, private router: Router, private api: ApiService, private storage: StorageMap, private toast: NgToastService) {
     this.vendorRegForm = new FormGroup({
@@ -54,6 +55,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
+      this.searchText = localStorage.getItem('searchkey');
+    }
     this.getVendorCount();
     this.fetchMenuCategories();
   }
@@ -96,6 +100,7 @@ export class HeaderComponent implements OnInit {
   }
 
   backFirstFunction() {
+    this.validateError = null;
     this.log1 = true;
     this.log2 = false;
   }
@@ -245,6 +250,28 @@ export class HeaderComponent implements OnInit {
 
   signInOpenModal() {
     this.userLoginClick.nativeElement.click();
+  }
+
+  onSearchPress(event: any) {
+    this.api.searchApi(event.target.value).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allSearchRes = response;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+      }
+    }, (error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
+  }
+
+  onSearchClick(value: any) {
+    localStorage.setItem('searchkey', value);
+  }
+
+  onCrossClick() {
+    this.searchText = null;
+    localStorage.removeItem('searchkey');
   }
 
 }
