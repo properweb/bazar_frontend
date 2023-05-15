@@ -92,7 +92,7 @@ export class EditOrderComponent implements OnInit {
 
   getProducts() {
     let values = {
-      brand_id: 'levis',
+      brand_id: 'levis', 
       sort_key: '',
       slug: ''
     }
@@ -249,6 +249,7 @@ export class EditOrderComponent implements OnInit {
             let response = JSON.parse(JSON.stringify(responseBody));
             if(response.res == true) {
               this.fetchOrderDetails(this.ord_no);
+              this.router.navigateByUrl('view-order/'+this.ord_no);
               this.btnDis = false;
               this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
             } else {
@@ -268,6 +269,7 @@ export class EditOrderComponent implements OnInit {
           let response = JSON.parse(JSON.stringify(responseBody));
           if(response.res == true) {
             this.fetchOrderDetails(this.ord_no);
+            this.router.navigateByUrl('view-order/'+this.ord_no);
             this.btnDis = false;
             this.toast.success({detail: 'Order updated successfully.', summary: '', duration: 4000});
           } else {

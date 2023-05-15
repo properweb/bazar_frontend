@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
@@ -7,14 +7,14 @@ import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { StorageMap } from '@ngx-pwa/local-storage';
+import { AppComponent } from '../app.component';
 
 @Component({
-  selector: 'app-vendor-create-invoice',
-  templateUrl: './vendor-create-invoice.component.html',
-  styleUrls: ['./vendor-create-invoice.component.css']
+  selector: 'app-vendor-invoice-details',
+  templateUrl: './vendor-invoice-details.component.html',
+  styleUrls: ['./vendor-invoice-details.component.css']
 })
-export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
-  @ViewChild('openCustomerModalClick') openCustomerModalClick!: ElementRef;
+export class VendorInvoiceDetailsComponent implements OnInit {
 
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
@@ -25,14 +25,17 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
   addCustomerModal!: NgbModalRef;
   addCustomItem!: NgbModalRef;
   invoiceProduct!: NgbModalRef;
-  custDetAlertModal!: NgbModalRef;
   addShipAmtModal!: NgbModalRef;
+  custDetAlertModal!: NgbModalRef;
+  sendReminder!: NgbModalRef;
   addPaymentModal!: NgbModalRef;
   custAddDivShow: any = false;
   btnDis: any = false;
 
   user_id!: any;
   customer_key!: any;
+  allDetails!: any;
+  invoice_key!: any;
   first_name!: any;
   last_name!: any;
   store_name!: any;
@@ -75,14 +78,11 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
   ship_free: any = false ;
   discAmtError!: any;
   varProSearchText!: any;
-  isRetailer: any = false;
-  promotionObject: any = {disc_amt_type: null, disc_amt: null, ship_free: 0};
+  promotionObject: any = {};
   addShipAmt!: any ;
-  payment_method!: any; 
-  paymentError!: any;
-  paymentMethodSelected: boolean = false; 
+  cardExpiry!: any;
 
-  constructor(public modalService: NgbModal, private apiService: ApiService, private router: Router, public toast: NgToastService, private storage: StorageMap, public formatter: NgbDateParserFormatter, private activatedRoute: ActivatedRoute) {
+  constructor(public modalService: NgbModal, private apiService: ApiService, private router: Router, public toast: NgToastService, private storage: StorageMap, public formatter: NgbDateParserFormatter, private activatedRoute: ActivatedRoute, private appComponent: AppComponent) {
     const current = new Date();
     this.minDate = {
       year: current.getFullYear(),
@@ -91,7 +91,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
     };
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
@@ -106,21 +106,9 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       error: (error) => {
       },          
     });
+    this.invoice_key = this.activatedRoute.snapshot.params['id'];
     this.getCountries();
-  }
-
-  ngAfterViewInit(): void {
-    this.activatedRoute.queryParams.subscribe((params: any) => {
-      if(params['customer']) {
-        this.getCustomerDetail(params['customer']);
-        this.customerEditShow = true;
-      } else if(params['retailer']) {
-        this.fetchReatilersDetails(params['retailer']);
-        this.isRetailer = true;
-
-        this.openCustomerModalClick?.nativeElement?.click();
-      }
-    })
+    this.fetchBrandInvoiceDetails(this.invoice_key);
   }
 
   keyword = 'name';
@@ -128,38 +116,62 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
 
   proInvoiceKeyword = 'name';
   proKeyword = 'name';
-  // proData = [ 
-  //   { id: 1, img: 'assets/images/search-img.png', name: 'Grey plate', sku: 'AA234', stock: 'In stock', price: '$11.70'},
-  //   { id: 2, img: 'assets/images/search-img.png', name: 'abcd', sku: 'AA234', stock: 'In stock', price: '$11.70'},
-  //   { id: 1, img: 'assets/images/search-img.png', name: 'efgh', sku: 'AA234', stock: 'In stock', price: '$11.70'},
-  // ];
 
   proData: any = [];
   proInvoiceData: any = [];
-
-  fetchReatilersDetails(user_id: any) {
-    this.apiService.fetchReatilersDetails(user_id).subscribe((responseBody) => {
-      let response = JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        this.first_name = response.data.first_name;
-        this.last_name = response.data.last_name;
-        this.store_name = response.data.store_name;
-        this.email = response.data.email;
-      }
-    },(error) => {
-    })
-  }
 
   fetchCustomers() {
     this.apiService.fetchAllCustomers().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
-        this.data = response.data.customers;
+        this.data = response.data;
       } else {
         this.toast.error({detail: response.msg, summary: '', duration: 4000});
       }
     },(error) => {
       this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+    })
+  }
+
+  fetchBrandInvoiceDetails(invoice_key: any) {
+    this.appComponent.showSpinner = true;
+    this.apiService.fetchBrandInvoiceDetails(invoice_key).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allDetails = response.data;
+        if(response.data?.customer_key) {
+          this.getCustomerDetail(response.data?.customer_key);
+          this.customerEditShow = true;
+        }
+        if(response.data?.shipping_date) {
+          this.ship_now = '0';
+          this.ship_date = this.formatter.parse(response.data?.shipping_date);
+        } else {
+          this.ship_now = '1';
+        }
+        this.self_note = response.data?.self_note;
+        this.retailer_note = response.data?.retailer_note;
+        this.promotionObject.disc_amt_type = response.data?.promotion_type;
+        this.disc_amt_type = response.data?.promotion_type;
+        this.promotionObject.disc_amt = response.data?.promotion_amount;
+        this.disc_amt = response.data?.promotion_amount;
+        if(response.data?.free_shipping == '1') {
+          this.promotionObject.ship_free = true;
+          this.ship_free = true;
+        } else {
+          this.promotionObject.ship_free = false;
+          this.ship_free = false;
+        }
+        this.selectedIvoiceProducts = response.data?.products;
+        this.selectedProducts = response.data?.recommended_products;
+        this.appComponent.showSpinner = false;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+        this.appComponent.showSpinner = false;
+      }
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+      this.appComponent.showSpinner = false;
     })
   }
 
@@ -190,10 +202,6 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
 
   openCustDetAlertModal(content: any) {
     this.custDetAlertModal = this.modalService.open(content, { windowClass: 'custDetAlertModal' });
-  }
-
-  openAddShipModal(content: any) {
-    this.addShipAmtModal = this.modalService.open(content, { windowClass: 'addShipModal' });
   }
 
   private _filter(value: string): string[] {
@@ -300,7 +308,6 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
     //   let response = JSON.parse(JSON.stringify(responseBody));
     //   if( response.res == true) {
     //     this.customerEditShow = true;
-    //     this.getCustomerDetail(this.customer_key);
     //     this.addCustomerModal.close();
     //     this.btnDis = false;
     //   } else {
@@ -318,11 +325,17 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       this.setProductVariants = item.variations;
     }
     this.setVariationProduct = item;
+    console.log(this.setProductVariants);
   }
 
   onAddingInvoiceProduct(item: any) {
     let alreadyExist = 0;
-    let newObj = {id: item?.id, variation_id: '', product_key: item?.product_key, featured_image: item?.featured_image, name: item?.name, stock: item?.stock, case_size: 5, quantity: 1, usd_wholesale_price: item?.usd_wholesale_price, total: item?.usd_wholesale_price};
+    let newObj:any = {};
+    if(item?.variation_id) {
+      newObj = {id: item?.id, variation_id: item?.variation_id, cart_id: item?.cart_id, product_key: item?.product_key, featured_image: item?.featured_image, name: item?.name, stock: item?.stock, case_size: 5, quantity: 1, usd_wholesale_price: item?.usd_wholesale_price, total: item?.usd_wholesale_price};
+    } else {
+      newObj = {id: item?.id, variation_id: undefined, cart_id: item?.cart_id, product_key: item?.product_key, featured_image: item?.featured_image, name: item?.name, stock: item?.stock, case_size: 5, quantity: 1, usd_wholesale_price: item?.usd_wholesale_price, total: item?.usd_wholesale_price};
+    }
     this.selectedIvoiceProducts.forEach((element: any) => {
       if(JSON.stringify(element.id) === JSON.stringify(newObj.id) && (JSON.stringify(element.variation_id) === JSON.stringify(newObj.variation_id))) {
         alreadyExist = 1;
@@ -331,12 +344,13 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
     if(alreadyExist === 0) {
       this.selectedIvoiceProducts.push(newObj);
     }
+    console.log(this.selectedIvoiceProducts);
     this.subTotalCount();
   }
 
   onVarProChecked(mainItem: any, varItem: any, event: any) {
     let alreadyExist = 0;
-    let newObj = {id: mainItem?.id, variation_id: varItem?.variant_id, product_key: mainItem?.product_key, featured_image: varItem?.featured_image, name: mainItem?.name, variation: varItem?.variant, stock: varItem?.stock, case_size: 5, quantity: 1, usd_wholesale_price: varItem?.usd_wholesale_price, total: varItem?.usd_wholesale_price};
+    let newObj = {id: mainItem?.id, cart_id: mainItem?.cart_id, variation_id: varItem?.variant_id, product_key: mainItem?.product_key, featured_image: varItem?.featured_image, name: mainItem?.name, variation: varItem?.variant, stock: varItem?.stock, case_size: 5, quantity: 1, usd_wholesale_price: varItem?.usd_wholesale_price, total: varItem?.usd_wholesale_price};
 
     if(event.target.checked) {
       this.selectedIvoiceProducts.forEach((element: any) => {
@@ -348,7 +362,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
         this.draftSelectedIvoiceProducts.push(newObj);
       }
     } else {
-      let varIndex = this.draftSelectedIvoiceProducts.findIndex((item: any) => item?.id === varItem?.id && item?.variation_id === varItem?.variation_id);
+      let varIndex = this.draftSelectedIvoiceProducts.findIndex((item: any) => item?.variation_id === varItem?.variation_id);
       this.draftSelectedIvoiceProducts?.splice(varIndex, 1);
     }
   }
@@ -357,6 +371,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
     if(this.selectedProducts.indexOf(item) == -1) {
       this.selectedProducts.push(item);
     }
+    console.log(this.selectedProducts);
   }
 
   deleteSelectedProduct(i: any) {
@@ -375,6 +390,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
     if(alreadyExist === 0) {
       this.selectedIvoiceProducts.push(newObj);
     }
+    console.log(this.selectedIvoiceProducts);
     this.subTotalCount();
     this.custProName = null;
     this.custProQty = null;
@@ -450,10 +466,9 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
         this.shipping_state = response.data.shipping_state;
         this.shipping_town = response.data.shipping_town;
         this.store_name = response.data.store_name;
+
         if(response.data.shipping_country == null) {
           this.shipAddAdded = false;
-        } else {
-          this.shipAddAdded = true;
         }
 
         this.apiService.getStates(response.data.shipping_country).subscribe((responseBody1) => {
@@ -502,7 +517,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       promotion_type: this.promotionObject.disc_amt_type,
       promotion_amount: this.promotionObject.disc_amt,
       shipping_free: this.promotionObject.ship_free,
-      shipping_amount: this.addShipAmt ? this.addShipAmt : 0,
+      // shipping_amount: this.addShipAmt ? this.addShipAmt : 0,
       shipping_name: this.shipping_name,
       shipping_country: this.shipping_country,
       shipping_street: this.shipping_street,
@@ -512,7 +527,6 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       shipping_zip: this.shipping_zip,
       shipping_phone_code: this.shipping_phone_code,
       shipping_phone: this.shipping_phone,
-      payment_method: this.payment_method,
       invoice_type: 'draft',
     }
     if(!this.customer_key) {
@@ -559,7 +573,7 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       promotion_type: this.promotionObject.disc_amt_type,
       promotion_amount: this.promotionObject.disc_amt,
       shipping_free: this.promotionObject.ship_free,
-      shipping_amount: this.addShipAmt ? this.addShipAmt : 0,
+      // shipping_amount: this.addShipAmt ? this.addShipAmt : 0,
       shipping_name: this.shipping_name,
       shipping_country: this.shipping_country,
       shipping_street: this.shipping_street,
@@ -569,7 +583,6 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       shipping_zip: this.shipping_zip,
       shipping_phone_code: this.shipping_phone_code,
       shipping_phone: this.shipping_phone,
-      payment_method: this.payment_method,
       invoice_type: 'email',
     }
     if(!this.customer_key) {
@@ -621,27 +634,17 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       }
       // console.log("this.ordersArray" , this.ordersArray);
     }
-  }
-
-  onAddShipDiscountChange(event: any) {
-    if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
-      this.discAmtError = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
-    } else {
-      this.discAmtError = '';
-      this.addShipAmt = Number(event.target.value);
-    }
     
   }
 
   onAddVarOptClick() {
-    this.selectedIvoiceProducts = this.draftSelectedIvoiceProducts;
-    // this.draftSelectedIvoiceProducts.forEach((element: any) => {
-    //   this.selectedIvoiceProducts.push(element);
-    // });
+    this.draftSelectedIvoiceProducts.forEach((element: any) => {
+      this.selectedIvoiceProducts.push(element);
+    });
     this.subTotalCount();
     this.draftSelectedIvoiceProducts.forEach((elm: any) => {
       this.onlySelectedIvoiceProductsId.push(elm.variation_id);
-    });
+    })
   }
 
   deleteInvoiceSelectedProduct(index: any) {
@@ -655,33 +658,67 @@ export class VendorCreateInvoiceComponent implements OnInit, AfterViewInit {
       this.promotionObject.disc_amt_type = this.disc_amt_type;
       this.promotionObject.disc_amt = this.disc_amt;
       this.promotionObject.ship_free = this.ship_free;
-      this.subTotalCount();
+      console.log("promotionObject", this.promotionObject);
     }
+  }
+
+  openSendReminderModal(content: any) {
+    this.sendReminder = this.modalService.open(content, { windowClass: 'sendRemindetModal' });
+  }
+
+  openAddPaymentModal(content: any) {
+    this.addPaymentModal = this.modalService.open(content, { windowClass: 'addCustomItemModal' });
+  }
+
+  deleteBrandInvoice() {
+    this.apiService.deleteBrandInvoice(this.invoice_key).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if( response.res == true) {
+        this.toast.success({detail: response.msg, summary: '', duration: 4000});
+        this.custDetAlertModal.close();
+        this.btnDis = false;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+        this.btnDis = false;
+      }
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+      this.btnDis = false;
+    });
+  }
+
+  formatString(event: any) {
+    event.target.value = event.target.value.replace(
+      /[^0-9]/g, '' // To allow only numbers
+      ).replace(
+          /^([2-9])$/g, '0$1' // To handle 3 > 03
+      ).replace(
+          /^(1{1})([3-9]{1})$/g, '0$1/$2' // 13 > 01/3
+      ).replace(
+          /^0{1,}/g, '0' // To handle 00 > 0
+      ).replace(
+          /^([0-1]{1}[0-9]{1})([0-9]{1,2}).*/g, '$1/$2' // To handle 113 > 11/3
+      );
+  }
+
+  openAddShipModal(content: any) {
+    this.addShipAmtModal = this.modalService.open(content, { windowClass: 'addShipModal' });
+  }
+
+  onAddShipDiscountChange(event: any) {
+    if(!/^\d{0,9}(\.\d{0,2})?$/.test(event.target.value)) {
+      this.discAmtError = 'This field must be non-negative number & max 9 digits are allowed. After decimal allowed only two digits.';
+    } else {
+      this.discAmtError = '';
+      this.addShipAmt = Number(event.target.value);
+    }
+    
   }
 
   onShipApply() {
     if(!this.discAmtError) {
       this.addShipAmtModal.close();
       this.subTotalCount();
-    }
-  }
-
-  openAddPaymentModal(content: any) {
-    this.addPaymentModal = this.modalService.open(content, { windowClass: 'userPaymentModal' });
-  }
-
-  showAlert() {
-    alert('show');
-  }
-
-  submitPayment() {
-    if(!this.payment_method) {
-      this.paymentError = 'Please select a method.'
-      this.paymentMethodSelected = false;
-    } else {
-      this.paymentError = '';
-      this.paymentMethodSelected = true;
-      this.modalService.dismissAll();
     }
   }
 

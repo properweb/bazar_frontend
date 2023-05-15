@@ -73,77 +73,81 @@
             <!--<h4>No orders placed yet </h4>
                         <a href="#" class="moreBtn">Start shopping </a>-->
             <div class="showAllOrder" [hidden]="!showAllOrder">
-              <table id="example" class="table" style="width:100%" *ngIf="orders?.length > 0">
-                <thead>
-                  <tr>
-                    <th><input type="checkbox"></th>
-                    <th>Order number</th>
-                    <th>Seller</th>
-                    <th>Date</th>
-                    <th>Shipment details</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let order of orders">
-                    <td><input type="checkbox"></td>
-                    <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.order_number}}</td>
-                    <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.brand}}</td>
-                    <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.order_date}}</td>
-                    <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.shipping_details}}</td>
-                    <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">${{order?.total_amount}}</td>
-                    <td style="text-transform: capitalize;"><em [ngClass]="order?.order_status === 'open' ? 'openTag' : order?.order_status === 'in progress' ? 'In-progressTag' : order?.order_status === 'completed' ? 'CompletedTag' : order?.order_status === 'cancelled' ? 'CancelledTag' : order?.order_status === 'bids' ? 'BidTag' : '' ">{{order?.order_status}}</em></td>
-                    <!-- <td style="text-transform: capitalize;"><em class="openTag">{{order?.order_status}}</em></td> -->
-                  </tr>
-                  <!-- <tr>
-                    <td><input type="checkbox"></td>
-                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
-                    <td>T-shirt</td>
-                    <td>Best Seller</td>
-                    <td>February 8, 2022</td>
-                    <td>Qatar, Dokha, street Bay 2</td>
-                    <td>$11.70</td>
-                    <td><em class="In-progressTag">In progress</em></td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
-                    <td>T-shirt</td>
-                    <td>Best Seller</td>
-                    <td>February 8, 2022</td>
-                    <td>Qatar, Dokha, street Bay 2</td>
-                    <td>$11.70</td>
-                    <td><em class="CompletedTag">Completed</em></td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
-                    <td>T-shirt</td>
-                    <td>Best Seller</td>
-                    <td>February 8, 2022</td>
-                    <td>Qatar, Dokha, street Bay 2</td>
-                    <td>$11.70</td>
-                    <td><em class="CancelledTag">Cancelled</em></td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
-                    <td>T-shirt</td>
-                    <td>Best Seller</td>
-                    <td>February 8, 2022</td>
-                    <td>Qatar, Dokha, street Bay 2</td>
-                    <td>$11.70</td>
-                    <td><em class="BidTag">Bid</em></td>
-                  </tr> -->
-                </tbody>
-              </table>
-              <table class="table" style="width:100%" *ngIf="orders?.length == 0">
-                <tbody>
-                  <tr><td align="center">No orders found!</td></tr>
-                </tbody>
-              </table>
-              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left; text-align: center;">Order again </a> 
+              <div class="order-table-sec">
+                <table id="example" class="table" style="width:100%" *ngIf="orders?.length > 0">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox"></th>
+                      <th>Order number</th>
+                      <th>Seller</th>
+                      <th>Order date</th>
+                      <th>Shipment date</th>
+                      <th>Shipment details</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let order of orders">
+                      <td><input type="checkbox"></td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.order_number}}</td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.brand}}</td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.order_date}}</td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.shipping_date}}</td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">{{order?.shipping_details}}</td>
+                      <td style="cursor: pointer;" routerLink="/orders/{{order?.order_number}}">${{order?.total_amount}}</td>
+                      <td style="text-transform: capitalize;"><em [ngClass]="order?.order_status === 'open' ? 'openTag' : order?.order_status === 'in progress' ? 'In-progressTag' : order?.order_status === 'completed' ? 'CompletedTag' : order?.order_status === 'cancelled' ? 'CancelledTag' : order?.order_status === 'bids' ? 'BidTag' : '' ">{{order?.order_status}}</em></td>
+                      <!-- <td style="text-transform: capitalize;"><em class="openTag">{{order?.order_status}}</em></td> -->
+                    </tr>
+                    <!-- <tr>
+                      <td><input type="checkbox"></td>
+                      <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                      <td>T-shirt</td>
+                      <td>Best Seller</td>
+                      <td>February 8, 2022</td>
+                      <td>Qatar, Dokha, street Bay 2</td>
+                      <td>$11.70</td>
+                      <td><em class="In-progressTag">In progress</em></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                      <td>T-shirt</td>
+                      <td>Best Seller</td>
+                      <td>February 8, 2022</td>
+                      <td>Qatar, Dokha, street Bay 2</td>
+                      <td>$11.70</td>
+                      <td><em class="CompletedTag">Completed</em></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                      <td>T-shirt</td>
+                      <td>Best Seller</td>
+                      <td>February 8, 2022</td>
+                      <td>Qatar, Dokha, street Bay 2</td>
+                      <td>$11.70</td>
+                      <td><em class="CancelledTag">Cancelled</em></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td><img src="assets/images/img.png" alt="" style=" width:auto; height: 43px;"></td>
+                      <td>T-shirt</td>
+                      <td>Best Seller</td>
+                      <td>February 8, 2022</td>
+                      <td>Qatar, Dokha, street Bay 2</td>
+                      <td>$11.70</td>
+                      <td><em class="BidTag">Bid</em></td>
+                    </tr> -->
+                  </tbody>
+                </table>
+                <table class="table" style="width:100%" *ngIf="orders?.length == 0">
+                  <tbody>
+                    <tr><td align="center">No orders found!</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left; text-align: center;">Order again </a>  -->
             </div>
             <div class="showBidsOrder" [hidden]="!showBidsOrder">
               <table id="example" class="table" style="width:100%">
@@ -172,7 +176,7 @@
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div>
+              <!-- <a href="#" class="moreBtn disabledBtn" style="margin: 45px 0; float: left;">Order again </a> </div> -->
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
 /* Common Style End */
 
-.gray_body { background: #e5e5e5; min-height: 100%; }
+.gray_body { background: #e5e5e5; height: 100%; min-height: 100vh; }
 
 .profileDiv { padding-left: 0; }
 
@@ -36,7 +36,7 @@ em.CompletedTag { background: #8DCF81; border-radius: 28px; color: #fff; font-fa
 .paginate_button.next { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; line-height: 31px; margin-bottom: 0; text-decoration: none; }
 .paginate_button.previous.disabled { opacity: 0.5; } 
 .paginate_button.next.disabled { opacity: 0.5; }
-.moreBtn { background: #393939; border: none; border-radius: 3px; color: #fff !important; display: block; font: 200 18px 'Futura' !important; height: 43px; line-height: 43px; text-align: center; text-decoration: none; margin: 0 auto; margin-top: 20px; width: 246px; }
+.moreBtn { background: #393939; border: none; border-radius: 3px; color: #fff !important; display: block; font: 200 18px 'Futura' !important; height: 43px; line-height: 43px !important; text-align: center; text-decoration: none; margin: 0 auto; margin-top: 20px; width: 246px; }
 .disabledBtn { background-color: #9b9b9b; cursor: default; pointer-events: none; user-select: none; }
 .noOrder { float: left; padding-top:45px; width: 100%; }
 .noOrder h4 { color:#000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; line-height: 31px; margin-bottom: 0; }
@@ -46,6 +46,17 @@ em.CompletedTag { background: #8DCF81; border-radius: 28px; color: #fff; font-fa
 .rightAccount h3 { font: 500 17px 'Futura' !important; }
 }
 
+@media screen and (max-width: 991px) {
+.boxList { overflow: hidden; }	
+.boxList ul { margin-left: -10px; margin-right: -10px; }
+.boxList ul li { margin-bottom: 15px; margin-right: 0; padding-left: 10px; padding-right: 10px; width: 50%; }
+.boxList ul li .WBox { width: 100%; }	
+.order-table-sec { overflow-x: auto; width: 100%; }
+.order-table-sec .table { width: 1200px; }
+}
+
 @media screen and (min-width: 300px) and (max-width: 767px) {
 .profileDiv{ padding-left: 12px; }	
+.boxList ul li { margin-bottom: 15px; margin-right: 0; padding-left: 10px; padding-right: 10px; width: 50%; }
+.boxList ul li .WBox { width: 100%; }
 }

@@ -10,29 +10,30 @@
           <div class="noOrder"> 
             <!--<h4>No orders placed yet </h4>
                         <a href="#" class="moreBtn">Start shopping </a>-->
-            <table id="example" class="table" style="width:100%">
+            <table id="example" class="table" style="width:100%" *ngIf="invoices?.length > 0">
               <thead>
                 <tr>
                   <th>&nbsp;</th>
                   <th>#</th>
-                  <th>Title</th>
-                  <th>Seller</th>
+                  <th>Invoice Number</th>
+                  <th>Brand</th>
                   <th>Date</th>
-                  <th>Amount</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
+                <tr *ngFor="let order of invoices">
+                  <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent, order?.invoice_key)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
                   <td>1</td>
-                  <td>T-shirt</td>
-                  <td>Best Seller</td>
-                  <td>February 8, 2022</td>
-                  <td>$11.70</td>
-                  <td><a class="downloadSpan">Download</a></td>
+                  <td>{{order?.invoice_key}}</td>
+                  <td>{{order?.brand}}</td>
+                  <td>{{order?.created_at}}</td>
+                  <td>{{order?.status}}</td>
+                  <td *ngIf="order?.status == 'pending'"><a routerLink="/orders/{{order?.order_number}}"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon">Review</a></td>
+                  <td *ngIf="order?.status != 'pending'"><a class="downloadSpan">Download</a></td>
                 </tr>
-                <tr>
+                 <!--<tr>
                   <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
                   <td>2</td>
                   <td>T-shirt</td>
@@ -41,7 +42,7 @@
                   <td>$11.70</td>
                   <td><a class="downloadSpan">Download</a></td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <td><a (click)="openDownloadInvoiceModal(downloadInvoiceContent)"><img src="assets/images/eye_icon.svg" alt="" class="eyeIcon"></a></td>
                   <td>3</td>
                   <td>T-shirt</td>
@@ -70,6 +71,13 @@
                 </tr> -->
               </tbody>
             </table>
+            <table id="example" class="table" style="width:100%" *ngIf="invoices?.length == 0">
+              <tbody>
+                <tr>
+                  <td align="center" style="text-align: center;">No records found!</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -93,19 +101,19 @@
     ></iframe> -->
     <div class="row topHeader">
       <div class="col-lg-8 topHeaderLeft">
-        <h3>Invoice #1</h3>
-        <h4>Client Marina Iv</h4>
-        <p>Date Period: June 02- 12 2022<br>
-          Invoice No.: 1111</p>
+        <h3>Invoice #{{invoiceDetails?.invoice_key}}</h3>
+        <h4>{{invoiceDetails?.brand}}</h4>
+        <p>Date Period: {{invoiceDetails?.created_at}}<br></p>
+          <!-- Invoice No.: 1111</p> -->
       </div>
-      <div class="col-lg-4 topHeaderRight">
+      <!-- <div class="col-lg-4 topHeaderRight">
         <p>Maryna Iv<br>
           Qatar<br>
           102 Bayview Ave<br>
           Dokha<br>
           56777<br>
           +974 333 33 33</p>
-      </div>
+      </div> -->
     </div>
     <div class="invoiceTableBody">
       <table id="example" class="table" style="width:100%">
@@ -117,10 +125,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Women's Black leather Bomber Jacket</td>
-            <td>$1.120</td>
-            <td>$1.120</td>
+          <tr *ngFor="let item of invoiceDetails?.products">
+            <td>{{item?.name}}</td>
+            <td>${{item?.total}}</td>
+            <td>${{item?.total}}</td>
           </tr>
           <tr class="addiTr">
             <td colspan="3"><h3>Additional</h3></td>

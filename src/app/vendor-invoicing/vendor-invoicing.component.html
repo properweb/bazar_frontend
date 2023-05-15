@@ -3,7 +3,7 @@
   <app-vendor-side-menu></app-vendor-side-menu>
   <div class="middle_vendor_dasboard">
     <div class="middle_content">
-      <div class="shop_collections1_body" *ngIf="invoiceList?.invoices?.length == 0">
+      <div class="shop_collections1_body" *ngIf="invoiceList?.allInvoicesCount == 0">
         <div class="row align-items-center">
           <div class="col-lg-6 col-md-6 txtSec">
           	<h3>Save time and money with invoicing on Bazar</h3>
@@ -18,7 +18,7 @@
           <div class="col-lg-6 col-md-6 imgSec"><img src="assets/images/create_invoice_img.png" alt=""></div>
         </div>
       </div>
-      <div class="vendor-invooice-bttom-content" *ngIf="invoiceList?.invoices?.length > 0">
+      <div class="vendor-invooice-bttom-content" *ngIf="invoiceList?.allInvoicesCount > 0">
         <h3>Invoices</h3>
         <p>Your wholesale catalog on Bazar</p>
         <a class="btn create-invoice-button" routerLink="/brand-invoices/new">Create Invoice</a>
@@ -36,11 +36,11 @@
               <div id="allInvoice" class="container tab-pane active">
                 <ul class="row productSearch">
                   <li class="col-md-12">
-                    <input class="form-control text_form" type="text" placeholder="Search invoices" name="searchText" [(ngModel)]="searchText" (keyup.enter)="onSearchPress($event)" (keyup)="onSearchTextChange($event)"> 
+                    <input class="form-control text_form" type="text" placeholder="Search invoices by customer" name="searchText" [(ngModel)]="searchText" (keyup.enter)="onSearchPress($event)" (keyup)="onSearchTextChange($event)"> 
                   </li>
                 </ul>
                 <div class="table_sec">
-                  <table class="table">
+                  <table class="table" *ngIf="invoiceList?.invoices?.length > 0">
                     <thead>
                       <tr>
                         <th scope="col">Invoice</th>
@@ -60,7 +60,14 @@
                         <td>{{item?.status}}</td>
                         <td>{{item?.updated_at}}</td>
                         <td>{{item?.updated_at}}</td>
-                        <td>${{item?.total}}</td>
+                        <td>{{item?.total_amount ? '$'+item?.total_amount : '-'}} </td>
+                      </tr>                    
+                    </tbody>
+                  </table>
+                  <table class="table" *ngIf="invoiceList?.invoices?.length == 0">
+                    <tbody>
+                      <tr>
+                        <td align="center" style="text-align: center;">No records found!</td>
                       </tr>                    
                     </tbody>
                   </table>

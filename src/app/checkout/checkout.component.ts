@@ -18,6 +18,8 @@ export class CheckoutComponent implements OnInit {
   user_id!: any;
   user_key!: any;
   ret_name!: any;
+  detailsFromRouteState!: any;
+  ipAddress!: any;
   retailerDetails!: any;
   brand_key!: any;
   name!: any;
@@ -71,14 +73,17 @@ export class CheckoutComponent implements OnInit {
   step3:boolean= false;
   btnDis:boolean= false;
   sameAsBilling:boolean= false;
+  payment_method:any = 'cod';
   
   constructor(private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService,private titleService: Title, private appComponent: AppComponent) { 
     const price = router.getCurrentNavigation()?.extras.state?.['price'];
+    this.detailsFromRouteState = router.getCurrentNavigation()?.extras.state?.['price'];
     if(price != undefined) {
       this.storage
       .set('cart_to_check_data', price)
       .subscribe(() => {});
     }
+    // alert(price.brand_id);
   }
 
   ngOnInit(): void {
@@ -308,6 +313,33 @@ export class CheckoutComponent implements OnInit {
       })
   }
 
+  getIpAddress(brand_id: any) {
+    this.apiService.getIpAddress().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.ipAddress = response.IPv4;
+      this.shopVisit(brand_id, this.ipAddress)
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
+    });
+  }
+
+  shopVisit(brand_id: any, ipAddress: any) {
+    let values = {
+      ip_address: ipAddress,
+      orders: 1,
+      brand_id: brand_id
+    }
+    this.apiService.shopVisit(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res === true) {
+      } else {
+        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
+      }
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
+    });
+  }
+
   sendcheckOutForm(checkOutForm: any) {
     if(this.billing_country == null || this.billing_country == undefined || this.billing_address1 == null || this.billing_address1 == undefined || this.billing_state == null || this.billing_state == undefined || this.billing_city == null || this.billing_city == undefined || this.billing_pincode == null || this.billing_pincode == undefined || this.billing_phone_number == null || this.billing_phone_number == undefined) {
       this.toast.error({detail: "Please complete your billing address section.", summary: "", duration: 4000});
@@ -342,6 +374,7 @@ export class CheckoutComponent implements OnInit {
               this.btnDis = false;
               this.cartDetails = response1.data.cart_det[0];
               this.orderDetails = response1.data.order_det;
+              this.getIpAddress(this.detailsFromRouteState?.brand_id);
               this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
               this.nextOneFunction();
             } else {
@@ -375,8 +408,9 @@ export class CheckoutComponent implements OnInit {
       this.btnDis = true;
       let values = {
         brand_key : this.brand_key,
-        shipping_id: this.firstShipId
-      } 
+        shipping_id: this.firstShipId,
+        payment_method: this.payment_method
+      };
       this.apiService.placeOrder(values).subscribe((responseBody) => {
         let response =  JSON.parse(JSON.stringify(responseBody));
         if(response.res == true) {
@@ -385,6 +419,7 @@ export class CheckoutComponent implements OnInit {
           // this.orderDetails = response.data.order_det;
           this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
           this.router.navigateByUrl('orders');
+          this.getIpAddress(this.detailsFromRouteState?.brand_id);
           // this.nextOneFunction();
         } else {
           this.btnDis = false;
@@ -399,12 +434,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   nextOneFunction() {
-    $(".step_one").addClass("complete");
-    $(".step_one").removeClass("active");
-    $(".step_two").addClass("active");
-    this.step1= false;
-    this.step2= true;
-    this.step3= false;
+    if(this.billing_country == null || this.billing_country == undefined || this.billing_address1 == null || this.billing_address1 == undefined || this.billing_state == null || this.billing_state == undefined || this.billing_city == null || this.billing_city == undefined || this.billing_pincode == null || this.billing_pincode == undefined || this.billing_phone_number == null || this.billing_phone_number == undefined) {
+      this.toast.error({detail: "Please complete your billing address section.", summary: "", duration: 4000});
+      return false;
+    } else {
+      $(".step_one").addClass("complete");
+      $(".step_one").removeClass("active");
+      $(".step_two").addClass("active");
+      this.step1= false;
+      this.step2= true;
+      this.step3= false;
+      return true;
+    }
   }
 
   nextFourFunction() { 

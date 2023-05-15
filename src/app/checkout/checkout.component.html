@@ -168,10 +168,10 @@
                         </form>
                     </div>
                 </ng-container>
-                <form class="ShippingForm" *ngIf="shipAddressList?.length > 0">
+                <form class="ShippingForm">
                     <ul>
                         <li>
-                            <input *ngIf="!btnDis" name="" type="submit" value="Next" (click)="placeOrder()" >
+                            <input *ngIf="!btnDis" name="" type="submit" value="Next" (click)="nextOneFunction()" >
                             <input *ngIf="btnDis" name="" type="submit" value="Please wait..." disabled>
                         </li>
                     </ul>
@@ -223,13 +223,25 @@
                 <h5 class="ShipAdrs">Select Payment Method</h5>
                 <form action="" method="get" class="ShippingForm">
                     <ul>
-                        <li>
+                        <li (click)="payment_method = 'cod'">
                             <label class="radio inline">
-                                <input checked="" name="" value="card" type="radio">
-                                <span>Pay on shipment</span> </label>
-                            <p>You'll be charged when your products are shipped</p>
+                                <input [checked]="payment_method == 'cod'" name="method" value="cod" type="radio">
+                                <span>Cash on delivery</span> </label>
+                            <!-- <p>You'll be charged when your products are shipped</p> -->
                         </li>
-                        <li>
+                        <li (click)="payment_method = 'n30'">
+                            <label class="radio inline">
+                                <input [checked]="payment_method == 'n30'" name="method" value="n30" type="radio">
+                                <span>N 30</span> </label>
+                            <!-- <p>You'll be charged when your products are shipped</p> -->
+                        </li>
+                        <li (click)="payment_method = 'n15'">
+                            <label class="radio inline">
+                                <input [checked]="payment_method == 'n15'" name="method" value="n15" type="radio">
+                                <span>N 15</span> </label>
+                            <!-- <p>You'll be charged when your products are shipped</p> -->
+                        </li>
+                        <!-- <li>
                             <label>Credit or debit card</label>
                             <input class="InputTxt" name="" type="text" placeholder="Card number">
                         </li>
@@ -238,9 +250,11 @@
                         </li>
                         <li class="SplitList FltRht">
                             <input class="InputTxt" name="" type="text" placeholder="CVC">
-                        </li>
+                        </li> -->
                         <li>
-                            <input name="" type="submit" value="Next" (click)="nextFourFunction()">
+                            <!-- <input name="" type="submit" value="Next" (click)="nextFourFunction()"> -->
+                            <input *ngIf="!btnDis" name="" type="submit" value="Next" (click)="placeOrder()" >
+                            <input *ngIf="btnDis" name="" type="submit" value="Please wait..." disabled>
                         </li>
                     </ul>
                 </form>

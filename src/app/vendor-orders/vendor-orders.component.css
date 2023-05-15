@@ -61,7 +61,7 @@
 .middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch { padding: 10px 10px 0 10px; }
 .middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .productSearch li { margin-bottom: 10px; }
 .middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec { overflow-x: auto; }
-.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table { width: 800px; }
+.middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .table_sec .table { width: 1000px; }
 }
 @media screen and (max-width:767px) { 
 .middle_vendor_dasboard .middle_content .videosTabSec .tab-content .tab-pane .order-Public-List { margin: 0; }
