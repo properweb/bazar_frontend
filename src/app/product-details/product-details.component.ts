@@ -21,10 +21,12 @@ export class ProductDetailsComponent implements OnInit {
 
   user_id!: any;
   productKey!: any;
+  ipAddress!: any;
   role!: any;
   product_id!: any;
   openSizingTotalQty!: any;
   perPrepackValue!: any;
+  reviewData!: any;
   productDetail: any = [];
   productVariation: any = [];
   productPrepackArray: any = [];
@@ -44,30 +46,34 @@ export class ProductDetailsComponent implements OnInit {
   quantity!: any;
   items: any;
   custQtyEnable: any = false;
-
+  isCustomQtySelected: any = false;
   pageOfItems!: Array<any>;
   addToBagObject: any = {};
   wishlistId!: any
   wishListModalReference!: NgbModalRef;
   boardsList!: any;
+  currentPage: any = 1;
+
+  p: number = 1;
 
   constructor( private apiService: ApiService, private activatedRoute: ActivatedRoute,private storage: StorageMap, private router: Router,private eventService: EventService, private titleServive: Title, private toast: NgToastService, private appComponent: AppComponent, public modalService: NgbModal) {
 
    }
 
   ngOnInit(): void {
-
     this.activatedRoute.params.subscribe((routeParams) => {
       this.productKey = routeParams['id'];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.storage.get("user_session").subscribe({
         next: (user) => {
           let user_session = JSON.parse(JSON.stringify(user));
-  
           this.role = user_session.role;
           this.user_id = user_session.id;
           this.getProductDetail(routeParams['id'], user_session.id);
-
+          if(user_session.role == 'retailer') {
+            this.fetchBoards();
+          }
+          this.retailerOrderReview(routeParams['id'], this.currentPage);
           window.scroll({
             top: 0,
             left: 0,
@@ -81,10 +87,10 @@ export class ProductDetailsComponent implements OnInit {
 
     })
     this.currentUrl =this.router.url;
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
 
   onChangePage(pageOfItems: Array<any>) {
+    console.log(pageOfItems);
     this.pageOfItems = pageOfItems;
   }
 
@@ -124,84 +130,136 @@ export class ProductDetailsComponent implements OnInit {
   beforeChange(e:any) {
   }
 
+  retailerOrderReview(product_key: any, page: any) {
+    this.apiService.retailerOrderReview(product_key, page).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.reviewData = response.data;
+        this.items = Array(Number(response?.data?.total_reviews ? response?.data?.total_reviews : 0));
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+    })
+  }
+
+  getIpAddress(brand_id: any) {
+    this.apiService.getIpAddress().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.ipAddress = response.IPv4;
+      this.shopVisit(brand_id, this.ipAddress)
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
+    });
+  }
+
+  shopVisit(brand_id: any, ipAddress: any) {
+    let values = {
+      ip_address: ipAddress,
+      orders: 0,
+      brand_id: brand_id
+    }
+    this.apiService.shopVisit(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res === true) {
+      } else {
+        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
+      }
+    },(error) => {
+    });
+  }
+
   getProductDetail(product_id: any, user_id: any) {
-    this.appComponent.showSpinner = true;
+    // this.appComponent.showSpinner = true;
     this.productVariationFirst = {};
     this.openSizingArray = [];
     this.apiService.fetchProductDetails(product_id, user_id).subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
-      this.productDetail = response.data;
-      this.product_id = response.data.id;
-      this.wishlistId = response.data.wishlistId;
-
-      if(response.data.sell_type == '2' ) {        
-        if(response.data.variation_options.length > 0) {
-          let splitQty = Math.ceil(Number(response.data.min_order_qty / response.data.variation_options.length));
-          response.data.variation_options.forEach((element:any, key: any) => {
-            if(element.name == 'Size') {
-              element.options.forEach((element1: any) => {
-                this.openSizingArray.push({value: element1, qty: splitQty});
-              });
-
-            }
+      if(response.res == true) {
+        this.getIpAddress(response.data.brand_id);
+        this.productDetail = response.data;
+        this.product_id = response.data.id;
+        this.wishlistId = response.data.wishlistId;
+  
+        if(response.data.sell_type == '2' ) {        
+          if(response.data.variation_options.length > 0) {
+            let splitQty = Math.ceil(Number(response.data.min_order_qty / response.data.variation_options.length));
+            response.data.variation_options.forEach((element:any, key: any) => {
+              if(element.name == 'Size') {
+                element.options.forEach((element1: any) => {
+                  this.openSizingArray.push({value: element1, qty: splitQty});
+                });
+              }
+            });
+          }
+        }
+  
+        // Removing 'Size' from options if prepacks available
+        if(response.data.prepacks.length > 0 ) {        
+          let firstPrepackOption = response.data.prepacks[0];
+          let calPerPrepackValue = firstPrepackOption.size_ratio.split('-');
+          let totalPrepack = 0;
+          calPerPrepackValue.forEach((element: any) => {
+            totalPrepack += Number(element);
           });
+          this.perPrepackValue = totalPrepack;
         }
-      }
-
-      // Removing 'Size' from options if prepacks available
-      if(response.data.prepacks.length > 0 ) {        
-        let firstPrepackOption = response.data.prepacks[0];
-        let calPerPrepackValue = firstPrepackOption.size_ratio.split('-');
-        let totalPrepack = 0;
-        calPerPrepackValue.forEach((element: any) => {
-          totalPrepack += Number(element);
-        });
-        this.perPrepackValue = totalPrepack;
-
-      }
-      this.totalOpenSizingQty();
-      if(response.data.variation_options.length > 0 ) {
-        this.productVariation = Object.keys(response.data.variations);
-        let firstObject = response.data.variations[Object.keys(response.data.variations)[0]];
-        this.productVariationFirst = firstObject;
-
-        }
-
-        if(response.data.prepacks.length > 0 ) {
-          this.productPrepackArray = response.data.prepacks;
-
-        }
-        this.radioBtnValue = [];
-        response.data.variation_options.forEach((element: any) => {
-          this.radioBtnValue.push(element.options[0]);
-          if(element.name == 'Color'){                     
-            this.colorAvailable = true;
-            this.colorName = element.options[0];           
+        this.totalOpenSizingQty();
+        if(response.data.variation_options.length > 0 ) {
+          this.productVariation = Object.keys(response.data.variations);
+          let firstObject = response.data.variations[Object.keys(response.data.variations)[0]];
+          this.productVariationFirst = firstObject;
+          this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: 1};
+          if(response.data.min_order_qty != 'undefined') {
+            let int = Number(response.data.min_order_qty);
+            let qty = int + Number(response.data.case_quantity*0);
+            this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, price: firstObject.wholesale_price, quantity: qty};
+          }
+  
+          if(response.data.prepacks.length > 0 ) {
+            this.productPrepackArray = response.data.prepacks;
+            this.addToBagObject = { product_id: response.data.id, variant_id: firstObject.variant_id, prepack_id: response.data.prepacks[0].id, price: response.data.prepacks[0].wholesale_price, quantity: 1, variationWishId: response.data.prepacks[0].variationWishId};
+          }
+          this.radioBtnValue = [];
+          response.data.variation_options.forEach((element: any) => {
+            this.radioBtnValue.push(element.options[0]);
+            if(element.name == 'Color'){                     
+              this.colorAvailable = true;
+              this.colorName = element.options[0];           
+            } else {
+              this.option_type = response.data.option_type ;
+            }
+           });
+  
+           response.data.options.forEach((element: any, index: any) => {           
+            if(element == 'Color'){ 
+              this.colorIndex = index;
+            }
+           })
+        } else {
+          if(response.data.min_order_qty != 'undefined') {
+            let int = Number(response.data.min_order_qty);
+            let qty = int + Number(response.data.case_quantity*0);
+            this.addToBagObject = { product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: qty};
           } else {
-            this.option_type = response.data.option_type ;
+            this.addToBagObject = { product_id: response.data.id, variant_id: '', price: response.data.usd_wholesale_price, quantity: 1};
           }
-         });
-
-         response.data.options.forEach((element: any, index: any) => {           
-          if(element == 'Color'){ 
-            this.colorIndex = index;
-          }
-         })
-      } else {
-        if(response.data.min_order_qty != 'undefined') {
-          let int = Number(response.data.min_order_qty);
-          let qty = int + Number(response.data.case_quantity*0);
-
         }
+        this.relatedProducts = response.data.related_products;
+        this.recentlyViewedProducts = response.data.rcntviwd_produtcs;
+        this.titleServive.setTitle(response.data.name);
+        this.appComponent.showSpinner = false;
+      } else {
+        this.toast.error({detail: response.msg,summary: '' ,duration: 4000});
       }
-      this.relatedProducts = response.data.related_products;
-      this.recentlyViewedProducts = response.data.rcntviwd_produtcs;
-      this.titleServive.setTitle(response.data.name);
-      this.appComponent.showSpinner = false;
+    },(error) => {
+       this.toast.error({detail:"Something went wrong. Please try again!",summary: '' ,duration: 4000});
     })
   }
 
-
+  fetchBoards() {
+    this.apiService.fetchBoards().subscribe((responseBody) => {
       let response= JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.boardsList = response.data;
@@ -236,7 +294,19 @@ export class ProductDetailsComponent implements OnInit {
       let int = Number(minQty);
       let qty = int + (caseQty*index);
       let price = qty* Number(wsPrice);
-
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty + '($'+ price +')';
+      }
+    } else {
+      let int = Number(minQty);
+      let qty = int + (caseQty*index);
+      if(index > 9) {
+        return 'Custom quantity';
+      } else {
+        return qty;
+      }
     }
   
   }
@@ -254,7 +324,12 @@ export class ProductDetailsComponent implements OnInit {
   orderQtyNumber1(minQty: any, caseQty: any, index: any, wsPrice: any) {
     let int = Number(minQty);
     let qty = int + (caseQty*index);
-
+    // if(index > 9) {
+    //   this.custQtyEnable = true;
+    //   return 'Custom quantity';
+    // } else {
+      return qty;
+    // }
   }
 
   onColorChange(event: any) {
@@ -284,7 +359,6 @@ export class ProductDetailsComponent implements OnInit {
 
   onQtyChange(event: any) {
     if(event.target.value == 11 || event.target.value == '11') {
-
       this.custQtyEnable = true;
     }
     // this.addToBagObject = { user_id: this.user_id, product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
@@ -292,12 +366,18 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onQtyCustChange(event: any) {
-
+    this.addToBagObject = { product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: Number(event.target.value)};
     this.custQtyEnable = false;
   }
 
   onQtyChange1(event: any) {
+    // if(event.target.value == 'Custom quantity') {
+    //   this.isCustomQtySelected = true;
 
+    // } else {
+      this.isCustomQtySelected = false;
+      this.addToBagObject = { product_id: this.product_id, variant_id: this.productVariationFirst.variant_id, price: this.productVariationFirst.wholesale_price, quantity: event.target.value};
+    // }
   }
 
   onPrepackChange(event: any) {
@@ -313,7 +393,6 @@ export class ProductDetailsComponent implements OnInit {
       totalPrepack += Number(element);
     });
     this.perPrepackValue = totalPrepack;
-
     this.addToBagObject.prepack_id = event.target.value; 
   }
 
@@ -332,7 +411,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail:"Product added to cart.",summary: '' ,duration: 4000});
-
+        this.afterLoginHeaderComp.fetchCart();
         this.addCrtBtn = false;
       } else {
         this.toast.error({detail:response.msg,summary: '' ,duration: 4000});
@@ -384,7 +463,7 @@ export class ProductDetailsComponent implements OnInit {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.getProductDetail(this.productKey, this.user_id);
-
+        this.fetchBoards();
         this.toast.success({detail: response.msg,summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
@@ -436,7 +515,7 @@ export class ProductDetailsComponent implements OnInit {
       if(response.res == true) {
         this.wishListModalReference.close();
         this.getProductDetail(this.productKey, this.user_id);
-
+        this.fetchBoards();
         this.toast.success({detail:"Product added to wishlist.",summary: '' ,duration: 4000});
         this.addWishBtn = false;
       } else {
@@ -448,6 +527,13 @@ export class ProductDetailsComponent implements OnInit {
       this.addWishBtn = false;
       this.toast.error({detail:"Something went wrong. please try again later.",summary: '' ,duration: 4000});
     })
+  }
+
+  onPageChange(event: any) {
+    console.log(event);
+    this.p = event;
+    this.currentPage = event;
+    this.retailerOrderReview(this.productKey, this.currentPage);
   }
 
   specialProductTwoArray:any = [
@@ -462,7 +548,7 @@ export class ProductDetailsComponent implements OnInit {
       brandTitleName: "Star Seller",
       priceText: "80$ minimum",
       discountText: "Up to 30% off  + free shipping"
-
+    }
   ]
 
   specialProductOptions1: OwlOptions = {

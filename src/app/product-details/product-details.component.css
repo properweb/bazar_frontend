@@ -19,6 +19,7 @@
 .rightProductDetails .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
 .rightProductDetails .brandShopNav li a { cursor: pointer; display: block; }
 .rightProductDetails .productPrice { border-bottom: 1px solid rgba(57, 57, 57, 0.5); color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 15px 0; padding: 0 0 10px 0; width: 100%; }
+.rightProductDetails .productPrice .discount-price { text-decoration: line-through; margin-left: 10px; }
 .rightProductDetails .productPrice span { color: rgba(57, 57, 57, 0.5); }
 .rightProductDetails .productDescriptionList { list-style: none; margin: 0; padding: 0; width: 100%; }
 .rightProductDetails .productDescriptionList li { float: left; margin: 0 0 20px 0; padding: 0; width: 100%; }
@@ -73,7 +74,7 @@
 .rightBrandShopBodyBottom .brandShopProduct_list li { margin-bottom: 30px; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card { }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv { background-position: center; background-repeat: no-repeat; background-size: 100% auto; margin: 0; min-height: 199px; padding: 0; position: relative; width: 100%; }
-
+.rightBrandShopBodyBottom .brandShopProduct_list li .card .white-overlay { position: absolute; width: 100%; height: 100%; left: 0; top: 0; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; text-transform: uppercase; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav { float: right; list-style: none; margin: 20px 0 0 0; padding: 0; position: relative; width: auto; z-index: 1; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
 .rightBrandShopBodyBottom .brandShopProduct_list li .card .imgDiv .brandShopNav li a { cursor: pointer; display: block; }
@@ -110,7 +111,7 @@
 .recentViewsCarousel { float: left; margin: 0; padding: 0; width: 100%; }
 .recentViewsCarousel .category_box { border: 1px solid #eee; border-radius: 0 0 10px 10px; margin: 0; padding: 0; max-width: 309px; width: 100%; }
 .recentViewsCarousel .category_box .img_div { line-height: 241px; margin: 0; min-height: 241px; overflow: hidden; padding: 0; position: relative; width: 100%; }
-
+.recentViewsCarousel .category_box .white-overlay { position: absolute; width: 100%; height: 100%; left: 0; top: 0; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 500; text-transform: uppercase; }
 .recentViewsCarousel .category_box .img_div img { display: inline-block; height: auto; max-height: 241px; min-width: 100%; width: auto; }
 .recentViewsCarousel .category_box .img_div .brandShopNav { line-height: normal; list-style: none; margin: 0; padding: 0; position: absolute; right: 0; top: 20px; width: auto; z-index: 1; }
 .recentViewsCarousel .category_box .img_div .brandShopNav li { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
@@ -120,8 +121,7 @@
 .recentViewsCarousel .category_box .text_div h3 { color: #393939; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 10px 0; text-align: left; }
 .recentViewsCarousel .category_box .text_div h4 { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 25px 0; }
 .recentViewsCarousel .category_box .text_div h5 { background: rgba(57, 57, 57, 0.05); color: #393939; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; padding: 10px; }
-
-
+.alert-warning { font-family: 'Futura' !important; font-size: 15px; font-weight: 500; }
 
 /* Responsive Start */
 @media screen and (max-width: 1366px) { 
