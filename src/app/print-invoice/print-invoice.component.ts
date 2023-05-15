@@ -6,15 +6,13 @@ import { NgToastService } from 'ng-angular-popup';
 import { AppComponent } from '../app.component';
 import { ApiService } from '../services/api.service';
 
-
 @Component({
-  selector: 'app-print-packing-slip',
-  templateUrl: './print-packing-slip.component.html',
-  styleUrls: ['./print-packing-slip.component.css']
+  selector: 'app-print-invoice',
+  templateUrl: './print-invoice.component.html',
+  styleUrls: ['./print-invoice.component.css']
 })
-export class PrintPackingSlipComponent implements OnInit {
-
-  @ViewChild('printBtn') printBtn!: ElementRef;
+export class PrintInvoiceComponent implements OnInit {
+  @ViewChild('printInvoiceBtn') printInvoiceBtn!: ElementRef;
 
   user_id!: any;
   brand_name!: any;
@@ -41,11 +39,8 @@ export class PrintPackingSlipComponent implements OnInit {
   
   constructor(public modalService: NgbModal , private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService, private appComponent: AppComponent) { }
 
+
   ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.printBtn.nativeElement.click();
-    //   }, 200);
-    // this.printBtn.nativeElement.click();
     this.activatedRoute.params.subscribe((routeParams) => {
       this.fetchOrderDetails(routeParams['id']);
     })
@@ -86,5 +81,6 @@ export class PrintPackingSlipComponent implements OnInit {
       this.appComponent.showSpinner = false;
     })
   }
+
 
 }
