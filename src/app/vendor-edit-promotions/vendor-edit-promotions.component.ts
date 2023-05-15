@@ -4,6 +4,7 @@ import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-boot
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from '../services/api.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-vendor-edit-promotions',
@@ -43,7 +44,7 @@ export class VendorEditPromotionsComponent implements OnInit {
     { id: 1, img: 'assets/images/search-img.png', name: 'efgh', sku: 'AA234', stock: 'In stock', price: '$11.70'},
   ];
 
-  constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, public toast: NgToastService ) {
+  constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, public toast: NgToastService, private appComponent: AppComponent) {
     this.fromDate = null
     this.toDate = null
   }
@@ -78,6 +79,7 @@ export class VendorEditPromotionsComponent implements OnInit {
   }
 
   getPromotionDetails() {
+    this.appComponent.showSpinner = true;
     this.apiService.promotionDetail(this.promo_key).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
@@ -92,11 +94,23 @@ export class VendorEditPromotionsComponent implements OnInit {
             this.promoCountrySelected.push(Number(element));
           });
         }
+        if(response.data.products.length > 0) {
+          this.type = 'PRODUCT';
+        } else {
+          this.type = null;
+        }
         this.promotion_offer_type = response.data.discount_type;
         this.order_amount = response.data.ordered_amount;
         this.discount_amount = response.data.discount_amount;
         this.offer_free_shipping = response.data.free_shipping;
+        this.appComponent.showSpinner = false;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+        this.appComponent.showSpinner = false;
       }
+    }, (error) => {
+      this.toast.error({detail: "Something went wrong, please try again.", summary: '', duration: 4000});
+      this.appComponent.showSpinner = false;
     })
   }
 

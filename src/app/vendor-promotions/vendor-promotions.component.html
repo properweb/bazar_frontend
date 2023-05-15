@@ -15,8 +15,8 @@
                 <div class="createPromotionsSec"> 
                   <a class="createPromotionsLink" (click)="productsDropdown()">Create First Promotion</a>
                   <ul class="createPromotionsList">
-                    <li><a routerLink="/brand-portal/promotions/new" >Shop Wide</a></li>
-                      <li><a [queryParams]="{ type: 'PRODUCT' }" routerLink="/brand-portal/promotions/new" >Product Specific</a></li>
+                    <li><a routerLink="/promotions/new" >Shop Wide</a></li>
+                      <li><a [queryParams]="{ type: 'PRODUCT' }" routerLink="/promotions/new" >Product Specific</a></li>
                   </ul>
                 </div>
               </div>
@@ -39,8 +39,8 @@
                 <li><a class="viewShopLink" routerLink="/brand/{{promotionList?.bazaar_direct_link}}" >View shop</a></li>
                 <li> <a class="newPromotionLink" (click)="newPromoDropdown()"><span>Create Promotion</span></a>
                   <ul class="createPromotionsList">
-                    <li><a routerLink="/brand-portal/promotions/new" >Shop Wide</a></li>
-                    <li><a [queryParams]="{ type: 'PRODUCT' }" routerLink="/brand-portal/promotions/new" >Product Specific</a></li>
+                    <li><a routerLink="/promotions/new" >Shop Wide</a></li>
+                    <li><a [queryParams]="{ type: 'PRODUCT' }" routerLink="/promotions/new" >Product Specific</a></li>
                   </ul>
                 </li>
               </ul>
@@ -53,8 +53,8 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col" class="text-center">Dates</th>
-                    <th scope="col" class="text-center">Products included</th>
-                    <th scope="col" class="text-center">Users</th>
+                    <th scope="col" class="text-center">Promotions type</th>
+                    <th scope="col" class="text-center">Orders</th>
                     <th scope="col" class="text-center">Status</th>
                     <th>&nbsp;</th>
                   </tr>
@@ -62,12 +62,11 @@
                 <tbody>
                   <tr *ngFor="let item of promotionList?.promotions" >
                     <td>{{item?.title}}</td>
-                    <td class="text-center">{{item?.from_date}} - {{item?.to_date}}</td>
-                    <!-- <td class="text-center">{{item?.from_date}} - Mar 28, 2022</td> -->
-                    <td class="text-center">All products</td>
-                    <td class="text-center">0</td>
-                    <td class="text-center">Deactivated</td>
-                    <td class="text-center"><a routerLink="/brand-portal/promotions/{{item?.promotion_key}}" >View</a></td>
+                    <td class="text-center">{{item?.dates}}</td>
+                    <td class="text-center">{{item?.promotion_type == 'order' ? 'Shopwide' : 'Product specific'}}</td>
+                    <td class="text-center">{{item?.orders}}</td>
+                    <td class="text-center">{{item?.status}}</td>
+                    <td class="text-center"><a routerLink="/promotions/{{item?.promotion_key}}" >View</a></td>
                   </tr>
                 </tbody>
               </table>

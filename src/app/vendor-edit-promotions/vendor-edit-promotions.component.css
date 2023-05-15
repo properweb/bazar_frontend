@@ -19,12 +19,18 @@
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promo_Details_inner p { margin: 0 0 20px 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promo_Details_inner .promDtlsList { list-style: none; margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promo_Details_inner .promDtlsList li { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body { background: #fff; float: left; margin: 0 0 30px 0; padding: 25px 15px 30px 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 10px 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body p { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .grayPara { color: rgba(0, 0, 0, 0.5); display: block; font-size: 16px; line-height: 21px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .grayPara a { color: rgba(0, 0, 0, 0.5); text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .faireSplPara { color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 500; margin: 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .faireSplPara a { color: #000; text-decoration: underline; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 { list-style: none; margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li { margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li .characterLimits { color: #000; float: right; font-family: 'Futura' !important; font-size: 12px; font-weight: 200; margin: 4px 0 0 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li .form-label { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; width: 100%; }
-.middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0;  padding: 0 15px 0 15px; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promForm1 li .form-control:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 { list-style: none; margin-bottom: 0; margin-top: 20px; padding: 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .dateForm1 li { }
@@ -51,7 +57,6 @@
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .formDiv li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .formDiv li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
-.middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .formDiv li .radioLabel input:disabled ~ .checkmark:after { filter: none; opacity: .5; pointer-events: none; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .checkBoxList { list-style: none; margin: 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .checkBoxList li { margin: 0 0 10px 0; padding: 0; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoForm2 li .checkBoxList li .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
@@ -75,14 +80,50 @@
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoFormSec .promoForm3 li .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoFormSec .promoForm3 li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
 .middle_vendor_dasboard .middle_content .vendor_promotions_body .promoFormSec .promoForm3 li .form-check .form-check-input:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec { margin-bottom: 20px; margin-top: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 { list-style: none; margin: 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li { margin: 0 0 20px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li .Span1 { color: rgba(0, 0, 0, 0.5); float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 41px; margin: -41px 5px 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li .form-label { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0;  padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .discountFormSec .discountForm3 li .input1 { padding-right: 39px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList { list-style: none; margin-top: 20px; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .noMrgnList { margin-top: 0px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .shopInfoinnerDiv { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li label { color: #000; float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; float: left; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .search_form { background: url(../../assets/images/search_icon.png) no-repeat 10px 13px; padding-left: 30px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .form-control:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .add_items_link { color: #000; cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 41px; text-decoration: underline; }
+/*.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList li .searchBox { background: #fff; border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; float: left; left: 0; margin: 0; padding: 0; position: absolute; top: 41px; width: 100%; z-index: 1; }*/
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox a { cursor: pointer; display: block; float: left; padding: 10px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox a:hover { background: rgba(0, 0, 0, 0.05); }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .imgBox { float: left; margin: 0 10px 0 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .imgBox img { height: auto; width: 49px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .productInfoTxt { float: left; margin: 0; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .productInfoTxt h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 8px 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .productInfoTxt p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 0 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .stockTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 0 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .shopInfoList .searchBox .priceTag { color: #343A40; float: right; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 48px; margin: 0 20px 0 40px; padding: 0; width: auto; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list { list-style: none; padding: 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li { margin-bottom: 20px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .border_box { background: rgba(57, 57, 57, 0.05); border: 1px dashed rgba(0, 0, 0, 0.5); border-radius: 3px; height: 190px; margin: 0; overflow: hidden; padding: 0; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box { background: #fff; border: 1px solid rgba(0, 0, 0, 0.5); height: auto; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .imgDiv { margin: 0; padding: 0; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .imgDiv img { border-radius: 3px 3px 0 0; height: 123px; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .imgDiv .deleteIcon { background: #fff; border-radius: 3px; color: #393939; cursor: pointer; font-size: 13px; line-height: 25px; position: absolute; right: 8px; text-align: center; top: 8px; width: 25px; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .txtDiv { margin: 0; padding: 10px; position: relative; width: 100%; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .txtDiv h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 5px 0; }
+.middle_vendor_dasboard .middle_content .vendor_promotions_body .show_product_list li .complete_border_box .txtDiv p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body { background: #fff; float: left; margin: 0 0 40px 0; padding: 20px 40px 20px 0; text-align: center; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList { list-style: none; margin: 0; padding: 0; text-align: right; width: 100%; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li { display: inline-block; margin: 0 0 0 10px; padding: 0; width: auto; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .draft_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .draft_btn:focus { box-shadow: none; }
 .middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .publish_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; width: 184px; }
-.middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .publish_btn:hover { background: #000; }	
-.middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .publish_btn:focus { box-shadow: none; }
+.middle_vendor_dasboard .middle_content .vendor_promotions2_body .btnList li .publish_btn:hover { background: #000; }
 
 
 /* Responsive Start */

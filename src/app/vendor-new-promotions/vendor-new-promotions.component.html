@@ -119,7 +119,7 @@
           <li class="col-lg-4">
             <label class="form-label">Add tiers to create a "buy more, save more" promotion</label>
             <ul class="formDiv">
-              <li><span class="radioLabel">1Tier
+              <li><span class="radioLabel">1 Tier
                 <input type="radio" [value]="1" name="promotion_tier" [(ngModel)]="promotion_tier">
                 <span class="checkmark"></span> </span> </li>
               <li><span class="radioLabel">2 Tiers
@@ -130,7 +130,7 @@
                 <span class="checkmark"></span> </span></li>
             </ul>
           </li>
-          <li class="col-lg-4">
+          <li class="col-lg-4" *ngIf="type != 'PRODUCT'">
             <label class="form-label">What type of promotion will you offer?</label>
             <ul class="formDiv">
               <li><span class="radioLabel">% Off
@@ -145,13 +145,15 @@
             </ul>
           </li>
         </ul>
-        <div class="row promoFormSec">
+        <div class="row promoFormSec" *ngIf="type != 'PRODUCT'">
           <div class="col-lg-4">
             <ul class="promoForm3">
               <li>
                 <label class="form-label">Qualifying Order Amount</label>
-                <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="order_amount" [(ngModel)]="order_amount" class="form-control input1" placeholder="">
-                <span class="Span1">$</span> <span class="Span2">Order min: $50.00</span> </li>
+                <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.keyCode !== 190 && event.keyCode !== 187" name="order_amount" [(ngModel)]="order_amount" class="form-control input1" placeholder="" (change)="onOrderAmtChange($event);">
+                <span class="Span1">$</span> 
+                <!-- <span class="Span2">Order min: ${{order_min}}</span>  -->
+              </li>
               <li *ngIf="promotion_offer_type == 1">
                 <label class="form-label">Discount Amount</label>
                 <input type="text" name="" value="" class="form-control input2" placeholder="" name="discount_amount" [(ngModel)]="discount_amount">
@@ -182,8 +184,9 @@
             <ul class="discountForm3">
               <li>
                 <label class="form-label">Discount Amount</label>
-                <input type="text" name="" value="" class="form-control input1" placeholder="">
-                <span class="Span1">% off</span> </li>
+                  <input type="text" name="" value="" class="form-control input1" placeholder="" name="discount_amount" [(ngModel)]="discount_amount">
+                  <span class="Span1">% off</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -237,9 +240,9 @@
       </div>
       <div class="vendor_promotions2_body">
         <ul class="btnList">
-          <li>
+          <!-- <li>
             <input type="button" name="" value="Cancel" class="btn draft_btn">
-          </li>
+          </li> -->
           <li>
             <input *ngIf="!btnDis" type="submit" name="" (click)="addPromotion()" value="Save" class="btn publish_btn">
             <input *ngIf="btnDis" type="submit" name="" disabled value="Please wait..." class="btn publish_btn">

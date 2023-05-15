@@ -25,7 +25,7 @@ export class VendorNewPromotionsComponent implements OnInit {
   promotion_offer_type: any = 1;
   order_amount!: any;
   discount_amount!: any;
-  offer_free_shipping: any = true;
+  offer_free_shipping: any = false;
   btnDis: any = false;
   promotionCountryArry!: any;
   promoCountrySelected: any = [];
@@ -38,16 +38,9 @@ export class VendorNewPromotionsComponent implements OnInit {
   invoiceProduct!: any;
   bazaar_direct_link!: any;
   proKeyword = 'name';
-  // proData = [ 
-  //   { id: 1, img: 'assets/images/search-img.png', name: 'Grey plate', sku: 'AA234', stock: 'In stock', price: '$11.70' , variations: []},
-  //   { id: 2, img: 'assets/images/search-img.png', name: 'abcd', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [
-  //     {id: 2, variation_id: 111, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (12 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-  //     {id: 2, variation_id: 222, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (50 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-  //     {id: 2, variation_id: 333, img: 'assets/images/search-img.png', name: '7Up Drink 150mL (100 Pieces) ', sku: 'AA234', stock: 'In stock', price: '$11.70' },
-  //   ]},
-  //   { id: 3, img: 'assets/images/product-img.jpeg', name: 'Test', sku: 'AA234', stock: 'In stock', price: '$11.70', variations: [1]},
-  // ];
   proData: any = [];
+  order_min: any = 50.00;
+  orderAmtError!: any;
 
   constructor(private apiService: ApiService, private storage: StorageMap, private router: Router, private activatedRoute: ActivatedRoute, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,public modalService: NgbModal, public toast: NgToastService ) {
     this.fromDate = null
@@ -124,12 +117,13 @@ export class VendorNewPromotionsComponent implements OnInit {
       type: this.promotion_to,
       country: sepByComma,
       tier: this.promotion_tier,
-      discount_type: this.promotion_offer_type,
+      discount_type: this.type == 'PRODUCT' ? 1 : this.promotion_offer_type,
       ordered_amount: this.order_amount,
       discount_amount: this.discount_amount,
       from_date: this.formatter.format(this.fromDate),
       to_date: this.formatter.format(this.toDate),
-      free_shipping: this.promotion_offer_type == 3 ? true : this.offer_free_shipping,
+      free_shipping: this.type == 'PRODUCT' ? null : (this.promotion_offer_type == 3 ? true : this.offer_free_shipping),
+      promotion_type: this.type == 'PRODUCT' ? 'product' : 'order',
       products: this.selectedProducts
     }
     if(this.title == undefined || this.title == null) {
@@ -148,8 +142,12 @@ export class VendorNewPromotionsComponent implements OnInit {
       this.toast.error({detail: "Please select promotion country.", summary: '', duration: 4000});
       this.btnDis = false;
       return false;
-    } else if(this.order_amount == null || this.order_amount == undefined) {
+    } else if(this.type != 'PRODUCT' && (this.order_amount == null || this.order_amount == undefined)) {
       this.toast.error({detail: "Please enter order amount.", summary: '', duration: 4000});
+      this.btnDis = false;
+      return false;
+    } else if(this.discount_amount == null || this.discount_amount == undefined) {
+      this.toast.error({detail: "Please enter discount amount.", summary: '', duration: 4000});
       this.btnDis = false;
       return false;
     } else if(this.type == 'PRODUCT' && this.selectedProducts.length == 0) {
@@ -252,6 +250,12 @@ export class VendorNewPromotionsComponent implements OnInit {
   
   onDropProSelect() {
     
+  }
+
+  onOrderAmtChange(event: any) {
+    if(Number(event.target.value) < this.order_min) {
+      this.orderAmtError = '';
+    }
   }
 
 }
