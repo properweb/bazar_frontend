@@ -27,7 +27,9 @@
                                                         alt=""></button>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 wishList wish-list" *ngFor="let item of allWishDetails?.board_arr" routerLink="/boards/{{item?.board_key}}" style="cursor: pointer;" > 
-                                                <img [src]="item?.board_image" alt="">
+                                                <div class="board-img-sec">
+                                                    <img [src]="item?.board_image" alt="">
+                                                </div>
                                                 <h3>{{item?.board_name}}</h3>
                                                 <p>{{item?.products_count}} saved</p>
                                             </div>

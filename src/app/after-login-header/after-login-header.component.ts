@@ -19,6 +19,7 @@ export class AfterLoginHeaderComponent implements OnInit {
 
   user_id!: any;
   role!: any;
+  allCategories!: any;
   vendorRegForm!: FormGroup;
   email!: any;
   validateError!: any;
@@ -29,6 +30,8 @@ export class AfterLoginHeaderComponent implements OnInit {
   log2: boolean = false;
   submitted: boolean = false;
   spinnerShow: boolean = false;
+  searchText!: any;
+  allSearchRes!: any;
 
   constructor(
     public modalService: NgbModal,
@@ -46,6 +49,9 @@ export class AfterLoginHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('searchkey') != null && localStorage.getItem('searchkey') != undefined) {
+      this.searchText = localStorage.getItem('searchkey');
+    }
     if(localStorage.getItem('local_data') == null) {
       this.router.navigate(['/']);
     } else {}
@@ -57,7 +63,8 @@ export class AfterLoginHeaderComponent implements OnInit {
 
         this.role = user_session.role;
         this.user_id = user_session.id;
-        this.fetchCart(user_session.id);
+        this.fetchCart();
+        this.fetchMenuCategories();
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -156,8 +163,19 @@ export class AfterLoginHeaderComponent implements OnInit {
     });
   }
 
-  fetchCart(user_id: any) {
-    this.apiService.fetchCart(user_id).subscribe((responseBody) => {
+  fetchMenuCategories() {
+    this.apiService.manuCategories().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allCategories =  response.data;
+      }
+    }, (error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
+  }
+
+  fetchCart() {
+    this.apiService.fetchCart().subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.cartCount =  response.data.cart_count;
     })
@@ -166,7 +184,33 @@ export class AfterLoginHeaderComponent implements OnInit {
   logout() {
     this.apiService.logout();
     this.toast.success({ detail:"Logout successful", summary:"", duration: 4000});
-    this.router.navigate(['/localBrands']);
+    setTimeout(() => {
+      this.router.navigate(['/localBrands']).then(() => {
+        window.location.reload();
+      });
+    }, 500);
+  }
+
+  onSearchPress(event: any) {
+    this.apiService.searchApi(event.target.value).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.allSearchRes = response;
+      } else {
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+      }
+    }, (error) => {
+      this.toast.error({detail: 'Something went wrong. PLease try again.', summary: '', duration: 4000});
+    })
+  }
+
+  onSearchClick(value: any) {
+    localStorage.setItem('searchkey', value);
+  }
+
+  onCrossClick() {
+    this.searchText = null;
+    localStorage.removeItem('searchkey');
   }
 
 }

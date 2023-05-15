@@ -38,6 +38,12 @@
         <div class="col-md-8 col-sm-12 verndor_shop_right_content">
             <p>{{vendorData?.shared_brd_story}}</p>
         </div>
+        <div class="alert alert-warning" role="alert" *ngIf="vendorData?.promotions?.length > 0">    
+            <ng-container *ngFor="let item of vendorData?.promotions; let i = index; let last = last;">
+                {{item }} {{!last ? ' | ' : ''}}
+            </ng-container>
+            <span>{{vendorData?.promotion_remaining_days}} days left</span>
+        </div> 
     </div>
 </div>
 <div class="container-fluid" *ngIf="products?.products.length > 0">
@@ -91,12 +97,13 @@
                             <div class="textDiv">
                                 <div class="topTextDiv">
                                     <h3>{{product.name}}</h3>
-                                    <h4 *ngIf="product?.usd_wholesale_price != '0'">{{product?.default_currency}} {{product?.usd_wholesale_price}}
+                                    <h4 *ngIf="product?.usd_retail_price != '0'">MSRP {{product?.default_currency}} {{product?.usd_retail_price}} | WS {{product?.default_currency}} {{product?.usd_wholesale_price}}
                                         <!-- <span>MSRP $34.90</span> -->
                                     </h4>
-                                    <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}} </h4>
+                                    <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}}</h4>
                                 </div> 
                                 <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                            </div> 
                         </div>
 
                         <div *ngIf="not_logged_in == false && (product?.stock != 'null' && product?.stock != '0' && product?.stock != 'undefined')" class="card" routerLink="/product/{{product.product_key}}" style="cursor: pointer;" >
@@ -104,18 +111,33 @@
                             <div class="textDiv">
                                 <div class="topTextDiv">
                                     <h3>{{product.name}}</h3>
-                                    <h4 *ngIf="product?.usd_wholesale_price != '0'">{{product?.default_currency}} {{product?.usd_wholesale_price}}
-                                    </h4>
+                                    <h4 *ngIf="product?.usd_retail_price != '0'">MSRP {{product?.default_currency}} {{product?.usd_retail_price}} | WS {{product?.default_currency}} {{product?.usd_wholesale_price}}</h4>
                                     <h4 *ngIf="product?.case_quantity != '0' && product?.case_quantity != 'undefined'">Case of {{product?.case_quantity}} </h4>
                                 </div> 
                                 <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
                             </div>
                         </div>
+    
+                        <div class="card" (click)="openUserLogInModal(userLogInContent)" style="cursor: pointer;" *ngIf="not_logged_in == true && product?.stock == 0" >
+                            <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
+                            <div class="white-overlay">Out of Stock</div>
+                            <div class="textDiv">
+                                <div class="topTextDiv">
+                                    <h3>{{product.name}}</h3>
+                                    <h4 class="price_tag" *ngIf="product.usd_retail_price != '0'">MSRP {{product?.default_currency}} {{product.usd_retail_price}}
+                                        <!-- <span>MSRP $34.90</span> -->
+                                    </h4>
+                                </div> 
+                                <h5 *ngIf="product.min_order_qty != 0 && product.min_order_qty != 'undefined' ">Min Qty {{product.min_order_qty}}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card" (click)="openUserLogInModal(userLogInContent)" style="cursor: pointer;" *ngIf="not_logged_in == true && product?.stock != 0" >
                             <div class="imgDiv"><img src="{{product.featured_image}}" alt="" onerror="this.src = 'assets/images/unnamed.png'"></div>
                             <div class="textDiv">
                                 <div class="topTextDiv">
                                     <h3>{{product.name}}</h3>
-                                    <h4 *ngIf="product.gbr_wholesale_price != '0'">{{product?.default_currency}} {{product.gbr_wholesale_price}}
+                                    <h4 class="price_tag" *ngIf="product.usd_retail_price != '0'">MSRP {{product?.default_currency}} {{product.usd_retail_price}}
                                         <!-- <span>MSRP $34.90</span> -->
                                     </h4>
                                 </div> 
@@ -186,8 +208,8 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h3>Shop wholesale, online</h3>
-        <p>Purchase from over 40.000 uniquue vendors. Sign up for free</p>
+        <h3>Take your business to the next level.</h3>
+        <p>Join our platform and start selling your products to a wider audience!</p> 
         <form [formGroup]="userRegForm" (ngSubmit)="submitUserEmail(userRegForm)" (keydown.enter)="submitUserEmail(userRegForm)">
             <ul class="formOne">
                 <li>

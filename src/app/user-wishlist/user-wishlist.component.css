@@ -1,16 +1,15 @@
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { line-height: 1.2; }
 /* Common Style End */
 
-.gray_body { background: #e5e5e5; min-height: 100%; }
+.gray_body { background: #e5e5e5; height: 100%; min-height: 100vh; }
 
-.profileDiv { padding-left:0; }
+.profileDiv { padding-left: 0; }
 
 /*-------------- Right-Section Starts ------------------ */
 .rightAccount { width:100%; float:left; }
 .heading { font: 500 28px 'Futura' !important; color: #000; margin: 50px 0 20px 0 }
+.rightAccount .nav-tabs .nav-link { background: #393939; color: #FFF; font: 200 24px 'Futura' !important; color: #FFF; border-radius: 8px 8px 0 0; border: none; padding: 12px 40px; }
 .rightAccount .nav-tabs .nav-item.show .nav-link, .rightAccount .nav-tabs .nav-link.active { background: #FFF; color: #000; border: none; }
-.rightAccount .nav-tabs .nav-link { background: #393939; color: #FFF; font: 200 24px 'Futura' !important; color: #FFF; border-radius: 8px 8px 0 0; border: none; padding: 12px 40px;
-}
 .rightAccount .tab-content { width: 100%; float: left; background: #FFF; padding: 25px 14px 100px; }
 .rightAccount h3 { font: 500 18px 'Futura' !important; color: #000; margin: 0 0 20px; }
 /*-------------- Right-Section Ends ------------------ */
@@ -19,7 +18,9 @@
 .wishProduct { width:100%; float:left; margin:0; padding:0; }
 .wishProduct .wishList { margin-bottom: 40px; }
 .wishProduct .wishList img { max-height: 250px; width: 100%; }
-.wishProduct .wish-list { line-height: 250px; text-align: center; }
+.wishProduct .wish-list { /*line-height: 250px;*/ /*text-align: center;*/ }
+.wishProduct .wish-list .board-img-sec { line-height: 246px; margin: 0; padding: 0; text-align: center; width: 100%; }
+.wishProduct .wish-list .board-img-sec img { }
 .wishProduct .wish-list img { max-width: 100%; width: auto; }
 .wishProduct .wishList h3 { font: 500 24px 'Futura' !important; color: #393939; margin: 0; padding: 25px 25px 10px; }
 .wishProduct .wishList p { font: 200 18px 'Futura' !important; color: #3939397d; margin: 0; padding: 0 25px 0; }
@@ -77,9 +78,18 @@ ul.paymentForm li input[ type="text" ] { width: 100%; height: 41px; border: #000
 .rightAccount .nav-tabs .nav-link { padding:12px 10px; font: 200 15px 'Futura' !important; }
 .rightAccount h3 { font: 500 17px 'Futura' !important; }
 }
- @media screen and (min-width: 300px) and (max-width: 767px) {
+@media screen and (max-width: 991px) { 
+.wishProduct .wishList { margin-bottom: 20px; }
+.wishProduct .wish-list .board-img-sec { line-height: 135px; }
+.wishProduct .wishList h3 { padding-left: 15px; padding-right: 15px; padding-top: 15px; }
+}
+@media screen and (min-width: 300px) and (max-width: 767px) {
 .profileDiv { padding-left: 12px; }
-.rightAccount .nav-tabs li { width: 100%; }
+.rightAccount .nav-tabs { background: #fff; border-bottom: none; }
+.rightAccount .nav-tabs li { margin-bottom: 10px; padding-left: 10px; padding-right: 10px; width: 100%; }
+.rightAccount .nav-tabs .nav-link { border-radius: 8px; text-align: center; }
 .rightAccount .tab-content { margin-bottom: 20px; }
+.wishProduct .wishList { margin-bottom: 30px; }
+.wishProduct .wish-list .board-img-sec { line-height: normal; }
 }
 /* Responsive End */

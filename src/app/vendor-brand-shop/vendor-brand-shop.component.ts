@@ -21,6 +21,7 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   signInModal!: NgbModalRef;
 
   user_id!: any;
+  ipAddress!: any;
   role!: any;
   brand_id!: any;
   sort_key: any = 1;
@@ -62,14 +63,14 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-
+    this.role = localStorage.getItem('local_data');
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
         if(user) {
           let user_session = JSON.parse(JSON.stringify(user));
           this.user_id = user_session.id;
-
+          // this.role = user_session.role;
         }
  
       },
@@ -87,6 +88,33 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
+  }
+
+  getIpAddress(brand_id: any) {
+    this.apiService.getIpAddress().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.ipAddress = response.IPv4;
+      this.shopVisit(brand_id, this.ipAddress)
+    },(error) => {
+        // this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
+    });
+  }
+
+  shopVisit(brand_id: any, ipAddress: any) {
+    let values = {
+      ip_address: ipAddress,
+      orders: 0,
+      brand_id: brand_id
+    }
+    this.apiService.shopVisit(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res === true) {
+      } else {
+        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
+      }
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
+    });
   }
 
   openUserLogInModal(content: any) {
@@ -142,31 +170,46 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   }
 
   sendSignInData(signInFrom: any) {
-
+    let values = {
+      email: signInFrom.value.email_address,
+      password: signInFrom.value.password
+    }
+    this.spinnerShow = true;
+    this.apiService.vendorSignIn(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if (response.res === false) {
         this.validateError = response.msg;
         this.spinnerShow = false;
       } else {
         if(this.currentUrl) {
-
+          this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
+          setTimeout(() => {
+            this.router.navigate([this.currentUrl]).then(() => {
+              this.onChildChange = true;
+              window.location.reload();
+            });
+          }, 500);
           this.signInModal.close();
           this.spinnerShow = false;
           this.storage
           .set('user_session', JSON.parse(JSON.stringify(response.data)))
           .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
         } else
         if(response.data.role === 'brand') {
             this.storage
           .set('user_session', JSON.parse(JSON.stringify(response.data)))
           .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
           if(response.data.step_count !== 12) {
             this.router.navigate(['vendorRegistration',response.data.step_count]);
             this.signInModal.close();
             this.spinnerShow = false;
           }
           else {
-            this.toast.success({detail:"SUCCESS",summary: "Login successful." ,duration: 4000});
+            this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
             if(response.data.vendor_data.first_visit == 0) {
               this.router.navigateByUrl('/account-settings');
               this.signInModal.close();
@@ -180,20 +223,27 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
           
           }
         } else if (response.data.role === 'retailer') {
+          this.storage
+          .set('user_session', JSON.parse(JSON.stringify(response.data)))
+          .subscribe(() => {});
+          localStorage.setItem('local_data', response.data.role);
+          localStorage.setItem('authorization_data', JSON.stringify(response.data.authorisation));
           this.router.navigateByUrl('/retailer-home');
           this.signInModal.close();
-          this.toast.success({detail:"SUCCESS",summary: "Login successful." ,duration: 4000});
+          this.toast.success({detail:"Login successful.",summary: "" ,duration: 4000});
         }
    
        
       }
     }, (error) => {
-      this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+      this.toast.error({detail:"Something went wrong. Please try again.",summary: "" ,duration: 4000});
     });
   }
 
   checkedLoggedUser() {
-
+    if(localStorage.getItem('local_data')) {
+      this.not_logged_in = false;
+    }
   }
 
   notLoggedIn() {
@@ -202,24 +252,47 @@ export class VendorBrandShopComponent implements OnInit, DoCheck {
   getVendorDetails(brand_id: any) {
     this.apiService.getBrandShopDetails(brand_id).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res === true) {
+        this.getIpAddress(response.data.id);
+        if(response.data.length == 0) {
+          // window.location.href = this.appComp.base_url;
+        }
+      } else {
+        this.toast.error({detail:response.msg,summary: "" ,duration: 4000});
+      }
+
+      this.vendorData = response.data;
+      this.titleService.setTitle(response.data.brand_name);
+    },(error) => {
+        this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
     });
   }
 
   getProducts(brand_id:any , sort_key: any) {
     this.appComponent.showSpinner = true;
-    this.apiService.fetchProductsByShop(brand_id , sort_key , '').subscribe((responseBody) => {
+    let values = {
+      brand_id: brand_id,
+      sort_key: sort_key,
+      sort_cat: ''
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.products = response.data;
       this.categories =  response.data.categories 
       this.appComponent.showSpinner = false;
     }, (error) => {
-      this.toast.error({detail:"ERROR",summary: "Something went wrong! please try again." ,duration: 4000});
+      this.toast.error({detail:"Something went wrong! please try again.",summary: "" ,duration: 4000});
     })
   }
 
   onCatClick(slug: any) {
     this.showLoader = true;
-    this.apiService.fetchProductsByShop(this.brand_id , this.sort_key , slug).subscribe((responseBody) => {
+    let values = {
+      brand_id: this.brand_id,
+      sort_key: this.sort_key,
+      sort_cat: slug
+    }
+    this.apiService.fetchProductsByShop(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.products = response.data;
       this.showLoader = false;
