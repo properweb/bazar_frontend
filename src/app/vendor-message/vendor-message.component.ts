@@ -15,6 +15,7 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
   @ViewChild('content') content!: ElementRef;
   mySubscription!: Subscription;
   chatbox:boolean = false;
+  chatboxRepeat:boolean = true;
   user_id!: any;
   user_role!: any;
   memberList!: any;
@@ -26,6 +27,7 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
   message!: any;
   activeChat!: any;
   searchText!: any;
+  messageOnSend: boolean = false;
 
   constructor(private apiService: ApiService, private storage: StorageMap, private activatedRoute: ActivatedRoute,private router: Router,private toast: NgToastService, private appComponent: AppComponent) { } 
 
@@ -47,11 +49,16 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
       if(this.chatbox) {
         this.allChat();
       }
+      if(this.chatboxRepeat) {
+        this.showMessageMembersRepeat();
+      }
     }, 5000);
+
   }
 
   ngOnDestroy(): void {
     this.chatbox = false;
+    this.chatboxRepeat = false;
   }
 
   scrollToBottom() {
@@ -75,6 +82,20 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
     },(error) => {
       this.toast.error({detail:'Something went wrong! please try again.',summary: '', duration: 4000});
       this.appComponent.showSpinner = false;
+    })
+  }
+
+  showMessageMembersRepeat() {
+    this.apiService.showMessageMembers().subscribe((responseBody) => {
+      let response =  JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.memberList = response.data;
+        this.sortedMemberList = response.data;
+      } else {
+        this.toast.success({detail: response.data,summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.toast.error({detail:'Something went wrong! please try again.',summary: '', duration: 4000});
     })
   }
 
@@ -108,7 +129,9 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.allChatDetails = response.data;
-        // this.scrollToBottom();
+        if (this.content.nativeElement.offsetHeight + this.content.nativeElement.scrollTop >= this.content.nativeElement.scrollHeight - 50) {
+          this.scrollToBottom();
+        }
       } else {
         this.toast.success({detail: response.data,summary: '', duration: 4000});
       }
@@ -119,26 +142,30 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
   }
 
   messageCreate(reciever_id: any) {
+    this.messageOnSend = true;
     let values = {
       message: this.message,
       sender_id: this.user_id,
       reciever_id: reciever_id
     }
-    this.apiService.messageCreate(values).subscribe((responseBody) => {
-      let response =  JSON.parse(JSON.stringify(responseBody));
-      if(response.res == true) {
-        // this.selectedChatDetails = response.data;
-        this.message = null;
-        this.allChat();
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 2000);
-      } else {
-        this.toast.success({detail: response.data,summary: '', duration: 4000});
-      }
-    },(error) => {
-      this.toast.error({detail:'Something went wrong! please try again.',summary: '', duration: 4000});
-    })
+      this.apiService.messageCreate(values).subscribe((responseBody) => {
+        let response =  JSON.parse(JSON.stringify(responseBody));
+        if(response.res == true) {
+          // this.selectedChatDetails = response.data;
+          this.messageOnSend = false;
+          this.message = null;
+          this.allChat();
+          setTimeout(() => {
+            this.scrollToBottom();
+          }, 2000);
+        } else {
+          this.messageOnSend = false;
+          this.toast.error({detail: response.data,summary: '', duration: 4000});
+        }
+      },(error) => {
+        this.messageOnSend = false;
+        this.toast.error({detail:'Something went wrong! please try again.',summary: '', duration: 4000});
+      })
   }
 
   showChatBoxFunction(item: any, index: any, user_id: any) {
@@ -172,13 +199,6 @@ export class VendorMessageComponent implements OnInit, OnDestroy {
       });
     };
     this.sortedMemberList = array;
-  }
-
-  onScroll(event: any) {
-    if (event.target.scrollTop === 0) {
-      // User has scrolled to the top
-      // Call your function here
-    }
   }
 
 }
