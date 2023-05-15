@@ -151,7 +151,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   onSendEmail() {
     let values = {
-      sendingTo: this.cust_name,
+      sendingTo: this.cust_email,
       emailSubject: this.emailSubject,
       emailCc: this.emailCc,
       emailBcc: this.emailBcc,

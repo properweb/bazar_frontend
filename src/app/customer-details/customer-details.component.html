@@ -1,7 +1,7 @@
 <app-vendor-dashboard-header></app-vendor-dashboard-header>
 <div class="dashboard_body">
     <app-vendor-side-menu></app-vendor-side-menu>
-    <div class="middle_vendor_dasboard">
+    <div class="middle_vendor_dasboard vendor-order-details">
         <div class="middle_content">
             <div class="headingBox">
                 <div class="whiteHeadingBox"> 
@@ -106,7 +106,7 @@
                         <h4>{{custDetail?.name && custDetail?.name}}</h4>
                         <p>{{custDetail?.email && custDetail?.email}}</p>
                         <button class="email_btn" (click)="openSendEmailModal(sendEmailModalContent)">Email {{custDetail?.name && custDetail?.name}}</button><br />
-                        <a class="create-invoice-link">Create invoice</a>
+                        <a class="create-invoice-link" routerLink="/brand-invoices/new" [queryParams]="{customer: customer_key}" >Create invoice</a>
                     </div>
 
                     <!-- Visible if customer On Bazar -->
@@ -195,7 +195,7 @@
             <ul class="row form-list">
                 <li class="col-md-12">
                     <label>Sending to</label>
-                    <input readonly type="text" class="form-control" name="cust_name" [(ngModel)]="cust_name" />
+                    <input readonly type="text" class="form-control" name="cust_email" [(ngModel)]="cust_email" />
                 </li>
                 <li class="col-md-12">
                     <label>Subject</label>
