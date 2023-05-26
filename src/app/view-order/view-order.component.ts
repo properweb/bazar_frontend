@@ -31,7 +31,7 @@ export class ViewOrderComponent implements OnInit {
   cancelOrderError!: any
   btnDis!: any;
   ord_no!: any;
-  cust_details!: any;
+  order_details!: any;
   allDetails!: any;
   countriesArray!: any;
   stateArray!: any;
@@ -47,6 +47,8 @@ export class ViewOrderComponent implements OnInit {
   splitOrderError!:any ;
   totalProQty!: any;
   minDate!: any;
+  confirmBtnDis!: any;
+  acceptBtnDis!: any;
 
   cancelReasonsArray = [
     {id: 1 , value: 'The retailer asked to cancel the order'},
@@ -112,8 +114,10 @@ export class ViewOrderComponent implements OnInit {
       this.cityArray = response.data;
     })
   }
-
+ 
   fetchOrderDetails(ord_no: any) {
+    this.brand_town = null;
+    this.brand_state = null;
     let values = {
       order_number: ord_no
     }
@@ -122,7 +126,7 @@ export class ViewOrderComponent implements OnInit {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.allDetails = response.data;
-        this.cust_details = response.data.order;
+        this.order_details = response.data.order;
         this.ordersArray = response.data.cart;
         let tQty = 0;
         response.data.cart.forEach((element: any) => {
@@ -130,44 +134,47 @@ export class ViewOrderComponent implements OnInit {
           tQty += Number(element.quantity);
         });
         this.totalProQty = tQty;
-        this.brand_name = response.data.order.brand_name;
-        this.brand_country = response.data.order.brand_country;
-        this.brand_town = response.data.order.brand_town;
-        this.brand_address1 = response.data.order.brand_address1;
-        this.brand_address2 = response.data.order.brand_address2;
-        this.brand_post_code = response.data.order.brand_post_code;
-        this.brand_phone = response.data.order.brand_phone;
-        this.product_deadline = this.formatter.parse(response.data.order.shipping_date);
-        this.ship_date = response.data.order.shipping_date;
-        this.apiService.getStates(response.data.order.brand_country).subscribe((responseBody1) => {
+        this.brand_name = response.data.ship_from.name;
+        this.brand_country = response.data.ship_from.country;
+        // this.brand_town = response.data.ship_from.brand_town;
+        this.brand_address1 = response.data.ship_from.address1;
+        this.brand_address2 = response.data.ship_from.address2;
+        this.brand_post_code = response.data.ship_from.post_code;
+        this.brand_phone = response.data.ship_from.phone;
+        this.product_deadline = this.formatter.parse(response.data.ship_from.shipping_date);
+        this.ship_date = response.data.ship_from.shipping_date;
+        this.apiService.getStates(response.data.ship_from.country).subscribe((responseBody1) => {
           let response1= JSON.parse(JSON.stringify(responseBody1));
           // if(response1.res == true) {
             this.stateArray = response1.data;
-            this.brand_state = response.data.order.brand_state;
+            this.brand_state = response.data.ship_from.state;
           // }
         })
-        this.apiService.getCities(response.data.order.brand_state).subscribe((responseBody2) => {
+        this.apiService.getCities(response.data.ship_from.state).subscribe((responseBody2) => {
           let response2= JSON.parse(JSON.stringify(responseBody2));
           if(response2.res == true) {
             this.cityArray = response2.data;
+            this.brand_town = response.data.ship_from.town;
           }
         })
         this.appComponent.showSpinner = false;
       } else {
+        this.appComponent.showSpinner = false;
+        this.toast.error({detail: response.msg,summary: "" ,duration: 4000});
       }
     },(error) => {
       this.appComponent.showSpinner = false;
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
     })
   }
 
   sendcheckOutForm(checkOutForm: any) {
-    
     this.btnDis = true;
     this.apiService.brandShipFrom(checkOutForm.value).subscribe((responseBody) => {
       let response =  JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.btnDis = false;
-        // this.fetchOrderDetails(this.ord_no);
+        this.fetchOrderDetails(this.ord_no);
         this.toast.success({detail: "Saved successfully",summary: "" ,duration: 4000});
       } else {
         this.btnDis = false;
@@ -175,7 +182,7 @@ export class ViewOrderComponent implements OnInit {
       }
     },(error) => {
       this.btnDis = false;
-      this.toast.error({detail:"ERROR",summary: "Something went wrong. Please try again!" ,duration: 4000});
+      this.toast.error({detail:"Something went wrong. Please try again!",summary: "" ,duration: 4000});
     })
 
   }
@@ -195,7 +202,7 @@ export class ViewOrderComponent implements OnInit {
       this.cancelOrderError = 'Please fill required field.';
     } else {
       let values = {
-        order_id: this.cust_details.id,
+        order_id: this.order_details.id,
         cancel_reason_title: this.radio_value,
         cancel_reason_desc: this.can_reason
       }
@@ -207,7 +214,7 @@ export class ViewOrderComponent implements OnInit {
           this.btnDis = false;
           this.cancelOrderModal.close();
           this.cancelOrderError = '';
-          this.cust_details.status = 'cancelled';
+          this.order_details.status = 'cancelled';
           // this.fetchOrderDetails(this.ord_no);
           this.toast.success({detail:'Order cancelled successfully.',summary: '', duration: 4000});
         }
@@ -226,7 +233,7 @@ export class ViewOrderComponent implements OnInit {
     let finalDate = year + "-" + month + "-" + day;
     this.ship_date = finalDate;
     let checkedItems: any = [];
-    checkedItems.push(this.cust_details.id);
+    checkedItems.push(this.order_details.id);
     let values = {
       items: checkedItems,
       ship_date: finalDate
@@ -238,7 +245,7 @@ export class ViewOrderComponent implements OnInit {
           var options: any = { year: 'numeric', month: 'long', day: 'numeric' };
           var created_date  = new Date(finalDate);
           var date_month_format = created_date.toLocaleDateString("en-US", options); // Saturday, September 17, 2016
-          this.cust_details.display_shipping_date = date_month_format;
+          this.order_details.display_shipping_date = date_month_format;
         }
       })
   }
@@ -273,7 +280,7 @@ export class ViewOrderComponent implements OnInit {
       }
     });
     let values = {
-      order_id: this.cust_details.id,
+      order_id: this.order_details.id,
       items: exactArray,
     }
     let prevOrdQty = 0;
@@ -311,5 +318,50 @@ export class ViewOrderComponent implements OnInit {
     
   }
 
+  confirmOrder() {
+    this.confirmBtnDis = true;
+    if(this.order_details?.brand_country == '' || this.order_details?.brand_country == null) {
+      this.toast.warning({detail:"Please confirm ship from address.", summary: "" ,duration: 4000});
+    } else {
+      let values = {
+        ord_no: this.ord_no
+      }
+      this.apiService.processOrder(values).subscribe((responseBody) => {
+        let response = JSON.parse(JSON.stringify(responseBody));
+        if(response.res == true) {
+          this.fetchOrderDetails(this.ord_no);
+          this.confirmBtnDis = false;
+          this.toast.success({detail: response.msg, summary: '', duration: 4000});
+        } else {
+          this.confirmBtnDis = false;
+          this.toast.error({detail: response.msg, summary: '', duration: 4000});
+        }
+      },(error) => {
+        this.confirmBtnDis = false;
+        this.toast.error({detail:'Something went wrong! please try again.', summary: '', duration: 4000});
+      })
+    }
+  }
+
+  onReturnAccept() {
+    this.acceptBtnDis = true;
+    let values = {
+      ord_no: this.ord_no
+    }
+    this.apiService.acceptReturn(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.fetchOrderDetails(this.ord_no);
+        this.acceptBtnDis = false;
+        this.toast.success({detail: response.msg, summary: '', duration: 4000});
+      } else {
+        this.acceptBtnDis = false;
+        this.toast.error({detail: response.msg, summary: '', duration: 4000});
+      }
+    },(error) => {
+      this.acceptBtnDis = false;
+      this.toast.error({detail:'Something went wrong! please try again.', summary: '', duration: 4000});
+    })
+  }
     
 }

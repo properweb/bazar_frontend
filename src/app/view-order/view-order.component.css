@@ -1,4 +1,4 @@
-.validate_errors {color: #f00; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
+.validate_errors { color: #f00; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; }
 
 .middle_vendor_dasboard .middle_content .lookingGuidelinesPara { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; }
 .middle_vendor_dasboard .middle_content .lookingGuidelinesPara a { color: #000; text-decoration: underline; }
@@ -46,7 +46,7 @@
 .middle_vendor_dasboard .middle_content .right-view-order-white .edit-order-list { float: right; list-style: none; margin: 0; width: auto; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .edit-order-list li { float: left; margin: 0 0 0 15px; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .edit-order-list li a { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; text-decoration: underline; }
-.middle_vendor_dasboard .middle_content .right-view-order-white .total-table { margin-bottom: 10px; width: 60%; }
+.middle_vendor_dasboard .middle_content .right-view-order-white .total-table { margin-bottom: 10px; width: 100%; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .total-table th { background: none; border: none; border-bottom: none; box-shadow: none; color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; padding: 3px 0 3px 0; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .total-table th:nth-child(1) { text-align: left; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .total-table tbody { border-top: none; }
@@ -72,6 +72,7 @@
 .middle_vendor_dasboard .middle_content .right-view-order-white .table-box .table td h4 { color: #000; font-family: 'Futura' !important; font-size: 17px; font-weight: 500; margin: 0 0 8px 0; padding: 0; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .table-box .table td p { color: #000; font-family: 'Futura' !important; font-size: 15px; font-weight: 200; margin: 0; padding: 0; }
 .middle_vendor_dasboard .middle_content .right-view-order-white .table-box .table td p a { color: #000; text-decoration: underline; }
+.edit-order-dashboard_body .middle_vendor_dasboard .middle_content .edit-order-confirm-order-btn { background: #393939; border: none; border-radius: 3px; color: #fff; cursor: pointer; display: inline-block; float: right; font: 200 18px 'Futura' !important; margin: 0 0 25px 0; padding: 10px 25px 10px 25px; }
 
 
 

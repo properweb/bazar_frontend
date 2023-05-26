@@ -13,9 +13,16 @@
                             <!-- <h4>Pending Order From {{allDetails?.brand}}</h4> -->
                             <!-- <p>Once you confirm this order, {{allDetails?.brand}} will be able to fulfill it.</p> -->
                         </div>
-                        <!-- <div class="col-md-3 right-order-top">
+                        <div class="col-md-3 right-order-top" *ngIf="!paymentMethodSelected">
                             <a class="btn btn-primary">Confirm Order</a>
-                            <span class="alart-text">Add a <a>payment method</a> to confirm your order</span>
+                            <span class="alart-text">Add a <a (click)="openUserPaymentModal(paymentMethodContent)">payment method</a> to confirm your order</span>
+                        </div>
+                        <div class="col-md-3 right-order-top" *ngIf="paymentMethodSelected">
+                            <a class="btn btn-primary" (click)="confirmOrder();">Confirm Order</a> 
+                        </div>
+
+                        <!-- <div class="col-md-3 right-order-top" *ngIf="order_details?.shipping_id == null && order_details?.payment_method == null ">
+                            <a class="btn btn-primary" (click)="declineOrder();">Decline Order</a>
                         </div> -->
                     </div>
                     <ul class="order-item-list">
@@ -33,11 +40,24 @@
                                     </li>
                                     <li>
                                         <label>Ship To</label>
-                                        <h5>{{order_details?.address_str}}</h5>
+                                        <h5>{{order_details?.address_str != ',,, ' ? order_details?.address_str : '-'}}</h5>
                                     </li>
                                     <li>
                                         <label>Total</label>
                                         <h5>${{allDetails?.total_price}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Payment method</label>
+                                        <h5>{{payment_method ? payment_method : '-'}}</h5>
+                                    </li>
+                                    <li class="last-list" *ngIf="order_details?.status != 'cancelled'">
+                                        <ul class="sub-list">
+                                            <li *ngIf="allDetails?.review?.length == 0 && order_details?.status == 'fulfilled'"><a class="common-order-link" (click)="openwriteReviewModal(writeReviewContent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Write a Review</a></li>
+                                            <li *ngIf="order_details?.status == 'fulfilled' && allDetails?.returns?.length == 0"><a class="common-order-link" (click)="openReturnItemModal(returnItemContent)">Return Item</a></li>
+                                            <li *ngIf="isShipped == 0 && order_details?.status == 'unfulfilled' || order_details?.status == 'new'"><a class="common-order-link" (click)="openCustDetAlertModal(cancelOrderAlertContent)">Cancel order </a></li>
+                                            <li *ngIf="isShipped == 1 && order_details?.status == 'unfulfilled'"><a class="common-order-link" (click)="onSubmitReceived()">Received order </a></li>
+                                            <!-- <li><a class="common-order-link">Report Damaged / Missing Item </a></li> -->
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
@@ -72,8 +92,345 @@
                             </div>
                         </li>
                     </ul>
+
+                    <ul class="order-item-list">
+                        <li *ngFor="let item of allDetails?.returns">
+                            <div class="order-top-details">
+                                <ul>
+                                    <li>
+                                        <label>Returns</label>
+                                    </li>
+                                    <li>
+                                        <label>Created date</label>
+                                        <h5>{{item?.created_at}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Shipping date</label>
+                                        <h5>{{item?.shipping_date}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Feedback</label>
+                                        <h5>{{item?.feedback}}</h5>
+                                    </li>
+                                    <li>
+                                        <label>Status</label>
+                                        <h5>{{item?.status == '0' ? 'Pending request' : item?.status == '1' ? 'Accepted' : ''}}</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="order-bottom-details">
+                                <table class="table">
+                                    <tr *ngFor="let childItem of item?.items">
+                                        <td><img src="{{childItem?.product_image}}" alt="" /></td>
+                                        <td>
+                                            <h4>{{childItem?.product_name}}</h4>
+                                            <h5>{{childItem?.style_group_name}}</h5>
+                                            <ul>
+                                                <li>
+                                                    <label>Items</label>
+                                                    <h6>{{childItem?.quantity}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Price</label>
+                                                    <h6>${{childItem?.price}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Total Price</label>
+                                                    <h6>${{childItem?.sub_total}}</h6>
+                                                </li>
+                                                <li>
+                                                    <label>Reason</label>
+                                                    <h6>{{childItem?.reason}}</h6>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="order-top-details">
+                                <ul>
+                                    <li *ngFor="let childPolItem of item?.policies; let i = index;">
+                                        <h5>{{i+1 +')'}} {{childPolItem}}</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="reviews-white-sec" *ngIf="allDetails?.review?.length > 0">
+                        <h3>Your Review</h3>
+                        <ul class="give-reviews-list">
+                            <li>
+                                <ngb-rating [max]="5" [(rate)]="allDetails?.review[0].rate" class="star-rating" [readonly]="true"></ngb-rating>
+                            </li>
+                            <li><textarea class="form-control" rows="3" placeholder="Write you review" [value]="allDetails?.review[0].review" readonly></textarea></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Cancel-Order-Modal -->
+<ng-template #cancelOrderContent let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h3>Cancel order #{{ord_no}}</h3>
+        <h4>Tell Bazar why you're canceling:</h4>
+        <ul class="formOne">
+        <li *ngFor="let item of cancelReasonsArray">
+            <span class="radioLabel">{{item.value}}
+            <input type="radio" [value]="item.value" name="radio_value" [(ngModel)]="radio_value" />
+            <span class="checkmark"></span>
+            </span>
+        </li>
+        <li>
+            <label class="form-label">Tell the retailer why you're cancelling (required):</label>
+            <textarea class="form-control form-textarea" rows="3" name="can_reason" [(ngModel)]="can_reason" ></textarea>
+            <span *ngIf="cancelOrderError" class="validate_errors">{{cancelOrderError}}</span>
+        </li>
+        <li>
+            <button *ngIf="!btnDis" type="submit" class="btn btn-primary continue_btn fullBtn" (click)="cancelOrder()">Cancel Order</button>
+            <button *ngIf="btnDis" type="submit" class="btn btn-primary continue_btn fullBtn" disabled>Cancel Order</button>
+        </li>
+        </ul>
+    </div>
+</ng-template>
+
+<!-- Cancel-Order-Alert-Modal -->
+<ng-template #cancelOrderAlertContent let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to cancel this order?</p>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!btnDis" type="button" (click)="cancelOrderReq();" class="btn btn-primary common_btn" >Confirm</button>
+        <button *ngIf="btnDis" type="button" disabled class="btn btn-primary common_btn" >Please wait...</button>
+        <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+      </div>
+</ng-template>
+
+<!-- Return-Item-Modal -->
+<ng-template #returnItemContent let-modal>
+    <div class="modal-header">
+      <h4>Return Items</h4>
+      <p>Specify the quantity of each item you're returning</p>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="return-white-section">
+            <table class="table">
+                <tr *ngFor="let item of ordersArray; let i = index;">
+                    <td><img [src]="item?.product_image" alt=""></td>
+                    <td>
+                        <h4>{{item?.product_name}}</h4>
+                        <h5 *ngIf="item?.style_group_name">{{item?.style_group_name}}</h5>
+                    </td>
+                    <td>
+                        <label>Quantity Returning: </label> 
+                        <ul class="quantity-list">
+                            <li>
+                                <input type="number" name="" [value]="item?.returned_qty" placeholder="0" class="form-control" (change)="onQtyChange($event, i, item);" />
+                                <span class="total-quantity-span">/ {{item?.quantity}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <span class="validate_errors" *ngIf="exceededQtyError">{{exceededQtyError}}</span>
+      <!-- <span class="total-price-span">25 Items ($487.71) will be returned</span> -->
+      <a class="btn btn-primary btn-cancel" (click)="onReturnCancel();" >Cancel</a>
+      <button type="button" class="btn btn-primary common_btn" (click)="onSaveReturnItems(reasonsReturnItemsContent);">Continue</button>
+    </div>
+</ng-template>
+
+<!-- Reasons-Return-Items-Modal -->
+<ng-template #reasonsReturnItemsContent let-modal>
+    <div class="modal-header">
+      <h4>Reasons for your return</h4>
+      <p>What went wrong with these items?</p>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="return-white-section">
+            <table class="table">
+                <tr *ngFor="let item of returnedOrdersArray; let i = index;">
+                    <td><img [src]="item?.product_image" alt=""></td>
+                    <td>
+                        <h4>{{item?.product_name}}</h4>
+                        <h5 *ngIf="item?.style_group_name">{{item?.style_group_name}}</h5>
+                    </td>
+                    <td>
+                        <ul class="quantity-list">
+                            <li>
+                                <select class="form-select" aria-label="Default select example" [value]="item?.returned_reason" (change)="onReasonChange($event, i, item)" >
+                                    <option selected value="null">Select reason</option>
+                                    <option *ngFor="let item of returnReasonsArray;" [value]="item.id">{{item.title}}</option>
+                                    <!-- <option value="damaged">Damaged</option> -->
+                                    
+                                </select>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <ul class="feedback-list">
+                <li>
+                    <label>Submit feedback</label>
+                    <span class="sub-label">Let know why you're returning these items</span>
+                    <textarea class="form-control textAreaForm" rows="3" name="" placeholder="Enter your feedback here..." maxlength="500" name="feedback" [(ngModel)]="feedback"></textarea>
+                    <span class="count-span">{{feedback?.length ? feedback?.length : 0}}/500</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a class="back-btn" (click)="backReturnItemModal(returnItemContent)">Back</a>  
+      <span class="validate_errors" *ngIf="reasonBlankError">{{reasonBlankError}}</span>
+      <a class="btn btn-primary btn-cancel" (click)="onReturnCancel();">Cancel</a>
+      <button type="button" class="btn btn-primary common_btn" (click)="onSaveReturnReasons(shippingMethodContent)">Continue</button>
+    </div>
+</ng-template>
+
+<!-- Shipping-Method-Modal -->
+<ng-template #shippingMethodContent let-modal>
+    <div class="modal-header">
+      <h4>Shipping method</h4>
+      <p>How would you like to return the items to Bazar?</p>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ul class="row formDiv">
+            <li class="col-lg-12"><span class="radioLabel">Drop off at depot<br>
+              <span class="textSpan">Deliver the items at any Fedex depot no later than {{currentdate}}</span>
+              <input type="radio" checked="checked" name="schedule" (click)="shippingMethod = 0; checkboxShipValue = null;">
+              <span class="checkmark"></span> </span> </li>
+            <li class="col-lg-12"><span class="radioLabel">Schedule pickup<br>
+              <span class="textSpan">Fedex will collect the items from your store between 10:00 AM - 6:00 PM on the selected date</span>
+              <input type="radio" name="schedule"  (click)="shippingMethod = 1;">
+              <span class="checkmark"></span> </span>
+              <ul class="time-tag" [style]="shippingMethod == 0 ? 'pointer-events: none; opacity: 0.6;' : ''">
+                <li *ngFor="let item of shippingMethodDateArray; let i = index;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="" [value]="item" [checked]="checkboxShipValue == item" (change)="changeSelection($event, i)">
+                        <span class="text-span">{{item}}</span>
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+              </ul> 
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+      <a class="back-btn" (click)="backReasonsReturnItemsModal(reasonsReturnItemsContent)">Back</a>  
+      <a class="btn btn-primary btn-cancel" (click)="onReturnCancel();">Cancel</a>
+      <button type="button" class="btn btn-primary common_btn" (click)="openSubmitReturnItemsModal(submitReturnItemsContent)">Continue</button>
+    </div>
+</ng-template>
+
+<!-- Submit-Return-Items-Modal -->
+<ng-template #submitReturnItemsContent let-modal>
+    <div class="modal-header">
+      <h4>Submit return</h4>
+      <!-- <p>Returning 25 Items($487.71)</p> -->
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="return-white-section">
+            <table class="table">
+                <tr *ngFor="let item of returnedOrdersArray; let i = index;">
+                    <td><img [src]="item?.product_image" alt=""></td>
+                    <td>
+                        <h4>{{item?.product_name}}</h4>
+                        <h5 *ngIf="item?.style_group_name">{{item?.style_group_name}}</h5>
+                    </td>
+                </tr>
+            </table>
+            <ul class="feedback-list">
+                <li><h3>I acknowledge & agree to the following return policy</h3></li>
+                <li class="col-lg-12" *ngFor="let item of returnPolicyValuesArray;">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" [value]="item.id" (change)="onCheckboxChange($event);">
+                      <label class="form-check-label">{{item.title}}</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a class="back-btn" (click)="backShippingMethodModal(shippingMethodContent)">Back</a>  
+      <a class="btn btn-primary btn-cancel" (click)="onReturnCancel();">Cancel</a>
+      <button *ngIf="!btnDis" type="button" class="btn btn-primary common_btn" (click)="onSubmitReturn();">Submit</button>
+      <button *ngIf="btnDis" type="button" class="btn btn-primary common_btn" disabled>Please wait...</button>
+    </div>
+</ng-template>
+
+<!-- product-Rating-Modal -->
+<ng-template #writeReviewContent let-modal>
+    <div class="modal-header">
+      <h4>Write a Review</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="reviews-white-sec">
+            <h3>Your Reviews</h3>
+            <ul class="give-reviews-list">
+                <li>
+                    <ngb-rating [max]="5" [(rate)]="currentRate" class="star-rating"></ngb-rating>
+                </li>
+                <li><textarea class="form-control" rows="3" placeholder="Write you review" name="review_text" [(ngModel)]="review_text"></textarea></li>
+                <span class="validate_errors" *ngIf="reviewError">{{reviewError}}</span>
+                <!-- <li>
+                    <input *ngIf="!btnDis" type="submit" name="" value="Submit" class="btn btn-primary" (click)="submitReview()"/>
+                    <input *ngIf="btnDis" type="submit" name="" value="Please wait..." class="btn btn-primary" disabled/>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn" (click)="submitReview();">Submit</button>
+      <button *ngIf="btnDis" type="button" class="btn btn-primary common_btn" disabled>Please wait...</button>
+    </div>
+</ng-template>
+
+<!-- Payment-Method-Modal -->
+<ng-template #paymentMethodContent let-modal>
+    <div class="modal-header">
+      <h4>Select payment method</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ul class="payment-list">
+            <li (click)="payment_method = 'cod'">
+                <div class="form-check styles_form_check">
+                    <input [checked]="payment_method == 'cod'" name="method" value="cod" type="radio" class="form-check-input">
+                    <label class="form-check-label">Cash on delivery</label>
+                </div>
+            </li>
+            <li (click)="payment_method = 'n30'">
+                <div class="form-check styles_form_check">
+                    <input [checked]="payment_method == 'n30'" name="method" value="n30" type="radio" class="form-check-input">
+                    <label class="form-check-label">N 30</label>
+                </div>
+            </li>
+            <li (click)="payment_method = 'n15'">
+                <div class="form-check styles_form_check">
+                    <input [checked]="payment_method == 'n15'" name="method" value="n15" type="radio" class="form-check-input">
+                    <label class="form-check-label">N 15</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+      <span *ngIf="paymentError" class="validate_errors">{{paymentError}}</span>
+      <button *ngIf="!btnDis" type="submit" class="btn btn-primary common_btn" (click)="submitPayment();">Submit</button>
+      <button *ngIf="btnDis" type="button" class="btn btn-primary common_btn" disabled>Please wait...</button>
+    </div>
+</ng-template>

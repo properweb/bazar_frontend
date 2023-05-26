@@ -102,8 +102,8 @@ export class ApiService {
     return this.http.post(this._Base_URL+'wordpress', values, this.createAuthorizationHeader());
   }
 
-  importShopify(user_id:any , api_key:any, api_password:any , store_url:any) {
-    return this.http.get(this._Base_URL+'shopify/'+'importshopify?user_id='+user_id+'&api_key='+api_key+'&api_password='+api_password+'&store_url='+store_url+'.myshopify.com', this.createAuthorizationHeader());
+  importShopify(values:any) {
+    return this.http.post(this._Base_URL+'shopify/import-shopify', values, this.createAuthorizationHeader());
   }
 
   deleteProduct(values:any){
@@ -186,8 +186,12 @@ export class ApiService {
     return this.http.get(this._Base_URL+'product/convert-price/'+price, this.createAuthorizationHeader());
   }
 
-  syncToShopify(id: any, user_id: any, website: any) {
-    return this.http.get(this._Base_URL+'shopify/'+'synctoshopify?product_id='+id+'&user_id='+user_id+'&website='+website, this.createAuthorizationHeader());
+  // syncToShopify(id: any, user_id: any, website: any) {
+  //   return this.http.get(this._Base_URL+'shopify/'+'synctoshopify?product_id='+id+'&user_id='+user_id+'&website='+website, this.createAuthorizationHeader());
+  // }
+
+  syncToShopify(values: any) {
+    return this.http.post(this._Base_URL+'shopify/sync-shopify', values, this.createAuthorizationHeader());
   }
 
   syncToWordpress(values: any) { 
@@ -219,7 +223,7 @@ export class ApiService {
   }
 
   brandShipFrom(values:any) {
-    return this.http.post(this._Base_URL+'orders/accept' , values, this.createAuthorizationHeader());
+    return this.http.post(this._Base_URL+'orders/ship-from' , values, this.createAuthorizationHeader());
   }
 
   orderMultiple(values:any) {
@@ -272,6 +276,10 @@ export class ApiService {
 
   retailerOrders(id:any, page: any, status: any) {
     return this.http.get(this._Base_URL+'orders?page='+page+'&status='+status, this.createAuthorizationHeader());
+  }
+
+  retailerInvoices() {
+    return this.http.post(this._Base_URL+'invoices/all-invoice','', this.createAuthorizationHeader());
   }
 
   fetchWishlist() {
@@ -343,7 +351,11 @@ export class ApiService {
   }
 
   updateCampaigns(values: any) {
-    return this.http.post(this._Base_URL+'campaigns/update',values, this.createAuthorizationHeader());
+    return this.http.put(this._Base_URL+'campaigns/update',values, this.createAuthorizationHeader());
+  }
+
+  renameCampaigns(values: any) {
+    return this.http.put(this._Base_URL+'campaigns/rename',values, this.createAuthorizationHeader());
   }
 
   deleteCampaigns(key: any) {
@@ -355,7 +367,7 @@ export class ApiService {
   }
 
   fetchPromotions(user_id: any) {
-    return this.http.get(this._Base_URL+'promotions?user_id='+user_id, this.createAuthorizationHeader());
+    return this.http.get(this._Base_URL+'promotions', this.createAuthorizationHeader());
   }
   
   promotionDetail(key: any) {
@@ -367,7 +379,7 @@ export class ApiService {
   }
   
   deletePromotions(values: any) {
-    return this.http.post(this._Base_URL+'promotions/delete',values, this.createAuthorizationHeader());
+    return this.http.delete(this._Base_URL+'promotions/delete/'+values.promotion_key, this.createAuthorizationHeader());
   }
   
   updateCustomer(values: any) {
@@ -498,8 +510,8 @@ export class ApiService {
     return this.http.post(this._Base_URL+'analytic/order-cancel','', this.createAuthorizationHeader());
   }
   
-  vendorSellTopSelling() {
-    return this.http.post(this._Base_URL+'analytic/top-selling','', this.createAuthorizationHeader());
+  vendorSellTopSelling(values: any) {
+    return this.http.post(this._Base_URL+'analytic/top-selling', values, this.createAuthorizationHeader());
   }
 
   vendorTotalSales(values: any) {
@@ -550,6 +562,10 @@ export class ApiService {
     return this.http.post(this._Base_URL+'orders/return-order', values,this.createAuthorizationHeader());
   }
 
+  receiveOrder(values: any) {
+    return this.http.post(this._Base_URL+'orders/order-fulfilled', values,this.createAuthorizationHeader());
+  }
+
   cancelOrderRequest(values: any) {
     return this.http.post(this._Base_URL+'orders/cancel-request', values,this.createAuthorizationHeader());
   }
@@ -572,6 +588,42 @@ export class ApiService {
 
   allChat(values: any) {
     return this.http.post(this._Base_URL+'message/all-chat', values, this.createAuthorizationHeader());
+  }
+
+  fetchReatilersDetails(key: any) {
+    return this.http.get(this._Base_URL+'brands/retailer/'+key, this.createAuthorizationHeader());
+  }
+  
+  searchApi(value: any) {
+    return this.http.get(this._Base_URL+'shop/search?search='+value, this.createAuthorizationHeader());
+  }
+  
+  searchResultProductApi(value: any) {
+    return this.http.get(this._Base_URL+'shop/search-result?search='+value, this.createAuthorizationHeader());
+  }
+
+  confirmOrder(values: any) {
+    return this.http.post(this._Base_URL+'orders/add-payment', values, this.createAuthorizationHeader());
+  }
+
+  declineOrder(values: any) {
+    return this.http.post(this._Base_URL+'orders/decline-order', values, this.createAuthorizationHeader());
+  }
+
+  processOrder(values: any) {
+    return this.http.post(this._Base_URL+'orders/process-order', values, this.createAuthorizationHeader());
+  }
+
+  acceptReturn(values: any) {
+    return this.http.post(this._Base_URL+'orders/process-return', values, this.createAuthorizationHeader());
+  }
+
+  fetchWidgets() {
+    return this.http.get(this._Base_URL+'brands/direct/widgets', this.createAuthorizationHeader());
+  }
+
+  getOneWidgets(key: any) {
+    return this.http.get(this._Base_URL+'brands/direct/widgets/'+ key, this.createAuthorizationHeader());
   }
 
   logout() {
