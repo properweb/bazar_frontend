@@ -31,6 +31,7 @@ export class VendorProductComponent implements OnInit {
   currentPage: any = 1;
   proStatus: any = 'all';
   paginateItems:any = [];
+  actionInfoList!: any;
   
   constructor(public modalService: NgbModal, private storage: StorageMap , private apiService : ApiService , private router: Router, private appComponent: AppComponent, private toast: NgToastService) { }
 
@@ -45,8 +46,9 @@ export class VendorProductComponent implements OnInit {
         let user_session = JSON.parse(JSON.stringify(user));
         this.user_id = user_session.id;
         this.first_name = user_session.vendor_data.first_name;
-        this.getProducts(this.user_id, this.sort_key, 1, 'all', this.searchText);
-      
+        this.getProducts(this.sort_key, 1, 'all', this.searchText);
+        this.fetchWordpressActionInfoList();
+        
       },
       error: (error) => {
         /* Called if data is invalid */
@@ -67,8 +69,15 @@ export class VendorProductComponent implements OnInit {
     this.deleteModal = this.modalService.open(content, { windowClass: 'deleteModal' });
   }
 
-  getProducts(user_id:any, sort_key: any, currPage: any, status: any, search_key: any) {
-    this.apiService.getSortProducts(user_id, sort_key, currPage, status, search_key).subscribe((responseBody) => {
+  fetchWordpressActionInfoList() {
+    this.apiService.wordpressActionInfo().subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      this.actionInfoList = response.data;
+    })
+  }
+
+  getProducts(sort_key: any, currPage: any, status: any, search_key: any) {
+    this.apiService.getSortProducts(sort_key, currPage, status, search_key).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.allDetails = response.data; 
         // if(response.data.products.length > 0) {
@@ -131,7 +140,7 @@ export class VendorProductComponent implements OnInit {
         this.productsArray = [];
         this.currentPage = 1; 
         this.searchText = '';
-        this.getProducts(this.user_id, this.sort_key, this.currentPage, this.proStatus, this.searchText);
+        this.getProducts(this.sort_key, this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
         this.checkedFirstItems = [];
         this.selectAll = false;
@@ -163,7 +172,7 @@ export class VendorProductComponent implements OnInit {
         this.productsArray = [];
         this.currentPage = 1; 
         this.searchText = '';
-        this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+        this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
         this.checkedItems = [];
         this.checkedFirstItems = [];
         this.selectAll = false;
@@ -192,7 +201,7 @@ export class VendorProductComponent implements OnInit {
       this.productsArray = [];
       this.currentPage = 1; 
       this.searchText = '';
-      this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+      this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
       this.checkedItems = [];
       this.checkedFirstItems = [];
       this.selectAll = false;
@@ -210,15 +219,24 @@ export class VendorProductComponent implements OnInit {
     this.productsArray = [];
     this.currentPage = 1; 
     this.sort_key = event.target.value;
-    this.getProducts(this.user_id, event.target.value,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(event.target.value,this.currentPage, this.proStatus, this.searchText);
   }
 
   syncShopify(id: any, website: any) {
     this.appComponent.showSpinner = true;
-    this.apiService.syncToShopify(id,this.user_id,website).subscribe((responseBody) => {
+    let values = {
+      product_id: id,
+      website: website
+    };
+    this.apiService.syncToShopify(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
-      this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
-      this.appComponent.showSpinner = false;
+      if(response.res == true) {
+        this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
+        this.appComponent.showSpinner = false;
+      } else {
+        this.toast.error({detail: response.msg, summary: "" ,duration: 4000});
+        this.appComponent.showSpinner = false;
+      }
     }, (error) => {
       this.toast.error({detail:"ERROR",summary: 'Something went wrong. please try again later!' ,duration: 4000});
       this.appComponent.showSpinner = false;
@@ -226,8 +244,12 @@ export class VendorProductComponent implements OnInit {
   }
 
   syncToWordpress(id: any, website: any) {
+    let values = {
+      website: website,
+      product_id: id
+    }
     this.appComponent.showSpinner = true;
-    this.apiService.syncToWordpress(id,this.user_id,website).subscribe((responseBody) => {
+    this.apiService.syncToWordpress(values).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       this.toast.success({detail: response.msg, summary: "" ,duration: 4000});
       this.appComponent.showSpinner = false;
@@ -239,7 +261,7 @@ export class VendorProductComponent implements OnInit {
 
   onScroll() {
     this.currentPage ++;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
   }
 
   tabAllClick() {
@@ -250,7 +272,7 @@ export class VendorProductComponent implements OnInit {
     this.currentPage = 1;
     this.proStatus = 'all';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
   }
 
   tabPublishClick() {
@@ -261,7 +283,7 @@ export class VendorProductComponent implements OnInit {
     this.currentPage = 1;
     this.proStatus = 'publish';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, 'publish', this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, 'publish', this.searchText);
   }
 
   tabUnPublishClick() {
@@ -272,14 +294,14 @@ export class VendorProductComponent implements OnInit {
     this.currentPage = 1;
     this.proStatus = 'unpublish';
     this.searchText = '';
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, 'unpublish', this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, 'unpublish', this.searchText);
   }
 
   onSearchPress(event: any) {
     localStorage.setItem('searchkey', event.target.value);
     this.productsArray = [];
     this.currentPage = 1;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
   }
 
   onSearchTextChange(event: any) {
@@ -287,21 +309,40 @@ export class VendorProductComponent implements OnInit {
       localStorage.removeItem('searchkey');
       this.productsArray = [];
       this.currentPage = 1;
-      this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+      this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
     }
   }
-  
 
   onResetClick() {
     this.searchText = '';
     this.productsArray = [];
     this.currentPage = 1;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus , this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus , this.searchText);
   }
 
   onPageChange(event: any) {
     this.currentPage = event;
-    this.getProducts(this.user_id, this.sort_key,this.currentPage, this.proStatus, this.searchText);
+    this.getProducts(this.sort_key,this.currentPage, this.proStatus, this.searchText);
+  }
+
+  wordpressSyncFromNotification(id: any) {
+    this.fetchWordpressActionInfoList();
+  }
+
+  notificationDelete(index: any, id: any) {
+    let values = {
+      id: id
+    };
+    this.apiService.wordpressDeleteNotification(values).subscribe((responseBody) => {
+      let response = JSON.parse(JSON.stringify(responseBody));
+      if(response.res == true) {
+        this.actionInfoList.splice(index, 1);
+      } else {
+        this.toast.error({detail: response.msg, summary: '' ,duration: 4000});
+      }
+    }, (error) => {
+      this.toast.error({detail:"Something went wrong. please try again later!",summary: '' ,duration: 4000});
+    })
   }
 
 }
