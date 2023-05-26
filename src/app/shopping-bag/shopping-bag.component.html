@@ -25,7 +25,10 @@
                                             <p class="PrdtName">{{item.product_name}}</p>
                                             <p class="PrdtMaterial" *ngIf="item?.style_name != null" >{{item.style_name}}</p>
                                             <p *ngIf="item?.style_group_name != null" >{{item.style_group_name}}</p>
-
+                                            <p *ngIf="item?.product_qty" >Quantity
+                                                <span class="qty-update"><input type="number" name="quantity" [value]="item?.product_qty" (change)="onQtyChange($event, item, i)" ></span>
+                                            </p>
+                                            <span *ngIf="qtyError" class="validate_errors">{{qtyError}}</span>
                                         </td>
                                         <td valign="bottom">
                                             <a class="RemovePrdt" (click)="deleteCart(item?.id)" ><img src="assets/images/CrossIcon.png" alt=""/></a>
@@ -33,7 +36,7 @@
                                         </td>
                                         </tr>
                                         <tr>
-                                        <td colspan="3" valign="middle"><a class="SaveForBtn">Save for later</a></td>
+                                        <!-- <td colspan="3" valign="middle"><a class="SaveForBtn">Save for later</a></td> -->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -53,7 +56,12 @@
                                         </tr>
                                         <tr>
                                             <td>Item total</td>
-                                            <td>${{totalPrice[i]['brand_total']}}</td>
+                                            <!-- <td>${{totalPrice[i]['brand_total']}}</td> -->
+                                            <td>${{cartDetailItem?.total_amount}}</td>
+                                        </tr>
+                                        <tr *ngIf="cartDetailItem?.discount_amount > 0">
+                                            <td>{{cartDetailItem?.discount_text}}</td>
+                                            <td>- ${{cartDetailItem?.discount_amount}}</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping</td>
@@ -65,10 +73,13 @@
                                         </tr>
                                         <tr class="subTotaltr">
                                             <td>Subtotal</td>
-                                            <td>${{totalPrice[i]['brand_total']}}</td>
+                                            <td>${{cartDetailItem?.discounted_amount}}</td>
                                         </tr>
                                         <tr>
-
+                                            <td colspan="2">
+                                                <a class="btn btn-primary" *ngIf="!btnDis" (click)="handleCheckOut(cartDetailItem?.brand_key, cartDetailItem?.discounted_amount, cartDetailItem?.brand_name, cartDetailItem?.brand_key, cartDetailItem?.brand_id)" >Checkout to this brand</a>
+                                                <a class="btn btn-primary disabled" *ngIf="btnDis" >Please wait...</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
