@@ -1,34 +1,7 @@
 @import url("fonts/fonts.css");
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-/* font-family: 'Futura' !important;
-   font-weight: 200;
-*/
 
-/* font-family: 'Futura' !important;
-   font-weight: 300;
-*/
-
-/* font-family: 'Futura' !important;
-   font-weight: 400;
-*/
-
-/* font-family: 'Futura' !important;
-   font-weight: 500; 
-*/
-
-/* font-family: 'Futura' !important;
-   font-weight: 700; 
-*/
-
-/* font-family: 'Futura' !important;
-   font-weight: 900; 
-*/
-
-/* 
-font-family: 'Inter', sans-serif;
-*/
-
-html, body { height: 100%; }
+html, body { /*height: 100%;*/ }
 body { margin: 0; font-family: 'Futura' !important; font-weight: 200; }
 a { text-decoration: none; }
 .h1, .h2, .h3, .h4, .h5, .h6 { font-family: 'Futura' !important; line-height: 1.2; }
@@ -46,6 +19,7 @@ input, button { font-family: 'Futura' !important; }
 .validate_errors { color: red; font-family: 'Futura' !important; margin-bottom: 10px; }
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
 input[type=number] { -moz-appearance: textfield; } 
+:focus-visible { outline: none; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Common Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
@@ -68,7 +42,33 @@ input[type=number] { -moz-appearance: textfield; }
 .pagination .next-item { margin-left: 15px; }
 .pagination .next-item .page-link { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; height: 64px; line-height: 62px; width: 64px; text-indent: -999em; width: 64px; }
 .pagination .next-item .page-link:hover { background-image: url(assets/images/pagi_next_white_icon.png); background-color: #000; cursor: pointer; }
+
+
+.ngx-pagination { text-align: center; }
+.ngx-pagination li { color: rgba(156, 156, 156, 0.5); font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 3px 0 3px; }
+.ngx-pagination li a { background: none; border: none; border-radius: 0px; color: rgba(156, 156, 156, 0.5) !important; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; height: 64px; line-height: 64px; padding: 0 10px 0 10px; text-align: center; }
+.ngx-pagination li a:hover { background: none !important; color: #000 !important; }
+.ngx-pagination .current { background: none !important; color: #000 !important; }
+.ngx-pagination .current:hover { background: none !important; color: #000 !important; }
+.ngx-pagination .pagination-previous::before { display: none !important; }
+.ngx-pagination .pagination-previous::after { display: none !important; }
+.ngx-pagination .pagination-previous span { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-previous a { background: url(assets/images/pagi_prev_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-previous a:hover { background: url(assets/images/pagi_prev_white_icon.png) no-repeat center !important; background-color: #000 !important; cursor: pointer; }
+.ngx-pagination .pagination-next::before { display: none !important; }
+.ngx-pagination .pagination-next::after { display: none !important; }
+.ngx-pagination .pagination-next span { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-next a { background: url(assets/images/pagi_next_gray_icon.png) no-repeat center; border: 1px solid #bcbcbc; border-radius: 100%; display: block; height: 64px; line-height: 62px; text-indent: -999em; width: 64px; }
+.ngx-pagination .pagination-next a:hover { background: url(assets/images/pagi_next_white_icon.png) no-repeat center !important; background-color: #000 !important; cursor: pointer; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pagination Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
+
+
+.gray-message-alert { float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; padding-right: 117px; width: 100%; }
+.gray-message-alert .cross-message-alert { cursor: pointer; position: absolute; right: 10px; top: 5px; }
+.gray-message-alert p { float: left; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; line-height: 20px; margin: 0 !important; }
+.gray-message-alert .cross-message-alert img { height: 12px; width: 12px; }
+.gray-message-alert .btn { background: #393939; border: 1px solid #393939; color: #fff; cursor: pointer; float: right; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 28px; margin-left: 10px; padding: 0 20px 0 20px; position: absolute; right: 31px; top: 12px; text-align: center; }
+.gray-message-alert .btn-close { display: none; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Tab Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/ 
 .comn_explore_cat .tab-pane .owl-carousel .owl-item .category_box { margin: 0; padding: 0 15px 0 0; width: 100%; }
@@ -92,15 +92,33 @@ input[type=number] { -moz-appearance: textfield; }
 .new_bazar_section .owl-theme .owl-nav { width: 100%; }
 .new_bazar_section .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
 .new_bazar_section .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
+.gray_clients__says .owl-carousel .owl-stage-outer { margin-right: 1px; }
+.gray_clients__says .owl-theme .owl-nav { width: 100%; }
+.gray_clients__says .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; width: 20px; }
+.gray_clients__says .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; width: 20px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Local Brands, Local Manufacturers, International Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.filter_sec .owl-theme .owl-stage-outer { height: 500px; overflow-x: hidden; overflow-y: clip; z-index: 2; }
+.filter_sec .filter_gray_box2 .custom-class { position: relative; top: -57px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-btn { background: none; border: none; border-radius: 5px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 57px; min-height: 57px; padding: 0 10px 0 10px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-down, .filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-up { height: 23px; line-height: 23px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-down c-icon, .filter_sec .filter_gray_box2 .custom-class .selected-list .c-angle-up c-icon { position: relative; top: -3px; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-list { display: none; }
+.filter_sec .filter_gray_box2 .custom-class .selected-list .c-btn .c-remove c-icon { position: relative; top: -3px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list { bottom: auto !important; left: 0 !important; padding-top: 0 !important; position: relative !important; top: 0 !important; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .arrow-up { display: none; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .list-area { border-bottom: none; border-radius: 5px 5px 0 0; box-shadow: none; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label { color: #000; font: 200 16px 'Futura' !important; line-height: 22px; height: 22px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label:before { border: 1px solid rgba(0,0,0,.25); border-radius: 0.25em; height: 20px; margin-top: -11px; width: 20px; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type="checkbox"]:checked + label:before { background-color: #000; border-color: #000; }
+.filter_sec .filter_gray_box2 .custom-class .dropdown-list .lazyContainer .pure-checkbox input[type=checkbox]+label:after { left: 6px; margin-top: -5px; }
 .category_top .owl-theme .owl-nav { margin-top: -39px; position: relative; width: 100%; z-index: 1; }
 .category_top .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow.svg) no-repeat center; bottom: -48px; float: left; height: 57px; left: -20px; position: absolute; width: 57px; }
 .category_top .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow.svg) no-repeat center; bottom: -48px; float: right; height: 57px; position: absolute; right: -20px; width: 57px; }
-.filter_sec  .owl-theme .owl-nav { margin-top: -50px; position: relative; width: 100%; z-index: 1; }
-.filter_sec  .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; margin-left: -29px; margin-top: 5px; width: 20px; }
-.filter_sec  .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; margin-right: -29px; margin-top: 5px; width: 20px; }
+.filter_sec .owl-theme .owl-nav { margin-top: -50px; position: absolute; top: 131px; width: 100%; z-index: 1; }
+.filter_sec .owl-theme .owl-nav .owl-prev { background: url(assets/images/product_category_left_arrow2.svg) no-repeat center; float: left; height: 20px; margin-left: -29px; margin-top: 5px; width: 20px; }
+.filter_sec .owl-theme .owl-nav .owl-next { background: url(assets/images/product_category_right_arrow2.svg) no-repeat center; float: right; height: 20px; margin-right: -29px; margin-top: 5px; width: 20px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Category Page Carousel End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Our Best Sellers Carousel in Category Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -153,15 +171,13 @@ input[type=number] { -moz-appearance: textfield; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Brand Shop Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.ngxImageZoomContainer { /*align-items: center; display: flex;*/ /*height: 570px !important;*/ /*justify-content: center;*/ }
-.ngxImageZoomThumbnail { /*align-items: center; display: flex;*/ /*height: auto;*/ width: 800px; /*justify-content: center;*/ }
+.ngxImageZoomThumbnail { width: 800px; }
 .thumbnails li .thumbDiv { height: 140px; width: 140px; }
 .ngx-gallery-image { background-size: contain !important; }
 .ngx-gallery-layout.thumbnails-bottom ngx-gallery-thumbnails { height: 80px !important; }
 .ngx-gallery-thumbnails  { height: 80px !important; }
 .ngx-gallery-thumbnail { background-size: contain !important; border: none !important; height: 80px !important; }
-.slick-slider { /*width: 500px;*/ }
-.client-feedback .slick-list { padding: 0 !important; /*width: 500px;*/ height: 570px; }
+.client-feedback .slick-list { padding: 0 !important; height: 570px; }
 .client-feedback .slick-track { height: 570px; }
 .slick-initialized .slick-slide { display: flex; justify-content: center; align-items: center; }
 .client-feedback .slick-slide img { height: auto; max-width: 100%; width: auto; }
@@ -169,15 +185,13 @@ input[type=number] { -moz-appearance: textfield; }
 .client-thumbnails .slick-list { padding: 0 !important; }
 .client-thumbnails .slick-slide { align-items: center; display: flex; height: 140px; justify-content: center;  }
 .client-thumbnails .slick-slide img { height: auto; max-height: 140px; max-width: 140px; width: auto; }
-/*.client-feedback .slick-slide { width: 100% !important; }*/
-.ngxImageZoomFull { /*top: 71px !important;*/ }
-.ngxImageZoomFullContainer { /*top: 0 !important;*/ /*margin-top: 40px;*/ }
 .client-feedback .slick-prev, .client-feedback .slick-next { height: 44px; top: 45%; width: 45px; z-index: 1; }
 .client-feedback .slick-prev { background: url(assets/images/carousel_prev_arrow.png) no-repeat center; left: 0; }
 .client-feedback .slick-prev:hover { background: url(assets/images/carousel_prev_arrow_active.png) no-repeat center; left: 0; }
 .client-feedback .slick-next { background: url(assets/images/carousel_next_arrow.png) no-repeat center; right: 0; }
 .client-feedback .slick-next:hover { background: url(assets/images/carousel_next_arrow_active.png) no-repeat center; right: 0; }
-.client-feedback .slick-prev:before, .client-feedback .slick-next:before { /*color: red;*/ display: none; }
+.client-feedback .slick-prev:before, .client-feedback .slick-next:before { display: none; }
+.productReviewsSec .reviewsList li .star-rating span { color: #000; font-size: 22px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Product Details Page End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Shopping Bag Page Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -206,13 +220,17 @@ input[type=number] { -moz-appearance: textfield; }
 
 /**************************************************************** User Pages Start *****************************************************************/
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ User-Product-Details-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.rightAccount .reviews-white-sec .give-reviews-list li .star-rating span { color: #000; font-size: 22px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ User-Product-Details-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /**************************************************************** User Pages End *****************************************************************/
 
 
 /**************************************************************** Vendor Pages Start *****************************************************************/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Dashboard-Common-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.dashboard_body { background: #e5e5e5; display: flex; flex: 1 1 0%; margin: 104px 0 0 0; min-height: 100%; overflow: clip; padding: 0 0 0 18%; position: relative; width: 100%; }
+.dashboard_body { background: #e5e5e5; display: flex; flex: 1 1 0%; /*margin: 104px 0 0 0;*/ margin: 0; min-height: 100vh; overflow: clip; /*padding: 0 0 0 18%;*/ padding: 104px 0 0 18%; position: relative; width: 100%; }
 .middle_vendor_dasboard { display: flex; flex-direction: column; flex: 1 1 0%; margin: 0; padding: 30px 30px 0 30px; position: relative; width: 82%; }
 .noMargin_middle_vendor_dasboard { padding-left: 0px; padding-right: 0px; }
 .middle_vendor_dasboard .middle_content { margin: 0; padding: 0; position: relative; width: 100%; }
@@ -318,7 +336,7 @@ input[type=number] { -moz-appearance: textfield; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Add-Product-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Edit-Order-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.edit-order-dashboard_body { margin-top: 0; padding-left: 0px; }
+.edit-order-dashboard_body { padding-left: 0px; padding-top: 0; }
 .edit-order-dashboard_body .middle_vendor_dasboard { padding-top: 0; padding-left: 0; padding-right: 0; width: 100%; }
 .edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper { padding-bottom: 0; width: 100%; }
 .edit-order-dashboard_body .middle_vendor_dasboard .middle_content .shopInfoList li .mat-form-field-wrapper .mat-form-field-underline { display: none; }
@@ -338,9 +356,6 @@ input[type=number] { -moz-appearance: textfield; }
 .customer-autosearch .suggestions-container ul li { border: 1px solid #000; border-bottom: none; border-top: none; }
 .customer-autosearch .suggestions-container ul li:last-child { border-bottom: 1px solid #000 !important; border-radius: 0 0 3px 3px !important; }
 .customer-autosearch .suggestions-container ul li a { color: #000 !important; font-family: 'Futura' !important; font-size: 16px !important; font-weight: 200; } 
-/*.search-autocomplete .mat-option { height: auto; line-height: normal; padding: 14px 15px 14px 15px; }
-.search-autocomplete .mat-option .mat-option-text { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }
-.search-autocomplete .mat-option .lightbox-link { color: #000; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; }*/
 .search-autocomplete2 { border: 1px solid #000; border-top: none; border-radius: 0 0 3px 3px; box-shadow: none !important; height: auto; line-height: normal; }
 .search-autocomplete2 .mat-active { height: auto; line-height: normal; padding: 0; }
 .search-autocomplete2 .mat-option-text { line-height: normal; }
@@ -360,7 +375,6 @@ input[type=number] { -moz-appearance: textfield; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Create-Invoice-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Campaigns-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.email-template .gjs-editor-cont { /*position: relative; z-index: 999;*/ }
 .email-template .gjs-one-bg { background-color: #fff; box-shadow: none; }
 .email-template .gjs-pn-panels .gjs-pn-panel:nth-child(1) { display: none; }
 .email-template .gjs-pn-panels .gjs-pn-panel:nth-child(2) { display: none; }
@@ -400,6 +414,10 @@ input[type=number] { -moz-appearance: textfield; }
 .email-template .gjs-mdl-dialog .gjs-mdl-header .gjs-mdl-btn-close { color: #000; opacity: 1; }
 .email-template .gjs-cv-canvas { left: 50%; margin-left: -400px; width: 600px; }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-New-Campaigns-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Performance-Reviews-Style Start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.middle_vendor_dasboard .middle_content .reviewsBox .reviewsList li .starRatingList li .star-rating span { color: #000; font-size: 22px; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Vendor-Performance-Reviews-Style End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /**************************************************************** Vendor Pages End *****************************************************************/
 
@@ -494,6 +512,173 @@ input[type=number] { -moz-appearance: textfield; }
 .deleteModal .modal-footer .btn:hover { background: #000; }
 .deleteModal .modal-footer .btn:focus { box-shadow: none; }
 /* User Sign Up Modal Style End */
+
+/* User Products Return Modal Start */
+.returnItemModal .modal-dialog { max-width: 700px; }
+.returnItemModal .modal-content { border: none; border-radius: 5px; }
+.returnItemModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.returnItemModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.returnItemModal .modal-content .modal-header p { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; text-align: center; }
+.returnItemModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.returnItemModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.returnItemModal .modal-content .modal-body { }
+.returnItemModal .modal-content .modal-body .table>:not(:first-child) { border-top: none; }
+.returnItemModal .modal-content .modal-body .table td { padding: 10px; }
+.returnItemModal .modal-content .modal-body .table td:nth-child(1) { padding-left: 0; width: 80px; }
+.returnItemModal .modal-content .modal-body .table td:nth-child(3) { text-align: right; }
+.returnItemModal .modal-content .modal-body .table td img { height: auto; max-width: 70px; width: auto; }
+.returnItemModal .modal-content .modal-body .table td h4 { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.returnItemModal .modal-content .modal-body .table td h5 { color: rgba(0,0,0,0.5); font-size: 14px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.returnItemModal .modal-content .modal-body .table td label { color: #000; display: inline-block; font-size: 15px; font-family: 'Futura' !important; font-weight: 200; line-height: 38px; margin-right: 10px; padding: 0; }
+.returnItemModal .modal-content .modal-body .table td .quantity-list { display: inline-block; list-style: none; margin: 0; padding: 0; width: auto; }
+.returnItemModal .modal-content .modal-body .table td .quantity-list li { border: 1px solid #000; border-radius: 3px; display: block; padding: 0 15px 0 15px; }
+.returnItemModal .modal-content .modal-body .table td .quantity-list li .total-quantity-span { color: #000; display: inline-block; font: 200 16px 'Futura' !important; line-height: 36px !important; padding: 0; } 
+.returnItemModal .modal-content .modal-body .table td .quantity-list li .form-control { border: none; border-radius: 0; color: #000; display: inline-block; font: 200 16px 'Futura' !important; height: 36px; line-height: 36px !important; margin: 0; padding: 0; position: relative; width: auto; }
+.returnItemModal .modal-content .modal-body .table td .quantity-list li .form-control:focus { box-shadow: none; }
+.returnItemModal .modal-content .modal-footer { border-top: none; }
+.returnItemModal .modal-content .modal-footer .total-price-span { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; }
+.returnItemModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.returnItemModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Products Return Modal End */
+
+/* User Products Reasons Return Modal Start */
+.reasonsReturnItemsModal .modal-dialog { max-width: 700px; }
+.reasonsReturnItemsModal .modal-content { border: none; border-radius: 5px; }
+.reasonsReturnItemsModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.reasonsReturnItemsModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.reasonsReturnItemsModal .modal-content .modal-header p { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; text-align: center; }
+.reasonsReturnItemsModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.reasonsReturnItemsModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.reasonsReturnItemsModal .modal-content .modal-body .table>:not(:first-child) { border-top: none; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td { padding: 10px; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td:nth-child(1) { padding-left: 0; width: 80px; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td:nth-child(3) { text-align: right; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td img { height: auto; max-width: 70px; width: auto; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td h4 { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td h5 { color: rgba(0,0,0,0.5); font-size: 14px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td label { color: #000; display: inline-block; font-size: 15px; font-family: 'Futura' !important; font-weight: 200; line-height: 38px; margin-right: 10px; padding: 0; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td .quantity-list { display: inline-block; list-style: none; margin: 0; padding: 0; width: auto; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td .quantity-list li { display: block; padding: 0; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td .quantity-list li .form-select { background:url(assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; font: 200 16px 'Futura' !important; height: 41px; margin: 0; min-width: 200px; padding: 0 15px; outline: none !important; -webkit-appearance: none; width: 100%; }
+.reasonsReturnItemsModal .modal-content .modal-body .table td .quantity-list li .form-select:focus { box-shadow: none; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list { border-top: 1px solid #eee; list-style: none; margin: 0; padding: 25px 0 0 0; width: 100%; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li { margin: 0; padding: 0; width: 100%; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li label { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li .sub-label { color: rgba(0,0,0,0.5); display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 0 30px 0; text-align: center; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li .count-span { color: rgba(0,0,0,0.5); display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; text-align: right; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; font: 200 16px 'Futura' !important; height: 120px; line-height: normal; margin: 0; padding: 15px 15px 15px 15px; width: 100%; }
+.reasonsReturnItemsModal .modal-content .modal-body .feedback-list li .form-control:focus { box-shadow: none; }
+.reasonsReturnItemsModal .modal-content .modal-footer { border-top: none; position: relative; }
+.reasonsReturnItemsModal .modal-content .modal-footer .back-btn { background: url(assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; left: 15px; line-height: 43px; padding: 0 0 0 20px; position: absolute; top: 14px; }
+.reasonsReturnItemsModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.reasonsReturnItemsModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Products Reasons Return Modal End */
+
+/* User Products Return Shipping Method Modal Start */
+.shippingMethodModal .modal-dialog { max-width: 600px; }
+.shippingMethodModal .modal-content { border: none; border-radius: 5px; }
+.shippingMethodModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.shippingMethodModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.shippingMethodModal .modal-content .modal-header p { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; text-align: center; }
+.shippingMethodModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.shippingMethodModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.shippingMethodModal .modal-content .modal-body { }
+.shippingMethodModal .modal-content .modal-body .formDiv { list-style: none; padding: 0; }
+.shippingMethodModal .modal-content .modal-body .formDiv li { color: #000; font: 200 16px 'Futura' !important; margin-bottom: 20px; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel { color: #000; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; position: relative; padding-left: 26px; line-height: normal; -webkit-user-select: none; user-select: none; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel .textSpan { color: rgba(0, 0, 0, 0.5); display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 5px 0 0 0; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; height: 20px; left: 0; position: absolute; top: 1px; width: 20px; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel:hover input ~ .checkmark { }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel input:checked ~ .checkmark { }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.shippingMethodModal .modal-content .modal-body .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag { float: left; list-style: none; margin: 15px 0 0 0; padding: 0 0 0 24px; width: 100%; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li { float: left; margin: 0 10px 10px 0; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label { background: none; cursor: pointer; display: block; margin: 0; padding: 0 15px 0 15px; position: relative; -webkit-user-select: none; user-select: none; width: 100%; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label .text-span { color: #000; display: block; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; line-height: 30px; margin: 0; position: relative; text-align: center; z-index: 1; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkmark { background: rgba(57,57,57,0.05); border: none; border-radius: 30px; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label:hover input ~ .checkmark { background-color: rgba(57,57,57,0.05); }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label input:checked ~ .checkmark { background-color: #393939; }
+.shippingMethodModal .modal-content .modal-body .formDiv .time-tag li .checkbox-label input:checked ~ .text-span { color: #fff; }
+.shippingMethodModal .modal-content .modal-footer { border-top: none; position: relative; }
+.shippingMethodModal .modal-content .modal-footer .back-btn { background: url(assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; left: 15px; line-height: 43px; padding: 0 0 0 20px; position: absolute; top: 14px; }
+.shippingMethodModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.shippingMethodModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Products Return Shipping Method Modal End */
+
+/* User Products Reasons Return Modal Start */
+.submitReturnItemsModal .modal-dialog { max-width: 700px; }
+.submitReturnItemsModal .modal-content { border: none; border-radius: 5px; }
+.submitReturnItemsModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.submitReturnItemsModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.submitReturnItemsModal .modal-content .modal-header p { color: rgba(0,0,0,0.5); font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0; text-align: center; }
+.submitReturnItemsModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.submitReturnItemsModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.submitReturnItemsModal .modal-content .modal-body { }
+.submitReturnItemsModal .modal-content .modal-body .table>:not(:first-child) { border-top: none; }
+.submitReturnItemsModal .modal-content .modal-body .table td { padding: 10px; }
+.submitReturnItemsModal .modal-content .modal-body .table td:nth-child(1) { padding-left: 0; width: 80px; }
+.submitReturnItemsModal .modal-content .modal-body .table td:nth-child(3) { text-align: right; }
+.submitReturnItemsModal .modal-content .modal-body .table td img { height: auto; max-width: 70px; width: auto; }
+.submitReturnItemsModal .modal-content .modal-body .table td h4 { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.submitReturnItemsModal .modal-content .modal-body .table td h5 { color: rgba(0,0,0,0.5); font-size: 14px; font-family: 'Futura' !important; font-weight: 200; line-height: normal; margin: 0; padding: 0; }
+.submitReturnItemsModal .modal-content .modal-body .table td label { color: #000; display: inline-block; font-size: 15px; font-family: 'Futura' !important; font-weight: 200; line-height: 38px; margin-right: 10px; padding: 0; }
+.submitReturnItemsModal .modal-content .modal-body .table td .quantity-list { display: inline-block; list-style: none; margin: 0; padding: 0; width: auto; }
+.submitReturnItemsModal .modal-content .modal-body .table td .quantity-list li { display: block; padding: 0; }
+.submitReturnItemsModal .modal-content .modal-body .table td .quantity-list li .form-select { background:url(assets/images/select-arrow.png) no-repeat right 15px center; border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; font: 200 16px 'Futura' !important; height: 41px; margin: 0; min-width: 200px; padding: 0 15px; outline: none !important; -webkit-appearance: none; width: 100%; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list { border-top: 1px solid #eee; list-style: none; margin: 0; padding: 25px 0 0 0; width: 100%; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li { margin: 0; padding: 0; width: 100%; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; margin: 0 0 20px 0; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li .form-check { margin: 0; padding: 0; width: 100%; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li .form-check label { color: #000; font: 200 15px 'Futura' !important; margin-bottom: 0; width: auto; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li input[type="checkbox"] { height: 15px; margin-right: 5px; position: relative; top: 4px; width: 15px; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li .form-check .form-check-input { border: 1px solid #000; height: 15px; margin-left: 0px; margin-right: 10px; margin-top: 4px; top: 0; width: 15px; }
+.submitReturnItemsModal .modal-content .modal-body .feedback-list li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.submitReturnItemsModal .modal-content .modal-footer { border-top: none; position: relative; }
+.submitReturnItemsModal .modal-content .modal-footer .back-btn { background: url(assets/images/left_arrow_icon.png) no-repeat 0 center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; left: 15px; line-height: 43px; padding: 0 0 0 20px; position: absolute; top: 14px; }
+.submitReturnItemsModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.submitReturnItemsModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Products Reasons Return Modal End */
+
+/* User Products Rating Modal Start */
+.writeReviewModal .modal-content { border: none; border-radius: 5px; }
+.writeReviewModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.writeReviewModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.writeReviewModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.writeReviewModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec { background: #fff; float: left; margin: 0; padding: 0; width: 100%; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec h3 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 500; margin: 0 0 15px 0; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list { float: left; list-style: none; padding: 0; width: 100%; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li { margin-bottom: 15px; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li:last-child { margin-bottom: 0; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li .star-rating span { color: #000; font-size: 22px; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li .form-control { border: 1px solid rgba(57, 57, 57, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 70px; line-height: normal; margin-bottom: 0px; margin-top: 0; padding: 10px 15px 10px 15px; } 
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li .form-control:focus { box-shadow: none; }
+.writeReviewModal .modal-content .modal-body .reviews-white-sec .give-reviews-list li .btn-primary { background: #393939; border: 1px solid #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; padding: 0 20px 0 20px; position: relative; text-align: center; transition: all .5s ease-in-out; width: 190px; }
+.writeReviewModal .modal-content .modal-footer { border-top: none; }
+.writeReviewModal .modal-content .modal-footer .total-price-span { color: #000; font-size: 18px; font-family: 'Futura' !important; font-weight: 200; }
+.writeReviewModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+.writeReviewModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Products Rating Modal End */
+
+/* User Payment Method Modal Start */
+.userPaymentModal .modal-content { border: none; border-radius: 5px; }
+.userPaymentModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.userPaymentModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.userPaymentModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.userPaymentModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.userPaymentModal .modal-body .payment-list { list-style: none; margin-top: 10px; padding: 0; }
+.userPaymentModal .modal-body .payment-list li { margin-bottom: 5px; }
+.userPaymentModal .modal-body .payment-list li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 17px; font-weight: 200; margin: 0; }
+.userPaymentModal .modal-body .payment-list li .form-check-input { cursor: pointer; margin-top: 5px; }
+.userPaymentModal .modal-body .payment-list li .form-check-input:checked { background: #000; border-color: #000; }
+.userPaymentModal .modal-body .payment-list li .form-check-input:focus { box-shadow: none; }
+.userPaymentModal .modal-content .modal-footer { border-top: none; }
+.userPaymentModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* User Payment Method Modal End */
 
 /* Vendor Upload Feature Image Modal Start */
 .featureImgModal .modal-dialog { max-width: 728px; }
@@ -765,6 +950,33 @@ input[type=number] { -moz-appearance: textfield; }
 .endPromotionModal .modal-content .modal-footer .no-customer-btn:focus { box-shadow: none; }
 /* Vendor Edit Promotion Modal End */
 
+/* Vendor Filter Modal Style Start */
+.filterModal .modal-header { padding: 15px 0 20px 0; position: relative; }
+.filterModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; margin: 0; text-align: center; width: 100%; }
+.filterModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.filterModal .modal-header .btn-close:focus { box-shadow: none; }
+.filterModal .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0 0 10px 0; }
+.filterModal .modal-body .radio-filter-list { border-bottom: 1px solid rgba(57, 57, 57, 0.15); float: left; list-style: none; margin: 0 0 25px 0; padding: 0 0 20px 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li { float: left; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li .radioLabel { cursor: pointer; float: left; height: 20px; margin: 0 10px 0 0; position: relative; padding: 0; -webkit-user-select: none; user-select: none; width: 20px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel input { cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark { background: none; border: 1px solid #393939; border-radius: 100%; float: left; height: 20px; left: 0; position: absolute; top: 1px; width: 20px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel:hover input ~ .checkmark { }
+.filterModal .modal-body .radio-filter-list li .radioLabel input:checked ~ .checkmark { }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark:after { background: #393939; border-radius: 100%; height: 14px; left: 2px; top: 2px; width: 14px; }
+.filterModal .modal-body .radio-filter-list li .radioLabel .checkmark:after { content: ""; display: none; position: absolute; }
+.filterModal .modal-body .radio-filter-list li .radioLabel input:checked ~ .checkmark:after { display: block; }
+.filterModal .modal-body .radio-filter-list li .label-span { color: #000; float: left; font: 200 16px 'Futura' !important; height: 20px; line-height: 20px; }
+.filterModal .modal-body .select-filter-list { border-bottom: 1px solid rgba(57, 57, 57, 0.15); float: left; list-style: none; margin: 0 0 25px 0; padding: 0 0 20px 0; width: 100%; }
+.filterModal .modal-body .select-filter-list li { float: left; margin: 0 0 10px 0; padding: 0; width: 100%; }
+.filterModal .modal-body .select-filter-list li .form-check-input { cursor: pointer; float: left; height: 20px; margin: 0 10px 0 0; width: 20px; }
+.filterModal .modal-body .select-filter-list li .form-check-input:checked { background-color: #000; border-color: #000; }
+.filterModal .modal-body .select-filter-list li .form-check-input:focus { box-shadow: none; }
+.filterModal .modal-body .select-filter-list li .label-span { color: #000; float: left; font: 200 16px 'Futura' !important; height: 20px; line-height: 20px; }
+.filterModal .modal-footer .clear-all-btn { background: #fff; border: 1px solid #393939; border-radius: 3px; color: #000; cursor: pointer; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 41px; padding: 0 30px 0 30px; text-align: center; }
+.filterModal .modal-footer .apply-btn { background: #393939; border: none; color: #fff; cursor: pointer; height: 43px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; padding: 0 30px 0 30px; text-align: center; }
+/* Vendor Filter Modal Style End */
+
 /* User Invoice Modal Start */
 .downloadInvoiceModal .modal-dialog { max-width: 632px; }
 .downloadInvoiceModal .modal-content { border: none; border-radius: 5px; }
@@ -842,12 +1054,11 @@ input[type=number] { -moz-appearance: textfield; }
 .newBoardProductModal .modal-content { border: none; border-radius: 5px; }
 .newBoardProductModal h3 { font: 200 32px 'Futura' !important; color: #000; margin: 50px 0 30px; }
 .newBoardProductModal .modal-content .backPrevModal { background: url(assets/images/left_arrow.svg) no-repeat center; color: rgba(0, 0, 0, 0.5); cursor: pointer; display: inline-block; height: 20px; left: 20px; padding: 0 0 0 20px; position: absolute; top: 62px; }
-.newBoardProductModal .imgHolderder { text-align: center; margin: 0px 0 0 0; }
+.newBoardProductModal .imgHolderder { text-align: center; margin: 0; }
 .newBoardProductModal .modal-body { padding: 0px 50px 70px; }
 .newBoardProductModal .btn-close { position: absolute; right: 20px; top: 20px; font-size: 12px; opacity: 1; z-index: 999; }
 .newBoardProductModal .btn-close:focus { box-shadow: none; }
 /* User New Board Product Modal End */
-
 
 /* Vendor Activation Automations Modal Start */
 .activateAutomationsModal .modal-dialog { max-width: 414px; }
@@ -898,10 +1109,10 @@ input[type=number] { -moz-appearance: textfield; }
 .addCustomerModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
 .addCustomerModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
 .addCustomerModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
-.addCustomerModal .modal-content .modal-body { /*padding-bottom: 0px; padding-top: 30px;*/ }
 .addCustomerModal .modal-content .modal-body h3 { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 200; }
 .addCustomerModal .modal-content .modal-body .form-list { list-style: none; padding: 0; }
 .addCustomerModal .modal-content .modal-body .form-list li { margin-bottom: 20px; }
+.addCustomerModal .modal-content .modal-body .form-list li h3 { margin-bottom: 0; }
 .addCustomerModal .modal-content .modal-body .form-list li label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 3px 0; width: 100%; }
 .addCustomerModal .modal-content .modal-body .form-list li .form-control { border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 14px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 76px 0 15px; }
 .addCustomerModal .modal-content .modal-body .form-list li .form-control:focus { box-shadow: none; }
@@ -913,6 +1124,13 @@ input[type=number] { -moz-appearance: textfield; }
 .addCustomerModal .modal-content .modal-body .form-list li .input-group input::-webkit-outer-spin-button, .addCustomerModal .modal-content .modal-body .form-list li .input-group input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
 .addCustomerModal .modal-content .modal-body .form-list li .input-group .form-control { -moz-appearance: textfield; } 
 .addCustomerModal .modal-content .modal-body .form-list li .telephone-select { left: 0; opacity: 0; position: absolute; top: 0; width: 100px; }
+
+.addCustomerModal .modal-content .modal-body .form-list li .form-check { margin-bottom: 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 17px; font-weight: 200; margin: 0; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-check-input { cursor: pointer; margin-top: 5px; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-check-input:checked { background: #000; border-color: #000; }
+.addCustomerModal .modal-content .modal-body .form-list li .form-check-input:focus { box-shadow: none; }
+
 .addCustomerModal .modal-content .modal-footer { border-top: none; }
 .addCustomerModal .modal-content .modal-footer .btn-cancel { background: none; border: 1px solid #000; border-radius: 3px; color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
 .addCustomerModal .modal-content .modal-footer .btn-cancel:focus { box-shadow: none; }
@@ -988,6 +1206,86 @@ input[type=number] { -moz-appearance: textfield; }
 .addCustomerModal .modal-content .modal-body .form-list li .formDiv li .radioLabel input:checked ~ .checkmark:after { display: block; }
 .addCustomerModal .modal-content .modal-footer .email-para { color: #000; float: left;  font-family: 'Futura' !important; font-size: 14px; font-weight: 200; margin: 0 15px 0 0; }
 /* Vendor Customer Details Modal End */
+
+/* Vendor Create Invoice Add promotion Modal Start */
+.custDetAlertModal .modal-body .add-promotion-form { float: left; list-style: none; margin-bottom: 0; margin-top: 15px; padding: 0; width: 100%; }
+.custDetAlertModal .modal-body .add-promotion-form li { float: left; margin-bottom: 25px; width: 100%; }
+.custDetAlertModal .modal-body .add-promotion-form li:last-child { margin-bottom: 0; }
+.custDetAlertModal .modal-body .add-promotion-form li .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
+.custDetAlertModal .modal-body .add-promotion-form li .form-check .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0 0 0 4px; }
+.custDetAlertModal .modal-body .add-promotion-form li .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
+.custDetAlertModal .modal-body .add-promotion-form li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.custDetAlertModal .modal-body .add-promotion-form li .form-check .form-check-input:focus { box-shadow: none; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li { float: left; margin: 0; padding: 0; width: 80%; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li:nth-child(1) { width: 10%; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li:nth-child(2) { width: 10%; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li .input-span { border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 39px; padding-left: 10px; padding-right: 10px; text-align: center; width: 100%; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li .input-front-span { color: #000; float: left; font: 200 16px 'Futura' !important; margin: 10px 0 -31px 15px; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li .input-back-span { color: #000; float: right; font: 200 16px 'Futura' !important; margin: -32px 10px 0 0; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li:nth-child(1) .input-span { border-radius: 3px 0 0 3px; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li:nth-child(2) .input-span { border-left: none; border-radius: 0; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li .disabled { background-color: rgba(0,0,0,0.05); color: rgba(0,0,0,0.60); }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; }
+.custDetAlertModal .modal-body .add-promotion-form .sub-form-list li:nth-child(3) .form-control { border-left: none; border-radius: 0 3px 3px 0; padding-left: 30px; width: 100%; }
+/* Vendor Create Invoice Add promotion Modal End */
+
+/* Vendor Create Invoice Add Shipping Modal Start */
+.addShipModal .modal-dialog { max-width: 450px; }
+.addShipModal .modal-content { border-radius: 3px; }
+.addShipModal .modal-header { border-bottom: none; position: relative; }
+.addShipModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: left; width: 100%; }
+.addShipModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.addShipModal .modal-header .btn-close:focus { box-shadow: none; }
+.addShipModal .modal-body p { color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0; text-align: center; }
+.addShipModal .modal-body .add-promotion-form { float: left; list-style: none; margin-bottom: 0; margin-top: 15px; padding: 0; width: 100%; }
+.addShipModal .modal-body .add-promotion-form li { float: left; margin-bottom: 25px; width: 100%; }
+.addShipModal .modal-body .add-promotion-form li:last-child { margin-bottom: 0; }
+.addShipModal .modal-body .add-promotion-form li .form-check { margin-bottom: 0px; min-height: 0px; padding-left: 0; }
+.addShipModal .modal-body .add-promotion-form li .form-check .form-check-label { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: normal; margin: 0 0 0 4px; }
+.addShipModal .modal-body .add-promotion-form li .form-check .form-check-input { cursor: pointer; height: 20px; margin-left: 0px; margin-top: 2px; width: 20px; }
+.addShipModal .modal-body .add-promotion-form li .form-check .form-check-input:checked { background-color: #000; border-color: #000; }
+.addShipModal .modal-body .add-promotion-form li .form-check .form-check-input:focus { box-shadow: none; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list { float: left; list-style: none; margin: 0; padding: 0; width: 100%; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li { float: left; margin: 0; padding: 0; width: 80%; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li:nth-child(1) { width: 10%; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li .input-span { border: 1px solid #000; border-radius: 3px; color: #000; cursor: pointer; float: left; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 39px; padding-left: 10px; padding-right: 10px; text-align: center; width: 100%; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li .input-front-span { color: #000; float: left; font: 200 16px 'Futura' !important; margin: 10px 0 -31px 15px; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li .input-back-span { color: #000; float: right; font: 200 16px 'Futura' !important; margin: -32px 10px 0 0; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li:nth-child(1) .input-span { border-radius: 3px 0 0 3px; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li:nth-child(2) .input-span { border-left: none; border-radius: 0; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li .disabled { background-color: rgba(0,0,0,0.05); color: rgba(0,0,0,0.60); }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li .form-control { border: 1px solid #000; border-radius: 3px; color: #000; font: 200 16px 'Futura' !important; height: 41px; line-height: 39px; margin: 0; padding: 0 15px 0 15px; }
+.addShipModal .modal-body .add-promotion-form .sub-form-list li:nth-child(3) .form-control { border-left: none; border-radius: 0 3px 3px 0; padding-left: 30px; width: 100%; }
+.addShipModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.addShipModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.addShipModal .modal-footer .common_btn:focus { box-shadow: none; }
+.addShipModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.addShipModal .modal-footer .back_btn:focus { box-shadow: none; }
+/* Vendor Create Invoice Add Shipping Modal End */
+
+/* Vendor Create Invoice Send Reminder Modal Start */
+.sendRemindetModal .modal-dialog { max-width: 360px; }
+.sendRemindetModal .modal-content { border: none; border-radius: 5px; }
+.sendRemindetModal .modal-content .modal-header { border-bottom: 1px solid #C4C4C4; display: block; position: relative; }
+.sendRemindetModal .modal-content .modal-header h4 { font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: center; }
+.sendRemindetModal .modal-content .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.sendRemindetModal .modal-content .modal-header .btn-close:focus { box-shadow: none; }
+.sendRemindetModal .modal-content .email-subject-list { list-style: none; padding: 0; }
+.sendRemindetModal .modal-content .email-subject-list li { margin: 0 0 10px 0; padding: 0; width: 100%; }
+.sendRemindetModal .modal-content .email-subject-list li h5 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; } 
+.sendRemindetModal .modal-content .email-subject-list li p { color: rgba(0, 0, 0, 0.5); font-family: 'Futura' !important; font-size: 15px; font-weight: 200; margin: 0 0 4px 0; text-transform: uppercase; } 
+.sendRemindetModal .modal-content .inner-content h4 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 20px 0; text-align: center; }
+.sendRemindetModal .modal-content .inner-content h5 { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0; text-align: right; }
+.sendRemindetModal .modal-content .inner-content .email-reminder-img img { border-radius: 100%; height: auto; width: 60px; }
+.sendRemindetModal .modal-content .inner-content .shadow-box { box-shadow: 0 0 10px rgba(0,0,0,.15); margin-top: 20px; padding: 30px; }
+.sendRemindetModal .modal-content .inner-content .shadow-box h3 { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 500; margin: 0 0 15px 0; text-align: left; }
+.sendRemindetModal .modal-content .inner-content .shadow-box h5 { color: #000; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 10px 0; text-align: left; }
+.sendRemindetModal .modal-content .inner-content .shadow-box p { color: #000; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; margin: 0 0 10px 0; text-align: left; }
+.sendRemindetModal .modal-content .inner-content .shadow-box .pay-invoice-link { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; display: inline-block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; }
+.sendRemindetModal .modal-content .modal-footer { border-top: none; }
+.sendRemindetModal .modal-content .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; color: #fff; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 45px 0 45px; text-align: center; width: auto; }
+/* Vendor Create Invoice Send Reminder Modal End */
 
 /*-------------------------------------------------- Vendor Order Modal Start --------------------------------------------------*/
 
@@ -1082,7 +1380,7 @@ input[type=number] { -moz-appearance: textfield; }
 /*-------------------------------------------------- Vendor Order Modal End --------------------------------------------------*/
 
 /*-------------------------------------------------- Add Products Modal Start --------------------------------------------------*/
-
+ 
 /* Vendor Video Modal Style Start */
 .videoModal .modal-dialog { max-width: 600px; }
 .videoModal .modal-content { border-radius: 3px; }
@@ -1237,6 +1535,21 @@ input[type=number] { -moz-appearance: textfield; }
 .detectChangeModal .modal-footer .back_btn:focus { box-shadow: none; }
 /*-------------------------------------------------- Edit Products Modal End --------------------------------------------------*/
 
+/*-------------------------------------------------- Edit Products Modal Start --------------------------------------------------*/
+.custDetAlertModal .modal-dialog { max-width: 450px; }
+.custDetAlertModal .modal-content { border-radius: 3px; }
+.custDetAlertModal .modal-header { border-bottom: none; position: relative; }
+.custDetAlertModal .modal-header .modal-title { color: #000; font-family: 'Futura' !important; font-size: 24px; font-weight: 200; margin: 0; text-align: left; width: 100%; }
+.custDetAlertModal .modal-header .btn-close { margin: 0; opacity: 1; padding: 5px; position: absolute; right: 15px; top: 15px; }
+.custDetAlertModal .modal-header .btn-close:focus { box-shadow: none; }
+.custDetAlertModal .modal-body p {  color: #000; font-family: 'Futura' !important; font-size: 20px; font-weight: 500; margin: 0; text-align: center; }
+.custDetAlertModal .modal-footer { border-top: none; display: block; padding-bottom: 40px; text-align: center; }
+.custDetAlertModal .modal-footer .common_btn { background: #393939; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; margin-bottom: 20px; padding: 0; text-align: center; width: 350px; }
+.custDetAlertModal .modal-footer .common_btn:focus { box-shadow: none; }
+.custDetAlertModal .modal-footer .back_btn { background: #fff; border: 1px solid #000; border-radius: 3px; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; height: 43px; line-height: 41px; padding: 0; text-align: center; width: 350px; }
+.custDetAlertModal .modal-footer .back_btn:focus { box-shadow: none; }
+/*-------------------------------------------------- Edit Products Modal End --------------------------------------------------*/
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL-SECTION END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
@@ -1290,7 +1603,7 @@ input[type=number] { -moz-appearance: textfield; }
 /* Vendor Header End */
 
 /* Vendor-Dashboard-Common-Style Start */ 
-.dashboard_body { display: block; margin-top: 50px; overflow: auto; padding-left: 0px; }
+.dashboard_body { display: block; padding-top: 50px; overflow: auto; padding-left: 0px; }
 .middle_vendor_dasboard { padding-left: 10px; padding-right: 10px; width: 100%; }
 .right_vendor_dasboard { background: none; margin-top: 20px; padding-bottom: 40px; padding-left: 10px; padding-right: 10px; width: 100%; }
 .right_content_overflow { background: #fff; max-height: none; padding: 20px 0 0 0; position: relative; width: 100%; }
@@ -1300,6 +1613,11 @@ input[type=number] { -moz-appearance: textfield; }
 /* Vendor-Dashboard-Common-Style Start */
 .edit-order-dashboard_body { margin-top: 20px; }
 /* Vendor-Dashboard-Common-Style End */
+
+/* Category Page Carousel Start */
+.filter_sec .owl-theme .owl-stage { margin-top: 50px; }
+.filter_sec .owl-theme .owl-nav { margin-top: 0; top: 0; }
+/* Category Page Carousel End */
 
 /**************************************************************** Vendor Pages End *****************************************************************/
 

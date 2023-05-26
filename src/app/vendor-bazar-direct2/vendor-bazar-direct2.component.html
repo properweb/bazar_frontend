@@ -7,7 +7,7 @@
       <div class="headingBox">
         <div class="whiteHeadingBox">
           <h3>Widgets</h3>
-          <p><a>Bazar Direct</a></p>
+          <p><a routerLink="/direct">Bazar Direct</a></p>
         </div>
       </div>
       <div class="vendor_create_body">
@@ -21,8 +21,10 @@
             <h4>Widget Type</h4>
             <ul class="widget_select_list">
               <li>
-                <select class="form-select" aria-label="Default select example">
-                  <option value="1" selected>Standard | 540 x 510 pixels</option>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="widgetSize" (change)="onSizechange($event);">
+                  <option value="large" selected>Large | 900 x 600 pixels</option>
+                  <option value="standard" selected>Standard | 500 x 600 pixels</option>
+                  <option value="small" selected>Small | 360 x 64 pixels</option>
                 </select>
               </li>
             </ul>
@@ -33,9 +35,14 @@
                   <p><span class="spanNum">01</span> Copy code to clipboard</p>
                   <ul class="row copyCodeList">
                   	<li class="col-lg-9">
-                    	<div class="copyCode">&#60;iframe src="https://www...</div>
+                    	<div class="copyCode">{{copyValue}}</div>
+                    	<!-- <div class="copyCode">&#60;iframe src="https://www...</div> -->
+                      <input type="hidden" [(ngModel)]="copyValue" >
                     </li>
-                    <li class="col-lg-3"><a class="copySpan"><i class="fa-solid fa-copy"></i> Copy</a></li>
+                    <li class="col-lg-3">
+                      <a *ngIf="!copied" class="copySpan" (click)="copyMessage(copyValue)" ><i class="fa-solid fa-copy"></i> Copy</a>
+                      <a *ngIf="copied" class="copySpan">Copied</a>
+                    </li>
                   </ul>
                   <p><span class="spanNum">02</span> Go to your Shopify, Squarespace, Wix, BigCommerce, etc. website</p>
                   <p><span class="spanNum">03</span> Create a "Custom HTML" component in the wholesale tab of your website</p>
@@ -47,14 +54,14 @@
                   <ul class="embadedFormList">
                   	<li>
                     	<label class="form-label">Send to</label>
-                    	<input type="text" name="" value="" class="form-control" placeholder="Email">
+                    	<input type="text" name="" value="" class="form-control" placeholder="Email" [(ngModel)]="devEmail">
                     </li>
                     <li>
-                    	<label class="form-label">Name</label>
-                        <textarea _ngcontent-jno-c146="" rows="3" placeholder="" class="form-control textAreaForm">Hey there,
+                    	<label class="form-label">Body</label>
+                        <textarea _ngcontent-jno-c146="" rows="3" placeholder="" class="form-control textAreaForm" [(ngModel)]="devBody">Hey there,
                         Could you help me embed a Bazar ordering widget in the wholesale page of our website? Here's how:
                         1. Copy the code at the bottom
-                        2. Log into our website editor
+                        2. Log into our website editor 
                         3. Create a "Custom HTML" component on our wholesale page
                         4. Paste code and save
                         Let me know if you have any questions!
@@ -62,18 +69,19 @@
                         Marina Mari
                         </textarea>
                     </li>
-                    <li class="text-center"><input type="submit" name="" value="Send instructions" class="btn btn-primary"></li>
+                    <span *ngIf="errorMsg" class="validate_errors">{{errorMsg}}</span>
+                    <li class="text-center"><input type="submit" name="" value="Send instructions" class="btn btn-primary" (click)="onSendInstructions();"></li>
                   </ul>
                 </ng-template>
               </ngb-panel>
             </ngb-accordion>
-            <h4>Upload photo</h4>
-            <div class="uploadProductthumb">
+            <!-- <h4>Upload photo</h4> -->
+            <!-- <div class="uploadProductthumb">
               <div class="upload-btn-wrapper">
                 <button class="btn">Max 2 GB</button>
                 <input type="file" name="myfile">
               </div>
-            </div>
+            </div> -->
             <div class="uploadShowImg" style="display: none;"><img src="assets/images/widget_img.png" alt="image"></div>
           </div>
           <div class="col-lg-8 gray_text_box">
@@ -81,16 +89,26 @@
             	<h3>Widget Preview</h3>
             </div>
             <div class="white_right_widgets_box">
-            	<h4>Order wholesale from us today</h4>
+            	<!-- <h4>Order wholesale from us today</h4>
                 <div class="blankImg"><img src="assets/images/blank_img.svg" alt="image"></div>
                 <div class="uploadImgDiv" style="display: none;"><img src="assets/images/widget_img.png" alt="image"></div>
                 <a class="btn btn-primary">Shop wholesale</a>
-                <h5>Special offers and discounts</h5>
+                <h5>Special offers and discounts</h5> -->
+                <ng-container *ngIf="widgetSize == 'large'">
+                  <iframe width="900" height="600" scrolling="no" frameBorder="0" [src]="url"></iframe>
+                  <!-- <iframe width="900" height="600" scrolling="no" frameBorder="0" [src]="'https://staging1.bazarcenter.ca/embed/' + largeWidget?.widget_key"></iframe> -->
+                </ng-container>
+                <ng-container *ngIf="widgetSize == 'standard'">
+                  <iframe width="500" height="600" scrolling="no" frameBorder="0" [src]="url"></iframe>
+                </ng-container>
+                <ng-container *ngIf="widgetSize == 'small'">
+                  <iframe width="360" height="64" scrolling="no" frameBorder="0" [src]="url"></iframe>
+                </ng-container>
             </div>
           </div>
         </div>
       </div>
-      <div class="widgetsBox">
+      <!-- <div class="widgetsBox">
         <div class="row">
           <div class="col-lg-4 white_text_box">
             <h3>Embed an ordering button</h3>
@@ -146,7 +164,7 @@
             <a class="btn btn-primary shop-wholesale"><span class="b_logo"><img src="assets/images/b_logo.svg" alt="" /></span> Shop wholesale</a>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="white_bazar_direct_sec">
         <div class="container">
           <h3>You may be wondering</h3>

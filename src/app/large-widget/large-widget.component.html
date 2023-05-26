@@ -1,0 +1,20 @@
+<!-- <div class="large-widget">
+    <div class="large-widget-inner">
+        <div class="row">
+            <div class="col-md-6 large-widget-text">
+                <h4>{{allDetails?.brand_name}} <span>X</span> <img src="assets/images/logo.png" alt="logo"></h4>
+                <h3>Try our products in your store, risk-free</h3>
+                <ul>
+                    <li>$100 off your first order*</li>
+                    <li>1 year of free shipping*</li>
+                    <li>Buy now, pay 60 days later</li>
+                    <li>Free returns on your first order</li>
+                </ul>
+                <span class="note-span">*Available for retailers who are new to Bazar</span>
+                <a class="shop-btn" href="{{direct_Link}}" target="_blank"><span class="b_logo"><img src="assets/images/b_logo.svg" alt="" /></span> Shop wholesale</a>
+            </div>
+            <div class="col-md-6 large-widget-image"><img [src]="allDetails?.profile_photo" alt=""></div>
+        </div>
+    </div>
+</div> -->
+<div [innerHTML]="widgetDetails?.body"></div>

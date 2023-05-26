@@ -1,0 +1,42 @@
+/* Large Widget Css */
+
+.large-widget { margin: 0 auto; max-width: 900px; width: 100%; }
+.large-widget .large-widget-inner { box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px; margin: 8px; }
+.large-widget .large-widget-text { padding: 40px 47px 40px 55px; }
+.large-widget .large-widget-text h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; line-height: 42px; margin: 0 0 15px 0; }
+.large-widget .large-widget-text h4 { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 29px; margin: 0 0 15px 0; }
+.large-widget .large-widget-text h4 span { color: rgb(122, 120, 133); display: inline-block; margin: 0 14px 0 10px; }
+.large-widget .large-widget-text h4 img { display: inline-block; height: auto; position: relative; top: -5px; width: 105px; }
+.large-widget .large-widget-text ul { list-style: none; margin-bottom: 25px; padding: 0; }
+.large-widget .large-widget-text ul li { background: url(../../assets/images/check-mark.png) no-repeat 0 3px; background-size: 20px auto; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 15px 0; padding: 2px 0 2px 30px; width: 100%; }
+.large-widget .large-widget-text .note-span { color: #000; display: block; font-family: 'Futura' !important; font-size: 13px; font-weight: 200; margin-bottom: 15px; }
+.large-widget .large-widget-text .shop-btn {  background: #393939; border: 1px solid #393939; border-radius: 0.25rem; color: #fff; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; padding: 0; position: relative; text-align: center; transition: all .5s ease-in-out; }
+.large-widget .large-widget-text .shop-btn .b_logo { background: url(../../assets/images/btn_border_line.png) no-repeat right 18px; display: inline-block; margin-right: 12px; padding-right: 10px; position: relative; top: -4px; }
+.large-widget .large-widget-image img { height: 100%; object-fit: cover; width: 100%; }
+
+@media screen and (max-width: 699px) { 
+.large-widget { max-width: 500px; }
+.large-widget .large-widget-image { display: none; }
+}
+
+/* Small Widget Css */
+
+.small-widget { margin: 0; padding: 0; text-align: center; width: 100%; }
+.small-widget  .shop-wholesale { background-color: #393939; background-image: url(../../assets/images/white-right-arrow.png); background-position: 90% 13px; background-repeat: no-repeat; background-size: 30px auto; border: 1px solid #393939; border-radius: 3px; font-family: 'Futura' !important; font-size: 16px; font-weight: 200; height: 43px; line-height: 41px; padding: 0 80px 0 20px; }
+.small-widget  .shop-wholesale .b_logo { background: url(../../assets/images/btn_border_line.png) no-repeat right 18px; display: inline-block; margin-right: 12px; padding-right: 10px; position: relative; top: -4px; }
+
+/* Standard Widget Css */
+
+.standard-widget { margin: 0 auto; max-width: 500px; width: 100%; }
+.standard-widget .standard-widget-inner { box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px; margin: 8px; }
+.standard-widget .standard-widget-text { padding: 40px 47px 40px 55px; }
+.standard-widget .standard-widget-text h3 { color: #000; font-family: 'Futura' !important; font-size: 32px; font-weight: 200; line-height: 42px; margin: 0 0 15px 0; }
+.standard-widget .standard-widget-text h4 { color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 29px; margin: 0 0 15px 0; }
+.standard-widget .standard-widget-text h4 span { color: rgb(122, 120, 133); display: inline-block; margin: 0 14px 0 10px; }
+.standard-widget .standard-widget-text h4 img { display: inline-block; height: auto; position: relative; top: -5px; width: 105px; }
+.standard-widget .standard-widget-text ul { list-style: none; margin-bottom: 25px; padding: 0; }
+.standard-widget .standard-widget-text ul li { background: url(../../assets/images/check-mark.png) no-repeat 0 3px; background-size: 20px auto; color: #393939; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; margin: 0 0 15px 0; padding: 2px 0 2px 30px; width: 100%; }
+.standard-widget .standard-widget-text .note-span { color: #000; display: block; font-family: 'Futura' !important; font-size: 13px; font-weight: 200; margin-bottom: 15px; }
+.standard-widget .standard-widget-text .shop-btn {  background: #393939; border: 1px solid #393939; border-radius: 0.25rem; color: #fff; cursor: pointer; display: block; font-family: 'Futura' !important; font-size: 18px; font-weight: 200; line-height: 43px; margin: 0; padding: 0; position: relative; text-align: center; transition: all .5s ease-in-out; }
+.standard-widget .standard-widget-text .shop-btn .b_logo { background: url(../../assets/images/btn_border_line.png) no-repeat right 18px; display: inline-block; margin-right: 12px; padding-right: 10px; position: relative; top: -4px; }
+

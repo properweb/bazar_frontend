@@ -12,9 +12,12 @@
               <ul class="row fomlList">
                 <li class="col-lg-9">
                   <label class="form-label">Bazar direct link</label>
-                  <input type="text" name="" value="best seller.bazar.com" class="form-control" placeholder="">
+                  <input readonly type="text" name="" class="form-control" placeholder="" [(ngModel)]="copyValue">
                 </li>
-                <li class="col-lg-3"> <span class="copySpan"><i class="fa-solid fa-copy"></i> Copy</span> </li>
+                <li class="col-lg-3"> 
+                  <span style="cursor: pointer;" *ngIf="!copied" class="copySpan" (click)="copyMessage(copyValue)" ><i class="fa-solid fa-copy"></i> Copy</span> 
+                  <span *ngIf="copied" class="copySpan"><i class="fa-solid fa-check"></i> Copied</span> 
+                </li>
               </ul>
               <ul class="row btmList">
                 <li class="col-lg-6"><a class="btn btn-primary share_email">Share via email</a></li>
