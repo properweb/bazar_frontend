@@ -68,10 +68,11 @@
                           <li><span>0%</span> Orders</li> -->
                       </ul>
                       <ul class="campaign_sent_item">
-                        <li><a class="sentSpan">Sent</a></li>
-                          <li><a><img src="assets/images/campaigns_copy_icon.png" alt=""></a></li>
-                          <li><a (click)="deleteCampaign(item?.campaign_key)"><img src="assets/images/campaigns_delete_icon.png" alt=""></a></li>
-                          <li><a routerLink="/brand-portal/marketing/campaigns/{{item?.campaign_key}}" ><img src="assets/images/right_arrow_icon.png" alt="" ></a></li>
+                        <!-- <li><a class="sentSpan">Sent</a></li> -->
+                          <!-- <li><a><img src="assets/images/campaigns_copy_icon.png" alt=""></a></li> -->
+                          <li><a (click)="openCustDetAlertModal(campaignDeleteAlertModal, item?.campaign_key)"><img src="assets/images/campaigns_delete_icon.png" alt=""></a></li>
+                          <!-- <li><a (click)="deleteCampaign(item?.campaign_key)"><img src="assets/images/campaigns_delete_icon.png" alt=""></a></li> -->
+                          <li><a routerLink="/campaigns/{{item?.campaign_key}}" ><img src="assets/images/right_arrow_icon.png" alt="" ></a></li>
                       </ul>
                   </div>
               </div>
@@ -114,7 +115,7 @@
     </div>
   </div>
 </div>
-<ng-template #content let-modal>
+<ng-template #content let-modal> 
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Create campaign</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -139,3 +140,18 @@
   </div>
 </ng-template>
 <!-- Vendor Add Customer Information Modal End --> 
+
+<!-- Delete-Campaign-Alert-Modal -->
+<ng-template #campaignDeleteAlertModal let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Do you want to delete this Campaign?</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!btnDis" type="button" (click)="deleteCampaign();" class="btn btn-primary common_btn" >Delete</button>
+    <button *ngIf="btnDis" disabled type="button" class="btn btn-primary common_btn" >Please wait...</button>
+    <button type="button" class="btn btn-primary back_btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+  </div>
+</ng-template>

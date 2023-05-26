@@ -18,14 +18,13 @@ export class VendorCampaignsComponent implements OnInit {
   errorMsg!: any;
   errorMsg1!: any;
   createCampaignsModal!: any;
+  campDeleteAlertModal!: any;
+  campaign_key!: any;
   btnDis: any = false;
 
-  constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap,private router: Router,  private toast: NgToastService) { }
+  constructor(public modalService: NgbModal, private apiService: ApiService, private storage: StorageMap, private router: Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('local_data') == null) {
-      this.router.navigate(['/']);
-    } else {}
     this.storage.get("user_session").subscribe({
       next: (user) => {
         /* Called if data is valid or `undefined` */
@@ -98,8 +97,8 @@ export class VendorCampaignsComponent implements OnInit {
     }
   }
 
-  deleteCampaign(key: any) {
-    this.apiService.deleteCampaigns(key).subscribe((responseBody) => {
+  deleteCampaign() {
+    this.apiService.deleteCampaigns(this.campaign_key).subscribe((responseBody) => {
       let response = JSON.parse(JSON.stringify(responseBody));
       if(response.res == true) {
         this.toast.success({detail: 'Deleted Successfully', summary: '', duration: 4000});
@@ -113,4 +112,9 @@ export class VendorCampaignsComponent implements OnInit {
     })
   }
 
+  openCustDetAlertModal(content: any, camp_key: any) {
+    this.campaign_key = camp_key;
+    this.campDeleteAlertModal = this.modalService.open(content, { windowClass: 'custDetAlertModal' });
+  }
+  
 }
