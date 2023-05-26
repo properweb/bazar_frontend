@@ -512,7 +512,7 @@ export class VendorEditProductComponent implements OnInit , ComponentCanDeactiva
 
         this.prevYesStock = response.data[0].allvariations[0].inventory;
 
-        this.option_items = response.data[0].option_value;
+        this.option_items = response.data[0].option_value ? response.data[0].option_value : [];
 
         this.resultAttributeImgPreview = [...response.data[0].allvariations];
 
