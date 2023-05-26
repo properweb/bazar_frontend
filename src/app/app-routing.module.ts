@@ -82,6 +82,15 @@ import { UserBoardComponent } from './user-board/user-board.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { UserProductDetailsComponent } from './user-product-details/user-product-details.component';
 import { AuthGuard } from './guards/auth.guard';
+import { VendorCustomerServiceComponent } from './vendor-customer-service/vendor-customer-service.component';
+import { VendorOrderIssuesComponent } from './vendor-order-issues/vendor-order-issues.component';
+import { VendorInvoiceDetailsComponent } from './vendor-invoice-details/vendor-invoice-details.component';
+import { VendorMessageComponent } from './vendor-message/vendor-message.component';
+import { SerachComponent } from './serach/serach.component';
+import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
+import { LargeWidgetComponent } from './large-widget/large-widget.component';
+import { SmallWidgetComponent } from './small-widget/small-widget.component';
+import { StandardWidgetComponent } from './standard-widget/standard-widget.component';
 
 
 
@@ -143,11 +152,15 @@ const routes: Routes = [
     data: { roles: ['retailer'] }
   },
   {
-    path: 'productCategory',
+    path: 'category/:cat_slug',
     component: ProductCategoryComponent
   },
   {
-    path: 'productSubCategory',
+    path: 'category/:cat_slug/subcategory/:subcat_slug',
+    component: ProductSubCategoryComponent
+  },
+  {
+    path: 'category/:cat_slug/subcategory/:subcat_slug/:subsubcat_slug',
     component: ProductSubCategoryComponent
   },
   {
@@ -278,28 +291,32 @@ const routes: Routes = [
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/invoices',
+    path: 'brand-invoices',
     component: VendorInvoicingComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/invoices/new',
+    path: 'brand-invoices/new',
     component: VendorCreateInvoiceComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
   },
   {
-    path: 'vendorOrderPayouts',
+    path: 'analytics/order-payout',
     component: VendorOrderPayoutsComponent
   },
   {
-    path: 'vendorBazarDirect',
-    component: VendorBazarDirectComponent
+    path: 'direct',
+    component: VendorBazarDirectComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
   },
   {
-    path: 'vendorBazarDirect2',
-    component: VendorBazarDirect2Component
+    path: 'direct/widgets',
+    component: VendorBazarDirect2Component,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
   },
   {
     path: 'customers',
@@ -314,19 +331,19 @@ const routes: Routes = [
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/promotions',
+    path: 'promotions',
     component: VendorPromotionsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/promotions/new',
+    path: 'promotions/new',
     component: VendorNewPromotionsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/promotions/:id',
+    path: 'promotions/:id',
     component: VendorEditPromotionsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
@@ -368,13 +385,13 @@ const routes: Routes = [
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/marketing/campaigns',
+    path: 'campaigns',
     component: VendorCampaignsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
   },
   {
-    path: 'brand-portal/marketing/campaigns/:id',
+    path: 'campaigns/:id',
     component: VendorNewCampaignsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
@@ -386,11 +403,13 @@ const routes: Routes = [
     data: { roles: ['brand'] }
   },
   {
-    path: 'vendorPerformance',
-    component: VendorPerformanceComponent
+    path: 'analytics',
+    component: VendorPerformanceComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
   },
   {
-    path: 'vendorSellThrough',
+    path: 'analytics/sell-through',
     component: VendorSellThroughComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
@@ -402,7 +421,7 @@ const routes: Routes = [
     data: { roles: ['brand'] }
   },
   {
-    path: 'vendorPerformanceReviews',
+    path: 'analytics/reviews',
     component: VendorPerformanceReviewsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
@@ -481,7 +500,7 @@ const routes: Routes = [
     path: 'edit-order/:id',
     component: EditOrderComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['retailer'] }
+    data: { roles: ['brand'] }
   },
   {
     path: 'view-order/:id',
@@ -502,7 +521,7 @@ const routes: Routes = [
     data: { roles: ['retailer'] }
   },
   {
-    path: 'brand-portal/customers/:id',
+    path: 'customers/:id',
     component: CustomerDetailsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['brand'] }
@@ -512,6 +531,50 @@ const routes: Routes = [
     component: UserProductDetailsComponent,
     canActivate: [AuthGuard],
     data: { roles: ['retailer'] }
+  },
+  {
+    path: 'analytics/customer-service',
+    component: VendorCustomerServiceComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
+  },
+  {
+    path: 'analytics/order-issues',
+    component: VendorOrderIssuesComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
+  },
+  {
+    path: 'brand-invoices/:id',
+    component: VendorInvoiceDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
+  },
+  {
+    path: 'message',
+    component: VendorMessageComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['brand'] }
+  },
+  {
+    path: 'search/:value',
+    component: SerachComponent,
+  },
+  {
+    path: 'print-invoice/:id',
+    component: PrintInvoiceComponent
+  },
+  {
+    path: 'embed/:key',
+    component: LargeWidgetComponent,
+  },
+  {
+    path: 'small-widget',
+    component: SmallWidgetComponent,
+  },
+  {
+    path: 'standard-widget',
+    component: StandardWidgetComponent,
   },
   { path: '**', redirectTo: '' }
 ];
