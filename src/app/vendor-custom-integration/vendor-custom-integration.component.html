@@ -1,0 +1,74 @@
+<app-vendor-dashboard-header></app-vendor-dashboard-header>
+<div class="dashboard_body">
+  <app-vendor-side-menu></app-vendor-side-menu>
+  <div class="middle_vendor_dasboard">
+    <div class="middle_content">
+      <p class="lookingGuidelinesPara">Listing face masks? Follow the <a>guidelines</a></p>
+      <div class="headingBox">
+        <div class="whiteHeadingBox">
+          <h3>Custom Integration</h3>
+          <p><a routerLink="/products">Products</a></p>
+        </div>
+      </div>
+      <div class="bulk_prodt_body">
+        <ul class="row bulk_prodt_list">
+          <li class="col-lg-6">
+            <div class="whiteBox" routerLink="/upload-catalog">
+                <span class="radioLabel">Upload Catalog
+                  <input type="radio" name="1">
+                  <span class="checkmark"></span> </span> 
+            </div>
+          </li>
+          <li class="col-lg-6">
+            <div class="whiteBox">
+                <span class="radioLabel">Integrate via Api
+                  <input type="radio" name="1" checked>
+                  <span class="checkmark"></span> </span> 
+            </div>
+          </li>
+        </ul>
+        <form #customWebsiteConnectForm="ngForm" (ngSubmit)="customWebsiteConnectForm.form.valid && customWebsiteConnect(customWebsiteConnectForm)">
+          <ul class="urlList">
+            <li>
+                <label>Api Key</label>
+                <input type="hidden" name="user_id" [(ngModel)]="user_id" />
+                <input required type="text" class="form-control" placeholder="Api Key" name="api_key" [(ngModel)]="api_key" #api_keyval='ngModel'>
+                <span class="idSpan"></span>
+                <span class="validate_errors"
+                    *ngIf="(api_keyval.touched || customWebsiteConnectForm.submitted) && api_keyval.errors?.['required']">
+                     Api key is required.
+                </span>
+            </li>
+            <li>
+                <label>Api Password</label>
+                <input required type="text" class="form-control" placeholder="Api Password" name="api_password" [(ngModel)]="api_password" #api_passwordval='ngModel'>
+                <span class="idSpan"></span>
+                <span class="validate_errors"
+                    *ngIf="(api_passwordval.touched || customWebsiteConnectForm.submitted) && api_passwordval.errors?.['required']">
+                    Api password is required.
+                </span>
+            </li>
+            <li>
+                <label>Store URL</label>
+                <input required pattern="^(https:\/\/www\.|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" type="text" class="form-control" placeholder="Store URL" name="store_url" [(ngModel)]="store_url" #store_urlval='ngModel'>
+                <!-- <span class="idSpan">.myshopify.com</span> -->
+                <span class="validate_errors"
+                    *ngIf="(store_urlval.touched || customWebsiteConnectForm.submitted) && store_urlval.errors?.['required']">
+                    Store URL is required.
+                </span>
+                <span class="validate_errors"
+                    *ngIf="(store_urlval.touched || customWebsiteConnectForm.submitted) && store_urlval.errors?.['pattern']">
+                    Store URL is not valid.
+                </span>
+            </li>
+            <span *ngIf="errorMsg" style="color: red; font-family: 'Futura PT Book'; font-size: 18px;">{{errorMsg}}</span>
+            <span *ngIf="successMsg" style="background-color: rgb(143, 235, 147); color: #fff; display: block; font-family: 'Futura PT Book'; font-size: 18px; padding: 10px; text-align: center;">{{successMsg}}</span>
+            <li>
+                <input type="submit" *ngIf="!spinnerShow" class="btn btn-primary" value="Connect">
+                <button type="" class="btn btn-primary" disabled style="position:relative;" *ngIf="spinnerShow"><img src="assets/images/spinner.gif" style="width: 100px; height: 100px; left: 140px;bottom: -28px;position: absolute;"></button>
+            </li>
+        </ul>
+        </form>
+      </div>
+  </div>
+</div>
