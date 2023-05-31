@@ -622,6 +622,26 @@ export class ApiService {
     return this.http.get(this._Base_URL+'brands/direct/widgets/'+ key, this.createAuthorizationHeader());
   }
 
+  customAddWebsite(values: any) {
+    return this.http.post(this._Base_URL+'custom/add-api', values, this.createAuthorizationHeader());
+  }
+
+  fetchCustomWebsite() {
+    return this.http.post(this._Base_URL+'custom/fetch-custom', {}, this.createAuthorizationHeader());
+  }
+
+  customImportProduct(values: any) {
+    return this.http.post(this._Base_URL+'custom/import-product', values, this.createAuthorizationHeader());
+  }
+
+  customImportExistProduct(values: any) {
+    return this.http.post(this._Base_URL+'custom/update-stock', values, this.createAuthorizationHeader());
+  }
+
+  customExportProduct(values: any) {
+    return this.http.post(this._Base_URL+'custom/export-product', values, this.createAuthorizationHeader());
+  }
+
   logout() {
     localStorage.removeItem('local_data');
     localStorage.removeItem('authorization_data');
